@@ -429,28 +429,62 @@
             </p>
           </div>
 
-          <!-- Telemetry Stats Cards -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
-              <div class="text-xs font-mono text-slate-400 uppercase">Jobs Scraped</div>
-              <div class="text-xl font-bold font-mono text-brand-cyan">14,280+</div>
-              <div class="text-[9px] text-emerald-400">Live Crawl Active</div>
+          <!-- Telemetry Stats Cards & Auto-Finish Master Action Button -->
+          <div class="flex flex-col sm:items-end gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full sm:w-auto">
+              <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+                <div class="text-xs font-mono text-slate-400 uppercase">Jobs Scraped</div>
+                <div class="text-xl font-bold font-mono text-brand-cyan">14,280+</div>
+                <div class="text-[9px] text-emerald-400">Live Crawl Active</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+                <div class="text-xs font-mono text-slate-400 uppercase">High-Ticket Pool</div>
+                <div class="text-xl font-bold font-mono text-purple-400">$58,400+</div>
+                <div class="text-[9px] text-slate-400">Filtered &gt; $1.5k</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+                <div class="text-xs font-mono text-slate-400 uppercase">Active Closers</div>
+                <div class="text-xl font-bold font-mono text-emerald-400">5 Agents</div>
+                <div class="text-[9px] text-emerald-400">24/7 Autonomous</div>
+              </div>
+              <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+                <div class="text-xs font-mono text-slate-400 uppercase">Win Probability</div>
+                <div class="text-xl font-bold font-mono text-amber-400">94.1%</div>
+                <div class="text-[9px] text-slate-400">Benchmarked</div>
+              </div>
             </div>
-            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
-              <div class="text-xs font-mono text-slate-400 uppercase">High-Ticket Pool</div>
-              <div class="text-xl font-bold font-mono text-purple-400">$58,400+</div>
-              <div class="text-[9px] text-slate-400">Filtered &gt; $1.5k</div>
+
+            <!-- Master Auto-Finisher Launch Button & Mode Controller -->
+            <div class="w-full flex flex-col sm:flex-row items-center justify-between sm:justify-end gap-3 mt-1">
+              <button id="autoFinishMasterBtn" onclick="toggleAutoFinishingSwarm()" class="w-full sm:w-auto px-6 py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider text-brand-void bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:brightness-110 transition-all shadow-xl shadow-emerald-500/25 active:scale-95 flex items-center justify-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-slate-900 animate-ping"></span>
+                <i data-lucide="play-circle" class="w-4 h-4 text-brand-void"></i>
+                <span id="autoFinishBtnText">Start Auto-Finishing All Jobs (5 Closers Active)</span>
+              </button>
             </div>
-            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
-              <div class="text-xs font-mono text-slate-400 uppercase">Active Closers</div>
-              <div class="text-xl font-bold font-mono text-emerald-400">5 Agents</div>
-              <div class="text-[9px] text-emerald-400">24/7 Autonomous</div>
+          </div>
+        </div>
+
+        <!-- Live Autonomous Swarm Execution Feed Banner (Hidden until activated) -->
+        <div id="swarmExecutionBanner" class="hidden mb-8 p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 backdrop-blur-md">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-3">
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></div>
+              <div>
+                <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">Autonomous 5-Closer Swarm In Progress:</span>
+                <span id="swarmCurrentActionText" class="text-xs font-mono text-emerald-300 ml-2">Matching blueprints, estimating timelines, and dispatching proposals...</span>
+              </div>
             </div>
-            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
-              <div class="text-xs font-mono text-slate-400 uppercase">Win Probability</div>
-              <div class="text-xl font-bold font-mono text-amber-400">94.1%</div>
-              <div class="text-[9px] text-slate-400">Benchmarked</div>
+            <div class="flex items-center gap-3 text-xs font-mono text-slate-300">
+              <span>Finished: <strong id="swarmFinishedCount" class="text-emerald-400 font-bold">0</strong> / <span id="swarmTotalCount">10</span></span>
+              <span>•</span>
+              <span>Total Closed: <strong id="swarmTotalSecured" class="text-brand-cyan font-bold">$0</strong></span>
             </div>
+          </div>
+
+          <!-- Live Progress Bar -->
+          <div class="w-full h-2 rounded-full bg-brand-void/90 overflow-hidden border border-brand-border">
+            <div id="swarmProgressBar" class="h-full bg-gradient-to-r from-emerald-400 via-teal-300 to-brand-cyan transition-all duration-500 w-0"></div>
           </div>
         </div>
 
@@ -1971,6 +2005,81 @@
         lucide.createIcons();
         renderFreelanceJobs();
       }, 900);
+    }
+
+    // ==========================================
+    // 7. AUTONOMOUS AUTO-FINISHER SWARM ENGINE
+    // ==========================================
+    let isAutoFinishingActive = false;
+    let autoFinishInterval = null;
+    let autoFinishIndex = 0;
+    let totalValueSecured = 0;
+
+    function toggleAutoFinishingSwarm() {
+      const masterBtn = document.getElementById('autoFinishMasterBtn');
+      const btnText = document.getElementById('autoFinishBtnText');
+      const banner = document.getElementById('swarmExecutionBanner');
+      const progressBar = document.getElementById('swarmProgressBar');
+      const currentActionText = document.getElementById('swarmCurrentActionText');
+      const finishedCountEl = document.getElementById('swarmFinishedCount');
+      const totalCountEl = document.getElementById('swarmTotalCount');
+      const totalSecuredEl = document.getElementById('swarmTotalSecured');
+
+      if (!isAutoFinishingActive) {
+        // ACTIVATE AUTOPILOT
+        isAutoFinishingActive = true;
+        banner.classList.remove('hidden');
+        masterBtn.className = 'w-full sm:w-auto px-6 py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider text-white bg-rose-600 hover:bg-rose-700 transition-all shadow-xl shadow-rose-600/30 active:scale-95 flex items-center justify-center gap-2.5';
+        btnText.textContent = 'Pause 24/7 Auto-Finisher Swarm';
+
+        totalCountEl.textContent = globalFreelanceJobs.length;
+        
+        autoFinishInterval = setInterval(() => {
+          if (autoFinishIndex >= globalFreelanceJobs.length) {
+            // Loop finished or continuously cycling
+            currentActionText.textContent = 'All pending world jobs finished & locked! Closers maintaining 24/7 standby for new scraped leads.';
+            clearInterval(autoFinishInterval);
+            autoFinishInterval = null;
+            btnText.textContent = 'All Scraped Jobs Finished (Restart Swarm)';
+            masterBtn.className = 'w-full sm:w-auto px-6 py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider text-brand-void bg-emerald-400 hover:bg-emerald-300 transition-all shadow-xl shadow-emerald-400/30 flex items-center justify-center gap-2.5';
+            return;
+          }
+
+          const targetJob = globalFreelanceJobs[autoFinishIndex];
+          const closer = closerProfiles[targetJob.closerId];
+          const closerShort = closer ? closer.name.split('(')[0].trim() : 'Apex-Closer';
+
+          // Update Status
+          targetJob.status = `FINISHED BY ${closerShort.toUpperCase()} - ESCROW SECURED`;
+          
+          // Calculate budget
+          const budgetNum = parseInt(targetJob.budget.replace(/[^0-9]/g, '').slice(-4)) || 3500;
+          totalValueSecured += budgetNum;
+
+          autoFinishIndex++;
+
+          // Update Telemetry & UI
+          finishedCountEl.textContent = autoFinishIndex;
+          totalSecuredEl.textContent = `$${totalValueSecured.toLocaleString()}`;
+          const progressPct = Math.round((autoFinishIndex / globalFreelanceJobs.length) * 100);
+          progressBar.style.width = `${progressPct}%`;
+          currentActionText.textContent = `${closerShort} finished & closed [${targetJob.id}] for ${targetJob.budget}. Client contract locked.`;
+
+          selectFreelanceJob(targetJob.id);
+          renderFreelanceJobs();
+        }, 1100);
+
+      } else {
+        // PAUSE AUTOPILOT
+        isAutoFinishingActive = false;
+        if (autoFinishInterval) {
+          clearInterval(autoFinishInterval);
+          autoFinishInterval = null;
+        }
+        masterBtn.className = 'w-full sm:w-auto px-6 py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider text-brand-void bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:brightness-110 transition-all shadow-xl shadow-emerald-500/25 active:scale-95 flex items-center justify-center gap-2.5';
+        btnText.textContent = 'Resume Auto-Finishing All Jobs (5 Closers)';
+        currentActionText.textContent = 'Swarm execution paused by operator. Ready to resume.';
+      }
     }
 
     // Initial Freelance Hub Render
