@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorise AI Solutions | Rise Above with AI</title>
+  <meta name="description" content="Algorise AI Solutions bridges rigorous computer science fundamentals and modern AI engineering to build intelligent, autonomous, and scalable software systems." />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Three.js CDN for 3D Moving Logo & Cosmic Effects -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            orbitron: ['"Orbitron"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              void: '#03050C',
+              navy: '#070C1B',
+              surface: '#0B132B',
+              card: 'rgba(15, 23, 42, 0.65)',
+              border: 'rgba(0, 242, 254, 0.15)',
+              cyan: '#00F2FE',
+              violet: '#9D4EDD',
+              starlight: '#E0E7FF',
+              nebula: '#4F46E5',
+            }
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'spin-slow': 'spin 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Cosmos Glow & Glass */
+    .cosmic-glass {
+      background: rgba(8, 14, 33, 0.65);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 242, 254, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    }
+    .cosmic-glass:hover {
+      border-color: rgba(0, 242, 254, 0.45);
+      box-shadow: 0 0 35px -5px rgba(0, 242, 254, 0.25), 0 0 20px -5px rgba(157, 78, 221, 0.2);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 50px -10px rgba(0, 242, 254, 0.4);
+    }
+    .glow-violet {
+      box-shadow: 0 0 60px -10px rgba(157, 78, 221, 0.35);
+    }
+    .text-gradient-cosmos {
+      background: linear-gradient(135deg, #FFFFFF 0%, #00F2FE 50%, #C084FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cyan-gradient-btn {
+      background: linear-gradient(135deg, #00F2FE 0%, #7928CA 100%);
+    }
+
+    /* Cosmic Zoom Transitions */
+    .zoom-hover {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .zoom-hover:hover {
+      transform: scale(1.035) translateY(-4px);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #03050C;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E2D52;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00F2FE;
+    }
+  </style>
+</head>
+<body class="bg-brand-void text-slate-100 font-sans antialiased selection:bg-brand-cyan/20 selection:text-brand-cyan overflow-x-hidden min-h-screen">
+
+  <!-- Fullscreen Interactive Cosmos Starfield & Nebula Canvas -->
+  <canvas id="cosmosCanvas" class="fixed inset-0 w-full h-full pointer-events-none -z-20"></canvas>
+
+  <!-- Deep Interstellar Nebula Fog Gradients -->
+  <div class="fixed top-[-15%] left-[20%] w-[800px] h-[600px] bg-brand-cyan/10 rounded-full blur-[170px] pointer-events-none -z-10 animate-pulse-slow"></div>
+  <div class="fixed top-[45%] right-[-10%] w-[700px] h-[700px] bg-brand-violet/15 rounded-full blur-[180px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-[-10%] left-[-5%] w-[800px] h-[800px] bg-indigo-900/15 rounded-full blur-[190px] pointer-events-none -z-10"></div>
+
+  <!-- Cosmic Navigation Bar -->
+  <header class="sticky top-0 z-50 cosmic-glass border-b border-brand-border/60 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo (with Live Miniature 3D Moving Core) -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="relative w-12 h-12 rounded-xl overflow-hidden border border-brand-cyan/40 bg-brand-void flex items-center justify-center shadow-lg group-hover:border-brand-cyan transition-all duration-300">
+          <!-- Mini 3D rotating canvas logo -->
+          <canvas id="navLogoCanvas" class="w-full h-full"></canvas>
+          <div class="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl pointer-events-none"></div>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+            ALGORISE <span class="text-[10px] px-2 py-0.5 rounded-full bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 font-mono tracking-wider">AI</span>
+          </span>
+          <span class="text-[9px] text-slate-400 font-mono tracking-[0.25em] uppercase">Cosmos Architecture</span>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#core-3d" class="hover:text-brand-cyan transition-colors flex items-center gap-1.5">
+          <i data-lucide="orbit" class="w-4 h-4 text-brand-cyan"></i>
+          <span>Quantum Core</span>
+        </a>
+        <a href="#services" class="hover:text-brand-cyan transition-colors">Solutions</a>
+        <a href="#interactive-demo" class="hover:text-brand-cyan transition-colors">Pipeline Simulator</a>
+        <a href="#calculator" class="hover:text-brand-cyan transition-colors">Timeline Estimator</a>
+        <a href="#process" class="hover:text-brand-cyan transition-colors">Mission Blueprint</a>
+      </nav>
+
+      <!-- Header Controls: Hyperdrive Warp & Contact CTA -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- Cosmic Warp Toggle Button -->
+        <button id="warpBtn" onclick="toggleWarpSpeed()" title="Toggle Cosmos Warp Drive" class="px-3.5 py-2 rounded-xl border border-brand-cyan/30 text-brand-cyan bg-brand-surface/50 hover:bg-brand-cyan/15 transition-all text-xs font-mono flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span id="warpLabel">Warp: Normal</span>
+        </button>
+
+        <button onclick="openConsultationModal()" class="px-5 py-2.5 rounded-xl font-bold text-xs tracking-wider uppercase transition-all duration-300 text-brand-void cyan-gradient-btn hover:brightness-110 shadow-lg shadow-brand-cyan/30 active:scale-95 flex items-center gap-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Launch Mission</span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white border border-slate-800">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Nav Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden px-6 py-5 border-t border-brand-border bg-brand-void/95 backdrop-blur-2xl">
+      <div class="flex flex-col gap-4 text-sm font-medium text-slate-300">
+        <a href="#core-3d" class="hover:text-brand-cyan py-1" onclick="toggleMobileMenu()">Quantum Core</a>
+        <a href="#services" class="hover:text-brand-cyan py-1" onclick="toggleMobileMenu()">Solutions</a>
+        <a href="#interactive-demo" class="hover:text-brand-cyan py-1" onclick="toggleMobileMenu()">Pipeline Simulator</a>
+        <a href="#calculator" class="hover:text-brand-cyan py-1" onclick="toggleMobileMenu()">Timeline Estimator</a>
+        <a href="#process" class="hover:text-brand-cyan py-1" onclick="toggleMobileMenu()">Mission Blueprint</a>
+        <button onclick="openConsultationModal(); toggleMobileMenu();" class="mt-2 w-full py-3 rounded-xl font-bold text-xs tracking-wider uppercase text-brand-void cyan-gradient-btn">
+          Launch Mission
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Moving 3D Prismatic Neural Ribbon Core -->
+  <section id="core-3d" class="relative pt-12 pb-24 md:pt-16 md:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Hero Content & Pitch -->
+        <div class="lg:col-span-7 text-center lg:text-left z-10">
+          
+          <!-- Eyebrow Badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-brand-cyan/30 bg-brand-surface/60 text-brand-cyan text-xs font-mono mb-6 backdrop-blur-md shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+            <span>COSMIC COMPUTING & DEEP AI INFRASTRUCTURE</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-slate-300">algorise.ai</span>
+          </div>
+
+          <!-- Main Headline -->
+          <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.08] mb-6">
+            <span class="text-white">Where Algorithms Scale.</span><br />
+            <span class="text-gradient-cosmos">Rise Above with AI.</span>
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-base sm:text-lg md:text-xl text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
+            Algorise AI Solutions empowers modern enterprises with autonomous multi-agent systems, high-concurrency cloud architecture, and ultra-low latency algorithmic pipelines.
+          </p>
+
+          <!-- Interactive Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10">
+            <button onclick="openConsultationModal()" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-sm tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all shadow-xl shadow-brand-cyan/30 flex items-center justify-center gap-2.5 group active:scale-95">
+              <span>Initiate Architecture Review</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </button>
+            <button onclick="zoomIntoCore()" class="w-full sm:w-auto px-6 py-4 rounded-xl font-semibold text-sm text-slate-200 cosmic-glass hover:text-white transition-all flex items-center justify-center gap-2 zoom-hover">
+              <i data-lucide="zoom-in" class="w-4 h-4 text-brand-cyan"></i>
+              <span>Zoom Into 3D Core</span>
+            </button>
+          </div>
+
+          <!-- Live Cosmos Telemetry Bar -->
+          <div class="grid grid-cols-3 gap-3 pt-6 border-t border-brand-border/60 max-w-xl mx-auto lg:mx-0">
+            <div class="p-3 rounded-xl bg-brand-void/60 border border-brand-border/60 text-center lg:text-left">
+              <div class="text-xl sm:text-2xl font-bold font-mono text-brand-cyan">&lt; 38ms</div>
+              <div class="text-[10px] font-mono text-slate-400 mt-0.5 uppercase tracking-wider">Neural Latency</div>
+            </div>
+            <div class="p-3 rounded-xl bg-brand-void/60 border border-brand-border/60 text-center lg:text-left">
+              <div class="text-xl sm:text-2xl font-bold font-mono text-purple-400">99.99%</div>
+              <div class="text-[10px] font-mono text-slate-400 mt-0.5 uppercase tracking-wider">Cluster Uptime</div>
+            </div>
+            <div class="p-3 rounded-xl bg-brand-void/60 border border-brand-border/60 text-center lg:text-left">
+              <div class="text-xl sm:text-2xl font-bold font-mono text-emerald-400">Zero-Leak</div>
+              <div class="text-[10px] font-mono text-slate-400 mt-0.5 uppercase tracking-wider">Data Privacy</div>
+            </div>
+          </div>
+
+          <!-- Enterprise Market Differentiators -->
+          <div class="flex flex-wrap items-center gap-2 mt-4 pt-3 max-w-xl text-[10px] font-mono text-slate-400 justify-center lg:justify-start">
+            <span class="px-2.5 py-1 rounded-lg bg-brand-cyan/10 border border-brand-cyan/25 text-brand-cyan flex items-center gap-1.5">
+              <i data-lucide="shield-alert" class="w-3 h-3"></i> Causal Safety Gates
+            </span>
+            <span class="px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/25 text-purple-300 flex items-center gap-1.5">
+              <i data-lucide="network" class="w-3 h-3"></i> Hybrid GraphRAG
+            </span>
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 flex items-center gap-1.5">
+              <i data-lucide="cpu" class="w-3 h-3"></i> MCP Native Tools
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive 3D Moving Prismatic Logo Core -->
+        <div class="lg:col-span-5 relative flex justify-center items-center">
+          
+          <!-- Outer Celestial Rings -->
+          <div class="absolute -inset-6 rounded-full border border-brand-cyan/20 animate-spin-slow pointer-events-none opacity-60"></div>
+          <div class="absolute -inset-14 rounded-full border border-brand-violet/20 pointer-events-none opacity-40" style="animation: spin 35s linear infinite reverse;"></div>
+
+          <!-- 3D Core Canvas Container with Zoom & Mouse Parallax -->
+          <div id="hero3DContainer" class="relative w-full max-w-[460px] aspect-square rounded-3xl cosmic-glass border border-brand-cyan/40 glow-cyan p-2 overflow-hidden cursor-grab active:cursor-grabbing transition-transform duration-500">
+            
+            <!-- Three.js Canvas for Moving 3D Ribbon -->
+            <canvas id="heroCoreCanvas" class="w-full h-full rounded-2xl"></canvas>
+
+            <!-- Floating Overlay Badges -->
+            <div class="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-lg bg-brand-void/80 border border-brand-cyan/30 text-[11px] font-mono text-brand-cyan backdrop-blur-md">
+              <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
+              <span>PRISMATIC NEURAL CORE</span>
+            </div>
+
+            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono text-slate-400 px-3 py-2 rounded-lg bg-brand-void/80 border border-brand-border/80 backdrop-blur-md">
+              <span>Drag to rotate • Scroll to zoom</span>
+              <button onclick="resetCoreCamera()" class="text-brand-cyan hover:underline">Reset View</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Cosmos Deep Space Zoom Controller -->
+  <section class="py-8 bg-brand-surface/20 border-y border-brand-border/40">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-cyan/15 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan">
+          <i data-lucide="telescope" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Cosmos Depth Controller</h3>
+          <p class="text-xs text-slate-400">Adjust camera interstellar distance & nebula flight speed</p>
+        </div>
+      </div>
+
+      <!-- Zoom In / Out Controls & Slider -->
+      <div class="flex items-center gap-4 w-full md:w-auto">
+        <button onclick="adjustCosmosZoom(-0.2)" class="p-2.5 rounded-xl border border-brand-border bg-brand-void hover:border-brand-cyan text-slate-300 hover:text-white transition-all zoom-hover" title="Zoom Out Into Cosmos">
+          <i data-lucide="zoom-out" class="w-4 h-4"></i>
+        </button>
+        
+        <div class="flex items-center gap-2 w-48 sm:w-64">
+          <span class="text-[10px] font-mono text-slate-500">Wide</span>
+          <input type="range" id="cosmosDepthSlider" min="0.5" max="2.5" step="0.05" value="1.0" oninput="onCosmosSliderChange(this.value)" class="w-full h-1.5 bg-brand-void rounded-lg appearance-none cursor-pointer accent-brand-cyan" />
+          <span class="text-[10px] font-mono text-brand-cyan">Deep</span>
+        </div>
+
+        <button onclick="adjustCosmosZoom(0.2)" class="p-2.5 rounded-xl border border-brand-border bg-brand-void hover:border-brand-cyan text-slate-300 hover:text-white transition-all zoom-hover" title="Zoom In Close">
+          <i data-lucide="zoom-in" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Solutions & Engineering Capabilities (Cosmic Cards with Zoom Hover) -->
+  <section id="services" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-xs font-mono font-semibold tracking-widest text-brand-cyan uppercase">100% In-House Intellectual Property</span>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 tracking-tight">
+            Proprietary Bots By Sector
+          </h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm sm:text-base">
+          Zero brokerage. Zero resold tools. Explore our in-house bots and autoflow engines built specifically for your vertical.
+        </p>
+      </div>
+
+      <!-- Sector Tab Switcher (10 Sectors) -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar" id="sectorTabs">
+        <button onclick="switchSector('agriculture', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-cyan bg-brand-cyan/20 text-brand-cyan shadow-lg shadow-brand-cyan/20">
+          🌾 Agriculture
+        </button>
+        <button onclick="switchSector('business', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🏢 Business & B2B
+        </button>
+        <button onclick="switchSector('retail', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🛍️ Retail & E-Comm
+        </button>
+        <button onclick="switchSector('influencer', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🎥 Creator & Media
+        </button>
+        <button onclick="switchSector('healthcare', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🏥 Healthcare
+        </button>
+        <button onclick="switchSector('realestate', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🏡 Real Estate
+        </button>
+        <button onclick="switchSector('finance', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          💳 Finance & Fintech
+        </button>
+        <button onclick="switchSector('legal', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          ⚖️ Legal & Compliance
+        </button>
+        <button onclick="switchSector('logistics', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🚚 Logistics & Fleet
+        </button>
+        <button onclick="switchSector('education', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
+          🎓 Education & EdTech
+        </button>
+      </div>
+
+      <!-- Dynamic Sector Bots Grid (Populated by JS) -->
+      <div id="sectorBotsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Algorise Autoflow Feature Banner -->
+      <div class="cosmic-glass p-8 sm:p-10 rounded-3xl border border-brand-cyan/30 glow-cyan relative overflow-hidden zoom-hover">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="max-w-xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/15 text-brand-cyan text-[10px] font-mono mb-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-cyan animate-ping"></span>
+              PROPRIETARY AUTOMATION ORCHESTRATOR
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">The Algorise Autoflow Engine</h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">
+              Why pay recurring middleman fees to third-party brokers? Algorise Autoflow is an event-driven engine that chains triggers, multi-bot consensus, conditional branches, and automated action dispatches natively.
+            </p>
+          </div>
+          <button onclick="openConsultationModal()" class="shrink-0 px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all shadow-xl shadow-brand-cyan/30">
+            Deploy Custom Autoflow
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Demo: AI Pipeline Simulator in Cosmic Terminal -->
+  <section id="interactive-demo" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-xs font-mono font-semibold tracking-widest text-brand-cyan uppercase">Cosmic Simulation</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 mb-4">Live Multi-Stage Pipeline</h2>
+        <p class="text-slate-400 text-sm sm:text-base">
+          Input an enterprise objective below and witness our autonomous algorithmic pipeline execute across simulated neural nodes.
+        </p>
+      </div>
+
+      <!-- Simulation Card with Zoom Elevation -->
+      <div class="max-w-4xl mx-auto cosmic-glass rounded-3xl p-6 sm:p-9 shadow-2xl border border-brand-border glow-cyan relative overflow-hidden zoom-hover">
+        
+        <!-- Header -->
+        <div class="flex items-center justify-between border-b border-brand-border/80 pb-4 mb-6">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+            <span class="text-xs font-mono text-slate-400 ml-3">cosmos_cluster::algorise.hypernode-alpha</span>
+          </div>
+          <div class="text-xs font-mono text-brand-cyan bg-brand-cyan/10 px-3 py-1 rounded-full border border-brand-cyan/30 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+            Neural Mesh Active
+          </div>
+        </div>
+
+        <!-- Input Box -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 mb-6">
+          <div class="w-full relative">
+            <input id="demoInput" type="text" value="Detect high-concurrency cloud bottlenecks and auto-rebalance compute nodes" class="w-full px-4 py-3.5 bg-brand-void/90 border border-brand-border rounded-xl text-sm font-mono text-slate-200 focus:outline-none focus:border-brand-cyan transition-colors" placeholder="Enter objective or prompt..." />
+          </div>
+          <button id="runPipelineBtn" onclick="runPipelineSimulation()" class="w-full sm:w-auto shrink-0 px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-cyan/20 active:scale-95">
+            <i data-lucide="play" class="w-4 h-4 fill-current"></i>
+            <span>Execute Pipeline</span>
+          </button>
+        </div>
+
+        <!-- Real-time Progress Stages -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 mb-6" id="pipelineStages">
+          <div id="stage-1" class="p-4 rounded-xl border border-brand-border bg-brand-void/70 transition-all">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Stage 01</div>
+            <div class="text-xs font-bold text-white mt-1">Vector Parsing</div>
+            <div class="status-badge text-[10px] font-mono text-slate-500 mt-2">STANDBY</div>
+          </div>
+          <div id="stage-2" class="p-4 rounded-xl border border-brand-border bg-brand-void/70 transition-all">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Stage 02</div>
+            <div class="text-xs font-bold text-white mt-1">Knowledge RAG</div>
+            <div class="status-badge text-[10px] font-mono text-slate-500 mt-2">STANDBY</div>
+          </div>
+          <div id="stage-3" class="p-4 rounded-xl border border-brand-border bg-brand-void/70 transition-all">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Stage 03</div>
+            <div class="text-xs font-bold text-white mt-1">Agent Swarm</div>
+            <div class="status-badge text-[10px] font-mono text-slate-500 mt-2">STANDBY</div>
+          </div>
+          <div id="stage-4" class="p-4 rounded-xl border border-brand-border bg-brand-void/70 transition-all">
+            <div class="text-[10px] font-mono text-slate-400 uppercase">Stage 04</div>
+            <div class="text-xs font-bold text-white mt-1">Cloud Deployment</div>
+            <div class="status-badge text-[10px] font-mono text-slate-500 mt-2">STANDBY</div>
+          </div>
+        </div>
+
+        <!-- Terminal Console Output -->
+        <div class="bg-brand-void/95 rounded-2xl p-4 border border-brand-border/80 font-mono text-xs text-slate-300 h-44 overflow-y-auto leading-relaxed" id="terminalConsole">
+          <div class="text-slate-500">// Algorise Cosmic Engine v2.4 initialized. Ready to execute pipeline.</div>
+          <div class="text-brand-cyan/80 mt-1">> Connected to cluster endpoint: wss://engine.algorise.ai/v1/stream</div>
+          <div class="text-slate-400 mt-1">> Click "Execute Pipeline" to run the autonomous sequence.</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Project Scope & Timeline Estimator -->
+  <section id="calculator" class="py-20 bg-brand-surface/20 border-y border-brand-border/60">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-mono font-semibold tracking-widest text-brand-cyan uppercase">Trajectory Planning</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-3">AI Project Scope & Timeline Estimator</h2>
+        <p class="text-slate-400 text-sm">
+          Select target architecture parameters to forecast sprint milestones and delivery timelines.
+        </p>
+      </div>
+
+      <div class="cosmic-glass p-8 sm:p-10 rounded-3xl border border-brand-border grid grid-cols-1 md:grid-cols-3 gap-8 zoom-hover">
+        
+        <!-- Controls -->
+        <div class="md:col-span-2 space-y-6">
+          
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">1. Primary AI Solution Focus</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="setScopeOption('type', 'agent', this)" class="scope-type-btn p-3.5 rounded-xl border border-brand-cyan bg-brand-cyan/15 text-left text-xs font-semibold text-white transition-all">
+                Autonomous Agents & Swarms
+              </button>
+              <button onclick="setScopeOption('type', 'rag', this)" class="scope-type-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-left text-xs font-semibold text-slate-300 hover:border-slate-500 transition-all">
+                Enterprise Vector RAG & Search
+              </button>
+              <button onclick="setScopeOption('type', 'cloud', this)" class="scope-type-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-left text-xs font-semibold text-slate-300 hover:border-slate-500 transition-all">
+                Scalable Backend & Cloud CS
+              </button>
+              <button onclick="setScopeOption('type', 'full', this)" class="scope-type-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-left text-xs font-semibold text-slate-300 hover:border-slate-500 transition-all">
+                End-to-End Enterprise AI
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">2. Current System Scale & Data Ingestion</label>
+            <div class="grid grid-cols-3 gap-3">
+              <button onclick="setScopeOption('scale', 'mvp', this)" class="scope-scale-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-center text-xs font-semibold text-slate-300 transition-all">
+                Startup / MVP
+              </button>
+              <button onclick="setScopeOption('scale', 'mid', this)" class="scope-scale-btn p-3.5 rounded-xl border border-brand-cyan bg-brand-cyan/15 text-center text-xs font-semibold text-white transition-all">
+                Growth Scale
+              </button>
+              <button onclick="setScopeOption('scale', 'enterprise', this)" class="scope-scale-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-center text-xs font-semibold text-slate-300 transition-all">
+                Enterprise Tier
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono text-slate-300 uppercase tracking-wider mb-2">3. Deployment Speed Priority</label>
+            <input type="range" id="speedSlider" min="1" max="3" value="2" oninput="updateEstimates()" class="w-full h-2 bg-brand-void rounded-lg appearance-none cursor-pointer accent-brand-cyan" />
+            <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-2">
+              <span>Standard R&D</span>
+              <span>Accelerated Sprints</span>
+              <span>Ultra-Fast Launch</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Estimate Output Card -->
+        <div class="bg-brand-void/90 p-6 rounded-2xl border border-brand-border/90 flex flex-col justify-between">
+          <div>
+            <div class="text-[10px] font-mono uppercase tracking-widest text-brand-cyan">Algorise Delivery Forecast</div>
+            <div class="mt-4">
+              <div class="text-xs text-slate-400">Estimated Timeline:</div>
+              <div id="estTimeline" class="text-3xl font-extrabold text-brand-cyan font-mono mt-0.5">3 - 5 Weeks</div>
+            </div>
+            <div class="mt-4">
+              <div class="text-xs text-slate-400">Architecture Tier:</div>
+              <div id="estTier" class="text-sm font-bold text-white mt-0.5">Production Scaled Cluster</div>
+            </div>
+            <div class="mt-4 pt-4 border-t border-brand-border/60">
+              <div class="text-xs text-slate-400">Key Deliverables:</div>
+              <ul id="estDeliverables" class="text-[11px] font-mono text-slate-300 mt-2 space-y-1.5">
+                <li>• Bespoke Agent Orchestrator</li>
+                <li>• Automated Data Pipeline</li>
+                <li>• Benchmarked Latency Metrics</li>
+              </ul>
+            </div>
+          </div>
+
+          <button onclick="openConsultationModal()" class="w-full mt-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all flex items-center justify-center gap-2">
+            <span>Book Strategy Call</span>
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Process & Mission Blueprint -->
+  <section id="process" class="py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-mono font-semibold tracking-widest text-brand-cyan uppercase">Execution Methodology</span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-2 tracking-tight">The Algorise Blueprint</h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">
+          From abstract mathematical concepts to enterprise production systems.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-3xl cosmic-glass border border-brand-border zoom-hover relative">
+          <div class="text-4xl font-extrabold font-mono text-slate-700 mb-4">01</div>
+          <h4 class="text-lg font-bold text-white mb-2">Discover & Audit</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Data source profiling, software architecture audit, latency bottleneck identification, and ROI validation.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl cosmic-glass border border-brand-border zoom-hover relative">
+          <div class="text-4xl font-extrabold font-mono text-slate-700 mb-4">02</div>
+          <h4 class="text-lg font-bold text-white mb-2">Algorithmic Design</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Vector schema formulation, custom prompt chains, mathematical verification, and zero-trust permission models.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl cosmic-glass border border-brand-border zoom-hover relative">
+          <div class="text-4xl font-extrabold font-mono text-slate-700 mb-4">03</div>
+          <h4 class="text-lg font-bold text-white mb-2">Rapid Prototype</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Working proof-of-concept tested under simulated concurrency and adversarial edge-cases.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl cosmic-glass border border-brand-border zoom-hover relative">
+          <div class="text-4xl font-extrabold font-mono text-slate-700 mb-4">04</div>
+          <h4 class="text-lg font-bold text-white mb-2">Scale & Hand-Off</h4>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Canary CI/CD deployment into your cloud VPC, complete observability telemetry, and team knowledge transfer.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Big Call To Action Section (Cosmic Nexus) -->
+  <section class="py-24 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="rounded-3xl p-10 sm:p-16 cosmic-glass border border-brand-cyan/40 glow-violet relative overflow-hidden text-center zoom-hover">
+        
+        <div class="w-16 h-16 rounded-2xl overflow-hidden border border-brand-cyan/40 p-1 bg-brand-void mx-auto mb-6 shadow-2xl">
+          <img src="assets/logo.jpg" alt="Algorise Logo" class="w-full h-full object-cover rounded-xl" />
+        </div>
+
+        <h2 class="text-3xl sm:text-6xl font-black text-white tracking-tight mb-4">
+          Ready to Rise Above with AI?
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto mb-8">
+          Partner with Algorise AI Solutions to build intelligent, scalable systems that lead the cosmic frontier of technology.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openConsultationModal()" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold text-sm uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all shadow-2xl shadow-brand-cyan/40 flex items-center justify-center gap-2.5 active:scale-95">
+            <span>Schedule Architecture Review</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+          <a href="mailto:contact@algorise.ai" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-sm text-slate-200 cosmic-glass hover:bg-brand-surface border border-brand-border transition-colors">
+            contact@algorise.ai
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-brand-border/80 bg-brand-void/90 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg overflow-hidden border border-brand-cyan/30 bg-brand-void">
+          <img src="assets/logo.jpg" alt="Algorise Logo" class="w-full h-full object-cover rounded-md" />
+        </div>
+        <span class="font-bold text-white text-sm tracking-wide">ALGORISE AI SOLUTIONS</span>
+        <span class="text-xs text-slate-500 font-mono">| algorise.ai</span>
+      </div>
+
+      <div class="text-xs text-slate-400 font-mono text-center sm:text-right">
+        © 2026 Algorise AI Solutions. "Rise Above with AI." Cosmos Architecture Edition.
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Consultation / Intake Modal -->
+  <div id="consultationModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden p-4">
+    <div class="relative w-full max-w-xl cosmic-glass rounded-3xl p-6 sm:p-8 border border-brand-cyan/40 glow-cyan">
+      
+      <button onclick="closeConsultationModal()" class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-lg">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="mb-6">
+        <span class="text-[11px] font-mono text-brand-cyan uppercase tracking-wider font-semibold">Priority Architecture Consultation</span>
+        <h3 class="text-2xl font-bold text-white mt-1">Partner with Algorise</h3>
+        <p class="text-slate-400 text-xs mt-1">Tell us about your computational challenges or AI roadmap.</p>
+      </div>
+
+      <form id="contactForm" onsubmit="submitForm(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Your Name</label>
+          <input type="text" required placeholder="Dr. Alex Vance" class="w-full px-4 py-2.5 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Work Email</label>
+          <input type="email" required placeholder="alex@enterprise.com" class="w-full px-4 py-2.5 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Service Required</label>
+          <select class="w-full px-4 py-2.5 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none">
+            <option>Autonomous AI Agents & Swarms</option>
+            <option>Enterprise Vector RAG & Semantic Search</option>
+            <option>High-Throughput Distributed Cloud CS</option>
+            <option>End-to-End Enterprise Transformation</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-slate-300 mb-1">Project Objectives & Timeline</label>
+          <textarea rows="3" placeholder="Describe your data volume, tech stack, and what you aim to achieve..." class="w-full px-4 py-2.5 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Transmit Mission Brief to Algorise Engineering</span>
+        </button>
+
+        <div id="formSuccess" class="hidden text-center text-xs font-mono text-brand-cyan mt-3">
+          ✓ Request transmitted to Algorise Engineering. We'll reply within 24 hours.
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Three.js Cosmos Engine & Moving 3D Prismatic Ribbon Logo Scripts -->
+  <script>
+    lucide.createIcons();
+
+    // ==========================================
+    // 1. COSMOS BACKGROUND STARFIELD WITH ZOOM
+    // ==========================================
+    let cosmosDepth = 1.0;
+    let warpSpeed = 1.0;
+    let isWarping = false;
+
+    const cosmosCanvas = document.getElementById('cosmosCanvas');
+    const cosmosCtx = cosmosCanvas.getContext('2d');
+    let width = (cosmosCanvas.width = window.innerWidth);
+    let height = (cosmosCanvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = cosmosCanvas.width = window.innerWidth;
+      height = cosmosCanvas.height = window.innerHeight;
+      initStars();
+    });
+
+    const starCount = 1400;
+    let stars = [];
+
+    function initStars() {
+      stars = [];
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: (Math.random() - 0.5) * width * 2,
+          y: (Math.random() - 0.5) * height * 2,
+          z: Math.random() * width,
+          size: Math.random() * 1.6 + 0.3,
+          color: Math.random() > 0.3 ? '#E0E7FF' : (Math.random() > 0.5 ? '#00F2FE' : '#C084FC'),
+        });
+      }
+    }
+    initStars();
+
+    let mouseX = 0;
+    let mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX - width / 2) * 0.05;
+      mouseY = (e.clientY - height / 2) * 0.05;
+    });
+
+    function animateCosmos() {
+      cosmosCtx.fillStyle = 'rgba(3, 5, 12, 0.28)';
+      cosmosCtx.fillRect(0, 0, width, height);
+
+      const speed = 1.2 * warpSpeed * cosmosDepth;
+      const cx = width / 2 + mouseX;
+      const cy = height / 2 + mouseY;
+
+      for (let i = 0; i < starCount; i++) {
+        const star = stars[i];
+        star.z -= speed;
+
+        if (star.z <= 0) {
+          star.z = width;
+          star.x = (Math.random() - 0.5) * width * 2;
+          star.y = (Math.random() - 0.5) * height * 2;
+        }
+
+        const k = 250 / (star.z * (1 / cosmosDepth));
+        const px = star.x * k + cx;
+        const py = star.y * k + cy;
+
+        if (px >= 0 && px <= width && py >= 0 && py <= height) {
+          const sz = star.size * k * 0.6;
+          const alpha = Math.min(1, (1 - star.z / width) * 1.2);
+          cosmosCtx.beginPath();
+          cosmosCtx.arc(px, py, Math.max(0.4, sz), 0, Math.PI * 2);
+          cosmosCtx.fillStyle = star.color;
+          cosmosCtx.globalAlpha = alpha;
+          cosmosCtx.fill();
+        }
+      }
+      cosmosCtx.globalAlpha = 1.0;
+      requestAnimationFrame(animateCosmos);
+    }
+    requestAnimationFrame(animateCosmos);
+
+    // Zoom & Warp Control Functions
+    function toggleWarpSpeed() {
+      isWarping = !isWarping;
+      warpSpeed = isWarping ? 7.0 : 1.0;
+      document.getElementById('warpLabel').textContent = isWarping ? 'Warp: HYPERDRIVE' : 'Warp: Normal';
+      document.getElementById('warpBtn').className = isWarping 
+        ? 'px-3.5 py-2 rounded-xl border border-brand-cyan text-brand-void bg-brand-cyan font-bold transition-all text-xs font-mono flex items-center gap-2 shadow-lg shadow-brand-cyan/50 animate-pulse'
+        : 'px-3.5 py-2 rounded-xl border border-brand-cyan/30 text-brand-cyan bg-brand-surface/50 hover:bg-brand-cyan/15 transition-all text-xs font-mono flex items-center gap-2';
+    }
+
+    function adjustCosmosZoom(delta) {
+      cosmosDepth = Math.max(0.5, Math.min(2.5, cosmosDepth + delta));
+      document.getElementById('cosmosDepthSlider').value = cosmosDepth;
+    }
+
+    function onCosmosSliderChange(val) {
+      cosmosDepth = parseFloat(val);
+    }
+
+    // ====================================================
+    // 2. THREE.JS INTERACTIVE 3D PRISMATIC NEURAL RIBBON (LOGO)
+    // ====================================================
+    const heroCanvas = document.getElementById('heroCoreCanvas');
+    const heroContainer = document.getElementById('hero3DContainer');
+    
+    // Scene, Camera, Renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    camera.position.set(0, 0, 8.5);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas: heroCanvas,
+      alpha: true,
+      antialias: true
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(heroContainer.clientWidth, heroContainer.clientHeight);
+
+    // Create 3D Prismatic Neural Ribbon Geometry (Torus Knot)
+    const geometry = new THREE.TorusKnotGeometry(2.1, 0.45, 160, 32, 2, 3);
+    
+    // Metallic Iridescent Shader Material
+    const material = new THREE.MeshPhysicalMaterial({
+      color: 0x111e38,
+      emissive: 0x071126,
+      roughness: 0.15,
+      metalness: 0.9,
+      reflectivity: 0.95,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+      wireframe: false,
+    });
+
+    const ribbonMesh = new THREE.Mesh(geometry, material);
+    scene.add(ribbonMesh);
+
+    // Subtle Outer Quantum Orbital Rings
+    const ringGeo1 = new THREE.TorusGeometry(3.5, 0.02, 16, 100);
+    const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x00F2FE, transparent: true, opacity: 0.4 });
+    const ring1 = new THREE.Mesh(ringGeo1, ringMat1);
+    scene.add(ring1);
+
+    const ringGeo2 = new THREE.TorusGeometry(3.9, 0.02, 16, 100);
+    const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x9D4EDD, transparent: true, opacity: 0.35 });
+    const ring2 = new THREE.Mesh(ringGeo2, ringMat2);
+    ring2.rotation.x = Math.PI / 3;
+    scene.add(ring2);
+
+    // Internal Quantum Particles
+    const particleCount = 120;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      particlePositions[i] = (Math.random() - 0.5) * 7;
+      particlePositions[i + 1] = (Math.random() - 0.5) * 7;
+      particlePositions[i + 2] = (Math.random() - 0.5) * 7;
+    }
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x00F2FE,
+      size: 0.07,
+      transparent: true,
+      opacity: 0.7
+    });
+    const particleSystem = new THREE.Points(particleGeo, particleMat);
+    scene.add(particleSystem);
+
+    // Dynamic Colored Lights (Cyan & Violet Prismatic Glow)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+
+    const lightCyan = new THREE.PointLight(0x00F2FE, 3.5, 30);
+    lightCyan.position.set(5, 5, 5);
+    scene.add(lightCyan);
+
+    const lightViolet = new THREE.PointLight(0xC084FC, 3.0, 30);
+    lightViolet.position.set(-5, -5, 3);
+    scene.add(lightViolet);
+
+    const lightTop = new THREE.DirectionalLight(0xffffff, 1.2);
+    lightTop.position.set(0, 8, 4);
+    scene.add(lightTop);
+
+    // Interactive Drag & Parallax Handling
+    let isDragging = false;
+    let previousMousePosition = { x: 0, y: 0 };
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+
+    heroContainer.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      previousMousePosition = { x: e.clientX, y: e.clientY };
+    });
+
+    window.addEventListener('mouseup', () => { isDragging = false; });
+
+    heroContainer.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const deltaX = e.clientX - previousMousePosition.x;
+        const deltaY = e.clientY - previousMousePosition.y;
+        targetRotationY += deltaX * 0.01;
+        targetRotationX += deltaY * 0.01;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
+      }
+    });
+
+    // Touch support
+    heroContainer.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    });
+    heroContainer.addEventListener('touchmove', (e) => {
+      if (isDragging && e.touches.length === 1) {
+        const deltaX = e.touches[0].clientX - previousMousePosition.x;
+        const deltaY = e.touches[0].clientY - previousMousePosition.y;
+        targetRotationY += deltaX * 0.015;
+        targetRotationX += deltaY * 0.015;
+        previousMousePosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
+    });
+    window.addEventListener('touchend', () => { isDragging = false; });
+
+    // Scroll wheel zoom on 3D core
+    heroContainer.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      camera.position.z = Math.max(4.5, Math.min(12, camera.position.z + e.deltaY * 0.006));
+    });
+
+    function zoomIntoCore() {
+      const startZ = camera.position.z;
+      const targetZ = 5.2;
+      let t = 0;
+      const zoomInterval = setInterval(() => {
+        t += 0.05;
+        camera.position.z = THREE.MathUtils.lerp(startZ, targetZ, t);
+        if (t >= 1) clearInterval(zoomInterval);
+      }, 16);
+    }
+
+    function resetCoreCamera() {
+      camera.position.set(0, 0, 8.5);
+      targetRotationX = 0;
+      targetRotationY = 0;
+    }
+
+    // Animation Loop for 3D Ribbon Logo
+    let clock = new THREE.Clock();
+    function animate3DCore() {
+      requestAnimationFrame(animate3DCore);
+      const elapsedTime = clock.getElapsedTime();
+
+      // Continuous organic rotation
+      ribbonMesh.rotation.x += 0.008;
+      ribbonMesh.rotation.y += 0.012;
+
+      // Mouse drag damping
+      ribbonMesh.rotation.x += (targetRotationX - ribbonMesh.rotation.x) * 0.05;
+      ribbonMesh.rotation.y += (targetRotationY - ribbonMesh.rotation.y) * 0.05;
+
+      // Orbiting outer rings
+      ring1.rotation.z = elapsedTime * 0.3;
+      ring1.rotation.y = elapsedTime * 0.15;
+      ring2.rotation.z = -elapsedTime * 0.25;
+
+      // Floating particles
+      particleSystem.rotation.y = elapsedTime * 0.05;
+
+      // Orbiting dynamic light colors
+      lightCyan.position.x = Math.sin(elapsedTime * 0.8) * 6;
+      lightCyan.position.y = Math.cos(elapsedTime * 0.8) * 6;
+      lightViolet.position.x = -Math.sin(elapsedTime * 0.6) * 6;
+      lightViolet.position.z = Math.cos(elapsedTime * 0.6) * 6;
+
+      renderer.render(scene, camera);
+    }
+    animate3DCore();
+
+    // Resize Handler for 3D Core
+    window.addEventListener('resize', () => {
+      const size = heroContainer.clientWidth;
+      renderer.setSize(size, size);
+      camera.aspect = 1;
+      camera.updateProjectionMatrix();
+    });
+
+    // ==========================================
+    // 3. MINI 3D ROTATING LOGO IN NAVIGATION BAR
+    // ==========================================
+    const navCanvas = document.getElementById('navLogoCanvas');
+    const navScene = new THREE.Scene();
+    const navCamera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    navCamera.position.z = 5.2;
+
+    const navRenderer = new THREE.WebGLRenderer({
+      canvas: navCanvas,
+      alpha: true,
+      antialias: true
+    });
+    navRenderer.setSize(48, 48);
+
+    const navGeo = new THREE.TorusKnotGeometry(1.2, 0.3, 80, 16, 2, 3);
+    const navMat = new THREE.MeshPhysicalMaterial({
+      color: 0x00F2FE,
+      emissive: 0x4FACFE,
+      metalness: 0.9,
+      roughness: 0.2,
+      clearcoat: 1.0,
+    });
+    const navMesh = new THREE.Mesh(navGeo, navMat);
+    navScene.add(navMesh);
+
+    const navLight = new THREE.PointLight(0xffffff, 2, 10);
+    navLight.position.set(2, 3, 4);
+    navScene.add(navLight);
+    navScene.add(new THREE.AmbientLight(0x7928CA, 1.5));
+
+    function animateNavLogo() {
+      requestAnimationFrame(animateNavLogo);
+      navMesh.rotation.x += 0.02;
+      navMesh.rotation.y += 0.025;
+      navRenderer.render(navScene, navCamera);
+    }
+    animateNavLogo();
+
+    // ==========================================
+    // 4. UI MODALS, CALCULATORS & PIPELINE
+    // ==========================================
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+    function openConsultationModal() {
+      document.getElementById('consultationModal').classList.remove('hidden');
+    }
+
+    function closeConsultationModal() {
+      document.getElementById('consultationModal').classList.add('hidden');
+    }
+
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('formSuccess').classList.remove('hidden');
+      setTimeout(() => {
+        closeConsultationModal();
+        document.getElementById('formSuccess').classList.add('hidden');
+        document.getElementById('contactForm').reset();
+      }, 2500);
+    }
+
+    // Pipeline Simulator
+    let isSimulating = false;
+    function runPipelineSimulation() {
+      if (isSimulating) return;
+      isSimulating = true;
+      const inputVal = document.getElementById('demoInput').value || 'Default cosmos instruction stream';
+      const consoleEl = document.getElementById('terminalConsole');
+      const stages = ['stage-1', 'stage-2', 'stage-3', 'stage-4'];
+      
+      stages.forEach(s => {
+        const el = document.getElementById(s);
+        el.className = 'p-4 rounded-xl border border-brand-border bg-brand-void/70 transition-all';
+        el.querySelector('.status-badge').textContent = 'QUEUED';
+        el.querySelector('.status-badge').className = 'status-badge text-[10px] font-mono text-slate-500 mt-2';
+      });
+
+      consoleEl.innerHTML = `<div class="text-brand-cyan font-bold">> [MISSION LAUNCH] Ingesting: "${inputVal}"</div>`;
+      
+      const steps = [
+        {
+          stage: 'stage-1',
+          name: 'Vector Parsing',
+          log: '> [01] Quantized vectors into 1,536-dimensional space. Latency: 11ms.',
+          badge: 'COMPLETE (11ms)'
+        },
+        {
+          stage: 'stage-2',
+          name: 'Knowledge Graph RAG',
+          log: '> [02] Scanned 4.2M index nodes. 5 high-density clusters aligned.',
+          badge: 'COMPLETE (22ms)'
+        },
+        {
+          stage: 'stage-3',
+          name: 'Agent Swarm',
+          log: '> [03] Multi-agent consensus converged with 99.8% precision rating.',
+          badge: 'COMPLETE (39ms)'
+        },
+        {
+          stage: 'stage-4',
+          name: 'Cloud Deployment',
+          log: '> [04] Zero-trust microservices rebalanced. Automated metrics telemetry synced.',
+          badge: 'DEPLOYED (14ms)'
+        }
+      ];
+
+      steps.forEach((step, idx) => {
+        setTimeout(() => {
+          const el = document.getElementById(step.stage);
+          el.className = 'p-4 rounded-xl border border-brand-cyan bg-brand-cyan/15 transition-all glow-cyan';
+          const badge = el.querySelector('.status-badge');
+          badge.textContent = step.badge;
+          badge.className = 'status-badge text-[10px] font-mono text-brand-cyan font-bold mt-2';
+          
+          consoleEl.innerHTML += `<div class="text-slate-300 mt-1">${step.log}</div>`;
+          consoleEl.scrollTop = consoleEl.scrollHeight;
+
+          if (idx === steps.length - 1) {
+            consoleEl.innerHTML += `<div class="text-emerald-400 font-bold mt-2">✓ Algorise pipeline sequence successfully executed in 86ms.</div>`;
+            consoleEl.scrollTop = consoleEl.scrollHeight;
+            isSimulating = false;
+          }
+        }, (idx + 1) * 650);
+      });
+    }
+
+    // Estimator State
+    let currentType = 'agent';
+    let currentScale = 'mid';
+
+    function setScopeOption(category, val, btn) {
+      if (category === 'type') {
+        currentType = val;
+        document.querySelectorAll('.scope-type-btn').forEach(b => {
+          b.className = 'scope-type-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-left text-xs font-semibold text-slate-300 hover:border-slate-500 transition-all';
+        });
+        btn.className = 'scope-type-btn p-3.5 rounded-xl border border-brand-cyan bg-brand-cyan/15 text-left text-xs font-semibold text-white transition-all';
+      } else {
+        currentScale = val;
+        document.querySelectorAll('.scope-scale-btn').forEach(b => {
+          b.className = 'scope-scale-btn p-3.5 rounded-xl border border-brand-border bg-brand-void/70 text-center text-xs font-semibold text-slate-300 transition-all';
+        });
+        btn.className = 'scope-scale-btn p-3.5 rounded-xl border border-brand-cyan bg-brand-cyan/15 text-center text-xs font-semibold text-white transition-all';
+      }
+      updateEstimates();
+    }
+
+    function updateEstimates() {
+      const sliderVal = document.getElementById('speedSlider').value;
+      const timelineEl = document.getElementById('estTimeline');
+      const tierEl = document.getElementById('estTier');
+      const delivEl = document.getElementById('estDeliverables');
+
+      let weeks = "3 - 5 Weeks";
+      let tier = "Production Scaled Cluster";
+      let items = ["• Bespoke Agent Orchestrator", "• Automated Data Pipeline", "• Benchmarked Latency Metrics"];
+
+      if (currentScale === 'mvp') {
+        weeks = sliderVal === '3' ? "1 - 2 Weeks" : "2 - 3 Weeks";
+        tier = "Agile MVP Prototype";
+        items = ["• Core AI Logic Integration", "• Lightweight API Endpoints", "• Quick Cloud Deployment"];
+      } else if (currentScale === 'enterprise') {
+        weeks = sliderVal === '3' ? "4 - 6 Weeks" : "6 - 10 Weeks";
+        tier = "Enterprise Distributed Cluster";
+        items = ["• Multi-Tenant Vector DB", "• Redundant Zero-Trust Security", "• CI/CD Infrastructure & SLA Hand-off"];
+      } else {
+        weeks = sliderVal === '3' ? "2 - 4 Weeks" : "3 - 5 Weeks";
+      }
+
+      timelineEl.textContent = weeks;
+      tierEl.textContent = tier;
+      delivEl.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+    }
+
+    // ==========================================
+    // 5. 60 PROPRIETARY SECTOR BOTS & AUTOFLOWS
+    // ==========================================
+    const sectorBotsData = {
+      agriculture: [
+        { name: "Algorise AgroYield", tag: "HARVEST YIELD", icon: "sprout", color: "emerald", desc: "Satellite imagery & weather regression model predicting crop harvest yield.", flow: "Daily weather ingest -> Soil moisture analysis -> Yield alert dispatched via WhatsApp.", price: "$800 - $2,200/mo" },
+        { name: "Algorise FloraScan", tag: "PEST & DISEASE", icon: "scan", color: "emerald", desc: "Computer vision pest & crop disease identification from drone/field smartphone photos.", flow: "Field photo upload -> YOLO vision diagnosis -> Instant organic/chemical treatment prescription.", price: "$650 - $1,800/mo" },
+        { name: "Algorise HydroSense", tag: "SMART IRRIGATION", icon: "droplets", color: "cyan", desc: "Precision irrigation optimization bot connected to IoT soil sensors and weather forecasts.", flow: "Soil tension drop -> Weather forecast cross-check -> Automated pulse to smart valves.", price: "$900 - $2,500/mo" },
+        { name: "Algorise GrainMarket", tag: "COMMODITY PRICE", icon: "trending-up", color: "amber", desc: "Algorithmic commodity crop price forecasting and forward-contract advisor.", flow: "Market scrapers -> Futures price model -> Best harvest sell-window alerts.", price: "$1,200 - $3,000/mo" },
+        { name: "Algorise CattlePulse", tag: "LIVESTOCK HEALTH", icon: "activity", color: "rose", desc: "Livestock biometric monitoring bot tracking feeding patterns and temperature.", flow: "Collar telemetry -> Anomaly detector -> Automated veterinary illness flag.", price: "$1,000 - $2,800/mo" },
+        { name: "Algorise EcoCarbon", tag: "CARBON AUDIT", icon: "leaf", color: "emerald", desc: "Autonomous carbon credit calculator & regulatory regenerative farming compliance bot.", flow: "Satellite biomass scan -> Verra/GoldStandard audit math -> Carbon credit verification.", price: "$1,500 - $4,000/mo" },
+      ],
+      business: [
+        { name: "Algorise Nexus Core", tag: "SUPPORT & ACTION", icon: "bot", color: "cyan", desc: "Omnichannel customer service & autonomous backend database action executor.", flow: "Web chat inquiry -> Intent triage -> Executes order refund/update in SQL DB.", price: "$1,000 - $3,000/mo" },
+        { name: "Algorise Cortex RAG", tag: "ZERO-LEAK RAG", icon: "database", color: "purple", desc: "Confidential corporate document search & policy interrogation knowledge brain.", flow: "Employee query -> Semantic vector search -> Answers with exact wiki source citation.", price: "$1,500 - $4,500/mo" },
+        { name: "Algorise Hunter B2B", tag: "OUTBOUND SCOUT", icon: "crosshair", color: "emerald", desc: "Autonomous B2B prospect discovery, intent-scoring, and personalized outreach bot.", flow: "Hiring/funding trigger -> Verified email search -> Hyper-personalized pitch dispatched.", price: "$2,000 - $5,000/mo" },
+        { name: "Algorise Pulse BI", tag: "TEXT-TO-SQL", icon: "bar-chart-3", color: "rose", desc: "Natural language to read-only SQL business intelligence & revenue reporting agent.", flow: "Slack question -> SQL query synthesis -> Instant generated revenue chart.", price: "$1,800 - $3,500/mo" },
+        { name: "Algorise Scribe HR", tag: "TALENT AUDIT", icon: "users", color: "cyan", desc: "Autonomous candidate resume screening, technical skills audit, and interview scheduler.", flow: "Resume upload -> Rubric evaluation -> Cal.com invite sent to top 5% candidates.", price: "$1,200 - $2,800/mo" },
+        { name: "Algorise VendorAudit", tag: "PROCUREMENT AUDIT", icon: "file-check", color: "amber", desc: "Procurement invoice matching, vendor pricing drift detection, and contract auditing.", flow: "Invoice PDF received -> OCR extraction -> Price verification -> Flag discrepancy.", price: "$1,400 - $3,200/mo" },
+      ],
+      retail: [
+        { name: "Algorise CartRescue", tag: "CART ABANDONMENT", icon: "shopping-cart", color: "cyan", desc: "Predictive checkout recovery bot with dynamic personalized incentives.", flow: "Cart abandoned > 20 min -> Customer LTV evaluation -> WhatsApp dynamic discount sent.", price: "$850/mo + 5% rev" },
+        { name: "Algorise ShelfVision", tag: "SHELF AUDIT", icon: "eye", color: "purple", desc: "In-store & warehouse shelf out-of-stock computer vision detection agent.", flow: "CCTV camera stream -> Object detection -> Instant restock alert to floor staff.", price: "$1,200 - $3,500/mo" },
+        { name: "Algorise DynamicPrice", tag: "REPRICING ENGINE", icon: "tag", color: "amber", desc: "Real-time competitor price tracking and dynamic margin-optimized repricing bot.", flow: "Competitor catalog crawl -> Elasticity formula -> Updates Shopify/Amazon buy-box.", price: "$1,500 - $4,000/mo" },
+        { name: "Algorise ReturnGuard", tag: "RETURN FRAUD", icon: "shield-alert", color: "rose", desc: "Wardrobing & return fraud detection bot checking customer return frequency.", flow: "Return requested -> Customer return history scan -> Auto-approve or route to review.", price: "$950 - $2,400/mo" },
+        { name: "Algorise Stylist AI", tag: "RECOMMENDER", icon: "sparkles", color: "cyan", desc: "Interactive visual personalized product recommendation quiz bot.", flow: "Preference inputs -> Vector embedding matching -> Generates personalized outfit bundle.", price: "$1,000 - $2,500/mo" },
+        { name: "Algorise RestockIQ", tag: "INVENTORY FORECAST", icon: "package-check", color: "emerald", desc: "Predictive supply-demand inventory replenishing bot accounting for lead times.", flow: "Sales spike -> Supplier lead-time calculation -> Automated Purchase Order drafted.", price: "$1,400 - $3,800/mo" },
+      ],
+      influencer: [
+        { name: "Algorise SponsorScout", tag: "SPONSOR NEGOTIATION", icon: "dollar-sign", color: "emerald", desc: "Inbound brand sponsorship email negotiator & rate card qualification bot.", flow: "Sponsor email received -> Brand budget audit -> Sends media kit or counter-offer.", price: "$750 - $2,000/mo" },
+        { name: "Algorise ViralHook", tag: "SCRIPT RATING", icon: "flame", color: "rose", desc: "Algorithmic video script analyzer rating hooks, retention probability, and titles.", flow: "Script ingest -> Retention drop-off prediction -> Generates 5 high-converting hook variants.", price: "$500 - $1,500/mo" },
+        { name: "Algorise FanSync", tag: "DM CONVERSIONS", icon: "message-circle", color: "cyan", desc: "Instagram/TikTok comment & DM conversion bot with creator voice cloning.", flow: "Reel comment -> Keyword filter -> Direct messages course/merch link to fan.", price: "$600 - $1,800/mo" },
+        { name: "Algorise ClipCutter", tag: "SMART SHORTS", icon: "video", color: "purple", desc: "Long-form video processor detecting peak energy moments to generate vertical Shorts.", flow: "Video link -> Energy scan -> Crops vertical 9:16 clips with animated captions.", price: "$850 - $2,200/mo" },
+        { name: "Algorise TrendPulse", tag: "VIRAL RADAR", icon: "radio", color: "amber", desc: "Multi-platform trend detector spotting emerging audio, memes, and hashtags early.", flow: "TikTok/Twitter stream -> Velocity formula -> Daily briefing sent to creator telegram.", price: "$600 - $1,400/mo" },
+        { name: "Algorise CloneVoice", tag: "GLOBAL DUBBING", icon: "mic", color: "cyan", desc: "Multilingual localized voice dubbing bot matching creator's original tone.", flow: "English audio master -> Neural translation & timing -> Generates Spanish/Hindi audio.", price: "$1,200 - $3,000/mo" },
+      ],
+      healthcare: [
+        { name: "Algorise CareTriage", tag: "PATIENT TRIAGE", icon: "heart-pulse", color: "rose", desc: "24/7 symptom intake & clinical urgency triage bot (HIPAA-compliant architecture).", flow: "Symptom questionnaire -> Clinical rubric -> Flags emergency vs routine doctor visit.", price: "$1,200 - $3,500/mo" },
+        { name: "Algorise MedScribe", tag: "AMBIENT SOAP NOTES", icon: "stethoscope", color: "cyan", desc: "Ambient consultation audio listener generating formatted EHR SOAP notes.", flow: "Doctor-patient voice audio -> Medical entity extraction -> Formatted clinical note.", price: "$1,500 - $4,000/mo" },
+        { name: "Algorise DentalRecall", tag: "DORMANT PATIENTS", icon: "calendar-check", color: "emerald", desc: "Automated patient recall & dormant hygiene booking bot via SMS and phone.", flow: "6-month overdue trigger -> SMS booking link -> Fills cancelled chair slots automatically.", price: "$800 - $2,200/mo" },
+        { name: "Algorise ClaimGuard", tag: "BILLING AUDIT", icon: "shield-check", color: "purple", desc: "Medical billing code optimizer catching insurance claim denial discrepancies.", flow: "Superbill created -> ICD-10 & CPT code cross-audit -> Flags missing authorization.", price: "$1,600 - $4,500/mo" },
+        { name: "Algorise PharmaCheck", tag: "DRUG INTERACTIONS", icon: "alert-triangle", color: "amber", desc: "Polypharmacy drug-drug interaction & allergy contraindication checker.", flow: "Prescription drafted -> Patient medication scan -> Instant contraindication warning.", price: "$1,000 - $2,800/mo" },
+        { name: "Algorise PostOpFollow", tag: "RECOVERY MONITOR", icon: "clipboard-list", color: "cyan", desc: "Automated recovery monitoring bot texting patients daily after surgical procedures.", flow: "Post-op schedule -> Daily pain scale check-in -> Alerts nurse if pain > 7.", price: "$900 - $2,500/mo" },
+      ],
+      realestate: [
+        { name: "Algorise RealtorVoice", tag: "24/7 CALL AGENT", icon: "phone", color: "cyan", desc: "24/7 voice telephony agent answering listing calls & qualifying buyer budgets.", flow: "Inbound listing call -> Qualifies pre-approval & budget -> Books private tour on calendar.", price: "$1,200 - $3,000/mo" },
+        { name: "Algorise PropFix", tag: "MAINTENANCE DISPATCH", icon: "wrench", color: "amber", desc: "Tenant maintenance request diagnostic & automated contractor dispatch bot.", flow: "Tenant text + leak photo -> Vision damage audit -> Dispatches work order to plumber.", price: "$900 - $2,400/mo" },
+        { name: "Algorise LeaseDraft", tag: "AUTO LEASES", icon: "file-text", color: "purple", desc: "Autonomous residential/commercial lease generation & regulatory compliance bot.", flow: "Application approved -> State legal template population -> Sent via DocuSign in 60s.", price: "$750 - $2,000/mo" },
+        { name: "Algorise CompGenius", tag: "VALUATION (CMA)", icon: "home", color: "emerald", desc: "Real-time comparable property market valuation (CMA) report generator.", flow: "Address entered -> MLS sales vector matching -> Branded 12-page valuation PDF.", price: "$1,000 - $2,800/mo" },
+        { name: "Algorise TenantVet", tag: "TENANT SCREENING", icon: "user-check", color: "rose", desc: "Automated credit, background, income verification, and landlord reference bot.", flow: "Application submitted -> Identity & paystub fraud check -> Produces 1-page risk score.", price: "$800 - $2,200/mo" },
+        { name: "Algorise Stager3D", tag: "VIRTUAL STAGING", icon: "layers", color: "cyan", desc: "Computer vision virtual furniture staging and decluttering bot for listing photos.", flow: "Empty room photo -> Architectural rendering -> High-res staged interior in 3 styles.", price: "$600 - $1,800/mo" },
+      ],
+      finance: [
+        { name: "Algorise AlphaAudit", tag: "FINANCIAL ANOMALY", icon: "file-search", color: "purple", desc: "Financial statement anomaly & balance sheet discrepancy detection bot.", flow: "10-K / 10-Q filing ingest -> Ratio anomaly formula -> Summary of hidden debt or decay.", price: "$2,500 - $6,000/mo" },
+        { name: "Algorise WealthBot", tag: "PORTFOLIO REBALANCE", icon: "pie-chart", color: "cyan", desc: "Client investment portfolio rebalancing & tax-loss harvesting recommendation agent.", flow: "Asset drift > 5% -> Capital gains tax calculation -> Drafts rebalancing order.", price: "$2,000 - $5,000/mo" },
+        { name: "Algorise LoanFast", tag: "LOAN UNDERWRITING", icon: "banknote", color: "emerald", desc: "Commercial loan underwriting bot parsing bank statements and tax returns.", flow: "24 mo bank PDFs -> DSCR cash flow calculation -> Underwriting risk memo generated.", price: "$2,200 - $5,500/mo" },
+        { name: "Algorise FraudShield", tag: "FRAUD PREVENT", icon: "shield", color: "rose", desc: "High-velocity credit card transaction anomaly & identity takeover detection bot.", flow: "Payment stream -> Behavioral scoring -> Block suspicious transaction in <15ms.", price: "$2,800 - $7,000/mo" },
+        { name: "Algorise TaxExtract", tag: "TAX OCR", icon: "calculator", color: "amber", desc: "Autonomous extraction of W-2s, 1099s, and K-1s into tax software formats.", flow: "Tax folder upload -> Precision OCR entity map -> Exports directly into CPA software.", price: "$1,500 - $3,800/mo" },
+        { name: "Algorise ExpenseAudit", tag: "EXPENSE COMPLIANCE", icon: "receipt", color: "cyan", desc: "Corporate employee expense receipt audit bot catching duplicate or policy breaches.", flow: "Receipt submitted -> Merchant & item check -> Approves or flags policy breach.", price: "$900 - $2,600/mo" },
+      ],
+      legal: [
+        { name: "Algorise Redline", tag: "CONTRACT REDLINE", icon: "pen-tool", color: "purple", desc: "Autonomous contract review bot highlighting non-standard liability/IP clauses.", flow: "Agreement uploaded -> Clause diff against firm playbook -> Word doc with tracked changes.", price: "$2,000 - $5,500/mo" },
+        { name: "Algorise eDiscovery", tag: "LITIGATION RAG", icon: "search", color: "cyan", desc: "High-volume litigation email and document interrogation RAG bot.", flow: "50k corporate emails -> Semantic relevance scan -> Flags smoking-gun evidence timeline.", price: "$3,500 - $9,000/mo" },
+        { name: "Algorise PatentScope", tag: "PATENT PRIOR ART", icon: "file-code", color: "emerald", desc: "Prior-art search & patent claim infringement analysis bot across USPTO/EPO data.", flow: "Invention disclosure -> Global patent embedding scan -> Infringement probability report.", price: "$2,200 - $6,000/mo" },
+        { name: "Algorise GDPRGuard", tag: "PRIVACY AUDITOR", icon: "lock", color: "amber", desc: "Continuous website & database privacy audit bot tracking data storage rules.", flow: "Form & database crawl -> PII retention scan -> Generates compliance audit report.", price: "$1,200 - $3,000/mo" },
+        { name: "Algorise IntakeLegal", tag: "CASE INTAKE", icon: "user-plus", color: "rose", desc: "24/7 personal injury & legal client qualification bot via web and phone.", flow: "Accident inquiry -> Statute of limitations triage -> Dispatches retainer agreement.", price: "$1,500 - $4,000/mo" },
+        { name: "Algorise CourtDocket", tag: "DOCKET MONITOR", icon: "scale", color: "cyan", desc: "Judicial ruling prediction & court calendar deadline monitoring bot.", flow: "Case number entered -> Judge historical ruling analysis -> Schedules motion deadlines.", price: "$1,400 - $3,500/mo" },
+      ],
+      logistics: [
+        { name: "Algorise RouteOptima", tag: "FLEET ROUTING", icon: "navigation", color: "cyan", desc: "Dynamic multi-stop fleet delivery route optimizer accounting for traffic & weather.", flow: "500 delivery addresses -> Genetic routing algorithm -> Turn-by-turn routes to drivers.", price: "$1,800 - $4,500/mo" },
+        { name: "Algorise FreightBroker", tag: "LOAD MATCHING", icon: "truck", color: "emerald", desc: "Autonomous freight load-matching and carrier rate negotiation email bot.", flow: "Shipper load request -> Carrier spot-rate check -> Sends negotiated quote & books truck.", price: "$2,000 - $5,000/mo" },
+        { name: "Algorise BOL-Extract", tag: "CUSTOMS & BOL", icon: "file-digit", color: "purple", desc: "Bill of Lading & customs shipping document OCR ingestion bot.", flow: "Scanned freight doc -> Weight & HS code extraction -> Feeds TMS automatically.", price: "$1,200 - $3,000/mo" },
+        { name: "Algorise FleetWatch", tag: "TELEMATICS", icon: "gauge", color: "rose", desc: "Vehicle telematics & predictive engine maintenance bot.", flow: "OBD-II telemetry -> Vibration/heat anomaly detection -> Schedules service pre-breakdown.", price: "$1,500 - $3,800/mo" },
+        { name: "Algorise PortDelay", tag: "OCEAN FREIGHT", icon: "anchor", color: "amber", desc: "Global ocean container demurrage & terminal congestion forecast bot.", flow: "Container tracking number -> AIS vessel radar -> Predicts port delays 7 days in advance.", price: "$1,800 - $4,200/mo" },
+        { name: "Algorise WarehouseBot", tag: "WAREHOUSE PICKING", icon: "box", color: "cyan", desc: "Autonomous forklift pick-path & inventory slotting optimization bot.", flow: "Daily order batch -> Travelling salesperson path optimizer -> Reduces travel by 35%.", price: "$2,200 - $5,500/mo" },
+      ],
+      education: [
+        { name: "Algorise TutorIQ", tag: "SOCRATIC TUTOR", icon: "graduation-cap", color: "cyan", desc: "Socratic personalized 24/7 student tutor bot that guides without giving direct answers.", flow: "Student homework question -> Pedagogy prompt chain -> Step-by-step Socratic hints.", price: "$800 - $2,200/mo" },
+        { name: "Algorise GradeAssure", tag: "ESSAY GRADING", icon: "check-check", color: "emerald", desc: "Automated essay & short-answer grading bot with rubrics and personalized feedback.", flow: "150 essays uploaded -> Rubric alignment engine -> Constructive line-by-line feedback.", price: "$1,000 - $2,800/mo" },
+        { name: "Algorise AdmitGuide", tag: "ADMISSIONS ADVISOR", icon: "compass", color: "purple", desc: "University admissions inquiry & foreign credential evaluation counselor.", flow: "Student inquiry -> Prerequisite audit -> Guides document submission & application.", price: "$1,200 - $3,200/mo" },
+        { name: "Algorise SyllabusGen", tag: "LESSON PLANNER", icon: "book-open", color: "amber", desc: "Autonomous curriculum designer creating accredited lesson plans, slides, and quizzes.", flow: "Course topic -> Bloom's taxonomy alignment -> Generates 12-week syllabus with exam bank.", price: "$750 - $2,000/mo" },
+        { name: "Algorise DropoutWatch", tag: "STUDENT RETENTION", icon: "alert-circle", color: "rose", desc: "Early student academic intervention & engagement risk prediction bot.", flow: "LMS login & assignment drop -> Risk scoring model -> Alerts advisor to intervene early.", price: "$1,500 - $4,000/mo" },
+        { name: "Algorise ExamProctor", tag: "AI PROCTORING", icon: "video", color: "cyan", desc: "Real-time webcam & browser lockdown anti-cheat proctoring bot.", flow: "Online exam session -> Eye-gaze & tab-switch detector -> Flags suspicious events to faculty.", price: "$1,200 - $3,500/mo" },
+      ]
+    };
+
+    function renderSectorBots(sectorKey) {
+      const container = document.getElementById('sectorBotsContainer');
+      if (!container) return;
+      const bots = sectorBotsData[sectorKey] || sectorBotsData['agriculture'];
+      
+      container.innerHTML = bots.map(b => {
+        const colorClass = b.color === 'emerald' ? 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10' :
+                           b.color === 'purple' ? 'text-purple-400 border-purple-500/30 bg-purple-500/10' :
+                           b.color === 'amber' ? 'text-amber-400 border-amber-500/30 bg-amber-500/10' :
+                           b.color === 'rose' ? 'text-rose-400 border-rose-500/30 bg-rose-500/10' :
+                           'text-brand-cyan border-brand-cyan/30 bg-brand-cyan/10';
+        return `
+        <div class="cosmic-glass p-7 rounded-3xl border border-brand-border zoom-hover group relative overflow-hidden flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 rounded-2xl ${colorClass} flex items-center justify-center">
+                <i data-lucide="${b.icon}" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[9px] font-mono px-2.5 py-1 rounded-full ${colorClass} border uppercase tracking-wider font-semibold">
+                ${b.tag}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-cyan transition-colors">${b.name}</h3>
+            <p class="text-slate-400 text-xs leading-relaxed mb-4">${b.desc}</p>
+            <div class="p-2.5 rounded-xl bg-brand-void/80 border border-brand-border/60 text-[10px] font-mono text-slate-300 mb-4 leading-normal">
+              <span class="text-brand-cyan font-semibold">Autoflow:</span> ${b.flow}
+            </div>
+          </div>
+          <div class="text-[11px] font-mono border-t border-brand-border/60 pt-3 flex items-center justify-between">
+            <span class="text-slate-400">Monthly Rental:</span>
+            <span class="text-white font-bold">${b.price}</span>
+          </div>
+        </div>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function switchSector(sectorKey, btn) {
+      document.querySelectorAll('.sector-tab-btn').forEach(b => {
+        b.className = 'sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500';
+      });
+      btn.className = 'sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-cyan bg-brand-cyan/20 text-brand-cyan shadow-lg shadow-brand-cyan/20';
+      renderSectorBots(sectorKey);
+    }
+
+    // Initial Sector Render
+    renderSectorBots('agriculture');
+    lucide.createIcons();
+  </script>
+</body>
+</html>
