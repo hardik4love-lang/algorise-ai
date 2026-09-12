@@ -115,6 +115,11 @@
         <i data-lucide="activity" class="w-4 h-4"></i>
         <span>3. Live Telephony / CRM Relay</span>
       </button>
+      <button onclick="switchTab('jobs', this)" class="mode-tab-btn px-5 py-2.5 rounded-xl font-semibold text-xs transition-all border border-purple-500/50 bg-purple-500/10 text-purple-300 hover:border-purple-400 flex items-center gap-2 relative">
+        <span class="absolute -top-1.5 -right-1.5 px-1.5 py-0.2 bg-gradient-to-r from-purple-500 to-pink-500 text-[9px] font-mono font-bold text-white rounded-full animate-pulse">14,820 LIVE</span>
+        <i data-lucide="globe" class="w-4 h-4 text-purple-400"></i>
+        <span>4. Global Jobs & 5 Closers (24/7)</span>
+      </button>
     </div>
 
     <!-- TAB 1: OUTREACH MACHINE -->
@@ -368,6 +373,139 @@ Here is what this document means in plain English, step-by-step:
       </div>
     </div>
 
+    <!-- TAB 4: GLOBAL SCRAPED JOBS & 5 CLOSER AGENTS (24/7) -->
+    <div id="tab-jobs" class="hidden space-y-8">
+      
+      <!-- Top Scraper & Swarm Overview Header -->
+      <div class="cosmic-glass p-6 sm:p-8 rounded-3xl border border-purple-500/30 bg-gradient-to-r from-purple-950/40 via-brand-navy/60 to-brand-void">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 text-xs font-mono mb-2 border border-purple-500/30">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>AUTONOMOUS INGESTION ENGINE • 14,820 ACTIVE OPPORTUNITIES</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white flex items-center gap-3">
+              <span>World Opportunities Feed</span>
+              <span class="text-xs px-3 py-1 rounded-lg bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30 font-mono font-normal">
+                Velocity: +142 jobs/min
+              </span>
+            </h2>
+            <p class="text-slate-300 text-xs sm:text-sm max-w-3xl mt-2">
+              Aggregating verified commercial acquisitions, luxury relocations, proptech AI RFPs, and urgent escrow contingencies scraped in real-time across LoopNet, CoStar, Zillow Premier, Upwork Enterprise, and global MLS feeds. Pre-sorted and instantly finished by your 5 dedicated Closer Agents working 24/7.
+            </p>
+          </div>
+
+          <!-- Live Swarm Aggregate Stats -->
+          <div class="flex items-center gap-3 font-mono">
+            <div class="px-4 py-3 rounded-2xl bg-brand-void/90 border border-brand-border text-center">
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider">Total Scraped</div>
+              <div class="text-xl font-bold text-brand-cyan" id="statTotalScraped">14,820</div>
+            </div>
+            <div class="px-4 py-3 rounded-2xl bg-brand-void/90 border border-brand-border text-center">
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider">Deals Closed Today</div>
+              <div class="text-xl font-bold text-emerald-400" id="statDealsClosedToday">61</div>
+            </div>
+            <div class="px-4 py-3 rounded-2xl bg-brand-void/90 border border-brand-border text-center">
+              <div class="text-[10px] text-slate-400 uppercase tracking-wider">Closed Volume</div>
+              <div class="text-xl font-bold text-purple-400" id="statClosedVolume">$508,100</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- THE 5 CLOSER AGENTS SQUAD (WORKING 24/7) -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            <span>Your 5 Dedicated Closer Agents (Active 24/7/365)</span>
+          </h3>
+          <span class="text-xs text-slate-400 font-mono">Zero Human Bottleneck • Automated Outreach, Legal Addenda & Escrow Finish</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="closerCardsGrid">
+          <!-- Closer Cards injected dynamically -->
+        </div>
+      </div>
+
+      <!-- FILTER & SORT CONTROLS BAR -->
+      <div class="cosmic-glass p-5 rounded-2xl border border-brand-border flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Search & Category Filters -->
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div class="relative flex-1 md:w-64">
+            <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-3"></i>
+            <input type="text" id="jobSearchInput" oninput="applyJobFilters()" placeholder="Filter by title, city, or buyer..." class="w-full pl-9 pr-3 py-2 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none" />
+          </div>
+
+          <select id="filterCategory" onchange="applyJobFilters()" class="px-3 py-2 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none">
+            <option value="ALL">All Categories</option>
+            <option value="Commercial & Investment">Commercial & Investment</option>
+            <option value="Luxury Residential">Luxury Residential</option>
+            <option value="PropTech & AI Infrastructure">PropTech & AI Infrastructure</option>
+            <option value="Contract Compliance & Escrow">Contract Compliance & Escrow</option>
+            <option value="Residential Volume">Residential Volume</option>
+          </select>
+
+          <select id="filterUrgency" onchange="applyJobFilters()" class="px-3 py-2 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none">
+            <option value="ALL">All Urgencies</option>
+            <option value="CRITICAL">Critical / Same Hour</option>
+            <option value="IMMEDIATE">Immediate (< 4 Hours)</option>
+            <option value="HIGH">High Priority</option>
+            <option value="NORMAL">Standard</option>
+          </select>
+
+          <select id="filterCloser" onchange="applyJobFilters()" class="px-3 py-2 bg-brand-void border border-brand-border rounded-xl text-xs text-white focus:border-brand-cyan focus:outline-none">
+            <option value="ALL">All Closer Agents</option>
+            <option value="closer_alpha">Agent Vanguard (Alpha)</option>
+            <option value="closer_bravo">Agent Sterling (Bravo)</option>
+            <option value="closer_charlie">Agent Apex (Charlie)</option>
+            <option value="closer_delta">Agent Sentinel (Delta)</option>
+            <option value="closer_echo">Agent Rapid (Echo)</option>
+          </select>
+        </div>
+
+        <!-- Action / Ingest Trigger -->
+        <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+          <button onclick="simulateLiveScrapeBatch()" class="px-4 py-2 rounded-xl text-xs font-semibold text-white bg-purple-600/30 hover:bg-purple-600/50 border border-purple-400/40 transition-all flex items-center gap-1.5 shadow-lg shadow-purple-900/30">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 animate-spin"></i>
+            <span>Scrape New Global Batch</span>
+          </button>
+          <button onclick="finishAllReadyJobsAction()" class="px-4 py-2 rounded-xl text-xs font-bold text-white cyan-gradient hover:opacity-95 transition-all flex items-center gap-1.5 shadow-lg shadow-brand-cyan/20">
+            <i data-lucide="zap" class="w-3.5 h-3.5 text-black"></i>
+            <span class="text-black">Auto-Finish All with 5 Closers</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LIVE SCRAPED JOBS LIST TABLE / CARDS -->
+      <div class="cosmic-glass rounded-3xl border border-brand-border overflow-hidden">
+        <div class="px-6 py-4 border-b border-brand-border flex items-center justify-between">
+          <div class="text-xs font-mono text-slate-300 flex items-center gap-2">
+            <i data-lucide="layers" class="w-4 h-4 text-brand-cyan"></i>
+            <span>Organised Opportunities Stream (<span id="visibleJobsCount" class="text-brand-cyan font-bold">10</span> Opportunities Displayed)</span>
+          </div>
+          <div class="text-[11px] font-mono text-emerald-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>All 5 Closers In Active Standby</span>
+          </div>
+        </div>
+
+        <div class="divide-y divide-brand-border" id="scrapedJobsListContainer">
+          <!-- Job Items injected dynamically -->
+        </div>
+      </div>
+
+      <!-- Execution Notification Banner -->
+      <div id="jobFinishBanner" class="hidden p-4 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 text-xs font-mono flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+          <span id="jobFinishBannerText">Job closed successfully by Closer Agent.</span>
+        </div>
+        <button onclick="document.getElementById('jobFinishBanner').classList.add('hidden')" class="text-slate-400 hover:text-white text-xs">Dismiss</button>
+      </div>
+
+    </div>
   </main>
 
   <script>
@@ -377,6 +515,7 @@ Here is what this document means in plain English, step-by-step:
       document.getElementById('tab-outreach').classList.add('hidden');
       document.getElementById('tab-explainer').classList.add('hidden');
       document.getElementById('tab-pipeline').classList.add('hidden');
+      document.getElementById('tab-jobs').classList.add('hidden');
       document.getElementById('tab-' + tabKey).classList.remove('hidden');
 
       document.querySelectorAll('.mode-tab-btn').forEach(b => {
@@ -460,6 +599,528 @@ Here is what this document means in plain English, step-by-step:
       document.getElementById('draftInput').value = `SECTION 8.2 FINANCING CONTINGENCY & EARNEST MONEY ESCROW:\nBuyer's obligation to consummate the acquisition of the subject real property is strictly contingent upon Buyer obtaining a written firm commitment for a conventional mortgage loan of not less than 80% of the purchase price ($680,000) within twenty-one (21) calendar days of mutual execution. In the event Buyer fails to obtain said commitment after good faith application, Buyer may deliver written notice of cancellation, upon which the Earnest Money Deposit ($15,000) held in Escrow by Fidelity National Title shall be promptly remitted to Buyer in full without deduction.`;
       explainDraftAction();
     }
+
+    // ==========================================
+    // TAB 4: GLOBAL SCRAPED JOBS & 5 CLOSERS ENGINE
+    // ==========================================
+    const CLOSER_AGENTS_DATA = [
+      {
+        id: "closer_alpha",
+        name: "Agent Vanguard (Alpha)",
+        specialization: "Enterprise Commercial & Acquisitions",
+        badge: "COMMERCIAL CLOSER",
+        status: "24/7 ACTIVE",
+        active_leads: 42,
+        closed_deals_today: 8,
+        total_closed_value: "$142,500",
+        turnaround: "14m",
+        conversion: "34.8%",
+        color: "from-cyan-500 to-blue-600",
+        border_color: "border-brand-cyan/40",
+        avatar: "AV"
+      },
+      {
+        id: "closer_bravo",
+        name: "Agent Sterling (Bravo)",
+        specialization: "Luxury Relocation & High-Net-Worth",
+        badge: "LUXURY SPECIALIST",
+        status: "24/7 ACTIVE",
+        active_leads: 39,
+        closed_deals_today: 11,
+        total_closed_value: "$98,200",
+        turnaround: "9m",
+        conversion: "39.2%",
+        color: "from-purple-500 to-indigo-600",
+        border_color: "border-purple-400/40",
+        avatar: "AS"
+      },
+      {
+        id: "closer_charlie",
+        name: "Agent Apex (Charlie)",
+        specialization: "PropTech, AI Systems & Brokerage RFPs",
+        badge: "TECH INFRA CLOSER",
+        status: "24/7 ACTIVE",
+        active_leads: 51,
+        closed_deals_today: 14,
+        total_closed_value: "$116,000",
+        turnaround: "6m",
+        conversion: "42.5%",
+        color: "from-emerald-500 to-teal-600",
+        border_color: "border-emerald-400/40",
+        avatar: "AA"
+      },
+      {
+        id: "closer_delta",
+        name: "Agent Sentinel (Delta)",
+        specialization: "Contract Drafting, Escrow & Compliance",
+        badge: "LEGAL & ESCROW CLOSER",
+        status: "24/7 ACTIVE",
+        active_leads: 35,
+        closed_deals_today: 9,
+        total_closed_value: "$67,400",
+        turnaround: "11m",
+        conversion: "36.1%",
+        color: "from-amber-500 to-orange-600",
+        border_color: "border-amber-400/40",
+        avatar: "SD"
+      },
+      {
+        id: "closer_echo",
+        name: "Agent Rapid (Echo)",
+        specialization: "First-Time Buyer & Inbound Sprinter",
+        badge: "SPEED SPRINTER",
+        status: "24/7 ACTIVE",
+        active_leads: 64,
+        closed_deals_today: 19,
+        total_closed_value: "$84,900",
+        turnaround: "3m",
+        conversion: "44.0%",
+        color: "from-pink-500 to-rose-600",
+        border_color: "border-pink-400/40",
+        avatar: "RE"
+      }
+    ];
+
+    let GLOBAL_JOBS_STORE = [
+      {
+        job_id: "JOB-GLB-90211",
+        title: "Multi-Family 48-Unit Commercial Acquisition Due Diligence",
+        source: "LoopNet Enterprise / CoStar Feed",
+        location: "Dallas-Fort Worth, TX",
+        region: "North America",
+        budget: "$4,850,000",
+        commission_est: "$145,500",
+        category: "Commercial & Investment",
+        urgency: "IMMEDIATE",
+        assigned_closer: "closer_alpha",
+        closer_name: "Agent Vanguard (Alpha)",
+        lead_contact: "Harrison Cole (Apex Real Estate Holdings)",
+        scraped_ago: "2 mins ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "Pro Forma Yield Audit, Rent Roll Extraction, Letter of Intent Drafting",
+        closer_strategy: "Transmit executive ROI brief with 7.4% cap rate model and drafted non-binding LOI within 5 mins."
+      },
+      {
+        job_id: "JOB-GLB-90212",
+        title: "Luxury Waterfront Villa Buyer — Relocation Escrow Settlement",
+        source: "Zillow Premier / Sotheby's Network",
+        location: "Miami Beach, FL",
+        region: "North America",
+        budget: "$3,200,000",
+        commission_est: "$96,000",
+        category: "Luxury Residential",
+        urgency: "HIGH",
+        assigned_closer: "closer_bravo",
+        closer_name: "Agent Sterling (Bravo)",
+        lead_contact: "Elena Rostova (Private Family Office)",
+        scraped_ago: "4 mins ago",
+        status: "IN_CLOSING",
+        key_deliverable: "Off-Market Pocket Listing Catalog, Plain-English Title Contingency Translation",
+        closer_strategy: "Text WhatsApp 4K drone video tour + simplified 1-page escrow explanation."
+      },
+      {
+        job_id: "JOB-GLB-90213",
+        title: "Autonomous AI Lead Gen & MLS Autoflow Integration for Brokerage",
+        source: "Upwork Enterprise / Tech Directory",
+        location: "London, United Kingdom",
+        region: "Europe",
+        budget: "$45,000/yr SaaS Contract",
+        commission_est: "$15,000",
+        category: "PropTech & AI Infrastructure",
+        urgency: "IMMEDIATE",
+        assigned_closer: "closer_charlie",
+        closer_name: "Agent Apex (Charlie)",
+        lead_contact: "Julian Thorne (Mayfair Prestige Realty Group)",
+        scraped_ago: "6 mins ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "Custom Algorise RealtorReach Gateway Deployment & 24/7 Closer Swarm",
+        closer_strategy: "Send live sandbox demo link and Stripe automated subscription agreement."
+      },
+      {
+        job_id: "JOB-GLB-90214",
+        title: "Urgent 14-Day Inspection Contingency Dispute & Escrow Defense",
+        source: "Redfin Partner Broker Portal",
+        location: "Denver, CO",
+        region: "North America",
+        budget: "$740,000",
+        commission_est: "$22,200",
+        category: "Contract Compliance & Escrow",
+        urgency: "CRITICAL",
+        assigned_closer: "closer_delta",
+        closer_name: "Agent Sentinel (Delta)",
+        lead_contact: "Marcus & Clara Vance (First-Time Buyers)",
+        scraped_ago: "7 mins ago",
+        status: "IN_CLOSING",
+        key_deliverable: "Inspection Clause Plain-English Translation, $12k Seller Repair Credit Drafter",
+        closer_strategy: "Automated plain-English SMS to buyers calming fears + legal addendum dispatched to listing agent."
+      },
+      {
+        job_id: "JOB-GLB-90215",
+        title: "Pre-Approved First-Time Homebuyer Rapid Weekend Tour Inbound",
+        source: "Realtor.com Fast-Lead Hook",
+        location: "Phoenix, AZ",
+        region: "North America",
+        budget: "$495,000",
+        commission_est: "$14,850",
+        category: "Residential Volume",
+        urgency: "IMMEDIATE",
+        assigned_closer: "closer_echo",
+        closer_name: "Agent Rapid (Echo)",
+        lead_contact: "Jessica Taylor (Pre-approved with Chase)",
+        scraped_ago: "1 min ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "Instant MLS 3-Home Shortlist, Pre-Qual Verification, Calendar Lock-In",
+        closer_strategy: "Sub-60s SMS outreach with 3 tailored homes and Calendly link for Saturday 10am."
+      },
+      {
+        job_id: "JOB-GLB-90216",
+        title: "Commercial Logistics Warehouse Lease Negotiation (85,000 sq ft)",
+        source: "CoStar Global Logistics Wire",
+        location: "Rotterdam / Antwerp Corridor",
+        region: "Europe",
+        budget: "$720,000/yr Triple-Net",
+        commission_est: "$86,400",
+        category: "Commercial & Investment",
+        urgency: "HIGH",
+        assigned_closer: "closer_alpha",
+        closer_name: "Agent Vanguard (Alpha)",
+        lead_contact: "Dirk Van Houten (EuroLogistics N.V.)",
+        scraped_ago: "9 mins ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "NNN Lease Comparative Benchmark, Escalation Cap Audit",
+        closer_strategy: "Deliver 2-page executive lease financial matrix highlighting 6% tax abatement savings."
+      },
+      {
+        job_id: "JOB-GLB-90217",
+        title: "Ultra-Luxury Penthouse Acquisition & Crypto-to-Fiat Escrow",
+        source: "Dubai Land Department / PropTiger Prime",
+        location: "Downtown Dubai, UAE",
+        region: "Middle East",
+        budget: "$6,400,000",
+        commission_est: "$192,000",
+        category: "Luxury Residential",
+        urgency: "IMMEDIATE",
+        assigned_closer: "closer_bravo",
+        closer_name: "Agent Sterling (Bravo)",
+        lead_contact: "Tariq Al-Mansoor (High-Net-Worth Tech Founder)",
+        scraped_ago: "12 mins ago",
+        status: "IN_CLOSING",
+        key_deliverable: "Zero-Slippage Escrow Verification, Developer Direct Allocation Reserve",
+        closer_strategy: "Dispatch encrypted WhatsApp audio brief + direct VIP reservation document."
+      },
+      {
+        job_id: "JOB-GLB-90218",
+        title: "PropTech Automated Valuation Model (AVM) API Implementation",
+        source: "GitHub Enterprise RFP & PropTech Hub",
+        location: "Singapore / APAC Hub",
+        region: "Asia-Pacific",
+        budget: "$60,000 Setup + $5k/mo",
+        commission_est: "$25,000",
+        category: "PropTech & AI Infrastructure",
+        urgency: "NORMAL",
+        assigned_closer: "closer_charlie",
+        closer_name: "Agent Apex (Charlie)",
+        lead_contact: "Kavita Shenoy (PropNext Global)",
+        scraped_ago: "15 mins ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "Algorise CompGenius Vector API Hookup & Documentation Spec",
+        closer_strategy: "Deliver postman collection + live token endpoint with 24-hr trial keys."
+      },
+      {
+        job_id: "JOB-GLB-90219",
+        title: "HOA Bylaw Violation Resolution & Title Cloud Clearing",
+        source: "Fidelity National Title Lead Stream",
+        location: "Scottsdale, AZ",
+        region: "North America",
+        budget: "$890,000 Transaction at Risk",
+        commission_est: "$26,700",
+        category: "Contract Compliance & Escrow",
+        urgency: "CRITICAL",
+        assigned_closer: "closer_delta",
+        closer_name: "Agent Sentinel (Delta)",
+        lead_contact: "Robert Sterling (Seller)",
+        scraped_ago: "18 mins ago",
+        status: "IN_CLOSING",
+        key_deliverable: "HOA Arch Board Compliance Addendum, Escrow Holdback Agreement",
+        closer_strategy: "Draft signed indemnification clause allowing closing to proceed without delay."
+      },
+      {
+        job_id: "JOB-GLB-90220",
+        title: "Suburban Condominium Pre-Construction Unit Reservation",
+        source: "Urbanation Toronto / Canadian MLS",
+        location: "Toronto, ON, Canada",
+        region: "North America",
+        budget: "$610,000",
+        commission_est: "$24,400",
+        category: "Residential Volume",
+        urgency: "HIGH",
+        assigned_closer: "closer_echo",
+        closer_name: "Agent Rapid (Echo)",
+        lead_contact: "Amir & Leila Chen",
+        scraped_ago: "21 mins ago",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "10% Deposit Structure Breakdown, 10-Day Cooling-off Period Explainer",
+        closer_strategy: "Send SMS breakdown showing $0 assignment fee guarantee and lock unit #1402."
+      }
+    ];
+
+    function renderCloserCards() {
+      const grid = document.getElementById('closerCardsGrid');
+      grid.innerHTML = CLOSER_AGENTS_DATA.map(closer => `
+        <div class="cosmic-glass p-4 rounded-2xl border ${closer.border_color} bg-brand-void/85 hover:border-brand-cyan transition-all group flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-gradient-to-tr ${closer.color} flex items-center justify-center font-bold text-white text-xs font-mono shadow-md">
+                ${closer.avatar}
+              </div>
+              <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                24/7 ACTIVE
+              </span>
+            </div>
+            
+            <div class="text-xs font-bold text-white">${closer.name}</div>
+            <div class="text-[10px] text-brand-cyan font-mono">${closer.badge}</div>
+            <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">${closer.specialization}</div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-brand-border/60 space-y-1.5 font-mono text-[10px]">
+            <div class="flex justify-between text-slate-400">
+              <span>Active In Queue:</span>
+              <span class="text-white font-semibold">${closer.active_leads} leads</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>Closed Today:</span>
+              <span class="text-emerald-400 font-bold" id="closedCount_${closer.id}">${closer.closed_deals_today} deals</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>Total Value:</span>
+              <span class="text-purple-300 font-bold">${closer.total_closed_value}</span>
+            </div>
+            <div class="flex justify-between text-slate-400">
+              <span>Turnaround / Win:</span>
+              <span class="text-brand-cyan">${closer.turnaround} • ${closer.conversion}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderScrapedJobs(jobsList) {
+      const container = document.getElementById('scrapedJobsListContainer');
+      document.getElementById('visibleJobsCount').textContent = jobsList.length;
+
+      if (jobsList.length === 0) {
+        container.innerHTML = `
+          <div class="p-12 text-center text-slate-400 text-xs font-mono">
+            No opportunities match the selected filters. Change search parameters or click "Scrape New Global Batch".
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = jobsList.map(job => {
+        let urgencyBadge = '';
+        if (job.urgency === 'CRITICAL') {
+          urgencyBadge = '<span class="px-2 py-0.5 rounded bg-rose-500/20 border border-rose-500/40 text-rose-300 text-[10px] font-mono font-bold">CRITICAL</span>';
+        } else if (job.urgency === 'IMMEDIATE') {
+          urgencyBadge = '<span class="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] font-mono font-bold">IMMEDIATE</span>';
+        } else {
+          urgencyBadge = '<span class="px-2 py-0.5 rounded bg-blue-500/20 border border-blue-500/40 text-blue-300 text-[10px] font-mono">PRIORITY</span>';
+        }
+
+        let statusBadge = '';
+        if (job.status === 'CLOSED_AND_FINISHED') {
+          statusBadge = '<span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-mono font-bold flex items-center gap-1.5"><i data-lucide="check" class="w-3.5 h-3.5"></i> CLOSED & FINISHED</span>';
+        } else {
+          statusBadge = `<button onclick="finishJobByCloser('${job.job_id}')" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-brand-cyan/20 to-purple-600/30 hover:from-brand-cyan/30 hover:to-purple-600/50 border border-brand-cyan/40 text-white font-mono text-xs font-bold transition-all shadow-md flex items-center gap-1.5 group"><i data-lucide="zap" class="w-3.5 h-3.5 text-brand-cyan group-hover:scale-110 transition-transform"></i> Closer Finish Now</button>`;
+        }
+
+        return `
+          <div class="p-5 sm:p-6 hover:bg-brand-navy/30 transition-all">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              
+              <!-- Left: Title, Metadata, Source -->
+              <div class="space-y-2 flex-1">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-brand-void text-slate-400 border border-brand-border">${job.job_id}</span>
+                  ${urgencyBadge}
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-500/10 text-purple-300 border border-purple-500/20">${job.category}</span>
+                  <span class="text-[10px] font-mono text-slate-500">• ${job.scraped_ago} via ${job.source}</span>
+                </div>
+
+                <h4 class="text-sm sm:text-base font-bold text-white hover:text-brand-cyan transition-colors">
+                  ${job.title}
+                </h4>
+
+                <div class="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-300">
+                  <span class="flex items-center gap-1 text-slate-400">
+                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-cyan"></i>
+                    ${job.location} (${job.region})
+                  </span>
+                  <span class="flex items-center gap-1 text-emerald-400 font-bold">
+                    <i data-lucide="dollar-sign" class="w-3.5 h-3.5"></i>
+                    Deal Value: ${job.budget}
+                  </span>
+                  <span class="flex items-center gap-1 text-purple-300 font-bold">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    Est. Comm: ${job.commission_est}
+                  </span>
+                </div>
+
+                <!-- Strategy & Deliverables Note -->
+                <div class="p-3 rounded-xl bg-brand-void/70 border border-brand-border/60 text-[11px] text-slate-300 space-y-1">
+                  <div class="text-slate-400"><strong class="text-white">Prospect:</strong> ${job.lead_contact}</div>
+                  <div><strong class="text-brand-cyan font-mono">Deliverables:</strong> ${job.key_deliverable}</div>
+                  <div class="text-slate-400"><strong class="text-purple-300 font-mono">24/7 Closer Strategy:</strong> ${job.closer_strategy}</div>
+                </div>
+              </div>
+
+              <!-- Right: Assigned Closer & Action Finish -->
+              <div class="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-between gap-3 min-w-[220px]">
+                <div class="text-left lg:text-right font-mono text-xs">
+                  <div class="text-[10px] text-slate-400 uppercase">Assigned 24/7 Closer</div>
+                  <div class="font-bold text-brand-cyan flex items-center lg:justify-end gap-1.5 mt-0.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    ${job.closer_name}
+                  </div>
+                </div>
+
+                <div class="w-full sm:w-auto">
+                  ${statusBadge}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function applyJobFilters() {
+      const search = (document.getElementById('jobSearchInput').value || '').toLowerCase();
+      const cat = document.getElementById('filterCategory').value;
+      const urg = document.getElementById('filterUrgency').value;
+      const closer = document.getElementById('filterCloser').value;
+
+      const filtered = GLOBAL_JOBS_STORE.filter(job => {
+        const matchesSearch = !search || 
+          job.title.toLowerCase().includes(search) || 
+          job.location.toLowerCase().includes(search) || 
+          job.lead_contact.toLowerCase().includes(search) || 
+          job.job_id.toLowerCase().includes(search);
+        const matchesCat = cat === 'ALL' || job.category === cat;
+        const matchesUrg = urg === 'ALL' || job.urgency === urg;
+        const matchesCloser = closer === 'ALL' || job.assigned_closer === closer;
+        return matchesSearch && matchesCat && matchesUrg && matchesCloser;
+      });
+
+      renderScrapedJobs(filtered);
+    }
+
+    function finishJobByCloser(jobId) {
+      const job = GLOBAL_JOBS_STORE.find(j => j.job_id === jobId);
+      if (!job) return;
+
+      job.status = 'CLOSED_AND_FINISHED';
+      
+      // Update closer deal count
+      const closer = CLOSER_AGENTS_DATA.find(c => c.id === job.assigned_closer);
+      if (closer) {
+        closer.closed_deals_today += 1;
+        const el = document.getElementById('closedCount_' + closer.id);
+        if (el) el.textContent = closer.closed_deals_today + ' deals';
+      }
+
+      // Update aggregate stat
+      const countEl = document.getElementById('statDealsClosedToday');
+      if (countEl) {
+        let cur = parseInt(countEl.textContent || '61');
+        countEl.textContent = cur + 1;
+      }
+
+      // Show Banner
+      const banner = document.getElementById('jobFinishBanner');
+      const text = document.getElementById('jobFinishBannerText');
+      text.innerHTML = `<strong>${job.job_id} Finished:</strong> ${job.closer_name} executed final outreach & legal escrow dispatch. Commission unlocked: <strong>${job.commission_est}</strong>.`;
+      banner.classList.remove('hidden');
+
+      applyJobFilters();
+    }
+
+    function finishAllReadyJobsAction() {
+      let closedCount = 0;
+      GLOBAL_JOBS_STORE.forEach(j => {
+        if (j.status !== 'CLOSED_AND_FINISHED') {
+          j.status = 'CLOSED_AND_FINISHED';
+          closedCount++;
+          const closer = CLOSER_AGENTS_DATA.find(c => c.id === j.assigned_closer);
+          if (closer) closer.closed_deals_today++;
+        }
+      });
+
+      renderCloserCards();
+      applyJobFilters();
+
+      const countEl = document.getElementById('statDealsClosedToday');
+      if (countEl) {
+        let cur = parseInt(countEl.textContent || '61');
+        countEl.textContent = cur + closedCount;
+      }
+
+      const banner = document.getElementById('jobFinishBanner');
+      const text = document.getElementById('jobFinishBannerText');
+      text.innerHTML = `<strong>Autonomous Swarm Sprint Complete:</strong> All ${closedCount} active scraped jobs finished simultaneously by your 5 Closer Agents working 24/7!`;
+      banner.classList.remove('hidden');
+    }
+
+    function simulateLiveScrapeBatch() {
+      const newIdNum = Math.floor(10000 + Math.random() * 90000);
+      const newJob = {
+        job_id: `JOB-GLB-${newIdNum}`,
+        title: "Off-Market Penthouse Portfolio Acquisition (3 Units)",
+        source: "MLS Global Ingest / Knight Frank",
+        location: "Austin, TX (Rainey District)",
+        region: "North America",
+        budget: "$3,800,000",
+        commission_est: "$114,000",
+        category: "Luxury Residential",
+        urgency: "IMMEDIATE",
+        assigned_closer: "closer_bravo",
+        closer_name: "Agent Sterling (Bravo)",
+        lead_contact: "Sterling Capital Partners",
+        scraped_ago: "Just now",
+        status: "READY_TO_CLOSE",
+        key_deliverable: "Private 3-Unit Cap Rate Pro Forma, Escrow Reservation Addendum",
+        closer_strategy: "Send instant luxury memo + video tour link via WhatsApp."
+      };
+
+      GLOBAL_JOBS_STORE.unshift(newJob);
+
+      // Increase total scraped counter
+      const totalEl = document.getElementById('statTotalScraped');
+      if (totalEl) {
+        let cur = parseInt(totalEl.textContent.replace(/,/g, ''));
+        totalEl.textContent = (cur + 1).toLocaleString();
+      }
+
+      applyJobFilters();
+
+      const banner = document.getElementById('jobFinishBanner');
+      const text = document.getElementById('jobFinishBannerText');
+      text.innerHTML = `<strong>New Opportunity Ingested:</strong> ${newJob.title} (${newJob.budget}) assigned to <strong>${newJob.closer_name}</strong>. Ready to finish!`;
+      banner.classList.remove('hidden');
+    }
+
+    // Initialize Closer Cards and Jobs List on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCloserCards();
+      applyJobFilters();
+    });
+    renderCloserCards();
+    applyJobFilters();
   </script>
 </body>
 </html>
