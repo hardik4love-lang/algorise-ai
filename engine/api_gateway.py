@@ -98,6 +98,28 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
                     "Sub-50ms Enterprise SLAs"
                 ]
             })
+        elif parsed.path == "/v1/jobs/scraped":
+            from engine.job_scraper_engine import AlgoriseJobScraperEngine
+            scraper = AlgoriseJobScraperEngine()
+            query_params = urllib.parse.parse_qs(parsed.query)
+            cat = query_params.get("category", ["ALL"])[0]
+            urg = query_params.get("urgency", ["ALL"])[0]
+            cls = query_params.get("closer", ["ALL"])[0]
+            jobs = scraper.get_live_jobs(filter_category=cat, filter_urgency=urg, filter_closer=cls)
+            self._send_json(200, {
+                "total_scraped_pool": scraper.total_scraped_pool,
+                "velocity_per_min": scraper.scrape_velocity_per_min,
+                "filtered_count": len(jobs),
+                "jobs": jobs
+            })
+        elif parsed.path == "/v1/jobs/closers":
+            from engine.job_scraper_engine import AlgoriseJobScraperEngine
+            scraper = AlgoriseJobScraperEngine()
+            self._send_json(200, {
+                "active_closer_agents_count": len(scraper.get_closer_metrics()),
+                "shift": "24/7 AUTONOMOUS CLOSING SWARM",
+                "closers": scraper.get_closer_metrics()
+            })
         else:
             self._send_json(404, {"error": f"Endpoint '{parsed.path}' not found on Algorise Gateway."})
 
@@ -217,6 +239,16 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
             channel = payload.get("channel", "sms")
             dispatch_result = assistant.dispatch_text(recipient_phone, client_name, message_body, channel=channel)
             self._send_json(200, dispatch_result)
+
+        elif parsed.path == "/v1/jobs/closer/finish":
+            from engine.job_scraper_engine import AlgoriseJobScraperEngine
+            scraper = AlgoriseJobScraperEngine()
+            job_id = payload.get("job_id", "")
+            finish_result = scraper.trigger_closer_finish_job(job_id)
+            if finish_result.get("success"):
+                self._send_json(200, finish_result)
+            else:
+                self._send_json(404, finish_result)
 
         elif parsed.path == "/v1/autoflows/trigger":
             flow_id = payload.get("flow_id", "enterprise-inbound-flow")
