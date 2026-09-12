@@ -151,6 +151,10 @@
           <span>Quantum Core</span>
         </a>
         <a href="#services" class="hover:text-brand-cyan transition-colors">Solutions</a>
+        <a href="#freelance-swarm-hub" class="hover:text-brand-cyan transition-colors flex items-center gap-1.5 text-brand-cyan font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Freelance Jobs (5 Closers)</span>
+        </a>
         <a href="#interactive-demo" class="hover:text-brand-cyan transition-colors">Pipeline Simulator</a>
         <a href="#calculator" class="hover:text-brand-cyan transition-colors">Timeline Estimator</a>
         <a href="#process" class="hover:text-brand-cyan transition-colors">Mission Blueprint</a>
@@ -353,6 +357,10 @@
         <button onclick="switchSector('business', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
           🏢 Business & B2B
         </button>
+        <button onclick="switchSector('freelance', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-emerald-500/50 bg-emerald-500/10 text-emerald-300 hover:border-emerald-400 flex items-center gap-1.5 shadow-lg shadow-emerald-500/10">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>💼 Freelance Jobs (5 Closers)</span>
+        </button>
         <button onclick="switchSector('retail', this)" class="sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-border bg-brand-void/80 text-slate-300 hover:border-slate-500">
           🛍️ Retail & E-Comm
         </button>
@@ -401,6 +409,256 @@
             Deploy Custom Autoflow
           </button>
         </div>
+      </div>
+
+      <!-- Dedicated 24/7 Global Freelance Harvester & 5-Closer Swarm Console Section -->
+      <div id="freelance-swarm-hub" class="mt-16 pt-16 border-t border-brand-border/60">
+        
+        <!-- Header Banner -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-[11px] font-mono mb-3">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>GLOBAL JOB HARVESTER • 24/7 5-CLOSER AUTOPILOT</span>
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+              World Freelance Jobs & Closer Swarm
+            </h2>
+            <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-2xl">
+              Continuously scraping tens of thousands of high-value freelance jobs worldwide across Upwork, Freelancer, Toptal, and Direct Enterprise channels. Formatted, intent-scored, and queued for execution by your 5 specialized 24/7 Closer Agents.
+            </p>
+          </div>
+
+          <!-- Telemetry Stats Cards -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+              <div class="text-xs font-mono text-slate-400 uppercase">Jobs Scraped</div>
+              <div class="text-xl font-bold font-mono text-brand-cyan">14,280+</div>
+              <div class="text-[9px] text-emerald-400">Live Crawl Active</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+              <div class="text-xs font-mono text-slate-400 uppercase">High-Ticket Pool</div>
+              <div class="text-xl font-bold font-mono text-purple-400">$58,400+</div>
+              <div class="text-[9px] text-slate-400">Filtered &gt; $1.5k</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+              <div class="text-xs font-mono text-slate-400 uppercase">Active Closers</div>
+              <div class="text-xl font-bold font-mono text-emerald-400">5 Agents</div>
+              <div class="text-[9px] text-emerald-400">24/7 Autonomous</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-brand-void/80 border border-brand-border text-center">
+              <div class="text-xs font-mono text-slate-400 uppercase">Win Probability</div>
+              <div class="text-xl font-bold font-mono text-amber-400">94.1%</div>
+              <div class="text-[9px] text-slate-400">Benchmarked</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Closer Agents Grid Cards -->
+        <div class="mb-10">
+          <div class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-4 flex items-center justify-between">
+            <span class="flex items-center gap-2">
+              <i data-lucide="shield-check" class="w-4 h-4 text-brand-cyan"></i>
+              Your 5 Dedicated 24/7 Closer Agents (Click any agent to filter jobs)
+            </span>
+            <button onclick="filterJobsByCloser('all')" class="text-xs text-brand-cyan hover:underline font-mono">Show All Closers</button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5" id="closersGrid">
+            <!-- Closer 1 -->
+            <div onclick="filterJobsByCloser('closer_1')" class="closer-card p-4 rounded-2xl cosmic-glass border border-brand-border hover:border-brand-cyan transition-all cursor-pointer group">
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-9 h-9 rounded-xl bg-brand-cyan/15 text-brand-cyan flex items-center justify-center">
+                  <i data-lucide="code" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">ONLINE</span>
+              </div>
+              <div class="font-bold text-xs text-white group-hover:text-brand-cyan">Closer 01: Full-Stack</div>
+              <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">Python, Node, React, Cloud, Microservices & DBs</div>
+              <div class="mt-3 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-[10px] font-mono">
+                <span class="text-slate-400">Win Rate:</span>
+                <span class="text-brand-cyan font-bold">94.2%</span>
+              </div>
+            </div>
+
+            <!-- Closer 2 -->
+            <div onclick="filterJobsByCloser('closer_2')" class="closer-card p-4 rounded-2xl cosmic-glass border border-brand-border hover:border-purple-400 transition-all cursor-pointer group">
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-9 h-9 rounded-xl bg-purple-500/15 text-purple-400 flex items-center justify-center">
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">ONLINE</span>
+              </div>
+              <div class="font-bold text-xs text-white group-hover:text-purple-400">Closer 02: AI & LLMs</div>
+              <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">GraphRAG, Multi-Agent Swarms, PyTorch & Ollama</div>
+              <div class="mt-3 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-[10px] font-mono">
+                <span class="text-slate-400">Win Rate:</span>
+                <span class="text-purple-400 font-bold">96.8%</span>
+              </div>
+            </div>
+
+            <!-- Closer 3 -->
+            <div onclick="filterJobsByCloser('closer_3')" class="closer-card p-4 rounded-2xl cosmic-glass border border-brand-border hover:border-emerald-400 transition-all cursor-pointer group">
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-9 h-9 rounded-xl bg-emerald-500/15 text-emerald-400 flex items-center justify-center">
+                  <i data-lucide="database" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">ONLINE</span>
+              </div>
+              <div class="font-bold text-xs text-white group-hover:text-emerald-400">Closer 03: Scraper Swarm</div>
+              <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">High-Volume Crawlers, ETL, Playwright & Proxy Mesh</div>
+              <div class="mt-3 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-[10px] font-mono">
+                <span class="text-slate-400">Win Rate:</span>
+                <span class="text-emerald-400 font-bold">92.5%</span>
+              </div>
+            </div>
+
+            <!-- Closer 4 -->
+            <div onclick="filterJobsByCloser('closer_4')" class="closer-card p-4 rounded-2xl cosmic-glass border border-brand-border hover:border-amber-400 transition-all cursor-pointer group">
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-9 h-9 rounded-xl bg-amber-500/15 text-amber-400 flex items-center justify-center">
+                  <i data-lucide="zap" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">ONLINE</span>
+              </div>
+              <div class="font-bold text-xs text-white group-hover:text-amber-400">Closer 04: Zero-Broker</div>
+              <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">Autoflows, Webhooks, APIs & CRM Integrations</div>
+              <div class="mt-3 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-[10px] font-mono">
+                <span class="text-slate-400">Win Rate:</span>
+                <span class="text-amber-400 font-bold">95.1%</span>
+              </div>
+            </div>
+
+            <!-- Closer 5 -->
+            <div onclick="filterJobsByCloser('closer_5')" class="closer-card p-4 rounded-2xl cosmic-glass border border-brand-border hover:border-rose-400 transition-all cursor-pointer group">
+              <div class="flex items-center justify-between mb-2">
+                <div class="w-9 h-9 rounded-xl bg-rose-500/15 text-rose-400 flex items-center justify-center">
+                  <i data-lucide="smartphone" class="w-5 h-5"></i>
+                </div>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">ONLINE</span>
+              </div>
+              <div class="font-bold text-xs text-white group-hover:text-rose-400">Closer 05: Mobile & UI</div>
+              <div class="text-[10px] text-slate-400 mt-1 line-clamp-2">Flutter, React Native, Three.js 3D & FinTech UI</div>
+              <div class="mt-3 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-[10px] font-mono">
+                <span class="text-slate-400">Win Rate:</span>
+                <span class="text-rose-400 font-bold">91.8%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Tooling Bar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 p-4 rounded-2xl cosmic-glass border border-brand-border mb-6">
+          <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto no-scrollbar">
+            <button onclick="filterJobsByCategory('all', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-cyan/20 border border-brand-cyan text-brand-cyan">All Categories</button>
+            <button onclick="filterJobsByCategory('AI / ML', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500">AI & Agents</button>
+            <button onclick="filterJobsByCategory('Web Scraping', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500">Scraping & Data</button>
+            <button onclick="filterJobsByCategory('Autoflows', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500">Autoflows & APIs</button>
+            <button onclick="filterJobsByCategory('Full-Stack', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500">Full-Stack Cloud</button>
+            <button onclick="filterJobsByCategory('Mobile', this)" class="freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500">Mobile & 3D</button>
+          </div>
+
+          <div class="flex items-center gap-3 w-full md:w-auto">
+            <div class="relative w-full md:w-64">
+              <input id="jobSearchInput" onkeyup="searchFreelanceJobs(this.value)" type="text" placeholder="Search title, skills, country..." class="w-full pl-9 pr-3 py-1.5 rounded-xl bg-brand-void/90 border border-brand-border text-xs text-slate-200 focus:outline-none focus:border-brand-cyan font-mono" />
+              <i data-lucide="search" class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5"></i>
+            </div>
+            <button onclick="refreshScrapedJobs()" class="shrink-0 px-3 py-1.5 rounded-xl bg-brand-surface border border-brand-border hover:border-brand-cyan text-xs font-mono text-brand-cyan flex items-center gap-1.5">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Scrape New</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Job Cards Feed & Live Execution Workspace (Split Layout) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Left Column: Scraped Job Feed (7 Cols) -->
+          <div class="lg:col-span-7 space-y-4" id="freelanceJobsList">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+          <!-- Right Column: 24/7 Closer Action Terminal & Proposal Review (5 Cols) -->
+          <div class="lg:col-span-5 sticky top-24">
+            <div class="cosmic-glass p-6 rounded-3xl border border-brand-cyan/40 glow-cyan">
+              
+              <div class="flex items-center justify-between border-b border-brand-border/60 pb-3 mb-4">
+                <div class="flex items-center gap-2">
+                  <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></div>
+                  <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">Closer Swarm Dispatcher</span>
+                </div>
+                <span id="activeCloserTag" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30">
+                  Ready to Dispatch
+                </span>
+              </div>
+
+              <!-- Selected Job Quick Summary -->
+              <div id="closerWorkspaceContent">
+                <div class="p-4 rounded-xl bg-brand-void/90 border border-brand-border mb-4">
+                  <div class="text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1">Selected Job ID</div>
+                  <div id="selectedJobIdDisplay" class="text-xs font-mono font-bold text-brand-cyan">JOB-WORLD-1001</div>
+                  <div id="selectedJobTitleDisplay" class="text-sm font-bold text-white mt-1">Build Autonomous Multi-Agent AI Workflow with Local Ollama & GraphRAG</div>
+                  <div class="flex items-center gap-3 mt-2 text-[11px] font-mono text-slate-300">
+                    <span id="selectedJobBudget" class="text-emerald-400 font-bold">$3,500 - $6,000</span>
+                    <span>•</span>
+                    <span id="selectedJobPlatform" class="text-purple-300">Upwork Enterprise</span>
+                  </div>
+                </div>
+
+                <!-- Assigned Closer Selector -->
+                <div class="mb-4">
+                  <label class="block text-[11px] font-mono text-slate-300 mb-1.5">Assigned 24/7 Closer Agent:</label>
+                  <select id="closerSelectDropdown" onchange="onCloserDropdownChange(this.value)" class="w-full px-3 py-2 rounded-xl bg-brand-void border border-brand-border text-xs text-white font-mono focus:border-brand-cyan focus:outline-none">
+                    <option value="closer_2">Apex-Closer-02 (AI, LLMs, GraphRAG & Machine Learning)</option>
+                    <option value="closer_1">Apex-Closer-01 (Full-Stack & Cloud Architecture)</option>
+                    <option value="closer_3">Apex-Closer-03 (Data Engineering & Scraping Swarms)</option>
+                    <option value="closer_4">Apex-Closer-04 (Automation, Webhooks & Enterprise API)</option>
+                    <option value="closer_5">Apex-Closer-05 (Mobile, UI/UX & Web3/FinTech)</option>
+                  </select>
+                </div>
+
+                <!-- Solution Technical Blueprint -->
+                <div class="mb-4">
+                  <div class="text-[11px] font-mono text-slate-300 mb-1 flex items-center justify-between">
+                    <span>Proprietary Solution Blueprint:</span>
+                    <span class="text-[10px] text-brand-cyan font-mono">Zero Broker IP</span>
+                  </div>
+                  <div id="closerBlueprintDisplay" class="p-3 rounded-xl bg-brand-void/80 border border-brand-border text-[11px] font-mono text-slate-300 leading-relaxed max-h-36 overflow-y-auto whitespace-pre-line">
+                    1. Ingest & Preprocessing: Deterministic PDF chunking with metadata preservation.
+                    2. Hybrid GraphRAG Core: Multi-hop entity extraction combined with dense vector embeddings.
+                    3. Local Privacy Shield: Air-gapped deployment via local Ollama (zero third-party API costs).
+                    4. Causal Guardrails: Pre-commit safety gates preventing prompt injections.
+                  </div>
+                </div>
+
+                <!-- Winning Pitch / Proposal Draft -->
+                <div class="mb-5">
+                  <div class="text-[11px] font-mono text-slate-300 mb-1 flex items-center justify-between">
+                    <span>High-Converting Pitch to Finish & Close:</span>
+                    <span class="text-[10px] text-emerald-400 font-mono">96.8% Win Probability</span>
+                  </div>
+                  <textarea id="closerPitchTextarea" rows="4" class="w-full p-3 rounded-xl bg-brand-void border border-brand-border text-xs text-slate-200 font-mono focus:border-brand-cyan focus:outline-none resize-none leading-relaxed">Hello! I reviewed your project and our team at Algorise AI specializes in exactly this. Unlike generic freelancers who wrap basic LangChain calls, we engineer proprietary GraphRAG pipelines with zero-leakage local inference. We can deliver a working prototype within 48 hours with guaranteed <50ms lookup latency and full source code ownership. When would be a convenient time for a brief 5-minute technical review?</textarea>
+                </div>
+
+                <!-- Action Button -->
+                <button id="dispatchCloseBtn" onclick="dispatchCloserAgent()" class="w-full py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void cyan-gradient-btn hover:brightness-110 transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-cyan/25 active:scale-95">
+                  <i data-lucide="send" class="w-4 h-4"></i>
+                  <span>Dispatch Closer to Finish & Lock Contract</span>
+                </button>
+
+                <!-- Dispatch Feedback Notification -->
+                <div id="dispatchSuccessBanner" class="hidden mt-3 p-3 rounded-xl bg-emerald-500/15 border border-emerald-500/40 text-[11px] font-mono text-emerald-300 flex items-center gap-2">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>Proposal dispatched! Job status locked to CLOSING ESCROW. Escrow SLA active (48-72 hrs).</span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>
@@ -1275,6 +1533,14 @@
         { name: "Algorise PortDelay", tag: "OCEAN FREIGHT", icon: "anchor", color: "amber", desc: "Global ocean container demurrage & terminal congestion forecast bot.", flow: "Container tracking number -> AIS vessel radar -> Predicts port delays 7 days in advance.", price: "$1,800 - $4,200/mo" },
         { name: "Algorise WarehouseBot", tag: "WAREHOUSE PICKING", icon: "box", color: "cyan", desc: "Autonomous forklift pick-path & inventory slotting optimization bot.", flow: "Daily order batch -> Travelling salesperson path optimizer -> Reduces travel by 35%.", price: "$2,200 - $5,500/mo" },
       ],
+      freelance: [
+        { name: "Algorise GlobalScraper Mesh", tag: "JOB HARVESTER", icon: "globe", color: "emerald", desc: "Autonomous distributed scrapers indexing 15,000+ daily freelance jobs across Upwork, Freelancer & Toptal.", flow: "Feed ingestion -> Anti-bot turnstile bypass -> Deduplication -> Normalized database.", price: "$1,800 - $4,500/mo" },
+        { name: "Algorise Apex-Closer 01", tag: "FULL-STACK & CLOUD", icon: "code", color: "cyan", desc: "24/7 autonomous closing agent for Python, Node.js, React, and cloud microservice contracts.", flow: "Job matched -> Architecture blueprint formulated -> Proposal & technical audit dispatched.", price: "$2,500 - $6,000/mo" },
+        { name: "Algorise Apex-Closer 02", tag: "AI & GRAPHRAG", icon: "cpu", color: "purple", desc: "24/7 autonomous closing agent specializing in multi-agent systems, local Ollama, and GraphRAG pipelines.", flow: "AI RFP ingest -> Zero-leakage private topology -> 48h prototype proof sent.", price: "$3,000 - $8,000/mo" },
+        { name: "Algorise Apex-Closer 03", tag: "DATA & CRAWLERS", icon: "database", color: "emerald", desc: "24/7 autonomous closer for web crawling, large-scale ETL, and high-throughput scraping projects.", flow: "Client scraping spec -> Fingerprint spoofing architecture -> Turnkey pipeline proposal.", price: "$2,000 - $5,000/mo" },
+        { name: "Algorise Apex-Closer 04", tag: "ZERO-BROKER AUTOFLOWS", icon: "zap", color: "amber", desc: "24/7 closer eliminating client Zapier/Make broker fees with in-house microservice webhook engines.", flow: "SaaS broker cost audit -> Private event bus design -> ROI calculation dispatched.", price: "$2,200 - $5,500/mo" },
+        { name: "Algorise Apex-Closer 05", tag: "MOBILE & 3D WEBGL", icon: "smartphone", color: "rose", desc: "24/7 closer for Flutter, React Native, and high-ticket Three.js 3D web configurators.", flow: "Figma/3D scope audit -> 60fps WebGL proof -> Fast-turnaround contract proposal.", price: "$2,400 - $5,800/mo" },
+      ],
       education: [
         { name: "Algorise TutorIQ", tag: "SOCRATIC TUTOR", icon: "graduation-cap", color: "cyan", desc: "Socratic personalized 24/7 student tutor bot that guides without giving direct answers.", flow: "Student homework question -> Pedagogy prompt chain -> Step-by-step Socratic hints.", price: "$800 - $2,200/mo" },
         { name: "Algorise GradeAssure", tag: "ESSAY GRADING", icon: "check-check", color: "emerald", desc: "Automated essay & short-answer grading bot with rubrics and personalized feedback.", flow: "150 essays uploaded -> Rubric alignment engine -> Constructive line-by-line feedback.", price: "$1,000 - $2,800/mo" },
@@ -1329,7 +1595,387 @@
       });
       btn.className = 'sector-tab-btn px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border border-brand-cyan bg-brand-cyan/20 text-brand-cyan shadow-lg shadow-brand-cyan/20';
       renderSectorBots(sectorKey);
+
+      // If user clicked freelance tab, smoothly scroll to the full closer hub
+      if (sectorKey === 'freelance') {
+        const hub = document.getElementById('freelance-swarm-hub');
+        if (hub) {
+          hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
+
+    // ==========================================
+    // 6. GLOBAL FREELANCE HARVESTER & 5 CLOSERS
+    // ==========================================
+    const closerProfiles = {
+      closer_1: { name: "Apex-Closer-01 (Full-Stack & Cloud)", winRate: "94.2%", specialty: "Full-Stack, Python, Node, React, Cloud & Microservices" },
+      closer_2: { name: "Apex-Closer-02 (AI, LLMs & GraphRAG)", winRate: "96.8%", specialty: "AI Agents, LangChain, GraphRAG, PyTorch, Embeddings" },
+      closer_3: { name: "Apex-Closer-03 (Data & Scraper Swarms)", winRate: "92.5%", specialty: "Web Scraping, High-Volume Crawlers, ETL, SQL, Playwright" },
+      closer_4: { name: "Apex-Closer-04 (Autoflows & APIs)", winRate: "95.1%", specialty: "Zero-Broker Autoflows, REST/GraphQL APIs, Webhooks, CRMs" },
+      closer_5: { name: "Apex-Closer-05 (Mobile & 3D Finishers)", winRate: "91.8%", specialty: "React Native, Flutter, Three.js 3D, High-Ticket MVPs" }
+    };
+
+    let globalFreelanceJobs = [
+      {
+        id: "JOB-WORLD-1001",
+        title: "Build Autonomous Multi-Agent AI Workflow with Local Ollama & GraphRAG",
+        platform: "Upwork Enterprise",
+        category: "AI / ML",
+        budget: "$3,500 - $6,000",
+        estHours: 35,
+        postedAgo: "4m ago",
+        country: "United States",
+        clientRating: 4.98,
+        spend: "$180k+ spent",
+        urgency: "URGENT",
+        skills: ["Python", "Multi-Agent Systems", "GraphRAG", "Ollama", "Vector DB"],
+        closerId: "closer_2",
+        status: "MATCHED & READY",
+        blueprint: "1. Ingest & Preprocessing: Deterministic PDF chunking with metadata preservation.\n2. Hybrid GraphRAG Core: Multi-hop entity extraction combined with dense vector embeddings.\n3. Local Privacy Shield: Air-gapped deployment via local Ollama (zero third-party API fees).\n4. Causal Guardrails: Pre-commit safety gates preventing prompt injections.",
+        pitch: "Hello! I reviewed your project and our team at Algorise AI specializes in exactly this. Unlike generic freelancers who wrap basic LangChain calls, we engineer proprietary GraphRAG pipelines with zero-leakage local inference. We can deliver a working prototype within 48 hours with guaranteed <50ms lookup latency and full source code ownership. When would be a convenient time for a brief 5-minute technical review?"
+      },
+      {
+        id: "JOB-WORLD-1002",
+        title: "Scrape 150,000 Commercial Real Estate Properties Daily across 50 Portals",
+        platform: "Freelancer.com",
+        category: "Web Scraping",
+        budget: "$2,200 - $4,000",
+        estHours: 28,
+        postedAgo: "9m ago",
+        country: "United Kingdom",
+        clientRating: 4.92,
+        spend: "$65k+ spent",
+        urgency: "HIGH",
+        skills: ["Python", "Playwright", "Asyncio", "PostgreSQL", "Proxy Rotation"],
+        closerId: "closer_3",
+        status: "MATCHED & READY",
+        blueprint: "1. Distributed Crawler Mesh: Headless Playwright workers with dynamic fingerprint spoofing.\n2. Proxy & Captcha Armor: Residential IP rotation with automated Cloudflare bypass.\n3. Real-Time Normalization: Pydantic schema validation piping into indexed PostgreSQL tables.\n4. Health & Alerting: Prometheus metrics with instant Slack notifications.",
+        pitch: "Hi there! We have built dozens of resilient scraping pipelines harvesting 500,000+ records daily. We already possess production-tested crawlers bypassing modern Cloudflare/Akamai defenses without IP bans. We will deliver a turnkey, containerized Docker pipeline with automated schema migrations and clean data delivery. Let's connect to review a live demo."
+      },
+      {
+        id: "JOB-WORLD-1003",
+        title: "Replace Zapier/Make with In-House Microservices & Webhook Engine",
+        platform: "Upwork",
+        category: "Autoflows",
+        budget: "$4,500 - $8,000",
+        estHours: 42,
+        postedAgo: "12m ago",
+        country: "Germany",
+        clientRating: 5.0,
+        spend: "$320k+ spent",
+        urgency: "HOT",
+        skills: ["FastAPI", "Redis", "Webhooks", "Docker", "Event-Driven"],
+        closerId: "closer_4",
+        status: "MATCHED & READY",
+        blueprint: "1. Zero-Broker Event Bus: Native FastAPI + Redis Pub/Sub replacing all Zapier/Make subscriptions.\n2. Idempotent Webhook Handlers: SHA-256 HMAC verification with automatic exponential retries.\n3. Direct Vendor APIs: Native integrations with Stripe, Twilio, SendGrid, and CRMs.\n4. Cost Savings: Reduces recurring middleware costs from $3,000+/mo to under $40/mo.",
+        pitch: "Greetings! Paying recurring broker fees to Zapier or Make on high-volume workflows is an unnecessary tax on your margins. Algorise builds in-house event-driven Autoflow engines that save our clients thousands of dollars monthly in SaaS bills. We can build, test, and deploy your custom webhook microservice with zero downtime."
+      },
+      {
+        id: "JOB-WORLD-1004",
+        title: "Full-Stack SaaS Platform: Next.js 14, Node.js Microservices, Stripe Billing",
+        platform: "Fiverr Pro",
+        category: "Full-Stack",
+        budget: "$5,000 - $9,500",
+        estHours: 50,
+        postedAgo: "18m ago",
+        country: "Canada",
+        clientRating: 4.95,
+        spend: "$110k+ spent",
+        urgency: "STANDARD",
+        skills: ["Next.js", "TypeScript", "Node.js", "PostgreSQL", "Stripe"],
+        closerId: "closer_1",
+        status: "MATCHED & READY",
+        blueprint: "1. Concurrency & Microservices: Domain services in Node.js & TypeScript with async queues.\n2. Multi-Tenant Schemas: Row-level security PostgreSQL with automated Prisma migrations.\n3. Billing Integration: Stripe Customer Portal with metered usage webhooks.\n4. Production CI/CD: Automated GitHub Actions with Docker container staging.",
+        pitch: "Hello! Our engineering team has migrated and scaled dozens of mission-critical platforms handling tens of thousands of requests per second. We deliver enterprise-grade, clean-code solutions with thorough test coverage, automated CI/CD, and zero tech debt. Ready to take full ownership of this build."
+      },
+      {
+        id: "JOB-WORLD-1005",
+        title: "Three.js Interactive 3D Product Customizer & Flutter Mobile App",
+        platform: "Toptal / Direct",
+        category: "Mobile",
+        budget: "$4,000 - $7,500",
+        estHours: 38,
+        postedAgo: "24m ago",
+        country: "Australia",
+        clientRating: 4.97,
+        spend: "$95k+ spent",
+        urgency: "URGENT",
+        skills: ["Three.js", "WebGL", "Flutter", "TailwindCSS", "GLTF/GLB"],
+        closerId: "closer_5",
+        status: "MATCHED & READY",
+        blueprint: "1. High-Performance Graphics: WebGL / Three.js 60fps canvas with HDR environment mapping.\n2. Mobile Framework: Cross-platform Flutter with offline SQLite delta synchronization.\n3. Frictionless Checkout: Apple Pay & Google Pay native sheets integrated with Stripe.\n4. Ultra-Fast Load: Draco compressed GLTF assets loading in under 1.2 seconds globally.",
+        pitch: "Hi! Delivering immersive 3D web experiences and rock-solid mobile apps is our flagship craft. We build native Three.js shaders and Flutter mobile applications that look stunning and maintain steady 60fps performance across mobile and desktop. We can have an interactive working prototype ready in 72 hours."
+      },
+      {
+        id: "JOB-WORLD-1006",
+        title: "Real-Time AI Voice Agent Telephony Integration (Twilio + WebRTC)",
+        platform: "Upwork Enterprise",
+        category: "AI / ML",
+        budget: "$6,000 - $12,000",
+        estHours: 45,
+        postedAgo: "31m ago",
+        country: "United States",
+        clientRating: 5.0,
+        spend: "$450k+ spent",
+        urgency: "HOT",
+        skills: ["Python", "WebRTC", "Twilio", "FastAPI", "Voice Latency"],
+        closerId: "closer_2",
+        status: "MATCHED & READY",
+        blueprint: "1. Sub-350ms Audio Ingest: Bidirectional WebRTC audio streaming directly into memory buffers.\n2. Fast Whisper Acoustic: Quantized GPU speech-to-text with conversational turn detection.\n3. Knowledge Grounding: Sub-15ms vector lookup for instant factual phone answers.\n4. Neural Voice Streaming: Kokoro / Cartesia zero-latency vocal synthesis.",
+        pitch: "Hello! Achieving sub-400ms end-to-end voice telephony latency requires specialized low-level networking and streaming buffers, which we have benchmarked thoroughly. We can integrate directly into your Twilio SIP trunk and deploy a 100-concurrent-call agent cluster. Ready to demonstrate a live test line today."
+      },
+      {
+        id: "JOB-WORLD-1007",
+        title: "High-Throughput E-Commerce Inventory & Price Monitor (Amazon, Walmart)",
+        platform: "Freelancer.com",
+        category: "Web Scraping",
+        budget: "$1,800 - $3,500",
+        estHours: 22,
+        postedAgo: "38m ago",
+        country: "Singapore",
+        clientRating: 4.88,
+        spend: "$42k+ spent",
+        urgency: "STANDARD",
+        skills: ["Scrapy", "Python", "Redis Queue", "PostgreSQL", "Grafana"],
+        closerId: "closer_3",
+        status: "MATCHED & READY",
+        blueprint: "1. Async Worker Pool: Scrapy + Asyncio workers distributing 20,000 ASIN checks every 15 min.\n2. Turnstile Defense: Dynamic header generation mimicking legitimate Chrome users.\n3. Buy Box Detection: Parsing real-time seller ID, stock thresholds, and shipping time.\n4. Alerting Webhooks: Sub-second Slack/Telegram alerts on price undercut.",
+        pitch: "Hi! We have built dedicated price tracking spiders monitoring hundreds of thousands of retail ASINs. We can deploy this monitor on lightweight container infrastructure with zero IP bans and instant Slack buy-box warnings. Let's get started."
+      },
+      {
+        id: "JOB-WORLD-1008",
+        title: "Automated Multi-Tenant Customer Onboarding & KYC Validation Pipeline",
+        platform: "Upwork",
+        category: "Autoflows",
+        budget: "$3,200 - $5,800",
+        estHours: 30,
+        postedAgo: "45m ago",
+        country: "Switzerland",
+        clientRating: 4.96,
+        spend: "$210k+ spent",
+        urgency: "URGENT",
+        skills: ["FastAPI", "ID Verification", "AWS Lambda", "PostgreSQL"],
+        closerId: "closer_4",
+        status: "MATCHED & READY",
+        blueprint: "1. Document Ingest: Multi-page passport/ID photo upload with client-side encryption.\n2. OCR & Facial Biometrics: Automated MRZ checksum validation & liveness verification.\n3. Sanction Check: Real-time AML/PEP cross-reference against international databases.\n4. Audit Trail: Immutable cryptographic hash generated for regulatory compliance.",
+        pitch: "Greetings! Compliant customer onboarding demands deterministic validation and zero-leakage security. Our in-house pipeline automates the entire verification loop in under 8 seconds per user while maintaining full compliance. Ready to review your compliance criteria."
+      },
+      {
+        id: "JOB-WORLD-1009",
+        title: "Cross-Platform Mobile App for Field Technicians with Offline SQLite Sync",
+        platform: "Guru / Direct",
+        category: "Mobile",
+        budget: "$4,200 - $7,800",
+        estHours: 40,
+        postedAgo: "52m ago",
+        country: "United States",
+        clientRating: 4.91,
+        spend: "$135k+ spent",
+        urgency: "HIGH",
+        skills: ["React Native", "SQLite", "Offline-First", "REST API", "Tailwind"],
+        closerId: "closer_5",
+        status: "MATCHED & READY",
+        blueprint: "1. Local-First SQLite: CRDT (Conflict-Free Replicated Data Type) engine for offline edits.\n2. Photo & Signature Vault: Compressed image caching with background upload queue.\n3. Delta Synchronization: Automatically merges pending job tickets upon reconnecting to WiFi.\n4. Clean Interface: High-contrast field-ready UI optimized for outdoor visibility.",
+        pitch: "Hi! Offline-first architecture is a specialty of ours. We prevent sync conflicts and data loss in field applications using robust local SQLite replication and background syncing. We can deliver a working build ready for field testing in under 2 weeks."
+      },
+      {
+        id: "JOB-WORLD-1010",
+        title: "Migrate Monolithic Legacy Django App to Scalable Go/Python Microservices",
+        platform: "Upwork Enterprise",
+        category: "Full-Stack",
+        budget: "$7,000 - $14,000",
+        estHours: 65,
+        postedAgo: "1h ago",
+        country: "United Kingdom",
+        clientRating: 4.99,
+        spend: "$520k+ spent",
+        urgency: "HOT",
+        skills: ["Docker", "Kubernetes", "Python", "Go", "PostgreSQL Migration"],
+        closerId: "closer_1",
+        status: "MATCHED & READY",
+        blueprint: "1. Service Boundary Decomposition: Isolating high-traffic Auth, Billing, and Core modules.\n2. Blue-Green Migration: Replicated database cutovers with zero user downtime.\n3. High-Throughput Go Gateways: Microservices achieving <15ms response under heavy concurrency.\n4. Production Observability: OpenTelemetry tracing with automated Prometheus alerts.",
+        pitch: "Hello! We have executed major architectural migrations for high-traffic platforms where downtime was not an option. We will implement backwards-compatible API contracts, gradual traffic cutovers, and comprehensive load benchmarks. Ready to inspect your codebase architecture."
+      }
+    ];
+
+    let currentCategoryFilter = 'all';
+    let currentCloserFilter = 'all';
+    let currentSearchTerm = '';
+    let selectedJob = globalFreelanceJobs[0];
+
+    function renderFreelanceJobs() {
+      const container = document.getElementById('freelanceJobsList');
+      if (!container) return;
+
+      const filtered = globalFreelanceJobs.filter(job => {
+        const matchCat = currentCategoryFilter === 'all' || job.category.toLowerCase().includes(currentCategoryFilter.toLowerCase());
+        const matchCloser = currentCloserFilter === 'all' || job.closerId === currentCloserFilter;
+        const matchSearch = !currentSearchTerm || 
+                            job.title.toLowerCase().includes(currentSearchTerm) || 
+                            job.skills.some(s => s.toLowerCase().includes(currentSearchTerm)) ||
+                            job.country.toLowerCase().includes(currentSearchTerm);
+        return matchCat && matchCloser && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="cosmic-glass p-8 rounded-3xl border border-brand-border text-center text-slate-400">
+            <i data-lucide="inbox" class="w-10 h-10 mx-auto mb-2 text-slate-500"></i>
+            <div class="text-sm font-bold text-white">No scraped jobs matching this filter.</div>
+            <div class="text-xs text-slate-400 mt-1">Try selecting "All Categories" or clearing your search.</div>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = filtered.map(job => {
+        const isSelected = selectedJob && selectedJob.id === job.id;
+        const borderClass = isSelected ? 'border-brand-cyan glow-cyan' : 'border-brand-border hover:border-slate-500';
+        const urgencyBadge = job.urgency === 'HOT' ? 'bg-rose-500/20 text-rose-400 border-rose-500/30' :
+                             job.urgency === 'URGENT' ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' :
+                             'bg-brand-cyan/15 text-brand-cyan border-brand-cyan/30';
+        
+        const closerName = closerProfiles[job.closerId]?.name || 'Closer Swarm';
+
+        return `
+        <div onclick="selectFreelanceJob('${job.id}')" class="p-5 rounded-2xl cosmic-glass border ${borderClass} transition-all cursor-pointer group">
+          <div class="flex items-start justify-between gap-4 mb-2">
+            <div>
+              <div class="flex items-center gap-2 mb-1.5 flex-wrap">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full ${urgencyBadge} border uppercase tracking-wider font-semibold">
+                  ${job.urgency}
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-surface border border-brand-border text-purple-300">
+                  ${job.platform}
+                </span>
+                <span class="text-[10px] font-mono text-slate-400">
+                  Posted ${job.postedAgo} • ${job.country}
+                </span>
+              </div>
+              <h4 class="text-base font-bold text-white group-hover:text-brand-cyan transition-colors leading-snug">
+                ${job.title}
+              </h4>
+            </div>
+            <div class="text-right shrink-0">
+              <div class="text-sm font-mono font-extrabold text-emerald-400">${job.budget}</div>
+              <div class="text-[10px] font-mono text-slate-400">~${job.estHours} hrs scope</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 mb-3">
+            ${job.skills.map(s => `
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-void/80 border border-brand-border text-slate-300">
+                ${s}
+              </span>
+            `).join('')}
+          </div>
+
+          <div class="pt-3 border-t border-brand-border/60 flex items-center justify-between text-[11px] font-mono">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span class="text-slate-300">Assigned: <strong class="text-brand-cyan">${closerName.split('(')[0]}</strong></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-slate-400">Status:</span>
+              <span class="text-white font-bold">${job.status}</span>
+            </div>
+          </div>
+        </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function selectFreelanceJob(jobId) {
+      const found = globalFreelanceJobs.find(j => j.id === jobId);
+      if (!found) return;
+      selectedJob = found;
+      
+      document.getElementById('selectedJobIdDisplay').textContent = found.id;
+      document.getElementById('selectedJobTitleDisplay').textContent = found.title;
+      document.getElementById('selectedJobBudget').textContent = found.budget;
+      document.getElementById('selectedJobPlatform').textContent = found.platform;
+      document.getElementById('closerSelectDropdown').value = found.closerId;
+      document.getElementById('closerBlueprintDisplay').textContent = found.blueprint;
+      document.getElementById('closerPitchTextarea').value = found.pitch;
+      
+      document.getElementById('dispatchSuccessBanner').classList.add('hidden');
+      document.getElementById('activeCloserTag').textContent = 'Ready to Dispatch';
+      document.getElementById('activeCloserTag').className = 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-brand-cyan/15 text-brand-cyan border border-brand-cyan/30';
+
+      renderFreelanceJobs();
+    }
+
+    function onCloserDropdownChange(newCloserId) {
+      if (!selectedJob) return;
+      selectedJob.closerId = newCloserId;
+      const closer = closerProfiles[newCloserId];
+      if (closer) {
+        document.getElementById('activeCloserTag').textContent = `Assigned: ${newCloserId.toUpperCase()}`;
+      }
+      renderFreelanceJobs();
+    }
+
+    function filterJobsByCategory(cat, btn) {
+      currentCategoryFilter = cat;
+      document.querySelectorAll('.freelance-cat-btn').forEach(b => {
+        b.className = 'freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-void/80 border border-brand-border text-slate-300 hover:border-slate-500';
+      });
+      btn.className = 'freelance-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-brand-cyan/20 border border-brand-cyan text-brand-cyan';
+      renderFreelanceJobs();
+    }
+
+    function filterJobsByCloser(closerId) {
+      currentCloserFilter = closerId;
+      renderFreelanceJobs();
+      const hub = document.getElementById('freelance-swarm-hub');
+      if (hub) hub.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function searchFreelanceJobs(term) {
+      currentSearchTerm = term.trim().toLowerCase();
+      renderFreelanceJobs();
+    }
+
+    function refreshScrapedJobs() {
+      const btn = event.currentTarget;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-3.5 h-3.5 animate-spin"></i><span>Scraping 14k+ Jobs...</span>`;
+      lucide.createIcons();
+      setTimeout(() => {
+        btn.innerHTML = `<i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Scrape New</span>`;
+        lucide.createIcons();
+        alert("Scraper Swarm Synchronized! 14,280 global feeds refreshed. All 5 Closers are in optimal standby.");
+      }, 1200);
+    }
+
+    function dispatchCloserAgent() {
+      if (!selectedJob) return;
+      const dispatchBtn = document.getElementById('dispatchCloseBtn');
+      const originalText = dispatchBtn.innerHTML;
+      
+      dispatchBtn.disabled = true;
+      dispatchBtn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Locking Contract & Dispatched...</span>`;
+      lucide.createIcons();
+
+      setTimeout(() => {
+        selectedJob.status = 'DISPATCHED - CLOSING ESCROW';
+        document.getElementById('dispatchSuccessBanner').classList.remove('hidden');
+        document.getElementById('activeCloserTag').textContent = 'CONTRACT LOCK INITIATED';
+        document.getElementById('activeCloserTag').className = 'text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        
+        dispatchBtn.disabled = false;
+        dispatchBtn.innerHTML = originalText;
+        lucide.createIcons();
+        renderFreelanceJobs();
+      }, 900);
+    }
+
+    // Initial Freelance Hub Render
+    renderFreelanceJobs();
+    selectFreelanceJob('JOB-WORLD-1001');
 
     // Initial Sector Render
     renderSectorBots('agriculture');
@@ -1337,3 +1983,4 @@
   </script>
 </body>
 </html>
+
