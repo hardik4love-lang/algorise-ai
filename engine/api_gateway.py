@@ -151,6 +151,73 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
                 "billed_client": AUTHORIZED_KEYS.get(api_key, {}).get("client", "Guest Sandbox")
             })
 
+        elif parsed.path == "/v1/sales/realtor/qualify":
+            from engine.realtor_sales_assistant import AlgoriseRealtorSalesAssistant, RealEstateLead
+            assistant = AlgoriseRealtorSalesAssistant()
+            lead = RealEstateLead(
+                lead_id=payload.get("lead_id", "lead_temp"),
+                full_name=payload.get("full_name", "Anonymous Lead"),
+                phone=payload.get("phone", "+1-000-000-0000"),
+                email=payload.get("email", "client@example.com"),
+                buyer_type=payload.get("buyer_type", "First-Time Buyer"),
+                budget_max=payload.get("budget_max", 500000),
+                target_locations=payload.get("target_locations", []),
+                timeline_months=payload.get("timeline_months", 3),
+                preapproved=payload.get("preapproved", False),
+                notes=payload.get("notes", "")
+            )
+            score, tier, summary = assistant.qualify_lead(lead)
+            self._send_json(200, {
+                "lead_id": lead.lead_id,
+                "full_name": lead.full_name,
+                "qualification_score": score,
+                "tier": tier,
+                "summary": summary
+            })
+
+        elif parsed.path == "/v1/sales/realtor/outreach":
+            from engine.realtor_sales_assistant import AlgoriseRealtorSalesAssistant, RealEstateLead
+            assistant = AlgoriseRealtorSalesAssistant()
+            lead = RealEstateLead(
+                lead_id=payload.get("lead_id", "lead_temp"),
+                full_name=payload.get("full_name", "Anonymous Lead"),
+                phone=payload.get("phone", "+1-000-000-0000"),
+                email=payload.get("email", "client@example.com"),
+                buyer_type=payload.get("buyer_type", "First-Time Buyer"),
+                budget_max=payload.get("budget_max", 500000),
+                target_locations=payload.get("target_locations", []),
+                timeline_months=payload.get("timeline_months", 3),
+                preapproved=payload.get("preapproved", False),
+                notes=payload.get("notes", "")
+            )
+            realtor_name = payload.get("realtor_name", "Marcus Vance")
+            agency_name = payload.get("agency_name", "Vance & Co. Luxury Realty")
+            featured_listing = payload.get("featured_listing")
+            messages = assistant.generate_outreach_messages(lead, realtor_name, agency_name, featured_listing)
+            self._send_json(200, {
+                "lead_id": lead.lead_id,
+                "lead_name": lead.full_name,
+                "messages": messages
+            })
+
+        elif parsed.path == "/v1/sales/realtor/explain-draft":
+            from engine.realtor_sales_assistant import AlgoriseRealtorSalesAssistant
+            assistant = AlgoriseRealtorSalesAssistant()
+            draft_text = payload.get("draft_text", "")
+            persona = payload.get("persona", "first_time_buyer")
+            explanation = assistant.explain_contract_draft(draft_text, persona=persona)
+            self._send_json(200, explanation)
+
+        elif parsed.path == "/v1/sales/realtor/dispatch-text":
+            from engine.realtor_sales_assistant import AlgoriseRealtorSalesAssistant
+            assistant = AlgoriseRealtorSalesAssistant()
+            recipient_phone = payload.get("phone", "+1-000-000-0000")
+            client_name = payload.get("client_name", "Valued Client")
+            message_body = payload.get("message", "")
+            channel = payload.get("channel", "sms")
+            dispatch_result = assistant.dispatch_text(recipient_phone, client_name, message_body, channel=channel)
+            self._send_json(200, dispatch_result)
+
         elif parsed.path == "/v1/autoflows/trigger":
             flow_id = payload.get("flow_id", "enterprise-inbound-flow")
             trigger_data = payload.get("trigger_data", {})
