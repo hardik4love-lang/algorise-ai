@@ -331,8 +331,8 @@ class AlgoriseFreelanceHarvester:
                 "We are ready to take full ownership of this project and finish it ahead of schedule. "
                 "Looking forward to connecting."
             )
-
-        return {"blueprint": blueprint, "pitch": pitch}
+        signature = "\n\nBest regards,\nHardik | Lead Full-Stack & Automation Engineer\nProfile: https://www.freelancer.in/u/hardikk441"
+        return {"blueprint": blueprint, "pitch": pitch + signature}
 
     def _clean_html_text(self, raw_html: str, max_len: int = 350) -> str:
         text = re.sub(r'<[^>]+>', ' ', raw_html)
@@ -352,27 +352,27 @@ class AlgoriseFreelanceHarvester:
             {
                 "closer_id": "closer_1",
                 "cat": "Full-Stack & Cloud",
-                "skill_ids": [13, 500, 2688, 113]  # Python, Node.js, FastAPI, Django
+                "skill_ids": [500, 1092, 1031, 137, 305, 13, 2688]  # Node.js, Backend, Web Dev, eCommerce, MySQL, Python
             },
             {
                 "closer_id": "closer_2",
                 "cat": "AI / ML & Agents",
-                "skill_ids": [913, 292, 2841, 3291]  # AI, Machine Learning, GPT Vision, Vapi
+                "skill_ids": [913, 292, 2841, 1977]  # AI, Machine Learning, GPT Vision, Automation
             },
             {
                 "closer_id": "closer_3",
                 "cat": "Web Scraping & Data",
-                "skill_ids": [95, 334, 1075, 3213]  # Web Scraping, Data Mining, Data Scraping, Apify
+                "skill_ids": [2282, 2292, 95, 334, 1075]  # Data Collection, Data Management, Web Scraping, Data Mining
             },
             {
                 "closer_id": "closer_4",
                 "cat": "Autoflows & Integrations",
-                "skill_ids": [1087, 2165, 1240, 2050, 2703]  # API, API Integration, RESTful, Zapier, REST API
+                "skill_ids": [2165, 2164, 1977, 1087, 2050]  # API Integration, API Development, Automation, RESTful, Zapier
             },
             {
                 "closer_id": "closer_5",
                 "cat": "Mobile & UI/3D",
-                "skill_ids": [1315, 1314, 759, 3292]  # Flutter, React Native, React.js, FlutterFlow
+                "skill_ids": [115, 1832, 335, 1315, 759]  # User Interface / IA, Website Optimization, HTML, Flutter, React.js
             }
         ]
 
