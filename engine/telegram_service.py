@@ -52,18 +52,64 @@ class AlgoriseTelegramService:
             print(f"[TELEGRAM ERROR] get_updates: {e}")
             return []
 
-    def send_message(self, chat_id: int | str, text: str, parse_mode: str = "HTML") -> Dict[str, Any]:
-        """Sends formatted message to Telegram chat or channel."""
+    def send_message(self, chat_id: int | str, text: str, reply_markup: Optional[Dict[str, Any]] = None, parse_mode: str = "HTML") -> Dict[str, Any]:
+        """Sends formatted message to Telegram chat or channel with optional interactive buttons."""
         try:
-            payload = {
+            payload: Dict[str, Any] = {
                 "chat_id": chat_id,
                 "text": text,
                 "parse_mode": parse_mode,
                 "disable_web_page_preview": True
             }
+            if reply_markup:
+                payload["reply_markup"] = reply_markup
+
             data = json.dumps(payload).encode("utf-8")
             req = urllib.request.Request(
                 f"{self.api_base}/sendMessage",
+                data=data,
+                headers={"Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+
+    def edit_message_text(self, chat_id: int | str, message_id: int, text: str, reply_markup: Optional[Dict[str, Any]] = None, parse_mode: str = "HTML") -> Dict[str, Any]:
+        """Edits an existing Telegram message in-place (e.g. after approval)."""
+        try:
+            payload: Dict[str, Any] = {
+                "chat_id": chat_id,
+                "message_id": message_id,
+                "text": text,
+                "parse_mode": parse_mode,
+                "disable_web_page_preview": True
+            }
+            if reply_markup is not None:
+                payload["reply_markup"] = reply_markup
+
+            data = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                f"{self.api_base}/editMessageText",
+                data=data,
+                headers={"Content-Type": "application/json"}
+            )
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as e:
+            return {"ok": False, "error": str(e)}
+
+    def answer_callback_query(self, callback_query_id: str, text: str = "", show_alert: bool = False) -> Dict[str, Any]:
+        """Acknowledges an inline button tap and displays a toast notification to the user."""
+        try:
+            payload = {
+                "callback_query_id": callback_query_id,
+                "text": text,
+                "show_alert": show_alert
+            }
+            data = json.dumps(payload).encode("utf-8")
+            req = urllib.request.Request(
+                f"{self.api_base}/answerCallbackQuery",
                 data=data,
                 headers={"Content-Type": "application/json"}
             )
