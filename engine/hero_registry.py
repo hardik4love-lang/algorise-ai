@@ -176,15 +176,18 @@ class HeroBotRunner:
         context_res = self.graph_rag.query_context(query)
         trace.append(f"[{name}] GraphRAG Context: density score = {context_res['context_density_score']}")
 
-        # 3. Algorithmic Domain Processing Simulation
-        trace.append(f"[{name}] Executed specialized {sector} algorithmic model.")
+        # 3. Real Domain Algorithmic Execution
+        from .hero_algorithms import execute_algorithmic_domain_bot
+        domain_result = execute_algorithmic_domain_bot(b_id, sector, input_payload)
+        trace.append(f"[{name}] Computed domain algorithm for '{sector}'. Result keys: {list(domain_result.keys())}")
+        
         output_payload = {
             "bot_id": b_id,
             "product_name": name,
             "sector": sector,
             "status": "SUCCESS",
-            "confidence_score": target_conf,
-            "action_executed": f"Autonomous action dispatched for {name}",
+            "confidence_score": max(target_conf, domain_result.get("confidence", target_conf)),
+            "domain_output": domain_result,
             "context_nodes": len(context_res["retrieved_context_nodes"]),
             "safety_clearance": safety_code
         }
