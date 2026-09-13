@@ -82,13 +82,22 @@ class TelegramSwarmDaemon:
                         )
                         self.tg.send_message(self.chat_id, confirm_text)
                     else:
+                        pitch_full = p_job.get("pitch_sent", "")
+                        quote_val = p_job.get("quote_amount", "$150")
+                        deliv = p_job.get("code_deliverable", {})
+                        code_full = deliv.get("code", "")[:400]
+                        filename = deliv.get("filename", "deliverable.py")
+
                         confirm_text = (
-                            f"? <b>[BID APPROVED BY HARDIK]</b>\n\n"
-                            f"?? <b>Project:</b> {p_job.get('title')}\n"
-                            f"?? <b>Approved Quote:</b> {p_job.get('quote_amount')}\n"
-                            f"?? <b>Project Link:</b> {p_job.get('live_url')}\n\n"
-                            f"<i>Proposal ready for <b>{HARDIK_PROFILE['username']}</b>!</i>\n"
-                            f"?? Click link above to confirm bid or set <code>FREELANCER_API_TOKEN</code> for zero-touch auto-dispatch."
+                            f"✅ <b>[BID APPROVED • 1-TAP SUBMISSION READY]</b>\n\n"
+                            f"💼 <b>{p_job.get('title')}</b>\n"
+                            f"💰 <b>Your Quote:</b> <code>{quote_val}</code> (in 2 days)\n"
+                            f"🔗 <b>Project:</b> {p_job.get('live_url')}\n\n"
+                            f"📋 <b>Tap proposal below to COPY to clipboard:</b>\n"
+                            f"<pre>{pitch_full}</pre>\n\n"
+                            f"📦 <b>Deliverable Code:</b> <code>{filename}</code>\n"
+                            f"<pre>{code_full}\n# ... [Full Code Ready]</pre>\n\n"
+                            f"👉 <i>Click the Project link, paste proposal, and hit Submit! Zero API required.</i>"
                         )
                         self.tg.send_message(self.chat_id, confirm_text)
 
