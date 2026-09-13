@@ -785,10 +785,36 @@
           </div>
           <textarea id="modalJobPitch" rows="4" class="w-full p-3 bg-brand-navy/60 border border-brand-border/40 rounded-lg text-slate-200 text-xs font-mono focus:outline-none focus:border-brand-cyan"></textarea>
         </div>
+
+        <!-- Live Code Solution Deliverable Section -->
+        <div class="p-3.5 rounded-xl bg-brand-void/80 border border-emerald-500/30">
+          <div class="flex items-center justify-between mb-2">
+            <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
+              <i data-lucide="code-2" class="w-4 h-4"></i>
+              <span>Live Working Code Deliverable</span>
+              <span id="modalJobCodeFilename" class="px-2 py-0.5 rounded bg-emerald-500/15 text-[10px] text-emerald-300 font-mono border border-emerald-500/30">deliverable.py</span>
+            </div>
+            <button onclick="copyModalCodeDeliverable()" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 text-[10px] font-mono border border-emerald-500/40 flex items-center gap-1 cursor-pointer transition-all">
+              <i data-lucide="copy" class="w-3 h-3"></i>
+              <span id="copyCodeBtnText">Copy Code</span>
+            </button>
+          </div>
+          <pre id="modalJobCode" class="text-emerald-300 text-[11px] font-mono leading-relaxed bg-slate-950/90 p-3.5 rounded-lg border border-emerald-500/20 overflow-x-auto max-h-56 overflow-y-auto"></pre>
+          <div class="flex flex-wrap items-center justify-between gap-2 mt-2 pt-2 border-t border-brand-border/40 text-[10px] font-mono text-slate-400">
+            <span id="modalJobAiEngine">⚡ Engine: Free Cloud AI & Multi-Closer Synthesizer</span>
+            <span id="modalJobLatency">Turnaround: ~320ms</span>
+          </div>
+        </div>
       </div>
 
       <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-brand-border/60">
-        <div id="modalActionStatus" class="text-xs font-mono text-emerald-400">Closer Status: Standby</div>
+        <div class="flex items-center gap-2">
+          <div id="modalActionStatus" class="text-xs font-mono text-emerald-400">Closer Status: Standby</div>
+          <button onclick="resynthesizeModalJob()" class="px-3 py-1.5 rounded-xl text-[11px] font-mono text-cyan-300 bg-cyan-500/15 border border-cyan-500/30 hover:bg-cyan-500/25 transition-all flex items-center gap-1 cursor-pointer">
+            <i data-lucide="sparkles" class="w-3 h-3"></i>
+            <span id="resynthBtnText">Re-Synthesize Code</span>
+          </button>
+        </div>
         <button id="modalDispatchBtn" onclick="dispatchModalJob()" class="w-full sm:w-auto px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider text-brand-void bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:brightness-110 transition-all shadow-lg shadow-emerald-500/25 active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
           <i data-lucide="lock" class="w-4 h-4"></i>
           <span>Lock Contract & Secure Escrow</span>
@@ -1737,6 +1763,10 @@
       const target = jobs.find(j => j.id === jobId);
       if (!target) return;
 
+      if (!target.codeDeliverable && typeof window.generateCloserDeliverable === 'function') {
+        target.codeDeliverable = window.generateCloserDeliverable(target);
+      }
+
       target.status = 'FINISHED & ESCROW SECURED';
       const closer = closers[target.closerId] || closers['closer_1'];
 
@@ -1747,14 +1777,15 @@
       const badge = document.getElementById(`status-badge-${jobId}`);
       if (badge) {
         badge.className = 'text-[9px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wider font-semibold shrink-0 font-bold';
-        badge.textContent = '✔ CONTRACT LOCKED';
+        badge.textContent = '✔ CONTRACT LOCKED • DELIVERABLE READY';
       }
       const btnText = document.getElementById(`quick-close-btn-text-${jobId}`);
       if (btnText) {
         btnText.textContent = 'Closed';
       }
 
-      updateSwarmTelemetry(`${closer.shortName} finished & locked contract for "${target.title}" (${target.budget})`);
+      const fname = target.codeDeliverable ? target.codeDeliverable.filename : 'deliverable.py';
+      updateSwarmTelemetry(`${closer.shortName} synthesized ${fname} & locked contract for "${target.title}" (${target.budget})`);
     }
 
     function updateSwarmTelemetry(message) {
@@ -1845,9 +1876,13 @@
       const closer = closers[job.closerId] || closers['closer_1'];
       const isFinished = job.status && job.status.includes('FINISHED');
 
+      if (!job.codeDeliverable && typeof window.generateCloserDeliverable === 'function') {
+        job.codeDeliverable = window.generateCloserDeliverable(job);
+      }
+
       document.getElementById('modalJobPlatform').textContent = job.platform || 'Live Scraped Feed';
       document.getElementById('modalJobCategory').textContent = job.category || 'Engineering';
-      document.getElementById('modalJobStatus').textContent = isFinished ? '✔ CONTRACT LOCKED' : 'READY FOR CLOSER';
+      document.getElementById('modalJobStatus').textContent = isFinished ? '✔ CONTRACT LOCKED • DELIVERABLE READY' : 'READY FOR CLOSER';
       document.getElementById('modalJobStatus').className = isFinished ? 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase font-bold' : 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-brand-cyan border border-cyan-500/30 uppercase font-semibold';
       document.getElementById('modalJobTitle').textContent = job.title;
       document.getElementById('modalJobBudget').textContent = job.budget;
@@ -1857,10 +1892,55 @@
       document.getElementById('modalJobCloserDesc').textContent = closer.desc;
       document.getElementById('modalJobBlueprint').textContent = job.blueprint || 'Architecture synthesis in progress...';
       document.getElementById('modalJobPitch').value = job.pitch || '';
-      document.getElementById('modalActionStatus').textContent = isFinished ? 'Status: Contract Escrow Secured' : 'Status: Ready for Closer Dispatch';
+
+      if (job.codeDeliverable) {
+        document.getElementById('modalJobCode').textContent = job.codeDeliverable.code;
+        document.getElementById('modalJobCodeFilename').textContent = `${job.codeDeliverable.filename} (${job.codeDeliverable.language})`;
+      } else {
+        document.getElementById('modalJobCode').textContent = '// Click Re-Synthesize Code to generate live source solution.';
+        document.getElementById('modalJobCodeFilename').textContent = 'deliverable.py';
+      }
+
+      document.getElementById('modalJobAiEngine').textContent = `⚡ Engine: Free Cloud AI & ${closer.shortName}`;
+      document.getElementById('modalActionStatus').textContent = isFinished ? 'Status: Contract Escrow Secured • Deliverable Ready' : 'Status: Ready for Closer Dispatch';
 
       document.getElementById('freelanceJobModal').classList.remove('hidden');
       lucide.createIcons();
+    }
+
+    function copyModalCodeDeliverable() {
+      const codeEl = document.getElementById('modalJobCode');
+      const btnText = document.getElementById('copyCodeBtnText');
+      if (!codeEl) return;
+      navigator.clipboard.writeText(codeEl.textContent).then(() => {
+        if (btnText) {
+          const original = btnText.textContent;
+          btnText.textContent = '✓ Copied!';
+          setTimeout(() => { btnText.textContent = original; }, 1800);
+        }
+      });
+    }
+
+    function resynthesizeModalJob() {
+      if (!activeModalJobId) return;
+      const jobs = window.ALGORISE_LIVE_JOBS || [];
+      const job = jobs.find(j => j.id === activeModalJobId);
+      if (!job) return;
+
+      const btnText = document.getElementById('resynthBtnText');
+      if (btnText) btnText.textContent = 'Synthesizing...';
+
+      setTimeout(() => {
+        if (typeof window.generateCloserDeliverable === 'function') {
+          job.codeDeliverable = window.generateCloserDeliverable(job);
+          document.getElementById('modalJobCode').textContent = job.codeDeliverable.code;
+          document.getElementById('modalJobCodeFilename').textContent = `${job.codeDeliverable.filename} (${job.codeDeliverable.language})`;
+        }
+        if (btnText) {
+          btnText.textContent = '✓ Regenerated!';
+          setTimeout(() => { btnText.textContent = 'Re-Synthesize Code'; }, 1800);
+        }
+      }, 400);
     }
 
     function closeFreelanceJobModal() {
@@ -1871,9 +1951,9 @@
     function dispatchModalJob() {
       if (!activeModalJobId) return;
       quickCloseJob(activeModalJobId);
-      document.getElementById('modalJobStatus').textContent = '✔ CONTRACT LOCKED';
+      document.getElementById('modalJobStatus').textContent = '✔ CONTRACT LOCKED • DELIVERABLE READY';
       document.getElementById('modalJobStatus').className = 'text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase font-bold';
-      document.getElementById('modalActionStatus').textContent = 'Status: Contract Escrow Secured';
+      document.getElementById('modalActionStatus').textContent = 'Status: Contract Escrow Secured • Deliverable Ready';
       setTimeout(() => {
         closeFreelanceJobModal();
       }, 700);
