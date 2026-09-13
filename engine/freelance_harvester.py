@@ -557,7 +557,7 @@ class AlgoriseFreelanceHarvester:
         matched.closer_name = live_result.get("closer_name")
         
         from datetime import timezone
-        return {
+        close_payload = {
             "success": True,
             "job_id": matched.job_id,
             "title": matched.title,
@@ -573,6 +573,16 @@ class AlgoriseFreelanceHarvester:
             "guaranteed_delivery": "Live Solution Generated",
             "contract_status": "CONTRACT LOCKED & ESCROW SECURED"
         }
+
+        # Auto-broadcast alert to connected Telegram
+        try:
+            from engine.telegram_service import AlgoriseTelegramService, TELEGRAM_DEFAULT_CHAT_ID
+            tg = AlgoriseTelegramService()
+            tg.notify_job_closed(TELEGRAM_DEFAULT_CHAT_ID, close_payload)
+        except Exception:
+            pass
+
+        return close_payload
 
 if __name__ == "__main__":
     harvester = AlgoriseFreelanceHarvester()
