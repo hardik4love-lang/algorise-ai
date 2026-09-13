@@ -1,4 +1,4 @@
-﻿"""
+"""
 Algorise Telegram Bot Integration (Hermes @Aassqqee_bot)
 Connects the 5 Closer Agents Swarm & Freelance Harvester to Telegram for real-time alerts,
 command dispatch, and escrow contract notifications.
@@ -21,6 +21,7 @@ socket.getaddrinfo = _ipv4_getaddrinfo
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "8961434797:AAHaPPybfby3G-Mj7WeJEXsAtKPna-uSPnw")
 TELEGRAM_BOT_ID = 8961434797
 TELEGRAM_BOT_USERNAME = "Aassqqee_bot"
+TELEGRAM_DEFAULT_CHAT_ID = int(os.getenv("TELEGRAM_CHAT_ID", "8737013099"))
 TELEGRAM_API_BASE = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
 
 class AlgoriseTelegramService:
