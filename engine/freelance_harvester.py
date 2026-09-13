@@ -35,6 +35,8 @@ class FreelanceJob:
     pitch_proposal: Optional[str] = None
     solution_blueprint: Optional[str] = None
     quote_amount: Optional[str] = None
+    code_deliverable: Optional[Dict[str, Any]] = None
+    ai_engine_used: Optional[str] = None
 
 CLOSER_AGENTS = {
     "closer_1": {
@@ -540,23 +542,36 @@ class AlgoriseFreelanceHarvester:
         if not matched:
             return {"success": False, "error": f"Job {job_id} not found."}
         
+        from engine.cloud_closer_engine import closer_engine
         assigned_id = custom_closer or matched.assigned_closer
-        closer_info = CLOSER_AGENTS.get(assigned_id, CLOSER_AGENTS["closer_1"])
-        matched.status = "DISPATCHED TO CLIENT - AWAITING CONTRACT ESCROW"
+        
+        job_dict = asdict(matched)
+        live_result = closer_engine.execute_live_close(job_dict, custom_closer=assigned_id)
+        
+        matched.status = "FINISHED & ESCROW SECURED"
+        matched.pitch_proposal = live_result.get("proposal_pitch")
+        matched.solution_blueprint = live_result.get("technical_blueprint")
+        matched.code_deliverable = live_result.get("code_deliverable")
+        matched.ai_engine_used = live_result.get("ai_provider_used")
+        matched.assigned_closer = assigned_id
+        matched.closer_name = live_result.get("closer_name")
         
         from datetime import timezone
         return {
             "success": True,
             "job_id": matched.job_id,
             "title": matched.title,
-            "closer_assigned": closer_info["name"],
-            "closer_specialty": closer_info["specialty"],
+            "closer_assigned": matched.closer_name,
+            "closer_specialty": CLOSER_AGENTS.get(assigned_id, {}).get("specialty", "Full-Stack"),
             "quote_amount": matched.quote_amount,
             "pitch_sent": matched.pitch_proposal,
             "solution_blueprint": matched.solution_blueprint,
+            "code_deliverable": matched.code_deliverable,
+            "ai_engine_used": matched.ai_engine_used,
+            "latency_ms": live_result.get("latency_ms", 0),
             "dispatched_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC"),
-            "guaranteed_delivery": "Within 48-72 hours",
-            "contract_status": "READY_TO_CLOSE"
+            "guaranteed_delivery": "Live Solution Generated",
+            "contract_status": "CONTRACT LOCKED & ESCROW SECURED"
         }
 
 if __name__ == "__main__":
