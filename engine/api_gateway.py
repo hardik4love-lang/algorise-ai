@@ -9,9 +9,11 @@ import urllib.parse
 from engine.models import BotTask, AutoflowPipeline, AutoflowStep
 from engine.autoflow import AlgoriseAutoflowEngine
 from engine.hero_registry import HERO_BOT_DEFINITIONS, HeroBotRunner
+from engine.freelance_harvester import AlgoriseFreelanceHarvester
 
 engine = AlgoriseAutoflowEngine()
 hero_runner = HeroBotRunner()
+freelance_harvester = AlgoriseFreelanceHarvester()
 
 # Seed default enterprise pipeline
 default_pipeline = AutoflowPipeline(
@@ -99,20 +101,16 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
                 ]
             })
         elif parsed.path == "/v1/freelance/jobs":
-            from engine.freelance_harvester import AlgoriseFreelanceHarvester
-            harvester = AlgoriseFreelanceHarvester()
             query_params = urllib.parse.parse_qs(parsed.query)
             cat = query_params.get("category", [None])[0]
             closer = query_params.get("closer", [None])[0]
-            jobs = harvester.get_all_jobs(category_filter=cat, closer_filter=closer)
+            jobs = freelance_harvester.get_all_jobs(category_filter=cat, closer_filter=closer)
             self._send_json(200, {
                 "total_jobs": len(jobs),
                 "jobs": jobs
             })
         elif parsed.path == "/v1/freelance/closers":
-            from engine.freelance_harvester import AlgoriseFreelanceHarvester
-            harvester = AlgoriseFreelanceHarvester()
-            telemetry = harvester.get_closer_telemetry()
+            telemetry = freelance_harvester.get_closer_telemetry()
             self._send_json(200, telemetry)
         else:
             self._send_json(404, {"error": f"Endpoint '{parsed.path}' not found on Algorise Gateway."})
@@ -235,11 +233,9 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
             self._send_json(200, dispatch_result)
 
         elif parsed.path == "/v1/freelance/dispatch-close":
-            from engine.freelance_harvester import AlgoriseFreelanceHarvester
-            harvester = AlgoriseFreelanceHarvester()
             job_id = payload.get("job_id", "")
             closer_id = payload.get("closer_id")
-            result = harvester.execute_job_close(job_id, custom_closer=closer_id)
+            result = freelance_harvester.execute_job_close(job_id, custom_closer=closer_id)
             if not result.get("success"):
                 self._send_json(404, result)
             else:
