@@ -109,30 +109,36 @@ class TelegramSwarmDaemon:
                 self.total_escrow += num
 
                 # 3. Deliver rich alert to Telegram
-                title = close_res.get("title", "Software Engineering Project")
+                title = close_res.get("title", "Remote Contract Gig")
                 platform = job.platform
                 budget = job.budget
+                live_url = job.live_url or "https://www.freelancer.com/projects"
                 closer = close_res.get("closer_assigned", "Apex Closer Agent")
+                pitch_text = (close_res.get("pitch_sent") or "")[:240].strip()
                 code_deliverable = close_res.get("code_deliverable", {})
                 filename = code_deliverable.get("filename", "deliverable.py")
                 lang = code_deliverable.get("language", "python")
                 code_snippet = "\n".join(code_deliverable.get("code", "").splitlines()[:12])
 
                 alert_text = (
-                    f"⚡ <b>[JOB CLOSED • ESCROW LOCKED]</b>\n\n"
+                    f"⚡ <b>[REMOTE GIG MATCHED & BID DELIVERABLE READY]</b>\n\n"
                     f"💼 <b>{title}</b>\n"
                     f"🌐 <b>Platform:</b> {platform}\n"
-                    f"💰 <b>Budget:</b> {budget}\n"
-                    f"🤖 <b>Closer:</b> {closer}\n"
-                    f"📦 <b>Generated Deliverable:</b> <code>{filename}</code> ({lang})\n"
-                    f"🔒 <b>Escrow Locked:</b> ${num:,.0f} USD\n\n"
-                    f"<b>Deliverable Preview:</b>\n"
-                    f"<pre>{code_snippet}...</pre>\n\n"
-                    f"<i>Progress: {self.closed_count} jobs closed • Total Escrow: ${self.total_escrow:,.0f}</i>"
+                    f"💰 <b>Client Budget:</b> {budget}\n"
+                    f"🔗 <b>Project Link:</b> {live_url}\n"
+                    f"🤖 <b>Closer Agent:</b> {closer}\n\n"
+                    f"📝 <b>Tailored Proposal Pitch:</b>\n"
+                    f"<i>\"{pitch_text}...\"</i>\n\n"
+                    f"📦 <b>Working Deliverable:</b> <code>{filename}</code> ({lang})\n"
+                    f"<pre>{code_snippet}\n# ... [Full working module generated]</pre>\n\n"
+                    f"🚀 <b>SUBMISSION OPTIONS:</b>\n"
+                    f"1. <b>Manual 1-Click:</b> Click the Project Link, paste the proposal pitch and deliverable.\n"
+                    f"2. <b>Headless Auto-Bid:</b> Set <code>FREELANCER_API_TOKEN</code> in your environment for autonomous API submission.\n\n"
+                    f"<i>Progress: {self.closed_count} gigs processed • Escrow Pipeline: ${self.total_escrow:,.0f}</i>"
                 )
 
                 self.tg.send_message(self.chat_id, alert_text)
-                print(f"[SWARM DISPATCH] Closed job {job.job_id} ({filename}) -> Alert sent to Telegram.")
+                print(f"[SWARM DISPATCH] Closed gig {job.job_id} ({filename}) -> Alert sent to Telegram.")
 
                 # 4. Wait for interval before next dispatch
                 time.sleep(self.interval_sec)

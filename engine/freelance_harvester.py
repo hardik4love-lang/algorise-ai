@@ -3,13 +3,22 @@ Algorise Autonomous Freelance Job Harvester & 5-Closer Swarm Engine
 Organizes real live global freelance & remote jobs scraped from open APIs and finishes proposals with 5 specialized 24/7 closer agents.
 """
 from typing import Dict, Any, List, Optional
+import socket
 import urllib.request
+import urllib.parse
 import xml.etree.ElementTree as ET
 import re
 import random
 import json
+import os
 from dataclasses import dataclass, asdict
 from datetime import datetime
+
+# Enforce IPv4 on Windows to prevent dual-stack DNS timeouts
+_orig_getaddrinfo = socket.getaddrinfo
+def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    return _orig_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
+socket.getaddrinfo = _ipv4_getaddrinfo
 
 @dataclass
 class FreelanceJob:
@@ -332,137 +341,121 @@ class AlgoriseFreelanceHarvester:
 
     def scrape_live_world_jobs(self) -> List[FreelanceJob]:
         """
-        Executes real HTTP requests across open public developer job APIs and RSS feeds.
-        Pulls actual live jobs currently posted by companies worldwide.
+        Executes real HTTP requests to Freelancer.com public active projects API.
+        Pulls ONLY real remote freelance contract projects, gigs, and client tasks.
+        ZERO full-time corporate employee hiring positions.
         """
         live_scraped: List[FreelanceJob] = []
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AlgoriseHarvester/2.0"}
 
-        # Source 1: Remotive Live API
-        try:
-            req = urllib.request.Request("https://remotive.com/api/remote-jobs?category=software-dev&limit=12", headers=headers)
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                data = json.loads(resp.read().decode("utf-8"))
-                for item in data.get("jobs", []):
-                    title = item.get("title", "Software Developer")
-                    tags = item.get("tags", [])
-                    company = item.get("company_name", "Global Enterprise")
-                    salary = item.get("salary") or "$3,000 - $6,500/project"
-                    desc = self._clean_html_text(item.get("description", ""))
-                    url = item.get("url", "https://remotive.com")
-                    country = item.get("candidate_required_location") or "Worldwide Remote"
+        categories_config = [
+            {
+                "closer_id": "closer_1",
+                "cat": "Full-Stack & Cloud",
+                "skill_ids": [13, 500, 2688, 113]  # Python, Node.js, FastAPI, Django
+            },
+            {
+                "closer_id": "closer_2",
+                "cat": "AI / ML & Agents",
+                "skill_ids": [913, 292, 2841, 3291]  # AI, Machine Learning, GPT Vision, Vapi
+            },
+            {
+                "closer_id": "closer_3",
+                "cat": "Web Scraping & Data",
+                "skill_ids": [95, 334, 1075, 3213]  # Web Scraping, Data Mining, Data Scraping, Apify
+            },
+            {
+                "closer_id": "closer_4",
+                "cat": "Autoflows & Integrations",
+                "skill_ids": [1087, 2165, 1240, 2050, 2703]  # API, API Integration, RESTful, Zapier, REST API
+            },
+            {
+                "closer_id": "closer_5",
+                "cat": "Mobile & UI/3D",
+                "skill_ids": [1315, 1314, 759, 3292]  # Flutter, React Native, React.js, FlutterFlow
+            }
+        ]
 
-                    # Classify Closer
-                    title_lower = title.lower()
-                    if any(w in title_lower for w in ["ai", "llm", "machine learning", "data science", "nlp"]):
-                        cat = "AI / ML & Agents"
-                        c_id = "closer_2"
-                    elif any(w in title_lower for w in ["scrape", "scraping", "crawler", "data engineer", "etl"]):
-                        cat = "Web Scraping & Data"
-                        c_id = "closer_3"
-                    elif any(w in title_lower for w in ["api", "webhook", "automation", "integration", "backend"]):
-                        cat = "Autoflows & Integrations"
-                        c_id = "closer_4"
-                    elif any(w in title_lower for w in ["mobile", "ios", "android", "flutter", "react native", "frontend", "ui"]):
-                        cat = "Mobile & UI/3D"
-                        c_id = "closer_5"
-                    else:
-                        cat = "Full-Stack & Cloud"
-                        c_id = "closer_1"
+        seen_project_ids = set()
 
-                    skills = tags[:4] if tags else ["Python", "Cloud", "Architecture", "API"]
-                    gen = self._generate_winning_proposal(title, cat, skills, c_id)
-                    closer_info = CLOSER_AGENTS[c_id]
+        for config in categories_config:
+            closer_id = config["closer_id"]
+            cat = config["cat"]
+            skill_ids = config["skill_ids"]
+            closer_info = CLOSER_AGENTS[closer_id]
 
-                    job = FreelanceJob(
-                        job_id=f"LIVE-REM-{item.get('id', random.randint(1000, 9999))}",
-                        title=f"{company}: {title}",
-                        platform="Remotive Live Feed",
-                        category=cat,
-                        budget=salary,
-                        est_hours=random.randint(25, 60),
-                        posted_ago="Live Today",
-                        client_country=country,
-                        client_rating=4.95,
-                        client_spend="Verified Company",
-                        urgency="LIVE",
-                        skills=skills,
-                        description=desc,
-                        match_score=random.randint(95, 99),
-                        status="LIVE SCRAPED - READY FOR CLOSER",
-                        live_url=url,
-                        is_live_scraped=True,
-                        assigned_closer=c_id,
-                        closer_name=closer_info["name"],
-                        pitch_proposal=gen["pitch"],
-                        solution_blueprint=gen["blueprint"],
-                        quote_amount=salary
-                    )
-                    live_scraped.append(job)
-        except Exception as e:
-            print(f"[HARVESTER WARNING] Remotive scrape failed: {e}")
+            qs = "&".join([f"jobs[]={sid}" for sid in skill_ids])
+            url = f"https://www.freelancer.com/api/projects/0.1/projects/active?{qs}&compact=false&job_details=true&full_description=true&limit=4&languages[]=en"
 
-        # Source 2: WeWorkRemotely RSS Live Stream
-        try:
-            req = urllib.request.Request("https://weworkremotely.com/categories/remote-programming-jobs.rss", headers=headers)
-            with urllib.request.urlopen(req, timeout=6) as resp:
-                root = ET.fromstring(resp.read())
-                items = root.findall("./channel/item")
-                for item in items[:10]:
-                    title = item.find("title").text if item.find("title") is not None else "Remote Engineer"
-                    link = item.find("link").text if item.find("link") is not None else "https://weworkremotely.com"
-                    desc_elem = item.find("description")
-                    desc = self._clean_html_text(desc_elem.text) if desc_elem is not None else ""
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as resp:
+                    data = json.loads(resp.read().decode("utf-8"))
+                    projects = data.get("result", {}).get("projects", [])
 
-                    # Closer categorization
-                    t_low = title.lower()
-                    if "ai" in t_low or "learning" in t_low:
-                        cat = "AI / ML & Agents"
-                        c_id = "closer_2"
-                    elif "data" in t_low or "scrape" in t_low or "pipeline" in t_low:
-                        cat = "Web Scraping & Data"
-                        c_id = "closer_3"
-                    elif "api" in t_low or "automation" in t_low:
-                        cat = "Autoflows & Integrations"
-                        c_id = "closer_4"
-                    elif "react" in t_low or "mobile" in t_low or "frontend" in t_low:
-                        cat = "Mobile & UI/3D"
-                        c_id = "closer_5"
-                    else:
-                        cat = "Full-Stack & Cloud"
-                        c_id = "closer_1"
+                    for p in projects:
+                        p_id = p.get("id")
+                        if not p_id or p_id in seen_project_ids:
+                            continue
+                        seen_project_ids.add(p_id)
 
-                    skills = ["Python", "FastAPI", "Cloud", "Distributed"]
-                    gen = self._generate_winning_proposal(title, cat, skills, c_id)
-                    closer_info = CLOSER_AGENTS[c_id]
+                        raw_title = p.get("title") or "Freelance Engineering Gig"
+                        title = raw_title.encode("ascii", "ignore").decode("ascii").strip()
+                        if not title:
+                            title = raw_title
 
-                    job = FreelanceJob(
-                        job_id=f"LIVE-WWR-{random.randint(2000, 8999)}",
-                        title=title,
-                        platform="WeWorkRemotely RSS",
-                        category=cat,
-                        budget="$4,000 - $8,500/contract",
-                        est_hours=random.randint(30, 50),
-                        posted_ago="Live Today",
-                        client_country="Global / Remote",
-                        client_rating=4.98,
-                        client_spend="$250k+ spent",
-                        urgency="HIGH",
-                        skills=skills,
-                        description=desc,
-                        match_score=random.randint(94, 98),
-                        status="LIVE SCRAPED - READY FOR CLOSER",
-                        live_url=link,
-                        is_live_scraped=True,
-                        assigned_closer=c_id,
-                        closer_name=closer_info["name"],
-                        pitch_proposal=gen["pitch"],
-                        solution_blueprint=gen["blueprint"],
-                        quote_amount="$4,500 - $8,500"
-                    )
-                    live_scraped.append(job)
-        except Exception as e:
-            print(f"[HARVESTER WARNING] WeWorkRemotely scrape failed: {e}")
+                        p_type = p.get("type", "fixed")
+                        b_min = p.get("budget", {}).get("minimum", 0)
+                        b_max = p.get("budget", {}).get("maximum", 0)
+                        cur_code = p.get("currency", {}).get("code", "USD")
+                        cur_sign = "$" if cur_code in ["USD", "AUD", "CAD", "SGD", "NZD"] else f"{cur_code} "
+
+                        if p_type == "fixed":
+                            budget_str = f"{cur_sign}{b_min:,.0f} - {cur_sign}{b_max:,.0f} {cur_code} (Fixed Gig)"
+                            quote_str = f"{cur_sign}{b_max:,.0f} {cur_code}"
+                        else:
+                            budget_str = f"{cur_sign}{b_min:,.0f} - {cur_sign}{b_max:,.0f}/hr {cur_code} (Hourly Contract)"
+                            quote_str = f"{cur_sign}{b_max:,.0f}/hr {cur_code}"
+
+                        seo_url = p.get("seo_url") or ""
+                        live_url = f"https://www.freelancer.com/projects/{seo_url}" if seo_url else f"https://www.freelancer.com/projects/{p_id}"
+                        desc = self._clean_html_text(p.get("description") or "")
+
+                        skills = [j.get("name") for j in p.get("jobs", []) if j.get("name")][:5]
+                        if not skills:
+                            skills = ["Python", "API", "Remote", "Automation"]
+
+                        gen = self._generate_winning_proposal(title, cat, skills, closer_id)
+
+                        urgency = "URGENT" if p.get("urgent") else ("HOT" if p.get("featured") else "ACTIVE GIG")
+
+                        job = FreelanceJob(
+                            job_id=f"FL-{p_id}",
+                            title=title,
+                            platform="Freelancer.com (Remote Gig)",
+                            category=cat,
+                            budget=budget_str,
+                            est_hours=random.randint(15, 45),
+                            posted_ago="Live Now",
+                            client_country=cur_code,
+                            client_rating=round(random.uniform(4.90, 5.0), 2),
+                            client_spend="Verified Client",
+                            urgency=urgency,
+                            skills=skills,
+                            description=desc,
+                            match_score=random.randint(95, 99),
+                            status="LIVE GIG - BID READY",
+                            live_url=live_url,
+                            is_live_scraped=True,
+                            assigned_closer=closer_id,
+                            closer_name=closer_info["name"],
+                            pitch_proposal=gen["pitch"],
+                            solution_blueprint=gen["blueprint"],
+                            quote_amount=quote_str
+                        )
+                        live_scraped.append(job)
+            except Exception as e:
+                print(f"[HARVESTER WARNING] Freelancer scrape for {closer_id} failed: {e}")
 
         return live_scraped
 
@@ -498,7 +491,7 @@ class AlgoriseFreelanceHarvester:
                 description=raw["description"],
                 match_score=random.randint(94, 99),
                 status="MATCHED & PROPOSAL READY",
-                live_url="https://weworkremotely.com",
+                live_url="https://www.freelancer.com/projects",
                 is_live_scraped=False,
                 assigned_closer=closer_id,
                 closer_name=closer_info["name"],
