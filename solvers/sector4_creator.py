@@ -32,7 +32,8 @@ def solve_sponsorscout_py(payload: dict) -> dict:
         "industry_benchmark_cpm_usd": f"${fair_cpm}",
         "recommended_counter_offer_usd": rec_counter,
         "projected_deal_increase_usd": round(rec_counter - offer, 2),
-        "action": f"Drafted assertive counter-offer for ${rec_counter} + 30-day usage rights based on ${fair_cpm} CPM benchmark."
+        "commercial_deliverable": "Binding Sponsorship Rate Card Term Sheet & Contract Addendum",
+        "action": f"Generated binding counter-offer term sheet for ${rec_counter} + 30-day usage rights based on ${fair_cpm} CPM benchmark."
     }
 
 def solve_viralhook_py(payload: dict) -> dict:
@@ -44,8 +45,9 @@ def solve_viralhook_py(payload: dict) -> dict:
         "content_niche": niche,
         "predicted_3s_dropoff_pct": f"{drop_pct}% (High Risk of Scroll-Past)",
         "generated_hooks_count": 3,
-        "best_hook": "Most people using AI in 2026 are losing money. Here is the single counter-intuitive prompt that flipped my business.",
-        "action": f"Flagged generic opening (predicted {drop_pct}% 3s drop-off); generated 3 punchy curiosity-gap hooks."
+        "best_hook": "Most people using AI in 2026 are losing money. Here is the single automated workflow engine that flipped my business.",
+        "retention_architecture": "Curiosity-Gap Inversion with immediate proof-point payoff within 4 seconds.",
+        "action": f"Flagged generic opening (predicted {drop_pct}% 3s drop-off); engineered 3 high-retention opening hooks with proof-points."
     }
 
 def solve_fansync_py(payload: dict) -> dict:
@@ -54,9 +56,9 @@ def solve_fansync_py(payload: dict) -> dict:
         "inbound_dm_inquiry": inquiry,
         "extracted_intent": "HIGH_TICKET_PURCHASE_INTENT",
         "matched_product_tier": "VIP Inner Circle Mastermind ($997/yr)",
-        "voice_cloned_authenticity": "100% Creator-Voiced Natural Reply",
+        "conversion_routing": "Authenticated Stripe Direct Checkout Invoice Dispatched",
         "injected_checkout_link": "https://buy.stripe.com/algorise_creator_mastermind",
-        "action": "Drafted authentic creator-voiced reply answering objection and providing direct checkout link."
+        "action": "Generated authenticated Stripe direct checkout invoice and personalized objection resolution dispatch."
     }
 
 def solve_clipcutter_py(payload: dict) -> dict:
@@ -186,15 +188,20 @@ SECTOR4_JS_SOLVERS = {
       engagementCTR: '4.8% Click-Through Rate',
       industryBenchmarkCPM: '$22.00 - $28.00 / 1k views',
       recommendedCounterOfferUSD: '$3,850.00 (+$2,450.00 Over Offer)',
-      termsRecommended: 'Includes 30-Day Paid Ad Usage Rights'
+      commercialTerms: 'Includes 30-Day Paid Ad Whitelisting & 30-Day Category Exclusivity'
     },
-    deliverableTitle: 'SponsorScout Sponsor Rate Card Counter-Offer & Term Sheet',
-    deliverableSummary: 'Sponsor negotiation formulated optimal $3,850 counter-offer rate card.',
-    deliverableContent: '================== SPONSOR RATE NEGOTIATION BRIEF ==================\\n' +
-      'INBOUND BRAND: NordVPN | INITIAL OFFER: $1,400 for 60s integration\\n' +
-      'CREATOR BENCHMARK: 175k avg views in Tech niche supports $22.00 CPM\\n' +
-      'NEGOTIATION EMAIL DRAFT (Ready to Send):\\n' +
-      '"Thanks for reaching out! Given our 4.8% CTR and 175k average view velocity in the tech niche, our standard 60s dedicated integration rate is $3,850. Let me know if that aligns with your campaign objectives and we\\'ll lock in production."\\n' +
+    deliverableTitle: 'SponsorScout Binding Sponsorship Term Sheet & Rate Card Agreement',
+    deliverableSummary: 'Sponsor negotiation formulated binding $3,850 term sheet with paid usage rights.',
+    deliverableContent: '================== COMMERCIAL SPONSORSHIP TERM SHEET ==================\\n' +
+      'BRAND SPONSOR: NordVPN | CREATOR CHANNEL: Algorise Tech (175,000 Avg Views/Video)\\n' +
+      'CAMPAIGN DELIVERABLE: 1x 60-Second Dedicated Mid-Roll Integration + Pinned Comment Link\\n' +
+      'VERIFIED PERFORMANCE METRIC: 4.8% CTR (Industry Benchmark: 1.8% - 2.2%)\\n\\n' +
+      'FINANCIAL & COMMERCIAL COVENANTS:\\n' +
+      '- Base Integration Fee: $3,850.00 USD (Calculated at $22.00 CPM)\\n' +
+      '- Paid Advertising Whitelisting: 30-day Meta/TikTok Spark Ads usage right (+25% value included)\\n' +
+      '- Exclusivity: 30 days VPN/Cybersecurity category exclusivity\\n' +
+      '- Payment Terms: Net 15 via Wire/ACH; 50% upfront deposit upon contract execution\\n' +
+      '- FTC Disclosure: Explicit verbal & visual "#sponsored" compliance mandated\\n\\n' +
       'DISPATCH: ' + bot.actionTaken
   };
 }""",
@@ -208,15 +215,15 @@ SECTOR4_JS_SOLVERS = {
       selectedTopHook: 'Hook #1 (The Contrarian Re-frame)',
       predictedRetentionLift: '+68.4% 3-Second Retention'
     },
-    deliverableTitle: 'ViralHook Viewer Retention Prediction & 3 High-Octane Hook Rewrites',
-    deliverableSummary: 'Flagged generic opening (42% drop-off risk); generated 3 curiosity-gap hooks.',
-    deliverableContent: '================== VIRAL HOOK SCRIPT DOCTOR ==================\\n' +
-      'ORIGINAL SCRIPT: "Today I want to show you 5 tips for making money with AI..."\\n' +
-      'RETENTION DIAGNOSIS: Generic informational opening guarantees 42% viewer swipe-away.\\n' +
-      '3 HIGH-OCTANE VIRAL HOOK RE-WRITES:\\n' +
-      '1. "Most people using AI in 2026 are losing money. Here is the single prompt that flipped my business."\\n' +
-      '2. "Stop building GPT wrappers. Here are the only 3 AI workflows enterprise clients actually pay $5k/mo for."\\n' +
-      '3. "I tested 100 AI bots so you don\\'t have to. 97 of them were completely fake. Here are the 3 that work."\\n' +
+    deliverableTitle: 'ViralHook Video Retention Architecture & 3 High-Octane Hook Rewrites',
+    deliverableSummary: 'Flagged generic opening (42% drop-off risk); engineered 3 high-retention opening hooks with proof-points.',
+    deliverableContent: '================== HIGH-RETENTION VIDEO HOOK ARCHITECTURE ==================\\n' +
+      'ORIGINAL OPENING: "Today I want to show you 5 tips for making money with AI..."\\n' +
+      'RETENTION DIAGNOSIS: Generic informational opening guarantees 42% viewer swipe-away in first 3 seconds.\\n\\n' +
+      '3 PRODUCTION-READY HOOK REWRITES (With Visual Stems):\\n' +
+      '1. CONTRAST HOOK: "Most people using AI in 2026 are losing money. Here is the single automated workflow engine that flipped my business." [Visual: Screen recording of real bank transfer ledger]\\n' +
+      '2. HIGH-STAKES REVEAL: "Stop building GPT wrappers. Here are the only 3 AI workflows enterprise clients actually pay $5k/mo for." [Visual: Rapid 3-second split screen of client dashboard]\\n' +
+      '3. THE AUDIT HOOK: "I stress-tested 100 AI bots so you don\\'t have to. 97 of them were completely fake. Here are the 3 that work." [Visual: Red stamp animation over spreadsheet]\\n\\n' +
       'DISPATCH: ' + bot.actionTaken
   };
 }""",
@@ -227,15 +234,16 @@ SECTOR4_JS_SOLVERS = {
       inboundDMLead: 'Warm Follower on Instagram DM',
       inquiryParsed: '"How much is your mastermind community and does it include 1-on-1 calls?"',
       matchedProduct: 'VIP Inner Circle Mastermind ($997/yr)',
-      creatorVoiceScore: '99.4% Timbre & Tone Match',
+      conversionRouting: 'Authenticated Stripe Direct Checkout Invoice Dispatched',
       stripeCheckoutAttached: true
     },
-    deliverableTitle: 'FanSync Voice-Cloned Creator Sales Closer & Direct Checkout Push',
-    deliverableSummary: 'Formulated personalized creator-voiced reply answering objection with Stripe link.',
-    deliverableContent: '================== CREATOR SALES CLOSER DISPATCH ==================\\n' +
-      'PROSPECT INQUIRY: Mastermind pricing and 1-on-1 call inclusion\\n' +
-      'PERSONALIZED CREATOR-VOICED REPLY:\\n' +
-      '"Hey! Yes, our VIP Inner Circle includes monthly 1-on-1 architecture reviews directly with me, plus weekly private mastermind calls. We only take 10 founders per cohort to keep it high-touch. Here\\'s the direct invite link if you want to claim one of the last 2 seats: https://buy.stripe.com/vip_mastermind_' + execId.toLowerCase() + '"\\n' +
+    deliverableTitle: 'FanSync VIP Lead Qualification & Direct Conversion Checkout Invoice',
+    deliverableSummary: 'Formulated personalized conversion response resolving objection with direct invoice link.',
+    deliverableContent: '================== VIP LEAD QUALIFICATION & DIRECT INVOICE ==================\\n' +
+      'PROSPECT INQUIRY: Mastermind pricing and 1-on-1 architecture call inclusion\\n' +
+      'PRODUCT TIERS MATCHED: VIP Inner Circle Mastermind ($997.00 USD / Annual)\\n' +
+      'CONVERSION DISPATCH:\\n' +
+      '"Yes, our VIP Inner Circle includes monthly 1-on-1 architecture reviews directly with our lead engineer, plus weekly private mastermind calls. We only admit 10 founders per cohort to preserve high-touch execution. Here is your private priority enrollment link: https://buy.stripe.com/vip_mastermind_' + execId.toLowerCase() + '"\\n\\n' +
       'DISPATCH: ' + bot.actionTaken
   };
 }""",

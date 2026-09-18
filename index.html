@@ -1150,26 +1150,75 @@
         </div>
       </div>
 
-      <!-- Dual Workbenches: Deliverable + Engine JSON -->
-      <div class="space-y-3.5 mb-5">
-        <!-- 1. Authentic Productivity Deliverable Card -->
-        <div id="sandboxDeliverableBox" class="p-4 rounded-2xl bg-emerald-950/25 border border-emerald-500/40">
-          <div class="flex items-center justify-between gap-3 mb-1.5">
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span id="sandboxDeliverableTitle" class="text-xs font-mono font-bold text-emerald-300 uppercase tracking-wider">
-                Harvest Yield Forecast &amp; Storage Capacity Reservation
-              </span>
-            </div>
-            <button onclick="copySandboxDeliverable()" class="px-2.5 py-1 rounded-lg bg-brand-void border border-emerald-500/40 text-[10px] font-mono text-emerald-300 hover:bg-emerald-900/40 transition flex items-center gap-1 cursor-pointer">
-              <i data-lucide="copy" class="w-3 h-3"></i>
-              <span id="copyDeliverableBtnText">Copy Deliverable</span>
+      <!-- ========================================================================= -->
+      <!-- INTERACTIVE FINAL PRODUCT STUDIO & ASSET EXPORT WORKBENCH                -->
+      <!-- ========================================================================= -->
+      <div id="sandboxDeliverableBox" class="mb-5 rounded-2xl bg-brand-void/95 border border-emerald-500/50 shadow-2xl overflow-hidden">
+        
+        <!-- Studio Top Bar: Title, Badge, Ref & Verification Seal -->
+        <div class="px-4 py-3 bg-emerald-950/40 border-b border-emerald-500/30 flex flex-wrap items-center justify-between gap-2.5">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="sandboxDeliverableTitle" class="text-xs sm:text-sm font-mono font-bold text-emerald-300 uppercase tracking-wider">
+              Harvest Yield Forecast &amp; Storage Capacity Reservation
+            </span>
+            <span id="sandboxDeliverableBadge" class="hidden sm:inline-block text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-200 border border-emerald-500/40 font-semibold uppercase">
+              DOCX / TXT READY
+            </span>
+          </div>
+          
+          <div class="flex items-center gap-2 text-[10px] font-mono text-slate-400">
+            <span class="px-2 py-0.5 rounded bg-brand-void/90 border border-emerald-500/30 text-emerald-300 font-semibold flex items-center gap-1">
+              <i data-lucide="shield-check" class="w-3 h-3 text-emerald-400"></i>
+              <span>CSG-AST-STRICT CLEAR</span>
+            </span>
+            <span id="sandboxExecHashBadge" class="text-slate-400 font-mono hidden sm:inline">
+              REF: AGY-2026
+            </span>
+          </div>
+        </div>
+
+        <!-- Studio Control & Export Toolbar -->
+        <div class="px-4 py-2.5 bg-slate-950/80 border-b border-white/5 flex flex-wrap items-center justify-between gap-2.5">
+          <!-- View Switcher Tabs -->
+          <div class="flex items-center gap-1.5 bg-brand-void p-1 rounded-xl border border-white/10 text-xs font-mono">
+            <button id="tabBtnDocument" onclick="switchDeliverableTab('document')" class="px-3 py-1.5 rounded-lg font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              <span>Final Production Document</span>
+            </button>
+            <button id="tabBtnJson" onclick="switchDeliverableTab('json')" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+              <span>Machine API JSON</span>
             </button>
           </div>
-          <p id="sandboxDeliverableSummary" class="text-xs text-slate-300 mb-2.5 font-mono">
+
+          <!-- Download & Export CTAs -->
+          <div class="flex items-center gap-2">
+            <button id="downloadDeliverableBtn" onclick="downloadCurrentDeliverable()" class="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-emerald-400 to-teal-300 text-slate-950 font-black text-xs font-mono uppercase tracking-wider hover:brightness-110 shadow-md shadow-emerald-500/20 flex items-center gap-1.5 cursor-pointer transition active:scale-95">
+              <i data-lucide="download" class="w-3.5 h-3.5 fill-slate-950"></i>
+              <span id="downloadBtnLabel">Download Final Asset</span>
+            </button>
+            <button onclick="copySandboxDeliverable()" class="px-3 py-1.5 rounded-xl bg-brand-void border border-emerald-500/40 text-xs font-mono text-emerald-300 hover:bg-emerald-950/40 transition flex items-center gap-1.5 cursor-pointer">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span id="copyDeliverableBtnText">Copy</span>
+            </button>
+            <button onclick="printSandboxDeliverable()" title="Print or Save as PDF" class="px-2.5 py-1.5 rounded-xl bg-brand-void border border-white/10 text-xs font-mono text-slate-400 hover:text-white transition flex items-center gap-1 cursor-pointer">
+              <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Executive Summary Punchline Bar -->
+        <div class="px-4 py-2 bg-emerald-950/20 border-b border-emerald-500/10 flex items-start gap-2">
+          <span class="text-emerald-400 mt-0.5 text-xs">⚡</span>
+          <p id="sandboxDeliverableSummary" class="text-xs text-emerald-200/90 font-mono leading-relaxed">
             Harvest yield model calculated 6.17 t/ha with 99.4% confidence.
           </p>
-          <pre id="sandboxDeliverableContent" class="p-3 rounded-xl bg-brand-void/90 border border-brand-border/60 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed max-h-40 overflow-y-auto">================== ALGORISE AGRI-INTELLIGENCE BRIEFING ==================
+        </div>
+
+        <!-- Document View (Tab 1: Formatted Final Deliverable) -->
+        <div id="deliverableDocumentView" class="p-3.5 sm:p-4">
+          <pre id="sandboxDeliverableContent" class="p-4 rounded-xl bg-black/70 border border-brand-border/60 text-xs font-mono text-slate-200 whitespace-pre-wrap leading-relaxed max-h-72 sm:max-h-80 overflow-y-auto selection:bg-brand-cyan selection:text-black">================== ALGORISE AGRI-INTELLIGENCE BRIEFING ==================
 FIELD UNIT: North Sector (450 Hectares)
 VEGETATIVE INDEX (NDVI): 0.74 [Telemetry Health: PASS]
 SOIL MATRIC MOISTURE: 28.5%
@@ -1177,19 +1226,15 @@ PROJECTED HARVEST YIELD: 6.17 metric tons / hectare
 ACTION: Dispatched harvest capacity reservation to regional grain elevator API; scheduled combine fleet.</pre>
         </div>
 
-        <!-- 2. Low-Level In-Engine JSON Terminal -->
-        <div class="rounded-2xl bg-brand-void/95 border border-brand-border/80 overflow-hidden">
-          <div class="px-3.5 py-1.5 bg-slate-950/80 border-b border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-400">
-            <div class="flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-red-400"></span>
-              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              <span class="text-slate-300 ml-1">in-engine-telemetry.json</span>
-            </div>
-            <span class="text-brand-cyan">Causal AST Verified</span>
+        <!-- Machine JSON View (Tab 2: Telemetry & AST Trace) -->
+        <div id="deliverableJsonView" class="hidden p-3.5 sm:p-4">
+          <div class="px-3 py-1.5 bg-slate-950/80 border border-b-0 border-white/10 rounded-t-xl flex items-center justify-between text-[10px] font-mono text-slate-400">
+            <span class="text-slate-300">in-engine-telemetry.json</span>
+            <span class="text-brand-cyan font-bold">Causal AST Verified</span>
           </div>
-          <pre id="sandboxOutputConsole" class="p-3 text-[11px] font-mono text-slate-300 leading-relaxed max-h-36 overflow-y-auto whitespace-pre-wrap">// Ready to execute SOTA simulation. Click "Test Run Simulation" above.</pre>
+          <pre id="sandboxOutputConsole" class="p-4 rounded-b-xl bg-black/70 border border-brand-border/60 text-[11px] font-mono text-slate-300 leading-relaxed max-h-72 sm:max-h-80 overflow-y-auto whitespace-pre-wrap">// Telemetry will populate upon simulation.</pre>
         </div>
+
       </div>
 
       <!-- Modal Footer -->
@@ -2108,10 +2153,19 @@ ACTION: Dispatched harvest capacity reservation to regional grain elevator API; 
         const confEl = document.getElementById('sandboxMetricConf');
         if (confEl) confEl.textContent = `${bot.tunedConfidence || 99.4}%`;
 
-        // Update Authentic Productivity Deliverable Card
+        // Store active deliverable state for instant download/copy
+        window.currentActiveDeliverable = result.productivityDeliverable || null;
+
+        // Update Authentic Productivity Deliverable Studio Card
         if (result.productivityDeliverable) {
           const dTitle = document.getElementById('sandboxDeliverableTitle');
           if (dTitle) dTitle.textContent = result.productivityDeliverable.title || 'Enterprise Deliverable';
+
+          const dBadge = document.getElementById('sandboxDeliverableBadge');
+          if (dBadge) dBadge.textContent = result.productivityDeliverable.badge || 'DOCX / TXT READY';
+
+          const dHash = document.getElementById('sandboxExecHashBadge');
+          if (dHash) dHash.textContent = 'REF: ' + (result.executionId || 'AGY-2026');
 
           const dSummary = document.getElementById('sandboxDeliverableSummary');
           if (dSummary) dSummary.textContent = result.productivityDeliverable.summary || '';
@@ -2138,6 +2192,89 @@ ACTION: Dispatched harvest capacity reservation to regional grain elevator API; 
       }, 50);
     }
 
+    // Switches between Formatted Document view and Machine API JSON view
+    function switchDeliverableTab(tab) {
+      const docView = document.getElementById('deliverableDocumentView');
+      const jsonView = document.getElementById('deliverableJsonView');
+      const docBtn = document.getElementById('tabBtnDocument');
+      const jsonBtn = document.getElementById('tabBtnJson');
+
+      if (tab === 'document') {
+        if (docView) docView.classList.remove('hidden');
+        if (jsonView) jsonView.classList.add('hidden');
+        if (docBtn) {
+          docBtn.className = 'px-3 py-1.5 rounded-lg font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 transition flex items-center gap-1.5 cursor-pointer';
+        }
+        if (jsonBtn) {
+          jsonBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
+        }
+      } else {
+        if (docView) docView.classList.add('hidden');
+        if (jsonView) jsonView.classList.remove('hidden');
+        if (jsonBtn) {
+          jsonBtn.className = 'px-3 py-1.5 rounded-lg font-bold bg-brand-cyan/20 text-brand-cyan border border-brand-cyan/40 transition flex items-center gap-1.5 cursor-pointer';
+        }
+        if (docBtn) {
+          docBtn.className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition flex items-center gap-1.5 cursor-pointer';
+        }
+      }
+      lucide.createIcons();
+    }
+
+    // Triggers instant browser download of complete production artifact
+    function downloadCurrentDeliverable() {
+      const deliv = window.currentActiveDeliverable;
+      const contentEl = document.getElementById('sandboxDeliverableContent');
+      const content = (deliv && deliv.content) ? deliv.content : (contentEl ? contentEl.textContent : '');
+      if (!content || !content.trim()) return;
+
+      const bot = currentActiveSandboxBot;
+      const filename = (deliv && deliv.fileName) ? deliv.fileName : (`Algorise_${bot ? bot.id : 'bot'}_Deliverable.txt`);
+      const mimeType = (deliv && deliv.mimeType) ? deliv.mimeType : 'text/plain;charset=utf-8';
+
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      const btnLabel = document.getElementById('downloadBtnLabel');
+      if (btnLabel) {
+        const orig = btnLabel.textContent;
+        btnLabel.textContent = 'Downloaded!';
+        setTimeout(() => { btnLabel.textContent = orig; }, 2000);
+      }
+    }
+
+    // Opens print view formatted for clean PDF saving
+    function printSandboxDeliverable() {
+      const contentEl = document.getElementById('sandboxDeliverableContent');
+      const titleEl = document.getElementById('sandboxDeliverableTitle');
+      if (!contentEl) return;
+      const win = window.open('', '_blank');
+      if (!win) return;
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>${titleEl ? titleEl.textContent : 'Algorise Production Deliverable'}</title>
+          <style>
+            body { font-family: "Courier New", monospace; white-space: pre-wrap; margin: 40px; background: #fff; color: #111; font-size: 11px; line-height: 1.45; }
+            @media print { body { margin: 20px; } }
+          </style>
+        </head>
+        <body>${contentEl.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}</body>
+        </html>
+      `);
+      win.document.close();
+      win.focus();
+      setTimeout(() => { win.print(); }, 250);
+    }
+
     function copySandboxDeliverable() {
       const contentEl = document.getElementById('sandboxDeliverableContent');
       const btnText = document.getElementById('copyDeliverableBtnText');
@@ -2145,7 +2282,7 @@ ACTION: Dispatched harvest capacity reservation to regional grain elevator API; 
       navigator.clipboard.writeText(contentEl.textContent).then(() => {
         if (btnText) {
           btnText.textContent = 'Copied!';
-          setTimeout(() => { btnText.textContent = 'Copy Deliverable'; }, 2000);
+          setTimeout(() => { btnText.textContent = 'Copy'; }, 2000);
         }
       }).catch(() => {
         if (btnText) btnText.textContent = 'Copied!';
