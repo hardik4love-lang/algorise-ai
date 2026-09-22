@@ -1,0 +1,17 @@
+.gcloudignore
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.zip
+dist/
+assets/
+leads/*.csv
+temp_script*.js
+fe_live_jobs.json
+live_jobs_feed.json
+algorise-ai-production-package/
+*.bat
