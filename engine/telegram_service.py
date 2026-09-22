@@ -92,6 +92,51 @@ class AlgoriseTelegramService:
         )
         return self.send_message(chat_id, msg)
 
+    def notify_new_subscriber(self, chat_id: int | str, sub_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Broadcasts alert when a new Surat client subscribes."""
+        client_name = sub_data.get("client_name", "Surat Client")
+        business_name = sub_data.get("business_name", "Local Business")
+        phone = sub_data.get("phone", "N/A")
+        plan_name = sub_data.get("plan_name", "Surat Business Pro")
+        monthly = sub_data.get("monthly_price", 29999)
+        advance = sub_data.get("advance_amount", 5999)
+        pin = sub_data.get("pin", "1234")
+        client_id = sub_data.get("client_id", "N/A")
+
+        msg = (
+            f"🚀 <b>[NEW SURAT CLIENT SUBSCRIBED]</b>\n\n"
+            f"🏢 <b>Business:</b> {business_name}\n"
+            f"👤 <b>Contact:</b> {client_name}\n"
+            f"📱 <b>Phone:</b> <code>{phone}</code>\n"
+            f"💎 <b>Plan:</b> {plan_name}\n"
+            f"💰 <b>Monthly:</b> ₹{monthly:,.0f} | <b>Advance (20%):</b> ₹{advance:,.0f}\n"
+            f"🔑 <b>Client ID:</b> <code>{client_id}</code>\n"
+            f"🔒 <b>Dashboard PIN:</b> <code>{pin}</code>\n\n"
+            f"<i>Action: Send PIN to client for Facebook Page authorization.</i>"
+        )
+        return self.send_message(chat_id, msg)
+
+    def notify_facebook_hot_lead(self, chat_id: int | str, lead_data: Dict[str, Any]) -> Dict[str, Any]:
+        """Broadcasts instant alert when Facebook Agent qualifies a hot lead."""
+        client_business = lead_data.get("business_name", "Client Business")
+        lead_name = lead_data.get("lead_name", "Prospect")
+        phone = lead_data.get("phone", "Extracted in DM")
+        score = lead_data.get("score", 95)
+        comment = lead_data.get("comment", "")
+        intent = lead_data.get("intent", "High buying intent")
+
+        msg = (
+            f"🔥 <b>[HOT LEAD QUALIFIED — FACEBOOK AGENT]</b>\n\n"
+            f"🏢 <b>Client Account:</b> {client_business}\n"
+            f"👤 <b>Lead Name:</b> {lead_name}\n"
+            f"📞 <b>Phone / Contact:</b> <code>{phone}</code>\n"
+            f"🎯 <b>Score:</b> {score}/100 (HOT LEAD)\n"
+            f"💬 <b>Original Comment:</b> <i>\"{comment[:120]}\"</i>\n"
+            f"💡 <b>Identified Intent:</b> {intent}\n\n"
+            f"⚡ <i>Auto-response delivered in 0.05s. Hand off to sales team!</i>"
+        )
+        return self.send_message(chat_id, msg)
+
 if __name__ == "__main__":
     tg = AlgoriseTelegramService()
     me = tg.get_me()

@@ -6,9 +6,12 @@ Defines, configures, and routes execution for all 100 proprietary hero bots acro
 from typing import Dict, Any, List, Optional
 import time
 import re
+import hashlib
+import json
 from .models import BotTask, BotResult
 from .guardrails import AlgoriseSafetyGate
 from .graph_rag import AlgoriseGraphRAG
+from .cache import redis_manager, CacheKeys
 
 # The 100 Hero Bots Specification Metadata
 HERO_BOT_DEFINITIONS = [
@@ -141,6 +144,40 @@ class HeroBotRunner:
         self.graph_rag.index_entity_relations("enterprise_sla", ["uptime_9999", "tier1_support", "vpc_peering"], {"status": "ACTIVE"})
         self.graph_rag.index_entity_relations("compliance", ["hipaa_certified", "soc2_type2", "gdpr_compliant"], {"status": "VERIFIED"})
 
+    def _cache_key(self, bot_id: str, input_payload: Dict[str, Any]) -> str:
+        """Generate cache key for bot execution."""
+        payload_str = json.dumps(input_payload, sort_keys=True, default=str)
+        input_hash = hashlib.sha256(payload_str.encode()).hexdigest()[:16]
+        return CacheKeys.bot_execution(bot_id, input_hash)
+
+    async def execute_hero_bot_cached(self, bot_id: str, input_payload: Dict[str, Any], tuned_params: Optional[Dict[str, Any]] = None) -> BotResult:
+        """Execute hero bot with Redis caching."""
+        cache_key = self._cache_key(bot_id, input_payload)
+        
+        # Try cache first
+        cached = await redis_manager.get(cache_key)
+        if cached is not None:
+            cached["cache_hit"] = True
+            return BotResult(
+                task_id=input_payload.get("task_id", f"task_{bot_id}"),
+                bot_name=cached.get("product_name", bot_id),
+                success=True,
+                data=cached,
+                reasoning_trace=[f"[{bot_id}] Cache HIT"],
+                latency_ms=0.01,
+            )
+
+        # Execute normally (using sync version for compatibility)
+        result = self.execute_hero_bot(bot_id, input_payload, tuned_params)
+        
+        # Cache successful results
+        if result.success:
+            cache_data = result.data.copy()
+            cache_data["cache_hit"] = False
+            await redis_manager.set(cache_key, cache_data, expire=3600)
+        
+        return result
+
     def execute_hero_bot(self, bot_id: str, input_payload: Dict[str, Any], tuned_params: Optional[Dict[str, Any]] = None) -> BotResult:
         start_time = time.time()
         
@@ -173,7 +210,7 @@ class HeroBotRunner:
 
         # 2. Context Grounding (GraphRAG)
         query = input_payload.get("query", desc)
-        context_res = self.graph_rag.query_context(query)
+        context_res = self.graph_rag.query_context_sync(query)
         trace.append(f"[{name}] GraphRAG Context: density score = {context_res['context_density_score']}")
 
         # 3. Real Domain Algorithmic Execution
