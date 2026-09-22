@@ -365,11 +365,20 @@ from engine.subscription_routes import router as subscription_router
 app.include_router(subscription_router, prefix="/api/v1")
 
 
-# Legacy endpoint compatibility (wraps the old HTTP server handler)
-@app.api_route("/{path:path}", methods=["GET", "POST", "OPTIONS"])
-async def legacy_gateway(path: str, request: Request):
-    """Handle legacy endpoints by proxying to the original HTTP handler logic."""
-    return {"message": f"Legacy endpoint /{path} - use /api/v1/ endpoints instead"}
+# Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
+import os
+from fastapi.staticfiles import StaticFiles
+
+dist_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dist")
+if not os.path.exists(dist_dir):
+    dist_dir = "dist"
+
+if os.path.exists(dist_dir):
+    app.mount("/", StaticFiles(directory=dist_dir, html=True), name="static")
+else:
+    @app.api_route("/{path:path}", methods=["GET", "POST", "OPTIONS"])
+    async def legacy_gateway(path: str, request: Request):
+        return {"message": f"Endpoint /{path} - use /api/v1/ endpoints instead"}
 
 
 if __name__ == "__main__":
