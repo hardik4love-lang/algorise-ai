@@ -1,6 +1,0 @@
-# Algorise AI Solutions Robots.txt
-User-agent: *
-Allow: /
-Disallow: /admin.html
-
-Sitemap: https://algorise-ai.surge.sh/sitemap.xml
