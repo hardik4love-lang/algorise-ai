@@ -4,7 +4,7 @@
   <base href="/">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <!-- Primary Title & SEO -->
   <title>Algorise AI — Autonomous B2B Social Sales Agent & Meta Ad Lead Defense</title>
   <meta name="title" content="Algorise AI — Autonomous B2B Social Sales Agent & Meta Ad Lead Defense" />
@@ -12,7 +12,7 @@
   <meta name="theme-color" content="#03050C" />
   <link rel="canonical" href="https://algorise-ai.com/" />
 
-  <!-- Modern Vector Favicon (< 1KB SVG) -->
+  <!-- Modern Vector Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2303050C'/><path d='M16 6L26 24H6L16 6Z' stroke='%2300F2FE' stroke-width='2.5' fill='none'/><circle cx='16' cy='18' r='3.5' fill='%2310B981'/></svg>" />
 
   <!-- Open Graph / Meta -->
@@ -21,8 +21,6 @@
   <meta property="og:title" content="Algorise AI — Autonomous B2B Social Sales Agent & Meta Ad Lead Defense" />
   <meta property="og:description" content="Sub-0.05s comment auto-hide shield, native Surati Gujarati & Hindi NLP, and direct WhatsApp qualification for B2B manufacturers." />
   <meta property="og:image" content="https://algorise-ai.com/assets/logo.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Algorise AI Solutions" />
 
   <!-- Twitter / X Cards -->
@@ -32,10 +30,10 @@
   <meta name="twitter:description" content="Sub-0.05s comment auto-hide shield, native Surati Gujarati & Hindi NLP, and direct WhatsApp qualification for B2B manufacturers." />
   <meta name="twitter:image" content="https://algorise-ai.com/assets/logo.jpg" />
 
-  <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Google Fonts: Manrope, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS & Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -48,8 +46,9 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'Manrope', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
+            manrope: ['"Manrope"', 'sans-serif']
           },
           colors: {
             brand: {
@@ -60,7 +59,7 @@
               border: 'rgba(0, 242, 254, 0.15)',
               cyan: '#00F2FE',
               emerald: '#10B981',
-              violet: '#9D4EDD',
+              violet: '#9B5CFF',
               amber: '#F59E0B',
               rose: '#F43F5E'
             }
@@ -70,20 +69,768 @@
     }
   </script>
 
+  <!-- Cosmic Design System Stylesheet (djsltd.com Caliber) -->
   <style>
-    body { background-color: #03050C; color: #F1F5F9; }
-    .glass { background: rgba(11, 19, 43, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
-    .glow-cyan { box-shadow: 0 0 40px -10px rgba(0, 242, 254, 0.35); }
-    .glow-emerald { box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.35); }
+    :root {
+      --cyan: #00F2FE;
+      --violet: #9B5CFF;
+      --emerald: #10B981;
+      --void: #03050C;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #03050C;
+      color: #EAF2FF;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Scrollbars */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #03050C; }
-    ::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #16243A; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
+
+    /* Cosmic Background & Infinite Perspective Grid */
+    .sf-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .sf-grid {
+      position: absolute;
+      inset: -50%;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(600px) rotateX(58deg);
+      transform-origin: center;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%);
+      animation: sf-gridmove 18s linear infinite;
+    }
+    @keyframes sf-gridmove {
+      0% { background-position: 0 0; }
+      to { background-position: 0 60px; }
+    }
+
+    /* Ambient Cosmic Orbs */
+    .sf-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.45;
+      pointer-events: none;
+      animation: sf-orb-pulse 10s ease-in-out infinite alternate;
+    }
+    .sf-orb-1 {
+      width: 560px;
+      height: 560px;
+      background: #00F2FE;
+      top: -140px;
+      left: -120px;
+    }
+    .sf-orb-2 {
+      width: 520px;
+      height: 520px;
+      background: #9B5CFF;
+      top: 32%;
+      right: -160px;
+      animation-delay: -3s;
+    }
+    .sf-orb-3 {
+      width: 480px;
+      height: 480px;
+      background: #10B981;
+      bottom: -140px;
+      left: 28%;
+      animation-delay: -6s;
+    }
+    @keyframes sf-orb-pulse {
+      0% { transform: scale(1) translateY(0); opacity: 0.35; }
+      100% { transform: scale(1.15) translateY(20px); opacity: 0.5; }
+    }
+
+    /* Cosmic Header */
+    .sf-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 18px max(5vw, 24px);
+      background: rgba(3, 5, 12, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.12);
+    }
+    .sf-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+    .sf-brand-glyph {
+      color: #00F2FE;
+      font-size: 24px;
+      text-shadow: 0 0 18px rgba(0, 242, 254, 0.8);
+      display: inline-block;
+      animation: sf-pulse 2.5s infinite;
+    }
+    .sf-brand-text {
+      font-size: 19px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+    }
+    .sf-brand-text span {
+      color: #00F2FE;
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+    }
+    .sf-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9FB6CC;
+    }
+    .sf-nav a {
+      text-decoration: none;
+      color: #9FB6CC;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .sf-nav a:hover {
+      color: #00F2FE;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+    .sf-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #00F2FE, #9B5CFF);
+      color: #03050C;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 9px;
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .sf-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 242, 254, 0.55);
+      color: #000;
+    }
+
+    /* Hero Section */
+    .sf-hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 50px;
+      align-items: center;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 70px max(5vw, 24px) 90px;
+      min-height: 88vh;
+    }
+    .sf-hero-inner {
+      position: relative;
+      z-index: 2;
+    }
+    .sf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: #7BE5FF;
+      padding: 7px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      border-radius: 100px;
+      margin-bottom: 26px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+    }
+    .sf-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #00F2FE;
+      box-shadow: 0 0 12px #00F2FE;
+      animation: sf-pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes sf-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+    .sf-h1 {
+      font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+      font-weight: 800;
+      font-size: clamp(40px, 4.8vw, 76px);
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      margin: 0;
+      color: #FFFFFF;
+    }
+    .sf-grad {
+      background: linear-gradient(120deg, #00F2FE, #9B5CFF 55%, #10B981);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .sf-lead {
+      font-size: 16.5px;
+      line-height: 1.7;
+      color: #9FB6CC;
+      max-width: 540px;
+      margin: 24px 0 34px;
+    }
+    .sf-hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .sf-btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #00F2FE, #9B5CFF);
+      color: #03050C;
+      padding: 14px 26px;
+      font-size: 13.5px;
+      font-weight: 800;
+      border-radius: 11px;
+      box-shadow: 0 8px 26px rgba(0, 242, 254, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .sf-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(0, 242, 254, 0.55);
+      color: #000;
+    }
+    .sf-btn-primary.sm {
+      padding: 11px 18px;
+      font-size: 12px;
+    }
+    .sf-btn-primary.lg {
+      padding: 16px 32px;
+      font-size: 14.5px;
+    }
+    .sf-btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      color: #CFE0EE;
+      padding: 14px 24px;
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 11px;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .sf-btn-ghost:hover {
+      background: rgba(0, 242, 254, 0.1);
+      border-color: #00F2FE;
+      transform: translateY(-2px);
+      color: #FFFFFF;
+    }
+
+    /* Hero Stats Bar */
+    .sf-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 50px;
+      max-width: 580px;
+    }
+    .sf-hero-stats div {
+      border-left: 2px solid rgba(0, 242, 254, 0.4);
+      padding-left: 14px;
+    }
+    .sf-hero-stats b {
+      display: block;
+      font-size: 23px;
+      font-weight: 800;
+      color: #EAF2FF;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .sf-hero-stats span {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: #7E93A8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Hero Visual (Orbital Rings & Core) */
+    .sf-hero-visual {
+      position: relative;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sf-ring {
+      position: absolute;
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 50%;
+    }
+    .sf-ring-1 {
+      width: 480px;
+      height: 480px;
+      border-top-color: #00F2FE;
+      border-left-color: rgba(0, 242, 254, 0.4);
+      animation: sf-spin 24s linear infinite;
+    }
+    .sf-ring-2 {
+      width: 350px;
+      height: 350px;
+      border-right-color: #9B5CFF;
+      border-bottom-color: rgba(155, 92, 255, 0.4);
+      animation: sf-spin 18s linear infinite reverse;
+    }
+    .sf-ring-3 {
+      width: 220px;
+      height: 220px;
+      border-bottom-color: #10B981;
+      border-left-color: rgba(16, 185, 129, 0.4);
+      animation: sf-spin 13s linear infinite;
+    }
+    @keyframes sf-spin {
+      to { transform: rotate(360deg); }
+    }
+    .sf-core {
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #00F2FE 0%, #071329 70%, #03050C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00F2FE;
+      box-shadow: 0 0 70px rgba(0, 242, 254, 0.6), inset 0 0 30px rgba(0, 242, 254, 0.4);
+      animation: sf-core-pulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes sf-core-pulse {
+      0% { transform: scale(0.96); box-shadow: 0 0 50px rgba(0, 242, 254, 0.4), inset 0 0 20px rgba(0, 242, 254, 0.3); }
+      100% { transform: scale(1.04); box-shadow: 0 0 80px rgba(0, 242, 254, 0.8), inset 0 0 35px rgba(0, 242, 254, 0.6); }
+    }
+
+    /* Floating Telemetry Chips */
+    .sf-chip {
+      position: absolute;
+      background: rgba(11, 19, 43, 0.85);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      color: #CFE0EE;
+      padding: 9px 15px;
+      font-size: 11px;
+      font-weight: 700;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      font-family: "JetBrains Mono", monospace;
+      animation: sf-float 6s ease-in-out infinite alternate;
+    }
+    .sf-chip-a {
+      top: 10%;
+      left: 6%;
+      animation-delay: 0s;
+    }
+    .sf-chip-b {
+      bottom: 12%;
+      left: 2%;
+      animation-delay: -2s;
+    }
+    .sf-chip-c {
+      top: 20%;
+      right: 4%;
+      animation-delay: -4s;
+    }
+    @keyframes sf-float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* Common Section Styles */
+    .sf-section {
+      position: relative;
+      z-index: 2;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 90px max(5vw, 24px);
+    }
+    .sf-section-head {
+      margin-bottom: 50px;
+      max-width: 760px;
+    }
+    .sf-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      font-weight: 800;
+      color: #00F2FE;
+      text-transform: uppercase;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .sf-section-head h2 {
+      font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+      font-weight: 800;
+      font-size: clamp(30px, 3.4vw, 50px);
+      line-height: 1.14;
+      letter-spacing: -0.03em;
+      margin: 14px 0 0;
+      color: #EAF2FF;
+    }
+    .sf-section-head p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #9FB6CC;
+      margin-top: 12px;
+    }
+
+    /* Bento Feature Grid */
+    .sf-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .sf-card {
+      position: relative;
+      background: rgba(11, 19, 43, 0.65);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 242, 254, 0.14);
+      border-radius: 18px;
+      padding: 32px 28px;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      overflow: hidden;
+    }
+    .sf-card:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.09), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .sf-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 242, 254, 0.45);
+      box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+    }
+    .sf-card:hover:before {
+      opacity: 1;
+    }
+    .sf-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15), rgba(155, 92, 255, 0.15));
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00F2FE;
+      margin-bottom: 22px;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+    .sf-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0 0 10px;
+      color: #FFFFFF;
+    }
+    .sf-card p {
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #9FB6CC;
+      margin: 0 0 18px;
+    }
+    .sf-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #00F2FE;
+      text-decoration: none;
+    }
+
+    /* Dual Experience / Journey Split */
+    .sf-journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+    .sf-journey {
+      background: rgba(11, 19, 43, 0.7);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 242, 254, 0.18);
+      border-radius: 20px;
+      padding: 42px 36px;
+      position: relative;
+    }
+    .sf-journey.alt {
+      background: linear-gradient(160deg, rgba(0, 242, 254, 0.08), rgba(155, 92, 255, 0.12));
+      border-color: rgba(155, 92, 255, 0.4);
+    }
+    .sf-journey-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+      color: #00F2FE;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .sf-journey h3 {
+      font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin: 20px 0;
+      color: #EAF2FF;
+    }
+    .sf-journey ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .sf-journey li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #CFE0EE;
+    }
+    .sf-journey li svg {
+      flex: none;
+      color: #00F2FE;
+      margin-top: 3px;
+    }
+
+    /* Impact Stats Bar */
+    .sf-stats {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid rgba(0, 242, 254, 0.15);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+      background: rgba(7, 12, 27, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .sf-stats-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 54px max(5vw, 24px);
+      gap: 30px;
+    }
+    .sf-stats-inner div {
+      text-align: center;
+    }
+    .sf-stats-inner b {
+      display: block;
+      font-size: clamp(32px, 3.8vw, 54px);
+      font-weight: 800;
+      background: linear-gradient(120deg, #00F2FE, #9B5CFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .sf-stats-inner span {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      color: #7E93A8;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    /* Closing CTA Section */
+    .sf-closing {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 100px max(5vw, 24px);
+    }
+    .sf-closing-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .sf-closing h2 {
+      font-family: "Manrope", "Plus Jakarta Sans", sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 18px 0 20px;
+      color: #EAF2FF;
+    }
+    .sf-closing p {
+      font-size: 16px;
+      color: #9FB6CC;
+      margin: 0 0 34px;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    .sf-footer {
+      position: relative;
+      z-index: 2;
+      background: #03050C;
+      border-top: 1px solid rgba(0, 242, 254, 0.12);
+      padding: 60px max(5vw, 24px) 24px;
+    }
+    .sf-footer-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 2fr;
+      gap: 50px;
+    }
+    .sf-footer-brand {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .sf-footer-brand .sf-brand-glyph {
+      font-size: 26px;
+      margin-top: 2px;
+    }
+    .sf-footer-brand strong {
+      display: block;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      color: #EAF2FF;
+    }
+    .sf-footer-brand p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: #7E93A8;
+      margin: 8px 0 0;
+      max-width: 320px;
+    }
+    .sf-footer-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .sf-footer-cols > div {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .sf-footer-cols span {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: #00F2FE;
+      font-weight: 800;
+      margin-bottom: 4px;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .sf-footer-cols a {
+      font-size: 13px;
+      color: #9FB6CC;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .sf-footer-cols a:hover {
+      color: #EAF2FF;
+    }
+    .sf-footer-bottom {
+      max-width: 1440px;
+      margin: 45px auto 0;
+      border-top: 1px solid rgba(0, 242, 254, 0.12);
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #5E7388;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1024px) {
+      .sf-hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 50px;
+      }
+      .sf-hero-visual {
+        height: 380px;
+        order: -1;
+      }
+      .sf-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sf-journey-grid, .sf-footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .sf-nav {
+        display: none;
+      }
+      .sf-hero-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .sf-feature-grid {
+        grid-template-columns: 1fr;
+      }
+      .sf-stats-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      .sf-footer-cols {
+        grid-template-columns: 1fr 1fr;
+      }
+      .sf-footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .sf-ring-1 { width: 320px; height: 320px; }
+      .sf-ring-2 { width: 230px; height: 230px; }
+      .sf-ring-3 { width: 140px; height: 140px; }
+      .sf-chip-a, .sf-chip-c { display: none; }
+    }
   </style>
 
-  <!-- ========================================== -->
-  <!-- SEO & SCHEMA.ORG JSON-LD STRUCTURED DATA   -->
-  <!-- ========================================== -->
+  <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -114,11 +861,7 @@
           "contactType": "sales",
           "areaServed": ["IN", "Global"],
           "availableLanguage": ["English", "Gujarati", "Hindi"]
-        },
-        "sameAs": [
-          "https://twitter.com/algorise_ai",
-          "https://github.com/algorise-ai"
-        ]
+        }
       },
       {
         "@type": "SoftwareApplication",
@@ -127,769 +870,714 @@
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Cloud-based / Meta Graph API",
         "url": "https://algorise-ai.com/",
-        "description": "Autonomous Meta Ad comment interceptor and WhatsApp qualification agent. Automatically hides competitor poaching phone numbers in under 0.05s and qualifies leads in Surati Gujarati, Hindi, and English.",
-        "offers": [
-          {
-            "@type": "Offer",
-            "name": "Starter Tier",
-            "price": "12499",
-            "priceCurrency": "INR",
-            "priceValidUntil": "2027-12-31",
-            "description": "20% Advance ₹2,499. Includes 1 Meta Page & WhatsApp Webhook, 500 Leads/mo, Basic Broker Shield"
-          },
-          {
-            "@type": "Offer",
-            "name": "Surat Pro Tier",
-            "price": "29999",
-            "priceCurrency": "INR",
-            "priceValidUntil": "2027-12-31",
-            "description": "20% Advance ₹5,999. Includes 3 Meta Pages, Multi-Dialect NLP (Surati Gujarati, Hindi, English), Catalog & Ex-Factory Pricing Engine, Real-time Telegram Alerts"
-          },
-          {
-            "@type": "Offer",
-            "name": "Enterprise Tier",
-            "price": "64999",
-            "priceCurrency": "INR",
-            "priceValidUntil": "2027-12-31",
-            "description": "20% Advance ₹13,000. Includes Unlimited Pages, Dedicated Meta Cloud API Webhook, ERP/CRM Sync, Zero-latency Regex Shield, 24/7 Priority SLA"
-          }
-        ],
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.9",
-          "ratingCount": "84",
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "featureList": [
-          "0.05s Auto-Hide Meta Ad Comment Phone Numbers",
-          "Surati Gujarati & Hindi Colloquial NLP Negotiation",
-          "Real-time WhatsApp Cloud API Dispatch & Qualification",
-          "Instant Telegram Lead Notifications (@Aassqqee_bot)",
-          "Low-Code Ex-Factory Rate & MOQ Catalog Engine",
-          "Anti-Competitor Broker Shield"
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://algorise-ai.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "How does Algorise AI stop competitor brokers from stealing Facebook ad leads?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Algorise AI listens to Meta Graph Webhooks in real-time with sub-0.05s latency. When a buyer posts their phone number or WhatsApp request on your Facebook ad comment, Algorise AI instantly executes a Graph API mutation to auto-hide the comment from public view before competitor brokers can scrape it, while simultaneously initiating a private DM and WhatsApp qualification sequence."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does the AI sales agent understand Surati Gujarati and Hindi trade terms?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Algorise AI is specifically calibrated for regional Indian wholesale markets, fluently understanding Gujarati trade vernacular such as Taako, Loom rate, Catalog, Ex-mill rate, CVD/HPHT 4Cs, and FOB terms, ensuring native and trustworthy buyer interactions."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is Algorise AI's pricing and onboarding policy?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Algorise AI operates on a 3-tier subscription model: Starter (₹12,499/mo), Surat Pro (₹29,999/mo), and Enterprise (₹64,999/mo). We strictly adhere to a 20% advance booking model (₹2,499, ₹5,999, or ₹13,000) with the remaining 80% payable only after your custom agent is configured, tested, and live in production."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Why is Algorise AI better than ManyChat or WATI for B2B manufacturers?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Visual chatbot builders like ManyChat depend on fragile button trees and lack automated ad-comment phone number hiding or Gujarati/Hindi B2B bargaining intelligence. WhatsApp BSPs like WATI only manage inboxes after a chat is initiated. Algorise AI defends your top-of-funnel paid ad spend, blocks broker poaching, and autonomously qualifies high-ticket purchase orders."
-            }
-          }
-        ]
+        "description": "Autonomous Meta Ad comment interceptor and WhatsApp qualification agent. Automatically hides competitor poaching phone numbers in under 0.05s and qualifies leads in Surati Gujarati, Hindi, and English."
       }
     ]
   }
   </script>
 </head>
-<body class="bg-brand-void text-slate-100 font-sans antialiased selection:bg-brand-cyan/20 selection:text-brand-cyan overflow-x-hidden min-h-screen flex flex-col">
+<body class="relative">
 
-  <!-- TOP ACTIVE AD DEFENSE NOTIFICATION BAR -->
-  <div class="bg-gradient-to-r from-emerald-950 via-slate-900 to-emerald-950 border-b border-emerald-500/30 px-4 py-2 text-center text-xs font-mono">
-    <span class="inline-flex items-center gap-2 text-emerald-400">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-      <strong class="text-white">🛡️ LIVE PRODUCTION AD DEFENSE:</strong> Sub-0.05s Auto-Hide Meta Ad Comment Protection & WhatsApp Conversion active.
-      <a href="#pricing" class="underline hover:text-white font-bold ml-1">Claim 20% Advance Booking Slot →</a>
-    </span>
+  <!-- ========================================== -->
+  <!-- 00. ATMOSPHERIC COSMIC BACKGROUND          -->
+  <!-- ========================================== -->
+  <div class="sf-bg" aria-hidden="true">
+    <div class="sf-grid"></div>
+    <div class="sf-orb sf-orb-1"></div>
+    <div class="sf-orb sf-orb-2"></div>
+    <div class="sf-orb sf-orb-3"></div>
   </div>
 
-  <!-- NAVIGATION HEADER -->
-  <header class="glass sticky top-0 z-50 border-b border-slate-800/80 px-4 sm:px-8 py-3.5 backdrop-blur-xl bg-slate-950/85">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      
-      <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-emerald-400 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-all">
-          <i class="fa-solid fa-robot text-slate-950 font-bold text-lg"></i>
-        </div>
-        <div class="flex flex-col">
-          <span class="font-extrabold text-white text-lg tracking-tight flex items-center gap-1.5">
-            ALGORISE <span class="text-brand-cyan">AI</span>
-            <span class="text-[9px] px-1.5 py-0.2 rounded bg-brand-cyan/20 text-brand-cyan font-mono border border-brand-cyan/40">B2B</span>
-          </span>
-          <span class="text-[9px] text-slate-400 uppercase tracking-widest font-semibold font-mono">Meta Ad Defense & Sales Agent</span>
-        </div>
-      </a>
+  <!-- ========================================== -->
+  <!-- 01. NAVIGATION HEADER                      -->
+  <!-- ========================================== -->
+  <header class="sf-header">
+    <a class="sf-brand" href="#top">
+      <span class="sf-brand-glyph">◈</span>
+      <span class="sf-brand-text">ALGORISE <span>AI</span></span>
+    </a>
+    
+    <nav class="sf-nav" aria-label="Primary">
+      <a href="#sf-platform">Platform</a>
+      <a href="#simulation">Live Simulator</a>
+      <a href="#sf-journey">Dual Journey</a>
+      <a href="#bots">100 Hero Bots</a>
+      <a href="#pricing">Pricing</a>
+      <a href="dashboard.html" class="text-brand-cyan hover:underline">Console</a>
+    </nav>
 
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-6 text-xs font-semibold text-slate-300">
-        <a href="#broker-shield" class="hover:text-brand-cyan transition-colors">Broker Shield</a>
-        <a href="#simulation" class="hover:text-brand-cyan transition-colors">Live Simulation</a>
-        <a href="#features" class="hover:text-brand-cyan transition-colors">Architecture</a>
-        <div class="relative group py-2">
-          <button class="hover:text-brand-cyan transition-colors flex items-center gap-1">
-            <span>Comparisons</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-          </button>
-          <div class="absolute top-full left-0 hidden group-hover:block w-52 p-2 rounded-xl bg-slate-900 border border-slate-800 shadow-2xl space-y-1">
-            <a href="compare/manychat-alternative.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">vs ManyChat (B2B)</a>
-            <a href="compare/wati-alternative.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">vs WATI (Shared Inbox)</a>
-          </div>
-        </div>
-        <div class="relative group py-2">
-          <button class="hover:text-brand-cyan transition-colors flex items-center gap-1">
-            <span>Industries</span>
-            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-          </button>
-          <div class="absolute top-full left-0 hidden group-hover:block w-64 p-2 rounded-xl bg-slate-900 border border-slate-800 shadow-2xl space-y-1">
-            <a href="industry/textile-saree-wholesale-ai-agent.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">Surat Saree & Textile Wholesalers</a>
-            <a href="industry/diamond-cvd-sales-agent.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">CVD & Lab-Grown Diamonds</a>
-            <a href="cocopeat.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">Udhna Cocopeat Factory Portal</a>
-            <a href="creator_studio.html" class="block px-3 py-2 rounded-lg text-xs text-slate-300 hover:text-white hover:bg-slate-800">Creator Studio (10 Tools)</a>
-          </div>
-        </div>
-        <a href="#pricing" class="hover:text-brand-cyan transition-colors py-1.5 px-3 rounded-xl bg-slate-900 border border-slate-800 text-white font-bold">
-          Pricing (₹)
-        </a>
-        <a href="dashboard.html" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5 text-slate-300">
-          <i class="fa-solid fa-gauge-high text-emerald-400"></i>
-          <span>Client Portal</span>
-        </a>
-      </nav>
-
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a href="field_pitch.html" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-200 hover:text-white transition-all">
-          <i class="fa-solid fa-file-pdf text-rose-400"></i>
-          <span>A4 Field Pitch</span>
-        </a>
-
-        <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-brand-cyan to-emerald-400 hover:brightness-110 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all active:scale-95 cursor-pointer">
-          Book 20% Advance
-        </button>
-      </div>
-
-    </div>
+    <a class="sf-cta" href="dashboard.html">
+      Launch Console <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+    </a>
   </header>
 
-  <!-- MAIN BODY CONTENT -->
-  <main class="flex-1 space-y-20 py-12 px-4 sm:px-8 max-w-7xl mx-auto w-full">
-
-    <!-- HERO SECTION -->
-    <section class="text-center max-w-5xl mx-auto space-y-8 pt-6">
-      
-      <!-- Top Eyebrow Badge -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-brand-cyan/40 bg-brand-surface/80 text-brand-cyan text-xs font-mono backdrop-blur-md shadow-lg shadow-cyan-950/40">
-        <span class="w-2.5 h-2.5 rounded-full bg-brand-cyan animate-ping"></span>
-        <span class="font-bold tracking-wider uppercase text-[11px]">#1 Autonomous Meta Ad Defense for B2B Merchants</span>
-        <span class="text-slate-500">|</span>
-        <span class="text-slate-300 font-semibold">Ring Road • Katargam • Vesu • Udhna</span>
+  <!-- ========================================== -->
+  <!-- 02. HERO SECTION                           -->
+  <!-- ========================================== -->
+  <section class="sf-hero" id="top">
+    <div class="sf-hero-inner">
+      <div class="sf-pill">
+        <span class="sf-dot"></span> NEXT-GEN AUTONOMOUS B2B AI OS · v3.0
       </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.12]">
-        Never Lose Another Wholesale Buyer on <br class="hidden sm:inline" />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan via-teal-300 to-emerald-400">Facebook &amp; Instagram Ads</span>
+      <h1 class="sf-h1">
+        Autonomous <span class="sf-grad">B2B Social Sales</span><br />
+        &amp; Meta Ad Lead Defense.
       </h1>
 
-      <!-- Subheadline -->
-      <p class="text-slate-300 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed">
-        Surat &amp; Indian manufacturers spend ₹50,000–₹2,00,000/mo on Meta ads, only to let comments sit for hours while competitor brokers steal buyer numbers. Our <strong class="text-brand-cyan">Autonomous AI Agent</strong> auto-hides phone numbers in <strong class="text-emerald-400">0.05 seconds</strong>, negotiates in <strong class="text-white">Surati Gujarati &amp; Hindi</strong>, and routes hot purchase orders straight to your WhatsApp and Telegram.
+      <p class="sf-lead">
+        Never lose another high-ticket wholesale order on Facebook &amp; Instagram ads. Sub-0.05s comment auto-hide shield, native Surati Gujarati &amp; Hindi NLP, and 24/7 direct WhatsApp qualification.
       </p>
 
-      <!-- CTAs -->
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-        <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider text-slate-950 bg-gradient-to-r from-brand-cyan to-emerald-400 hover:brightness-110 shadow-xl shadow-cyan-500/25 transition-all active:scale-95 cursor-pointer flex items-center gap-2">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span>Book 20% Advance (₹2,499 Starter / ₹5,999 Pro)</span>
-        </button>
-        <a href="#simulation" class="px-6 py-4 rounded-xl font-bold text-xs uppercase tracking-wider text-slate-200 border border-slate-700 bg-slate-900/80 hover:bg-slate-800 transition-all flex items-center gap-2">
-          <i class="fa-solid fa-play text-brand-cyan"></i>
-          <span>Test Live Trade Simulator ↓</span>
+      <div class="sf-hero-actions">
+        <a class="sf-btn-primary" href="#simulation">
+          Test Live Simulator <i class="fa-solid fa-chevron-right text-xs"></i>
+        </a>
+        <a class="sf-btn-ghost" href="dashboard.html">
+          <i class="fa-solid fa-terminal text-brand-cyan text-sm"></i> Enter Live Console
         </a>
       </div>
 
-      <!-- Trust Metrics Bar -->
-      <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-800/80 text-left">
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-          <div class="text-2xl font-black text-brand-cyan font-mono">0.05s</div>
-          <div class="text-xs text-slate-400 font-medium">Comment Auto-Hide Latency</div>
+      <div class="sf-hero-stats">
+        <div>
+          <b>₹4.8Cr+</b>
+          <span>Pipeline Protected</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-          <div class="text-2xl font-black text-emerald-400 font-mono">100% Native</div>
-          <div class="text-xs text-slate-400 font-medium">Surati Gujarati &amp; Hindi NLP</div>
+        <div>
+          <b>0.048s</b>
+          <span>Masking Latency</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-          <div class="text-2xl font-black text-teal-300 font-mono">4.9 / 5.0</div>
-          <div class="text-xs text-slate-400 font-medium">Verified Merchant Score</div>
+        <div>
+          <b>100</b>
+          <span>Autonomous Bots</span>
         </div>
-        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800">
-          <div class="text-2xl font-black text-amber-400 font-mono">20% Escrow</div>
-          <div class="text-xs text-slate-400 font-medium">80% Payable Post-Launch</div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- INTERACTIVE SURAT B2B TRADE SIMULATOR -->
-    <section id="simulation" class="space-y-6 relative">
-      <span id="surat-facebook-agent" class="absolute -top-24"></span>
-      
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-brand-cyan uppercase font-bold tracking-wider">Interactive Demonstration</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Experience Real-Time Ad Defense</h2>
-        <p class="text-xs sm:text-sm text-slate-400">Select an industry vertical to watch how Algorise AI intercepts comments and shields deals in under 0.05 seconds.</p>
-      </div>
-
-      <div class="glass p-6 sm:p-8 rounded-2xl border-brand-cyan/30 bg-slate-900/80 space-y-6 max-w-4xl mx-auto">
-        
-        <!-- Tab Switcher -->
-        <div class="grid grid-cols-3 gap-2 text-xs font-bold font-mono">
-          <button id="simTab-textile" onclick="switchSim('textile')" class="py-2.5 px-3 rounded-xl bg-brand-cyan/20 border border-brand-cyan text-brand-cyan transition-all text-center">
-            👗 Textile &amp; Sarees (Ring Rd)
-          </button>
-          <button id="simTab-diamond" onclick="switchSim('diamond')" class="py-2.5 px-3 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white transition-all text-center">
-            💎 CVD Diamonds (Katargam)
-          </button>
-          <button id="simTab-realty" onclick="switchSim('realty')" class="py-2.5 px-3 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white transition-all text-center">
-            🏢 Luxury Realty (Vesu)
-          </button>
-        </div>
-
-        <!-- Simulation Screen -->
-        <div class="space-y-4">
-          
-          <!-- Incoming Facebook Comment -->
-          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
-            <div class="flex items-center justify-between text-xs text-slate-400 font-mono">
-              <span id="simCommentSource"><i class="fa-brands fa-facebook text-blue-400 mr-1"></i> Public Meta Ad Comment (Ring Road Saree Ad)</span>
-              <span class="text-rose-400 font-bold">Unprotected Public Comment</span>
-            </div>
-            <p id="simCommentText" class="text-sm font-sans text-white">
-              <strong>Kishanbhai (Rajkot Wholesaler):</strong> "Bhai aa Dola Silk saree ma minimum order ketlo che? 500 piece no ex-factory rate kaho. Mara number par sample photo moko 98241-XXXXX."
-            </p>
-          </div>
-
-          <!-- Algorise Agent Action Feed -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-2">
-              <div class="flex items-center justify-between text-emerald-400 text-xs font-mono font-bold">
-                <span><i class="fa-solid fa-shield-halved mr-1"></i> 1. AUTO-HIDE GRAPH MUTATION</span>
-                <span id="simLatencyBadge" class="bg-emerald-500/20 px-2 py-0.5 rounded">0.048s EXECUTION</span>
-              </div>
-              <p id="simShieldDesc" class="text-xs text-slate-300 leading-relaxed font-sans">
-                Kishanbhai's phone number is masked from public view within 0.048s. Competitor brokers in Millennium Market cannot scrape his contact info or hijack your lead.
-              </p>
-            </div>
-
-            <div class="p-4 rounded-xl bg-blue-950/20 border border-blue-500/30 space-y-2">
-              <div class="flex items-center justify-between text-brand-cyan text-xs font-mono font-bold">
-                <span><i class="fa-brands fa-whatsapp mr-1 text-emerald-400"></i> 2. NATIVE WHATSAPP &amp; TELEGRAM</span>
-                <span>INSTANT DISPATCH</span>
-              </div>
-              <p id="simReplyDesc" class="text-xs text-slate-300 leading-relaxed font-sans">
-                Buyer receives private WhatsApp catalog in Surati Gujarati. Owner phone gets instant Telegram alert with Kishanbhai's 500-piece intent and 1-click dial link.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="pt-2 text-center">
-          <a href="https://t.me/Aassqqee_bot" target="_blank" class="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-white underline">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>Test live live Telegram bot responses directly: @Aassqqee_bot →</span>
-          </a>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- CORE TECHNOLOGICAL PILLARS (BENTO GRID) -->
-    <section id="features" class="space-y-8">
-      
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-brand-cyan uppercase font-bold tracking-wider">Enterprise Architecture</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">4 Pillars of Algorise Lead Defense</h2>
-        <p class="text-xs sm:text-sm text-slate-400">Engineered to defend ad budgets and close wholesale deals autonomously without manual staff overhead.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Pillar 1 -->
-        <div id="broker-shield" class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-brand-cyan/40 transition-all space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-brand-cyan flex items-center justify-center text-xl font-bold">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">0.05s Meta Graph API Broker Shield</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Rogue textile and diamond brokers monitor competitor Meta ad comments 24/7 to steal interested buyer numbers. Algorise AI executes an automated Graph API mutation to hide comments containing 10-digit numbers, international prefixes, or "call me" requests in under 50ms.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
-            <li><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Indian + International phone regex parsing</li>
-            <li><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Prevents comment poaching on Facebook &amp; Instagram</li>
-            <li><i class="fa-solid fa-check text-brand-cyan mr-2"></i> Triggers private DM handover simultaneously</li>
-          </ul>
-        </div>
-
-        <!-- Pillar 2 -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-emerald-500/40 transition-all space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl font-bold">
-            <i class="fa-solid fa-comments"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">Regional Indian Trade Dialect NLP</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Wholesale buyers do not type English prompts or tap rigid buttons. Algorise AI natively understands conversational Surati Gujarati, Marwari, Hinglish, and trade terminology like <em>Taako</em>, <em>Loom rate</em>, <em>Ex-mill</em>, <em>FOB</em>, and <em>CVD 4Cs</em>.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
-            <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> No rigid button trees; handles free-text slang</li>
-            <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Filters single-piece retail buyers on wholesale ads</li>
-            <li><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Pre-trained on Ring Road &amp; Katargam sales transcripts</li>
-          </ul>
-        </div>
-
-        <!-- Pillar 3 -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-purple-500/40 transition-all space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center text-xl font-bold">
-            <i class="fa-solid fa-sliders"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">Low-Code Catalog &amp; Rate Studio</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Update your ex-factory prices, Minimum Order Quantities (MOQ), and broker shield sensitivity directly inside the merchant client portal. No code changes, server restarts, or developer tickets required.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
-            <li><i class="fa-solid fa-check text-purple-400 mr-2"></i> Visual MOQ and tiered rate card editor</li>
-            <li><i class="fa-solid fa-check text-purple-400 mr-2"></i> Instant synchronization with live Meta Graph webhooks</li>
-            <li><i class="fa-solid fa-check text-purple-400 mr-2"></i> Protected PIN authentication for owners &amp; sales staff</li>
-          </ul>
-          <a href="dashboard.html" class="inline-flex items-center gap-1.5 text-xs font-mono text-purple-400 hover:text-white underline pt-1">
-            <span>Explore Client Portal Studio →</span>
-          </a>
-        </div>
-
-        <!-- Pillar 4 -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-amber-500/40 transition-all space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl font-bold">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-          <h3 class="text-xl font-bold text-white">Official WhatsApp Cloud API &amp; Telegram</h3>
-          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-            Direct Meta Cloud API webhook integration with zero third-party per-message markup fees. Push hot lead alerts straight to the owner's phone via Telegram with a 1-click WhatsApp dial button to close deals in seconds.
-          </p>
-          <ul class="text-xs text-slate-400 space-y-1.5 font-mono">
-            <li><i class="fa-solid fa-check text-amber-400 mr-2"></i> ₹0 third-party markup on Meta WhatsApp conversations</li>
-            <li><i class="fa-solid fa-check text-amber-400 mr-2"></i> Instant Telegram push notifications (@Aassqqee_bot)</li>
-            <li><i class="fa-solid fa-check text-amber-400 mr-2"></i> 1-click wa.me direct dial link attached to every hot lead</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- COMPETITOR BENCHMARK INTERCEPT -->
-    <section class="space-y-6">
-      
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-brand-cyan uppercase font-bold tracking-wider">Market Benchmarking</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">Why B2B Leaders Switch to Algorise</h2>
-        <p class="text-xs sm:text-sm text-slate-400">Comparing ManyChat, WATI, and Algorise AI for high-ticket manufacturing and wholesale ad conversion.</p>
-      </div>
-
-      <div class="glass rounded-2xl overflow-x-auto border border-slate-800">
-        <table class="w-full text-left border-collapse text-sm">
-          <thead>
-            <tr class="border-b border-slate-800 bg-slate-900/80 font-bold text-xs uppercase tracking-wider text-slate-300 font-mono">
-              <th class="p-4">Key Dimension</th>
-              <th class="p-4 text-rose-400">ManyChat</th>
-              <th class="p-4 text-cyan-400">WATI</th>
-              <th class="p-4 text-emerald-400 bg-emerald-950/30">Algorise AI (Autonomous)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-800 text-xs">
-            <tr>
-              <td class="p-4 font-bold text-white">0.05s Auto-Hide Ad Phone Shield</td>
-              <td class="p-4 text-rose-400"><i class="fa-solid fa-xmark mr-1"></i> None (Comments exposed)</td>
-              <td class="p-4 text-rose-400"><i class="fa-solid fa-xmark mr-1"></i> None (WhatsApp only)</td>
-              <td class="p-4 text-emerald-300 font-bold bg-emerald-950/30"><i class="fa-solid fa-check mr-1 text-emerald-400"></i> Sub-0.05s Meta Graph API mutation</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-white">Regional Language Dialect NLP</td>
-              <td class="p-4 text-rose-400"><i class="fa-solid fa-xmark mr-1"></i> Rigid English buttons only</td>
-              <td class="p-4 text-slate-400">Requires human typing</td>
-              <td class="p-4 text-emerald-300 font-bold bg-emerald-950/30"><i class="fa-solid fa-check mr-1 text-emerald-400"></i> Native Surati Gujarati &amp; Hindi trade NLP</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-white">Human Staff Labor Required</td>
-              <td class="p-4 text-slate-400">Staff needed for unmapped paths</td>
-              <td class="p-4 text-rose-400"><i class="fa-solid fa-xmark mr-1"></i> 2–5 full-time agents on inbox</td>
-              <td class="p-4 text-emerald-300 font-bold bg-emerald-950/30"><i class="fa-solid fa-check mr-1 text-emerald-400"></i> 100% Autonomous 24/7 qualification</td>
-            </tr>
-            <tr>
-              <td class="p-4 font-bold text-white">Pricing Model</td>
-              <td class="p-4 text-slate-400">Punitive contact-tier escalation</td>
-              <td class="p-4 text-slate-400">Software fee + per-msg markup</td>
-              <td class="p-4 text-emerald-300 font-bold bg-emerald-950/30"><i class="fa-solid fa-check mr-1 text-emerald-400"></i> Flat INR tiers with 20% advance escrow</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-2 text-xs font-mono">
-        <a href="compare/manychat-alternative.html" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-colors">
-          Read Detailed ManyChat Alternative Breakdown →
-        </a>
-        <a href="compare/wati-alternative.html" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition-colors">
-          Read Detailed WATI Alternative Breakdown →
-        </a>
-      </div>
-
-    </section>
-
-    <!-- HIGH-CONVERTING 3-TIER PRICING GRID -->
-    <section id="pricing" class="space-y-8 pt-6 relative">
-      <span id="surat-pricing" class="absolute -top-24"></span>
-      
-      <div class="text-center max-w-2xl mx-auto space-y-2">
-        <span class="text-xs font-mono text-emerald-400 uppercase font-bold tracking-wider">Transparent Investment</span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white">3 Verified B2B Subscription Tiers</h2>
-        <p class="text-xs sm:text-sm text-slate-400">Strict 20% advance booking model. Pay the remaining 80% strictly post-launch after live verification.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Tier 1: Starter -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-4">
-            <div class="text-xs font-mono font-bold text-slate-400 uppercase">Starter Tier</div>
-            <div class="text-3xl sm:text-4xl font-black text-white">
-              ₹12,499<span class="text-xs text-slate-400 font-normal"> / month</span>
-            </div>
-            
-            <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 font-bold">
-              20% Advance: ₹2,499 to Book
-              <div class="text-[10px] text-slate-400 font-normal mt-0.5">Remaining ₹10,000 payable post-launch</div>
-            </div>
-
-            <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 1 Meta Ad Page Integration</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Up to 500 Qualified Leads / Month</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Basic Broker Shield (0.05s Auto-Hide)</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Real-time Telegram Notifications</li>
-              <li class="flex items-center gap-2 text-slate-500"><i class="fa-solid fa-xmark"></i> Catalog &amp; Ex-Factory Studio</li>
-            </ul>
-          </div>
-
-          <button onclick="openBookingModal('Starter Tier', 12499, 2499)" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-            Select Starter Tier
-          </button>
-        </div>
-
-        <!-- Tier 2: Surat Pro (Featured) -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-emerald-500/50 bg-emerald-950/10 relative flex flex-col justify-between space-y-6 glow-emerald">
-          <div class="absolute -top-3 right-6 px-3 py-1 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-black uppercase tracking-wider">
-            Most Popular in Surat
-          </div>
-
-          <div class="space-y-4">
-            <div class="text-xs font-mono font-bold text-emerald-400 uppercase">Surat Pro Tier</div>
-            <div class="text-3xl sm:text-4xl font-black text-white">
-              ₹29,999<span class="text-xs text-slate-400 font-normal"> / month</span>
-            </div>
-            
-            <div class="p-3.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-xs font-mono text-emerald-300 font-bold">
-              20% Advance: ₹5,999 to Book
-              <div class="text-[10px] text-slate-300 font-normal mt-0.5">Remaining ₹24,000 payable post-launch</div>
-            </div>
-
-            <ul class="space-y-2.5 text-xs text-slate-200 pt-2">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Up to 3 Meta Ad Pages</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Up to 2,500 Qualified Leads / Month</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Multi-Dialect (Gujarati, Hindi, English)</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Low-Code Catalog &amp; Ex-Factory Studio</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Client Portal with PIN Access</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Telegram Push + 1-Click WhatsApp Link</li>
-            </ul>
-          </div>
-
-          <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-emerald-400 hover:brightness-110 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all active:scale-95 cursor-pointer">
-            Select Surat Pro Tier
-          </button>
-        </div>
-
-        <!-- Tier 3: Enterprise -->
-        <div class="glass p-6 sm:p-8 rounded-2xl border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-4">
-            <div class="text-xs font-mono font-bold text-slate-400 uppercase">Enterprise Tier</div>
-            <div class="text-3xl sm:text-4xl font-black text-white">
-              ₹64,999<span class="text-xs text-slate-400 font-normal"> / month</span>
-            </div>
-            
-            <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-400 font-bold">
-              20% Advance: ₹13,000 to Book
-              <div class="text-[10px] text-slate-400 font-normal mt-0.5">Remaining ₹51,999 payable post-launch</div>
-            </div>
-
-            <ul class="space-y-2.5 text-xs text-slate-300 pt-2">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Unlimited Meta Pages &amp; Accounts</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Dedicated Meta Cloud API Webhook</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Custom ERP, Tally &amp; CRM Sync</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> Zero-latency Regex Shield</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> 24/7 Dedicated WhatsApp SLA &amp; Support</li>
-            </ul>
-          </div>
-
-          <button onclick="openBookingModal('Enterprise Tier', 64999, 13000)" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer">
-            Select Enterprise Tier
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Surat 48-Hour Live Proof Guarantee -->
-      <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-950/40 via-slate-900 to-emerald-950/40 border border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl shrink-0">
-            <i class="fa-solid fa-handshake-simple"></i>
-          </div>
-          <div>
-            <h4 class="text-base font-bold text-white">100% Risk-Free 48-Hour Live Proof Guarantee</h4>
-            <p class="text-xs text-slate-300 mt-0.5">If our AI agent fails to auto-hide competitor broker numbers or qualify real buyers on your live Meta ad campaigns, your 20% advance is refunded immediately with zero questions.</p>
-          </div>
-        </div>
-        <a href="https://t.me/Aassqqee_bot" target="_blank" class="shrink-0 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-mono text-emerald-400 border border-slate-700 flex items-center gap-2">
-          <span>Telegram Hotline: @Aassqqee_bot</span>
-          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-        </a>
-      </div>
-
-    </section>
-
-    <!-- FAQ SECTION -->
-    <section class="space-y-6 max-w-4xl mx-auto">
-      
-      <div class="text-center space-y-2">
-        <span class="text-xs font-mono text-brand-cyan uppercase font-bold tracking-wider">Common Questions</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Frequently Asked Questions</h2>
-        <p class="text-xs text-slate-400">Everything you need to know about setting up your autonomous agent.</p>
-      </div>
-
-      <div class="space-y-3">
-        <div class="glass p-5 rounded-xl border-slate-800 space-y-2">
-          <h3 class="text-sm sm:text-base font-bold text-white flex items-center justify-between">
-            <span>How does the agent hide competitor broker comments in 0.05 seconds?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
-          </h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Algorise AI establishes a persistent, high-frequency Meta Graph API webhook subscription. As soon as a user submits a comment on your Facebook or Instagram ad, our regex engine detects phone number patterns (10-digit, +91, space-separated) and immediately executes an automated Graph API mutation to set the comment to <code class="text-brand-cyan font-mono">is_hidden: true</code> before competitors can scrape it.
-          </p>
-        </div>
-
-        <div class="glass p-5 rounded-xl border-slate-800 space-y-2">
-          <h3 class="text-sm sm:text-base font-bold text-white flex items-center justify-between">
-            <span>Can the agent speak natural Surati Gujarati and Hindi?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
-          </h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Yes. Unlike generic chatbot builders, Algorise AI is specifically calibrated with regional trade datasets, allowing it to converse naturally in Gujarati, Hindi, and English while understanding local commercial terms like Taako, Loom rate, Cut, Carat, and Ex-factory pricing.
-          </p>
-        </div>
-
-        <div class="glass p-5 rounded-xl border-slate-800 space-y-2">
-          <h3 class="text-sm sm:text-base font-bold text-white flex items-center justify-between">
-            <span>Why do we charge a 20% advance booking fee?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
-          </h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            The 20% advance (₹2,499 for Starter, ₹5,999 for Pro, ₹13,000 for Enterprise) reserves your engineering onboarding window and provisions your dedicated Meta Cloud API and Telegram webhooks. You only pay the remaining 80% balance post-launch after you inspect the agent working live on your page.
-          </p>
-        </div>
-
-        <div class="glass p-5 rounded-xl border-slate-800 space-y-2">
-          <h3 class="text-sm sm:text-base font-bold text-white flex items-center justify-between">
-            <span>How fast can we go live?</span>
-            <i class="fa-solid fa-chevron-down text-xs text-slate-400"></i>
-          </h3>
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Turnaround is strictly within 24 to 48 hours of receiving your catalog or price list and Meta Page connection.
-          </p>
+        <div>
+          <b>24/7</b>
+          <span>Live Lead Agent</span>
         </div>
       </div>
-
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-800/80 bg-slate-950 py-12 px-4 sm:px-8 text-slate-400 text-sm mt-auto">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-      
-      <div>
-        <div class="flex items-center gap-2 mb-3">
-          <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-brand-cyan to-emerald-400 flex items-center justify-center text-slate-950 font-black text-xs">A</div>
-          <span class="font-extrabold text-white text-base">ALGORISE <span class="text-brand-cyan">AI</span></span>
-        </div>
-        <p class="text-xs text-slate-400 leading-relaxed mb-4">
-          Autonomous Facebook, Instagram, and WhatsApp conversational sales agents engineered specifically for Indian B2B manufacturers and global exporters.
-        </p>
-        <span class="text-xs font-mono text-emerald-400">Surat Engineering Center • Ring Road &amp; Katargam Hub</span>
-      </div>
-
-      <div>
-        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Competitor Benchmarks</h4>
-        <ul class="space-y-2 text-xs">
-          <li><a href="compare/manychat-alternative.html" class="hover:text-brand-cyan">Best ManyChat Alternative for B2B</a></li>
-          <li><a href="compare/wati-alternative.html" class="hover:text-brand-cyan">Best WATI Alternative for Ads Defense</a></li>
-          <li><a href="#broker-shield" class="hover:text-brand-cyan">0.05s Auto-Hide Phone Shield</a></li>
-          <li><a href="dashboard.html" class="hover:text-brand-cyan">Client Portal Login</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Industry Vertical Solutions</h4>
-        <ul class="space-y-2 text-xs">
-          <li><a href="industry/textile-saree-wholesale-ai-agent.html" class="hover:text-brand-cyan">Surat Saree &amp; Textile Wholesalers</a></li>
-          <li><a href="industry/diamond-cvd-sales-agent.html" class="hover:text-brand-cyan">CVD &amp; Lab-Grown Diamond Exporters</a></li>
-          <li><a href="cocopeat.html" class="hover:text-brand-cyan">Udhna Cocopeat Factory Portal</a></li>
-          <li><a href="creator_studio.html" class="hover:text-brand-cyan">Creator Studio (10 Tools)</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-3">Transparent Booking</h4>
-        <p class="text-xs text-slate-400 mb-3">
-          Strict 20% advance booking model. The remaining 80% is payable strictly post-launch after live testing on your Meta ad campaigns.
-        </p>
-        <div class="space-y-1.5 text-xs font-mono">
-          <div class="flex justify-between border-b border-slate-800 pb-1">
-            <span>Starter (₹12,499/mo):</span>
-            <span class="text-emerald-400 font-bold">₹2,499 Adv</span>
-          </div>
-          <div class="flex justify-between border-b border-slate-800 pb-1">
-            <span>Surat Pro (₹29,999/mo):</span>
-            <span class="text-emerald-400 font-bold">₹5,999 Adv</span>
-          </div>
-          <div class="flex justify-between">
-            <span>Enterprise (₹64,999/mo):</span>
-            <span class="text-emerald-400 font-bold">₹13,000 Adv</span>
-          </div>
-        </div>
-      </div>
-
     </div>
 
-    <div class="max-w-7xl mx-auto pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
-      <span>© 2026 Algorise AI Solutions. All rights reserved. Surat, Gujarat.</span>
-      <div class="flex gap-4 mt-3 sm:mt-0 font-mono">
-        <a href="dashboard.html" class="hover:text-white">Client Portal</a>
-        <a href="field_pitch.html" class="hover:text-white">Field Pitch</a>
-        <a href="admin.html" class="hover:text-white">Owner Admin</a>
-        <a href="sitemap.xml" class="hover:text-white">Sitemap</a>
+    <!-- Hero Visual: Orbiting Rings & Core -->
+    <div class="sf-hero-visual" aria-hidden="true">
+      <div class="sf-ring sf-ring-1"></div>
+      <div class="sf-ring sf-ring-2"></div>
+      <div class="sf-ring sf-ring-3"></div>
+
+      <div class="sf-core">
+        <i class="fa-solid fa-shield-halved text-4xl text-brand-cyan"></i>
       </div>
+
+      <div class="sf-chip sf-chip-a">
+        <i class="fa-solid fa-bolt text-brand-cyan"></i> 0.048s Meta Shield
+      </div>
+      <div class="sf-chip sf-chip-b">
+        <i class="fa-solid fa-user-shield text-brand-emerald"></i> Broker Masking Active
+      </div>
+      <div class="sf-chip sf-chip-c">
+        <i class="fa-solid fa-robot text-brand-violet"></i> 100 Hero Bots Online
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 03. CORE CAPABILITIES (BENTO GRID)         -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="sf-platform">
+    <div class="sf-section-head">
+      <span class="sf-eyebrow">01 — CORE CAPABILITIES</span>
+      <h2>A single intelligent layer for your entire B2B sales lifecycle.</h2>
+      <p>Engineered from the ground up to solve the ruthless realities of paid social advertising in India's top manufacturing hubs.</p>
+    </div>
+
+    <div class="sf-feature-grid">
+      <!-- Card 1 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-solid fa-shield-cat text-xl"></i>
+        </div>
+        <h3>0.048s Meta Ad Shield</h3>
+        <p>When buyers drop phone numbers on your Facebook or Instagram ad posts, competitor brokers scrape them in seconds. Algorise AI intercepts and auto-hides them in sub-0.05s.</p>
+        <a class="sf-card-link" href="#simulation">
+          See live test <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-solid fa-language text-xl"></i>
+        </div>
+        <h3>Surati Gujarati &amp; Hindi NLP</h3>
+        <p>Trained on regional trade dialects. Effortlessly parses "Bhai 500 piece no bhav bolo", "ex-factory rate", "sample courier moko", and diamond/textile industry terminology.</p>
+        <a class="sf-card-link" href="#sf-journey">
+          Regional specs <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+        </div>
+        <h3>Instant WhatsApp &amp; DM Dispatch</h3>
+        <p>Automatically triggers a personalized WhatsApp message or Messenger DM with your PDF product catalog, pricing breakdown, and minimum order specs within 10 seconds.</p>
+        <a class="sf-card-link" href="dashboard.html">
+          Handoff workflow <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-brands fa-telegram text-xl"></i>
+        </div>
+        <h3>2-Way Telegram Owner Proxy</h3>
+        <p>Receive hot qualified purchase orders directly on your Telegram bot (<span class="text-brand-cyan">@Aassqqee_bot</span>). Reply directly in Telegram—the buyer receives your message in Messenger.</p>
+        <a class="sf-card-link" href="dashboard.html">
+          Explore bot proxy <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-solid fa-microchip text-xl"></i>
+        </div>
+        <h3>100 Hero Bots Library</h3>
+        <p>Pre-built, pre-trained autonomous agents for Sarees, Diamonds, Real Estate, Cocopeat, Chemicals, Engineering CNC, and D2C brands. Ready to launch with zero prompt training.</p>
+        <a class="sf-card-link" href="#bots">
+          Browse 100 bots <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="sf-card">
+        <div class="sf-card-icon">
+          <i class="fa-solid fa-chart-line text-xl"></i>
+        </div>
+        <h3>Real-Time Revenue Analytics</h3>
+        <p>Monitor pipeline value protected in INR, comment masking latency logs, qualified buyers captured, and ROAS enhancement metrics in your live unified console.</p>
+        <a class="sf-card-link" href="dashboard.html">
+          Open live console <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 04. LIVE COMMENT SIMULATOR                 -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="simulation">
+    <div class="sf-section-head">
+      <span class="sf-eyebrow">02 — LIVE COMMENT SIMULATION</span>
+      <h2>Watch the defense shield &amp; autonomous agent in action.</h2>
+      <p>Select an industry sector below to simulate an incoming public ad comment and see how Algorise AI neutralizes broker hijacking and dispatches the sales handoff in under 0.05 seconds.</p>
+    </div>
+
+    <!-- Simulator Tabs -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8 max-w-3xl">
+      <button id="simTab-textile" onclick="switchSim('textile')" class="py-3 px-4 rounded-xl bg-brand-cyan/20 border border-brand-cyan text-brand-cyan font-bold transition-all text-center flex items-center justify-center gap-2">
+        <i class="fa-solid fa-shirt"></i> Textile &amp; Sarees (Surat)
+      </button>
+      <button id="simTab-diamond" onclick="switchSim('diamond')" class="py-3 px-4 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white font-bold transition-all text-center flex items-center justify-center gap-2">
+        <i class="fa-regular fa-gem"></i> CVD &amp; Lab-Grown Diamonds
+      </button>
+      <button id="simTab-realty" onclick="switchSim('realty')" class="py-3 px-4 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white font-bold transition-all text-center flex items-center justify-center gap-2">
+        <i class="fa-solid fa-building"></i> Luxury Real Estate (Vesu)
+      </button>
+    </div>
+
+    <!-- Simulator Console Display -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-slate-950/70 border border-brand-cyan/20 rounded-2xl p-6 lg:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+      <!-- Glow accent -->
+      <div class="absolute -top-24 -right-24 w-60 h-60 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Left Column: Raw Public Comment Intercept -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div class="text-xs font-mono text-slate-400 flex items-center gap-2" id="simCommentSource">
+            <i class="fa-brands fa-facebook text-blue-400"></i> Public Meta Ad Comment (Ring Road Saree Ad)
+          </div>
+          <span class="text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full flex items-center gap-1.5" id="simLatencyBadge">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 0.048s EXECUTION
+          </span>
+        </div>
+
+        <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-4 text-sm font-sans leading-relaxed text-slate-200" id="simCommentText">
+          <strong>Kishanbhai (Rajkot Wholesaler):</strong> "Bhai aa Dola Silk saree ma minimum order ketlo che? 500 piece no ex-factory rate kaho. Mara number par sample photo moko 98241-XXXXX."
+        </div>
+
+        <div class="bg-rose-500/10 border border-rose-500/25 rounded-xl p-4 text-xs font-mono text-rose-300">
+          <div class="font-bold mb-1 flex items-center gap-1.5 text-rose-400">
+            <i class="fa-solid fa-shield-virus"></i> BROKER THEFT RISK ELIMINATED:
+          </div>
+          <div id="simShieldDesc">
+            Kishanbhai's phone number is masked from public view within 0.048s. Competitor brokers in Millennium Market cannot scrape his contact info or hijack your lead.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Autonomous Qualification & Handoff -->
+      <div class="space-y-4">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+          <div class="text-xs font-mono text-brand-cyan flex items-center gap-2">
+            <i class="fa-solid fa-robot"></i> AUTONOMOUS SALES AGENT DISPATCH
+          </div>
+          <span class="text-xs font-mono bg-brand-cyan/10 text-brand-cyan border border-brand-cyan/30 px-2.5 py-1 rounded-full">
+            INSTANT HANDOFF
+          </span>
+        </div>
+
+        <div class="bg-slate-900/90 border border-brand-cyan/20 rounded-xl p-4 text-sm font-sans leading-relaxed text-slate-200 space-y-2">
+          <div class="text-xs text-brand-cyan font-mono font-bold flex items-center gap-1.5">
+            <i class="fa-brands fa-whatsapp text-emerald-400"></i> WhatsApp &amp; Telegram Push:
+          </div>
+          <p class="text-xs text-slate-300" id="simReplyDesc">
+            Buyer receives private WhatsApp catalog in Surati Gujarati. Owner phone gets instant Telegram alert with Kishanbhai's 500-piece intent and 1-click dial link.
+          </p>
+        </div>
+
+        <div class="bg-emerald-500/10 border border-emerald-500/25 rounded-xl p-4 text-xs font-mono text-emerald-300">
+          <div class="font-bold mb-1 flex items-center gap-1.5 text-emerald-400">
+            <i class="fa-solid fa-check-double"></i> RESULT:
+          </div>
+          <div>
+            100% of high-intent wholesale margin captured. Zero broker commissions paid. Lead directly locked into business owner CRM.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 05. DUAL JOURNEY SPLIT                     -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="sf-journey">
+    <div class="sf-section-head">
+      <span class="sf-eyebrow">03 — DUAL ARCHITECTURE</span>
+      <h2>One unified platform. Two specialized journeys.</h2>
+      <p>Whether you run a high-volume manufacturing mill in Surat or export high-ticket parcels globally, Algorise AI tunes its neural pathways to your exact commercial model.</p>
+    </div>
+
+    <div class="sf-journey-grid">
+      <!-- Journey 1: Regional Manufacturers -->
+      <article class="sf-journey">
+        <span class="sf-journey-tag">
+          <i class="fa-solid fa-industry text-brand-cyan"></i> FOR SURAT &amp; REGIONAL MANUFACTURERS
+        </span>
+        <h3>Protect your local margin from aggressive brokers.</h3>
+        <ul>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Zero Broker Leakages:</strong> Phone numbers left on ad comments hidden within 0.05 seconds.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Native Gujarati &amp; Hindi Dialogue:</strong> Understands trade jargon, ex-factory rates, and minimum order queries.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Telegram Instant Push:</strong> Alerts the business owner directly on phone with 1-click dial links.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Turnkey Onboarding:</strong> Connect your Meta page in 3 minutes without technical overhead.</span>
+          </li>
+        </ul>
+        <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="sf-btn-primary sm">
+          Claim Surat Founder Slot <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+        </button>
+      </article>
+
+      <!-- Journey 2: Global Exporters -->
+      <article class="sf-journey alt">
+        <span class="sf-journey-tag">
+          <i class="fa-solid fa-globe text-brand-violet"></i> FOR GLOBAL EXPORTERS &amp; COMMERCE
+        </span>
+        <h3>Scale international pipeline with algorithmic precision.</h3>
+        <ul>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Multi-Currency Qualification:</strong> Auto-qualifies buyers in USD, EUR, AED with live conversion logic.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Multi-Page Synchronization:</strong> Defend dozens of ad accounts across Instagram, Facebook, and Messenger.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>Enterprise CRM &amp; Webhook Routing:</strong> Push verified leads into Salesforce, Zoho, HubSpot, or custom ERPs.</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+            <span><strong>High-Capacity Cluster:</strong> Dedicated cloud worker queue with 99.9% uptime SLA.</span>
+          </li>
+        </ul>
+        <button onclick="openBookingModal('Enterprise Scale Tier', 69999, 14999)" class="sf-btn-primary sm">
+          Schedule Enterprise Setup <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+        </button>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 06. 100 HERO BOTS SUITE PREVIEW            -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="bots">
+    <div class="sf-section-head">
+      <span class="sf-eyebrow">04 — 100 HERO BOTS SUITE</span>
+      <h2>Pre-trained autonomous agents ready for instant deployment.</h2>
+      <p>Every industry has unique conversational dynamics. Browse our catalog of autonomous agents equipped with domain knowledge, catalog structures, and qualification protocols.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Bot 1 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-brand-cyan/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-brand-cyan/10 text-brand-cyan px-2.5 py-1 rounded-md font-bold">#TEXTILE-01</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-brand-cyan transition-colors mb-2">Saree &amp; Fabric Wholesaler Bot</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Captures minimum order quantity (MOQ), color palette requests, and delivers ex-factory PDF catalog in Surati Gujarati &amp; Hindi.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.048s</span>
+          <a href="dashboard.html" class="text-brand-cyan font-bold hover:underline">Deploy Bot ➔</a>
+        </div>
+      </div>
+
+      <!-- Bot 2 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-brand-violet/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-brand-violet/10 text-brand-violet px-2.5 py-1 rounded-md font-bold">#DIAMOND-04</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-brand-violet transition-colors mb-2">CVD &amp; Lab-Grown Diamond Bot</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Interprets 4Cs (Carat, Cut, Color, Clarity), verifies IGI/GIA certificate requirements, and routes high-value parcels to WhatsApp.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.042s</span>
+          <a href="dashboard.html" class="text-brand-violet font-bold hover:underline">Deploy Bot ➔</a>
+        </div>
+      </div>
+
+      <!-- Bot 3 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-brand-emerald/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-brand-emerald/10 text-brand-emerald px-2.5 py-1 rounded-md font-bold">#REALTY-07</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-brand-emerald transition-colors mb-2">Vesu Luxury Real Estate Closer</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Screens high-net-worth 3BHK/4BHK inquiries, masks doctor and industrialist phone numbers, and schedules VIP site visits.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.051s</span>
+          <a href="dashboard.html" class="text-brand-emerald font-bold hover:underline">Deploy Bot ➔</a>
+        </div>
+      </div>
+
+      <!-- Bot 4 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-amber-400/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-amber-400/10 text-amber-400 px-2.5 py-1 rounded-md font-bold">#AGRI-12</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-amber-400 transition-colors mb-2">Cocopeat &amp; Agricultural Bulk Bot</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Calculates bulk tonnage, answers Low-EC vs High-EC queries, and coordinates 5kg block sample dispatch for wholesale nurseries.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.046s</span>
+          <a href="cocopeat.html" class="text-amber-400 font-bold hover:underline">View Cocopeat ➔</a>
+        </div>
+      </div>
+
+      <!-- Bot 5 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-brand-cyan/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-brand-cyan/10 text-brand-cyan px-2.5 py-1 rounded-md font-bold">#CHEM-19</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-brand-cyan transition-colors mb-2">Chemical &amp; Dyes Procurement Bot</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Handles reactive dyes, industrial solvents, and chemical MSDS data sheets with barrel-level pricing calculators.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.049s</span>
+          <a href="dashboard.html" class="text-brand-cyan font-bold hover:underline">Deploy Bot ➔</a>
+        </div>
+      </div>
+
+      <!-- Bot 6 -->
+      <div class="bg-slate-900/60 border border-slate-800 hover:border-brand-violet/40 rounded-2xl p-5 backdrop-blur-md transition-all group">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono bg-brand-violet/10 text-brand-violet px-2.5 py-1 rounded-md font-bold">#ENG-25</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </div>
+        <h4 class="text-base font-bold text-white group-hover:text-brand-violet transition-colors mb-2">Precision CNC &amp; Job-Work Bot</h4>
+        <p class="text-xs text-slate-400 leading-relaxed mb-4">Accepts CAD/technical drawing attachments, qualifies tolerance requirements, and estimates batch lead times autonomously.</p>
+        <div class="flex items-center justify-between text-xs text-slate-500 font-mono">
+          <span>Latency: 0.044s</span>
+          <a href="dashboard.html" class="text-brand-violet font-bold hover:underline">Deploy Bot ➔</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="creator_studio.html" class="sf-btn-ghost">
+        <i class="fa-solid fa-cubes text-brand-cyan"></i> Explore Full 100 Hero Bots Catalog
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 07. IMPACT STATS BAR                       -->
+  <!-- ========================================== -->
+  <section class="sf-stats" id="sf-stats">
+    <div class="sf-stats-inner">
+      <div>
+        <b>₹4.8 Cr+</b>
+        <span>Pipeline Protected</span>
+      </div>
+      <div>
+        <b>14,200+</b>
+        <span>Comments Shielded</span>
+      </div>
+      <div>
+        <b>99.2%</b>
+        <span>Dialect Accuracy</span>
+      </div>
+      <div>
+        <b>0.048s</b>
+        <span>Average Masking Latency</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 08. TRANSPARENT PRICING & BOOKING          -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="pricing">
+    <div class="sf-section-head text-center mx-auto">
+      <span class="sf-eyebrow">05 — TRANSPARENT PRICING</span>
+      <h2>Lock in early founder access before public rollout.</h2>
+      <p>Direct B2B investment with guaranteed ROI. Prevent a single poached wholesale order and your subscription pays for itself 10x over.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Tier 1: Starter -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+        <div>
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider font-bold">STARTER TIER</span>
+          <div class="my-4">
+            <span class="text-4xl font-extrabold text-white font-mono">₹12,499</span>
+            <span class="text-xs text-slate-400"> / month</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-6">Ideal for single-product brands and emerging sellers testing paid Meta ads.</p>
+
+          <ul class="space-y-3 text-xs text-slate-300 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> 1 Connected Meta Facebook Page</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Sub-0.05s Auto-Hide Shield</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Up to 1,500 comments/month</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Standard WhatsApp Handoff</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> 5 Hero Bot Templates</li>
+          </ul>
+        </div>
+
+        <button onclick="openBookingModal('Starter Tier', 12499, 2499)" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all border border-slate-700">
+          Reserve with ₹2,499 Advance
+        </button>
+      </div>
+
+      <!-- Tier 2: Surat Pro (Featured) -->
+      <div class="bg-gradient-to-b from-brand-cyan/15 via-slate-900/90 to-brand-violet/10 border-2 border-brand-cyan/60 rounded-2xl p-8 backdrop-blur-xl flex flex-col justify-between shadow-2xl relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void text-[10px] font-extrabold tracking-widest uppercase px-3 py-1 rounded-full shadow-lg">
+          SURAT FOUNDER FAVORITE
+        </div>
+
+        <div>
+          <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-bold">SURAT PRO TIER</span>
+          <div class="my-4">
+            <span class="text-4xl font-extrabold text-white font-mono">₹29,999</span>
+            <span class="text-xs text-slate-400"> / month</span>
+          </div>
+          <p class="text-xs text-slate-300 mb-6">Designed for Textile Mills, Diamond Exporters, and High-Traffic Manufacturers.</p>
+
+          <ul class="space-y-3 text-xs text-slate-200 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Up to 3 Connected Meta Pages</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Unlimited Sub-0.05s Auto-Hide Shield</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Surati Gujarati, Hindi &amp; English NLP</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> 2-Way Telegram Live Proxy (@Aassqqee_bot)</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> All 100 Hero Bots Included</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Priority Onboarding &amp; Setup Call</li>
+          </ul>
+        </div>
+
+        <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-extrabold text-xs transition-all shadow-lg hover:shadow-brand-cyan/40 hover:scale-[1.02]">
+          Reserve Pro with ₹5,999 Advance
+        </button>
+      </div>
+
+      <!-- Tier 3: Enterprise Scale -->
+      <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-8 backdrop-blur-md flex flex-col justify-between hover:border-slate-700 transition-all">
+        <div>
+          <span class="text-xs font-mono text-brand-violet uppercase tracking-wider font-bold">ENTERPRISE SCALE</span>
+          <div class="my-4">
+            <span class="text-4xl font-extrabold text-white font-mono">₹69,999</span>
+            <span class="text-xs text-slate-400"> / month</span>
+          </div>
+          <p class="text-xs text-slate-400 mb-6">For multi-brand conglomerates, major real estate builders, and global exporters.</p>
+
+          <ul class="space-y-3 text-xs text-slate-300 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-violet"></i> Unlimited Meta Pages &amp; Ad Accounts</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-violet"></i> Custom Trade Dialect Model Fine-Tuning</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-violet"></i> Custom ERP, CRM &amp; Webhook Integration</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-violet"></i> Dedicated Solutions Architect</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-violet"></i> 99.9% Uptime Cloud SLA</li>
+          </ul>
+        </div>
+
+        <button onclick="openBookingModal('Enterprise Scale Tier', 69999, 14999)" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all border border-slate-700">
+          Reserve with ₹14,999 Advance
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 09. FUTURISTIC CLOSING BANNER              -->
+  <!-- ========================================== -->
+  <section class="sf-closing">
+    <div class="sf-closing-inner">
+      <span class="sf-eyebrow">READY TO DEPLOY ·</span>
+      <h2>Stop letting competitor brokers poach your ad buyers.</h2>
+      <p>Whether you need sub-0.05s comment defense, native dialect qualification, or a direct Telegram proxy to close deals on the fly — Algorise AI is live and ready.</p>
+      <a class="sf-btn-primary lg" href="dashboard.html">
+        Launch Console Now <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 10. FUTURISTIC COSMIC FOOTER               -->
+  <!-- ========================================== -->
+  <footer class="sf-footer">
+    <div class="sf-footer-inner">
+      <div class="sf-footer-brand">
+        <span class="sf-brand-glyph">◈</span>
+        <div>
+          <strong>ALGORISE AI SOLUTIONS</strong>
+          <p>The autonomous B2B social commerce and ad lead defense operating system for India's premier manufacturing and export hubs.</p>
+        </div>
+      </div>
+
+      <div class="sf-footer-cols">
+        <div>
+          <span>PLATFORM</span>
+          <a href="#sf-platform">Meta Ad Shield</a>
+          <a href="#simulation">Live Simulator</a>
+          <a href="#bots">100 Hero Bots</a>
+          <a href="dashboard.html">Live Console</a>
+        </div>
+        <div>
+          <span>SOLUTIONS</span>
+          <a href="cocopeat.html">Cocopeat &amp; Agri</a>
+          <a href="#sf-journey">Textile &amp; Sarees</a>
+          <a href="#sf-journey">CVD Diamonds</a>
+          <a href="field_pitch.html">Field Pitch Deck</a>
+        </div>
+        <div>
+          <span>ENTERPRISE</span>
+          <a href="admin.html">Admin Portal</a>
+          <a href="dashboard.html">System Telemetry</a>
+          <a href="#pricing">Founder Pricing</a>
+          <a href="mailto:support@algorise-ai.com">Engineering Desk</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sf-footer-bottom">
+      <span>© 2026 ALGORISE AI SOLUTIONS · SURAT, GUJARAT, INDIA</span>
+      <span>AUTONOMOUS COMMERCE INFRASTRUCTURE</span>
     </div>
   </footer>
 
   <!-- ========================================== -->
-  <!-- BOOKING MODAL (Connected to Telegram & API)-->
+  <!-- 11. LIVE BOOKING MODAL (BACKEND CONNECTED) -->
   <!-- ========================================== -->
-  <div id="bookingModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="glass max-w-lg w-full rounded-2xl border-brand-cyan/40 p-6 sm:p-8 space-y-5 bg-slate-900 shadow-2xl relative">
-      <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg cursor-pointer">
-        <i class="fa-solid fa-xmark"></i>
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-brand-cyan/30 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative text-left">
+      <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors">
+        <i class="fa-solid fa-xmark text-lg"></i>
       </button>
 
-      <div class="space-y-1">
-        <span class="text-xs font-mono text-emerald-400 uppercase font-bold tracking-wider">Reserve Your 20% Advance Slot</span>
-        <h3 id="modalPlanTitle" class="text-xl font-black text-white">Surat Pro Tier</h3>
-        <p class="text-xs text-slate-300">Enter your business details. Our engineering team will review your Meta page and dispatch setup credentials.</p>
+      <div class="mb-4">
+        <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-bold">CONFIRM RESERVATION</span>
+        <h3 class="text-xl font-bold text-white mt-1" id="modalPlanTitle">Surat Pro Tier</h3>
+        <div class="flex items-center gap-3 mt-2 text-xs font-mono">
+          <span class="text-slate-400">Total: <strong id="modalPlanTotal" class="text-white">₹29,999</strong></span>
+          <span class="text-brand-emerald bg-brand-emerald/10 border border-brand-emerald/30 px-2 py-0.5 rounded" id="modalPlanAdvance">₹5,999 to Book</span>
+        </div>
       </div>
 
-      <!-- Advance Pricing Breakdown Box -->
-      <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1 text-xs font-mono">
-        <div class="flex justify-between text-slate-300">
-          <span>Monthly Subscription:</span>
-          <span id="modalPlanTotal" class="text-white font-bold">₹29,999</span>
-        </div>
-        <div class="flex justify-between text-emerald-400 font-bold border-t border-slate-800 pt-1">
-          <span>20% Booking Advance:</span>
-          <span id="modalPlanAdvance">₹5,999 to Book</span>
-        </div>
-        <div class="text-[10px] text-slate-400 pt-0.5">Remaining 80% balance is payable strictly post-launch.</div>
-      </div>
-
-      <!-- Form -->
-      <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-3.5 text-xs">
+      <!-- Booking Form -->
+      <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-3.5">
         <div>
-          <label class="block text-slate-300 font-medium mb-1">Business / Company Name *</label>
-          <input type="text" id="bizName" required placeholder="e.g. Laxmipati Sarees or Shree Ramkrishna Exports" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Company / Business Name *</label>
+          <input type="text" id="bizName" required placeholder="e.g. Radhe Silk Mills / Varachha Gems" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block text-slate-300 font-medium mb-1">Owner / Contact Name *</label>
-            <input type="text" id="ownerName" required placeholder="e.g. Rajeshbhai Patel" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Owner / Founder Name *</label>
+            <input type="text" id="ownerName" required placeholder="e.g. Ramesh Patel" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
           </div>
           <div>
-            <label class="block text-slate-300 font-medium mb-1">WhatsApp Mobile *</label>
-            <input type="tel" id="whatsappNum" required placeholder="+91 98251 XXXXX" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
+            <label class="block text-xs font-semibold text-slate-300 mb-1">WhatsApp Phone *</label>
+            <input type="tel" id="whatsappNum" required placeholder="+91 98250 12345" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
           </div>
         </div>
 
-        <div>
-          <label class="block text-slate-300 font-medium mb-1">Industry Vertical *</label>
-          <select id="industryType" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-brand-cyan">
-            <option value="Textile & Sarees (Ring Road)">Textile &amp; Sarees (Ring Road / Millennium)</option>
-            <option value="Diamonds & CVD (Katargam)">Diamonds &amp; CVD (Katargam / Mahidharpura)</option>
-            <option value="Real Estate & Infrastructure">Real Estate &amp; Construction (Vesu / Pal)</option>
-            <option value="Manufacturing / Industrial">Manufacturing / Wholesale (GIDC / Udhna)</option>
-            <option value="Other Commercial">Other Commercial Enterprise</option>
-          </select>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Industry Vertical *</label>
+            <select id="industryType" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white focus:outline-none focus:border-brand-cyan">
+              <option value="Textile & Sarees">Textile &amp; Sarees (Surat)</option>
+              <option value="Diamonds & Jewelry">Diamonds &amp; Jewelry</option>
+              <option value="Real Estate">Luxury Real Estate</option>
+              <option value="Cocopeat & Agriculture">Cocopeat &amp; Agriculture</option>
+              <option value="Chemicals & Dyes">Chemicals &amp; Dyes</option>
+              <option value="Other Manufacturing">Other B2B Manufacturing</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Facebook Page URL (Optional)</label>
+            <input type="url" id="pageUrl" placeholder="https://facebook.com/yourpage" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3.5 py-2 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
+          </div>
         </div>
 
-        <div>
-          <label class="block text-slate-300 font-medium mb-1">Facebook / Instagram Page Link (Optional)</label>
-          <input type="url" id="pageUrl" placeholder="https://facebook.com/yourbusiness" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:border-brand-cyan" />
-        </div>
+        <p class="text-[11px] text-slate-400 leading-normal">
+          * By submitting, your booking token is created and sent to our live Render API. Our engineering desk will connect via WhatsApp within 15 minutes to configure your Meta token.
+        </p>
 
-        <button type="submit" id="bookingSubmitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-emerald-400 hover:brightness-110 text-slate-950 font-black text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2">
-          <i class="fa-solid fa-lock"></i>
-          <span id="bookingSubmitText">Confirm Booking with 20% Advance</span>
+        <button type="submit" id="bookingSubmitBtn" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-extrabold text-xs transition-all shadow-lg hover:shadow-brand-cyan/40 hover:scale-[1.01]">
+          <span id="bookingSubmitText">Confirm Booking with ₹5,999 Advance</span>
         </button>
       </form>
 
-      <div id="bookingSuccessBox" class="hidden text-center p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 space-y-2">
-        <i class="fa-solid fa-circle-check text-emerald-400 text-3xl"></i>
-        <h4 class="text-sm font-bold text-white">Booking Request Received!</h4>
-        <p class="text-xs text-slate-300">Your reservation has been pushed directly to our engineering team on Telegram. We will WhatsApp your advance onboarding receipt in under 15 minutes.</p>
+      <!-- Success State -->
+      <div id="bookingSuccessBox" class="hidden text-center py-6 space-y-3">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto text-xl">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="text-base font-bold text-white">Slot Reserved Successfully!</h4>
+        <p class="text-xs text-slate-300 max-w-sm mx-auto">
+          Your onboarding ticket has been registered on the Algorise AI cloud engine. You will receive an instant WhatsApp confirmation and setup instructions.
+        </p>
+        <button onclick="closeBookingModal()" class="py-2 px-6 rounded-lg bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 transition-colors">
+          Close Window
+        </button>
       </div>
-
     </div>
   </div>
 
-  <!-- INTERACTIVE CLIENT-SIDE JAVASCRIPT -->
+  <!-- ========================================== -->
+  <!-- 12. JAVASCRIPT LOGIC & API DISPATCH        -->
+  <!-- ========================================== -->
   <script>
     // Simulator data
     const SIM_DATA = {
@@ -922,7 +1610,7 @@
 
       document.getElementById('simCommentSource').innerHTML = data.source;
       document.getElementById('simCommentText').innerHTML = data.comment;
-      document.getElementById('simLatencyBadge').innerText = data.latency;
+      document.getElementById('simLatencyBadge').innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span> ${data.latency}`;
       document.getElementById('simShieldDesc').innerText = data.shield;
       document.getElementById('simReplyDesc').innerText = data.reply;
 
@@ -930,9 +1618,9 @@
       ['textile', 'diamond', 'realty'].forEach(tab => {
         const btn = document.getElementById(`simTab-${tab}`);
         if (tab === key) {
-          btn.className = "py-2.5 px-3 rounded-xl bg-brand-cyan/20 border border-brand-cyan text-brand-cyan transition-all text-center";
+          btn.className = "py-3 px-4 rounded-xl bg-brand-cyan/20 border border-brand-cyan text-brand-cyan font-bold transition-all text-center flex items-center justify-center gap-2";
         } else {
-          btn.className = "py-2.5 px-3 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300 hover:text-white transition-all text-center";
+          btn.className = "py-3 px-4 rounded-xl bg-slate-900/80 border border-slate-700 text-slate-300 hover:text-white font-bold transition-all text-center flex items-center justify-center gap-2";
         }
       });
     }
@@ -986,7 +1674,6 @@
       };
 
       try {
-        // Post to backend subscription endpoint on Render
         const res = await fetch(`${API_BASE}/subscribe`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -1007,7 +1694,11 @@
       document.getElementById('bookingSuccessBox').classList.remove('hidden');
       btn.disabled = false;
     }
-  </script>
 
+    // Lucide Icons initialization
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  </script>
 </body>
 </html>
