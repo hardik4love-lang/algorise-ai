@@ -346,10 +346,17 @@ def get_cors_config() -> Dict[str, Any]:
     """Get CORS configuration based on environment."""
     if settings.environment == "production":
         return {
-            "allow_origins": ["https://algorise.ai", "https://app.algorise.ai"],
+            "allow_origins": [
+                "https://algorise-ai.com",
+                "https://www.algorise-ai.com",
+                "https://api.algorise-ai.com",
+                "https://hardik4love-lang.github.io",
+                "https://algorise.ai",
+                "https://app.algorise.ai",
+            ],
             "allow_credentials": True,
             "allow_methods": ["GET", "POST", "OPTIONS"],
-            "allow_headers": ["Content-Type", "X-Algorise-Key", "Authorization"],
+            "allow_headers": ["Content-Type", "X-Algorise-Key", "Authorization", "X-Client-Pin"],
         }
     else:
         return {
