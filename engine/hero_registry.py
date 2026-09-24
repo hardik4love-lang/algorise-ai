@@ -136,6 +136,10 @@ HERO_BOT_DEFINITIONS = [
     ("grantscout", "Algorise GrantScout Academic", "Education", "NIH/NSF research grant RFP matching & initial grant proposal drafter", 0.93, 60)
 ]
 
+HERO_BOT_REGISTRY_MAP: Dict[str, tuple] = {b[0]: b for b in HERO_BOT_DEFINITIONS}
+HERO_BOT_IDS_SET = set(HERO_BOT_REGISTRY_MAP.keys())
+
+
 class HeroBotRunner:
     def __init__(self):
         self.safety_gate = AlgoriseSafetyGate()
@@ -181,12 +185,12 @@ class HeroBotRunner:
     def execute_hero_bot(self, bot_id: str, input_payload: Dict[str, Any], tuned_params: Optional[Dict[str, Any]] = None) -> BotResult:
         start_time = time.time()
         
-        # Locate definition
-        matched = [b for b in HERO_BOT_DEFINITIONS if b[0] == bot_id]
+        # Locate definition via O(1) hash map
+        matched = HERO_BOT_REGISTRY_MAP.get(bot_id)
         if not matched:
             raise ValueError(f"Bot '{bot_id}' not found in Algorise Hero Registry.")
         
-        b_id, name, sector, desc, base_conf, target_latency = matched[0]
+        b_id, name, sector, desc, base_conf, target_latency = matched
         params = tuned_params or {}
         confidence_boost = params.get("confidence_boost", 0.0)
         target_conf = min(0.999, base_conf + confidence_boost)

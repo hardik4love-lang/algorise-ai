@@ -1,0 +1,17 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+.env.*
+*.bat
+.vscode
+.idea
+*.log
+tests/
+scratch/
+deploy_to_ghpages.py
+update_domain.py
+fix_links.py

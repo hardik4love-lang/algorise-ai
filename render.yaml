@@ -15,6 +15,6 @@ services:
       - key: APP_NAME
         value: "Algorise AI Solutions"
       - key: TELEGRAM_BOT_TOKEN
-        value: "8961434797:AAHaPPybfby3G-Mj7WeJEXsAtKPna-uSPnw"
+        sync: false
       - key: TELEGRAM_CHAT_ID
-        value: "8737013099"
+        sync: false

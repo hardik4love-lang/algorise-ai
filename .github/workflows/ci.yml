@@ -1,0 +1,29 @@
+name: Algorise AI Engine CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Syntax & Import Verification
+      run: |
+        python -m py_compile engine/main.py engine/security.py engine/subscription_routes.py engine/hero_registry.py engine/scheduler.py engine/cache.py
+        python -c "from engine.main import app; print('CI VERIFICATION: App initialized successfully with', len(app.routes), 'routes')"
