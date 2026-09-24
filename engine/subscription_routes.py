@@ -54,12 +54,17 @@ def hash_pin(pin: str) -> str:
 
 
 class SubscribeRequest(BaseModel):
-    full_name: str
-    business_name: str
-    phone: str
+    full_name: Optional[str] = None
+    owner_name: Optional[str] = None
+    business_name: str = "Enterprise Client"
+    phone: Optional[str] = None
+    whatsapp: Optional[str] = None
     email: Optional[str] = None
-    plan_tier: str = Field(default="pro", description="starter, pro, enterprise")
+    plan_tier: Optional[str] = None
+    tier: Optional[str] = None
     area: Optional[str] = Field(default="Surat", description="Surat market location")
+    industry: Optional[str] = None
+    page_url: Optional[str] = None
     notes: Optional[str] = None
 
 
@@ -85,7 +90,11 @@ async def subscribe_client(payload: SubscribeRequest):
     3. Persists client & subscription in DB
     4. Dispatches instant alert to Telegram (@Aassqqee_bot)
     """
-    tier_key = payload.plan_tier.lower().strip()
+    contact_name = payload.full_name or payload.owner_name or "Valued Client"
+    contact_phone = payload.phone or payload.whatsapp or "Not provided"
+    
+    tier_raw = payload.plan_tier or payload.tier or "pro"
+    tier_key = str(tier_raw).lower().strip()
     if tier_key not in PLAN_PRICING:
         tier_key = "pro"
 
@@ -106,10 +115,10 @@ async def subscribe_client(payload: SubscribeRequest):
         # Create Client
         new_client = Client(
             id=client_id,
-            name=f"{payload.business_name} ({payload.full_name})",
+            name=f"{payload.business_name} ({contact_name})",
             tier=tier_info["name"],
             api_key_hash=api_key_hash,
-            phone=payload.phone,
+            phone=contact_phone,
             email=payload.email or f"{short_suffix}@algorise.local",
             city=payload.area or "Surat",
             pin_hash=hashed_pin,
@@ -169,9 +178,9 @@ async def subscribe_client(payload: SubscribeRequest):
         chat_id=int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")),
         sub_data={
             "client_id": client_id,
-            "client_name": payload.full_name,
+            "client_name": contact_name,
             "business_name": payload.business_name,
-            "phone": payload.phone,
+            "phone": contact_phone,
             "plan_name": tier_info["name"],
             "monthly_price": monthly_price,
             "advance_amount": advance_amount,

@@ -104,9 +104,9 @@
   </div>
 
   <script>
-    const API_BASE = window.location.origin.includes('surge.sh') 
-      ? 'https://algorise-ai-production.up.railway.app/api/v1' 
-      : '/api/v1';
+    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? 'http://localhost:8000/api/v1' 
+      : 'https://algorise-ai-backend.onrender.com/api/v1';
 
     let adminKey = localStorage.getItem('algorise_admin_key') || '';
 

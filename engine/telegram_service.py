@@ -69,6 +69,14 @@ class AlgoriseTelegramService:
             )
             with urllib.request.urlopen(req, timeout=10) as resp:
                 return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:
+            err_msg = str(e)
+            try:
+                err_msg = e.read().decode("utf-8", errors="ignore")
+            except Exception:
+                pass
+            e.close()
+            return {"ok": False, "error": err_msg}
         except Exception as e:
             return {"ok": False, "error": str(e)}
 
