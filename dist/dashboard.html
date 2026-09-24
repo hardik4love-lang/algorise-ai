@@ -433,7 +433,10 @@
 
     async function loadDashboardData(clientId) {
       try {
-        const resp = await fetch(`${API_BASE}/dashboard/${clientId}`);
+        const savedPin = localStorage.getItem('algorise_client_pin') || '';
+        const resp = await fetch(`${API_BASE}/dashboard/${clientId}?pin=${encodeURIComponent(savedPin)}`, {
+          headers: { 'X-Client-Pin': savedPin }
+        });
         if (!resp.ok) throw new Error('Failed to fetch dashboard');
         const data = await resp.json();
         renderDashboard(data);

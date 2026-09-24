@@ -117,7 +117,6 @@ async def subscribe_client(payload: SubscribeRequest):
             settings={
                 "area": payload.area,
                 "notes": payload.notes,
-                "raw_api_key": api_key,
                 "created_via": "website_booking_modal"
             }
         )
@@ -185,6 +184,7 @@ async def subscribe_client(payload: SubscribeRequest):
         "message": "Subscription initiated! Send 20% advance to activate live agent.",
         "client_id": client_id,
         "pin": pin,
+        "api_key": api_key,
         "plan_name": tier_info["name"],
         "plan_tier": tier_key,
         "monthly_price": monthly_price,
@@ -219,14 +219,24 @@ async def client_login(payload: ClientLoginRequest):
 
 
 @router.get("/dashboard/{client_id}")
-async def get_client_dashboard(client_id: str):
+async def get_client_dashboard(
+    client_id: str,
+    pin: Optional[str] = None,
+    x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
+):
     """Returns all data needed for the client's live dashboard."""
+    provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
         # Fetch client
         c_res = await session.execute(select(Client).where(Client.id == client_id))
         client = c_res.scalar_one_or_none()
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
+
+        # Object-level authorization: verify PIN if configured on client
+        if client.pin_hash and settings.environment == "production":
+            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
+                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
 
         # Fetch active subscription
         sub_res = await session.execute(
@@ -332,8 +342,13 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
 
 
 @router.post("/agent/facebook/run/{client_id}")
-async def trigger_agent_run(client_id: str):
+async def trigger_agent_run(
+    client_id: str,
+    pin: Optional[str] = None,
+    x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
+):
     """Manually triggers an autonomous agent cycle for a client."""
+    provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
         query = select(Client).where(Client.id == client_id)
         result = await session.execute(query)
@@ -341,17 +356,30 @@ async def trigger_agent_run(client_id: str):
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
+        if client.pin_hash and settings.environment == "production":
+            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
+                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
+
         page_id = client.fb_page_id or "default_page_101"
         access_token = client.fb_access_token or "simulated_token"
+        
+        sector = "textile"
+        if client.settings and isinstance(client.settings, dict):
+            sector = client.settings.get("sector") or client.settings.get("agent_rules", {}).get("sector", "textile")
 
-        run_result = fb_engine.process_client_agent_run(
-            client_id=client.id,
-            client_name=client.name,
-            business_name=client.name.split("(")[0].strip(),
-            page_id=page_id,
-            access_token=access_token,
-            sector="textile",
-            force_simulation=(access_token == "simulated_token")
+        import asyncio
+        loop = asyncio.get_running_loop()
+        run_result = await loop.run_in_executor(
+            None,
+            lambda: fb_engine.process_client_agent_run(
+                client_id=client.id,
+                client_name=client.name,
+                business_name=client.name.split("(")[0].strip(),
+                page_id=page_id,
+                access_token=access_token,
+                sector=sector,
+                force_simulation=(access_token == "simulated_token")
+            )
         )
 
         # Store detected leads in DB
@@ -454,13 +482,22 @@ class ClientRulesUpdateRequest(BaseModel):
 
 
 @router.get("/client/{client_id}/rules")
-async def get_client_rules(client_id: str):
+async def get_client_rules(
+    client_id: str,
+    pin: Optional[str] = None,
+    x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
+):
     """Fetches custom catalog rules, pricing, and sensitivity settings for client."""
+    provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
         result = await session.execute(select(Client).where(Client.id == client_id))
         client = result.scalar_one_or_none()
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
+
+        if client.pin_hash and settings.environment == "production":
+            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
+                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
 
         settings_dict = client.settings or {}
         rules = settings_dict.get("agent_rules", {

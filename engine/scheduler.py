@@ -14,11 +14,23 @@ from engine.database import db_manager
 from engine.facebook_agent import FacebookAgentEngine
 from engine.models_sqlalchemy import Client, FacebookAgentJob, Lead
 from engine.telegram_service import AlgoriseTelegramService
+from engine.logging import get_logger
 from sqlalchemy import select
 
+logger = get_logger(__name__)
 settings = get_settings()
 telegram = AlgoriseTelegramService()
 fb_engine = FacebookAgentEngine(api_version=settings.fb_graph_api_version)
+
+
+def _safe_decrypt(token: Optional[str]) -> str:
+    if not token or token == "simulated_token":
+        return token or "simulated_token"
+    try:
+        from engine.security import encryption_manager
+        return encryption_manager.decrypt(token)
+    except Exception:
+        return token
 
 
 async def run_facebook_agent_sweep():
@@ -29,19 +41,29 @@ async def run_facebook_agent_sweep():
             result = await session.execute(query)
             clients = result.scalars().all()
 
+            loop = asyncio.get_running_loop()
+
             for client in clients:
                 page_id = client.fb_page_id or f"page_{client.id}"
-                token = client.fb_access_token or "simulated_token"
+                token = _safe_decrypt(client.fb_access_token) or "simulated_token"
 
-                # Run agent for this client
-                run_res = fb_engine.process_client_agent_run(
-                    client_id=client.id,
-                    client_name=client.name,
-                    business_name=client.name.split("(")[0].strip(),
-                    page_id=page_id,
-                    access_token=token,
-                    sector="textile",
-                    force_simulation=(token == "simulated_token")
+                # Dynamic sector lookup
+                sector = "textile"
+                if client.settings and isinstance(client.settings, dict):
+                    sector = client.settings.get("sector") or client.settings.get("agent_rules", {}).get("sector", "textile")
+
+                # Run agent for this client without blocking async event loop
+                run_res = await loop.run_in_executor(
+                    None,
+                    lambda: fb_engine.process_client_agent_run(
+                        client_id=client.id,
+                        client_name=client.name,
+                        business_name=client.name.split("(")[0].strip(),
+                        page_id=page_id,
+                        access_token=token,
+                        sector=sector,
+                        force_simulation=(token == "simulated_token")
+                    )
                 )
 
                 # Persist discovered leads
@@ -74,18 +96,20 @@ async def run_facebook_agent_sweep():
                 )
                 session.add(job)
 
+        logger.info("Facebook Agent autonomous sweep cycle completed successfully")
+
     except Exception as e:
-        print(f"[SCHEDULER ERROR] Facebook Agent sweep failed: {e}")
+        logger.error("Facebook Agent sweep failed", error=str(e))
 
 
 async def start_background_scheduler_loop(interval_seconds: int = 900):
     """Asynchronous loop running agent sweeps periodically."""
-    print(f"[SCHEDULER] Facebook Agent background daemon active (interval: {interval_seconds}s)")
+    logger.info("Facebook Agent background daemon active", interval_seconds=interval_seconds)
     while True:
         try:
             await run_facebook_agent_sweep()
         except Exception as e:
-            print(f"[SCHEDULER ERROR] Loop exception: {e}")
+            logger.error("Facebook Agent scheduler loop exception", error=str(e))
         await asyncio.sleep(interval_seconds)
 
 

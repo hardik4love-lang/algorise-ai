@@ -19,7 +19,8 @@ from engine import (
     setup_logging,
 )
 from engine.config import get_settings
-from engine.hero_registry import HERO_BOT_DEFINITIONS, HeroBotRunner
+from engine.hero_registry import HERO_BOT_DEFINITIONS, HeroBotRunner, HERO_BOT_IDS_SET
+hero_runner = HeroBotRunner()
 from engine.security import (
     api_key_manager,
     audit_logger,
@@ -48,7 +49,15 @@ api_key_header = APIKeyHeader(name="X-Algorise-Key", auto_error=False)
 
 async def get_api_key(api_key: str = Depends(api_key_header)) -> str:
     """Dependency to extract API key from header."""
-    return api_key or "alg_live_test_key_9981"
+    if not api_key:
+        if settings.environment != "production":
+            return "alg_live_test_key_9981"
+        raise HTTPException(
+            status_code=401,
+            detail="Authentication failed: Missing required 'X-Algorise-Key' header",
+            headers={"WWW-Authenticate": "ApiKey"},
+        )
+    return api_key
 
 
 async def verify_api_key_dependency(api_key: str = Depends(get_api_key)) -> tuple:
@@ -242,11 +251,11 @@ async def execute_bot(
         if not valid:
             raise HTTPException(status_code=400, detail=error)
 
-    # Check in Hero 100 Registry
-    hero_ids = [b[0] for b in HERO_BOT_DEFINITIONS]
-    if bot_name in hero_ids:
-        hero_runner = HeroBotRunner()
-        result = hero_runner.execute_hero_bot(bot_name, input_payload)
+    # Check in Hero 100 Registry (O(1) set check)
+    if bot_name in HERO_BOT_IDS_SET:
+        import asyncio
+        loop = asyncio.get_running_loop()
+        result = await loop.run_in_executor(None, hero_runner.execute_hero_bot, bot_name, input_payload)
         
         # Log API call
         audit_logger.log_api_call(

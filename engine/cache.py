@@ -72,6 +72,7 @@ class RedisManager:
         try:
             value = await self.client.get(key)
             if value:
+                REDIS_OPERATIONS.labels(operation="get", status="hit").inc()
                 return json.loads(value)
             REDIS_OPERATIONS.labels(operation="get", status="miss").inc()
             return None
@@ -192,8 +193,9 @@ class RedisManager:
             return value
 
         # Compute value
-        if hasattr(factory, '__call__'):
-            value = await factory() if hasattr(factory, '__await__') else factory()
+        if callable(factory):
+            import inspect
+            value = await factory() if inspect.iscoroutinefunction(factory) else factory()
         else:
             value = factory
 

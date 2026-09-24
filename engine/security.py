@@ -38,11 +38,12 @@ class EncryptionManager:
 
     def _initialize(self) -> None:
         """Initialize Fernet with key derived from secret_key."""
-        # Derive a 32-byte key from the secret_key
+        import os
+        salt_val = os.environ.get("ENCRYPTION_SALT", "algorise-ai-production-salt-2026")
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
-            salt=b'algorise-ai-salt',  # In production, use a random salt per environment
+            salt=salt_val.encode(),
             iterations=100000,
         )
         key = base64.urlsafe_b64encode(kdf.derive(settings.secret_key.encode()))
@@ -134,6 +135,35 @@ api_key_manager = APIKeyManager()
 # RATE LIMITING
 # ============================================================================
 
+from collections import deque
+import threading
+
+class _LocalSlidingLimiter:
+    """Thread-safe in-process sliding window limiter used when Redis is unreachable."""
+    def __init__(self, limit: int = 100, window: int = 60):
+        self.limit = limit
+        self.window = window
+        self.records: Dict[str, deque] = {}
+        self.lock = threading.Lock()
+
+    def check(self, key: str, req_limit: Optional[int] = None, req_window: Optional[int] = None) -> Tuple[bool, int]:
+        now = time.time()
+        max_req = req_limit or self.limit
+        win = req_window or self.window
+        with self.lock:
+            if key not in self.records:
+                self.records[key] = deque()
+            q = self.records[key]
+            while q and q[0] < now - win:
+                q.popleft()
+            if len(q) >= max_req:
+                return False, 0
+            q.append(now)
+            return True, max(0, max_req - len(q))
+
+_local_fallback_limiter = _LocalSlidingLimiter()
+
+
 class RateLimiter:
     """Token bucket rate limiter using Redis."""
 
@@ -194,10 +224,15 @@ class RateLimiter:
                 }
                 
         except Exception as e:
-            logger.warning("Rate limiter error, allowing request", error=str(e))
-            record_error("rate_limiter_error", "security")
-            # Fail open - allow request if Redis is down
-            return True, {"remaining": limit, "reset_in": window}
+            logger.warning("Rate limiter Redis unavailable, activating in-process sliding window fallback", error=str(e))
+            record_error("rate_limiter_redis_fallback", "security")
+            allowed, rem = _local_fallback_limiter.check(key, limit, window)
+            return allowed, {
+                "remaining": rem,
+                "reset_in": window,
+                "fallback_mode": True,
+                "retry_after": 5 if not allowed else 0,
+            }
 
     async def get_rate_limit_info(self, key: str) -> Dict[str, Any]:
         """Get current rate limit info without consuming tokens."""
@@ -360,7 +395,12 @@ def get_cors_config() -> Dict[str, Any]:
         }
     else:
         return {
-            "allow_origins": ["*"],
+            "allow_origins": [
+                "http://localhost:3000",
+                "http://localhost:8000",
+                "http://127.0.0.1:8000",
+                "http://localhost:5173",
+            ],
             "allow_credentials": True,
             "allow_methods": ["*"],
             "allow_headers": ["*"],
