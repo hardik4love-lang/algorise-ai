@@ -967,24 +967,38 @@
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Reserving Slot...';
 
+      const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+        ? 'http://localhost:8000/api/v1' 
+        : 'https://algorise-ai-backend.onrender.com/api/v1';
+
       const payload = {
         tier: selectedTier,
+        plan_tier: selectedTier.toLowerCase().includes('starter') ? 'starter' : (selectedTier.toLowerCase().includes('enterprise') ? 'enterprise' : 'pro'),
         total_inr: selectedTotal,
         advance_inr: selectedAdvance,
         business_name: document.getElementById('bizName').value,
         owner_name: document.getElementById('ownerName').value,
+        full_name: document.getElementById('ownerName').value,
         whatsapp: document.getElementById('whatsappNum').value,
+        phone: document.getElementById('whatsappNum').value,
         industry: document.getElementById('industryType').value,
         page_url: document.getElementById('pageUrl').value
       };
 
       try {
-        // Post to backend subscription endpoint if live
-        const res = await fetch('/api/v1/subscribe', {
+        // Post to backend subscription endpoint on Render
+        const res = await fetch(`${API_BASE}/subscribe`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
+        if (res.ok) {
+          const subData = await res.json();
+          if (subData.client_id) {
+            localStorage.setItem('algorise_client_id', subData.client_id);
+            if (subData.pin) localStorage.setItem('algorise_client_pin', subData.pin);
+          }
+        }
       } catch (err) {
         console.log('API dispatch logged locally', err);
       }
