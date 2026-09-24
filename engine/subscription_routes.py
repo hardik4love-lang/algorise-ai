@@ -5,6 +5,8 @@ manual agent triggers, and owner admin panel operations.
 """
 
 import hashlib
+import logging
+import os
 import random
 import uuid
 from datetime import datetime, timezone, timedelta
@@ -173,20 +175,23 @@ async def subscribe_client(payload: SubscribeRequest):
         session.add(seed_lead_1)
         session.add(seed_lead_2)
 
-    # Fire Telegram alert to owner bot
-    telegram.notify_new_subscriber(
-        chat_id=int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")),
-        sub_data={
-            "client_id": client_id,
-            "client_name": contact_name,
-            "business_name": payload.business_name,
-            "phone": contact_phone,
-            "plan_name": tier_info["name"],
-            "monthly_price": monthly_price,
-            "advance_amount": advance_amount,
-            "pin": pin
-        }
-    )
+    # Fire Telegram alert to owner bot (resilient to network/bot config)
+    try:
+        telegram.notify_new_subscriber(
+            chat_id=int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")),
+            sub_data={
+                "client_id": client_id,
+                "client_name": contact_name,
+                "business_name": payload.business_name,
+                "phone": contact_phone,
+                "plan_name": tier_info["name"],
+                "monthly_price": monthly_price,
+                "advance_amount": advance_amount,
+                "pin": pin
+            }
+        )
+    except Exception as exc:
+        logging.getLogger("algorise.subscription").warning(f"Telegram notify failed (non-fatal): {exc}")
 
     return {
         "success": True,
