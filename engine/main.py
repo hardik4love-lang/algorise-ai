@@ -115,6 +115,9 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     try:
         await db_manager.create_tables()
         logger.info("Database tables created/verified")
+        from engine.subscription_routes import ensure_shruhi_surat_pro_client
+        await ensure_shruhi_surat_pro_client()
+        logger.info("Shruhi Collections (client_srt_shruhi) Surat Pro Tier verified")
     except Exception as e:
         logger.warning("Database initialization failed (may be expected in dev)", error=str(e))
 

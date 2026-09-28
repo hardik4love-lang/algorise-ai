@@ -132,6 +132,7 @@ async def subscribe_client(payload: SubscribeRequest):
             }
         )
         session.add(new_client)
+        await session.flush()
 
         # Create Subscription
         now = datetime.now(timezone.utc)
@@ -605,3 +606,120 @@ async def receive_whatsapp_webhook(request: Request):
         return {"status": "received"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+
+async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
+    """Idempotently seeds Shruhi Collections (shruhicollections.in) on SURAT PRO TIER (₹29,999/mo)."""
+    client_id = "client_srt_shruhi"
+    pin = "2026"
+    hashed_pin = hash_pin(pin)
+    api_key = "alg_live_shruhi_surat_pro_2026"
+    api_key_hash = hashlib.sha256(api_key.encode("utf-8")).hexdigest()
+
+    async with db_manager.session() as session:
+        existing = (await session.execute(select(Client).where(Client.id == client_id))).scalar_one_or_none()
+        if not existing:
+            shruhi_client = Client(
+                id=client_id,
+                name="Shruhi Collections — Official Boutique (shruhicollections.in)",
+                tier="Surat Business Pro",
+                api_key_hash=api_key_hash,
+                phone="+91 63552 85433",
+                email="orders@shruhicollections.in",
+                city="Adajan, Surat",
+                pin_hash=hashed_pin,
+                fb_page_id="shruhi_3_meta_pages_bundle",
+                fb_page_name="Shruhi Collections (3 Connected Meta Pages: Main Boutique, Plus-Size S–6XL, Wholesale Hub)",
+                fb_access_token="simulated_token",
+                is_active=True,
+                settings={
+                    "area": "Adajan, Surat",
+                    "domain": "https://shruhicollections.in",
+                    "connected_pages_limit": 3,
+                    "connected_pages": [
+                        "Shruhi Collections — Official Boutique (Adajan, Surat)",
+                        "Shruhi Plus-Size & Curvy Couture (Sizes S to 6XL)",
+                        "Shruhi Wholesale & B2B Surat Factory Outlet"
+                    ],
+                    "sub_005s_shield": True,
+                    "languages": ["Surati Gujarati", "Hindi", "English"],
+                    "telegram_proxy": "@Aassqqee_bot",
+                    "hero_bots_included": 100,
+                    "agent_rules": {
+                        "sensitivity_score": 94.0,
+                        "broker_shield_enabled": True,
+                        "telegram_alerts_enabled": True,
+                        "whatsapp_auto_dispatch": True,
+                        "sector": "textile",
+                        "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (Adajan, Surat) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.",
+                        "catalog_items": [
+                            {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
+                            {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
+                            {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
+                            {"item": "B-2876 — Curvy Plus-Size Festive Edition", "moq": "Sizes 3XL to 6XL", "ex_factory_rate": "₹2,650"},
+                            {"item": "1042 — Everyday Chic Cotton Tunic & Set", "moq": "Sizes S to 4XL", "ex_factory_rate": "₹850 – ₹1,550"}
+                        ]
+                    }
+                }
+            )
+            session.add(shruhi_client)
+            await session.flush()
+
+            now = datetime.now(timezone.utc)
+            sub = Subscription(
+                client_id=client_id,
+                plan_tier="pro",
+                plan_name="Surat Business Pro (₹29,999 / month)",
+                monthly_price=29999.0,
+                setup_fee=29999.0,
+                advance_amount=5999.8,
+                status="active",
+                started_at=now,
+                next_billing_at=now + timedelta(days=30),
+                notes="SURAT PRO TIER: Up to 3 Connected Meta Pages, Unlimited Sub-0.05s Auto-Hide Shield, Surati Gujarati/Hindi/English NLP, 2-Way Telegram Live Proxy (@Aassqqee_bot), All 100 Hero Bots Included."
+            )
+            session.add(sub)
+
+            lead1 = Lead(
+                client_id=client_id,
+                name="Kinjalben Desai (Vesu Boutique Buyer)",
+                phone="9825411209",
+                source="facebook_comment",
+                status="hot",
+                qualification_score=97.0,
+                intent_summary="Requested 3XL & 4XL sets in TEJAL and KAVYA designs (Sub-0.05s Shield masked phone number in 0.041s)",
+                original_message="Kem cho! Mare 3XL ane 4XL ma Tejal ane Kavya suit joiye che, maro number 9825411209 par 4K photo moklo.",
+                created_at=now - timedelta(minutes=35)
+            )
+            lead2 = Lead(
+                client_id=client_id,
+                name="Ritu Sharma (Mumbai Curvy Couture Reseller)",
+                phone="9820194822",
+                source="facebook_dm",
+                status="hot",
+                qualification_score=94.0,
+                intent_summary="Full set order inquiry for 29-product 4K catalog (Sizes S to 6XL) via Messenger Auto-AI",
+                original_message="Namaste! Mujhe S se 6XL tak full set B-2876 aur Galaxy ke rates chahiye.",
+                created_at=now - timedelta(hours=2)
+            )
+            session.add(lead1)
+            session.add(lead2)
+
+    return {
+        "client_id": client_id,
+        "pin": pin,
+        "plan_tier": "SURAT PRO TIER",
+        "monthly_price": 29999.0,
+        "domain": "https://shruhicollections.in",
+        "whatsapp": "+91 63552 85433",
+        "telegram_proxy": "@Aassqqee_bot",
+        "connected_meta_pages": 3,
+        "sub_005s_shield": True,
+        "hero_bots_included": 100
+    }
+
+
+@router.post("/seed/shruhi-pro")
+async def seed_shruhi_pro_endpoint():
+    """Provisions or verifies Shruhi Collections on SURAT PRO TIER (₹29,999/mo)."""
+    return await ensure_shruhi_surat_pro_client()
