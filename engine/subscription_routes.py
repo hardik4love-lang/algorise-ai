@@ -628,8 +628,8 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
                 email="orders@shruhicollections.in",
                 city="Adajan, Surat",
                 pin_hash=hashed_pin,
-                fb_page_id="shruhi_3_meta_pages_bundle",
-                fb_page_name="Shruhi Collections (3 Connected Meta Pages: Main Boutique, Plus-Size S–6XL, Wholesale Hub)",
+                fb_page_id="61586357894191",
+                fb_page_name="Shruhi Collections (ID: 61586357894191)",
                 fb_access_token="simulated_token",
                 is_active=True,
                 settings={
