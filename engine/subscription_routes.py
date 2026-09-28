@@ -150,32 +150,6 @@ async def subscribe_client(payload: SubscribeRequest):
         )
         session.add(sub)
 
-        # Seed 2 realistic welcome leads so the client sees immediate value upon login
-        seed_lead_1 = Lead(
-            client_id=client_id,
-            name="Dipakbhai Zaveri (Ring Road Textile)",
-            phone="9825188412",
-            source="facebook_comment",
-            status="hot",
-            qualification_score=96.0,
-            intent_summary="Requested wholesale catalogue and ex-factory quotation for 300 units",
-            original_message="Bhav shu che? Wholesale catalogue moklo 9825188412 par urgent.",
-            created_at=now - timedelta(hours=2)
-        )
-        seed_lead_2 = Lead(
-            client_id=client_id,
-            name="Harshil Mehta (Varachha Exports)",
-            phone="9909245110",
-            source="facebook_dm",
-            status="warm",
-            qualification_score=78.0,
-            intent_summary="Inquired about minimum order quantity (MOQ) and dispatch timeline to Mumbai",
-            original_message="Do you provide delivery to Mumbai trade hub directly?",
-            created_at=now - timedelta(hours=5)
-        )
-        session.add(seed_lead_1)
-        session.add(seed_lead_2)
-
     # Fire Telegram alert to owner bot (resilient to network/bot config)
     try:
         telegram.notify_new_subscriber(
@@ -609,7 +583,8 @@ async def receive_whatsapp_webhook(request: Request):
 
 
 async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
-    """Idempotently seeds Shruhi Collections (shruhicollections.in) on SURAT PRO TIER (₹29,999/mo)."""
+    """Idempotently seeds Shruhi Collections (shruhicollections.in) on SURAT PRO TIER (₹29,999/mo) with ZERO fake data."""
+    from sqlalchemy import delete
     client_id = "client_srt_shruhi"
     pin = "2026"
     hashed_pin = hash_pin(pin)
@@ -617,8 +592,20 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
     api_key_hash = hashlib.sha256(api_key.encode("utf-8")).hexdigest()
 
     async with db_manager.session() as session:
+        # Purge any previously seeded fake leads
+        await session.execute(
+            delete(Lead).where(
+                Lead.phone.in_(["9825411209", "9820194822", "9825188412", "9909245110", "9825012345", "9909244112"])
+            )
+        )
+
         existing = (await session.execute(select(Client).where(Client.id == client_id))).scalar_one_or_none()
-        if not existing:
+        if existing:
+            existing.fb_page_id = "61586357894191"
+            existing.fb_page_name = "Shruhi Collections (ID: 61586357894191)"
+            if existing.fb_access_token == "simulated_token":
+                existing.fb_access_token = None
+        else:
             shruhi_client = Client(
                 id=client_id,
                 name="Shruhi Collections — Official Boutique (shruhicollections.in)",
@@ -630,17 +617,13 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
                 pin_hash=hashed_pin,
                 fb_page_id="61586357894191",
                 fb_page_name="Shruhi Collections (ID: 61586357894191)",
-                fb_access_token="simulated_token",
+                fb_access_token=None,
                 is_active=True,
                 settings={
                     "area": "Adajan, Surat",
                     "domain": "https://shruhicollections.in",
+                    "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
                     "connected_pages_limit": 3,
-                    "connected_pages": [
-                        "Shruhi Collections — Official Boutique (Adajan, Surat)",
-                        "Shruhi Plus-Size & Curvy Couture (Sizes S to 6XL)",
-                        "Shruhi Wholesale & B2B Surat Factory Outlet"
-                    ],
                     "sub_005s_shield": True,
                     "languages": ["Surati Gujarati", "Hindi", "English"],
                     "telegram_proxy": "@Aassqqee_bot",
@@ -680,40 +663,17 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
             )
             session.add(sub)
 
-            lead1 = Lead(
-                client_id=client_id,
-                name="Kinjalben Desai (Vesu Boutique Buyer)",
-                phone="9825411209",
-                source="facebook_comment",
-                status="hot",
-                qualification_score=97.0,
-                intent_summary="Requested 3XL & 4XL sets in TEJAL and KAVYA designs (Sub-0.05s Shield masked phone number in 0.041s)",
-                original_message="Kem cho! Mare 3XL ane 4XL ma Tejal ane Kavya suit joiye che, maro number 9825411209 par 4K photo moklo.",
-                created_at=now - timedelta(minutes=35)
-            )
-            lead2 = Lead(
-                client_id=client_id,
-                name="Ritu Sharma (Mumbai Curvy Couture Reseller)",
-                phone="9820194822",
-                source="facebook_dm",
-                status="hot",
-                qualification_score=94.0,
-                intent_summary="Full set order inquiry for 29-product 4K catalog (Sizes S to 6XL) via Messenger Auto-AI",
-                original_message="Namaste! Mujhe S se 6XL tak full set B-2876 aur Galaxy ke rates chahiye.",
-                created_at=now - timedelta(hours=2)
-            )
-            session.add(lead1)
-            session.add(lead2)
-
     return {
         "client_id": client_id,
         "pin": pin,
+        "fb_page_id": "61586357894191",
+        "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
         "plan_tier": "SURAT PRO TIER",
         "monthly_price": 29999.0,
         "domain": "https://shruhicollections.in",
         "whatsapp": "+91 63552 85433",
         "telegram_proxy": "@Aassqqee_bot",
-        "connected_meta_pages": 3,
+        "connected_meta_pages_limit": 3,
         "sub_005s_shield": True,
         "hero_bots_included": 100
     }

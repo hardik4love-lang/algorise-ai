@@ -96,9 +96,9 @@
             <i class="fa-brands fa-facebook"></i>
             <span>FB Page (61586357894191) ↗</span>
           </a>
-          <button onclick="triggerFacebookConnect()" id="connectFbBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-semibold text-xs border border-emerald-500/30 transition">
+          <button onclick="openManualTokenModal()" id="connectFbBtn" class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/20 text-amber-300 font-semibold text-xs border border-amber-500/30 transition">
             <i class="fa-brands fa-facebook text-base"></i>
-            <span id="connectFbBtnText">3/3 Meta Pages Connected ✓</span>
+            <span id="connectFbBtnText">Page 61586357894191 — Link Graph Token</span>
           </button>
           <button onclick="openManualTokenModal()" class="px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium border border-slate-700 transition">
             <i class="fa-solid fa-key mr-1.5"></i>Manual Token
@@ -111,15 +111,15 @@
         <div class="px-3 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/25 flex items-center gap-2">
           <i class="fa-brands fa-meta text-emerald-400"></i>
           <div>
-            <div class="font-bold text-white">3/3 Meta Pages</div>
-            <div class="text-[10px] text-slate-400">Boutique • Plus-Size • B2B</div>
+            <div class="font-bold text-white">Up to 3 Meta Pages</div>
+            <div class="text-[10px] text-slate-400">Primary ID: 61586357894191</div>
           </div>
         </div>
         <div class="px-3 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/25 flex items-center gap-2">
           <i class="fa-solid fa-shield-halved text-emerald-400"></i>
           <div>
             <div class="font-bold text-white">Sub-0.05s Shield</div>
-            <div class="text-[10px] text-slate-400">Unlimited Auto-Hide (0.042s)</div>
+            <div class="text-[10px] text-slate-400">Unlimited Auto-Hide Active</div>
           </div>
         </div>
         <div class="px-3 py-2 rounded-xl bg-slate-900/90 border border-emerald-500/25 flex items-center gap-2">
@@ -161,7 +161,7 @@
           <i class="fa-solid fa-fire text-rose-400"></i>
         </div>
         <div class="text-2xl sm:text-3xl font-extrabold text-rose-400" id="metricHotLeads">0</div>
-        <p class="text-[11px] text-slate-500 mt-1">Direct buyer intent</p>
+        <p class="text-[11px] text-slate-500 mt-1">Real buyer inquiries only</p>
       </div>
 
       <div class="glass rounded-2xl p-4 sm:p-5">
@@ -170,16 +170,16 @@
           <i class="fa-solid fa-users text-emerald-400"></i>
         </div>
         <div class="text-2xl sm:text-3xl font-extrabold text-white" id="metricTotalLeads">0</div>
-        <p class="text-[11px] text-slate-500 mt-1">Qualified from comments</p>
+        <p class="text-[11px] text-slate-500 mt-1">Verified from Page 61586357894191</p>
       </div>
 
       <div class="glass rounded-2xl p-4 sm:p-5">
         <div class="flex items-center justify-between text-slate-400 mb-2">
-          <span class="text-xs font-medium uppercase tracking-wider">Auto-Replies</span>
+          <span class="text-xs font-medium uppercase tracking-wider">Auto-Hide SLA</span>
           <i class="fa-solid fa-bolt text-amber-400"></i>
         </div>
-        <div class="text-2xl sm:text-3xl font-extrabold text-white" id="metricReplies">0.05s</div>
-        <p class="text-[11px] text-slate-500 mt-1">Average response SLA</p>
+        <div class="text-2xl sm:text-3xl font-extrabold text-white" id="metricReplies">&lt;0.05s</div>
+        <p class="text-[11px] text-slate-500 mt-1">Phone number shield latency</p>
       </div>
 
       <div class="glass rounded-2xl p-4 sm:p-5">
@@ -188,7 +188,7 @@
           <i class="fa-solid fa-clock-rotate-left text-blue-400"></i>
         </div>
         <div class="text-2xl sm:text-3xl font-extrabold text-white" id="metricRuns">0</div>
-        <p class="text-[11px] text-slate-500 mt-1">Every 15 min active</p>
+        <p class="text-[11px] text-slate-500 mt-1">Real Meta Graph API scans</p>
       </div>
     </div>
 
@@ -213,7 +213,7 @@
       <div id="tabContentLeads" class="space-y-3">
         <div id="leadsLoading" class="glass rounded-2xl p-8 text-center text-slate-400">
           <i class="fa-solid fa-circle-notch fa-spin text-2xl mb-2 text-emerald-400"></i>
-          <p class="text-sm">Fetching qualified leads from Facebook...</p>
+          <p class="text-sm">Checking real leads for Facebook Page ID 61586357894191...</p>
         </div>
 
         <div id="leadsList" class="space-y-3 hidden">
@@ -222,8 +222,8 @@
 
         <div id="emptyLeads" class="glass rounded-2xl p-12 text-center text-slate-500 hidden">
           <i class="fa-solid fa-inbox text-4xl mb-3 text-slate-600"></i>
-          <h3 class="text-base font-bold text-slate-300">No leads captured yet</h3>
-          <p class="text-xs max-w-sm mx-auto mt-1">Connect your Facebook page or click "Scan & Reply Now" to test incoming inquiries.</p>
+          <h3 class="text-base font-bold text-slate-300">0 Real Leads Captured Yet</h3>
+          <p class="text-xs max-w-md mx-auto mt-1">Zero fake or simulated leads are shown. Real buyer comments and DMs on <a href="https://www.facebook.com/profile.php?id=61586357894191" target="_blank" class="text-emerald-400 underline">Facebook Page ID 61586357894191</a> will appear here automatically once your Meta Graph Page Access Token (`EAA...`) is linked via <strong>Manual Token</strong>.</p>
         </div>
       </div>
 
@@ -391,21 +391,21 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-300 mb-1">Facebook Page Name</label>
-          <input type="text" id="manualPageName" placeholder="e.g. Surat Sarees Hub" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+          <input type="text" id="manualPageName" value="Shruhi Collections" placeholder="Shruhi Collections" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
         </div>
         <div>
           <label class="block font-medium text-slate-300 mb-1">Facebook Page ID</label>
-          <input type="text" id="manualPageId" placeholder="e.g. 104829104829102" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white">
+          <input type="text" id="manualPageId" value="61586357894191" placeholder="61586357894191" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono">
         </div>
         <div>
-          <label class="block font-medium text-slate-300 mb-1">Permanent Page Access Token</label>
-          <textarea id="manualPageToken" rows="3" placeholder="EAAX..." class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono text-[11px]"></textarea>
+          <label class="block font-medium text-slate-300 mb-1">Permanent Page Access Token (Meta Graph API)</label>
+          <textarea id="manualPageToken" rows="3" placeholder="Paste your live EAA... Page Access Token for Page ID 61586357894191" class="w-full px-3 py-2 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono text-[11px]"></textarea>
         </div>
       </div>
 
       <div class="flex justify-end gap-2 pt-2 border-t border-slate-800">
         <button onclick="closeManualTokenModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs">Cancel</button>
-        <button onclick="saveManualToken()" class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs">Save & Connect</button>
+        <button onclick="saveManualToken()" class="px-4 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs">Save &amp; Connect Live Token</button>
       </div>
     </div>
   </div>
@@ -494,7 +494,6 @@
     }
 
     async function loadDashboardData(clientId) {
-      // Immediately render Shruhi Collections Surat Pro Tier so there is zero cold-start flicker
       renderDemoDashboard(clientId);
       try {
         const savedPin = localStorage.getItem('algorise_client_pin') || '2026';
@@ -505,7 +504,7 @@
         const data = await resp.json();
         renderDashboard(data);
       } catch (err) {
-        // Already rendered Shruhi Collections Surat Pro Tier profile
+        // Offline or cold-start: clean zero-lead state already rendered
       }
     }
 
@@ -531,23 +530,26 @@
 
       if (c.fb_connected) {
         fbDot.className = 'w-2 h-2 rounded-full bg-emerald-400';
-        fbText.textContent = `Live: ${c.fb_page_name}`;
+        fbText.textContent = `Live: ${c.fb_page_name || 'Page 61586357894191'}`;
         connectBtn.className = 'flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-500/20 text-emerald-400 font-semibold text-xs border border-emerald-500/30';
-        connectBtnText.textContent = '3/3 Meta Pages Connected ✓';
-        connectBtn.onclick = () => alert('All 3 Shruhi Collections Meta Pages are connected and protected by the Sub-0.05s Auto-Hide Shield.');
+        connectBtnText.textContent = 'Page 61586357894191 Connected ✓';
+        connectBtn.onclick = () => openManualTokenModal();
       } else {
         fbDot.className = 'w-2 h-2 rounded-full bg-amber-500 pulse-dot';
-        fbText.textContent = 'Facebook Not Linked';
+        fbText.textContent = 'Page 61586357894191 (Token Pending)';
+        connectBtn.className = 'flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/20 text-amber-300 font-semibold text-xs border border-amber-500/30 transition';
+        connectBtnText.textContent = 'Page 61586357894191 — Link Graph Token';
+        connectBtn.onclick = () => openManualTokenModal();
       }
 
-      // Metrics
-      document.getElementById('metricHotLeads').textContent = data.stats.hot_leads;
-      document.getElementById('metricTotalLeads').textContent = data.stats.total_leads;
-      document.getElementById('metricRuns').textContent = data.stats.total_jobs_run;
+      // Metrics — strictly real numbers, defaulting to 0
+      document.getElementById('metricHotLeads').textContent = (data.stats && typeof data.stats.hot_leads === 'number') ? data.stats.hot_leads : 0;
+      document.getElementById('metricTotalLeads').textContent = (data.stats && typeof data.stats.total_leads === 'number') ? data.stats.total_leads : 0;
+      document.getElementById('metricRuns').textContent = (data.stats && typeof data.stats.total_jobs_run === 'number') ? data.stats.total_jobs_run : 0;
 
-      // Render Leads
-      renderLeads(data.leads);
-      renderJobs(data.jobs);
+      // Render Leads & Jobs
+      renderLeads(data.leads || []);
+      renderJobs(data.jobs || []);
     }
 
     function renderLeads(leads) {
@@ -618,7 +620,7 @@
       container.innerHTML = '';
 
       if (!jobs || jobs.length === 0) {
-        container.innerHTML = '<div class="glass p-6 text-center text-xs text-slate-500">No agent runs logged yet. Click "Scan & Reply Now" above.</div>';
+        container.innerHTML = '<div class="glass p-6 text-center text-xs text-slate-500">0 agent sweeps logged yet. Link your Meta Page Access Token for Page 61586357894191 and click "Scan &amp; Reply Now".</div>';
         return;
       }
 
@@ -644,63 +646,28 @@
     }
 
     function renderDemoDashboard(clientId) {
-      const demoData = {
+      const cleanState = {
         client: {
           id: clientId || "client_srt_shruhi",
           name: "Shruhi Collections — Official Boutique (shruhicollections.in)",
           city: "214/215, Prime Arcade, Adajan, Surat – 395009",
           phone: "+91 63552 85433",
-          fb_connected: true,
+          fb_connected: false,
           fb_page_name: "Shruhi Collections (ID: 61586357894191)",
           fb_page_id: "61586357894191",
         },
         subscription: { plan_name: "SURAT PRO TIER (₹29,999 / MONTH)" },
-        stats: { hot_leads: 6, total_leads: 19, total_jobs_run: 42 },
-        leads: [
-          {
-            name: "Kinjalben Desai (Vesu Boutique Buyer)",
-            phone: "9825411209",
-            source: "facebook_comment",
-            status: "hot",
-            qualification_score: 98,
-            intent_summary: "🛡️ Phone hidden in 0.041s • Requested 3XL & 4XL sets in TEJAL (₹2,850) and KAVYA (₹3,250) • Forwarded to @Aassqqee_bot",
-            original_message: "કેમ છો! મારે 3XL અને 4XL માં TEJAL અને KAVYA સૂટ જોઈએ છે, મારો નંબર 9825411209 પર 4K ફોટા મોકલો."
-          },
-          {
-            name: "Ritu Sharma (Mumbai Curvy Couture Reseller)",
-            phone: "9820194822",
-            source: "facebook_dm",
-            status: "hot",
-            qualification_score: 96,
-            intent_summary: "Full set order inquiry for B-2876 (3XL–6XL) & GALAXY via Messenger Auto-AI (Hindi NLP)",
-            original_message: "नमस्ते! मुझे S से 6XL तक पूरे सेट में B-2876 और GALAXY सूट के रेट और 4K कैटलॉग चाहिए। 9820194822"
-          },
-          {
-            name: "Nidhi Patel (Adajan Walk-in & Online Order)",
-            phone: "9909412881",
-            source: "facebook_comment",
-            status: "hot",
-            qualification_score: 94,
-            intent_summary: "🛡️ Phone hidden in 0.039s • Wants 5XL festive co-ord set & 1042 cotton tunic • Dispatched on WhatsApp +91 63552 85433",
-            original_message: "5XL plus size festive suit ane 1042 tunic no bhav shu che? 9909412881 par WhatsApp karo."
-          }
-        ],
-        jobs: [
-          {
-            log_summary: "Scanned 30 4K product posts across 3 Meta Pages • Hid 3 buyer phone numbers in 0.042s • Sent Gujarati/Hindi DMs & alerted @Aassqqee_bot",
-            run_at: new Date().toISOString(),
-            leads_detected: 3,
-            replies_sent: 18
-          }
-        ]
+        stats: { hot_leads: 0, total_leads: 0, total_jobs_run: 0 },
+        leads: [],
+        jobs: []
       };
-      renderDashboard(demoData);
+      renderDashboard(cleanState);
     }
 
     async function runAgentSweep() {
       const btn = document.getElementById('runAgentBtn');
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Scanning 3 Meta Pages...</span>';
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>Querying Page 61586357894191...</span>';
 
       try {
         const resp = await fetch(`${API_BASE}/agent/facebook/run/${currentClientId}`, {
@@ -708,11 +675,16 @@
           headers: { 'X-Client-Pin': currentPin || '2026' }
         });
         const res = await resp.json();
-        alert(`⚡ Shruhi Collections — Surat Pro Agent Sweep Complete!\n• Connected Pages Scanned: 3/3\n• Comments Processed: ${res.comments_scanned || 14}\n• Sub-0.05s Shield Masked: 2 buyer phone numbers\n• Trilingual Replies Sent: ${res.replies_sent || 14}\n• Hot Leads Pushed to @Aassqqee_bot: ${res.leads_detected || 2}`);
+        if (res.status === 'token_required') {
+          alert(`⚠️ Live Meta Graph API Token Required for Page ID 61586357894191.\n\nNo fake or simulated comments are generated. Please paste your real Facebook Page Access Token (EAA...) in the Manual Token box to scan live comments.`);
+          openManualTokenModal();
+        } else {
+          alert(`✓ Live Meta Graph API Sweep Complete (Page ID: 61586357894191)\n• Real Comments Scanned: ${res.comments_scanned || 0}\n• Real Replies Sent: ${res.replies_sent || 0}\n• Real Hot Leads Captured: ${res.leads_detected || 0}`);
+        }
         loadDashboardData(currentClientId);
       } catch (err) {
-        alert('⚡ Shruhi Collections — Surat Pro Agent Sweep Complete!\n• Connected Pages Scanned: 3/3 (30 4K Posts)\n• Sub-0.05s Auto-Hide Shield: Active (0.042s)\n• Gujarati, Hindi & English Replies Dispatched\n• Hot Leads Forwarded to @Aassqqee_bot & +91 63552 85433');
-        loadDashboardData(currentClientId);
+        alert('⚠️ Could not reach live Meta Graph API or no Page Access Token (EAA...) is linked yet for Page ID 61586357894191. Click "Manual Token" to paste your live Page Access Token.');
+        openManualTokenModal();
       } finally {
         btn.disabled = false;
         btn.innerHTML = '<i class="fa-solid fa-bolt"></i><span>Scan & Reply Now</span>';
@@ -739,7 +711,7 @@
       const token = document.getElementById('manualPageToken').value.trim();
 
       if (!id || !token) {
-        alert('Please provide Page ID and Page Access Token');
+        alert('Please provide Page ID (61586357894191) and your live EAA... Page Access Token');
         return;
       }
 
@@ -751,13 +723,13 @@
             client_id: currentClientId,
             pin: currentPin,
             page_id: id,
-            page_name: name || 'Shruhi Collections Official',
+            page_name: name || 'Shruhi Collections (61586357894191)',
             access_token: token
           })
         });
         const data = await resp.json();
         if (resp.ok) {
-          alert('Facebook Page linked successfully!');
+          alert('Facebook Page 61586357894191 linked with live token!');
           closeManualTokenModal();
           loadDashboardData(currentClientId);
         } else {
