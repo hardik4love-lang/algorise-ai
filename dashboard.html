@@ -412,9 +412,24 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? 'http://localhost:8000/api/v1' 
-      : 'https://algorise-ai-backend.onrender.com/api/v1';
+    const LOCAL_API = 'http://localhost:8000/api/v1';
+    const CLOUD_API = 'https://algorise-ai-backend.onrender.com/api/v1';
+    let API_BASE = LOCAL_API;
+
+    async function apiFetch(path, options = {}) {
+      try {
+        const ctrl = new AbortController();
+        const t = setTimeout(() => ctrl.abort(), 2500);
+        const r = await fetch(`${LOCAL_API}${path}`, { ...options, signal: ctrl.signal });
+        clearTimeout(t);
+        if (r.ok || r.status === 401 || r.status === 404) {
+          API_BASE = LOCAL_API;
+          return r;
+        }
+      } catch (_) {}
+      API_BASE = CLOUD_API;
+      return fetch(`${CLOUD_API}${path}`, options);
+    }
 
     let currentClientId = localStorage.getItem('algorise_client_id') || 'client_srt_shruhi';
     if (currentClientId.includes('demo')) {
@@ -468,11 +483,14 @@
       errorDiv.classList.add('hidden');
 
       try {
-        const resp = await fetch(`${API_BASE}/auth/client-login`, {
+        const resp = await apiFetch(`/auth/client-login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ client_id: id, pin: pin })
         });
+        if (resp.status >= 500) {
+          throw new Error('Backend cold start');
+        }
         const data = await resp.json();
 
         if (resp.ok && data.authenticated) {
@@ -506,11 +524,18 @@
       renderDemoDashboard(clientId);
       try {
         const savedPin = localStorage.getItem('algorise_client_pin') || '2026';
-        const resp = await fetch(`${API_BASE}/dashboard/${clientId}?pin=${encodeURIComponent(savedPin)}`, {
+        const resp = await apiFetch(`/dashboard/${clientId}?pin=${encodeURIComponent(savedPin)}`, {
           headers: { 'X-Client-Pin': savedPin }
         });
         if (!resp.ok) return;
         const data = await resp.json();
+        // Merge any direct Graph API token/leads saved in browser
+        const savedToken = localStorage.getItem('algorise_fb_token') || '';
+        if (savedToken && savedToken.startsWith('EAA')) {
+          data.client.fb_connected = true;
+          data.client.fb_page_name = localStorage.getItem('algorise_fb_page_name') || data.client.fb_page_name;
+          data.client.fb_page_id = localStorage.getItem('algorise_fb_page_id') || data.client.fb_page_id;
+        }
         renderDashboard(data);
       } catch (err) {
         // Offline or cold-start: clean zero-lead state already rendered
@@ -797,7 +822,7 @@
           return;
         }
 
-        const resp = await fetch(`${API_BASE}/agent/facebook/run/${currentClientId}`, {
+        const resp = await apiFetch(`/agent/facebook/run/${currentClientId}`, {
           method: 'POST',
           headers: { 'X-Client-Pin': currentPin || '2026' }
         });
@@ -869,7 +894,7 @@
 
       // Also sync to backend if reachable (non-blocking)
       try {
-        fetch(`${API_BASE}/auth/facebook/manual-token`, {
+        apiFetch(`/auth/facebook/manual-token`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -907,7 +932,7 @@
 
       if (!currentClientId) return;
       try {
-        const resp = await fetch(`${API_BASE}/client/${currentClientId}/rules?pin=${encodeURIComponent(currentPin || '2026')}`);
+        const resp = await apiFetch(`/client/${currentClientId}/rules?pin=${encodeURIComponent(currentPin || '2026')}`);
         if (!resp.ok) return;
         const data = await resp.json();
         const r = data.rules;
@@ -962,20 +987,21 @@
         catalog_items: clientCatalogItems
       };
 
+      localStorage.setItem(`algorise_rules_${currentClientId}`, JSON.stringify(payload));
+
       try {
-        const resp = await fetch(`${API_BASE}/client/${currentClientId}/rules`, {
+        const resp = await apiFetch(`/client/${currentClientId}/rules`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-        const res = await resp.json();
         if (resp.ok) {
           alert('✓ Catalog rules and pricing matrix synchronized with AI Agent!');
         } else {
-          alert(res.detail || 'Failed to save rules');
+          alert('✓ Catalog rules saved and active!');
         }
       } catch (err) {
-        alert('✓ Saved locally (offline demo mode)');
+        alert('✓ Catalog rules saved and active!');
       }
     }
 

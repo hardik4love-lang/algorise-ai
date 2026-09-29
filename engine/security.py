@@ -378,33 +378,28 @@ def get_security_headers() -> Dict[str, str]:
 # ============================================================================
 
 def get_cors_config() -> Dict[str, Any]:
-    """Get CORS configuration based on environment."""
-    if settings.environment == "production":
-        return {
-            "allow_origins": [
-                "https://algorise-ai.com",
-                "https://www.algorise-ai.com",
-                "https://api.algorise-ai.com",
-                "https://hardik4love-lang.github.io",
-                "https://algorise.ai",
-                "https://app.algorise.ai",
-            ],
-            "allow_credentials": True,
-            "allow_methods": ["GET", "POST", "OPTIONS"],
-            "allow_headers": ["Content-Type", "X-Algorise-Key", "Authorization", "X-Client-Pin"],
-        }
-    else:
-        return {
-            "allow_origins": [
-                "http://localhost:3000",
-                "http://localhost:8000",
-                "http://127.0.0.1:8000",
-                "http://localhost:5173",
-            ],
-            "allow_credentials": True,
-            "allow_methods": ["*"],
-            "allow_headers": ["*"],
-        }
+    """Get CORS configuration across production and local environments."""
+    return {
+        "allow_origins": [
+            "https://algorise-ai.com",
+            "https://www.algorise-ai.com",
+            "https://api.algorise-ai.com",
+            "https://shruhicollections.in",
+            "https://www.shruhicollections.in",
+            "https://hardik4love-lang.github.io",
+            "https://algorise.ai",
+            "https://app.algorise.ai",
+            "http://localhost:3000",
+            "http://localhost:8000",
+            "http://127.0.0.1:8000",
+            "http://localhost:8090",
+            "http://localhost:8095",
+            "http://localhost:5173",
+        ],
+        "allow_credentials": True,
+        "allow_methods": ["*"],
+        "allow_headers": ["*"],
+    }
 
 
 # ============================================================================
