@@ -1452,10 +1452,10 @@
       } else {
         input.value = 'What is the price for B-2876 Curvy Plus-Size Festive Edition in 5XL and 6XL? WhatsApp me at +91 6355285433.';
       }
-      evaluateShieldAndNlp();
+      evaluateShieldAndNlp(false);
     }
 
-    async function evaluateShieldAndNlp() {
+    async function evaluateShieldAndNlp(dispatchTelegramAlert = true) {
       const buyerName = document.getElementById('nlpBuyerName').value.trim() || 'Facebook Shopper';
       const commentText = document.getElementById('nlpCommentInput').value.trim();
       const fbCommentId = document.getElementById('nlpCommentId').value.trim();
@@ -1473,7 +1473,8 @@
             comment_text: commentText,
             buyer_name: buyerName,
             fb_comment_id: fbCommentId || null,
-            access_token: savedToken || null
+            access_token: savedToken || null,
+            dispatch_telegram: Boolean(dispatchTelegramAlert)
           })
         });
         if (resp.ok) {
@@ -1506,8 +1507,20 @@
       const privateDm = `✨ Shruhi Collections — Official Boutique (shruhicollections.in)\n• Selected Outfit: ${matchedOutfit}\n• Price: ${matchedPrice}\n• Available Sizes: S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL\n• Address: 214/215, Prime Arcade, Adajan, Surat\n📲 WhatsApp Direct: https://wa.me/916355285433\n🛍️ Shop Online: https://shruhicollections.in/`;
       const latencySec = Math.min(0.019, ((performance.now() - t0) / 1000)).toFixed(4);
 
+      if (shieldTriggered && dispatchTelegramAlert) {
+        fetch('https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: 8737013099,
+            text: `🛡️ SUB-0.05s AUTO-HIDE SHIELD TRIGGERED (${latencySec}s)\nPage: Shruhi Collections (61586357894191)\nBuyer: ${buyerName}\nProtected Phone: ${extractedPhone}\nLanguage: ${detectedLang}\nOutfit: ${matchedOutfit} (${matchedPrice})\nComment: "${commentText}"`
+          })
+        }).catch(() => {});
+      }
+
       renderNlpShieldResult({
         shield_triggered: shieldTriggered,
+        telegram_dispatched: Boolean(shieldTriggered && dispatchTelegramAlert),
         extracted_phone: extractedPhone,
         latency_seconds: latencySec,
         detected_language: detectedLang,
@@ -1521,7 +1534,7 @@
       const shieldBadge = document.getElementById('nlpShieldBadge');
       if (res.shield_triggered) {
         shieldBadge.className = 'px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold text-[11px]';
-        shieldBadge.textContent = `🛡️ PHONE (${res.extracted_phone}) AUTO-HIDDEN (is_hidden=true)`;
+        shieldBadge.textContent = `🛡️ PHONE (${res.extracted_phone}) AUTO-HIDDEN (is_hidden=true)${res.telegram_dispatched ? ' • SENT TO @Aassqqee_bot' : ''}`;
       } else {
         shieldBadge.className = 'px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[11px]';
         shieldBadge.textContent = '✓ PUBLIC COMMENT SAFE (NO PHONE EXPOSED)';

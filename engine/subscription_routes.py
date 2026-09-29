@@ -841,6 +841,8 @@ class NlpShieldEvalRequest(BaseModel):
     buyer_name: str = "Facebook Shopper"
     fb_comment_id: Optional[str] = None
     access_token: Optional[str] = None
+    dispatch_telegram: bool = True
+    record_lead: bool = False
 
 
 @router.post("/agent/nlp-shield/evaluate")
@@ -956,10 +958,32 @@ async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
         hidden_ok = fb_engine.hide_comment_for_privacy(payload.fb_comment_id, payload.access_token)
         graph_hide_status = "hidden_on_facebook_graph_api" if hidden_ok else "graph_api_returned_false"
 
+    # Dispatch real Telegram alert via @Aassqqee_bot if shield triggered and dispatch_telegram is True
+    telegram_dispatched = False
+    if shield_triggered and payload.dispatch_telegram:
+        try:
+            tg_msg = (
+                f"🛡️ <b>SUB-0.05s AUTO-HIDE SHIELD TRIGGERED ({elapsed_sec}s)</b>\n"
+                f"━━━━━━━━━━━━━━━━━━━━━━\n"
+                f"📘 <b>Page:</b> Shruhi Collections (<code>61586357894191</code>)\n"
+                f"👤 <b>Buyer:</b> {payload.buyer_name}\n"
+                f"📞 <b>Protected Phone:</b> <code>{extracted_phone}</code>\n"
+                f"🌐 <b>Language:</b> {detected_lang}\n"
+                f"👗 <b>Matched Outfit:</b> {matched_outfit} ({matched_price})\n"
+                f"💬 <b>Comment:</b> {text}\n"
+                f"━━━━━━━━━━━━━━━━━━━━━━\n"
+                f"<i>Live via @Aassqqee_bot • SURAT PRO TIER</i>"
+            )
+            tg_res = telegram.send_message(chat_id=int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")), text=tg_msg)
+            telegram_dispatched = bool(tg_res.get("ok"))
+        except Exception:
+            pass
+
     return {
         "shield_triggered": shield_triggered,
         "shield_action": "POST /{comment_id} is_hidden=true" if shield_triggered else "No phone number exposed (Public comment kept visible)",
         "graph_hide_status": graph_hide_status,
+        "telegram_dispatched": telegram_dispatched,
         "latency_seconds": elapsed_sec,
         "latency_sla": "< 0.05s Guaranteed",
         "detected_language": detected_lang,
