@@ -1033,15 +1033,14 @@ async def list_client_hero_bots(client_id: str):
     """Returns all 100 Hero Bots included in SURAT PRO TIER."""
     from engine.hero_registry import HERO_BOT_DEFINITIONS
     bots = []
-    for key, info in HERO_BOT_DEFINITIONS.items():
+    for b_id, name, sector, desc, base_conf, target_latency in HERO_BOT_DEFINITIONS:
         bots.append({
-            "id": key,
-            "name": info["name"],
-            "sector": info["sector"],
-            "description": info["description"],
-            "price_range": info["price_range"],
-            "confidence_threshold": info["confidence_threshold"],
-            "latency_sla_ms": info["latency_sla_ms"],
+            "id": b_id,
+            "name": name,
+            "sector": sector,
+            "description": desc,
+            "confidence_threshold": base_conf,
+            "latency_sla_ms": target_latency,
         })
     return {
         "client_id": client_id,
@@ -1054,18 +1053,24 @@ async def list_client_hero_bots(client_id: str):
 @router.post("/client/{client_id}/hero-bots/execute")
 async def execute_client_hero_bot(client_id: str, payload: ClientHeroBotExecuteRequest):
     """Executes any of the 100 Hero Bots for a SURAT PRO TIER client."""
-    from engine.hero_registry import HeroBotRunner, HERO_BOT_DEFINITIONS
+    from engine.hero_registry import HeroBotRunner, HERO_BOT_REGISTRY_MAP
     bot_key = payload.bot_name.lower().strip()
-    if bot_key not in HERO_BOT_DEFINITIONS:
+    if bot_key not in HERO_BOT_REGISTRY_MAP:
         raise HTTPException(status_code=404, detail=f"Hero Bot '{bot_key}' not found in 100-bot registry")
 
     runner = HeroBotRunner()
-    result = await runner.execute_hero_bot(
-        bot_name=bot_key,
+    result = runner.execute_hero_bot(
+        bot_id=bot_key,
         input_payload={"query": payload.query, "client_id": client_id, "tier": "SURAT_PRO"},
-        tenant_id=client_id,
     )
-    return result
+    return {
+        "bot_name": result.bot_name,
+        "status": "completed" if result.success else "blocked",
+        "latency_ms": result.latency_ms,
+        "confidence": result.data.get("confidence_score", 0.96),
+        "data": result.data,
+        "reasoning_trace": result.reasoning_trace,
+    }
 
 
 class PriorityOnboardingRequest(BaseModel):
