@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master, main ]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -26,4 +29,4 @@ jobs:
     - name: Syntax & Import Verification
       run: |
         python -m py_compile engine/main.py engine/security.py engine/subscription_routes.py engine/hero_registry.py engine/scheduler.py engine/cache.py
-        python -c "from engine.main import app; print('CI VERIFICATION: App initialized successfully with', len(app.routes), 'routes')"
+        python -c "from engine.main import app, HERO_BOT_DEFINITIONS; assert len(HERO_BOT_DEFINITIONS) == 100; print('CI VERIFICATION: App initialized successfully with', len(app.routes), 'routes and', len(HERO_BOT_DEFINITIONS), 'Hero Bots')"

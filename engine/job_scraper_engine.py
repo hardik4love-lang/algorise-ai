@@ -1,4 +1,4 @@
-﻿"""
+"""
 Algorise Global Job Scraper & 5-Closer Distribution Engine
 Autonomous 24/7 opportunity ingest, multi-dimensional classification, and agent assignment.
 """
