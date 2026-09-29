@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
   <base href="/">
@@ -80,7 +80,7 @@
             <span id="planBadge" class="px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 text-xs font-extrabold uppercase tracking-wide">SURAT PRO TIER (₹29,999 / MONTH)</span>
           </div>
           <p id="clientLocationDisplay" class="text-xs sm:text-sm text-slate-400 flex flex-wrap items-center gap-3">
-            <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i>214/215, Prime Arcade, Adajan, Surat – 395009</span>
+            <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i>100% Online Store • www.shruhicollections.in – 395009</span>
             <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>+91 63552 85433</span>
             <span><i class="fa-solid fa-id-badge text-slate-500 mr-1.5"></i><code id="clientIdText" class="text-slate-300">client_srt_shruhi</code></span>
           </p>
@@ -516,7 +516,7 @@
                 <i class="fa-solid fa-headset text-rose-400"></i>
                 <span>Priority Onboarding &amp; Setup Call + 60-Second Meta Graph Token Assistant</span>
               </h3>
-              <p class="text-xs text-slate-400">Dedicated engineering support for Shruhi Collections (214/215, Prime Arcade, Adajan, Surat) and Facebook Page ID <code>61586357894191</code>.</p>
+              <p class="text-xs text-slate-400">Dedicated engineering support for Shruhi Collections (100% Online Store • www.shruhicollections.in) and Facebook Page ID <code>61586357894191</code>.</p>
             </div>
             <a href="https://developers.facebook.com/tools/explorer/" target="_blank" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs flex items-center gap-2 self-start">
               <i class="fa-brands fa-facebook"></i>
@@ -882,7 +882,7 @@
       document.getElementById('clientNameDisplay').textContent = c.name;
       document.getElementById('clientIdText').textContent = c.id;
       document.getElementById('clientLocationDisplay').innerHTML = `
-        <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i>${c.city || '214/215, Prime Arcade, Adajan, Surat – 395009'}</span>
+        <span><i class="fa-solid fa-location-dot text-emerald-400 mr-1.5"></i>${c.city || '100% Online Store • www.shruhicollections.in – 395009'}</span>
         <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>${c.phone || '+91 63552 85433'}</span>
         <span><i class="fa-solid fa-id-badge text-slate-500 mr-1.5"></i><code id="clientIdText" class="text-slate-300">${c.id}</code></span>
       `;
@@ -1042,7 +1042,7 @@
         client: {
           id: cid,
           name: "Shruhi Collections — Official Boutique (shruhicollections.in)",
-          city: "214/215, Prime Arcade, Adajan, Surat – 395009",
+          city: "100% Online Store • www.shruhicollections.in – 395009",
           phone: "+91 63552 85433",
           fb_connected: Boolean(savedToken && savedToken.startsWith('EAA')),
           fb_page_name: savedPageName,
@@ -1504,7 +1504,7 @@
         ? `નમસ્તે ${buyerName} જી! 🙏 Shruhi Collections (Adajan, Surat) માં આપનું સ્વાગત છે! ${shieldTriggered ? '🛡️ આપનો નંબર પ્રાઈવસી માટે સેફ કરી દીધો છે. ' : ''}આપના મેસેન્જર DM માં ${matchedOutfit} (${matchedPrice}) ની સંપૂર્ણ વિગત મોકલી છે. WhatsApp: +91 63552 85433 ✨`
         : `Namaste ${buyerName}! 🙏 Welcome to Shruhi Collections (Adajan, Surat). ${shieldTriggered ? '🛡️ Your phone number was auto-hidden in <0.05s to block rival brokers. ' : ''}Sent full 4K catalog for ${matchedOutfit} (${matchedPrice}) to your DM! WhatsApp: +91 63552 85433 ✨`;
 
-      const privateDm = `✨ Shruhi Collections — Official Boutique (shruhicollections.in)\n• Selected Outfit: ${matchedOutfit}\n• Price: ${matchedPrice}\n• Available Sizes: S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL\n• Address: 214/215, Prime Arcade, Adajan, Surat\n📲 WhatsApp Direct: https://wa.me/916355285433\n🛍️ Shop Online: https://shruhicollections.in/`;
+      const privateDm = `✨ Shruhi Collections — Official Boutique (shruhicollections.in)\n• Selected Outfit: ${matchedOutfit}\n• Price: ${matchedPrice}\n• Available Sizes: S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL\n• Address: 100% Online Store • www.shruhicollections.in\n📲 WhatsApp Direct: https://wa.me/916355285433\n🛍️ Shop Online: https://shruhicollections.in/`;
       const latencySec = Math.min(0.019, ((performance.now() - t0) / 1000)).toFixed(4);
 
       if (shieldTriggered && dispatchTelegramAlert) {

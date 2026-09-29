@@ -146,8 +146,8 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     try:
         from engine.scheduler import start_background_scheduler_loop
         import asyncio
-        scheduler_task = asyncio.create_task(start_background_scheduler_loop(interval_seconds=900))
-        logger.info("Facebook Agent background scheduler loop started")
+        scheduler_task = asyncio.create_task(start_background_scheduler_loop(interval_seconds=60))
+        logger.info("Facebook Agent 24/7 background scheduler loop started (60s sweep)")
     except Exception as e:
         logger.warning("Facebook Agent scheduler start failed", error=str(e))
 

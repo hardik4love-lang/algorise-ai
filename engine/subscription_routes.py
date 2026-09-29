@@ -573,7 +573,7 @@ async def update_client_rules(client_id: str, payload: ClientRulesUpdateRequest)
 
 
 # ============================================================================
-# META WHATSAPP CLOUD API WEBHOOKS
+# META WHATSAPP CLOUD API & FACEBOOK 24/7 COMMENT WEBHOOKS
 # ============================================================================
 from engine.whatsapp_cloud_api import WhatsAppCloudAPIService, WHATSAPP_VERIFY_TOKEN
 wa_service = WhatsAppCloudAPIService()
@@ -581,7 +581,7 @@ wa_service = WhatsAppCloudAPIService()
 
 @router.get("/whatsapp/webhook")
 async def verify_whatsapp_webhook(request: Request):
-    """Meta webhook verification handshake."""
+    """Meta WhatsApp webhook verification handshake."""
     params = request.query_params
     mode = params.get("hub.mode")
     token = params.get("hub.verify_token")
@@ -594,7 +594,7 @@ async def verify_whatsapp_webhook(request: Request):
 
 @router.post("/whatsapp/webhook")
 async def receive_whatsapp_webhook(request: Request):
-    """Processes inbound WhatsApp messages from prospective buyers."""
+    """Processes inbound WhatsApp messages (+91 63552 85433) with 24/7 Shruhi 29-Product AI ('Until I Jump In')."""
     try:
         body = await request.json()
         entry = body.get("entry", [{}])[0]
@@ -604,18 +604,61 @@ async def receive_whatsapp_webhook(request: Request):
 
         if messages:
             msg = messages[0]
-            from_phone = msg.get("from")
+            from_phone = msg.get("from", "")
             text = msg.get("text", {}).get("body", "")
-            # Auto-respond with Surati trade catalog
-            reply_text = (
-                "નમસ્તે જી! 🙏 Algorise AI WhatsApp Sales Assistant તરફથી:\n"
-                "આપની ઇન્ક્વાયરી બદલ આભાર. અમારા એક્ઝિક્યુટિવ આપને સંપૂર્ણ પ્રાઇસિંગ અને હોલસેલ કેટલોગ મોકલી રહ્યા છે."
-            )
-            wa_service.send_text_message(from_phone, reply_text)
+            reply_text = wa_service.generate_shruhi_whatsapp_ai_reply(from_phone, text)
+            if reply_text:
+                wa_service.send_text_message(from_phone, reply_text)
 
-        return {"status": "received"}
+        return {"status": "received", "bot": "shruhi_24x7_whatsapp_ai"}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+
+@router.get("/facebook/webhook")
+async def verify_facebook_webhook(request: Request):
+    """Meta Facebook Page & Group Comment webhook verification handshake."""
+    params = request.query_params
+    mode = params.get("hub.mode")
+    token = params.get("hub.verify_token")
+    challenge = params.get("hub.challenge")
+
+    if mode == "subscribe" and token in (WHATSAPP_VERIFY_TOKEN, "shruhi_fb_verify_2026"):
+        return PlainTextResponse(content=challenge or "", status_code=200)
+    raise HTTPException(status_code=403, detail="Facebook verification token mismatch")
+
+
+@router.post("/facebook/webhook")
+async def receive_facebook_webhook(request: Request):
+    """Processes real-time Facebook Page & Group comments 24/7 and guides buyers to WhatsApp +91 63552 85433."""
+    try:
+        body = await request.json()
+        replied = []
+        for entry in body.get("entry", []):
+            page_id = str(entry.get("id", "61586357894191"))
+            for change in entry.get("changes", []):
+                val = change.get("value", {})
+                if change.get("field") == "feed" and val.get("item") == "comment" and val.get("verb") == "add":
+                    comment_id = val.get("comment_id", "")
+                    comment_text = val.get("message", "")
+                    sender = val.get("from", {}) or {}
+                    buyer_name = sender.get("name", "Valued Shopper")
+                    buyer_id = str(sender.get("id", ""))
+                    token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
+                    res = fb_engine.process_single_comment_event(
+                        page_id=page_id,
+                        comment_id=comment_id,
+                        comment_text=comment_text,
+                        buyer_name=buyer_name,
+                        buyer_id=buyer_id,
+                        access_token=token,
+                        sector="textile"
+                    )
+                    replied.append(res)
+        return {"status": "processed", "events": len(replied), "results": replied}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
 
 
 async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
@@ -901,7 +944,7 @@ async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
     # Generate Trilingual Public Reply + Private DM
     if "Gujarati" in detected_lang:
         public_reply = (
-            f"નમસ્તે {payload.buyer_name} જી! 🙏 Shruhi Collections (Adajan, Surat) માં આપનું સ્વાગત છે! "
+            f"નમસ્તે {payload.buyer_name} જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! "
             f"{'🛡️ આપનો નંબર પ્રાઈવસી માટે સેફ કરી દીધો છે. ' if shield_triggered else ''}"
             f"આપના મેસેન્જર DM માં {matched_outfit} ({matched_price}) ની સંપૂર્ણ વિગત મોકલી છે. WhatsApp: +91 63552 85433 ✨"
         )
@@ -911,13 +954,13 @@ async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
             f"• પસંદ કરેલ ડિઝાઇન: *{matched_outfit}*\n"
             f"• પ્રાઈસ રેન્જ: *{matched_price}*\n"
             f"• ઉપલબ્ધ સાઈઝ: *S થી 6XL (Curvy & Plus-Size Available)*\n"
-            f"• શોરૂમ: 214/215, Prime Arcade, Adajan, Surat\n\n"
+            f"• સ્ટોર: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
             f"📲 તાત્કાલિક ઓર્ડર અને 4K વિડિયો માટે WhatsApp કરો: https://wa.me/916355285433\n"
             f"🛍️ વેબસાઈટ: https://shruhicollections.in/"
         )
     elif "Hindi" in detected_lang:
         public_reply = (
-            f"नमस्ते {payload.buyer_name} जी! 🙏 Shruhi Collections (Adajan, Surat) में आपका स्वागत है! "
+            f"नमस्ते {payload.buyer_name} जी! 🙏 Shruhi Collections (www.shruhicollections.in) में आपका स्वागत है! "
             f"{'🛡️ आपकी प्राइवेसी के लिए आपका नंबर ऑटो-हाइड कर दिया गया है। ' if shield_triggered else ''}"
             f"हमने आपके Messenger DM में {matched_outfit} ({matched_price}) का पूरा कैटलॉग भेज दिया है। WhatsApp: +91 63552 85433 ✨"
         )
@@ -927,13 +970,13 @@ async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
             f"• आउटफिट: *{matched_outfit}*\n"
             f"• रेट: *{matched_price}*\n"
             f"• साइज़: *S से 6XL तक उपलब्ध*\n"
-            f"• पता: 214/215, Prime Arcade, Adajan, Surat\n\n"
+            f"• स्टोर: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
             f"📲 ऑर्डर और 4K कैटलॉग के लिए WhatsApp करें: https://wa.me/916355285433\n"
             f"🛍️ वेबसाइट: https://shruhicollections.in/"
         )
     else:
         public_reply = (
-            f"Namaste {payload.buyer_name}! 🙏 Welcome to Shruhi Collections (Adajan, Surat). "
+            f"Namaste {payload.buyer_name}! 🙏 Welcome to Shruhi Collections (www.shruhicollections.in). "
             f"{'🛡️ Your phone number has been auto-hidden in <0.05s to protect you from spam brokers. ' if shield_triggered else ''}"
             f"We just sent you a private DM with full 4K catalog & pricing for {matched_outfit} ({matched_price}). WhatsApp: +91 63552 85433 ✨"
         )
@@ -943,7 +986,7 @@ async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
             f"• Featured Outfit: *{matched_outfit}*\n"
             f"• Boutique Price: *{matched_price}*\n"
             f"• Sizes Ready to Ship: *S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL*\n"
-            f"• Boutique Address: 214/215, Prime Arcade, Adajan, Surat\n\n"
+            f"• Storefront: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
             f"📲 Order directly on WhatsApp: https://wa.me/916355285433\n"
             f"🛍️ Shop Online: https://shruhicollections.in/"
         )
