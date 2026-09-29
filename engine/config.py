@@ -25,8 +25,8 @@ class Settings(BaseSettings):
 
     # Database
     database_url: str = Field(
-        default="postgresql+asyncpg://algorise:testpass@localhost:5432/algorise",
-        description="PostgreSQL async connection URL",
+        default="sqlite+aiosqlite:///./algorise_prod.db",
+        description="Async SQLAlchemy database connection URL (SQLite default, PostgreSQL supported)",
     )
     database_pool_size: int = 10
     database_max_overflow: int = 20

@@ -25,7 +25,7 @@ fb_engine = FacebookAgentEngine(api_version=settings.fb_graph_api_version)
 
 def _safe_decrypt(token: Optional[str]) -> str:
     if not token or token == "simulated_token":
-        return token or "simulated_token"
+        return ""
     try:
         from engine.security import encryption_manager
         return encryption_manager.decrypt(token)
@@ -34,7 +34,7 @@ def _safe_decrypt(token: Optional[str]) -> str:
 
 
 async def run_facebook_agent_sweep():
-    """Performs one autonomous sweep across all active subscribers."""
+    """Performs one autonomous sweep across all active subscribers who have a real Meta Page Access Token."""
     try:
         async with db_manager.session() as session:
             query = select(Client).where(Client.is_active == True)
@@ -44,8 +44,10 @@ async def run_facebook_agent_sweep():
             loop = asyncio.get_running_loop()
 
             for client in clients:
-                page_id = client.fb_page_id or f"page_{client.id}"
-                token = _safe_decrypt(client.fb_access_token) or "simulated_token"
+                page_id = client.fb_page_id or "61586357894191"
+                token = _safe_decrypt(client.fb_access_token)
+                if not token or not token.startswith("EAA"):
+                    continue
 
                 # Dynamic sector lookup
                 sector = "textile"
@@ -55,16 +57,19 @@ async def run_facebook_agent_sweep():
                 # Run agent for this client without blocking async event loop
                 run_res = await loop.run_in_executor(
                     None,
-                    lambda: fb_engine.process_client_agent_run(
-                        client_id=client.id,
-                        client_name=client.name,
-                        business_name=client.name.split("(")[0].strip(),
-                        page_id=page_id,
-                        access_token=token,
-                        sector=sector,
-                        force_simulation=(token == "simulated_token")
+                    lambda c=client, pid=page_id, tok=token, sec=sector: fb_engine.process_client_agent_run(
+                        client_id=c.id,
+                        client_name=c.name,
+                        business_name=c.name.split("(")[0].strip(),
+                        page_id=pid,
+                        access_token=tok,
+                        sector=sec,
+                        force_simulation=False
                     )
                 )
+
+                if run_res.get("status") == "token_required":
+                    continue
 
                 # Persist discovered leads
                 for lead_info in run_res.get("leads", []):
@@ -91,7 +96,7 @@ async def run_facebook_agent_sweep():
                     comments_scanned=run_res.get("comments_scanned", 0),
                     replies_sent=run_res.get("replies_sent", 0),
                     leads_detected=run_res.get("leads_detected", 0),
-                    log_summary=f"Automated sweep: scanned {run_res.get('comments_scanned')}, replies {run_res.get('replies_sent')}, leads {run_res.get('leads_detected')}.",
+                    log_summary=f"Automated sweep on Page {page_id}: scanned {run_res.get('comments_scanned', 0)}, replies {run_res.get('replies_sent', 0)}, leads {run_res.get('leads_detected', 0)}.",
                     run_at=datetime.now(timezone.utc)
                 )
                 session.add(job)

@@ -211,10 +211,11 @@ async def health_check():
 @app.get("/ready")
 async def readiness_check():
     # Check database connectivity
+    from sqlalchemy import text
     db_healthy = False
     try:
         async with db_manager.session() as session:
-            await session.execute("SELECT 1")
+            await session.execute(text("SELECT 1"))
         db_healthy = True
     except Exception:
         pass

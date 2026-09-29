@@ -417,12 +417,18 @@
       : 'https://algorise-ai-backend.onrender.com/api/v1';
 
     let currentClientId = localStorage.getItem('algorise_client_id') || 'client_srt_shruhi';
+    if (currentClientId.includes('demo')) {
+      currentClientId = 'client_srt_shruhi';
+      localStorage.setItem('algorise_client_id', 'client_srt_shruhi');
+      localStorage.setItem('algorise_client_pin', '2026');
+    }
     let currentPin = localStorage.getItem('algorise_client_pin') || '2026';
 
     // Check URL parameters on load (e.g. ?client_id=...&connected=true)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('client_id')) {
       currentClientId = urlParams.get('client_id');
+      if (currentClientId.includes('demo')) currentClientId = 'client_srt_shruhi';
       localStorage.setItem('algorise_client_id', currentClientId);
       if (currentClientId.includes('shruhi') && !localStorage.getItem('algorise_client_pin')) {
         currentPin = '2026';
@@ -447,6 +453,9 @@
 
       if (urlParams.get('connected') === 'true') {
         alert('🎉 Facebook Page connected successfully! Autonomous AI Agent is now monitoring your comments.');
+      }
+      if (urlParams.get('token_modal') === '1') {
+        openManualTokenModal();
       }
     });
 

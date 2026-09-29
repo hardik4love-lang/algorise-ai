@@ -19,14 +19,25 @@ class DatabaseManager:
 
     def initialize(self) -> None:
         settings = get_settings()
-        self._engine = create_async_engine(
-            settings.database_url,
-            pool_size=settings.database_pool_size,
-            max_overflow=settings.database_max_overflow,
-            pool_timeout=settings.database_pool_timeout,
-            pool_pre_ping=True,
-            echo=settings.debug,
-        )
+        db_url = settings.database_url
+        if "localhost:5432" in db_url:
+            db_url = "sqlite+aiosqlite:///./algorise_prod.db"
+
+        if db_url.startswith("sqlite"):
+            self._engine = create_async_engine(
+                db_url,
+                connect_args={"check_same_thread": False},
+                echo=False,
+            )
+        else:
+            self._engine = create_async_engine(
+                db_url,
+                pool_size=settings.database_pool_size,
+                max_overflow=settings.database_max_overflow,
+                pool_timeout=settings.database_pool_timeout,
+                pool_pre_ping=True,
+                echo=False,
+            )
         self._session_factory = async_sessionmaker(
             self._engine,
             class_=AsyncSession,

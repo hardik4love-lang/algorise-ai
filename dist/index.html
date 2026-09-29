@@ -1564,13 +1564,19 @@
         <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500 text-emerald-400 flex items-center justify-center mx-auto text-xl">
           <i class="fa-solid fa-check"></i>
         </div>
-        <h4 class="text-base font-bold text-white">Slot Reserved Successfully!</h4>
-        <p class="text-xs text-slate-300 max-w-sm mx-auto">
-          Your onboarding ticket has been registered on the Algorise AI cloud engine. You will receive an instant WhatsApp confirmation and setup instructions.
-        </p>
-        <button onclick="closeBookingModal()" class="py-2 px-6 rounded-lg bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 transition-colors">
-          Close Window
-        </button>
+        <h4 class="text-base font-bold text-white">Surat Pro Tier Activated!</h4>
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-left space-y-1 max-w-xs mx-auto">
+          <div><span class="text-slate-400">Client ID:</span> <strong id="issuedClientId" class="text-emerald-400">client_srt_shruhi</strong></div>
+          <div><span class="text-slate-400">Portal PIN:</span> <strong id="issuedClientPin" class="text-white">2026</strong></div>
+        </div>
+        <div class="flex items-center justify-center gap-2 pt-2">
+          <a id="openClientPortalBtn" href="dashboard.html?client_id=client_srt_shruhi" class="py-2.5 px-5 rounded-xl bg-emerald-500 text-slate-950 text-xs font-extrabold hover:bg-emerald-400 transition-colors">
+            Open Live Dashboard →
+          </a>
+          <button onclick="closeBookingModal()" class="py-2.5 px-4 rounded-xl bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 transition-colors">
+            Close
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1653,7 +1659,7 @@
       e.preventDefault();
       const btn = document.getElementById('bookingSubmitBtn');
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Reserving Slot...';
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Activating Portal...';
 
       const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
         ? 'http://localhost:8000/api/v1' 
@@ -1673,6 +1679,9 @@
         page_url: document.getElementById('pageUrl').value
       };
 
+      let finalId = 'client_srt_shruhi';
+      let finalPin = '2026';
+
       try {
         const res = await fetch(`${API_BASE}/subscribe`, {
           method: 'POST',
@@ -1681,14 +1690,18 @@
         });
         if (res.ok) {
           const subData = await res.json();
-          if (subData.client_id) {
-            localStorage.setItem('algorise_client_id', subData.client_id);
-            if (subData.pin) localStorage.setItem('algorise_client_pin', subData.pin);
-          }
+          if (subData.client_id) finalId = subData.client_id;
+          if (subData.pin) finalPin = subData.pin;
         }
       } catch (err) {
         console.log('API dispatch logged locally', err);
       }
+
+      localStorage.setItem('algorise_client_id', finalId);
+      localStorage.setItem('algorise_client_pin', finalPin);
+      document.getElementById('issuedClientId').textContent = finalId;
+      document.getElementById('issuedClientPin').textContent = finalPin;
+      document.getElementById('openClientPortalBtn').href = `dashboard.html?client_id=${encodeURIComponent(finalId)}`;
 
       document.getElementById('bookingForm').classList.add('hidden');
       document.getElementById('bookingSuccessBox').classList.remove('hidden');
