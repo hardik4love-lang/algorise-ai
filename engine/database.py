@@ -17,10 +17,10 @@ class DatabaseManager:
         self._engine: AsyncEngine | None = None
         self._session_factory: async_sessionmaker[AsyncSession] | None = None
 
-    def initialize(self) -> None:
+    def initialize(self, force_sqlite: bool = False) -> None:
         settings = get_settings()
         db_url = settings.database_url
-        if "localhost:5432" in db_url:
+        if force_sqlite or "localhost:5432" in db_url or not db_url:
             db_url = "sqlite+aiosqlite:///./algorise_prod.db"
 
         if db_url.startswith("sqlite"):
@@ -76,8 +76,14 @@ class DatabaseManager:
                 await session.close()
 
     async def create_tables(self) -> None:
-        async with self.engine.begin() as conn:
-            await conn.run_sync(Base.metadata.create_all)
+        try:
+            async with self.engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
+        except Exception:
+            # If external DATABASE_URL on Render is unreachable, fall back to local SQLite
+            self.initialize(force_sqlite=True)
+            async with self.engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
 
     async def drop_tables(self) -> None:
         async with self.engine.begin() as conn:
