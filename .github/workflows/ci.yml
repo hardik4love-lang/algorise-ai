@@ -30,3 +30,35 @@ jobs:
       run: |
         python -m py_compile engine/main.py engine/security.py engine/subscription_routes.py engine/hero_registry.py engine/scheduler.py engine/cache.py
         python -c "from engine.main import app, HERO_BOT_DEFINITIONS; assert len(HERO_BOT_DEFINITIONS) == 100; print('CI VERIFICATION: App initialized successfully with', len(app.routes), 'routes and', len(HERO_BOT_DEFINITIONS), 'Hero Bots')"
+
+    # Previously CI ran neither tests nor the web build, despite pytest,
+    # ruff, mypy and a --cov-fail-under=80 gate all being configured in
+    # pyproject.toml. The build check is what stops dist/ drifting again:
+    # dist/ is generated and untracked, so staleness must be detectable.
+
+    - name: Test Suite
+      run: |
+        python -m pytest test_engine.py test_api.py test_system_and_agent.py -q -o addopts=""
+
+    - name: Web Build Check
+      env:
+        API_BASE_URL: https://algorise-ai-backend.onrender.com
+      run: |
+        python scripts/build.py
+        python scripts/build.py --check-all
+
+    - name: Release Gates (offline subset)
+      # Network gates are skipped in CI; the source-level gates are the ones
+      # that can fail on a pull request.
+      run: |
+        python -c "
+        import sys; sys.path.insert(0, 'scripts')
+        import release
+        gates = [release.gate_no_hardcoded_hosts, release.gate_config_injected, release.gate_no_credentials_in_client, release.gate_dist_not_tracked]
+        failed = 0
+        for fn in gates:
+            g = fn()
+            print(('  PASS  ' if g.passed else '  FAIL  ') + g.name + ' — ' + g.detail)
+            failed += 0 if g.passed else 1
+        sys.exit(failed)
+        "
