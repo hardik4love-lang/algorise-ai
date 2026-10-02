@@ -45,7 +45,16 @@ SURFACES = [
     "industry/textile-saree-wholesale-ai-agent.html",
 ]
 
-GATEWAY = "https://django-india.up.railway.app"
+# The live backend is on Render. The Railway project referenced by the
+# deploy docs no longer exists: it answers with "Application not found" and
+# x-railway-fallback: true, which is the edge router responding because
+# there is no app behind it.
+#
+# The health route is /health. /api/v1/health is declared in current source
+# but returns 404 on the deployed instance, which means the deployment lags
+# the repository. That drift is reported by deploy-drift below.
+GATEWAY = "https://algorise-ai-backend.onrender.com"
+HEALTH_PATH = "/health"
 
 
 # ---------------------------------------------------------------------------
@@ -159,13 +168,59 @@ def gate_api_healthy() -> Gate:
     import urllib.request
 
     try:
-        with urllib.request.urlopen(f"{GATEWAY}/api/v1/health", timeout=8) as r:
+        with urllib.request.urlopen(f"{GATEWAY}{HEALTH_PATH}", timeout=30) as r:
             ok = r.status == 200
-            return Gate("API health", ok, f"HTTP {r.status}")
+            return Gate("API health", ok, f"HTTP {r.status} at {HEALTH_PATH}")
     except urllib.error.HTTPError as e:
-        return Gate("API health", False, f"HTTP {e.code}")
+        return Gate("API health", False, f"HTTP {e.code} at {HEALTH_PATH}")
     except Exception as exc:  # noqa: BLE001
-        return Gate("API health", False, f"{type(exc).__name__}: {exc}")
+        return Gate(
+            "API health", False,
+            f"{type(exc).__name__} at {HEALTH_PATH} (a cold start on the "
+            "free tier can take 60s; re-run before treating this as down)",
+        )
+
+
+def gate_deploy_drift() -> Gate:
+    """Is the deployment behind the repository?
+
+    A route declared in source but 404 in production means the live service
+    is running an older build. That drift silently invalidates every
+    conclusion drawn from the deployed instance.
+    """
+    import re
+    import urllib.error
+    import urllib.request
+
+    main_py = ROOT / "engine" / "main.py"
+    if not main_py.exists():
+        return Gate("deploy drift", True, "main.py not found; skipped")
+    declared = set(
+        re.findall(r'@app\.(?:get|post)\("([^"]+)"', main_py.read_text(encoding="utf-8"))
+    )
+    missing = []
+    checked = 0
+    for route in sorted(declared)[:12]:
+        try:
+            # GET, not HEAD: the edge/CDN in front of this host answers HEAD
+            # with 404 even where GET is 200, which produced false drift.
+            with urllib.request.urlopen(f"{GATEWAY}{route}", timeout=20) as r:
+                checked += 1
+                if r.status == 404:
+                    missing.append(route)
+        except urllib.error.HTTPError as e:
+            checked += 1
+            if e.code == 404:
+                missing.append(route)
+        except Exception:  # noqa: BLE001
+            continue
+    return Gate(
+        "deploy drift",
+        not missing,
+        f"{len(missing)} of {checked} checked routes are declared in source "
+        f"but 404 in production: {', '.join(missing)}" if missing
+        else f"all {checked} checked routes match source",
+    )
 
 
 GATES = [
@@ -173,6 +228,7 @@ GATES = [
     gate_no_credentials_in_client,
     gate_dist_not_tracked,
     gate_api_healthy,
+    gate_deploy_drift,
 ]
 
 # ---------------------------------------------------------------------------
