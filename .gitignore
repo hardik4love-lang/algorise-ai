@@ -39,3 +39,6 @@ live_jobs_feed.json
 .idea/
 .DS_Store
 Thumbs.db
+
+# Compiled bytecode must never be committed; it embeds string constants.
+*.pyc
