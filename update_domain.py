@@ -4,8 +4,8 @@ replacements = [
     ('<base href="/algorise-ai/">', '<base href="/">'),
     ('https://hardik4love-lang.github.io/algorise-ai/', 'https://algorise-ai.com/'),
     ('https://hardik4love-lang.github.io/algorise-ai', 'https://algorise-ai.com'),
-    ('https://algorise-ai.surge.sh/', 'https://algorise-ai.com/'),
-    ('https://algorise-ai.surge.sh', 'https://algorise-ai.com'),
+    ('https://algorise-ai.com/', 'https://algorise-ai.com/'),
+    ('https://algorise-ai.com', 'https://algorise-ai.com'),
 ]
 
 files = glob.glob('dist/**/*.html', recursive=True) + glob.glob('*.html')

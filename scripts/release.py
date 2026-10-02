@@ -280,11 +280,52 @@ def gate_no_token_persistence() -> Gate:
     )
 
 
+def gate_single_domain() -> Gate:
+    """Every shipped reference must point at the canonical domain.
+
+    The repo carried three hosts at once, splitting SEO signals and leaving
+    it unclear which surface was authoritative. Documentation and the
+    tooling that detects drift are exempt.
+    """
+    canonical = "algorise-ai.com"
+    legacy = ("algorise-ai.surge.sh", "algorise.surge.sh")
+    exempt_suffixes = {".md"}
+    exempt_names = {
+        "release.py", "consolidate_domains.py", "adopt_mirrors.py",
+        "update_domain.py", "INTEGRATION_PLAN.md", "STRATEGIC_ROADMAP.md",
+    }
+
+    hits = []
+    for rel in SURFACES + ["robots.txt", "sitemap.xml", "CNAME"]:
+        p = ROOT / rel
+        if not p.exists() or p.suffix in exempt_suffixes or p.name in exempt_names:
+            continue
+        text = p.read_text(encoding="utf-8", errors="replace")
+        for host in legacy:
+            if host in text:
+                hits.append(f"{rel} -> {host}")
+
+    cname = ROOT / "CNAME"
+    if cname.exists() and cname.read_text(encoding="utf-8").strip() != canonical:
+        hits.append(f"CNAME -> {cname.read_text(encoding='utf-8').strip()}")
+
+    sitemap = ROOT / "sitemap.xml"
+    if sitemap.exists() and canonical not in sitemap.read_text(encoding="utf-8"):
+        hits.append("sitemap.xml does not reference the canonical host")
+
+    return Gate(
+        "single canonical domain",
+        not hits,
+        "; ".join(hits) if hits else f"all references point at {canonical}",
+    )
+
+
 GATES = [
     gate_no_hardcoded_hosts,
     gate_config_injected,
     gate_no_credentials_in_client,
     gate_no_token_persistence,
+    gate_single_domain,
     gate_dist_not_tracked,
     gate_api_healthy,
     gate_deploy_drift,

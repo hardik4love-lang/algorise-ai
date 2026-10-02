@@ -104,7 +104,7 @@ part3 = """🎯 <b>સુરતમાં આજે જ ડીલ ક્લોઝ
 • વત્તા સેટઅપ ફી = <b>₹૨,૯૯,૯૯૦ વધારાનો કેશ ઇનફ્લો!</b>
 
 🌐 <b>લાઈવ વેબસાઈટ અપડેટ થઈ ગઈ છે:</b>
-https://algorise-ai.surge.sh"""
+https://algorise-ai.com"""
 
 def main():
     print("Dispatching Gujarati commercial presentation to Telegram...", flush=True)

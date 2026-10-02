@@ -23,7 +23,7 @@ if sys.platform == "win32":
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
 FACTORY_LOCATION = "Udhna Industrial Area, Surat, Gujarat"
-PRODUCTION_URL = "https://algorise-ai.surge.sh/cocopeat.html"
+PRODUCTION_URL = "https://algorise-ai.com/cocopeat.html"
 TELEGRAM_BOT = "@Aassqqee_bot"
 
 TARGET_CLUSTERS = {

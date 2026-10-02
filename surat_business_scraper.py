@@ -23,8 +23,8 @@ if sys.platform == "win32":
         pass
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-DEMO_URL = "https://algorise-ai.surge.sh/#surat-facebook-agent"
-PITCH_URL = "https://algorise-ai.surge.sh/field_pitch.html"
+DEMO_URL = "https://algorise-ai.com/#surat-facebook-agent"
+PITCH_URL = "https://algorise-ai.com/field_pitch.html"
 
 # Surat Commercial Clusters & Targeted Niches
 SURAT_CLUSTERS = {

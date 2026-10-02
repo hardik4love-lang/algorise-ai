@@ -101,7 +101,7 @@ Connect their Facebook page in 3 minutes via Meta OAuth. Let them watch verified
 <b>Step 3: Close at ₹5,999/mo or ₹9,999 Lifetime</b>
 Just 20 Surat business clients = <b>₹1,20,000/month recurring income!</b>
 
-🌐 <b>Live Platform:</b> https://algorise-ai.surge.sh"""
+🌐 <b>Live Platform:</b> https://algorise-ai.com"""
 
 def main():
     print("Dispatching presentation to Telegram...")
