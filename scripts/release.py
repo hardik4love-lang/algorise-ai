@@ -94,15 +94,46 @@ def _artifact_gates(root: Path, label: str) -> list[Gate]:
 
 
 def _host_gate(root: Path, name: str) -> Gate:
+    # Any loopback address on any port, not just localhost:8000. A surface
+    # hardcoded to localhost:5002 was missed by the original check and can
+    # never work in production.
+    import re
+
+    pat = re.compile(r"localhost:\d+|127\.0\.0\.1:\d+")
     hits = [
         rel for rel in SURFACES
         if (root / rel).exists()
-        and "localhost:8000" in (root / rel).read_text(
-            encoding="utf-8", errors="replace")
+        and pat.search((root / rel).read_text(encoding="utf-8", errors="replace"))
     ]
     return Gate(
         name, not hits,
-        f"localhost:8000 in: {', '.join(hits)}" if hits else "clean",
+        f"loopback host in: {', '.join(hits)}" if hits else "clean",
+    )
+
+
+def gate_config_injected() -> Gate:
+    """Every interactive surface must load the generated config.
+
+    Without this, a surface can have no hardcoded host and still be broken:
+    it would resolve its API base to nothing.
+    """
+    interactive = [
+        rel for rel in SURFACES
+        if (ROOT / rel).exists()
+        and (ROOT / rel).read_text(
+            encoding="utf-8", errors="replace"
+        ).count("fetch(") > 0
+    ]
+    missing = [
+        rel for rel in interactive
+        if "/config.js" not in (ROOT / rel).read_text(
+            encoding="utf-8", errors="replace")
+    ]
+    return Gate(
+        "config.js injected",
+        not missing,
+        f"interactive surfaces without config.js: {', '.join(missing)}"
+        if missing else f"all {len(interactive)} interactive surfaces wired",
     )
 
 
@@ -225,6 +256,7 @@ def gate_deploy_drift() -> Gate:
 
 GATES = [
     gate_no_hardcoded_hosts,
+    gate_config_injected,
     gate_no_credentials_in_client,
     gate_dist_not_tracked,
     gate_api_healthy,

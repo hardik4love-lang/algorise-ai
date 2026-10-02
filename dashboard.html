@@ -912,35 +912,28 @@
   </div>
 
   <!-- JAVASCRIPT LOGIC -->
+  <script src="/config.js"></script>
   <script>
-    const LOCAL_API = 'http://localhost:8000/api/v1';
-    const CLOUD_API = 'https://algorise-ai-backend.onrender.com/api/v1';
-    let API_BASE = CLOUD_API;
+    // Single source of truth, injected at build time by scripts/gen_config.py.
+    // Previously this declared a LOCAL_API/CLOUD_API pair and tried localhost
+    // first with a 1.2s timeout, so the same page could silently talk to
+    // different backends depending on where it was opened, and a developer
+    // could believe they were testing against production when they were not.
+    const API_BASE =
+      (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
+      '/api/v1';
+    const API_TIMEOUT_MS = 20000;
 
     async function apiFetch(path, options = {}) {
-      const isLocalHost = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-      if (isLocalHost) {
-        try {
-          const ctrl = new AbortController();
-          const t = setTimeout(() => ctrl.abort(), 1200);
-          const r = await fetch(`${LOCAL_API}${path}`, { ...options, signal: ctrl.signal });
-          clearTimeout(t);
-          if (r.ok || r.status === 401 || r.status === 404) {
-            API_BASE = LOCAL_API;
-            return r;
-          }
-        } catch (_) {}
-      }
-      API_BASE = CLOUD_API;
-      const ctrlCloud = new AbortController();
-      const tCloud = setTimeout(() => ctrlCloud.abort(), 2500);
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), API_TIMEOUT_MS);
       try {
-        const res = await fetch(`${CLOUD_API}${path}`, { ...options, signal: ctrlCloud.signal });
-        clearTimeout(tCloud);
-        return res;
-      } catch (err) {
-        clearTimeout(tCloud);
-        throw err;
+        return await fetch(`${API_BASE}${path}`, {
+          ...options,
+          signal: options.signal || ctrl.signal,
+        });
+      } finally {
+        clearTimeout(timer);
       }
     }
 

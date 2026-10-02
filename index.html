@@ -1584,7 +1584,8 @@
   <!-- ========================================== -->
   <!-- 12. JAVASCRIPT LOGIC & API DISPATCH        -->
   <!-- ========================================== -->
-  <script>
+    <script src="/config.js"></script>
+<script>
     // Simulator data
     const SIM_DATA = {
       textile: {
@@ -1661,9 +1662,9 @@
       btn.disabled = true;
       btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Activating Portal...';
 
-      const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-        ? 'http://localhost:8000/api/v1' 
-        : 'https://algorise-ai-backend.onrender.com/api/v1';
+      const API_BASE =
+        (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
+        '/api/v1';
 
       const payload = {
         tier: selectedTier,

@@ -1014,6 +1014,7 @@
   </div>
 
   <!-- APPLICATION JAVASCRIPT LOGIC -->
+  <script src="/config.js"></script>
   <script>
     // Lucide initialization
     document.addEventListener('DOMContentLoaded', () => {
@@ -1224,20 +1225,34 @@
       lucide.createIcons();
     }
 
-    // Try live search via port 5002 if running, else fallback
+    // Try live search, else fall back to the bundled dataset.
+    // This previously targeted a loopback service on a developer-only port,
+    // a separate process that does not exist in production, so the live path
+    // could never work for a visitor. The search is now attempted against
+    // the configured API base like every other surface, and the bundled
+    // dataset remains the fallback.
     async function runOutlierSearch() {
       const q = document.getElementById('nicheSearchInput').value.trim();
       if (!q) return;
 
-      const spin = document.getElementById('searchSpinIcon');
-      spin.classList.add('animate-spin');
+      const spin = document.getElementById('searchSpinError') ||
+        document.getElementById('searchSpinIcon');
+      spin?.classList.add('animate-spin');
+
+      const apiBase =
+        (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
+        '/api/v1';
 
       try {
-        const res = await fetch('http://localhost:5002/api/search-niche', {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 15000);
+        const res = await fetch(`${apiBase}/search-niche`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ query: q, limit: 15 })
+          body: JSON.stringify({ query: q, limit: 15 }),
+          signal: ctrl.signal,
         });
+        clearTimeout(timer);
         const data = await res.json();
         if (data.success && data.videos) {
           currentOutliers = data.videos;
@@ -1246,11 +1261,11 @@
           document.getElementById('outlierCountPill').innerText = `${data.videos.length} Videos`;
           renderOutliers(currentOutliers);
           confetti({ particleCount: 50, spread: 60 });
-          spin.classList.remove('animate-spin');
+          spin?.classList.remove('animate-spin');
           return;
         }
       } catch (e) {
-        console.log("Local backend on 5002 offline, using cloud dataset");
+        console.log('Live niche search unavailable; using bundled dataset', e);
       }
 
       // Fallback curated dataset
