@@ -254,10 +254,37 @@ def gate_deploy_drift() -> Gate:
     )
 
 
+def gate_no_token_persistence() -> Gate:
+    """No surface may persist a credential to browser storage.
+
+    localStorage survives on the device of every operator who ever connected
+    a page. A Meta access token stored there is readable by anything running
+    on that origin.
+    """
+    import re
+
+    pat = re.compile(
+        r"localStorage\.setItem\(\s*['\"][^'\"]*(token|secret|key|credential)[^'\"]*['\"]",
+        re.I,
+    )
+    hits = [
+        rel for rel in SURFACES
+        if (ROOT / rel).exists()
+        and pat.search((ROOT / rel).read_text(encoding="utf-8", errors="replace"))
+    ]
+    return Gate(
+        "no credential in browser storage",
+        not hits,
+        f"persists a credential: {', '.join(hits)}" if hits
+        else "no surface persists a credential",
+    )
+
+
 GATES = [
     gate_no_hardcoded_hosts,
     gate_config_injected,
     gate_no_credentials_in_client,
+    gate_no_token_persistence,
     gate_dist_not_tracked,
     gate_api_healthy,
     gate_deploy_drift,

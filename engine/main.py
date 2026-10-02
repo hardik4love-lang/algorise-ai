@@ -428,6 +428,13 @@ async def rate_limit_status(
 from engine.subscription_routes import router as subscription_router
 app.include_router(subscription_router, prefix="/api/v1")
 
+# Meta Graph proxy. The router declares its own /api/v1/meta prefix, so it is
+# mounted without an additional one. dashboard.html called graph.facebook.com
+# directly from the browser; these endpoints move that traffic server-side and
+# record a bot_executions row per operation.
+from engine.meta_proxy import router as meta_proxy_router
+app.include_router(meta_proxy_router)
+
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os

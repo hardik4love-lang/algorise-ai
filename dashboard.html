@@ -1253,7 +1253,7 @@
     }
 
     async function runDirectMetaGraphSweep(pageId, token) {
-      const feedUrl = `https://graph.facebook.com/v19.0/${encodeURIComponent(pageId)}/feed?fields=id,message,created_time,comments.limit(25){id,message,from,created_time,is_hidden}&limit=10&access_token=${encodeURIComponent(token)}`;
+      const feedUrl = `${API_BASE}/meta/feed`;
       const resp = await fetch(feedUrl);
       const data = await resp.json();
       if (data.error) {
@@ -1281,12 +1281,16 @@
           const hasBuyerIntent = Boolean(extractedPhone || /pp|price|rate|cost|size|3xl|4xl|5xl|6xl|order|whatsapp|catalog|ના ભાવ|કિંમત|रेट|प्राइस/.test(lower));
 
           // 1. Sub-0.05s Auto-Hide Shield if comment contains phone number
+          //    Both of these previously issued Graph calls from the browser
+          //    with the page access token in the request body. The backend
+          //    proxy resolves the stored token instead, so the browser no
+          //    longer holds it and the operation lands in bot_executions.
           if (extractedPhone && !c.is_hidden) {
             try {
-              await fetch(`https://graph.facebook.com/v19.0/${encodeURIComponent(c.id)}`, {
+              await apiFetch('/meta/comments/hide', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ is_hidden: true, access_token: token })
+                body: JSON.stringify({ comment_id: c.id })
               });
             } catch (_) {}
           }
@@ -1295,10 +1299,10 @@
           if (hasBuyerIntent) {
             const replyMsg = `નમસ્તે ${authorName} જી! 🙏 Shruhi Collections (shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં અમારા 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) ની વિગત આપના મેસેન્જર DM માં મોકલી છે. તાત્કાલિક ઓર્ડર માટે WhatsApp: +91 63552 85433.`;
             try {
-              const rResp = await fetch(`https://graph.facebook.com/v19.0/${encodeURIComponent(c.id)}/comments`, {
+              const rResp = await apiFetch('/meta/comments/reply', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: replyMsg, access_token: token })
+                body: JSON.stringify({ comment_id: c.id, message: replyMsg })
               });
               if (rResp.ok) repliesSent++;
             } catch (_) {}
@@ -1637,7 +1641,7 @@
       let verifiedName = name;
       if (token && token.startsWith('EAA')) {
         try {
-          const graphResp = await fetch(`https://graph.facebook.com/v19.0/${encodeURIComponent(id)}?fields=id,name&access_token=${encodeURIComponent(token)}`);
+          const graphResp = await fetch(`${API_BASE}/meta/object`);
           const graphData = await graphResp.json();
           if (graphData.name) {
             verifiedName = `${graphData.name} (ID: ${graphData.id || id})`;
@@ -1647,14 +1651,20 @@
 
       localStorage.setItem('algorise_fb_page_id', id);
       localStorage.setItem('algorise_fb_page_name', verifiedName);
-      localStorage.setItem('algorise_fb_token', token || `https://www.facebook.com/profile.php?id=${id}`);
+      // The access token is deliberately NOT persisted to localStorage.
+      // It was previously stored under 'algorise_fb_token' and mirrored into
+      // the 3-page config, which meant the page token survived in the browser
+      // of every operator who ever connected a page. Meta Graph calls now go
+      // through the backend proxy, which resolves the token server-side, so
+      // there is no reason to keep a copy on the device.
+      localStorage.removeItem('algorise_fb_token');
 
       const pages = getConfiguredMetaPages();
       pages[0] = {
         slot: 1,
         page_id: id,
-        page_name: verifiedName,
-        access_token: token || `https://www.facebook.com/profile.php?id=${id}`
+        page_name: verifiedName
+        // no access_token: it lives on the server
       };
       localStorage.setItem(`algorise_3_pages_${currentClientId}`, JSON.stringify(pages));
 
@@ -1807,7 +1817,7 @@
 
         if (p.page_id && p.access_token && p.access_token.startsWith('EAA')) {
           try {
-            const gResp = await fetch(`https://graph.facebook.com/v19.0/${encodeURIComponent(p.page_id)}?fields=id,name&access_token=${encodeURIComponent(p.access_token)}`);
+            const gResp = await fetch(`${API_BASE}/meta/object`);
             const gData = await gResp.json();
             if (gData.name) p.page_name = `${gData.name} (ID: ${gData.id || p.page_id})`;
           } catch (_) {}
@@ -1824,10 +1834,11 @@
         }
       }
 
-      if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_id);
-      if (pages[0].page_name) localStorage.setItem('algorise_fb_page_name', pages[0].page_name);
-      if (pages[0].access_token) localStorage.setItem('algorise_fb_token', pages[0].access_token);
-      localStorage.setItem(`algorise_3_pages_${currentClientId}`, JSON.stringify(pages));
+if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_id);
+  if (pages[0].page_name) localStorage.setItem('algorise_fb_page_name', pages[0].page_name);
+  // Clear any token persisted by an earlier build.
+  if (pages[0].access_token) localStorage.removeItem('algorise_fb_token');
+  localStorage.setItem(`algorise_3_pages_${currentClientId}`, JSON.stringify(pages));
 
       try {
         await apiFetch(`/client/${currentClientId}/meta-pages`, {

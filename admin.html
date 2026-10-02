@@ -109,7 +109,11 @@ const API_BASE =
         (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
         '/api/v1';
 
-    let adminKey = localStorage.getItem('algorise_admin_key') || '';
+    // Session only. Not restored from localStorage: an admin secret persisted
+    // on the device outlives the session that was authorised to hold it.
+    let adminKey = '';
+    // Remove any copy left by an earlier build.
+    localStorage.removeItem('algorise_admin_key');
 
     window.addEventListener('DOMContentLoaded', () => {
       if (adminKey) {
@@ -122,14 +126,21 @@ const API_BASE =
       const key = document.getElementById('adminSecretInput').value.trim();
       if (!key) return;
       adminKey = key;
-      localStorage.setItem('algorise_admin_key', key);
+      // Deliberately NOT persisted. The key previously went to localStorage
+      // under 'algorise_admin_key' and was sent as a ?admin_key= query
+      // parameter, which meant it survived on the device and was written to
+      // server access logs, browser history, and any intermediary proxy.
+      // It is now held in memory for the session and sent as a header.
+      localStorage.removeItem('algorise_admin_key');
       document.getElementById('adminGateModal').classList.add('hidden');
       fetchAdminData();
     }
 
     async function fetchAdminData() {
       try {
-        const resp = await fetch(`${API_BASE}/admin/clients?admin_key=${adminKey}`);
+        const resp = await fetch(`${API_BASE}/admin/clients`, {
+          headers: { 'x-admin-key': adminKey }
+        });
         if (resp.status === 403) {
           alert('Invalid Admin Key');
           localStorage.removeItem('algorise_admin_key');
