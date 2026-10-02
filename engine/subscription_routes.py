@@ -1106,7 +1106,7 @@ async def get_telegram_proxy_status():
         "connected": bool(me.get("ok")),
         "bot_username": f"@{bot_info.get('username', 'Aassqqee_bot')}",
         "bot_first_name": bot_info.get("first_name", "Hermes"),
-        "bot_id": bot_info.get("id", 8961434797),
+        "bot_id": bot_info.get("id") or int(os.getenv("TELEGRAM_BOT_ID", "0") or 0),
         "default_chat_id": int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")),
         "proxy_mode": "2-Way Live Telegram Proxy Active (@Aassqqee_bot)",
         "storefront_page_id": "61586357894191",

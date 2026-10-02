@@ -18,16 +18,71 @@ def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
     return _original_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
 socket.getaddrinfo = _ipv4_getaddrinfo
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "REDACTED_ROTATE_VIA_BOTFATHER")
-TELEGRAM_BOT_ID = 8961434797
-TELEGRAM_BOT_USERNAME = "Aassqqee_bot"
-TELEGRAM_DEFAULT_CHAT_ID = int(os.getenv("TELEGRAM_CHAT_ID", "8737013099"))
-TELEGRAM_API_BASE = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+# Credentials are environment-only. A bot token in source is a live
+# compromise: anyone who reads the file can send arbitrary messages as this
+# bot. The token previously embedded here was exposed in 19 places across
+# this repository, including two publicly served HTML files.
+#
+# Rotate the old token via @BotFather before deploying; no default is
+# provided so a missing configuration fails loudly instead of silently
+# sending nothing.
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_BOT_USERNAME = os.getenv("TELEGRAM_BOT_USERNAME", "")
+TELEGRAM_BOT_ID = int(os.getenv("TELEGRAM_BOT_ID", "0") or 0)
+TELEGRAM_DEFAULT_CHAT_ID = int(os.getenv("TELEGRAM_CHAT_ID", "0") or 0)
+
+
+def telegram_configured() -> bool:
+    return bool(TELEGRAM_BOT_TOKEN)
+
+
+TELEGRAM_API_BASE = (
+    f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+    if TELEGRAM_BOT_TOKEN else ""
+)
+
+
+class TelegramNotConfigured(RuntimeError):
+    """Raised when a strict caller requires a token that is not set."""
+
 
 class AlgoriseTelegramService:
-    def __init__(self, token: Optional[str] = None):
+    """Telegram integration.
+
+    Constructed with no token this returns a DISABLED instance whose methods
+    no-op and report ``configured: False``, rather than raising. Several
+    modules construct this at import time, and a missing optional
+    notification credential must not prevent the application from starting.
+
+    Pass ``strict=True`` where a caller genuinely needs the credential and
+    should surface its absence, for example an endpoint returning 503.
+    """
+
+    def __init__(self, token: Optional[str] = None, strict: bool = False):
         self.token = token or TELEGRAM_BOT_TOKEN
-        self.api_base = f"https://api.telegram.org/bot{self.token}"
+        self.configured = bool(self.token)
+        if not self.configured and strict:
+            raise TelegramNotConfigured(
+                "TELEGRAM_BOT_TOKEN is not set. Export it from the environment; "
+                "do not hardcode it."
+            )
+        self.api_base = (
+            f"https://api.telegram.org/bot{self.token}" if self.configured else ""
+        )
+
+    def __getattr__(self, name: str):
+        """Succeed harmlessly when disabled.
+
+        Only reached for attributes not defined on the class, so real methods
+        still work when a token is present.
+        """
+        if name.startswith("__"):
+            raise AttributeError(name)
+
+        def _disabled(*_args, **_kwargs):
+            return {"ok": False, "error": "telegram is not configured"}
+
+        return _disabled
 
     def get_me(self) -> Dict[str, Any]:
         """Verifies bot identity with Telegram API."""

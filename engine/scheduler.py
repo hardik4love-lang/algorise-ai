@@ -70,12 +70,23 @@ async def run_facebook_agent_sweep():
                         )
                     )
                 else:
+                    # NO Meta token: record that nothing ran.
+                    #
+                    # This branch previously fabricated a successful run
+                    # claiming comments_scanned=31 and "3-Page Auto-Update
+                    # Active" without calling the Meta API, writing roughly
+                    # 1,440 rows per day of synthetic activity that the
+                    # client dashboard displayed as evidence of work. An
+                    # honest "not configured" is more useful than a fake
+                    # success, because a client paying for comment handling
+                    # can see exactly what is and is not running.
                     run_res = {
-                        "status": "completed",
-                        "comments_scanned": 31,
+                        "status": "not_configured",
+                        "reason": "no Meta access token on this client",
+                        "comments_scanned": 0,
                         "replies_sent": 0,
                         "leads_detected": 0,
-                        "leads": []
+                        "leads": [],
                     }
 
                 if run_res.get("status") == "token_required" and not is_shruhi:
@@ -98,20 +109,40 @@ async def run_facebook_agent_sweep():
                     )
                     session.add(lead)
 
-                # Log job
+                # Persist an honest record. The `31` default and the hardcoded
+                # "3-Page Auto-Update Active ... Viral Reel synced" summary
+                # asserted work that had not happened. A run row now states
+                # what actually occurred, and a client without a token gets
+                # a not_configured row rather than a fake success.
+                _scanned = run_res.get("comments_scanned", 0)
+                _replied = run_res.get("replies_sent", 0)
+                _leads_found = run_res.get("leads_detected", 0)
+                _status = run_res.get("status", "completed")
+
+                if _status == "not_configured":
+                    job_log = (
+                        "No Meta access token configured; no sweep was "
+                        "performed and no comments were read."
+                    )
+                elif is_shruhi:
+                    job_log = (
+                        f"Sweep completed on the configured pages: scanned "
+                        f"{_scanned}, replies {_replied}, leads {_leads_found}."
+                    )
+                else:
+                    job_log = (
+                        f"Automated sweep on Page {page_id}: scanned {_scanned}, "
+                        f"replies {_replied}, leads {_leads_found}."
+                    )
+
                 job = FacebookAgentJob(
                     client_id=client.id,
                     job_type="scheduled_cron_sweep",
-                    status="completed",
-                    comments_scanned=run_res.get("comments_scanned", 31),
-                    replies_sent=run_res.get("replies_sent", 0),
-                    leads_detected=run_res.get("leads_detected", 0),
-                    log_summary=(
-                        f"24/7 Cloud Comment Bot & 3-Page Auto-Update Active (Pages 61586357894191, 61586323275145 & @shruhi_boutique_reseller_hub + 100 Groups): "
-                        f"31 Current 4K Posts + Viral Reel synced; guiding buyers to WhatsApp +91 63552 85433 & +91 90542 41725."
-                        if is_shruhi
-                        else f"Automated sweep on Page {page_id}: scanned {run_res.get('comments_scanned', 0)}, replies {run_res.get('replies_sent', 0)}, leads {run_res.get('leads_detected', 0)}."
-                    ),
+                    status=_status,
+                    comments_scanned=_scanned,
+                    replies_sent=_replied,
+                    leads_detected=_leads_found,
+                    log_summary=job_log,
                     run_at=datetime.now(timezone.utc)
                 )
                 session.add(job)

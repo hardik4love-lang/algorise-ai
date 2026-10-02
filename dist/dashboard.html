@@ -1398,7 +1398,7 @@
       localStorage.setItem(`algorise_real_jobs_${currentClientId}`, JSON.stringify(realJobs.slice(0, 20)));
       renderDemoDashboard(currentClientId);
 
-      fetch('https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage', {
+      fetch('/api/v1/telegram/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1508,7 +1508,7 @@
       }
 
       if (dispatchTelegram) {
-        fetch('https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage', {
+        fetch('/api/v1/telegram/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1542,7 +1542,7 @@
       localStorage.setItem(`algorise_real_jobs_${currentClientId}`, JSON.stringify(realJobs.slice(0, 20)));
       renderDemoDashboard(currentClientId);
 
-      fetch('https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage', {
+      fetch('/api/v1/telegram/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1917,7 +1917,7 @@
       const latencySec = Math.min(0.019, ((performance.now() - t0) / 1000)).toFixed(4);
 
       if (shieldTriggered && dispatchTelegramAlert) {
-        fetch('https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage', {
+        fetch('/api/v1/telegram/send', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -1987,7 +1987,7 @@
 
       // Direct Telegram Bot API fallback for static hosting
       try {
-        const tgResp = await fetch(`https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage`, {
+        const tgResp = await fetch(`/api/v1/telegram/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -2136,7 +2136,7 @@
 
       // Fallback direct Telegram dispatch
       try {
-        await fetch(`https://api.telegram.org/botREDACTED_ROTATE_VIA_BOTFATHER/sendMessage`, {
+        await fetch(`/api/v1/telegram/send`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

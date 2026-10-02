@@ -81,7 +81,9 @@ class AlgoriseTuningEngine:
                 "tuned_confidence": tuned_conf,
                 "target_latency_ms": target_lat,
                 "measured_latency_ms": latency,
-                "safety_gate_status": "VERIFIED_BLOCKED",
+                "safety_gate_status": (
+                    "VERIFIED_BLOCKED" if safety_verified else "BLOCK_NOT_VERIFIED"
+                ),
                 "overall_status": status
             }
             all_bot_reports.append(bot_summary)

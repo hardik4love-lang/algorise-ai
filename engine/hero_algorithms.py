@@ -439,6 +439,35 @@ def execute_exitrisk(payload: Dict[str, Any]) -> Dict[str, Any]:
 # DISPATCHER MAPPING FOR ALL 100 HERO BOTS
 # ==============================================================================
 
+def _flesch_kincaid(text: str) -> float:
+    """Actual Flesch-Kincaid grade level.
+
+    Replaces a hardcoded 11.4 that was returned as though it were a
+    measurement. Words, sentences, and syllables are counted, not assumed.
+    """
+    import re as _re
+
+    sentences = [s for s in _re.split(r"[.!?]+", text) if s.strip()]
+    words = _re.findall(r"[A-Za-z']+", text)
+    if not sentences or not words:
+        return 0.0
+
+    syllables = 0
+    for w in words:
+        wl = w.lower()
+        if len(wl) <= 3:
+            syllables += 1
+            continue
+        syllables += len(_re.findall(r"[aeiouy]+", wl))
+        if wl.endswith("e") and not wl.endswith(("le", "ee")):
+            syllables -= 1
+    syllables = max(syllables, len(words))
+
+    wps = len(words) / len(sentences)
+    spw = syllables / len(words)
+    return round(0.39 * wps + 11.8 * spw - 15.59, 1)
+
+
 # Master individual algorithmic dispatcher for ALL 100 HERO BOTS
 def execute_algorithmic_domain_bot(bot_id: str, sector: str, payload: Dict[str, Any]) -> Dict[str, Any]:
     """Unified mathematical/algorithmic processing for all 100 certified hero bots."""
@@ -481,15 +510,24 @@ def execute_algorithmic_domain_bot(bot_id: str, sector: str, payload: Dict[str, 
             "confidence": 0.942
         }
     elif sector == "Healthcare":
-        urgency = "HIGH" if val > 50000 else "STANDARD_CLINICAL"
+        # This sector previously returned a literal
+        # "HIPAA-VERIFIED-SHA256-OK" and "ZERO_INTERACTIONS_DETECTED"
+        # without reading any input, alongside a fixed CPT code. That is a
+        # false attestation of regulatory compliance, which is a liability
+        # rather than a feature. The sector now refuses explicitly.
         return {
             "bot_id": bot_id,
             "sector": sector,
-            "hipaa_compliance_token": "HIPAA-VERIFIED-SHA256-OK",
-            "clinical_urgency": urgency,
-            "code_recommendation": "CPT-99214_ESTABLISHED_MODERATE",
-            "contraindication_status": "ZERO_INTERACTIONS_DETECTED",
-            "confidence": 0.992
+            "supported": False,
+            "reason": (
+                "Clinical decision support is not implemented. Attesting to "
+                "HIPAA compliance or drug-interaction safety requires systems "
+                "this service does not have. Route to a qualified clinician."
+            ),
+            "clinical_urgency": (
+                "HIGH" if val > 50000 else "STANDARD_CLINICAL"
+            ),
+            "confidence": 0.0,
         }
     elif sector == "RealEstate":
         commission = round(val * 0.025, 2)
@@ -505,29 +543,43 @@ def execute_algorithmic_domain_bot(bot_id: str, sector: str, payload: Dict[str, 
             "confidence": 0.974
         }
     elif sector == "Finance":
-        z_score = round(1.2 * 0.25 + 1.4 * 0.18 + 3.3 * 0.45 + 0.6 * 1.2 + 0.999 * 0.8, 3)
-        var_99 = round(val * 0.042, 2)
+        # Previously returned a fixed Altman Z built from hardcoded
+        # coefficients that ignored `val`, a literal "fraud_anomaly_score"
+        # and a "SAFE_INVESTMENT_GRADE" solvency verdict. A credit or
+        # investment-grade determination from a constant is a financial
+        # misrepresentation. Refuses explicitly.
         return {
             "bot_id": bot_id,
             "sector": sector,
-            "altman_z_score": z_score,
-            "value_at_risk_99_pct": var_99,
-            "solvency_status": "SAFE_INVESTMENT_GRADE",
-            "fraud_anomaly_score": 0.004,
-            "confidence": 0.989
+            "supported": False,
+            "reason": (
+                "Credit and solvency assessment is not implemented. Do not "
+                "use this service for lending, underwriting, or investment "
+                "decisions."
+            ),
+            "confidence": 0.0,
         }
     elif sector == "Legal":
-        risk_flags = ["Change of Control Unilateral", "Indemnity Cap Uncapped"] if val > 100000 else []
+        # Previously claimed "material_clauses_reviewed: 42",
+        # "redline_risk_score: 18.5" and "DELAWARE_GENERAL_CORPORATION_LAW"
+        # without reading a document. Statutory compliance cannot be
+        # asserted from constants.
         return {
             "bot_id": bot_id,
             "sector": sector,
-            "material_clauses_reviewed": 42,
-            "redline_risk_score": 18.5,
-            "statute_compliance": "DELAWARE_GENERAL_CORPORATION_LAW",
-            "identified_risk_flags": risk_flags,
-            "confidence": 0.981
+            "supported": False,
+            "reason": (
+                "Contract and statutory analysis is not implemented. No "
+                "document is parsed and no jurisdiction is evaluated. Route "
+                "to qualified counsel."
+            ),
+            "confidence": 0.0,
         }
     elif sector == "Logistics":
+        # Previously named "Dijkstra_Clark_Wright_Savings" as the routing
+        # algorithm when no routing algorithm exists in this codebase. The
+        # distance figure below is a linear approximation on the input, not
+        # a solved vehicle-routing problem, and is labelled as such.
         optimal_dist_km = round(val * 0.015, 1)
         fuel_saved_l = round(optimal_dist_km * 0.08, 1)
         return {
@@ -535,20 +587,28 @@ def execute_algorithmic_domain_bot(bot_id: str, sector: str, payload: Dict[str, 
             "sector": sector,
             "route_distance_km": optimal_dist_km,
             "fuel_savings_liters": fuel_saved_l,
-            "vrp_algorithm": "Dijkstra_Clark_Wright_Savings",
-            "eta_variance_mins": 4.2,
-            "confidence": 0.971
+            "method": "linear distance approximation; not a solved VRP",
+            "confidence": 0.971,
         }
     elif sector == "Education":
-        flesch_kincaid = round(11.4, 1)
+        # Readability was a constant (round(11.4, 1)) presented as a
+        # computed Flesch-Kincaid grade. It is now computed from the input
+        # where text is available, and omitted otherwise.
+        text = payload.get("text", "")
+        flesch_kincaid = (
+            _flesch_kincaid(text) if isinstance(text, str) and text else None
+        )
         mastery_pct = round(min(99.0, (val / 1000.0) * 8.5), 1)
         return {
             "bot_id": bot_id,
             "sector": sector,
             "reading_grade_level": flesch_kincaid,
+            "reading_grade_note": (
+                None if flesch_kincaid is not None
+                else "no text supplied; readability not computed"
+            ),
             "student_mastery_percentage": mastery_pct,
-            "pedagogy_scaffolding": "BLOOMS_TAXONOMY_ANALYSIS_LEVEL_4",
-            "confidence": 0.958
+            "confidence": 0.958,
         }
     else:
         return {

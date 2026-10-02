@@ -16,10 +16,22 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple, Set
 
 from engine.config import get_settings
-from engine.telegram_service import AlgoriseTelegramService
+from engine.telegram_service import (
+    AlgoriseTelegramService,
+    TelegramNotConfigured,
+    telegram_configured,
+)
 
 settings = get_settings()
-telegram = AlgoriseTelegramService()
+
+# Telegram alerting is optional. A missing token disables alerting; it must
+# not prevent the module from importing, or the whole application fails to
+# start for a missing notification credential. Previously a hardcoded token
+# masked this by making the service always constructible.
+try:
+    telegram = AlgoriseTelegramService()
+except TelegramNotConfigured:
+    telegram = None
 
 HOT_INTENT_KEYWORDS = [
     # Gujarati
@@ -364,7 +376,18 @@ class FacebookAgentEngine:
 
                 if status == "hot":
                     try:
-                        chat_target = telegram_chat_id or int(os.getenv("TELEGRAM_CHAT_ID", "8737013099"))
+                        chat_target = telegram_chat_id or int(
+                            os.getenv("TELEGRAM_CHAT_ID", "0") or 0
+                        )
+                        if telegram is None or not chat_target:
+                            # No bot token or no destination: alerting is
+                            # simply unavailable. Do not fabricate a send.
+                            if not chat_target:
+                                _log.info(
+                                    "hot lead %s detected but TELEGRAM_CHAT_ID "
+                                    "is unset; alert skipped", user_name
+                                )
+                            continue
                         telegram.notify_facebook_hot_lead(
                             chat_id=chat_target,
                             lead_data={

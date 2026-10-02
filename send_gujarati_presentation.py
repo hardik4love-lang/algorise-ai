@@ -5,10 +5,22 @@ Dispatches the updated Gujarati B2B commercial presentation directly to Telegram
 import urllib.request
 import urllib.parse
 import json
+import os
+import sys
 import time
 
-BOT_TOKEN = "REDACTED_ROTATE_VIA_BOTFATHER"
-CHAT_ID = "8737013099"
+# Credentials come from the environment. A token in source is a live
+# compromise; this file previously contained one and it was published in the
+# repository. Rotate the old token via @BotFather before use.
+BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "").strip()
+
+if not BOT_TOKEN or not CHAT_ID:
+    sys.exit(
+        "TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set in the "
+        "environment. Refusing to send with empty credentials."
+    )
+
 URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
 def send_telegram(text):

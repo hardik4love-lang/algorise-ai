@@ -185,12 +185,23 @@ def main():
     leads = fetch_web_leads(query, max_results=12)
 
     if not leads:
-        # Fallback to realistic known nursery list for the cluster to ensure zero downtime
-        leads = [
-            {"name": f"{cluster_name} Commercial Seedling Hub #1", "url": "Direct Cluster Listing", "snippet": "High volume pro-tray seedling propagation unit.", "phone": "+91 98250 XXXXX"},
-            {"name": f"{cluster_name} Hi-Tech Nursery & Flora", "url": "Direct Cluster Listing", "snippet": "Floriculture & vegetable nursery.", "phone": "+91 94260 XXXXX"},
-            {"name": f"{cluster_name} Agro Inputs & Media Supplier", "url": "Direct Cluster Listing", "snippet": "Regional distributor of vermicompost and cocopeat.", "phone": "+91 98980 XXXXX"}
-        ]
+        # Previously fabricated three placeholder prospects with masked
+        # phone numbers when a search returned nothing, so the run always
+        # reported success. Invented rows reach sales inboxes and damage
+        # the sender's domain reputation faster than an empty result does.
+        # Report the failure honestly instead.
+        print(
+            f"\n\033[1;31m[!] No leads found for '{query}' in '{cluster_name}'.\033[0m"
+        )
+        print(
+            "\033[1;33m    Nothing was written to disk. A fabricated result "
+            "would reach a merchant as a real prospect.\033[0m"
+        )
+        print(
+            "\033[1;34m    Try a different query, or add the cluster manually "
+            "to CLUSTER_CONFIG.\033[0m\n"
+        )
+        return None, None
 
     csv_path, latest_path = save_leads(leads, cluster_name, choice)
     

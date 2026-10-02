@@ -5,6 +5,8 @@ from fastapi import FastAPI, Request, Response, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 from fastapi.security import APIKeyHeader
+from pydantic import BaseModel, Field
+from typing import Optional
 from prometheus_client import generate_latest
 
 from engine import (
@@ -227,6 +229,54 @@ async def readiness_check():
 
 
 # Prometheus metrics endpoint (no auth required in dev)
+class TelegramSendRequest(BaseModel):
+    """Server-side Telegram send.
+
+    The dashboard previously called api.telegram.org directly from the
+    browser with a hardcoded bot token, which published the credential to
+    every page visitor. Telegram sends now go through the backend so the
+    token stays server-side.
+    """
+
+    chat_id: str
+    text: str = Field(min_length=1, max_length=4096)
+    parse_mode: Optional[str] = None
+
+
+@app.post("/api/v1/telegram/send")
+async def telegram_send(
+    payload: TelegramSendRequest, _: bool = Depends(verify_api_key)
+):
+    """Proxy a Telegram message. Requires a configured bot token."""
+    from engine.telegram_service import (
+        AlgoriseTelegramService,
+        TelegramNotConfigured,
+    )
+
+    try:
+        service = AlgoriseTelegramService(strict=True)
+    except TelegramNotConfigured as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+
+    import urllib.request as _urlreq
+
+    body: dict = {"chat_id": payload.chat_id, "text": payload.text}
+    if payload.parse_mode:
+        body["parse_mode"] = payload.parse_mode
+    req = _urlreq.Request(
+        f"{service.api_base}/sendMessage",
+        data=json.dumps(body).encode("utf-8"),
+        headers={"Content-Type": "application/json"},
+    )
+    try:
+        with _urlreq.urlopen(req, timeout=10) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        raise HTTPException(
+            status_code=502, detail=f"telegram send failed: {exc}"
+        ) from exc
+
+
 @app.get("/metrics", response_class=PlainTextResponse)
 async def metrics():
     return Response(content=get_metrics(), media_type="text/plain")
