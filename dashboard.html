@@ -81,7 +81,7 @@
           </div>
           <p id="clientLocationDisplay" class="text-xs sm:text-sm text-slate-400 flex flex-wrap items-center gap-3">
             <span><i class="fa-solid fa-globe text-emerald-400 mr-1.5"></i>100% Online Store • Pan-India &amp; Worldwide Express Delivery (www.shruhicollections.in)</span>
-            <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>+91 63552 85433</span>
+            <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>{{data-brand-phone}}</span>
             <span><i class="fa-solid fa-id-badge text-slate-500 mr-1.5"></i><code id="clientIdText" class="text-slate-300">client_srt_shruhi</code></span>
           </p>
         </div>
@@ -138,7 +138,7 @@
           <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
           <div>
             <div class="font-bold text-white">4. 24/7 Reply &amp; Guide</div>
-            <div class="text-[10px] text-emerald-400">To Client (+91 63552 85433 &amp; +91 90542 41725) →</div>
+            <div class="text-[10px] text-emerald-400">To Client ({{data-brand-phone}} &amp; {{data-brand-phone2}}) →</div>
           </div>
         </button>
         <button onclick="switchTab('telegram')" class="text-left px-3 py-2.5 rounded-xl bg-slate-900/90 border border-sky-500/30 hover:border-sky-400 hover:bg-sky-500/10 flex items-center gap-2 transition cursor-pointer">
@@ -184,7 +184,7 @@
           <i class="fa-brands fa-whatsapp text-emerald-400"></i>
         </div>
         <div class="text-2xl sm:text-3xl font-extrabold text-white" id="metricReplies">&lt;0.05s</div>
-        <p class="text-[11px] text-slate-400 mt-1">Guides to +91 63552 85433 &amp; +91 90542 41725</p>
+        <p class="text-[11px] text-slate-400 mt-1">Guides to {{data-brand-phone}} &amp; {{data-brand-phone2}}</p>
       </div>
 
       <div class="glass rounded-2xl p-4 sm:p-5 cursor-pointer hover:border-rose-500/40 transition" onclick="switchTab('leads')">
@@ -255,7 +255,7 @@
         <div id="emptyLeads" class="glass rounded-2xl p-10 text-center text-slate-500 hidden">
           <i class="fa-solid fa-inbox text-4xl mb-3 text-slate-600"></i>
           <h3 class="text-base font-bold text-slate-300">0 Real Leads Captured Yet</h3>
-          <p class="text-xs max-w-lg mx-auto mt-1">Zero fake or simulated leads are shown. Real buyer comments and DMs on <a href="https://www.facebook.com/profile.php?id=61586357894191" target="_blank" class="text-emerald-400 underline">Page #1 (61586357894191)</a>, <a href="https://www.facebook.com/profile.php?id=61586323275145" target="_blank" class="text-emerald-400 underline">Page #2 (61586323275145)</a>, and the 100 Marketing Groups appear here automatically and guide customers to <strong class="text-emerald-400">+91 63552 85433 &amp; +91 90542 41725</strong>.</p>
+          <p class="text-xs max-w-lg mx-auto mt-1">Zero fake or simulated leads are shown. Real buyer comments and DMs on <a href="https://www.facebook.com/profile.php?id=61586357894191" target="_blank" class="text-emerald-400 underline">Page #1 (61586357894191)</a>, <a href="https://www.facebook.com/profile.php?id=61586323275145" target="_blank" class="text-emerald-400 underline">Page #2 (61586323275145)</a>, and the 100 Marketing Groups appear here automatically and guide customers to <strong class="text-emerald-400">{{data-brand-phone}} &amp; {{data-brand-phone2}}</strong>.</p>
           <div class="mt-4 flex flex-wrap justify-center gap-2.5">
             <button onclick="switchTab('pages')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">1. Manage &amp; Update 3 Pages</button>
             <button onclick="switchTab('groups')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">2. Open 100 Groups &amp; Viral Sales Reel</button>
@@ -274,7 +274,7 @@
                 <i class="fa-brands fa-meta text-blue-400"></i>
                 <span>3 Connected &amp; Auto-Updated Facebook Pages (29 4K Catalog Posts + 1 Viral Sales Reel)</span>
               </h3>
-              <p class="text-xs text-slate-400">All 3 Facebook Pages are connected and automatically kept updated with 30 4K Catalog Posts (MRP ₹850–₹3,550, Sizes S to 6XL) + the 4K Viral Product Sales Reel, funneling every buyer to WhatsApp <strong class="text-emerald-400">+91 63552 85433 &amp; +91 90542 41725</strong> &amp; <strong class="text-emerald-400">www.shruhicollections.in</strong>.</p>
+              <p class="text-xs text-slate-400">All 3 Facebook Pages are connected and automatically kept updated with 30 4K Catalog Posts (MRP ₹850–₹3,550, Sizes S to 6XL) + the 4K Viral Product Sales Reel, funneling every buyer to WhatsApp <strong class="text-emerald-400">{{data-brand-phone}} &amp; {{data-brand-phone2}}</strong> &amp; <strong class="text-emerald-400">www.shruhicollections.in</strong>.</p>
             </div>
             <div class="flex flex-wrap gap-2 self-start">
               <button onclick="syncAll3PagesCatalog()" id="btnSync3PagesNow" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs shadow-lg shadow-amber-500/20 flex items-center gap-2">
@@ -311,7 +311,7 @@
               </div>
               <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
                 <div class="flex justify-between"><span>Auto-Update Status:</span><strong class="text-emerald-400">🟢 30 4K Posts + Viral Reel Synced</strong></div>
-                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp +91 63552 85433</strong></div>
+                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp {{data-brand-phone}}</strong></div>
               </div>
               <div id="slot1StatusBadge" class="text-[11px] text-emerald-400 font-bold">✓ Connected, Kept Updated &amp; 24/7 Comment Bot Active (ID: 61586357894191)</div>
             </div>
@@ -336,7 +336,7 @@
               </div>
               <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
                 <div class="flex justify-between"><span>Auto-Update Status:</span><strong class="text-emerald-400">🟢 30 4K Posts + Viral Reel Synced</strong></div>
-                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp +91 63552 85433</strong></div>
+                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp {{data-brand-phone}}</strong></div>
               </div>
               <div id="slot2StatusBadge" class="text-[11px] text-emerald-400 font-bold">✓ Connected, Kept Updated &amp; 24/7 Comment Bot Active (ID: 61586323275145)</div>
             </div>
@@ -361,7 +361,7 @@
               </div>
               <div class="p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] text-slate-300 space-y-1">
                 <div class="flex justify-between"><span>Auto-Update Status:</span><strong class="text-emerald-400">🟢 30 4K Posts + Viral Reel Synced</strong></div>
-                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp +91 63552 85433</strong></div>
+                <div class="flex justify-between"><span>24/7 Comment Handoff:</span><strong class="text-emerald-400">WhatsApp {{data-brand-phone}}</strong></div>
               </div>
               <div id="slot3StatusBadge" class="text-[11px] text-emerald-400 font-bold">✓ Connected, Kept Updated &amp; 24/7 Comment Bot Active</div>
             </div>
@@ -380,7 +380,7 @@
                 <i class="fa-solid fa-clapperboard text-amber-400"></i>
                 <span>Join Up to 100 Relevant Groups • Post 1 Viral Product Sales Reel • Reply &amp; Guide Customers to Client</span>
               </h3>
-              <p class="text-xs text-slate-400 max-w-4xl">We discover &amp; join <strong class="text-white">100 high-buying-intent Ethnic Wear, Kurti, Plus-Size (3XL–6XL), Boutique Reseller &amp; NRI Facebook Groups (4.82M+ members)</strong>, post the <strong class="text-amber-300">4K 9:16 Viral Product Sales Reel</strong> to every group, and <strong class="text-emerald-400">reply 24/7 to every customer comment</strong> to guide them straight to client WhatsApp <strong class="text-emerald-400">+91 63552 85433</strong> &amp; <strong class="text-emerald-400">www.shruhicollections.in</strong>.</p>
+              <p class="text-xs text-slate-400 max-w-4xl">We discover &amp; join <strong class="text-white">100 high-buying-intent Ethnic Wear, Kurti, Plus-Size (3XL–6XL), Boutique Reseller &amp; NRI Facebook Groups (4.82M+ members)</strong>, post the <strong class="text-amber-300">4K 9:16 Viral Product Sales Reel</strong> to every group, and <strong class="text-emerald-400">reply 24/7 to every customer comment</strong> to guide them straight to client WhatsApp <strong class="text-emerald-400">{{data-brand-phone}}</strong> &amp; <strong class="text-emerald-400">www.shruhicollections.in</strong>.</p>
             </div>
             <div class="flex flex-wrap gap-2 self-start">
               <button onclick="broadcastViralReelTo100Groups()" id="btnBroadcastReel100" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs shadow-lg shadow-amber-500/20 flex items-center gap-2">
@@ -429,12 +429,12 @@
               </div>
             </div>
 
-            <!-- Right 7 Cols: Group Customer Comment Auto-Reply -> Guide to Client (+91 63552 85433) -->
+            <!-- Right 7 Cols: Group Customer Comment Auto-Reply -> Guide to Client ({{data-brand-phone}}) -->
             <div class="lg:col-span-7 p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/30 space-y-3 text-xs">
               <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
                 <div>
                   <span class="text-emerald-400 font-extrabold uppercase text-[10px]">PILLAR #4 • 24/7 GROUP COMMENT AUTO-REPLY &amp; CLIENT HANDOFF</span>
-                  <h4 class="font-bold text-white text-sm">Reply to Group Customers &amp; Guide Them to Client (+91 63552 85433)</h4>
+                  <h4 class="font-bold text-white text-sm">Reply to Group Customers &amp; Guide Them to Client ({{data-brand-phone}})</h4>
                 </div>
                 <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[10px]">● 24/7 Auto-Reply Active Across 100 Groups</span>
               </div>
@@ -606,7 +606,7 @@
             <div class="space-y-3 text-xs">
               <div>
                 <label class="block font-semibold text-slate-300 mb-1">Target Telegram Chat ID (Owner / Admin)</label>
-                <input type="text" id="tgProxyChatId" value="8737013099" class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono">
+                <input type="text" id="tgProxyChatId" value=undefined class="w-full px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white font-mono">
               </div>
               <div>
                 <label class="block font-semibold text-slate-300 mb-1">Live Message / Hot Lead Alert to Dispatch via <code>@Aassqqee_bot</code></label>
@@ -712,7 +712,7 @@
               </div>
               <div>
                 <label class="block text-slate-400 mb-1">WhatsApp / Phone Number</label>
-                <input type="text" id="prioWhatsapp" value="+91 63552 85433" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white">
+                <input type="text" id="prioWhatsapp" value="{{data-brand-phone}}" class="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-700 text-white">
               </div>
               <div>
                 <label class="block text-slate-400 mb-1">Preferred Setup Slot &amp; Notes</label>
@@ -872,7 +872,7 @@
         </button>
 
         <p class="text-center text-[11px] text-slate-500">
-          Need assistance? WhatsApp support at <span class="text-emerald-400 font-semibold">+91 87370 13099</span>
+          Need assistance? WhatsApp support at <span class="text-emerald-400 font-semibold">{{BRAND_PHONE}}</span>
         </p>
       </form>
     </div>
@@ -938,6 +938,12 @@
     }
 
     let currentClientId = localStorage.getItem('algorise_client_id') || 'client_srt_shruhi';
+
+      <script src="/brand.js"></script>
+  <script>
+// Merchant brand hydration lives in /brand.js so the pitch page can
+    // use it too. Generated by scripts/extract_brand_js.py.
+
     if (currentClientId.includes('demo')) {
       currentClientId = 'client_srt_shruhi';
       localStorage.setItem('algorise_client_id', 'client_srt_shruhi');
@@ -958,6 +964,10 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // Hydrate merchant values before anything renders them, so no
+      // un-substituted marker is ever visible.
+      hydrateBrand(currentClientId);
+
       if (currentClientId && (currentPin || currentClientId.includes('shruhi'))) {
         if (!currentPin) {
           currentPin = '2026';
@@ -1063,7 +1073,7 @@
       document.getElementById('clientIdText').textContent = c.id;
       document.getElementById('clientLocationDisplay').innerHTML = `
         <span><i class="fa-solid fa-globe text-emerald-400 mr-1.5"></i>100% Online Store • Pan-India &amp; Worldwide Delivery (www.shruhicollections.in)</span>
-        <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>${c.phone || '+91 63552 85433'}</span>
+        <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>${c.phone || '{{data-brand-phone}}'}</span>
         <span><i class="fa-solid fa-id-badge text-slate-500 mr-1.5"></i><code id="clientIdText" class="text-slate-300">${c.id}</code></span>
       `;
 
@@ -1124,7 +1134,7 @@
         card.className = `glass rounded-2xl p-5 border transition-all hover:border-slate-600 ${isHot ? 'border-rose-500/40 bg-rose-950/10' : 'border-slate-800'}`;
 
         const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
-        const waLink = cleanPhone ? `https://wa.me/91${cleanPhone}?text=${encodeURIComponent('નમસ્તે જી! 🙏 Shruhi Collections (shruhicollections.in) તરફથી આપની ઇન્ક્વાયરી બદલ આભાર. S થી 6XL સાઈઝમાં અમારું 4K કેટલોગ અને પ્રાઈસ લિસ્ટ મોકલી રહ્યા છીએ.')}` : '#';
+        const waLink = cleanPhone ? `{{WA_LINK}}${cleanPhone}?text=${encodeURIComponent('નમસ્તે જી! 🙏 Shruhi Collections (shruhicollections.in) તરફથી આપની ઇન્ક્વાયરી બદલ આભાર. S થી 6XL સાઈઝમાં અમારું 4K કેટલોગ અને પ્રાઈસ લિસ્ટ મોકલી રહ્યા છીએ.')}` : '#';
 
         card.innerHTML = `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
@@ -1235,7 +1245,7 @@
           id: cid,
           name: "Shruhi Collections — Official Boutique (shruhicollections.in)",
           city: "100% Online Store • www.shruhicollections.in",
-          phone: "+91 63552 85433",
+          phone: "{{data-brand-phone}}",
           fb_connected: true,
           fb_page_name: savedPageName,
           fb_page_id: savedPageId,
@@ -1297,7 +1307,7 @@
 
           // 2. Auto-Reply on Facebook Comment
           if (hasBuyerIntent) {
-            const replyMsg = `નમસ્તે ${authorName} જી! 🙏 Shruhi Collections (shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં અમારા 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) ની વિગત આપના મેસેન્જર DM માં મોકલી છે. તાત્કાલિક ઓર્ડર માટે WhatsApp: +91 63552 85433.`;
+            const replyMsg = `નમસ્તે ${authorName} જી! 🙏 Shruhi Collections (shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં અમારા 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) ની વિગત આપના મેસેન્જર DM માં મોકલી છે. તાત્કાલિક ઓર્ડર માટે WhatsApp: {{data-brand-phone}}.`;
             try {
               const rResp = await apiFetch('/meta/comments/reply', {
                 method: 'POST',
@@ -1383,7 +1393,7 @@
       const pages = getConfiguredMetaPages();
       if (toast) {
         toast.classList.remove('hidden');
-        toast.innerHTML = `<strong>✓ All 3 Connected Facebook Pages Updated!</strong> Synchronized <strong>30 4K Studio-Cleaned Catalog Posts (MRP ₹850–₹3,550, Sizes S to 6XL)</strong> + <strong>1 Ultra-Viral 4K Product Sales Reel</strong> across:<br>• Page #1: <code>61586357894191</code> (Shruhi Collections | Surat)<br>• Page #2: <code>61586323275145</code> (Shruhi collections)<br>• Page #3: <code>shruhi_boutique_reseller_hub</code> (Shruhi Boutique &amp; Reseller Hub)<br>24/7 Cloud Comment Auto-Reply is active guiding all buyers to client WhatsApp <strong>+91 63552 85433</strong>.`;
+        toast.innerHTML = `<strong>✓ All 3 Connected Facebook Pages Updated!</strong> Synchronized <strong>30 4K Studio-Cleaned Catalog Posts (MRP ₹850–₹3,550, Sizes S to 6XL)</strong> + <strong>1 Ultra-Viral 4K Product Sales Reel</strong> across:<br>• Page #1: <code>61586357894191</code> (Shruhi Collections | Surat)<br>• Page #2: <code>61586323275145</code> (Shruhi collections)<br>• Page #3: <code>shruhi_boutique_reseller_hub</code> (Shruhi Boutique &amp; Reseller Hub)<br>24/7 Cloud Comment Auto-Reply is active guiding all buyers to client WhatsApp <strong>{{data-brand-phone}}</strong>.`;
       }
       const realJobs = getStoredRealJobs(currentClientId);
       realJobs.unshift({
@@ -1399,8 +1409,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_id: 8737013099,
-          text: `📘 3 FACEBOOK PAGES KEPT UPDATED (24/7 CLOUD SYNC)\n• Page #1: 61586357894191 (Shruhi Collections | Surat)\n• Page #2: 61586323275145 (Shruhi collections)\n• Page #3: Shruhi Boutique & Reseller Hub\n• Synced: 30 4K Catalog Posts + 1 Viral Product Sales Reel\n• Customer Handoff: WhatsApp +91 63552 85433`
+      text: `📘 3 FACEBOOK PAGES KEPT UPDATED (24/7 CLOUD SYNC)\n• Page #1: 61586357894191 (Shruhi Collections | Surat)\n• Page #2: 61586323275145 (Shruhi collections)\n• Page #3: Shruhi Boutique & Reseller Hub\n• Synced: 30 4K Catalog Posts + 1 Viral Product Sales Reel\n• Customer Handoff: WhatsApp {{data-brand-phone}}`
         })
       }).catch(() => {});
     }
@@ -1410,7 +1419,7 @@
     // =========================================================================
     let portalAll100Groups = [];
     let portalSelectedGroupCat = 'ALL';
-    const PORTAL_VIRAL_REEL_CAPTION = `🔥 WAIT! STOP OVERPAYING FOR DESIGNER SUITS & PLUS-SIZE COUTURE (S TO 6XL)! 🔥\n\nWatch our 2026 4K Bestsellers from Shruhi Collections — Direct Boutique MRP ₹850 to ₹3,550:\n👑 TEJAL (Ochre 3-Pc Sharara Suit) — MRP ₹3,550 (M to 2XL)\n👑 GALAXY (Royal Banarasi 3-Pc Suit) — MRP ₹3,550 (Sizes M to 5XL!)\n✨ D.NO 1038 (Crimson Ajrakh Plus-Size Suit) — MRP ₹2,650 (3XL, 5XL, 6XL)\n💎 KAVYA (Mauve Scalloped Organza Suit) — MRP ₹2,850 (S, L, 2XL)\n🌟 D.NO 1042 (Olive & Bandhani Plus-Size Suit) — MRP ₹2,550 (3XL to 6XL)\n🔥 CODE B-2876 (Burgundy Kashmiri Embroidered Co-ord) — MRP ₹2,250 (3XL to 5XL)\n🛍️ CODE 5625 (Navy Botanical Tunic) — MRP ₹850 (M to 2XL)\n\n💬 COMMENT "PP" OR "PRICE" BELOW FOR INSTANT DM!\n📲 Direct WhatsApp & 24/7 AI Order Line: https://wa.me/916355285433 (+91 63552 85433)\n🌐 Shop All 29 Verified Designs: https://www.shruhicollections.in`;
+    const PORTAL_VIRAL_REEL_CAPTION = `🔥 WAIT! STOP OVERPAYING FOR DESIGNER SUITS & PLUS-SIZE COUTURE (S TO 6XL)! 🔥\n\nWatch our 2026 4K Bestsellers from Shruhi Collections — Direct Boutique MRP ₹850 to ₹3,550:\n👑 TEJAL (Ochre 3-Pc Sharara Suit) — MRP ₹3,550 (M to 2XL)\n👑 GALAXY (Royal Banarasi 3-Pc Suit) — MRP ₹3,550 (Sizes M to 5XL!)\n✨ D.NO 1038 (Crimson Ajrakh Plus-Size Suit) — MRP ₹2,650 (3XL, 5XL, 6XL)\n💎 KAVYA (Mauve Scalloped Organza Suit) — MRP ₹2,850 (S, L, 2XL)\n🌟 D.NO 1042 (Olive & Bandhani Plus-Size Suit) — MRP ₹2,550 (3XL to 6XL)\n🔥 CODE B-2876 (Burgundy Kashmiri Embroidered Co-ord) — MRP ₹2,250 (3XL to 5XL)\n🛍️ CODE 5625 (Navy Botanical Tunic) — MRP ₹850 (M to 2XL)\n\n💬 COMMENT "PP" OR "PRICE" BELOW FOR INSTANT DM!\n📲 Direct WhatsApp & 24/7 AI Order Line: {{WA_LINK}} ({{data-brand-phone}})\n🌐 Shop All 29 Verified Designs: https://www.shruhicollections.in`;
 
     async function loadPortal100Groups() {
       if (portalAll100Groups.length > 0) {
@@ -1469,7 +1478,7 @@
             </span>
           </td>
           <td class="py-2.5 px-3 text-sky-400 font-semibold text-[11px]">
-            ↪ Replies &amp; Guides to +91 63552 85433
+            ↪ Replies &amp; Guides to {{data-brand-phone}}
           </td>
           <td class="py-2.5 px-3 text-right">
             <a href="${g.joinUrl}" target="_blank" rel="noopener" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 font-bold text-[11px] inline-block">
@@ -1485,10 +1494,10 @@
       const outfitRaw = document.getElementById('portalGroupOutfitSelect')?.value || 'TEJAL|₹3,550|Sizes M to 2XL';
       const [code, price, sizes] = outfitRaw.split('|');
       const comment = document.getElementById('portalGroupCommentInput')?.value.trim() || 'PP please!';
-      const waUrl = `https://wa.me/916355285433?text=${encodeURIComponent(`Hello Shruhi Collections! I saw your Viral Reel for ${code} (${price}) in ${groupName} and want to order.`)}`;
+      const waUrl = `{{WA_LINK}}?text=${encodeURIComponent(`Hello Shruhi Collections! I saw your Viral Reel for ${code} (${price}) in ${groupName} and want to order.`)}`;
 
-      const publicReply = `Hi dear! ✨ Thank you for commenting on our Viral Reel in ${groupName}! *${code}* is ready to ship at Verified Boutique MRP *${price}* (${sizes}). We just sent the full 4K catalog to your DM! 💬 Connect directly with our client team on WhatsApp: +91 63552 85433 or shop at https://shruhicollections.in 🛍️`;
-      const privateDm = `✨ *SHRUHI COLLECTIONS — GROUP CUSTOMER HANDOFF* ✨\n📍 *Group:* ${groupName}\n💬 *Your Comment:* "${comment}"\n👗 *Outfit:* ${code} (${price} • ${sizes})\n🌐 *Store:* 100% Online Store • Pan-India & Worldwide Delivery\n📲 *Click to Order Directly with Client (+91 63552 85433):*\n${waUrl}`;
+      const publicReply = `Hi dear! ✨ Thank you for commenting on our Viral Reel in ${groupName}! *${code}* is ready to ship at Verified Boutique MRP *${price}* (${sizes}). We just sent the full 4K catalog to your DM! 💬 Connect directly with our client team on WhatsApp: {{data-brand-phone}} or shop at https://shruhicollections.in 🛍️`;
+      const privateDm = `✨ *SHRUHI COLLECTIONS — GROUP CUSTOMER HANDOFF* ✨\n📍 *Group:* ${groupName}\n💬 *Your Comment:* "${comment}"\n👗 *Outfit:* ${code} (${price} • ${sizes})\n🌐 *Store:* 100% Online Store • Pan-India & Worldwide Delivery\n📲 *Click to Order Directly with Client ({{data-brand-phone}}):*\n${waUrl}`;
 
       const outEl = document.getElementById('portalGroupLeadOut');
       if (outEl) {
@@ -1498,7 +1507,7 @@
             <p class="text-slate-200 text-[11px] leading-relaxed">${publicReply}</p>
           </div>
           <div class="p-3 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-1">
-            <div class="text-[10px] font-extrabold text-emerald-400 uppercase">📲 2. Instant DM Guiding Customer to Client (+91 63552 85433):</div>
+            <div class="text-[10px] font-extrabold text-emerald-400 uppercase">📲 2. Instant DM Guiding Customer to Client ({{data-brand-phone}}):</div>
             <pre class="text-emerald-300 text-[11px] whitespace-pre-wrap font-sans leading-relaxed">${privateDm}</pre>
           </div>
         `;
@@ -1509,8 +1518,7 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: 8737013099,
-            text: `👥 100-GROUP VIRAL REEL CUSTOMER GUIDED TO CLIENT\n• Group: ${groupName}\n• Outfit: ${code} (${price})\n• Customer Comment: "${comment}"\n• Guided to Client WhatsApp: +91 63552 85433`
+      text: `👥 100-GROUP VIRAL REEL CUSTOMER GUIDED TO CLIENT\n• Group: ${groupName}\n• Outfit: ${code} (${price})\n• Customer Comment: "${comment}"\n• Guided to Client WhatsApp: {{data-brand-phone}}`
           })
         }).catch(() => {});
       }
@@ -1527,11 +1535,11 @@
       const banner = document.getElementById('viralReelBlastBanner');
       if (banner) {
         banner.classList.remove('hidden');
-        banner.innerHTML = `<strong>🔥 4K Viral Product Sales Reel Syndicated to All 100 Relevant Marketing Groups (4.82M+ Reach) + All 3 Connected Facebook Pages!</strong><br>24/7 Cloud Comment Auto-Responder is actively replying to every customer inquiry and guiding buyers directly to client WhatsApp <strong>+91 63552 85433</strong> &amp; <strong>www.shruhicollections.in</strong>.`;
+        banner.innerHTML = `<strong>🔥 4K Viral Product Sales Reel Syndicated to All 100 Relevant Marketing Groups (4.82M+ Reach) + All 3 Connected Facebook Pages!</strong><br>24/7 Cloud Comment Auto-Responder is actively replying to every customer inquiry and guiding buyers directly to client WhatsApp <strong>{{data-brand-phone}}</strong> &amp; <strong>www.shruhicollections.in</strong>.`;
       }
       const realJobs = getStoredRealJobs(currentClientId);
       realJobs.unshift({
-        log_summary: `Syndicated 4K Viral Product Sales Reel to All 100 Joined Marketing Groups (4.82M+ Reach) + 3 Connected Pages • 24/7 Customer Reply -> WhatsApp +91 63552 85433 Active`,
+        log_summary: `Syndicated 4K Viral Product Sales Reel to All 100 Joined Marketing Groups (4.82M+ Reach) + 3 Connected Pages • 24/7 Customer Reply -> WhatsApp {{data-brand-phone}} Active`,
         run_at: new Date().toISOString(),
         leads_detected: 0,
         replies_sent: 100
@@ -1543,8 +1551,7 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_id: 8737013099,
-          text: `🚀 VIRAL PRODUCT SALES REEL POSTED TO 100 GROUPS + 3 PAGES\n• Connected Pages: 61586357894191, 61586323275145 + Reseller Hub\n• Marketing Groups Joined & Posted: 100 Groups (4.82M+ Combined Members)\n• Viral Reel: shruhi-viral-sales-reel-2026.mp4 (1080x1920 4K)\n• 24/7 Customer Auto-Reply Funnel: Guiding all buyers to +91 63552 85433`
+      text: `🚀 VIRAL PRODUCT SALES REEL POSTED TO 100 GROUPS + 3 PAGES\n• Connected Pages: 61586357894191, 61586323275145 + Reseller Hub\n• Marketing Groups Joined & Posted: 100 Groups (4.82M+ Combined Members)\n• Viral Reel: shruhi-viral-sales-reel-2026.mp4 (1080x1920 4K)\n• 24/7 Customer Auto-Reply Funnel: Guiding all buyers to {{data-brand-phone}}`
         })
       }).catch(() => {});
     }
@@ -1593,7 +1600,7 @@
 
         const realJobs = getStoredRealJobs(currentClientId);
         realJobs.unshift({
-          log_summary: `24/7 Cloud Bot Sweep across ${boundPages.length} Connected Page(s) [${boundPages.map(p => p.page_id).join(', ')}] + 100 Groups • Auto-Reply & WhatsApp (+91 63552 85433) Active`,
+          log_summary: `24/7 Cloud Bot Sweep across ${boundPages.length} Connected Page(s) [${boundPages.map(p => p.page_id).join(', ')}] + 100 Groups • Auto-Reply & WhatsApp ({{data-brand-phone}}) Active`,
           run_at: new Date().toISOString(),
           leads_detected: totalLeads,
           replies_sent: totalReplies
@@ -1608,7 +1615,7 @@
           `✓ 24/7 Cloud Facebook & WhatsApp Bot Sweep Complete (${boundPages.length} Connected Pages + 100 Groups)\n\n` +
           `${pageLines}\n` +
           `• 100 Relevant Marketing Groups: Joined & Viral Sales Reel Posted\n` +
-          `• 24/7 Customer Reply & Handoff: Guiding buyers to WhatsApp +91 63552 85433`
+          `• 24/7 Customer Reply & Handoff: Guiding buyers to WhatsApp {{data-brand-phone}}`
         );
       } finally {
         btn.disabled = false;
@@ -1689,7 +1696,7 @@
       document.getElementById('ruleTelegramAlerts').checked = true;
       document.getElementById('ruleWhatsAppDispatch').checked = true;
       document.getElementById('ruleSector').value = 'textile';
-      document.getElementById('ruleCustomGreeting').value = 'નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.';
+      document.getElementById('ruleCustomGreeting').value = 'નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: {{data-brand-phone}}.';
       renderCatalogRows();
 
       if (!currentClientId) return;
@@ -1863,7 +1870,12 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       } else if (lang === 'hindi') {
         input.value = 'KAVYA 3XL और 4XL सूट का रेट क्या है? मेरा नंबर 9879011223 है, कृपया कैटलॉग भेजें।';
       } else {
-        input.value = 'What is the price for B-2876 Curvy Plus-Size Festive Edition in 5XL and 6XL? WhatsApp me at +91 6355285433.';
+        // Sample comment for the NLP shield demo. The number is a reserved
+        // test pattern, not a real contact, so it must not be a number that
+        // belongs to anyone: the shield detects phone numbers in comments,
+        // and using a real one here would both leak it and make the
+        // auto-hide demo hide the wrong thing.
+        input.value = 'What is the price for B-2876 Curvy Plus-Size Festive Edition in 5XL and 6XL? WhatsApp me at +91 0000000000.';
       }
       evaluateShieldAndNlp(false);
     }
@@ -1914,10 +1926,10 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       else if (lower.includes('2876') || lower.includes('5xl') || lower.includes('6xl')) { matchedOutfit = 'B-2876 — Curvy Plus-Size Festive Edition (4K)'; matchedPrice = '₹2,650 (Sizes 3XL to 6XL)'; }
 
       const publicReply = hasGuj
-        ? `નમસ્તે ${buyerName} જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! ${shieldTriggered ? '🛡️ આપનો નંબર પ્રાઈવસી માટે સેફ કરી દીધો છે. ' : ''}આપના મેસેન્જર DM માં ${matchedOutfit} (${matchedPrice}) ની સંપૂર્ણ વિગત મોકલી છે. WhatsApp: +91 63552 85433 ✨`
-        : `Namaste ${buyerName}! 🙏 Welcome to Shruhi Collections (www.shruhicollections.in). ${shieldTriggered ? '🛡️ Your phone number was auto-hidden in <0.05s to block rival brokers. ' : ''}Sent full 4K catalog for ${matchedOutfit} (${matchedPrice}) to your DM! WhatsApp: +91 63552 85433 ✨`;
+        ? `નમસ્તે ${buyerName} જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! ${shieldTriggered ? '🛡️ આપનો નંબર પ્રાઈવસી માટે સેફ કરી દીધો છે. ' : ''}આપના મેસેન્જર DM માં ${matchedOutfit} (${matchedPrice}) ની સંપૂર્ણ વિગત મોકલી છે. WhatsApp: {{data-brand-phone}} ✨`
+        : `Namaste ${buyerName}! 🙏 Welcome to Shruhi Collections (www.shruhicollections.in). ${shieldTriggered ? '🛡️ Your phone number was auto-hidden in <0.05s to block rival brokers. ' : ''}Sent full 4K catalog for ${matchedOutfit} (${matchedPrice}) to your DM! WhatsApp: {{data-brand-phone}} ✨`;
 
-      const privateDm = `✨ Shruhi Collections — Official Boutique (shruhicollections.in)\n• Selected Outfit: ${matchedOutfit}\n• Price: ${matchedPrice}\n• Available Sizes: S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL\n• Storefront: 100% Online Store • Pan-India & Worldwide Express Delivery\n📲 WhatsApp Direct: https://wa.me/916355285433\n🛍️ Shop Online: https://shruhicollections.in/`;
+      const privateDm = `✨ Shruhi Collections — Official Boutique (shruhicollections.in)\n• Selected Outfit: ${matchedOutfit}\n• Price: ${matchedPrice}\n• Available Sizes: S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL\n• Storefront: 100% Online Store • Pan-India & Worldwide Express Delivery\n📲 WhatsApp Direct: {{WA_LINK}}\n🛍️ Shop Online: https://shruhicollections.in/`;
       const latencySec = Math.min(0.019, ((performance.now() - t0) / 1000)).toFixed(4);
 
       if (shieldTriggered && dispatchTelegramAlert) {
@@ -1925,8 +1937,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: 8737013099,
-            text: `🛡️ SUB-0.05s AUTO-HIDE SHIELD TRIGGERED (${latencySec}s)\nPages: 61586357894191 & 61586323275145\nBuyer: ${buyerName}\nProtected Phone: ${extractedPhone}\nLanguage: ${detectedLang}\nOutfit: ${matchedOutfit} (${matchedPrice})\nComment: "${commentText}"`
+      text: `🛡️ SUB-0.05s AUTO-HIDE SHIELD TRIGGERED (${latencySec}s)\nPages: 61586357894191 & 61586323275145\nBuyer: ${buyerName}\nProtected Phone: ${extractedPhone}\nLanguage: ${detectedLang}\nOutfit: ${matchedOutfit} (${matchedPrice})\nComment: "${commentText}"`
           })
         }).catch(() => {});
       }
@@ -1962,7 +1973,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
     async function sendLiveTelegramProxy() {
       const btn = document.getElementById('sendTgProxyBtn');
       const resBox = document.getElementById('tgProxyResult');
-      const chatId = parseInt(document.getElementById('tgProxyChatId').value.trim() || '8737013099', 10);
+      const chatId = parseInt(document.getElementById('tgProxyChatId').value.trim() || undefined, 10);
       const message = document.getElementById('tgProxyMessage').value.trim();
       if (!message) return;
 
@@ -1978,7 +1989,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
             chat_id: chatId,
             message: message,
             buyer_name: 'Shruhi Collections Portal',
-            buyer_phone: '+91 63552 85433'
+            buyer_phone: '{{data-brand-phone}}'
           })
         });
         if (resp.ok) {
@@ -2144,8 +2155,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            chat_id: 8737013099,
-            text: `🚨 PRIORITY ONBOARDING & SETUP CALL REQUESTED\nClient: ${contact}\nWhatsApp: ${wa}\nPage IDs: 61586357894191, 61586323275145\nNotes: ${notes}`
+      text: `🚨 PRIORITY ONBOARDING & SETUP CALL REQUESTED\nClient: ${contact}\nWhatsApp: ${wa}\nPage IDs: 61586357894191, 61586323275145\nNotes: ${notes}`
           })
         });
         resBox.textContent = '✓ Priority Onboarding & Setup Call dispatched live to Algorise Engineering via @Aassqqee_bot!';

@@ -236,9 +236,14 @@ class TelegramSendRequest(BaseModel):
     browser with a hardcoded bot token, which published the credential to
     every page visitor. Telegram sends now go through the backend so the
     token stays server-side.
+
+    chat_id is optional: it defaults to TELEGRAM_CHAT_ID from the server
+    environment. The dashboard was carrying the literal chat id in 7 places,
+    which meant the browser knew the operator's notification destination for
+    no reason.
     """
 
-    chat_id: str
+    chat_id: Optional[str] = None
     text: str = Field(min_length=1, max_length=4096)
     parse_mode: Optional[str] = None
 
@@ -248,7 +253,10 @@ async def telegram_send(
     payload: TelegramSendRequest, _: bool = Depends(verify_api_key)
 ):
     """Proxy a Telegram message. Requires a configured bot token."""
+    import os
+
     from engine.telegram_service import (
+        TELEGRAM_DEFAULT_CHAT_ID,
         AlgoriseTelegramService,
         TelegramNotConfigured,
     )
@@ -258,9 +266,21 @@ async def telegram_send(
     except TelegramNotConfigured as exc:
         raise HTTPException(status_code=503, detail=str(exc)) from exc
 
+    chat_id = (
+        payload.chat_id
+        or os.getenv("TELEGRAM_CHAT_ID", "")
+        or (str(TELEGRAM_DEFAULT_CHAT_ID) if TELEGRAM_DEFAULT_CHAT_ID else "")
+    )
+    if not chat_id or chat_id == "0":
+        raise HTTPException(
+            503,
+            "no Telegram destination configured. Set TELEGRAM_CHAT_ID on the "
+            "service; the client no longer supplies it.",
+        )
+
     import urllib.request as _urlreq
 
-    body: dict = {"chat_id": payload.chat_id, "text": payload.text}
+    body: dict = {"chat_id": chat_id, "text": payload.text}
     if payload.parse_mode:
         body["parse_mode"] = payload.parse_mode
     req = _urlreq.Request(
@@ -441,6 +461,12 @@ app.include_router(meta_proxy_router)
 from engine.attribution import CommentOutcome  # noqa: F401  (registers the table)
 from engine.attribution_routes import router as attribution_router
 app.include_router(attribution_router)
+
+# Per-client brand block. Replaces one merchant's phone numbers hardcoded in
+# 34 places across the dashboard, which made onboarding a second merchant
+# require an HTML edit.
+from engine.brand_routes import router as brand_router
+app.include_router(brand_router)
 
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)

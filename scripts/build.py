@@ -36,7 +36,7 @@ SURFACES = [
 ]
 
 # Copied verbatim from source (assets and static root files).
-STATIC_FILES = ["CNAME", "robots.txt", "sitemap.xml"]
+STATIC_FILES = ["CNAME", "robots.txt", "sitemap.xml", "brand.js"]
 STATIC_DIRS = ["assets"]
 
 

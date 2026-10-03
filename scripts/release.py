@@ -384,12 +384,79 @@ def gate_nothing_unpushed() -> Gate:
     return Gate("nothing unpushed", True, "local master matches origin/master")
 
 
+def gate_no_hardcoded_merchant_data() -> Gate:
+    """No merchant contact data in shipped content.
+
+    One client's numbers appeared 36 times and its wa.me links 4 times in
+    the dashboard, so onboarding a second merchant required editing HTML.
+    Those values now come from /api/v1/client/{id}/brand.
+
+    Deliberately narrow. Earlier revisions of this gate flagged three things
+    that are not merchant data and would have taught everyone to ignore it:
+
+      * input placeholders and schema.org examples in index.html
+      * seed client fixtures in admin.html (dev records, not a merchant's
+        own contact details)
+      * the substitution map inside hydrateBrand, which must contain the
+        marker strings in order to replace them
+
+    A gate that cries wolf gets switched off.
+    """
+    import re
+
+    wa = re.compile(r"https://wa\.me/\d{8,}")
+    # Merchant-specific: these were the values actually hardcoded, and they
+    # are not present in any placeholder or fixture.
+    known = re.compile(r"(?:63552\s?85433|90542\s?41725|87370\s?13099)")
+    # The operator's Telegram destination. The browser no longer needs to
+    # know it; the backend defaults it from TELEGRAM_CHAT_ID.
+    chat_id = re.compile(r"\b8737013099\b")
+
+    hits = []
+    for rel in SURFACES:
+        p = ROOT / rel
+        if not p.exists():
+            continue
+        text = p.read_text(encoding="utf-8", errors="replace")
+        if wa.search(text):
+            hits.append(f"{rel} (wa.me link)")
+        if known.search(text):
+            hits.append(f"{rel} (merchant number)")
+        if chat_id.search(text):
+            hits.append(f"{rel} (telegram chat id)")
+
+    # Marker tokens are EXPECTED in the built output: hydration replaces
+    # them in the browser at load. What must hold is that the hydrator
+    # ships and is loaded, so a marker is never left visible.
+    marker = re.compile(r"\{\{WA_LINK\}\}|\{\{BRAND_[A-Z0-9_]+\}\}")
+    built = ROOT / "dist"
+    if built.exists():
+        hydrator = (ROOT / "brand.js").exists()
+        if not hydrator:
+            hits.append("brand.js missing; markers could never be replaced")
+        for rel in ("dashboard.html", "field_pitch.html"):
+            p = built / rel
+            if not p.exists():
+                continue
+            text = p.read_text(encoding="utf-8", errors="replace")
+            if marker.search(text) and 'src="/brand.js"' not in text:
+                hits.append(f"dist/{rel} (markers present but no hydrator)")
+
+    return Gate(
+        "no hardcoded merchant data",
+        not hits,
+        "; ".join(hits) if hits
+        else "merchant values come from the brand endpoint; chat id is server-side",
+    )
+
+
 GATES = [
     gate_nothing_unpushed,
     gate_no_hardcoded_hosts,
     gate_config_injected,
     gate_no_credentials_in_client,
     gate_no_token_persistence,
+    gate_no_hardcoded_merchant_data,
     gate_single_domain,
     gate_dist_not_tracked,
     gate_api_healthy,
