@@ -48,6 +48,58 @@ def funnel(client_id: Optional[str] = None, _: bool = Depends(verify_api_key)):
         session.close()
 
 
+@router.get("/pending")
+def pending_outcomes(
+    limit: int = 50, _: bool = Depends(verify_api_key)
+):
+    """Enquiries with no recorded outcome, for the operator to triage.
+
+    An enquiry whose tracking code resolved to a comment is marked as
+    attributed. One that did not is still listed, because an unattributed
+    enquiry is a real enquiry and hiding it would understate the business.
+    """
+    from engine.whatsapp_webhook import InboundMessage, ensure_inbound_table
+
+    session = _session()
+    try:
+        ensure_inbound_table(session)
+        recorded = {
+            c.comment_id
+            for c in session.query(CommentOutcome).all()
+        }
+        rows = (
+            session.query(InboundMessage)
+            .order_by(InboundMessage.id.desc())
+            .limit(min(limit * 4, 400))
+            .all()
+        )
+        out = [
+            {
+                "wa_message_id": r.wa_message_id,
+                "from_phone": r.from_phone,
+                "profile_name": r.profile_name,
+                "body": r.body,
+                "lead_id": r.lead_id,
+                "tracked_comment_id": r.tracked_comment_id,
+                "received_at": r.received_at.isoformat()
+                if r.received_at else None,
+            }
+            for r in rows
+            if r.wa_message_id not in recorded
+        ][:limit]
+        return {
+            "count": len(out),
+            "enquiries": out,
+            "note": (
+                "Conversion is recorded by a person, never inferred. An "
+                "enquiry left as pending counts toward neither conversion "
+                "nor loss, so the rate reflects only decided cases."
+            ),
+        }
+    finally:
+        session.close()
+
+
 @router.post("/outcome", status_code=201)
 def record_outcome(req: OutcomeRequest, _: bool = Depends(verify_api_key)):
     """Record what actually happened to a comment-derived lead.

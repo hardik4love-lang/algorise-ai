@@ -16,6 +16,8 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 
+from fastapi import Header
+
 from engine.config import get_settings
 from engine.cache import redis_manager, CacheKeys
 from engine.logging import get_logger
@@ -505,14 +507,35 @@ audit_logger = AuditLogger()
 # SECURITY MIDDLEWARE HELPERS
 # ============================================================================
 
-async def verify_api_key(api_key: str) -> Tuple[bool, Optional[APIKeyInfo]]:
-    """Verify API key and check quota."""
-    key_info = api_key_manager.validate_key(api_key)
-    
+async def verify_api_key(
+    api_key: Optional[str] = None,
+    x_api_key: Optional[str] = Header(None, alias="x-api-key"),
+) -> Tuple[bool, Optional[APIKeyInfo]]:
+    """Verify an API key and check quota.
+
+    Accepts the key from either the x-api-key header or the api_key query
+    parameter. The header is the preferred form: query parameters are written
+    to server access logs, proxy logs and browser history, so a key passed
+    that way leaks into infrastructure the caller does not control.
+
+    The query form is retained because existing callers use it, and removing
+    it would break them silently.
+
+    Only str values are accepted. When this dependency is invoked outside
+    FastAPI's resolution — a direct call from a test or a script — the
+    un-resolved default arrives as the Header marker object itself, and
+    passing that into key hashing raises AttributeError deep in the manager.
+    """
+    key = x_api_key if isinstance(x_api_key, str) else ""
+    if not key and isinstance(api_key, str):
+        key = api_key
+
+    key_info = api_key_manager.validate_key(key)
+
     if key_info is None:
-        audit_logger.log_auth_attempt(api_key, success=False)
+        audit_logger.log_auth_attempt(key, success=False)
         return False, None
-    
+
     has_quota, remaining = api_key_manager.check_quota(key_info)
     if not has_quota:
         return False, key_info

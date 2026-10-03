@@ -11,7 +11,18 @@
   <style>
     body { background-color: #080c14; color: #f3f4f6; font-family: 'Plus Jakarta Sans', sans-serif; }
     .glass { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
-  </style>
+      .funnel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+    .funnel-step { background: #111827; border: 1px solid #1f2937; border-radius: 10px; padding: 14px; }
+    .funnel-step .n { font-size: 26px; font-weight: 700; color: #fff; line-height: 1.1; }
+    .funnel-step .k { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; margin-top: 4px; }
+    .funnel-rate { font-size: 11px; color: #34d399; margin-top: 6px; }
+    .funnel-rate.none { color: #64748b; }
+    .outcome-btn { font-size: 10px; padding: 3px 9px; border-radius: 6px; border: 1px solid #374151; background: #1f2937; color: #cbd5e1; }
+    .outcome-btn:hover { background: #374151; }
+    .outcome-btn[data-outcome="converted"] { border-color: #065f46; color: #34d399; }
+    .outcome-btn[data-outcome="lost"] { border-color: #7f1d1d; color: #f87171; }
+    .outcome-set { background: #065f46 !important; color: #fff !important; border-color: #34d399 !important; }
+</style>
 </head>
 <body class="min-h-screen flex flex-col">
 
@@ -88,7 +99,25 @@
         </table>
       </div>
     </div>
-  </main>
+  
+    <!-- Attribution funnel. Conversion counts only outcomes a person
+         recorded here; nothing is inferred. -->
+    <div class="mt-8" id="funnelPanel">
+      <div class="flex items-center justify-between mb-3">
+        <h3 class="text-xs font-bold text-emerald-400 uppercase tracking-wider">Comment to revenue</h3>
+        <select id="funnelClient" onchange="loadFunnel()"
+                class="bg-slate-800 border border-slate-700 rounded px-2 py-1 text-[11px] text-slate-300">
+          <option value="">All clients</option>
+        </select>
+      </div>
+      <div id="funnelSummary" class="funnel-grid mb-3"></div>
+      <div id="funnelRates" class="flex flex-wrap gap-4 text-[11px] text-slate-400 mb-4"></div>
+      <div id="funnelNotes" class="text-[10px] text-slate-500 leading-relaxed"></div>
+
+      <h4 class="text-[11px] font-bold text-slate-300 mt-5 mb-2">Enquiries awaiting an outcome</h4>
+      <div id="outcomeList" class="space-y-1.5"></div>
+    </div>
+</main>
 
   <!-- PASSWORD GATE -->
   <div id="adminGateModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
@@ -194,6 +223,8 @@ const API_BASE =
         `;
         tbody.appendChild(tr);
       });
+
+      populateFunnelClients(data.clients);
     }
 
     function renderAdminDemo() {
@@ -239,6 +270,149 @@ const API_BASE =
       };
       renderAdmin(demo);
     }
+    // --- Attribution funnel and outcome recorder ------------------------
+    //
+    // The conversion rate is only as honest as the outcomes behind it, so
+    // the panel refuses to present a rate when coverage is thin, and says
+    // what it would take rather than showing a flattering number.
+
+    const OUTCOME_LABELS = {
+      converted: 'Converted', lost: 'Lost', pending: 'Pending',
+    };
+
+    async function loadFunnel() {
+      const clientId = document.getElementById('funnelClient').value;
+      try {
+        const q = clientId ? `?client_id=${encodeURIComponent(clientId)}` : '';
+        const r = await fetch(`${API_BASE}/attribution/funnel${q}`, {
+          headers: { 'x-admin-key': adminKey }
+        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        renderFunnel(await r.json());
+      } catch (e) {
+        document.getElementById('funnelSummary').innerHTML =
+          '<div class="text-[11px] text-red-400">Funnel unavailable.</div>';
+      }
+    }
+
+    function fmtRate(v) {
+      if (v === null || v === undefined) {
+        return '<span class="funnel-rate none">not measurable yet</span>';
+      }
+      return `<span class="funnel-rate">${(v * 100).toFixed(1)}%</span>`;
+    }
+
+    function renderFunnel(d) {
+      const f = d.funnel || {}, r = d.rates || {}, v = d.value || {};
+      const steps = [
+        ['Comments replied', f.comments_replied],
+        ['Leads captured', f.leads_captured],
+        ['Messages delivered', f.messages_delivered],
+        ['Outcomes recorded', f.outcomes_recorded],
+        ['Converted', f.converted],
+        ['Lost', f.lost],
+      ];
+      document.getElementById('funnelSummary').innerHTML = steps.map(([k, n]) => `
+        <div class="funnel-step">
+          <div class="n">${n ?? 0}</div>
+          <div class="k">${k}</div>
+        </div>`).join('') + `
+        <div class="funnel-step">
+          <div class="n">₹${Math.round(v.recorded_revenue_inr || 0).toLocaleString('en-IN')}</div>
+          <div class="k">Recorded revenue</div>
+        </div>`;
+
+      const rateRows = [
+        ['Reply to lead', r.reply_to_lead],
+        ['Lead to delivered', r.lead_to_delivered],
+        ['Delivered to outcome', r.delivered_to_outcome],
+        ['Conversion', r.conversion_rate],
+      ];
+      document.getElementById('funnelRates').innerHTML = rateRows
+        .map(([k, val]) => `<div><span class="text-slate-500">${k}</span> ${fmtRate(val)}</div>`)
+        .join('');
+
+      const notes = (d.notes || []).map(n => `• ${n}`).join('<br>');
+      const decided = f.outcomes_recorded || 0;
+      const warn = decided < 10
+        ? `<br><span class="text-amber-400">Only ${decided} outcome(s) recorded. `
+          + `Below 10 the conversion rate is not meaningful; treat it as a `
+          + `count, not a rate.</span>`
+        : '';
+      document.getElementById('funnelNotes').innerHTML = notes + warn;
+
+      loadPendingOutcomes(clientId);
+    }
+
+    async function loadPendingOutcomes(clientId) {
+      const list = document.getElementById('outcomeList');
+      try {
+        const q = clientId ? `?client_id=${encodeURIComponent(clientId)}` : '';
+        const r = await fetch(`${API_BASE}/attribution/pending${q}`, {
+          headers: { 'x-admin-key': adminKey }
+        });
+        if (!r.ok) { list.innerHTML = '<div class="text-[11px] text-slate-500">none</div>'; return; }
+        const d = await r.json();
+        if (!d.enquiries || !d.enquiries.length) {
+          list.innerHTML = '<div class="text-[11px] text-slate-500">'
+            + 'Every enquiry has an outcome recorded.</div>';
+          return;
+        }
+        list.innerHTML = d.enquiries.map(e => `
+          <div class="flex items-center justify-between bg-slate-900/60 border border-slate-800 rounded px-3 py-2">
+            <div class="min-w-0">
+              <div class="text-[12px] text-slate-200 truncate">
+                ${e.from_phone || 'unknown'} ${e.profile_name ? '· ' + e.profile_name : ''}
+              </div>
+              <div class="text-[10px] text-slate-500 truncate">
+                ${(e.body || '').slice(0, 70)}
+                ${e.tracked_comment_id ? ` · from comment ${e.tracked_comment_id.slice(0, 12)}` : ' · not attributed to a comment'}
+              </div>
+            </div>
+            <div class="flex gap-1.5 shrink-0">
+              ${['converted', 'lost', 'pending'].map(o => `
+                <button class="outcome-btn" data-outcome="${o}"
+                        onclick="recordOutcome('${e.wa_message_id}', '${o}')">
+                  ${OUTCOME_LABELS[o]}
+                </button>`).join('')}
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        list.innerHTML = '<div class="text-[11px] text-slate-500">unavailable</div>';
+      }
+    }
+
+    async function recordOutcome(messageId, outcome) {
+      try {
+        const r = await fetch(`${API_BASE}/attribution/outcome`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-admin-key': adminKey },
+          body: JSON.stringify({
+            comment_id: messageId, outcome: outcome,
+            recorded_by: 'admin_console',
+          })
+        });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        document.querySelectorAll(`[onclick*="${messageId}"]`).forEach(b => {
+          if (b.dataset.outcome === outcome) b.classList.add('outcome-set');
+        });
+        loadFunnel();
+      } catch (e) {
+        alert('Could not record the outcome.');
+      }
+    }
+
+    async function populateFunnelClients(clients) {
+      const sel = document.getElementById('funnelClient');
+      if (!sel) return;
+      for (const c of clients || []) {
+        const o = document.createElement('option');
+        o.value = c.id; o.textContent = c.name;
+        sel.appendChild(o);
+      }
+      loadFunnel();
+    }
+
   </script>
 </body>
 </html>
