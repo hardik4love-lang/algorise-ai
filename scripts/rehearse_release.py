@@ -52,10 +52,19 @@ try:
     r = run("verify")
     out = r.stdout
     gate_lines = [l for l in out.splitlines() if "PASS" in l or "FAIL" in l]
-    check("verify runs and reports every gate", len(gate_lines) >= 4,
+    check("verify runs and reports every gate", len(gate_lines) >= 9,
           f"{len(gate_lines)} gates reported")
-    check("verify fails while known issues remain",
-          r.returncode == 1, "expected non-zero with unresolved gates")
+
+    # The exit code must reflect the gate results rather than being assumed.
+    # When every gate passes, 0 is correct; when any fails, non-zero is.
+    any_failed = any("FAIL" in l for l in gate_lines)
+    expected = 1 if any_failed else 0
+    check("verify exit code matches gate results",
+          r.returncode == expected,
+          f"exit {r.returncode}, expected {expected}")
+    if any_failed:
+        print(f"        {sum(1 for l in gate_lines if 'FAIL' in l)} gate(s) "
+              f"failing")
     for line in gate_lines:
         print(f"        {line.strip()}")
 

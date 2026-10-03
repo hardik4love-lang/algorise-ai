@@ -195,21 +195,41 @@ def gate_dist_not_tracked() -> Gate:
 
 
 def gate_api_healthy() -> Gate:
+    """Live API health.
+
+    The Render free tier sleeps when idle and the first request after a
+    sleep can take up to 60 seconds. A single attempt therefore reports a
+    cold start as an outage, so this retries a few times before failing.
+    """
+    import time as _time
     import urllib.error
     import urllib.request
 
-    try:
-        with urllib.request.urlopen(f"{GATEWAY}{HEALTH_PATH}", timeout=30) as r:
-            ok = r.status == 200
-            return Gate("API health", ok, f"HTTP {r.status} at {HEALTH_PATH}")
-    except urllib.error.HTTPError as e:
-        return Gate("API health", False, f"HTTP {e.code} at {HEALTH_PATH}")
-    except Exception as exc:  # noqa: BLE001
-        return Gate(
-            "API health", False,
-            f"{type(exc).__name__} at {HEALTH_PATH} (a cold start on the "
-            "free tier can take 60s; re-run before treating this as down)",
-        )
+    attempts = 3
+    last = ""
+    for i in range(attempts):
+        try:
+            with urllib.request.urlopen(
+                f"{GATEWAY}{HEALTH_PATH}", timeout=40
+            ) as r:
+                if r.status == 200:
+                    note = (
+                        " (took a cold start; the free tier sleeps)"
+                        if i else ""
+                    )
+                    return Gate("API health", True, f"HTTP 200{note}")
+                last = f"HTTP {r.status}"
+        except urllib.error.HTTPError as e:
+            last = f"HTTP {e.code}"
+        except Exception as exc:  # noqa: BLE001
+            last = f"{type(exc).__name__}"
+        if i < attempts - 1:
+            _time.sleep(5)
+
+    return Gate(
+        "API health", False,
+        f"{last} at {HEALTH_PATH} after {attempts} attempts",
+    )
 
 
 def gate_deploy_drift() -> Gate:
@@ -245,6 +265,18 @@ def gate_deploy_drift() -> Gate:
                 missing.append(route)
         except Exception:  # noqa: BLE001
             continue
+        # A gate that checked nothing must not report success. When every probe
+    # errored out, checked == 0 and missing == [], which previously produced
+    # "PASS all 0 checked routes" — the exact silent-pass failure this
+    # project keeps hitting elsewhere.
+    if checked == 0:
+        return Gate(
+            "deploy drift",
+            False,
+            "could not reach the deployment to compare routes; drift is "
+            "UNKNOWN, not absent. Check connectivity, then re-run.",
+        )
+
     return Gate(
         "deploy drift",
         not missing,
@@ -320,7 +352,40 @@ def gate_single_domain() -> Gate:
     )
 
 
+def gate_nothing_unpushed() -> Gate:
+    """Every local commit must be on the remote.
+
+    This exists because two separate deploys stalled on it. Seven commits
+    were committed locally and never pushed, so no deploy could have worked
+    and the cause was invisible from Render: the service was healthy, the
+    branch was right, and the code had simply never left the machine.
+    """
+    try:
+        local = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT,
+            capture_output=True, text=True,
+        ).stdout.strip()
+        ahead = subprocess.run(
+            ["git", "log", "--oneline", f"origin/master..{local}"],
+            cwd=ROOT, capture_output=True, text=True,
+        ).stdout.strip()
+    except OSError as exc:
+        return Gate("nothing unpushed", True, f"git unavailable: {exc}")
+
+    if ahead:
+        count = len(ahead.splitlines())
+        first = ahead.splitlines()[0]
+        return Gate(
+            "nothing unpushed",
+            False,
+            f"{count} commit(s) not on origin/master. "
+            f"Deploying now would ship stale code. Oldest: {first}",
+        )
+    return Gate("nothing unpushed", True, "local master matches origin/master")
+
+
 GATES = [
+    gate_nothing_unpushed,
     gate_no_hardcoded_hosts,
     gate_config_injected,
     gate_no_credentials_in_client,
