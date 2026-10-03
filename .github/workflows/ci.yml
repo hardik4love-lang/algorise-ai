@@ -38,7 +38,7 @@ jobs:
 
     - name: Test Suite
       run: |
-        python -m pytest test_engine.py test_api.py test_system_and_agent.py -q -o addopts=""
+        python -m pytest test_engine.py test_api.py test_system_and_agent.py test_attribution.py test_meta_proxy_recording.py -q -o addopts=""
 
     - name: Web Build Check
       env:

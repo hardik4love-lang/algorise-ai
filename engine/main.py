@@ -435,6 +435,13 @@ app.include_router(subscription_router, prefix="/api/v1")
 from engine.meta_proxy import router as meta_proxy_router
 app.include_router(meta_proxy_router)
 
+# Attribution. Joins bot_executions -> leads -> outreach_messages and exposes
+# the comment-to-revenue funnel. Conversion counts only outcomes a merchant
+# recorded, so the funnel cannot manufacture its own evidence.
+from engine.attribution import CommentOutcome  # noqa: F401  (registers the table)
+from engine.attribution_routes import router as attribution_router
+app.include_router(attribution_router)
+
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os

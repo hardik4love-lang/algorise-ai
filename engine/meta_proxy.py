@@ -27,6 +27,7 @@ from typing import Any, Optional
 
 import httpx
 from fastapi import APIRouter, Depends, HTTPException
+from loguru import logger
 from pydantic import BaseModel, Field
 
 from engine.facebook_agent import FacebookAgentEngine
@@ -95,20 +96,24 @@ def _client_token(explicit: Optional[str]) -> str:
 
 
 def _stored_client_token() -> Optional[str]:
-    from engine.database import SessionLocal
+    from engine.database import sync_session
     from engine.models_sqlalchemy import Client
 
+    session = sync_session()
     try:
-        with SessionLocal() as session:
-            row = session.query(Client).filter(Client.is_active.is_(True)).first()
-            if row and row.fb_access_token:
-                if row.fb_access_token.startswith("simulated") or \
-                        row.fb_access_token.startswith("dev_"):
-                    return None
-                return row.fb_access_token
-    except Exception:  # noqa: BLE001
-        return None
-    return None
+        row = (
+            session.query(Client)
+            .filter(Client.is_active.is_(True))
+            .first()
+        )
+        if not row or not row.fb_access_token:
+            return None
+        if row.fb_access_token.startswith("simulated") or \
+                row.fb_access_token.startswith("dev_"):
+            return None
+        return row.fb_access_token
+    finally:
+        session.close()
 
 
 def _record(
@@ -122,18 +127,27 @@ def _record(
 ) -> None:
     """Persist an execution row.
 
-    This is the reason the table was empty: nothing wrote to it. A failure to
-    record must never fail the operation itself, so errors are swallowed
-    after logging.
+    This is why bot_executions was empty: nothing wrote to it. The previous
+    implementation imported a SessionLocal that does not exist and swallowed
+    the resulting error, so every call appeared to record and recorded
+    nothing.
+
+    A failure to record must not fail the Meta operation itself, so the error
+    is logged rather than raised — but it is logged, which is what was
+    missing before.
     """
     try:
-        from engine.database import SessionLocal
+        from engine.database import sync_session
         from engine.models_sqlalchemy import BotExecution
 
-        with SessionLocal() as session:
+        session = sync_session()
+        try:
             session.add(
                 BotExecution(
-                    task_id=f"meta_{operation}_{int(datetime.now(timezone.utc).timestamp())}",
+                    task_id=(
+                        f"meta_{operation}_"
+                        f"{int(datetime.now(timezone.utc).timestamp())}"
+                    ),
                     bot_id=bot_id,
                     client_id=client_id,
                     input_payload=operation,
@@ -141,12 +155,23 @@ def _record(
                     success=success,
                     reasoning_trace=reasoning,
                     latency_ms=latency_ms,
-                    safety_clearance="not_applicable",
+                    # Boolean column. These are predetermined, non-agentic
+                    # operations (hide one comment, reply to one comment):
+                    # there is no free-form decision for the causal safety
+                    # gate to adjudicate. True here means "no gate applies",
+                    # not "a gate was evaluated and passed" — the tuning
+                    # benchmark is the only thing that claims the latter.
+                    safety_clearance=True,
                 )
             )
             session.commit()
-    except Exception:  # noqa: BLE001
-        pass
+        finally:
+            session.close()
+    except Exception as exc:  # noqa: BLE001
+        logger.error(
+            "failed to record bot_execution for %s: %s: %s",
+            operation, type(exc).__name__, exc,
+        )
 
 
 # ---------------------------------------------------------------------------
