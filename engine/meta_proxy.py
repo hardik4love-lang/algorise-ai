@@ -168,10 +168,7 @@ def _record(
         finally:
             session.close()
     except Exception as exc:  # noqa: BLE001
-        logger.error(
-            "failed to record bot_execution for %s: %s: %s",
-            operation, type(exc).__name__, exc,
-        )
+        logger.error("failed to record bot_execution for {}: {}: {}", str(operation), str(type(exc).__name__), str(exc))
 
 
 # ---------------------------------------------------------------------------

@@ -11,6 +11,8 @@ import re
 import json
 import urllib.request
 import urllib.parse
+
+from engine.enquiry_tracking import embed_code, register_comment
 import urllib.error
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple, Set
@@ -154,7 +156,23 @@ class FacebookAgentEngine:
 
     def build_private_dm(self, text: str, buyer_name: str = "Valued Shopper") -> str:
         matched = self.match_shruhi_product(text)
-        wa_text = urllib.parse.quote(f"Hi Shruhi Collections! I saw your post on Facebook and want to order {matched['name']} ({matched['price']}).")
+        # Append an opaque reference so the resulting enquiry is attributed
+        # to this comment rather than merely captured. The offer text above
+        # is unchanged; only the prefilled message gains a reference line.
+        prefill = (
+            f"Hi Shruhi Collections! I saw your post on Facebook and want to "
+            f"order {matched['name']} ({matched['price']})."
+        )
+        comment_id = kwargs.get('comment_id', '') if kwargs else ''
+        if not comment_id:
+            comment_id = locals().get('comment_id', '') or ''
+        if comment_id:
+            try:
+                prefill = embed_code(prefill, register_comment(comment_id))
+            except Exception:  # noqa: BLE001
+                # Never fail a customer reply over attribution.
+                pass
+        wa_text = urllib.parse.quote(prefill)
         return (
             f"Namaste {buyer_name}! 🙏\n\n"
             f"✨ *Shruhi Collections — Official Haute-Couture Online Store*\n"

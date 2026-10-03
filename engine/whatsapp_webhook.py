@@ -37,6 +37,7 @@ from loguru import logger
 
 from sqlalchemy import Boolean, Column, DateTime, Integer, String, Text
 
+from engine.enquiry_tracking import attach_lead, extract_code, resolve
 from engine.models_sqlalchemy import Base
 
 router = APIRouter(prefix="/api/v1/whatsapp", tags=["whatsapp"])
@@ -63,11 +64,52 @@ class InboundMessage(Base):
     message_type = Column(String(32))
     timestamp = Column(DateTime(timezone=True))
     lead_id = Column(Integer, index=True)
+    # Opaque code from the prefilled WhatsApp link, and the comment it
+    # resolved to. Null when the buyer removed the reference line or came
+    # without one, which is a missing attribution rather than an error.
+    tracked_code = Column(String(12), index=True)
+    tracked_comment_id = Column(String(128), index=True)
     received_at = Column(
         DateTime(timezone=True),
         default=lambda: datetime.now(timezone.utc),
         nullable=False,
     )
+
+
+def ensure_inbound_table(session) -> None:
+    """Create the inbound table, adding columns an older table lacks.
+
+    create(checkfirst=True) does nothing when the table already exists, so a
+    deployment that received a message before this table gained
+    tracked_code/tracked_comment_id would fail every insert with "no column
+    named tracked_code" — and the handler swallows that error and returns
+    200, so enquiries would vanish without trace.
+
+    SQLite cannot drop or retype columns, so adding the ones we introduced
+    is the whole migration. A real Alembic revision is the long-term answer.
+    """
+    from sqlalchemy import inspect, text
+
+    InboundMessage.__table__.create(bind=session.get_bind(), checkfirst=True)
+
+    existing = {
+        c["name"] for c in inspect(session.get_bind()).get_columns(
+            InboundMessage.__tablename__
+        )
+    }
+    added = []
+    for col in InboundMessage.__table__.columns:
+        if col.name in existing:
+            continue
+        ddl = (
+            f"ALTER TABLE {InboundMessage.__tablename__} "
+            f"ADD COLUMN {col.name} {col.type.compile(session.get_bind().dialect)}"
+        )
+        session.execute(text(ddl))
+        added.append(col.name)
+    if added:
+        session.commit()
+        logger.info("whatsapp inbound table migrated: added {}", str(added))
 
 
 # --- verification -----------------------------------------------------------
@@ -111,8 +153,8 @@ async def verify_webhook(request: Request) -> Any:
         return PlainTextResponse(challenge)
 
     logger.warning(
-        "webhook verification failed: mode=%s token_match=%s",
-        mode, _constant_time_equals(supplied, expected),
+        f"webhook verification failed: mode={mode} "
+        f"token_match={_constant_time_equals(supplied, expected)}"
     )
     return PlainTextResponse("forbidden", status_code=403)
 
@@ -209,7 +251,7 @@ async def receive_webhook(request: Request) -> Any:
     from engine.database import sync_session
 
     session = sync_session()
-    InboundMessage.__table__.create(bind=session.get_bind(), checkfirst=True)
+    ensure_inbound_table(session)
 
     stored = 0
     duplicates = 0
@@ -235,10 +277,26 @@ async def receive_webhook(request: Request) -> Any:
                         msg.get("body") or "",
                     )
                 except Exception as exc:  # noqa: BLE001
-                    logger.error(
-                        "could not create lead for %s: %s", phone, exc
-                    )
+                    logger.error("could not create lead for {}: {}", str(phone), str(exc))
                     lead_id = None
+
+            # Resolve the tracking code so the enquiry is tied to the comment
+            # that produced it, not merely present in the database. This is
+            # the join that makes the funnel honest.
+            code = extract_code(msg.get("body"))
+            tracked_comment = None
+            if code:
+                # Same session: opening a second connection here would
+                # deadlock against the write this handler is mid-way through.
+                tracked = resolve(code, session=session)
+                if tracked:
+                    tracked_comment = tracked["comment_id"]
+                    if lead_id:
+                        attach_lead(code, lead_id, session=session)
+                else:
+                    logger.info(
+                        f"inbound enquiry carried an unknown code: {code}"
+                    )
 
             ts = None
             if msg.get("timestamp"):
@@ -259,6 +317,8 @@ async def receive_webhook(request: Request) -> Any:
                     message_type=msg.get("message_type"),
                     timestamp=ts,
                     lead_id=lead_id,
+                    tracked_code=code,
+                    tracked_comment_id=tracked_comment,
                 )
             )
             stored += 1
@@ -266,7 +326,7 @@ async def receive_webhook(request: Request) -> Any:
         session.commit()
     except Exception as exc:  # noqa: BLE001
         session.rollback()
-        logger.error("webhook store failed: %s: %s", type(exc).__name__, exc)
+        logger.error("webhook store failed: {}: {}", str(type(exc).__name__), str(exc))
         # Still 200: the message is logged, and Meta retrying would not help.
     finally:
         session.close()
@@ -289,9 +349,7 @@ async def recent_inbound(limit: int = 50) -> Any:
 
     session = sync_session()
     try:
-        InboundMessage.__table__.create(
-            bind=session.get_bind(), checkfirst=True
-        )
+        ensure_inbound_table(session)
         rows = (
             session.query(InboundMessage)
             .order_by(InboundMessage.id.desc())
