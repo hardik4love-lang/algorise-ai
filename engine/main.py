@@ -468,6 +468,14 @@ app.include_router(attribution_router)
 from engine.brand_routes import router as brand_router
 app.include_router(brand_router)
 
+# WhatsApp inbound webhook. The service could send but never receive, so an
+# enquiry was invisible unless a browser was open, and the attribution funnel
+# had no final hop. Registering the table at import keeps first delivery from
+# failing on a missing schema.
+from engine.whatsapp_webhook import InboundMessage  # noqa: F401
+from engine.whatsapp_webhook import router as whatsapp_webhook_router
+app.include_router(whatsapp_webhook_router)
+
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os
