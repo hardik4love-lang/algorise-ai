@@ -23,6 +23,132 @@
         }
       }
     }
+    // Merchant-facing pipeline.
+    //
+    // Deliberately refuses to present a rate built on a handful of cases.
+    // A percentage drawn from six enquiries invites a decision it cannot
+    // support, and a merchant who acts on it churns.
+
+    const PF_RATE_MIN = 10;
+
+    function pfRate(v, threshold) {
+      if (v === null || v === undefined) {
+        return '<span class="r none">no data yet</span>';
+      }
+      return `<span class="r">${(v * 100).toFixed(1)}%</span>`;
+    }
+
+    async function loadPipeline() {
+      const cid = currentClientId;
+      if (!cid) return;
+      const stepsEl = document.getElementById('pfSteps');
+      stepsEl.innerHTML = '<div class="text-[11px] text-slate-500">Loading…</div>';
+      try {
+        const r = await apiFetch(`/attribution/funnel?client_id=${encodeURIComponent(cid)}`);
+        renderPipeline(await r.json(), cid);
+      } catch (e) {
+        stepsEl.innerHTML =
+          '<div class="text-[11px] text-amber-400">Pipeline unavailable. '
+          + 'This does not affect comment handling.</div>';
+      }
+    }
+
+    function renderPipeline(d, cid) {
+      const f = d.funnel || {}, rt = d.rates || {}, val = d.value || {};
+
+      const steps = [
+        ['Comments replied', f.comments_replied],
+        ['Leads captured', f.leads_captured],
+        ['Enquiries', f.messages_delivered],
+        ['Outcomes recorded', f.outcomes_recorded],
+        ['Converted', f.converted],
+        ['Lost', f.lost],
+      ];
+      document.getElementById('pfSteps').innerHTML = steps.map(([k, n]) => `
+        <div class="pf-card">
+          <div class="v">${n ?? 0}</div>
+          <div class="l">${k}</div>
+        </div>`).join('') + `
+        <div class="pf-card">
+          <div class="v">₹${Math.round(val.recorded_revenue_inr || 0).toLocaleString('en-IN')}</div>
+          <div class="l">Recorded revenue</div>
+        </div>`;
+
+      const replied = f.comments_replied || 0;
+      const leads = f.leads_captured || 0;
+      const pct = replied ? Math.min(100, (leads / replied) * 100) : 0;
+      document.getElementById('pfBar').style.width = pct.toFixed(1) + '%';
+      document.getElementById('pfBarLabel').textContent =
+        `${leads} of ${replied}`;
+
+      const decided = f.outcomes_recorded || 0;
+      const rateRows = [
+        ['Comment to lead', rt.reply_to_lead],
+        ['Lead to enquiry', rt.lead_to_delivered],
+        ['Enquiry to outcome', rt.delivered_to_outcome],
+        ['Conversion', rt.conversion_rate],
+      ];
+      document.getElementById('pfRates').innerHTML = rateRows.map(([k, v]) => `
+        <div class="pf-card">
+          <div class="l">${k}</div>
+          ${pfRate(v)}
+        </div>`).join('');
+
+      const cov = decided < PF_RATE_MIN
+        ? `<div class="pf-card" style="border-color:#78350f">
+             <div class="l" style="color:#fbbf24">Coverage</div>
+             <div class="text-[11px] text-amber-300 mt-1 leading-relaxed">
+               ${decided} outcome${decided === 1 ? '' : 's'} recorded.
+               Below ${PF_RATE_MIN}, these rates are a count rather than a
+               percentage — keep recording outcomes and they will firm up.
+             </div>
+           </div>`
+        : `<div class="pf-card">
+             <div class="l">Coverage</div>
+             <div class="text-[11px] text-slate-400 mt-1">
+               ${decided} outcomes recorded. Rates are meaningful.
+             </div>
+           </div>`;
+      document.getElementById('pfCoverage').innerHTML = cov;
+
+      loadPipelineEnquiries(cid);
+    }
+
+    async function loadPipelineEnquiries(cid) {
+      const box = document.getElementById('pfEnquiries');
+      try {
+        const r = await apiFetch(
+          `/attribution/pending?limit=25`
+        );
+        const d = await r.json();
+        if (!d.enquiries || !d.enquiries.length) {
+          box.innerHTML = '<div class="text-[11px] text-slate-500">'
+            + 'Nothing awaiting an outcome. Record outcomes from the admin '
+            + 'console.</div>';
+          return;
+        }
+        box.innerHTML = d.enquiries.map(e => `
+          <div class="pf-card pf-tracked">
+            <div class="flex justify-between items-center gap-3">
+              <div class="min-w-0">
+                <div class="text-[12px] text-slate-200 truncate">
+                  ${e.profile_name || e.from_phone || 'enquiry'}
+                </div>
+                <div class="text-[10px] text-slate-500 truncate">
+                  ${(e.body || '').slice(0, 60)}
+                </div>
+              </div>
+              <div class="text-[10px] shrink-0 ${e.tracked_comment_id
+                ? 'text-emerald-400' : 'text-slate-500'}">
+                ${e.tracked_comment_id ? '✓ from a comment' : 'not attributed'}
+              </div>
+            </div>
+          </div>`).join('');
+      } catch (e) {
+        box.innerHTML = '<div class="text-[11px] text-slate-500">unavailable</div>';
+      }
+    }
+
   </script>
   <style>
     body { background-color: #080c14; color: #f3f4f6; }
@@ -30,7 +156,17 @@
     .glass-active { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
     .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
     @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .4; transform: scale(1.1); } }
-  </style>
+      .pf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 10px; }
+    .pf-card { background: rgba(15,23,42,.7); border: 1px solid #1e293b; border-radius: 12px; padding: 13px; }
+    .pf-card .v { font-size: 24px; font-weight: 700; color: #f8fafc; line-height: 1.15; }
+    .pf-card .l { font-size: 9.5px; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; margin-top: 3px; }
+    .pf-card .r { font-size: 10.5px; color: #34d399; margin-top: 5px; }
+    .pf-card .r.none { color: #64748b; }
+    .pf-card .r.warn { color: #fbbf24; }
+    .pf-bar { height: 7px; border-radius: 999px; background: #1e293b; overflow: hidden; }
+    .pf-bar > i { display: block; height: 100%; background: linear-gradient(90deg,#10b981,#34d399); }
+    .pf-tracked { background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.25); }
+</style>
 </head>
 <body class="min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-white">
 
@@ -219,6 +355,10 @@
           <i class="fa-solid fa-fire text-xs text-rose-400"></i>
           <span>Qualified Leads</span>
         </button>
+        <button onclick="switchTab('pipeline')" id="tabBtnPipeline" class="pb-3 text-slate-400 hover:text-white flex items-center gap-2">
+          <i class="fa-solid fa-chart-line text-xs text-emerald-400"></i>
+          <span>Pipeline</span>
+        </button>
         <button onclick="switchTab('telegram')" id="tabBtnTelegram" class="pb-3 text-slate-400 hover:text-white flex items-center gap-2">
           <i class="fa-brands fa-telegram text-xs text-sky-400"></i>
           <span>2-Way Telegram (@Aassqqee_bot)</span>
@@ -242,7 +382,41 @@
       </div>
 
       <!-- TAB 1: LEADS FEED -->
-      <div id="tabContentLeads" class="hidden space-y-3">
+      
+  <!-- Pipeline: what the merchant is paying for. -->
+  <div id="tabContentPipeline" class="hidden">
+    <div class="flex items-start justify-between mb-4 flex-wrap gap-3">
+      <div>
+        <h3 class="text-sm font-bold text-white">Your comment-to-revenue pipeline</h3>
+        <p class="text-[11px] text-slate-400 mt-1 max-w-xl leading-relaxed">
+          Every step between a Facebook comment and a recorded sale. Only
+          outcomes you record are counted as converted or lost, so this reflects
+          your business rather than an estimate.
+        </p>
+      </div>
+      <button onclick="loadPipeline()"
+              class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] text-slate-300">
+        Refresh
+      </button>
+    </div>
+
+    <div id="pfSteps" class="pf-grid"></div>
+
+    <div class="mt-4 pf-card">
+      <div class="flex justify-between text-[10px] text-slate-400 mb-1.5">
+        <span>Comments handled</span><span id="pfBarLabel">0</span>
+      </div>
+      <div class="pf-bar"><i id="pfBar" style="width:0%"></i></div>
+    </div>
+
+    <div id="pfRates" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3"></div>
+
+    <div id="pfCoverage" class="mt-4"></div>
+
+    <h4 class="text-[11px] font-bold text-slate-300 mt-5 mb-2">Recent enquiries</h4>
+    <div id="pfEnquiries" class="space-y-1.5"></div>
+  </div>
+<div id="tabContentLeads" class="hidden space-y-3">
         <div id="leadsLoading" class="glass rounded-2xl p-8 text-center text-slate-400">
           <i class="fa-solid fa-circle-notch fa-spin text-2xl mb-2 text-emerald-400"></i>
           <p class="text-sm">Checking real leads for Facebook Pages 61586357894191 &amp; 61586323275145...</p>
@@ -2167,7 +2341,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
     }
 
     function switchTab(tab) {
-      const tabs = ['pages', 'groups', 'shield', 'leads', 'telegram', 'herobots', 'onboarding', 'logs', 'rules'];
+      const tabs = ['pages', 'groups', 'shield', 'leads', 'pipeline', 'telegram', 'herobots', 'onboarding', 'logs', 'rules'];
       tabs.forEach(t => {
         const cap = t.charAt(0).toUpperCase() + t.slice(1);
         const contentEl = document.getElementById(`tabContent${cap}`);
@@ -2183,6 +2357,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       if (activeBtn) activeBtn.className = 'pb-3 text-emerald-400 border-b-2 border-emerald-400 flex items-center gap-2';
 
       if (tab === 'pages') loadMultiMetaPages();
+      if (tab === 'pipeline') loadPipeline();
       if (tab === 'groups') loadPortal100Groups();
       if (tab === 'shield' && !document.getElementById('nlpCommentInput').value) loadSampleNlp('gujarati');
       if (tab === 'herobots') renderHeroBotsGrid();
