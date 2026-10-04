@@ -26,3 +26,14 @@ email-validator>=2.1.0
 cryptography>=41.0.0
 passlib[bcrypt]>=1.7.4
 python-jose[cryptography]>=3.3.0
+
+# --- added when the Meta proxy and distribution engine landed ---
+# loguru: module-level import in engine/meta_proxy.py and
+# engine/whatsapp_webhook.py. Its absence broke the Render build.
+loguru>=0.7.3
+# telethon: Telegram user-session posting. Imported guardedly, so a missing
+# declaration degraded distribution silently instead of failing loudly.
+telethon>=1.45.0
+# colorama: colour output for structlog's ConsoleRenderer on Windows.
+# Guarded, Windows only.
+colorama>=0.4.6; sys_platform == "win32"

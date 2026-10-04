@@ -1,0 +1,14 @@
+
+/api/v1/bots/execute
+/api/v1/bots/list
+/api/v1/health
+/api/v1/rate-limit/status
+/api/v1/telegram/send
+/api/v1/tuning/status
+/docs
+/docs/oauth2-redirect
+/health
+/metrics
+/openapi.json
+/ready
+/redoc

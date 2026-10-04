@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 from typing import Any, Dict
 
@@ -31,9 +32,22 @@ def setup_logging() -> None:
     ]
 
     if settings.environment == "development":
-        # Pretty console output for development
+        # Pretty console output for development.
+        #
+        # colors=True raises SystemError on Windows unless colorama is
+        # present, so the application failed to import at all on a Windows
+        # host. Colour is requested only where the terminal can render it.
+        if os.name == "nt":
+            try:
+                import colorama  # noqa: F401
+
+                _colors = True
+            except ImportError:
+                _colors = False
+        else:
+            _colors = sys.stdout.isatty()
         processors = shared_processors + [
-            structlog.dev.ConsoleRenderer(colors=True),
+            structlog.dev.ConsoleRenderer(colors=_colors),
         ]
     else:
         # JSON output for production

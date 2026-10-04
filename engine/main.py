@@ -43,6 +43,21 @@ import json
 setup_logging()
 logger = get_logger(__name__)
 
+# --- Routers are imported before anything else on purpose. -----------------
+#
+# engine/__init__.py eagerly imports submodules, and those submodules import
+# further engine modules. Importing a router after that graph is in flight
+# yields a partially-built router, and include_router then mounts only the
+# routes that happened to exist. That produced a green deploy serving 14 of
+# 49 endpoints with no error logged. Loading them here, before the rest of
+# the engine is touched, makes the mount order deterministic.
+
+from engine.subscription_routes import router as subscription_router  # noqa: E402
+from engine.meta_proxy import router as meta_proxy_router  # noqa: E402
+from engine.attribution_routes import router as attribution_router  # noqa: E402
+from engine.brand_routes import router as brand_router  # noqa: E402
+from engine.whatsapp_webhook import router as whatsapp_webhook_router  # noqa: E402
+from engine.distribution_routes import router as distribution_router  # noqa: E402
 settings = get_settings()
 
 # API Key header for dependency injection
@@ -445,43 +460,41 @@ async def rate_limit_status(
 
 
 # Facebook Agent & Surat B2B Subscription Router
-from engine.subscription_routes import router as subscription_router
-app.include_router(subscription_router, prefix="/api/v1")
 
 # Meta Graph proxy. The router declares its own /api/v1/meta prefix, so it is
 # mounted without an additional one. dashboard.html called graph.facebook.com
 # directly from the browser; these endpoints move that traffic server-side and
 # record a bot_executions row per operation.
-from engine.meta_proxy import router as meta_proxy_router
-app.include_router(meta_proxy_router)
 
 # Attribution. Joins bot_executions -> leads -> outreach_messages and exposes
 # the comment-to-revenue funnel. Conversion counts only outcomes a merchant
 # recorded, so the funnel cannot manufacture its own evidence.
 from engine.attribution import CommentOutcome  # noqa: F401  (registers the table)
-from engine.attribution_routes import router as attribution_router
-app.include_router(attribution_router)
 
 # Per-client brand block. Replaces one merchant's phone numbers hardcoded in
 # 34 places across the dashboard, which made onboarding a second merchant
 # require an HTML edit.
-from engine.brand_routes import router as brand_router
-app.include_router(brand_router)
 
 # WhatsApp inbound webhook. The service could send but never receive, so an
 # enquiry was invisible unless a browser was open, and the attribution funnel
 # had no final hop. Registering the table at import keeps first delivery from
 # failing on a missing schema.
 from engine.whatsapp_webhook import InboundMessage  # noqa: F401
-from engine.whatsapp_webhook import router as whatsapp_webhook_router
-app.include_router(whatsapp_webhook_router)
 
 # Distribution. Targets carry a verification state, and reach is reported as
 # verified rather than listed, so an aspirational group list cannot be
 # presented as reach.
-from engine.distribution_routes import router as distribution_router
-app.include_router(distribution_router)
 
+
+# --- Routers. The imports are at the top of this file so each router is fully
+# built before it is mounted; see the note there. Mounting a partially-built
+# router silently registers only some of its routes.
+app.include_router(subscription_router, prefix="/api/v1")
+app.include_router(meta_proxy_router)
+app.include_router(attribution_router)
+app.include_router(brand_router)
+app.include_router(whatsapp_webhook_router)
+app.include_router(distribution_router)
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os
