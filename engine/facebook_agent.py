@@ -1,7 +1,9 @@
 """
 Facebook AI Agent Engine for Shruhi Collections & Surat B2B Clients.
 Handles real Meta Graph API integration across 3 Connected Facebook Pages & 100 Groups,
-Gujarati/Hinglish/English NLP lead scoring, 29-Product Shruhi Catalog matching,
+Gujarati/Hinglish/English NLP lead scoring, Shruhi catalogue matching,
+   (catalogue currently holds 14 items; counts shown to customers are
+   derived from it, so the two cannot disagree),
 Sub-0.05s comment auto-hide shield, instant public + private DM auto-replies,
 and Telegram hot lead alerts. Zero simulated or fake data.
 """
@@ -47,7 +49,7 @@ HOT_INTENT_KEYWORDS = [
     "shree", "glory", "gulzaar", "2876", "1002", "1042", "5620", "5795", "5601"
 ]
 
-SHRUHI_29_CATALOG = [
+SHRUHI_CATALOG = [
     {"keys": ["tejal"], "name": "TEJAL — 3-Piece Heavy Designer Suit (4K)", "price": "₹2,850", "sizes": "M to 6XL"},
     {"keys": ["galaxy", "banarasi"], "name": "GALAXY — Festive Silk Co-ord & Banarasi Suit Set (4K)", "price": "₹2,450 – ₹2,850", "sizes": "S to 5XL"},
     {"keys": ["kavya", "bandhani", "mauve"], "name": "KAVYA — Royal Bandhani & Zari Couture (4K)", "price": "₹2,950 – ₹3,250", "sizes": "M to 6XL"},
@@ -64,10 +66,19 @@ SHRUHI_29_CATALOG = [
     {"keys": ["5041", "5625", "5810", "5811", "5764", "5437", "5699", "5525", "1115", "1112", "lock"], "name": "Shruhi Signature 4K Boutique Collection", "price": "₹1,350 – ₹3,550", "sizes": "S to 6XL"},
 ]
 
+
+# Counts are derived, never written as literals. The reply text below used to
+# assert "29+ Verified Designs" while the catalogue held 14 entries, so a buyer
+# asking for a product outside the catalogue could not be served and the claim
+# could not be kept. Adding an item here now updates every number shown.
+SHRUHI_CATALOG_COUNT = len(SHRUHI_CATALOG)
+SHRUHI_CATALOG_RANGE = "₹850 – ₹3,550"
+
 AUTO_REPLY_TEMPLATES = {
     "textile": (
         "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) તરફથી: અમારું લેટેસ્ટ 4K કેટલોગ "
-        "(29+ Verified Designs • Sizes S to 6XL • ₹850 – ₹3,550 • 100% Online Store) તમારા Messenger DM માં મોકલ્યું છે. "
+        f"({SHRUHI_CATALOG_COUNT}+ Verified Designs • Sizes S to 6XL • "
+        f"{SHRUHI_CATALOG_RANGE} • 100% Online Store) તમારા Messenger DM માં મોકલ્યું છે. "
         "તાત્કાલિક ઓર્ડર માટે WhatsApp કરો: +91 63552 85433 (https://wa.me/916355285433) ✨"
     ),
     "diamond": (
@@ -92,12 +103,15 @@ class FacebookAgentEngine:
 
     def match_shruhi_product(self, text: str) -> Dict[str, str]:
         lower = (text or "").lower()
-        for item in SHRUHI_29_CATALOG:
+        for item in SHRUHI_CATALOG:
             if any(k in lower for k in item["keys"]):
                 return item
         return {
-            "name": "29+ Verified 4K Ethnic, Festive & Curvy Couture Outfits",
-            "price": "₹850 – ₹3,550",
+            "name": (
+                f"{SHRUHI_CATALOG_COUNT} Verified 4K Ethnic, Festive "
+                f"& Curvy Couture Outfits"
+            ),
+            "price": SHRUHI_CATALOG_RANGE,
             "sizes": "S to 6XL"
         }
 

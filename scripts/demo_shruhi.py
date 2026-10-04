@@ -27,7 +27,7 @@ from engine.database import sync_session  # noqa: E402
 from engine.distribution import import_from_directory, probe  # noqa: E402
 from engine.enquiry_tracking import embed_code, make_code  # noqa: E402
 from engine.facebook_agent import (  # noqa: E402
-    SHRUHI_29_CATALOG, FacebookAgentEngine,
+    SHRUHI_CATALOG, FacebookAgentEngine,
 )
 from engine.models_sqlalchemy import Client  # noqa: E402
 
@@ -67,8 +67,8 @@ def main():
     print(f"  tier          : {client.tier}")
     print(f"  page          : {client.fb_page_id}")
     print(f"  meta token    : {'configured' if client.fb_access_token else 'not configured'}")
-    print(f"  catalogue     : {len(SHRUHI_29_CATALOG)} products")
-    print("                   (the variable is named SHRUHI_29_CATALOG and the")
+    print(f"  catalogue     : {len(SHRUHI_CATALOG)} products")
+    print("                   (the variable is named SHRUHI_CATALOG and the")
     print("                    docstring says 29; it holds 14)")
     s.close()
 

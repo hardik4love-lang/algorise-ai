@@ -13,7 +13,7 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime, timezone, timedelta
 
 from engine.config import get_settings
-from engine.facebook_agent import SHRUHI_29_CATALOG
+from engine.facebook_agent import SHRUHI_CATALOG
 
 settings = get_settings()
 
@@ -86,7 +86,7 @@ class WhatsAppCloudAPIService:
             return None
 
         # Match specific product from 29-outfit catalog
-        for item in SHRUHI_29_CATALOG:
+        for item in SHRUHI_CATALOG:
             if any(k in lower for k in item["keys"]):
                 return (
                     f"Namaste! 🙏 Welcome to *Shruhi Collections* (Official Online Store: www.shruhicollections.in)\n\n"
