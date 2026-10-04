@@ -3,7 +3,7 @@ services:
     name: algorise-ai-backend
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt && python scripts/build.py
+    buildCommand: pip install -r requirements.txt && npm install --no-audit --no-fund && python scripts/build.py
     startCommand: uvicorn engine.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     autoDeploy: true

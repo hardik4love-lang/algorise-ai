@@ -5,153 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Client Portal — Algorise Facebook AI Agent</title>
-  <!-- Pinned. cdn.tailwindcss.com now 302s to a versioned path; pinning
-     removes a redirect from the critical path for every surface. -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Styles are compiled at build time into app.css. These pages
+       previously loaded the Tailwind Play CDN, which shipped ~407 KB of
+       compiler and generated this stylesheet in the browser; on a slow
+       connection the page rendered unstyled for seconds, which reads as
+       a broken page. The CDN is also deprecated. -->
+  <link rel="stylesheet" href="/app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
-          colors: {
-            brand: { 50: '#ecfdf5', 500: '#10b981', 600: '#059669', 700: '#047857' },
-            dark: { 900: '#0b0f19', 800: '#111827', 700: '#1f2937', 600: '#374151' }
-          }
-        }
-      }
-    }
-    // Merchant-facing pipeline.
-    //
-    // Deliberately refuses to present a rate built on a handful of cases.
-    // A percentage drawn from six enquiries invites a decision it cannot
-    // support, and a merchant who acts on it churns.
-
-    const PF_RATE_MIN = 10;
-
-    function pfRate(v, threshold) {
-      if (v === null || v === undefined) {
-        return '<span class="r none">no data yet</span>';
-      }
-      return `<span class="r">${(v * 100).toFixed(1)}%</span>`;
-    }
-
-    async function loadPipeline() {
-      const cid = currentClientId;
-      if (!cid) return;
-      const stepsEl = document.getElementById('pfSteps');
-      stepsEl.innerHTML = '<div class="text-[11px] text-slate-500">Loading…</div>';
-      try {
-        const r = await apiFetch(`/attribution/funnel?client_id=${encodeURIComponent(cid)}`);
-        renderPipeline(await r.json(), cid);
-      } catch (e) {
-        stepsEl.innerHTML =
-          '<div class="text-[11px] text-amber-400">Pipeline unavailable. '
-          + 'This does not affect comment handling.</div>';
-      }
-    }
-
-    function renderPipeline(d, cid) {
-      const f = d.funnel || {}, rt = d.rates || {}, val = d.value || {};
-
-      const steps = [
-        ['Comments replied', f.comments_replied],
-        ['Leads captured', f.leads_captured],
-        ['Enquiries', f.messages_delivered],
-        ['Outcomes recorded', f.outcomes_recorded],
-        ['Converted', f.converted],
-        ['Lost', f.lost],
-      ];
-      document.getElementById('pfSteps').innerHTML = steps.map(([k, n]) => `
-        <div class="pf-card">
-          <div class="v">${n ?? 0}</div>
-          <div class="l">${k}</div>
-        </div>`).join('') + `
-        <div class="pf-card">
-          <div class="v">₹${Math.round(val.recorded_revenue_inr || 0).toLocaleString('en-IN')}</div>
-          <div class="l">Recorded revenue</div>
-        </div>`;
-
-      const replied = f.comments_replied || 0;
-      const leads = f.leads_captured || 0;
-      const pct = replied ? Math.min(100, (leads / replied) * 100) : 0;
-      document.getElementById('pfBar').style.width = pct.toFixed(1) + '%';
-      document.getElementById('pfBarLabel').textContent =
-        `${leads} of ${replied}`;
-
-      const decided = f.outcomes_recorded || 0;
-      const rateRows = [
-        ['Comment to lead', rt.reply_to_lead],
-        ['Lead to enquiry', rt.lead_to_delivered],
-        ['Enquiry to outcome', rt.delivered_to_outcome],
-        ['Conversion', rt.conversion_rate],
-      ];
-      document.getElementById('pfRates').innerHTML = rateRows.map(([k, v]) => `
-        <div class="pf-card">
-          <div class="l">${k}</div>
-          ${pfRate(v)}
-        </div>`).join('');
-
-      const cov = decided < PF_RATE_MIN
-        ? `<div class="pf-card" style="border-color:#78350f">
-             <div class="l" style="color:#fbbf24">Coverage</div>
-             <div class="text-[11px] text-amber-300 mt-1 leading-relaxed">
-               ${decided} outcome${decided === 1 ? '' : 's'} recorded.
-               Below ${PF_RATE_MIN}, these rates are a count rather than a
-               percentage — keep recording outcomes and they will firm up.
-             </div>
-           </div>`
-        : `<div class="pf-card">
-             <div class="l">Coverage</div>
-             <div class="text-[11px] text-slate-400 mt-1">
-               ${decided} outcomes recorded. Rates are meaningful.
-             </div>
-           </div>`;
-      document.getElementById('pfCoverage').innerHTML = cov;
-
-      loadPipelineEnquiries(cid);
-    }
-
-    async function loadPipelineEnquiries(cid) {
-      const box = document.getElementById('pfEnquiries');
-      try {
-        const r = await apiFetch(
-          `/attribution/pending?limit=25`
-        );
-        const d = await r.json();
-        if (!d.enquiries || !d.enquiries.length) {
-          box.innerHTML = '<div class="text-[11px] text-slate-500">'
-            + 'Nothing awaiting an outcome. Record outcomes from the admin '
-            + 'console.</div>';
-          return;
-        }
-        box.innerHTML = d.enquiries.map(e => `
-          <div class="pf-card pf-tracked">
-            <div class="flex justify-between items-center gap-3">
-              <div class="min-w-0">
-                <div class="text-[12px] text-slate-200 truncate">
-                  ${e.profile_name || e.from_phone || 'enquiry'}
-                </div>
-                <div class="text-[10px] text-slate-500 truncate">
-                  ${(e.body || '').slice(0, 60)}
-                </div>
-              </div>
-              <div class="text-[10px] shrink-0 ${e.tracked_comment_id
-                ? 'text-emerald-400' : 'text-slate-500'}">
-                ${e.tracked_comment_id ? '✓ from a comment' : 'not attributed'}
-              </div>
-            </div>
-          </div>`).join('');
-      } catch (e) {
-        box.innerHTML = '<div class="text-[11px] text-slate-500">unavailable</div>';
-      }
-    }
-
-  </script>
   <style>
     body { background-color: #080c14; color: #f3f4f6; }
     .glass { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }

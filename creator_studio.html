@@ -20,42 +20,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
   
-  <!-- Pinned. cdn.tailwindcss.com now 302s to a versioned path; pinning
-     removes a redirect from the critical path for every surface. -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Styles are compiled at build time into app.css. These pages
+       previously loaded the Tailwind Play CDN, which shipped ~407 KB of
+       compiler and generated this stylesheet in the browser; on a slow
+       connection the page rendered unstyled for seconds, which reads as
+       a broken page. The CDN is also deprecated. -->
+  <link rel="stylesheet" href="/app.css">
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-            orbitron: ['"Orbitron"', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              void: '#03050C',
-              navy: '#070C1B',
-              surface: '#0B132B',
-              card: 'rgba(15, 23, 42, 0.65)',
-              border: 'rgba(0, 242, 254, 0.15)',
-              cyan: '#00F2FE',
-              violet: '#9D4EDD',
-              starlight: '#E0E7FF',
-              nebula: '#4F46E5',
-              orange: '#FF5722',
-              amber: '#F59E0B',
-            }
-          }
-        }
-      }
-    }
-  </script>
-
 
   <style>
     .cosmic-glass {

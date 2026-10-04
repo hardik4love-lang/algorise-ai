@@ -1,0 +1,8 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* The pages set a dark base colour; keep that even though the compiled
+   build strips the CDN's preflight assumptions. */
+html { background: #0b0f19; }
+body { background: #0b0f19; color: #e5e7eb; }

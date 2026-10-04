@@ -23,6 +23,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+
+# Windows ships npx as a .cmd shim, which subprocess cannot resolve.
+_NPX = 'npx.cmd' if os.name == 'nt' else 'npx'
 DIST = ROOT / "dist"
 
 # Copied verbatim from source.
@@ -78,6 +81,20 @@ def sync(verbose: bool = True) -> list[str]:
         dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(src, dest)
         copied.append(f"{dest_rel} (from {source_rel})")
+
+    # Compile Tailwind at build time. The pages used to load the Play CDN,
+    # which shipped ~407 KB of compiler and generated the stylesheet in the
+    # browser; on a slow connection the page rendered unstyled for seconds.
+    r = subprocess.run(
+        [_NPX, 'tailwindcss', '-i', 'app.css', '-o', str(DIST / 'app.css'),
+         '--minify'],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if r.returncode != 0:
+        print(f'  WARNING: tailwind build failed:\n{(r.stdout + r.stderr)[-500:]}')
+    else:
+        size = (DIST / 'app.css').stat().st_size
+        copied.append(f'app.css ({size // 1024} KB compiled)')
 
     # config.js is generated, never copied.
     cfg = subprocess.run(

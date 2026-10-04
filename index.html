@@ -36,40 +36,14 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Tailwind CSS & Icons -->
-  <!-- Pinned. cdn.tailwindcss.com now 302s to a versioned path; pinning
-     removes a redirect from the critical path for every surface. -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Styles are compiled at build time into app.css. These pages
+       previously loaded the Tailwind Play CDN, which shipped ~407 KB of
+       compiler and generated this stylesheet in the browser; on a slow
+       connection the page rendered unstyled for seconds, which reads as
+       a broken page. The CDN is also deprecated. -->
+  <link rel="stylesheet" href="/app.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://unpkg.com/lucide@latest"></script>
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'Manrope', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-            manrope: ['"Manrope"', 'sans-serif']
-          },
-          colors: {
-            brand: {
-              void: '#03050C',
-              navy: '#070C1B',
-              surface: '#0B132B',
-              card: 'rgba(11, 19, 43, 0.75)',
-              border: 'rgba(0, 242, 254, 0.15)',
-              cyan: '#00F2FE',
-              emerald: '#10B981',
-              violet: '#9B5CFF',
-              amber: '#F59E0B',
-              rose: '#F43F5E'
-            }
-          }
-        }
-      }
-    }
-  </script>
 
   <!-- Cosmic Design System Stylesheet (djsltd.com Caliber) -->
   <style>

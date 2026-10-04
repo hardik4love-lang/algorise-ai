@@ -261,8 +261,25 @@ def gate_deploy_drift() -> Gate:
                     missing.append(route)
         except urllib.error.HTTPError as e:
             checked += 1
-            if e.code == 404:
+            if e.code != 404:
+                # 401/403/405/422 all mean the route resolved and rejected
+                # the probe, which is what a healthy deployment does.
+                continue
+            # A POST-only route answers GET with 404, because the GET falls
+            # through the router to the static mount. Retry with POST before
+            # declaring it missing, or every write endpoint reads as absent.
+            try:
+                req = urllib.request.Request(
+                    f"{GATEWAY}{route}", method="POST", data=b""
+                )
+                urllib.request.urlopen(req, timeout=20)
+                continue  # resolved: 2xx on POST
+            except urllib.error.HTTPError as pe:
+                if pe.code != 404:
+                    continue  # resolved: rejected for auth or validation
                 missing.append(route)
+            except Exception:  # noqa: BLE001
+                continue
         except Exception:  # noqa: BLE001
             continue
         # A gate that checked nothing must not report success. When every probe
