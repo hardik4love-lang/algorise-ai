@@ -476,6 +476,12 @@ from engine.whatsapp_webhook import InboundMessage  # noqa: F401
 from engine.whatsapp_webhook import router as whatsapp_webhook_router
 app.include_router(whatsapp_webhook_router)
 
+# Distribution. Targets carry a verification state, and reach is reported as
+# verified rather than listed, so an aspirational group list cannot be
+# presented as reach.
+from engine.distribution_routes import router as distribution_router
+app.include_router(distribution_router)
+
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os
