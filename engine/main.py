@@ -504,6 +504,24 @@ dist_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dist")
 if not os.path.exists(dist_dir):
     dist_dir = "dist"
 
+# config.js tells the client where the API lives. It is generated at build
+# time, but the build step has failed to produce it on at least one deploy,
+# and a missing config.js is a 404 the browser hits before any script runs.
+# Regenerating here makes the file self-healing: the page cannot load
+# without it, so the server must not start without it either.
+try:
+    import subprocess as _sp
+    import sys as _sy
+
+    _r = _sp.run(
+        [_sy.executable, os.path.join(os.path.dirname(dist_dir), "scripts", "gen_config.py")],
+        capture_output=True, text=True, timeout=120,
+    )
+    if _r.returncode != 0:
+        print(f"WARNING: config.js generation failed: {(_r.stdout + _r.stderr)[-300:]}")
+except Exception as _e:  # noqa: BLE001
+    print(f"WARNING: could not generate config.js: {_e}")
+
 # The built site is preferred. When it is absent - a fresh checkout, or a
 # deploy that skipped the build step - fall back to the repository root so the
 # top-level pages still resolve. Returning a JSON body with HTTP 200 for a
