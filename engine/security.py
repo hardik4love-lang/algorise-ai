@@ -464,23 +464,29 @@ class AuditLogger:
 
     def log_auth_attempt(
         self,
-        api_key: str,
+        api_key: Optional[str],
         success: bool,
         ip: Optional[str] = None,
     ) -> None:
-        """Log an authentication attempt."""
-        key_hash = hashlib.sha256(api_key.encode()).hexdigest()[:16]
+        """Log an authentication attempt.
+
+        A missing or non-string key is the common case here, because this is
+        called on the rejection path. Hashing and slicing the raw value
+        raised AttributeError and TypeError on None, turning what should be a
+        clean 401 into a 500 with a stack trace instead of a message.
+        """
+        material = api_key if isinstance(api_key, str) else ""
+        key_hash = hashlib.sha256(material.encode()).hexdigest()[:16]
         self.log(AuditEvent(
             event_type="auth_attempt",
             client_id=key_hash,
             action="authenticate",
             resource="api_key",
             success=success,
-            details={"key_prefix": api_key[:8] + "..."},
+            details={"key_prefix": (material[:8] + "...") if material else ""},
             timestamp=datetime.utcnow(),
             ip_address=ip,
         ))
-
     def log_rate_limit_exceeded(
         self,
         client_id: str,
@@ -510,25 +516,38 @@ audit_logger = AuditLogger()
 async def verify_api_key(
     api_key: Optional[str] = None,
     x_api_key: Optional[str] = Header(None, alias="x-api-key"),
+    algorise_key: Optional[str] = Header(None, alias="X-Algorise-Key"),
 ) -> Tuple[bool, Optional[APIKeyInfo]]:
     """Verify an API key and check quota.
 
-    Accepts the key from either the x-api-key header or the api_key query
-    parameter. The header is the preferred form: query parameters are written
-    to server access logs, proxy logs and browser history, so a key passed
-    that way leaks into infrastructure the caller does not control.
+    Accepts three sources, checked in order:
 
-    The query form is retained because existing callers use it, and removing
-    it would break them silently.
+      1. X-Algorise-Key  the header every pre-existing endpoint in this
+                         service already used (main.py:get_api_key). This is
+                         the app's own convention and takes precedence.
+      2. x-api-key       a generic header some clients send.
+      3. api_key         a query parameter, retained because existing callers
+                         use it.
+
+    Endpoints added before this accepted only (2) and (3), which meant they
+    authenticated differently from the rest of the service: a client using
+    the documented X-Algorise-Key header got a 401 from them and a 200 from
+    everything else. One scheme, one header, no surprises.
+
+    Query parameters are still supported but are the least preferred form:
+    they are written to server access logs, proxy logs and browser history.
 
     Only str values are accepted. When this dependency is invoked outside
-    FastAPI's resolution — a direct call from a test or a script — the
-    un-resolved default arrives as the Header marker object itself, and
-    passing that into key hashing raises AttributeError deep in the manager.
+    FastAPI's resolution the un-resolved default arrives as the Header marker
+    object itself, and passing that into key hashing raises AttributeError
+    deep in the manager.
     """
-    key = x_api_key if isinstance(x_api_key, str) else ""
-    if not key and isinstance(api_key, str):
-        key = api_key
+    for candidate in (algorise_key, x_api_key, api_key):
+        if isinstance(candidate, str) and candidate:
+            key = candidate
+            break
+    else:
+        key = ""
 
     key_info = api_key_manager.validate_key(key)
 
