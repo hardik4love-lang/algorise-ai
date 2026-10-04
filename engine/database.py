@@ -1,3 +1,5 @@
+import os
+
 from contextlib import asynccontextmanager
 from typing import AsyncGenerator
 
@@ -128,7 +130,16 @@ def _database_url() -> str:
     those to create_engine() produces an engine that raises MissingGreenlet
     on first connect, so the driver is swapped here rather than at each call
     site.
+
+    VEDIC_TEST_DB redirects every sync session at a scratch database. Without
+    it the test suite runs against algorise_prod.db, and fixtures that clear
+    tables delete the live client's record — which is exactly what happened
+    to Shruhi Collections' row before this was added.
     """
+    override = os.getenv("VEDIC_TEST_DB")
+    if override:
+        return override if "://" in override else f"sqlite:///{override}"
+
     from engine.config import get_settings
 
     url = getattr(get_settings(), "database_url", "") or ""

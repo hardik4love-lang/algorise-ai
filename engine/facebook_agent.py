@@ -154,18 +154,24 @@ class FacebookAgentEngine:
             f"🛍️ Shop 100% Online: https://shruhicollections.in | 📲 Direct WhatsApp Order: https://wa.me/916355285433 (+91 63552 85433)"
         )
 
-    def build_private_dm(self, text: str, buyer_name: str = "Valued Shopper") -> str:
+    def build_private_dm(
+        self,
+        text: str,
+        buyer_name: str = "Valued Shopper",
+        comment_id: str = "",
+    ) -> str:
+        """Build the private DM sent to a commenter.
+
+        When comment_id is supplied, an opaque tracking reference is appended
+        to the prefilled WhatsApp message so the resulting enquiry resolves
+        back to this comment. The offer text is unchanged; only the prefilled
+        message gains a reference line.
+        """
         matched = self.match_shruhi_product(text)
-        # Append an opaque reference so the resulting enquiry is attributed
-        # to this comment rather than merely captured. The offer text above
-        # is unchanged; only the prefilled message gains a reference line.
         prefill = (
             f"Hi Shruhi Collections! I saw your post on Facebook and want to "
             f"order {matched['name']} ({matched['price']})."
         )
-        comment_id = kwargs.get('comment_id', '') if kwargs else ''
-        if not comment_id:
-            comment_id = locals().get('comment_id', '') or ''
         if comment_id:
             try:
                 prefill = embed_code(prefill, register_comment(comment_id))
@@ -292,7 +298,11 @@ class FacebookAgentEngine:
             intent = f"[Shield Hidden Phone] {intent}"
 
         public_reply = self.select_auto_reply(comment_text, sector, buyer_name=buyer_name)
-        private_dm = self.build_private_dm(comment_text, buyer_name=buyer_name)
+        # comment_id is threaded through so the resulting WhatsApp enquiry
+        # resolves back to this comment instead of merely being captured.
+        private_dm = self.build_private_dm(
+            comment_text, buyer_name=buyer_name, comment_id=comment_id
+        )
 
         reply_res = {}
         dm_res = {}
@@ -370,7 +380,7 @@ class FacebookAgentEngine:
                 self.replied_comment_ids.add(comm_id)
 
             # Also dispatch private DM with WhatsApp +91 63552 85433 link
-            dm_msg = self.build_private_dm(text, buyer_name=user_name)
+            dm_msg = self.build_private_dm(text, buyer_name=user_name, comment_id=comm_id)
             self.send_private_reply(page_id, comm_id, dm_msg, access_token)
 
             phone_match = re.search(r'(?:\+?91[\s-]?)?[6789]\d{9}', text)
