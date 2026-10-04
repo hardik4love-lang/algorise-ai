@@ -504,8 +504,21 @@ dist_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dist")
 if not os.path.exists(dist_dir):
     dist_dir = "dist"
 
-if os.path.exists(dist_dir):
-    app.mount("/", StaticFiles(directory=dist_dir, html=True), name="static")
+# The built site is preferred. When it is absent - a fresh checkout, or a
+# deploy that skipped the build step - fall back to the repository root so the
+# top-level pages still resolve. Returning a JSON body with HTTP 200 for a
+# page request is worse than serving the page: it looks healthy to a status
+# check while delivering nothing the browser can render.
+_fallback_dir = dist_dir if os.path.exists(dist_dir) else os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))
+)
+
+if os.path.isdir(_fallback_dir):
+    app.mount(
+        "/",
+        StaticFiles(directory=_fallback_dir, html=True),
+        name="static",
+    )
 else:
     @app.api_route("/{path:path}", methods=["GET", "POST", "OPTIONS"])
     async def legacy_gateway(path: str, request: Request):
