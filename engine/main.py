@@ -518,10 +518,9 @@ async def safety_audit_endpoint(
     request: Request,
     auth: tuple = Depends(verify_api_key_dependency),
 ):
-    """Explicitly pre-flight check an action or payload against Causal Safety Gates."""
     body = await request.json()
-    action_type = body.get("action_type", "general")
-    payload = body.get("payload", {})
+    action_type = body.get("action_type") or body.get("bot_name") or "general"
+    payload = body.get("payload") if "payload" in body else body.get("proposed_action", {})
     audit = safety_gate.audit_detailed(action_type, payload)
     return {
         "is_approved": audit.is_approved,
