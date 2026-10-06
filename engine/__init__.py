@@ -50,6 +50,7 @@ _EXPORTS: dict[str, str] = {
     "input_validator": "engine.security",
     "rate_limiter": "engine.security",
     "verify_api_key": "engine.security",
+    "require_api_key": "engine.security",
     "check_rate_limit_middleware": "engine.security",
     "validate_request_payload": "engine.security",
     "validate_query_string": "engine.security",

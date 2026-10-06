@@ -23,6 +23,13 @@ from engine import (
 from engine.config import get_settings
 from engine.hero_registry import HERO_BOT_DEFINITIONS, HeroBotRunner, HERO_BOT_IDS_SET
 hero_runner = HeroBotRunner()
+from engine.tuning_engine import AlgoriseTuningEngine
+tuning_engine = AlgoriseTuningEngine()
+from engine.graph_rag import graph_rag
+from engine.guardrails import safety_gate
+from engine.mcp_adapter import AlgoriseMCPAdapter
+from engine.hero_registry import HERO_BOT_REGISTRY_MAP
+mcp_adapter = AlgoriseMCPAdapter(bot_registry=HERO_BOT_REGISTRY_MAP)
 from engine.security import (
     api_key_manager,
     audit_logger,
@@ -379,7 +386,7 @@ async def execute_bot(
 
     raise HTTPException(
         status_code=404,
-        detail=f"Bot '{bot_name}' not found. Available Hero IDs: {hero_ids[:10]}...",
+        detail=f"Bot '{bot_name}' not found. Available Hero IDs: {list(HERO_BOT_IDS_SET)[:10]}...",
     )
 
 
@@ -430,18 +437,98 @@ async def tuning_status(
         ip=None,
     )
     
+    # Return live measured empirical benchmark
+    return tuning_engine.get_live_benchmark_status()
+
+
+# ============================================================================
+# MODEL CONTEXT PROTOCOL (MCP) ENDPOINTS
+# ============================================================================
+
+@app.get("/api/v1/mcp/tools")
+async def mcp_list_tools(
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Returns standardized tool definitions for Model Context Protocol (MCP) clients."""
     return {
-        "audit_status": "CERTIFIED_OPTIMIZED",
-        "total_evaluated": 100,
-        "functional_pass_rate": "100%",
-        "safety_gate_block_rate": "100%",
-        "average_latency_ms": 0.034,
-        "moats_verified": [
-            "Deterministic Causal Safety Gates",
-            "Hybrid GraphRAG Context Grounding",
-            "Model Context Protocol (MCP) Compliance",
-            "Sub-50ms Enterprise SLAs",
-        ],
+        "protocolVersion": mcp_adapter.protocol_version,
+        "tools": mcp_adapter.list_tools(),
+    }
+
+
+@app.post("/api/v1/mcp/call")
+async def mcp_call_tool(
+    request: Request,
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Executes a tool call under Model Context Protocol with Causal Safety Gate pre-flight."""
+    body = await request.json()
+    tool_name = body.get("name") or body.get("tool_name")
+    arguments = body.get("arguments", {})
+    if not tool_name:
+        raise HTTPException(400, "Missing required 'name' or 'tool_name' field")
+    return mcp_adapter.call_tool(tool_name, arguments)
+
+
+@app.post("/api/v1/mcp")
+async def mcp_jsonrpc_endpoint(
+    request: Request,
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Standard JSON-RPC 2.0 endpoint for MCP clients (Claude Desktop, Cursor)."""
+    body = await request.json()
+    return mcp_adapter.handle_jsonrpc(body)
+
+
+# ============================================================================
+# HYBRID GRAPHRAG CONTEXT LAYER ENDPOINTS
+# ============================================================================
+
+@app.post("/api/v1/graphrag/query")
+async def graphrag_query_endpoint(
+    request: Request,
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Traverse and retrieve grounded context from the Algorise Hybrid GraphRAG layer."""
+    body = await request.json()
+    query = body.get("query", "")
+    top_k = int(body.get("top_k", 5))
+    return await graph_rag.query_context(query, top_k=top_k)
+
+
+@app.get("/api/v1/graphrag/stats")
+async def graphrag_stats_endpoint(
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Telemetry for the enterprise Knowledge Graph."""
+    return {
+        "total_nodes": len(graph_rag.nodes),
+        "total_edge_sources": len(graph_rag.adjacency),
+        "total_vector_documents": len(graph_rag.doc_vectors),
+        "node_types": sorted(list({n.node_type for n in graph_rag.nodes.values()})),
+    }
+
+
+# ============================================================================
+# DETERMINISTIC CAUSAL SAFETY GATE ENDPOINT
+# ============================================================================
+
+@app.post("/api/v1/safety/audit")
+async def safety_audit_endpoint(
+    request: Request,
+    auth: tuple = Depends(verify_api_key_dependency),
+):
+    """Explicitly pre-flight check an action or payload against Causal Safety Gates."""
+    body = await request.json()
+    action_type = body.get("action_type", "general")
+    payload = body.get("payload", {})
+    audit = safety_gate.audit_detailed(action_type, payload)
+    return {
+        "is_approved": audit.is_approved,
+        "status_code": audit.status_code,
+        "risk_score": audit.risk_score,
+        "audit_flags": audit.audit_flags,
+        "latency_ms": audit.latency_ms,
     }
 
 

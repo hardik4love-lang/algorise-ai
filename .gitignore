@@ -30,6 +30,7 @@ wheels/
 
 # Large Archives & Packages
 *.zip
+*.bundle
 algorise-ai-production-package/
 fe_live_jobs.json
 live_jobs_feed.json

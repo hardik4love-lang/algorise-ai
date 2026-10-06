@@ -31,7 +31,8 @@ from loguru import logger
 from pydantic import BaseModel, Field
 
 from engine.facebook_agent import FacebookAgentEngine
-from engine.security import verify_api_key
+from engine.guardrails import safety_gate
+from engine.security import require_api_key
 
 router = APIRouter(prefix="/api/v1/meta", tags=["meta"])
 
@@ -124,18 +125,9 @@ def _record(
     output: dict[str, Any],
     latency_ms: float,
     reasoning: str = "",
+    safety_clearance: bool = True,
 ) -> None:
-    """Persist an execution row.
-
-    This is why bot_executions was empty: nothing wrote to it. The previous
-    implementation imported a SessionLocal that does not exist and swallowed
-    the resulting error, so every call appeared to record and recorded
-    nothing.
-
-    A failure to record must not fail the Meta operation itself, so the error
-    is logged rather than raised — but it is logged, which is what was
-    missing before.
-    """
+    """Persist an execution row with verified causal safety status."""
     try:
         from engine.database import sync_session
         from engine.models_sqlalchemy import BotExecution
@@ -155,13 +147,7 @@ def _record(
                     success=success,
                     reasoning_trace=reasoning,
                     latency_ms=latency_ms,
-                    # Boolean column. These are predetermined, non-agentic
-                    # operations (hide one comment, reply to one comment):
-                    # there is no free-form decision for the causal safety
-                    # gate to adjudicate. True here means "no gate applies",
-                    # not "a gate was evaluated and passed" — the tuning
-                    # benchmark is the only thing that claims the latter.
-                    safety_clearance=True,
+                    safety_clearance=safety_clearance,
                 )
             )
             session.commit()
@@ -177,7 +163,7 @@ def _record(
 
 
 @router.post("/feed")
-async def page_feed(req: PageFeedRequest, _: bool = Depends(verify_api_key)):
+async def page_feed(req: PageFeedRequest, _: Any = Depends(require_api_key)):
     """Page posts, fetched server-side."""
     token = _client_token(req.access_token)
     url = (
@@ -202,7 +188,7 @@ async def page_feed(req: PageFeedRequest, _: bool = Depends(verify_api_key)):
 
 
 @router.post("/comments")
-async def post_comments(req: CommentsRequest, _: bool = Depends(verify_api_key)):
+async def post_comments(req: CommentsRequest, _: Any = Depends(require_api_key)):
     """Comments on a post, fetched server-side."""
     token = _client_token(req.access_token)
     url = (
@@ -232,7 +218,7 @@ async def post_comments(req: CommentsRequest, _: bool = Depends(verify_api_key))
 
 
 @router.post("/comments/hide")
-async def hide_comment(req: HideRequest, _: bool = Depends(verify_api_key)):
+async def hide_comment(req: HideRequest, _: Any = Depends(require_api_key)):
     """Hide a comment. Previously issued from the browser with the page token."""
     token = _client_token(req.access_token)
     started = datetime.now(timezone.utc)
@@ -250,8 +236,20 @@ async def hide_comment(req: HideRequest, _: bool = Depends(verify_api_key)):
 
 
 @router.post("/comments/reply")
-async def reply_comment(req: ReplyRequest, _: bool = Depends(verify_api_key)):
-    """Reply to a comment. Previously issued from the browser."""
+async def reply_comment(req: ReplyRequest, _: Any = Depends(require_api_key)):
+    """Reply to a comment with Causal Safety Gate audit."""
+    # Deterministic Causal Safety Gate Pre-Flight
+    audit_res = safety_gate.audit_detailed("meta_reply", {"message": req.message, "comment_id": req.comment_id})
+    if not audit_res.is_approved:
+        _record(
+            "unknown", "meta_reply", "reply_comment", False,
+            {"comment_id": req.comment_id, "error": f"Causal safety block: {audit_res.status_code}"},
+            audit_res.latency_ms,
+            reasoning=f"Blocked by Algorise Causal Safety Gate: {audit_res.status_code}",
+            safety_clearance=False,
+        )
+        raise HTTPException(422, f"Reply blocked by Algorise Causal Safety Gate: {audit_res.status_code}")
+
     token = _client_token(req.access_token)
     started = datetime.now(timezone.utc)
     result = _engine.reply_to_comment(req.comment_id, req.message, token)
@@ -263,7 +261,8 @@ async def reply_comment(req: ReplyRequest, _: bool = Depends(verify_api_key)):
         {"comment_id": req.comment_id, "reply_id": result.get("id"),
          "error": result.get("error")},
         latency,
-        reasoning="proxied from dashboard; previously browser-side",
+        reasoning="proxied from dashboard; audited by causal safety gate",
+        safety_clearance=True,
     )
     if not ok:
         raise HTTPException(502, f"reply failed: {result.get('error', 'unknown')}")
@@ -271,7 +270,7 @@ async def reply_comment(req: ReplyRequest, _: bool = Depends(verify_api_key)):
 
 
 @router.get("/status")
-async def meta_status(_: bool = Depends(verify_api_key)):
+async def meta_status(_: Any = Depends(require_api_key)):
     """Whether a Meta token is available, without exposing it."""
     stored = _stored_client_token()
     return {

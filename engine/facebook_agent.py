@@ -76,16 +76,16 @@ SHRUHI_CATALOG_RANGE = "₹850 – ₹3,550"
 
 AUTO_REPLY_TEMPLATES = {
     "textile": (
-        "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) તરફથી: અમારું લેટેસ્ટ 4K કેટલોગ "
+        "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) તરફથી: અમારું લેટેસ્ટ હોલસેલ કેટેલોગ 4K કેટલોગ "
         f"({SHRUHI_CATALOG_COUNT}+ Verified Designs • Sizes S to 6XL • "
         f"{SHRUHI_CATALOG_RANGE} • 100% Online Store) તમારા Messenger DM માં મોકલ્યું છે. "
         "તાત્કાલિક ઓર્ડર માટે WhatsApp કરો: +91 63552 85433 (https://wa.me/916355285433) ✨"
     ),
     "diamond": (
-        "નમસ્તે! 💎 લાઈવ રેટ અને સર્ટિફાઈડ સ્ટોક લિસ્ટ માટે આપનો કોન્ટેક્ટ શેર કરો."
+        "નમસ્તે! 💎 CVD & Lab-Grown Diamonds લાઈવ રેટ અને સર્ટિફાઈડ સ્ટોક લિસ્ટ માટે આપનો કોન્ટેક્ટ શેર કરો."
     ),
     "realty": (
-        "નમસ્તે! 🏢 પ્રોજેક્ટ બ્રોશર અને વિગતો આપના ઇનબોક્સમાં મોકલી છે."
+        "નમસ્તે! 🏢 સુરતના પ્રાઇમ લોકેશન પ્રોજેક્ટ બ્રોશર અને વિગતો આપના ઇનબોક્સમાં મોકલી છે."
     ),
     "default": (
         "નમસ્તે જી! 🙏 આપની ઇન્ક્વાયરી બદલ આભાર. વિગતો આપના Messenger DM માં મોકલી છે. WhatsApp: +91 63552 85433."
@@ -121,7 +121,7 @@ class FacebookAgentEngine:
 
         clean_text = text.lower().strip()
         matched_keywords = [kw for kw in HOT_INTENT_KEYWORDS if kw in clean_text]
-        score = 45.0 + (len(matched_keywords) * 15.0)
+        score = 25.0 + (len(matched_keywords) * 15.0)
 
         # Phone number detection (+91 or 10 digits)
         phone_match = re.search(r'(?:\+?91[\s-]?)?[6789]\d{9}', clean_text)
@@ -143,7 +143,7 @@ class FacebookAgentEngine:
         return score, status, intent
 
     def select_auto_reply(self, text: str, sector: Optional[str] = None, buyer_name: str = "Valued Shopper") -> str:
-        if sector and sector.lower() in ("diamond", "realty"):
+        if sector and sector.lower() in ("textile", "diamond", "realty"):
             return AUTO_REPLY_TEMPLATES[sector.lower()]
 
         matched = self.match_shruhi_product(text)
@@ -350,7 +350,19 @@ class FacebookAgentEngine:
         telegram_chat_id: Optional[int] = None,
         force_simulation: bool = False
     ) -> Dict[str, Any]:
-        comments, api_error = self.fetch_page_comments(page_id, access_token)
+        if force_simulation:
+            comments = [
+                {
+                    "id": "sim_cmt_001",
+                    "from": {"name": "Hardik Patel", "id": "user_srt_01"},
+                    "message": "આ સાડીનો હોલસેલ રેટ શું છે? 9825012345 પર મોકલો",
+                    "created_time": datetime.now(timezone.utc).isoformat(),
+                }
+            ]
+            api_error = None
+        else:
+            comments, api_error = self.fetch_page_comments(page_id, access_token)
+
         if api_error:
             return {
                 "client_id": client_id,
@@ -381,21 +393,22 @@ class FacebookAgentEngine:
                 continue
 
             # Sub-0.05s Auto-Hide Shield for phone numbers
-            hidden = self.hide_comment_if_phone(comm_id, text, access_token)
+            hidden = self.hide_comment_if_phone(comm_id, text, access_token) if not force_simulation else True
 
             score, status, intent = self.classify_lead_intent(text)
             if hidden:
                 intent = f"[Shield Hidden Phone] {intent}"
 
             reply_msg = self.select_auto_reply(text, sector, buyer_name=user_name)
-            reply_res = self.reply_to_comment(comm_id, reply_msg, access_token)
+            reply_res = self.reply_to_comment(comm_id, reply_msg, access_token) if not force_simulation else {"id": "sim_rep_01"}
             if reply_res.get("id"):
                 replies_sent += 1
                 self.replied_comment_ids.add(comm_id)
 
             # Also dispatch private DM with WhatsApp +91 63552 85433 link
             dm_msg = self.build_private_dm(text, buyer_name=user_name, comment_id=comm_id)
-            self.send_private_reply(page_id, comm_id, dm_msg, access_token)
+            if not force_simulation:
+                self.send_private_reply(page_id, comm_id, dm_msg, access_token)
 
             phone_match = re.search(r'(?:\+?91[\s-]?)?[6789]\d{9}', text)
             phone_num = phone_match.group(0) if phone_match else "Guided to WhatsApp +91 63552 85433"

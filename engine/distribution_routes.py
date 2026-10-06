@@ -21,7 +21,7 @@ from engine.distribution import (
     import_targets,
     probe,
 )
-from engine.security import verify_api_key
+from engine.security import require_api_key
 
 router = APIRouter(prefix="/api/v1/distribution", tags=["distribution"])
 
@@ -47,7 +47,7 @@ def _session():
 
 
 @router.get("/capabilities")
-def capabilities(_: bool = Depends(verify_api_key)):
+def capabilities(_: Any = Depends(require_api_key)):
     """What this deployment can actually post to, discovered not assumed."""
     conn = _session()
     try:
@@ -57,7 +57,7 @@ def capabilities(_: bool = Depends(verify_api_key)):
 
 
 @router.post("/targets/import")
-def import_targets_route(payload: TargetImport, _: bool = Depends(verify_api_key)):
+def import_targets_route(payload: TargetImport, _: Any = Depends(require_api_key)):
     """Import real targets. Placeholder ids are rejected, not stored."""
     conn = _session()
     try:
@@ -67,7 +67,7 @@ def import_targets_route(payload: TargetImport, _: bool = Depends(verify_api_key
 
 
 @router.post("/targets/import-directory")
-def import_directory(_: bool = Depends(verify_api_key)):
+def import_directory(_: Any = Depends(require_api_key)):
     """Import the bundled directory. Rejects its placeholder ids."""
     conn = _session()
     try:
@@ -78,7 +78,7 @@ def import_directory(_: bool = Depends(verify_api_key)):
 
 @router.get("/targets")
 def list_targets(
-    platform: Optional[str] = None, _: bool = Depends(verify_api_key)
+    platform: Optional[str] = None, _: Any = Depends(require_api_key)
 ):
     conn = _session()
     try:
@@ -99,7 +99,7 @@ def list_targets(
 
 
 @router.post("/broadcast")
-async def broadcast_route(payload: BroadcastRequest, _: bool = Depends(verify_api_key)):
+async def broadcast_route(payload: BroadcastRequest, _: Any = Depends(require_api_key)):
     """Post to every VERIFIED target. Unverified targets are never counted."""
     from pathlib import Path
 
@@ -121,7 +121,7 @@ async def broadcast_route(payload: BroadcastRequest, _: bool = Depends(verify_ap
 
 
 @router.get("/posts")
-def recent_posts(limit: int = 50, _: bool = Depends(verify_api_key)):
+def recent_posts(limit: int = 50, _: Any = Depends(require_api_key)):
     conn = _session()
     try:
         rows = conn.execute(

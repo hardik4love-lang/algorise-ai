@@ -14,7 +14,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
 from engine.attribution import CommentOutcome, build_funnel
-from engine.security import verify_api_key
+from engine.security import require_api_key
 
 router = APIRouter(prefix="/api/v1/attribution", tags=["attribution"])
 
@@ -34,7 +34,7 @@ def _session():
 
 
 @router.get("/funnel")
-def funnel(client_id: Optional[str] = None, _: bool = Depends(verify_api_key)):
+def funnel(client_id: Optional[str] = None, _: Any = Depends(require_api_key)):
     """The comment-to-revenue funnel for a client."""
     from engine.attribution import CommentOutcome
 
@@ -50,7 +50,7 @@ def funnel(client_id: Optional[str] = None, _: bool = Depends(verify_api_key)):
 
 @router.get("/pending")
 def pending_outcomes(
-    limit: int = 50, _: bool = Depends(verify_api_key)
+    limit: int = 50, _: Any = Depends(require_api_key)
 ):
     """Enquiries with no recorded outcome, for the operator to triage.
 
@@ -101,7 +101,7 @@ def pending_outcomes(
 
 
 @router.post("/outcome", status_code=201)
-def record_outcome(req: OutcomeRequest, _: bool = Depends(verify_api_key)):
+def record_outcome(req: OutcomeRequest, _: Any = Depends(require_api_key)):
     """Record what actually happened to a comment-derived lead.
 
     Idempotent per comment: recording twice overwrites rather than

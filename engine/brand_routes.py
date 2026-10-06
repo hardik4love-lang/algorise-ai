@@ -19,7 +19,7 @@ from typing import Any, Optional
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 
-from engine.security import verify_api_key
+from engine.security import require_api_key
 
 router = APIRouter(prefix="/api/v1/client", tags=["client-brand"])
 
@@ -99,7 +99,7 @@ def _load(client_id: str):
 
 
 @router.get("/{client_id}/brand")
-def get_brand(client_id: str, _: bool = Depends(verify_api_key)):
+def get_brand(client_id: str, _: Any = Depends(require_api_key)):
     """Brand block for a client. Never another merchant's data."""
     session, client = _load(client_id)
     try:
@@ -112,7 +112,7 @@ def get_brand(client_id: str, _: bool = Depends(verify_api_key)):
 
 @router.put("/{client_id}/brand")
 def update_brand(
-    client_id: str, payload: BrandUpdate, _: bool = Depends(verify_api_key)
+    client_id: str, payload: BrandUpdate, _: Any = Depends(require_api_key)
 ):
     """Write brand fields into the client's settings block."""
     import json
