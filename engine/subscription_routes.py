@@ -956,14 +956,37 @@ async def list_client_hero_bots(client_id: str):
 @router.post("/client/{client_id}/hero-bots/execute")
 async def execute_client_hero_bot(client_id: str, payload: ClientHeroBotExecuteRequest):
     """Executes any of the 100 Hero Bots for a SURAT PRO TIER client."""
-    from engine.hero_registry import HeroBotRunner, HERO_BOT_REGISTRY_MAP
     bot_key = payload.bot_name.lower().strip()
-    if bot_key not in HERO_BOT_REGISTRY_MAP:
+    BOT_ALIASES = {
+        "textile-01": "stylist_3d",
+        "#textile-01": "stylist_3d",
+        "saree": "stylist_3d",
+        "diamond-04": "alphaaudit",
+        "#diamond-04": "alphaaudit",
+        "diamond": "alphaaudit",
+        "realty-07": "realtorvoice",
+        "#realty-07": "realtorvoice",
+        "realty": "realtorvoice",
+        "agri-12": "agroyield",
+        "#agri-12": "agroyield",
+        "chem-19": "vendoraudit",
+        "#chem-19": "vendoraudit",
+        "eng-25": "routeoptima",
+        "#eng-25": "routeoptima",
+    }
+    resolved_bot_key = BOT_ALIASES.get(bot_key, bot_key)
+    if resolved_bot_key not in HERO_BOT_REGISTRY_MAP:
+        for k in HERO_BOT_REGISTRY_MAP:
+            if bot_key in k or k in bot_key:
+                resolved_bot_key = k
+                break
+
+    if resolved_bot_key not in HERO_BOT_REGISTRY_MAP:
         raise HTTPException(status_code=404, detail=f"Hero Bot '{bot_key}' not found in 100-bot registry")
 
     runner = HeroBotRunner()
     result = runner.execute_hero_bot(
-        bot_id=bot_key,
+        bot_id=resolved_bot_key,
         input_payload={"query": payload.query, "client_id": client_id, "tier": "SURAT_PRO"},
     )
     return {
