@@ -185,3 +185,43 @@ def test_base_algorise_bot_run_helper():
     assert isinstance(result, BotResult)
     assert result.success is True
     assert result.bot_name == "Algorise HydroSense Closed-Loop"
+
+
+# ============================================================================
+# 5. IDEMPOTENCY KEY ENFORCEMENT TESTS (REC-3.2)
+# ============================================================================
+
+def test_idempotent_subscription_replay():
+    from fastapi.testclient import TestClient
+    from engine.main import app
+
+    client = TestClient(app)
+    idem_key = "test_idem_sub_key_9981"
+    sub_payload = {
+        "business_name": "Idempotent Surat Textiles",
+        "full_name": "Ramesh Patel",
+        "phone": "+91 99999 11111",
+        "plan_tier": "starter",
+    }
+
+    # 1. First invocation: creates new subscription
+    res1 = client.post("/api/v1/subscribe", json=sub_payload, headers={"X-Idempotency-Key": idem_key})
+    assert res1.status_code == 200
+    data1 = res1.json()
+    assert data1["success"] is True
+    client_id1 = data1["client_id"]
+    assert "idempotent_replay" not in data1 or not data1["idempotent_replay"]
+
+    # 2. Second invocation with exact same key & payload: returns cached replay
+    res2 = client.post("/api/v1/subscribe", json=sub_payload, headers={"X-Idempotency-Key": idem_key})
+    assert res2.status_code == 200
+    data2 = res2.json()
+    assert data2["client_id"] == client_id1  # Must return identical client_id, not create a new one!
+    assert data2.get("idempotent_replay") is True
+
+    # 3. Third invocation with same key but differing payload: returns 422 Unprocessable Entity
+    altered_payload = dict(sub_payload)
+    altered_payload["plan_tier"] = "enterprise"
+    res3 = client.post("/api/v1/subscribe", json=altered_payload, headers={"X-Idempotency-Key": idem_key})
+    assert res3.status_code == 422
+

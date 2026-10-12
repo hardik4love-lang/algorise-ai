@@ -36,6 +36,7 @@ from engine.client_agent_ops import (
     load_100_facebook_groups,
     evaluate_nlp_shield,
 )
+from engine.idempotency import idempotency_manager
 
 logger = logging.getLogger("algorise.subscription")
 router = APIRouter(tags=["Subscription & Facebook Agent"])
@@ -61,6 +62,7 @@ class SubscribeRequest(BaseModel):
     industry: Optional[str] = None
     page_url: Optional[str] = None
     notes: Optional[str] = None
+    idempotency_key: Optional[str] = None
 
 
 class ClientLoginRequest(BaseModel):
@@ -136,7 +138,11 @@ class PriorityOnboardingRequest(BaseModel):
 # ============================================================================
 
 @router.post("/subscribe")
-async def subscribe_client(payload: SubscribeRequest):
+async def subscribe_client(
+    payload: SubscribeRequest,
+    x_idempotency_key: Optional[str] = Header(None, alias="X-Idempotency-Key"),
+    idempotency_key_header: Optional[str] = Header(None, alias="Idempotency-Key"),
+):
     """
     Onboards a new client from the website booking form:
     1. Generates client ID and 4-digit dashboard PIN
@@ -144,6 +150,21 @@ async def subscribe_client(payload: SubscribeRequest):
     3. Persists client & subscription in DB
     4. Dispatches instant alert to Telegram (@Aassqqee_bot)
     """
+    idem_key = x_idempotency_key or idempotency_key_header or payload.idempotency_key
+    payload_hash = ""
+    if idem_key:
+        payload_hash = idempotency_manager.compute_payload_hash(payload.dict(exclude={"idempotency_key"}))
+        cached_res, is_inflight = await idempotency_manager.get_idempotent_result(idem_key, payload_hash)
+        if cached_res:
+            res_copy = dict(cached_res)
+            res_copy["idempotent_replay"] = True
+            return res_copy
+        if is_inflight:
+            raise HTTPException(
+                status_code=409,
+                detail="Concurrent request with identical Idempotency-Key is currently being processed.",
+            )
+
     contact_name = payload.full_name or payload.owner_name or "Valued Client"
     contact_phone = payload.phone or payload.whatsapp or "+91 63552 85433"
 
@@ -159,7 +180,7 @@ async def subscribe_client(payload: SubscribeRequest):
     page_raw = (payload.page_url or "").strip()
     if "shruhi" in biz_lower or "61586357894191" in page_raw:
         await ensure_shruhi_surat_pro_client()
-        return {
+        shruhi_res = {
             "success": True,
             "message": "Shruhi Collections SURAT PRO TIER active.",
             "client_id": "client_srt_shruhi",
@@ -171,6 +192,9 @@ async def subscribe_client(payload: SubscribeRequest):
             "advance_amount": 5999.0,
             "dashboard_url": "/dashboard.html?client_id=client_srt_shruhi",
         }
+        if idem_key:
+            await idempotency_manager.record_idempotent_result(idem_key, payload_hash, shruhi_res)
+        return shruhi_res
 
     # Generate credentials
     short_suffix = uuid.uuid4().hex[:6]
@@ -242,7 +266,7 @@ async def subscribe_client(payload: SubscribeRequest):
     except Exception as exc:
         logger.warning(f"Telegram notify failed (non-fatal): {exc}")
 
-    return {
+    result_data = {
         "success": True,
         "message": "Subscription initiated! Send 20% advance to activate live agent.",
         "client_id": client_id,
@@ -255,6 +279,9 @@ async def subscribe_client(payload: SubscribeRequest):
         "advance_amount": advance_amount,
         "dashboard_url": f"/dashboard.html?client_id={client_id}",
     }
+    if idem_key:
+        await idempotency_manager.record_idempotent_result(idem_key, payload_hash, result_data)
+    return result_data
 
 
 @router.post("/auth/client-login")
