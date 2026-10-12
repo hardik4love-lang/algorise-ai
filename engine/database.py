@@ -14,6 +14,22 @@ from engine.config import get_settings
 from engine.models_sqlalchemy import Base
 
 
+from sqlalchemy import event
+
+
+def _configure_sqlite_pragmas(dbapi_connection, connection_record):
+    """Enforces Write-Ahead Logging (WAL) and busy timeout on SQLite connections."""
+    cursor = dbapi_connection.cursor()
+    try:
+        cursor.execute("PRAGMA journal_mode=WAL")
+        cursor.execute("PRAGMA busy_timeout=5000")
+        cursor.execute("PRAGMA synchronous=NORMAL")
+    except Exception:
+        pass
+    finally:
+        cursor.close()
+
+
 class DatabaseManager:
     def __init__(self):
         self._engine: AsyncEngine | None = None
@@ -22,15 +38,23 @@ class DatabaseManager:
     def initialize(self, force_sqlite: bool = False) -> None:
         settings = get_settings()
         db_url = settings.database_url
+        if settings.environment == "production":
+            if force_sqlite or not db_url or "localhost:5432" in db_url:
+                raise RuntimeError(
+                    "CRITICAL CONFIGURATION ERROR: Production environment requires a valid production DATABASE_URL. "
+                    "Silent fallback to SQLite is prohibited in production."
+                )
+
         if force_sqlite or "localhost:5432" in db_url or not db_url:
             db_url = "sqlite+aiosqlite:///./algorise_prod.db"
 
         if db_url.startswith("sqlite"):
             self._engine = create_async_engine(
                 db_url,
-                connect_args={"check_same_thread": False},
+                connect_args={"check_same_thread": False, "timeout": 15},
                 echo=False,
             )
+            event.listen(self._engine.sync_engine, "connect", _configure_sqlite_pragmas)
         else:
             self._engine = create_async_engine(
                 db_url,
@@ -158,8 +182,10 @@ def sync_engine():
         from sqlalchemy import create_engine
 
         url = _database_url()
-        connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
+        connect_args = {"check_same_thread": False, "timeout": 15} if url.startswith("sqlite") else {}
         _sync_engine = create_engine(url, connect_args=connect_args)
+        if url.startswith("sqlite"):
+            event.listen(_sync_engine, "connect", _configure_sqlite_pragmas)
     return _sync_engine
 
 

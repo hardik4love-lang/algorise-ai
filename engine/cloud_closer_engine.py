@@ -13,12 +13,6 @@ import os
 import re
 from typing import Dict, Any, List, Optional
 
-# Force IPv4 resolution on Windows to avoid dual-stack timeout hangs
-_original_getaddrinfo = socket.getaddrinfo
-def _ipv4_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
-    return _original_getaddrinfo(host, port, socket.AF_INET, type, proto, flags)
-socket.getaddrinfo = _ipv4_getaddrinfo
-
 
 def synthesize_closer_code(closer_id: str, job_title: str, skills: List[str], budget: str, platform: str) -> Dict[str, Any]:
     skills_str = ", ".join(skills) if skills else "Python, FastAPI, Docker"

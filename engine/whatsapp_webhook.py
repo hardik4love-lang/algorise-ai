@@ -229,29 +229,18 @@ def _upsert_lead(session, phone: str, name: str | None, body: str) -> int:
     return lead.id
 
 
-@router.post("/webhook")
-async def receive_webhook(request: Request) -> Any:
-    """Receive an inbound WhatsApp message and record it as a lead.
+_inbound_table_ensured = False
 
-    Always returns 200 for a well-formed Meta delivery, even when the message
-    cannot be stored. A 5xx makes Meta retry, and a message we already
-    recorded would be duplicated on the retry unless dedupe holds.
-    """
-    try:
-        payload = await request.json()
-    except (json.JSONDecodeError, UnicodeDecodeError):
-        logger.warning("webhook received a non-JSON body")
-        return PlainTextResponse("bad request", status_code=400)
 
-    messages = parse_payload(payload)
-    if not messages:
-        # Status callbacks and other non-message events. Acknowledge them.
-        return JSONResponse({"received": 0, "stored": 0})
-
+def _process_messages_sync(messages: list[dict[str, Any]]) -> tuple[int, int]:
+    """Process inbound WhatsApp messages synchronously in a dedicated worker thread."""
+    global _inbound_table_ensured
     from engine.database import sync_session
 
     session = sync_session()
-    ensure_inbound_table(session)
+    if not _inbound_table_ensured:
+        ensure_inbound_table(session)
+        _inbound_table_ensured = True
 
     stored = 0
     duplicates = 0
@@ -280,14 +269,9 @@ async def receive_webhook(request: Request) -> Any:
                     logger.error("could not create lead for {}: {}", str(phone), str(exc))
                     lead_id = None
 
-            # Resolve the tracking code so the enquiry is tied to the comment
-            # that produced it, not merely present in the database. This is
-            # the join that makes the funnel honest.
             code = extract_code(msg.get("body"))
             tracked_comment = None
             if code:
-                # Same session: opening a second connection here would
-                # deadlock against the write this handler is mid-way through.
                 tracked = resolve(code, session=session)
                 if tracked:
                     tracked_comment = tracked["comment_id"]
@@ -327,9 +311,33 @@ async def receive_webhook(request: Request) -> Any:
     except Exception as exc:  # noqa: BLE001
         session.rollback()
         logger.error("webhook store failed: {}: {}", str(type(exc).__name__), str(exc))
-        # Still 200: the message is logged, and Meta retrying would not help.
     finally:
         session.close()
+
+    return stored, duplicates
+
+
+@router.post("/webhook")
+async def receive_webhook(request: Request) -> Any:
+    """Receive an inbound WhatsApp message and record it as a lead.
+
+    Always returns 200 for a well-formed Meta delivery, even when the message
+    cannot be stored. A 5xx makes Meta retry, and a message we already
+    recorded would be duplicated on the retry unless dedupe holds.
+    """
+    try:
+        payload = await request.json()
+    except (json.JSONDecodeError, UnicodeDecodeError):
+        logger.warning("webhook received a non-JSON body")
+        return PlainTextResponse("bad request", status_code=400)
+
+    messages = parse_payload(payload)
+    if not messages:
+        # Status callbacks and other non-message events. Acknowledge them.
+        return JSONResponse({"received": 0, "stored": 0})
+
+    import asyncio
+    stored, duplicates = await asyncio.to_thread(_process_messages_sync, messages)
 
     logger.info(
         "whatsapp webhook: %d received, %d stored, %d duplicate",

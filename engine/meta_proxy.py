@@ -22,6 +22,7 @@ being decorative.
 
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime, timezone
 from typing import Any, Optional
 
@@ -222,10 +223,11 @@ async def hide_comment(req: HideRequest, _: Any = Depends(require_api_key)):
     """Hide a comment. Previously issued from the browser with the page token."""
     token = _client_token(req.access_token)
     started = datetime.now(timezone.utc)
-    ok = _engine.hide_comment_for_privacy(req.comment_id, token)
+    ok = await asyncio.to_thread(_engine.hide_comment_for_privacy, req.comment_id, token)
     latency = (datetime.now(timezone.utc) - started).total_seconds() * 1000
 
-    _record(
+    await asyncio.to_thread(
+        _record,
         "unknown", "meta_hide", "hide_comment", ok,
         {"comment_id": req.comment_id, "hidden": ok}, latency,
         reasoning="proxied from dashboard; previously browser-side",
@@ -241,7 +243,8 @@ async def reply_comment(req: ReplyRequest, _: Any = Depends(require_api_key)):
     # Deterministic Causal Safety Gate Pre-Flight
     audit_res = safety_gate.audit_detailed("meta_reply", {"message": req.message, "comment_id": req.comment_id})
     if not audit_res.is_approved:
-        _record(
+        await asyncio.to_thread(
+            _record,
             "unknown", "meta_reply", "reply_comment", False,
             {"comment_id": req.comment_id, "error": f"Causal safety block: {audit_res.status_code}"},
             audit_res.latency_ms,
@@ -252,11 +255,12 @@ async def reply_comment(req: ReplyRequest, _: Any = Depends(require_api_key)):
 
     token = _client_token(req.access_token)
     started = datetime.now(timezone.utc)
-    result = _engine.reply_to_comment(req.comment_id, req.message, token)
+    result = await asyncio.to_thread(_engine.reply_to_comment, req.comment_id, req.message, token)
     latency = (datetime.now(timezone.utc) - started).total_seconds() * 1000
 
     ok = bool(result.get("id"))
-    _record(
+    await asyncio.to_thread(
+        _record,
         "unknown", "meta_reply", "reply_comment", ok,
         {"comment_id": req.comment_id, "reply_id": result.get("id"),
          "error": result.get("error")},

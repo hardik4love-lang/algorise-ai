@@ -141,10 +141,11 @@ from collections import deque
 import threading
 
 class _LocalSlidingLimiter:
-    """Thread-safe in-process sliding window limiter used when Redis is unreachable."""
-    def __init__(self, limit: int = 100, window: int = 60):
+    """Thread-safe in-process sliding window limiter with bounded memory eviction."""
+    def __init__(self, limit: int = 100, window: int = 60, max_keys: int = 5000):
         self.limit = limit
         self.window = window
+        self.max_keys = max_keys
         self.records: Dict[str, deque] = {}
         self.lock = threading.Lock()
 
@@ -153,6 +154,13 @@ class _LocalSlidingLimiter:
         max_req = req_limit or self.limit
         win = req_window or self.window
         with self.lock:
+            # Bounded memory safeguard: purge stale keys if dictionary exceeds threshold
+            if len(self.records) > self.max_keys:
+                cutoff = now - win
+                expired = [k for k, q in self.records.items() if not q or q[-1] < cutoff]
+                for k in expired:
+                    del self.records[k]
+
             if key not in self.records:
                 self.records[key] = deque()
             q = self.records[key]
@@ -167,7 +175,7 @@ _local_fallback_limiter = _LocalSlidingLimiter()
 
 
 class RateLimiter:
-    """Token bucket rate limiter using Redis."""
+    """Token bucket rate limiter using atomic Redis transactions with local fallback."""
 
     def __init__(self):
         self.default_limit = settings.rate_limit_requests
@@ -188,43 +196,50 @@ class RateLimiter:
         cache_key = CacheKeys.rate_limit(key)
 
         try:
-            # Get current bucket state
-            bucket = await redis_manager.get(cache_key)
-            
             now = time.time()
-            
-            if bucket is None:
-                # Create new bucket
-                bucket = {
-                    "tokens": limit - 1,
-                    "last_refill": now,
-                    "max_tokens": limit,
-                    "refill_rate": limit / window,
-                }
-                await redis_manager.set(cache_key, bucket, expire=window * 2)
-                return True, {"remaining": limit - 1, "reset_in": window}
-            
-            # Refill tokens based on time passed
-            elapsed = now - bucket["last_refill"]
-            refill = elapsed * bucket["refill_rate"]
-            bucket["tokens"] = min(bucket["max_tokens"], bucket["tokens"] + refill)
-            bucket["last_refill"] = now
-            
-            if bucket["tokens"] >= 1:
-                bucket["tokens"] -= 1
-                await redis_manager.set(cache_key, bucket, expire=window * 2)
-                return True, {
-                    "remaining": int(bucket["tokens"]),
-                    "reset_in": int(window - elapsed),
-                }
-            else:
-                await redis_manager.set(cache_key, bucket, expire=window * 2)
-                return False, {
-                    "remaining": 0,
-                    "reset_in": int(window - elapsed),
-                    "retry_after": int((1 - bucket["tokens"]) / bucket["refill_rate"]),
-                }
-                
+            async with redis_manager.client.pipeline(transaction=True) as pipe:
+                await pipe.watch(cache_key)
+                raw_bucket = await pipe.get(cache_key)
+                bucket = json.loads(raw_bucket) if raw_bucket else None
+
+                if bucket is None:
+                    bucket = {
+                        "tokens": limit - 1,
+                        "last_refill": now,
+                        "max_tokens": limit,
+                        "refill_rate": limit / window,
+                    }
+                    pipe.multi()
+                    pipe.set(cache_key, json.dumps(bucket), ex=window * 2)
+                    await pipe.execute()
+                    return True, {"remaining": limit - 1, "reset_in": window}
+
+                elapsed = now - bucket.get("last_refill", now)
+                refill = elapsed * bucket.get("refill_rate", limit / window)
+                current_tokens = min(bucket.get("max_tokens", limit), bucket.get("tokens", limit) + refill)
+                bucket["last_refill"] = now
+
+                if current_tokens >= 1:
+                    bucket["tokens"] = current_tokens - 1
+                    pipe.multi()
+                    pipe.set(cache_key, json.dumps(bucket), ex=window * 2)
+                    await pipe.execute()
+                    return True, {
+                        "remaining": int(bucket["tokens"]),
+                        "reset_in": max(0, int(window - elapsed)),
+                    }
+                else:
+                    bucket["tokens"] = current_tokens
+                    pipe.multi()
+                    pipe.set(cache_key, json.dumps(bucket), ex=window * 2)
+                    await pipe.execute()
+                    retry_after = max(1, int((1 - current_tokens) / bucket.get("refill_rate", limit / window)))
+                    return False, {
+                        "remaining": 0,
+                        "reset_in": max(0, int(window - elapsed)),
+                        "retry_after": retry_after,
+                    }
+
         except Exception as e:
             logger.warning("Rate limiter Redis unavailable, activating in-process sliding window fallback", error=str(e))
             record_error("rate_limiter_redis_fallback", "security")
