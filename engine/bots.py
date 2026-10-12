@@ -5,7 +5,8 @@ In-house autonomous agents with multi-step reasoning, tool execution, and zero-l
 
 import time
 import re
-from typing import Dict, Any, List
+import uuid
+from typing import Dict, Any, List, Optional
 from .models import BotTask, BotResult
 
 class BaseAlgoriseBot:
@@ -15,6 +16,16 @@ class BaseAlgoriseBot:
 
     def execute(self, task: BotTask) -> BotResult:
         raise NotImplementedError
+
+    def run(self, input_payload: Dict[str, Any], bot_name: Optional[str] = None, task_id: Optional[str] = None) -> BotResult:
+        """Executes the bot from an arbitrary input payload dictionary."""
+        effective_name = bot_name or input_payload.get("bot_name") or self.name
+        task = BotTask(
+            task_id=task_id or str(uuid.uuid4()),
+            bot_name=effective_name,
+            input_payload=input_payload,
+        )
+        return self.execute(task)
 
 class NexusBot(BaseAlgoriseBot):
     """Algorise Nexus: Autonomous Support & Action Bot with secure database action calling."""

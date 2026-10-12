@@ -9,6 +9,7 @@ import re
 import hashlib
 import json
 from .models import BotTask, BotResult
+from .bots import BaseAlgoriseBot
 from .guardrails import AlgoriseSafetyGate
 from .graph_rag import AlgoriseGraphRAG
 from .cache import redis_manager, CacheKeys
@@ -140,13 +141,21 @@ HERO_BOT_REGISTRY_MAP: Dict[str, tuple] = {b[0]: b for b in HERO_BOT_DEFINITIONS
 HERO_BOT_IDS_SET = set(HERO_BOT_REGISTRY_MAP.keys())
 
 
-class HeroBotRunner:
+class HeroBotRunner(BaseAlgoriseBot):
     def __init__(self):
+        super().__init__("hero_runner", "Unified 100 Hero Bot Orchestrator")
         self.safety_gate = AlgoriseSafetyGate()
         self.graph_rag = AlgoriseGraphRAG()
         # Seed GraphRAG with baseline enterprise entities
         self.graph_rag.index_entity_relations("enterprise_sla", ["uptime_9999", "tier1_support", "vpc_peering"], {"status": "ACTIVE"})
         self.graph_rag.index_entity_relations("compliance", ["hipaa_certified", "soc2_type2", "gdpr_compliant"], {"status": "VERIFIED"})
+
+    def execute(self, task: BotTask) -> BotResult:
+        """Executes a hero bot via standard BotTask interface."""
+        return self.execute_hero_bot(
+            bot_id=task.bot_name,
+            input_payload=task.input_payload,
+        )
 
     def _cache_key(self, bot_id: str, input_payload: Dict[str, Any]) -> str:
         """Generate cache key for bot execution."""

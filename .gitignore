@@ -48,6 +48,8 @@ Thumbs.db
 # see INTEGRATION_PLAN.md phase 2. Never edit it, never commit it.
 dist/
 *.db
+*.db-shm
+*.db-wal
 .release-artifacts/
 .release-state.json
 

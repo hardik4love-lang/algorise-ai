@@ -2,8 +2,13 @@
 Subscription and Facebook Agent Routes for Algorise AI Solutions.
 Handles client onboarding, PIN login, client dashboard data, Facebook OAuth,
 manual agent triggers, and owner admin panel operations.
+Decomposed into clean bounded contexts:
+- engine.client_billing: Commercial tiers & pricing calculations
+- engine.client_auth: PIN hashing & access authorization
+- engine.client_agent_ops: Client provisioning, directory loading & NLP Shield
 """
 
+import asyncio
 import hashlib
 import logging
 import os
@@ -12,48 +17,36 @@ import uuid
 from datetime import datetime, timezone, timedelta
 from typing import Dict, Any, List, Optional
 
-from fastapi import APIRouter, HTTPException, Request, Depends, Header, status
+from fastapi import APIRouter, HTTPException, Request, Header
 from fastapi.responses import RedirectResponse, PlainTextResponse
 from pydantic import BaseModel, Field
+from sqlalchemy import select, desc
 
 from engine.config import get_settings
 from engine.telegram_service import AlgoriseTelegramService
 from engine.facebook_agent import FacebookAgentEngine
 from engine.database import db_manager
 from engine.models_sqlalchemy import Client, Subscription, Lead, FacebookAgentJob
-from sqlalchemy import select, desc, func
 
+# Domain Services & Bounded Contexts
+from engine.client_billing import PLAN_PRICING, resolve_plan_tier, get_tier_pricing
+from engine.client_auth import hash_pin, verify_pin, verify_client_pin, verify_admin_key
+from engine.client_agent_ops import (
+    ensure_shruhi_surat_pro_client,
+    load_100_facebook_groups,
+    evaluate_nlp_shield,
+)
+
+logger = logging.getLogger("algorise.subscription")
 router = APIRouter(tags=["Subscription & Facebook Agent"])
 settings = get_settings()
 telegram = AlgoriseTelegramService()
 fb_engine = FacebookAgentEngine(api_version=settings.fb_graph_api_version)
 
-# Commercial tier definitions
-PLAN_PRICING = {
-    "starter": {
-        "name": "Starter Merchant",
-        "monthly": 12499.0,
-        "setup": 12499.0,
-        "advance_pct": 0.20,
-    },
-    "pro": {
-        "name": "Surat Business Pro",
-        "monthly": 29999.0,
-        "setup": 29999.0,
-        "advance_pct": 0.20,
-    },
-    "enterprise": {
-        "name": "Enterprise / Agency",
-        "monthly": 64999.0,
-        "setup": 64999.0,
-        "advance_pct": 0.20,
-    }
-}
 
-
-def hash_pin(pin: str) -> str:
-    return hashlib.sha256(pin.encode("utf-8")).hexdigest()
-
+# ============================================================================
+# PYDANTIC SCHEMAS
+# ============================================================================
 
 class SubscribeRequest(BaseModel):
     full_name: Optional[str] = None
@@ -83,27 +76,83 @@ class ManualTokenRequest(BaseModel):
     access_token: str
 
 
+class ClientRulesUpdateRequest(BaseModel):
+    pin: str
+    sensitivity_score: float = Field(default=75.0, ge=50.0, le=95.0)
+    broker_shield_enabled: bool = True
+    telegram_alerts_enabled: bool = True
+    whatsapp_auto_dispatch: bool = True
+    sector: str = "textile"
+    custom_greeting: Optional[str] = None
+    catalog_items: List[Dict[str, Any]] = Field(default_factory=list)
+
+
+class MetaPageSlot(BaseModel):
+    slot: int = Field(ge=1, le=3)
+    page_id: str
+    page_name: str
+    page_url: Optional[str] = None
+    access_token: Optional[str] = None
+
+
+class MultiPageUpdateRequest(BaseModel):
+    pin: str = "2026"
+    pages: List[MetaPageSlot]
+
+
+class NlpShieldEvalRequest(BaseModel):
+    comment_text: str
+    buyer_name: str = "Facebook Shopper"
+    fb_comment_id: Optional[str] = None
+    access_token: Optional[str] = None
+    dispatch_telegram: bool = True
+    record_lead: bool = False
+
+
+class TelegramDispatchRequest(BaseModel):
+    chat_id: int = 8737013099
+    message: str
+    buyer_name: Optional[str] = None
+    buyer_phone: Optional[str] = None
+
+
+class ClientHeroBotExecuteRequest(BaseModel):
+    pin: str = "2026"
+    bot_name: str
+    query: str
+
+
+class PriorityOnboardingRequest(BaseModel):
+    pin: str = "2026"
+    contact_name: str = "Shruhi Collections Management"
+    whatsapp_number: str = "+91 63552 85433"
+    fb_page_id: str = "61586357894191"
+    preferred_slot: str = "Immediate Priority Setup Call"
+    notes: Optional[str] = "Meta Graph API Token & 3-Page Webhook Binding"
+
+
+# ============================================================================
+# CLIENT ONBOARDING & DASHBOARD
+# ============================================================================
+
 @router.post("/subscribe")
 async def subscribe_client(payload: SubscribeRequest):
     """
     Onboards a new client from the website booking form:
     1. Generates client ID and 4-digit dashboard PIN
-    2. Calculates plan pricing and 20% advance
+    2. Calculates plan pricing and 20% advance via engine.client_billing
     3. Persists client & subscription in DB
     4. Dispatches instant alert to Telegram (@Aassqqee_bot)
     """
     contact_name = payload.full_name or payload.owner_name or "Valued Client"
     contact_phone = payload.phone or payload.whatsapp or "+91 63552 85433"
-    
-    tier_raw = payload.plan_tier or payload.tier or "pro"
-    tier_key = str(tier_raw).lower().strip()
-    if tier_key not in PLAN_PRICING:
-        tier_key = "pro"
 
-    tier_info = PLAN_PRICING[tier_key]
-    monthly_price = tier_info["monthly"]
-    setup_fee = tier_info["setup"]
-    advance_amount = setup_fee * tier_info["advance_pct"]
+    tier_raw = payload.plan_tier or payload.tier or "pro"
+    pricing = get_tier_pricing(tier_raw)
+    tier_key = pricing["tier_key"]
+    monthly_price = pricing["monthly_price"]
+    setup_fee = pricing["setup_fee"]
+    advance_amount = pricing["advance_amount"]
 
     # If onboarding Shruhi Collections or Page 61586357894191, bind directly to client_srt_shruhi
     biz_lower = (payload.business_name or "").lower()
@@ -140,7 +189,7 @@ async def subscribe_client(payload: SubscribeRequest):
         new_client = Client(
             id=client_id,
             name=f"{payload.business_name} ({contact_name})",
-            tier=tier_info["name"],
+            tier=pricing["tier_name"],
             api_key_hash=api_key_hash,
             phone=contact_phone,
             email=payload.email or f"{short_suffix}@algorise.local",
@@ -153,8 +202,8 @@ async def subscribe_client(payload: SubscribeRequest):
                 "area": payload.area,
                 "page_url": page_raw,
                 "notes": payload.notes,
-                "created_via": "website_booking_modal"
-            }
+                "created_via": "website_booking_modal",
+            },
         )
         session.add(new_client)
         await session.flush()
@@ -164,14 +213,14 @@ async def subscribe_client(payload: SubscribeRequest):
         sub = Subscription(
             client_id=client_id,
             plan_tier=tier_key,
-            plan_name=tier_info["name"],
+            plan_name=pricing["tier_name"],
             monthly_price=monthly_price,
             setup_fee=setup_fee,
             advance_amount=advance_amount,
             status="pending_advance",
             started_at=now,
             next_billing_at=now + timedelta(days=30),
-            notes=payload.notes
+            notes=payload.notes,
         )
         session.add(sub)
 
@@ -184,14 +233,14 @@ async def subscribe_client(payload: SubscribeRequest):
                 "client_name": contact_name,
                 "business_name": payload.business_name,
                 "phone": contact_phone,
-                "plan_name": tier_info["name"],
+                "plan_name": pricing["tier_name"],
                 "monthly_price": monthly_price,
                 "advance_amount": advance_amount,
-                "pin": pin
-            }
+                "pin": pin,
+            },
         )
     except Exception as exc:
-        logging.getLogger("algorise.subscription").warning(f"Telegram notify failed (non-fatal): {exc}")
+        logger.warning(f"Telegram notify failed (non-fatal): {exc}")
 
     return {
         "success": True,
@@ -199,7 +248,7 @@ async def subscribe_client(payload: SubscribeRequest):
         "client_id": client_id,
         "pin": pin,
         "api_key": api_key,
-        "plan_name": tier_info["name"],
+        "plan_name": pricing["tier_name"],
         "plan_tier": tier_key,
         "monthly_price": monthly_price,
         "setup_fee": setup_fee,
@@ -222,8 +271,7 @@ async def client_login(payload: ClientLoginRequest):
         if not client:
             raise HTTPException(status_code=404, detail="Client ID not found")
 
-        if client.pin_hash and client.pin_hash != hash_pin(payload.pin):
-            raise HTTPException(status_code=401, detail="Invalid 4-digit PIN")
+        verify_client_pin(client.pin_hash, payload.pin)
 
         return {
             "authenticated": True,
@@ -231,7 +279,7 @@ async def client_login(payload: ClientLoginRequest):
             "client_name": client.name,
             "city": client.city,
             "tier": client.tier,
-            "fb_connected": bool(client.fb_access_token)
+            "fb_connected": bool(client.fb_access_token),
         }
 
 
@@ -253,10 +301,8 @@ async def get_client_dashboard(
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        # Object-level authorization: verify PIN if configured on client
-        if client.pin_hash and settings.environment == "production":
-            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
-                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
+        # Object-level authorization
+        verify_client_pin(client.pin_hash, provided_pin, is_production=(settings.environment == "production"))
 
         # Fetch active subscription
         sub_res = await session.execute(
@@ -285,7 +331,7 @@ async def get_client_dashboard(
                 "email": client.email,
                 "fb_connected": bool(client.fb_access_token),
                 "fb_page_name": client.fb_page_name or "Page ID: 61586357894191",
-                "fb_page_id": client.fb_page_id or "61586357894191"
+                "fb_page_id": client.fb_page_id or "61586357894191",
             },
             "subscription": subscription.to_dict() if subscription else None,
             "stats": {
@@ -295,9 +341,13 @@ async def get_client_dashboard(
                 "total_jobs_run": len(jobs),
             },
             "leads": [l.to_dict() for l in leads],
-            "jobs": [j.to_dict() for j in jobs]
+            "jobs": [j.to_dict() for j in jobs],
         }
 
+
+# ============================================================================
+# META / FACEBOOK INTEGRATION & AGENT EXECUTION
+# ============================================================================
 
 @router.get("/auth/facebook")
 async def facebook_oauth_redirect(client_id: str):
@@ -338,8 +388,7 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        if client.pin_hash and client.pin_hash != hash_pin(payload.pin):
-            raise HTTPException(status_code=401, detail="Invalid PIN")
+        verify_client_pin(client.pin_hash, payload.pin)
 
         client.fb_page_id = payload.page_id.strip()
         client.fb_page_name = payload.page_name.strip()
@@ -372,30 +421,24 @@ async def trigger_agent_run(
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        if client.pin_hash and settings.environment == "production":
-            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
-                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
+        verify_client_pin(client.pin_hash, provided_pin, is_production=(settings.environment == "production"))
 
         page_id = client.fb_page_id or "61586357894191"
         access_token = client.fb_access_token or ""
-        
+
         sector = "textile"
         if client.settings and isinstance(client.settings, dict):
             sector = client.settings.get("sector") or client.settings.get("agent_rules", {}).get("sector", "textile")
 
-        import asyncio
-        loop = asyncio.get_running_loop()
-        run_result = await loop.run_in_executor(
-            None,
-            lambda: fb_engine.process_client_agent_run(
-                client_id=client.id,
-                client_name=client.name,
-                business_name=client.name.split("(")[0].strip(),
-                page_id=page_id,
-                access_token=access_token,
-                sector=sector,
-                force_simulation=False
-            )
+        run_result = await asyncio.to_thread(
+            fb_engine.process_client_agent_run,
+            client_id=client.id,
+            client_name=client.name,
+            business_name=client.name.split("(")[0].strip(),
+            page_id=page_id,
+            access_token=access_token,
+            sector=sector,
+            force_simulation=False,
         )
 
         if run_result.get("status") == "token_required":
@@ -414,7 +457,7 @@ async def trigger_agent_run(
                 qualification_score=lead_info["score"],
                 intent_summary=lead_info["intent"],
                 original_message=lead_info.get("comment"),
-                created_at=datetime.now(timezone.utc)
+                created_at=datetime.now(timezone.utc),
             )
             session.add(new_lead)
 
@@ -428,19 +471,22 @@ async def trigger_agent_run(
             replies_sent=run_result.get("replies_sent", 0),
             leads_detected=run_result.get("leads_detected", 0),
             log_summary=f"Page {page_id}: Scanned {run_result.get('comments_scanned', 0)} real comments, sent {run_result.get('replies_sent', 0)} replies, detected {run_result.get('leads_detected', 0)} leads.",
-            run_at=now
+            run_at=now,
         )
         session.add(job)
 
         return run_result
 
 
+# ============================================================================
+# OWNER / ADMIN PANEL
+# ============================================================================
+
 @router.get("/admin/clients")
 async def list_admin_clients(admin_key: Optional[str] = None, x_admin_key: Optional[str] = Header(None)):
     """Owner-only: returns all clients, active subscriptions, and MRR tally."""
     provided_key = admin_key or x_admin_key
-    if provided_key != settings.admin_secret:
-        raise HTTPException(status_code=403, detail="Unauthorized: Invalid admin secret key")
+    verify_admin_key(provided_key, settings.admin_secret)
 
     async with db_manager.session() as session:
         clients_res = await session.execute(select(Client).order_by(desc(Client.created_at)))
@@ -485,20 +531,13 @@ async def list_admin_clients(admin_key: Optional[str] = None, x_admin_key: Optio
             "total_clients": len(clients),
             "active_clients": sum(1 for c in clients if c.is_active),
             "total_mrr_inr": total_mrr,
-            "clients": client_rows
+            "clients": client_rows,
         }
 
 
-class ClientRulesUpdateRequest(BaseModel):
-    pin: str
-    sensitivity_score: float = Field(default=75.0, ge=50.0, le=95.0)
-    broker_shield_enabled: bool = True
-    telegram_alerts_enabled: bool = True
-    whatsapp_auto_dispatch: bool = True
-    sector: str = "textile"
-    custom_greeting: Optional[str] = None
-    catalog_items: List[Dict[str, Any]] = Field(default_factory=list)
-
+# ============================================================================
+# CLIENT CATALOG RULES & SETTINGS
+# ============================================================================
 
 @router.get("/client/{client_id}/rules")
 async def get_client_rules(
@@ -517,9 +556,7 @@ async def get_client_rules(
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        if client.pin_hash and settings.environment == "production":
-            if not provided_pin or client.pin_hash != hash_pin(provided_pin):
-                raise HTTPException(status_code=401, detail="Unauthorized: Valid 4-digit PIN required")
+        verify_client_pin(client.pin_hash, provided_pin, is_production=(settings.environment == "production"))
 
         settings_dict = client.settings or {}
         rules = settings_dict.get("agent_rules", {
@@ -532,8 +569,8 @@ async def get_client_rules(
             "catalog_items": [
                 {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
                 {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
-                {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"}
-            ]
+                {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
+            ],
         })
         return {"client_id": client_id, "rules": rules}
 
@@ -550,8 +587,7 @@ async def update_client_rules(client_id: str, payload: ClientRulesUpdateRequest)
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        if client.pin_hash and client.pin_hash != hash_pin(payload.pin):
-            raise HTTPException(status_code=401, detail="Invalid PIN")
+        verify_client_pin(client.pin_hash, payload.pin)
 
         current_settings = dict(client.settings or {})
         current_settings["agent_rules"] = {
@@ -562,19 +598,20 @@ async def update_client_rules(client_id: str, payload: ClientRulesUpdateRequest)
             "sector": payload.sector,
             "custom_greeting": payload.custom_greeting,
             "catalog_items": payload.catalog_items,
-            "updated_at": datetime.now(timezone.utc).isoformat()
+            "updated_at": datetime.now(timezone.utc).isoformat(),
         }
         client.settings = current_settings
         return {
             "success": True,
             "message": "Catalog and AI agent rules updated successfully!",
-            "rules": current_settings["agent_rules"]
+            "rules": current_settings["agent_rules"],
         }
 
 
 # ============================================================================
 # META WHATSAPP CLOUD API & FACEBOOK 24/7 COMMENT WEBHOOKS
 # ============================================================================
+
 from engine.whatsapp_cloud_api import WhatsAppCloudAPIService, WHATSAPP_VERIFY_TOKEN
 wa_service = WhatsAppCloudAPIService()
 
@@ -594,7 +631,7 @@ async def verify_whatsapp_webhook(request: Request):
 
 @router.post("/whatsapp/webhook")
 async def receive_whatsapp_webhook(request: Request):
-    """Processes inbound WhatsApp messages (+91 63552 85433) with 24/7 Shruhi 29-Product AI ('Until I Jump In')."""
+    """Processes inbound WhatsApp messages (+91 63552 85433) with 24/7 Shruhi AI ('Until I Jump In')."""
     try:
         body = await request.json()
         entry = body.get("entry", [{}])[0]
@@ -652,7 +689,7 @@ async def receive_facebook_webhook(request: Request):
                         buyer_name=buyer_name,
                         buyer_id=buyer_id,
                         access_token=token,
-                        sector="textile"
+                        sector="textile",
                     )
                     replied.append(res)
         return {"status": "processed", "events": len(replied), "results": replied}
@@ -660,139 +697,14 @@ async def receive_facebook_webhook(request: Request):
         return {"status": "error", "message": str(e)}
 
 
-
-async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
-    """Idempotently seeds Shruhi Collections (shruhicollections.in) on SURAT PRO TIER (₹29,999/mo) with ZERO fake data."""
-    from sqlalchemy import delete
-    client_id = "client_srt_shruhi"
-    pin = "2026"
-    hashed_pin = hash_pin(pin)
-    api_key = "alg_live_shruhi_surat_pro_2026"
-    api_key_hash = hashlib.sha256(api_key.encode("utf-8")).hexdigest()
-
-    async with db_manager.session() as session:
-        # Purge any previously seeded fake leads
-        await session.execute(
-            delete(Lead).where(
-                Lead.phone.in_(["9825411209", "9820194822", "9825188412", "9909245110", "9825012345", "9909244112"])
-            )
-        )
-
-        existing = (await session.execute(select(Client).where(Client.id == client_id))).scalar_one_or_none()
-        if existing:
-            existing.fb_page_id = "61586357894191"
-            existing.fb_page_name = "Shruhi Collections | Surat (ID: 61586357894191) & Shruhi collections (ID: 61586323275145)"
-            existing.city = "100% Online Store • www.shruhicollections.in"
-            if existing.fb_access_token == "simulated_token":
-                existing.fb_access_token = None
-        else:
-            shruhi_client = Client(
-                id=client_id,
-                name="Shruhi Collections — Official Boutique (shruhicollections.in)",
-                tier="Surat Business Pro",
-                api_key_hash=api_key_hash,
-                phone="+91 63552 85433",
-                email="orders@shruhicollections.in",
-                city="100% Online Store • www.shruhicollections.in",
-                pin_hash=hashed_pin,
-                fb_page_id="61586357894191",
-                fb_page_name="Shruhi Collections | Surat (ID: 61586357894191) & Shruhi collections (ID: 61586323275145)",
-                fb_access_token=None,
-                is_active=True,
-                settings={
-                    "area": "100% Online Store • www.shruhicollections.in",
-                    "domain": "https://shruhicollections.in",
-                    "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
-                    "fb_page_2_url": "https://www.facebook.com/profile.php?id=61586323275145",
-                    "connected_pages_limit": 3,
-                    "marketing_groups_joined": 100,
-                    "viral_sales_reel": "assets/shruhi-viral-sales-reel-2026.mp4",
-                    "sub_005s_shield": True,
-                    "languages": ["Surati Gujarati", "Hindi", "English"],
-                    "telegram_proxy": "@Aassqqee_bot",
-                    "hero_bots_included": 100,
-                    "agent_rules": {
-                        "sensitivity_score": 94.0,
-                        "broker_shield_enabled": True,
-                        "telegram_alerts_enabled": True,
-                        "whatsapp_auto_dispatch": True,
-                        "sector": "textile",
-                        "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.",
-                        "catalog_items": [
-                            {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
-                            {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
-                            {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
-                            {"item": "B-2876 — Curvy Plus-Size Festive Edition", "moq": "Sizes 3XL to 6XL", "ex_factory_rate": "₹2,650"},
-                            {"item": "1042 — Everyday Chic Cotton Tunic & Set", "moq": "Sizes S to 4XL", "ex_factory_rate": "₹850 – ₹1,550"}
-                        ]
-                    }
-                }
-            )
-            session.add(shruhi_client)
-            await session.flush()
-
-            now = datetime.now(timezone.utc)
-            sub = Subscription(
-                client_id=client_id,
-                plan_tier="pro",
-                plan_name="Surat Business Pro (₹29,999 / month)",
-                monthly_price=29999.0,
-                setup_fee=29999.0,
-                advance_amount=5999.8,
-                status="active",
-                started_at=now,
-                next_billing_at=now + timedelta(days=30),
-                notes="SURAT PRO TIER: Connect & Keep Updated 3 Facebook Pages (61586357894191, 61586323275145 + Hub), Join 100 Relevant Marketing Groups, Post 1 Viral 4K Product Sales Reel, 24/7 Customer Reply & Guide to Client (+91 63552 85433)."
-            )
-            session.add(sub)
-
-    return {
-        "client_id": client_id,
-        "pin": pin,
-        "fb_page_id": "61586357894191",
-        "fb_page_2_id": "61586323275145",
-        "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
-        "fb_page_2_url": "https://www.facebook.com/profile.php?id=61586323275145",
-        "plan_tier": "SURAT PRO TIER",
-        "monthly_price": 29999.0,
-        "domain": "https://shruhicollections.in",
-        "whatsapp": "+91 63552 85433",
-        "telegram_proxy": "@Aassqqee_bot",
-        "connected_meta_pages_limit": 3,
-        "marketing_groups_joined": 100,
-        "viral_sales_reel": "assets/shruhi-viral-sales-reel-2026.mp4",
-        "sub_005s_shield": True,
-        "hero_bots_included": 100
-    }
-
+# ============================================================================
+# SURAT PRO TIER SEEDING & PAGE MANAGEMENT
+# ============================================================================
 
 @router.post("/seed/shruhi-pro")
 async def seed_shruhi_pro_endpoint():
     """Provisions or verifies Shruhi Collections on SURAT PRO TIER (₹29,999/mo)."""
     return await ensure_shruhi_surat_pro_client()
-
-
-# ============================================================================
-# SURAT PRO TIER (₹29,999 / MONTH) LIVE ENGINES
-# 1. Connect & Keep Updated 3 Facebook Pages (61586357894191, 61586323275145 + Hub)
-# 2. Discover & Join Up to 100 Relevant Marketing Groups
-# 3. Create 1 Most Viral Product Sales Reel & Post to All 100 Groups
-# 4. 24/7 Reply to Customers & Guide Them to Client (+91 63552 85433)
-# 5. Unlimited Sub-0.05s Auto-Hide Shield & Gujarati/Hindi/English NLP
-# 6. 2-Way Telegram Live Proxy (@Aassqqee_bot) & All 100 Hero Bots
-# ============================================================================
-
-class MetaPageSlot(BaseModel):
-    slot: int = Field(ge=1, le=3)
-    page_id: str
-    page_name: str
-    page_url: Optional[str] = None
-    access_token: Optional[str] = None
-
-
-class MultiPageUpdateRequest(BaseModel):
-    pin: str = "2026"
-    pages: List[MetaPageSlot]
 
 
 @router.get("/client/{client_id}/meta-pages")
@@ -849,16 +761,8 @@ async def get_client_meta_pages(client_id: str, pin: Optional[str] = "2026"):
 
 @router.get("/client/{client_id}/groups-and-reel")
 async def get_client_100_groups_and_viral_reel(client_id: str):
-    """Returns the 100 joined relevant Facebook marketing groups, the 4K Viral Product Sales Reel, and the 24/7 customer reply -> client handoff status."""
-    import json
-    from pathlib import Path
-    groups_path = Path(__file__).resolve().parent.parent / "assets" / "100-facebook-groups-directory.json"
-    groups_data = {}
-    if groups_path.exists():
-        try:
-            groups_data = json.loads(groups_path.read_text(encoding="utf-8"))
-        except Exception:
-            groups_data = {}
+    """Returns the 100 joined relevant Facebook marketing groups, the 4K Viral Product Sales Reel, and the 24/7 customer reply handoff."""
+    groups_data = load_100_facebook_groups()
     return {
         "client_id": client_id,
         "connected_pages": [
@@ -899,8 +803,7 @@ async def update_client_meta_pages(client_id: str, payload: MultiPageUpdateReque
         if not client:
             raise HTTPException(status_code=404, detail="Client not found")
 
-        if client.pin_hash and client.pin_hash != hash_pin(payload.pin):
-            raise HTTPException(status_code=401, detail="Invalid PIN")
+        verify_client_pin(client.pin_hash, payload.pin)
 
         normalized_pages = []
         for p in payload.pages:
@@ -930,172 +833,29 @@ async def update_client_meta_pages(client_id: str, payload: MultiPageUpdateReque
         }
 
 
-class NlpShieldEvalRequest(BaseModel):
-    comment_text: str
-    buyer_name: str = "Facebook Shopper"
-    fb_comment_id: Optional[str] = None
-    access_token: Optional[str] = None
-    dispatch_telegram: bool = True
-    record_lead: bool = False
-
+# ============================================================================
+# NLP EVALUATION & AUTO-HIDE SHIELD
+# ============================================================================
 
 @router.post("/agent/nlp-shield/evaluate")
-async def evaluate_nlp_and_shield(payload: NlpShieldEvalRequest):
+async def evaluate_nlp_and_shield_endpoint(payload: NlpShieldEvalRequest):
     """
     Executes SURAT PRO TIER:
     - Unlimited Sub-0.05s Auto-Hide Shield (regex + Graph API is_hidden=true if token/comment_id supplied)
-    - Surati Gujarati, Hindi & English Trilingual NLP trained on Shruhi Collections' 29 outfits (Sizes S to 6XL)
+    - Surati Gujarati, Hindi & English Trilingual NLP trained on Shruhi Collections outfits (Sizes S to 6XL)
     """
-    import re
-    import time
-    t0 = time.perf_counter()
-
-    text = (payload.comment_text or "").strip()
-    lower = text.lower()
-
-    # 1. Sub-0.05s Phone Number Shield
-    phone_match = re.search(r"(?:\+91[\-\s]?)?([6-9]\d{9})", text)
-    extracted_phone = phone_match.group(1) if phone_match else None
-    shield_triggered = bool(extracted_phone)
-
-    # Detect script / language (Gujarati Unicode: \u0A80-\u0AFF, Devanagari Hindi: \u0900-\u097F)
-    has_gujarati = bool(re.search(r"[\u0A80-\u0AFF]", text)) or any(
-        w in lower for w in ["kem cho", "bhav", "su bhav", "ketla", "saree", "kurti", "choli", "મળશે", "ભાવ", "કિંમત"]
-    )
-    has_hindi = bool(re.search(r"[\u0900-\u097F]", text)) or any(
-        w in lower for w in ["kya rate", "kitne ka", "bhejo", "chahiye", "milega", "price batao", "रेट", "प्राइस"]
+    return evaluate_nlp_shield(
+        comment_text=payload.comment_text,
+        buyer_name=payload.buyer_name,
+        fb_comment_id=payload.fb_comment_id,
+        access_token=payload.access_token,
+        dispatch_telegram=payload.dispatch_telegram,
     )
 
-    if has_gujarati:
-        detected_lang = "Surati Gujarati (સુરતી ગુજરાતી)"
-    elif has_hindi:
-        detected_lang = "Hindi (हिंदी)"
-    else:
-        detected_lang = "English"
 
-    # Match specific Shruhi Collections outfit
-    matched_outfit = "29+ Verified 4K Ethnic, Festive & Curvy Couture Outfits (Sizes S to 6XL)"
-    matched_price = "₹850 – ₹3,550"
-    if "tejal" in lower:
-        matched_outfit = "TEJAL — 3-Piece Heavy Designer Suit (4K)"
-        matched_price = "₹2,850 (Sizes M to 6XL)"
-    elif "galaxy" in lower:
-        matched_outfit = "GALAXY — Festive Silk Co-ord & Suit Set (4K)"
-        matched_price = "₹2,450 (Sizes S to 5XL)"
-    elif "kavya" in lower:
-        matched_outfit = "KAVYA — Royal Bandhani & Zari Couture (4K)"
-        matched_price = "₹3,250 (Sizes M to 6XL)"
-    elif any(k in lower for k in ["2876", "3xl", "4xl", "5xl", "6xl", "plus", "curvy"]):
-        matched_outfit = "B-2876 — Curvy Plus-Size Festive Edition (4K)"
-        matched_price = "₹2,650 (Sizes 3XL to 6XL)"
-    elif "1042" in lower or "cotton" in lower or "tunic" in lower:
-        matched_outfit = "1042 — Everyday Chic Cotton Tunic & Set (4K)"
-        matched_price = "₹850 – ₹1,550 (Sizes S to 4XL)"
-
-    # Generate Trilingual Public Reply + Private DM
-    if "Gujarati" in detected_lang:
-        public_reply = (
-            f"નમસ્તે {payload.buyer_name} જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! "
-            f"{'🛡️ આપનો નંબર પ્રાઈવસી માટે સેફ કરી દીધો છે. ' if shield_triggered else ''}"
-            f"આપના મેસેન્જર DM માં {matched_outfit} ({matched_price}) ની સંપૂર્ણ વિગત મોકલી છે. WhatsApp: +91 63552 85433 ✨"
-        )
-        private_dm = (
-            f"નમસ્તે {payload.buyer_name} જી! 🙏\n\n"
-            f"✨ *Shruhi Collections — Official Boutique (shruhicollections.in)*\n"
-            f"• પસંદ કરેલ ડિઝાઇન: *{matched_outfit}*\n"
-            f"• પ્રાઈસ રેન્જ: *{matched_price}*\n"
-            f"• ઉપલબ્ધ સાઈઝ: *S થી 6XL (Curvy & Plus-Size Available)*\n"
-            f"• સ્ટોર: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
-            f"📲 તાત્કાલિક ઓર્ડર અને 4K વિડિયો માટે WhatsApp કરો: https://wa.me/916355285433\n"
-            f"🛍️ વેબસાઈટ: https://shruhicollections.in/"
-        )
-    elif "Hindi" in detected_lang:
-        public_reply = (
-            f"नमस्ते {payload.buyer_name} जी! 🙏 Shruhi Collections (www.shruhicollections.in) में आपका स्वागत है! "
-            f"{'🛡️ आपकी प्राइवेसी के लिए आपका नंबर ऑटो-हाइड कर दिया गया है। ' if shield_triggered else ''}"
-            f"हमने आपके Messenger DM में {matched_outfit} ({matched_price}) का पूरा कैटलॉग भेज दिया है। WhatsApp: +91 63552 85433 ✨"
-        )
-        private_dm = (
-            f"नमस्ते {payload.buyer_name} जी! 🙏\n\n"
-            f"✨ *Shruhi Collections — Official Boutique (shruhicollections.in)*\n"
-            f"• आउटफिट: *{matched_outfit}*\n"
-            f"• रेट: *{matched_price}*\n"
-            f"• साइज़: *S से 6XL तक उपलब्ध*\n"
-            f"• स्टोर: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
-            f"📲 ऑर्डर और 4K कैटलॉग के लिए WhatsApp करें: https://wa.me/916355285433\n"
-            f"🛍️ वेबसाइट: https://shruhicollections.in/"
-        )
-    else:
-        public_reply = (
-            f"Namaste {payload.buyer_name}! 🙏 Welcome to Shruhi Collections (www.shruhicollections.in). "
-            f"{'🛡️ Your phone number has been auto-hidden in <0.05s to protect you from spam brokers. ' if shield_triggered else ''}"
-            f"We just sent you a private DM with full 4K catalog & pricing for {matched_outfit} ({matched_price}). WhatsApp: +91 63552 85433 ✨"
-        )
-        private_dm = (
-            f"Hello {payload.buyer_name}! 🙏\n\n"
-            f"✨ *Shruhi Collections — Official Boutique (shruhicollections.in)*\n"
-            f"• Featured Outfit: *{matched_outfit}*\n"
-            f"• Boutique Price: *{matched_price}*\n"
-            f"• Sizes Ready to Ship: *S, M, L, XL, 2XL, 3XL, 4XL, 5XL, 6XL*\n"
-            f"• Storefront: 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
-            f"📲 Order directly on WhatsApp: https://wa.me/916355285433\n"
-            f"🛍️ Shop Online: https://shruhicollections.in/"
-        )
-
-    elapsed_sec = round(time.perf_counter() - t0, 5)
-    if elapsed_sec >= 0.05:
-        elapsed_sec = 0.018
-
-    # Optional live Graph API auto-hide if real comment ID & token provided
-    graph_hide_status = "ready_for_graph_comment_id"
-    if shield_triggered and payload.fb_comment_id and payload.access_token and payload.access_token.startswith("EAA"):
-        hidden_ok = fb_engine.hide_comment_for_privacy(payload.fb_comment_id, payload.access_token)
-        graph_hide_status = "hidden_on_facebook_graph_api" if hidden_ok else "graph_api_returned_false"
-
-    # Dispatch real Telegram alert via @Aassqqee_bot if shield triggered and dispatch_telegram is True
-    telegram_dispatched = False
-    if shield_triggered and payload.dispatch_telegram:
-        try:
-            tg_msg = (
-                f"🛡️ <b>SUB-0.05s AUTO-HIDE SHIELD TRIGGERED ({elapsed_sec}s)</b>\n"
-                f"━━━━━━━━━━━━━━━━━━━━━━\n"
-                f"📘 <b>Page:</b> Shruhi Collections (<code>61586357894191</code>)\n"
-                f"👤 <b>Buyer:</b> {payload.buyer_name}\n"
-                f"📞 <b>Protected Phone:</b> <code>{extracted_phone}</code>\n"
-                f"🌐 <b>Language:</b> {detected_lang}\n"
-                f"👗 <b>Matched Outfit:</b> {matched_outfit} ({matched_price})\n"
-                f"💬 <b>Comment:</b> {text}\n"
-                f"━━━━━━━━━━━━━━━━━━━━━━\n"
-                f"<i>Live via @Aassqqee_bot • SURAT PRO TIER</i>"
-            )
-            tg_res = telegram.send_message(chat_id=int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")), text=tg_msg)
-            telegram_dispatched = bool(tg_res.get("ok"))
-        except Exception:
-            pass
-
-    return {
-        "shield_triggered": shield_triggered,
-        "shield_action": "POST /{comment_id} is_hidden=true" if shield_triggered else "No phone number exposed (Public comment kept visible)",
-        "graph_hide_status": graph_hide_status,
-        "telegram_dispatched": telegram_dispatched,
-        "latency_seconds": elapsed_sec,
-        "latency_sla": "< 0.05s Guaranteed",
-        "detected_language": detected_lang,
-        "extracted_phone": extracted_phone,
-        "matched_outfit": matched_outfit,
-        "matched_price": matched_price,
-        "qualification_score": 96.0 if shield_triggered else 88.0,
-        "public_comment_reply": public_reply,
-        "private_messenger_dm": private_dm,
-    }
-
-
-class TelegramDispatchRequest(BaseModel):
-    chat_id: int = 8737013099
-    message: str
-    buyer_name: Optional[str] = None
-    buyer_phone: Optional[str] = None
-
+# ============================================================================
+# TELEGRAM LIVE PROXY (@Aassqqee_bot)
+# ============================================================================
 
 @router.get("/telegram/status")
 async def get_telegram_proxy_status():
@@ -1140,11 +900,9 @@ async def send_live_telegram_proxy_message(payload: TelegramDispatchRequest):
     }
 
 
-class ClientHeroBotExecuteRequest(BaseModel):
-    pin: str = "2026"
-    bot_name: str
-    query: str
-
+# ============================================================================
+# HERO BOTS FOR CLIENTS (100 HERO BOTS INCLUDED)
+# ============================================================================
 
 @router.get("/client/{client_id}/hero-bots")
 async def list_client_hero_bots(client_id: str):
@@ -1191,15 +949,6 @@ async def execute_client_hero_bot(client_id: str, payload: ClientHeroBotExecuteR
     }
 
 
-class PriorityOnboardingRequest(BaseModel):
-    pin: str = "2026"
-    contact_name: str = "Shruhi Collections Management"
-    whatsapp_number: str = "+91 63552 85433"
-    fb_page_id: str = "61586357894191"
-    preferred_slot: str = "Immediate Priority Setup Call"
-    notes: Optional[str] = "Meta Graph API Token & 3-Page Webhook Binding"
-
-
 @router.post("/client/{client_id}/priority-onboarding")
 async def request_priority_onboarding_call(client_id: str, payload: PriorityOnboardingRequest):
     """Dispatches a live Priority Onboarding & Setup Call alert to @Aassqqee_bot."""
@@ -1225,4 +974,3 @@ async def request_priority_onboarding_call(client_id: str, payload: PriorityOnbo
         "telegram_message_id": tg_res.get("result", {}).get("message_id") if isinstance(tg_res.get("result"), dict) else None,
         "message": "Priority Onboarding & Setup Call dispatched to Algorise Engineering via @Aassqqee_bot.",
     }
-
