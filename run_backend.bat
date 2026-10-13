@@ -6,7 +6,7 @@ echo   Meta Graph Webhook • WhatsApp Cloud API • Telegram
 echo ========================================================
 echo.
 
-cd /d D:\algorise-ai
+cd /d "%~dp0"
 echo Starting Uvicorn on http://127.0.0.1:8000...
 echo Health check: http://127.0.0.1:8000/health
 echo Client Portal API: http://127.0.0.1:8000/api/v1/dashboard/1
