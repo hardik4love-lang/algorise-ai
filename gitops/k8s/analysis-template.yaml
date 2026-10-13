@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: error-rate-and-latency-analysis
+  namespace: algorise-prod
+spec:
+  args:
+    - name: service-name
+  metrics:
+    # 1. Success Rate Metric Gate (>= 99.5% Success Rate)
+    - name: success-rate
+      interval: 30s
+      successCondition: result[0] >= 0.995
+      failureLimit: 2
+      provider:
+        prometheus:
+          address: http://victoriametrics.telemetry.svc.cluster.local:8428
+          query: |
+            sum(rate(http_requests_total{app="{{args.service-name}}",status=~"2.*|3.*"}[2m]))
+            /
+            sum(rate(http_requests_total{app="{{args.service-name}}"}[2m]))
+
+    # 2. P95 Latency Metric Gate (<= 250ms)
+    - name: p95-latency
+      interval: 30s
+      successCondition: result[0] <= 0.25
+      failureLimit: 2
+      provider:
+        prometheus:
+          address: http://victoriametrics.telemetry.svc.cluster.local:8428
+          query: |
+            histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{app="{{args.service-name}}"}[2m])) by (le))
+
+    # 3. HTTP 5xx Absolute Error Spike Gate (< 5 errors/min)
+    - name: error-spike-check
+      interval: 30s
+      successCondition: result[0] < 5
+      failureLimit: 1
+      provider:
+        prometheus:
+          address: http://victoriametrics.telemetry.svc.cluster.local:8428
+          query: |
+            sum(increase(http_requests_total{app="{{args.service-name}}",status=~"5.*"}[1m])) or vector(0)

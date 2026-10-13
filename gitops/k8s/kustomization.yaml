@@ -9,6 +9,7 @@ resources:
   - networkpolicy.yaml
   - keda-scaledobject.yaml
   - kyverno-policies.yaml
+  - analysis-template.yaml
 
 commonLabels:
   app.kubernetes.io/part-of: algorise-ai-ecosystem

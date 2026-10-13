@@ -1,0 +1,77 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: slo-burn-rate-alerts
+  namespace: telemetry
+  labels:
+    role: alert-rules
+spec:
+  groups:
+    - name: AlgoriseAISLOAlerts
+      rules:
+        # Critical Alert: 14.4x Burn Rate (2% of Error Budget consumed in 1 hour)
+        # Immediate Pager + Automated Rollout Abort Trigger
+        - alert: ServiceErrorBudgetBurnRateCritical1h
+          expr: |
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[1h]))
+              /
+              sum(rate(http_requests_total[1h]))
+            ) > (14.4 * 0.005)
+            and
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[5m]))
+              /
+              sum(rate(http_requests_total[5m]))
+            ) > (14.4 * 0.005)
+          for: 2m
+          labels:
+            severity: critical
+            automated_remediation: trigger_rollback
+          annotations:
+            summary: "Critical 1h error budget burn rate exceeded (14.4x normal)"
+            description: "Service is burning monthly error budget at 14.4x rate. Closed-loop rollback initiated."
+
+        # High Alert: 6.0x Burn Rate (5% of Error Budget consumed in 6 hours)
+        - alert: ServiceErrorBudgetBurnRateHigh6h
+          expr: |
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[6h]))
+              /
+              sum(rate(http_requests_total[6h]))
+            ) > (6.0 * 0.005)
+            and
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[30m]))
+              /
+              sum(rate(http_requests_total[30m]))
+            ) > (6.0 * 0.005)
+          for: 15m
+          labels:
+            severity: high
+            automated_remediation: scale_circuit_breaker
+          annotations:
+            summary: "High 6h error budget burn rate exceeded (6.0x normal)"
+            description: "Service is burning monthly error budget at 6x rate. Remediation dampening and circuit breaker active."
+
+        # Medium Alert: 3.0x Burn Rate (10% of Error Budget consumed in 24 hours)
+        - alert: ServiceErrorBudgetBurnRateMedium24h
+          expr: |
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[24h]))
+              /
+              sum(rate(http_requests_total[24h]))
+            ) > (3.0 * 0.005)
+            and
+            (
+              sum(rate(http_requests_total{status=~"5.*"}[2h]))
+              /
+              sum(rate(http_requests_total[2h]))
+            ) > (3.0 * 0.005)
+          for: 1h
+          labels:
+            severity: warning
+            automated_remediation: generate_diagnostic_pr
+          annotations:
+            summary: "Moderate 24h error budget burn rate (3.0x normal)"
+            description: "Service is consuming budget at 3x rate. Automated diagnostic trace collection scheduled."
