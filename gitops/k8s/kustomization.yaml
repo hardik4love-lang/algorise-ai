@@ -12,6 +12,9 @@ resources:
   - analysis-template.yaml
   - ../remediation/remediation-operator.yaml
   - ../remediation/runbook-catalog.yaml
+  - ../aiops/continuous-right-sizing.yaml
+  - ../aiops/predictive-anomaly-detector.yaml
+  - ../aiops/zero-touch-rbac-lockdown.yaml
 
 commonLabels:
   app.kubernetes.io/part-of: algorise-ai-ecosystem

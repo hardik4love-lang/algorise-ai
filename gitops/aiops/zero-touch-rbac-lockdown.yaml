@@ -1,0 +1,27 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: zero-touch-production-auditor
+rules:
+  # Human roles are strictly read-only across production
+  - apiGroups: ["", "apps", "argoproj.io", "autonomous.algorise.io", "cilium.io"]
+    resources: ["pods", "deployments", "rollouts", "services", "remediationplans", "ciliumnetworkpolicies"]
+    verbs: ["get", "list", "watch"]
+  # Explicitly forbid interactive execution, container attaching, and imperative edits
+  - apiGroups: [""]
+    resources: ["pods/exec", "pods/attach", "pods/portforward"]
+    verbs: [] # Zero permissions granted
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: human-engineers-readonly-binding
+  namespace: algorise-prod
+subjects:
+  - kind: Group
+    name: "engineering-team"
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: zero-touch-production-auditor
+  apiGroup: rbac.authorization.k8s.io

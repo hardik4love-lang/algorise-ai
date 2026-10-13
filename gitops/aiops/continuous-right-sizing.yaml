@@ -1,0 +1,28 @@
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: algorise-ai-right-sizer
+  namespace: algorise-prod
+  labels:
+    app.kubernetes.io/name: algorise-ai
+    app.kubernetes.io/part-of: algorise-ai-ecosystem
+spec:
+  targetRef:
+    apiVersion: argoproj.io/v1alpha1
+    kind: Rollout
+    name: algorise-ai-engine
+  updatePolicy:
+    updateMode: "Auto" # Automatically applies non-disruptive recommendations
+  resourcePolicy:
+    containerPolicies:
+      - containerName: engine
+        mode: Auto
+        # Hard Safety Guardrails (Floors & Ceilings that ML tuning cannot violate)
+        minAllowed:
+          cpu: "150m"
+          memory: "128Mi"
+        maxAllowed:
+          cpu: "2000m"
+          memory: "2Gi"
+        controlledResources: ["cpu", "memory"]
+        controlledValues: RequestsAndLimits
