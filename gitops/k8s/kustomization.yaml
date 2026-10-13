@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: algorise-prod
+
+resources:
+  - rollout.yaml
+  - service.yaml
+  - networkpolicy.yaml
+  - keda-scaledobject.yaml
+  - kyverno-policies.yaml
+
+commonLabels:
+  app.kubernetes.io/part-of: algorise-ai-ecosystem
+  app.kubernetes.io/managed-by: argocd

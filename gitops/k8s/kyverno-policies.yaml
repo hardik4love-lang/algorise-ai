@@ -1,0 +1,67 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-autonomous-resilience-standards
+  annotations:
+    policies.kyverno.io/title: Autonomous Resilience and Security Standards
+    policies.kyverno.io/severity: high
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: require-non-root-execution
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - algorise-prod
+      validate:
+        message: "Workloads in production must run as non-root with read-only root filesystems."
+        pattern:
+          spec:
+            securityContext:
+              runAsNonRoot: true
+            containers:
+              - securityContext:
+                  readOnlyRootFilesystem: true
+                  allowPrivilegeEscalation: false
+
+    - name: require-resource-boundaries
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - algorise-prod
+      validate:
+        message: "CPU and Memory requests and limits are mandatory to prevent noisy-neighbor starvation."
+        pattern:
+          spec:
+            containers:
+              - resources:
+                  requests:
+                    cpu: "?*"
+                    memory: "?*"
+                  limits:
+                    cpu: "?*"
+                    memory: "?*"
+
+    - name: verify-cosign-image-signatures
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+              namespaces:
+                - algorise-prod
+      verifyImages:
+        - imageReferences:
+            - "ghcr.io/hardik4love-lang/*"
+          attestors:
+            - entries:
+                - keyless:
+                    issuer: "https://token.actions.githubusercontent.com"
+                    subject: "https://github.com/hardik4love-lang/algorise-ai/.github/workflows/*"

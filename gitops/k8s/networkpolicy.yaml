@@ -1,0 +1,46 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+metadata:
+  name: algorise-ai-isolation
+  namespace: algorise-prod
+spec:
+  endpointSelector:
+    matchLabels:
+      app.kubernetes.io/name: algorise-ai
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: cilium-ingress
+      toPorts:
+        - ports:
+            - port: "8000"
+              protocol: TCP
+  egress:
+    # 1. Internal DNS resolution
+    - toEndpoints:
+        - matchLabels:
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    # 2. OpenTelemetry Telemetry Collector Gateway
+    - toEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: opentelemetry-collector
+      toPorts:
+        - ports:
+            - port: "4317"
+              protocol: TCP
+    # 3. Egress to Authorized External Services (FQDN egress lockdown)
+    - toFQDNs:
+        - matchName: "api.telegram.org"
+        - matchName: "graph.facebook.com"
+        - matchName: "api.github.com"
+      toPorts:
+        - ports:
+            - port: "443"
+              protocol: TCP
