@@ -1,0 +1,91 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: remediationplans.autonomous.algorise.io
+spec:
+  group: autonomous.algorise.io
+  names:
+    kind: RemediationPlan
+    listKind: RemediationPlanList
+    plural: remediationplans
+    singular: remediationplan
+    shortNames:
+      - rplan
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                targetWorkload:
+                  type: string
+                triggerAlert:
+                  type: string
+                actionType:
+                  type: string
+                  enum: [pod_bulkhead_restart, trip_circuit_breaker, gitops_hard_resync, scale_burst_absorb]
+                cooldownSeconds:
+                  type: integer
+                maxAttemptsPerWindow:
+                  type: integer
+                verificationProbe:
+                  type: object
+                  properties:
+                    probeUrl:
+                      type: string
+                    expectedStatus:
+                      type: integer
+                    windowSeconds:
+                      type: integer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: autonomous-remediation-controller
+  namespace: algorise-prod
+  labels:
+    app.kubernetes.io/name: autonomous-remediation-controller
+    app.kubernetes.io/part-of: algorise-ai-ecosystem
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: autonomous-remediation-controller
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: autonomous-remediation-controller
+    spec:
+      serviceAccountName: algorise-remediation-sa
+      containers:
+        - name: controller
+          image: ghcr.io/hardik4love-lang/autonomous-remediation-engine:v1.0.0
+          env:
+            - name: CLUSTER_ENVIRONMENT
+              value: "production"
+            - name: ALERTMANAGER_WEBHOOK_PORT
+              value: "9095"
+            - name: DAMPENING_WINDOW_MINUTES
+              value: "30"
+            - name: MAX_ACTIONS_PER_WINDOW
+              value: "3"
+          ports:
+            - name: webhook
+              containerPort: 9095
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true

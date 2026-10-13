@@ -10,6 +10,8 @@ resources:
   - keda-scaledobject.yaml
   - kyverno-policies.yaml
   - analysis-template.yaml
+  - ../remediation/remediation-operator.yaml
+  - ../remediation/runbook-catalog.yaml
 
 commonLabels:
   app.kubernetes.io/part-of: algorise-ai-ecosystem

@@ -1,0 +1,63 @@
+apiVersion: autonomous.algorise.io/v1alpha1
+kind: RemediationPlan
+metadata:
+  name: plan-oom-memory-isolation
+  namespace: algorise-prod
+spec:
+  targetWorkload: algorise-ai-engine
+  triggerAlert: ServiceContainerOOMKilled
+  actionType: pod_bulkhead_restart
+  cooldownSeconds: 300
+  maxAttemptsPerWindow: 3
+  verificationProbe:
+    probeUrl: "http://algorise-ai-stable.algorise-prod.svc.cluster.local:80/health"
+    expectedStatus: 200
+    windowSeconds: 180
+---
+apiVersion: autonomous.algorise.io/v1alpha1
+kind: RemediationPlan
+metadata:
+  name: plan-dependency-circuit-breaker
+  namespace: algorise-prod
+spec:
+  targetWorkload: algorise-ai-engine
+  triggerAlert: ServiceExternalDependencyLatencyHigh
+  actionType: trip_circuit_breaker
+  cooldownSeconds: 180
+  maxAttemptsPerWindow: 2
+  verificationProbe:
+    probeUrl: "http://algorise-ai-stable.algorise-prod.svc.cluster.local:80/health"
+    expectedStatus: 200
+    windowSeconds: 120
+---
+apiVersion: autonomous.algorise.io/v1alpha1
+kind: RemediationPlan
+metadata:
+  name: plan-burst-traffic-absorb
+  namespace: algorise-prod
+spec:
+  targetWorkload: algorise-ai-engine
+  triggerAlert: ServiceErrorBudgetBurnRateHigh6h
+  actionType: scale_burst_absorb
+  cooldownSeconds: 600
+  maxAttemptsPerWindow: 2
+  verificationProbe:
+    probeUrl: "http://algorise-ai-stable.algorise-prod.svc.cluster.local:80/health"
+    expectedStatus: 200
+    windowSeconds: 300
+---
+apiVersion: autonomous.algorise.io/v1alpha1
+kind: RemediationPlan
+metadata:
+  name: plan-drift-enforcement
+  namespace: algorise-prod
+spec:
+  targetWorkload: algorise-ai-engine
+  triggerAlert: GitOpsClusterStateOutOfSync
+  actionType: gitops_hard_resync
+  cooldownSeconds: 120
+  maxAttemptsPerWindow: 3
+  verificationProbe:
+    probeUrl: "http://algorise-ai-stable.algorise-prod.svc.cluster.local:80/health"
+    expectedStatus: 200
+    windowSeconds: 60
