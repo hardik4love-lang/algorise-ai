@@ -10,6 +10,13 @@ import os
 import sys
 from typing import Dict, List
 
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
 from .classifier import FlakeClassifier
 from .healer import ASTHealer
 from .models import FlakinessReport, TestExecutionRecord, TestStatus
