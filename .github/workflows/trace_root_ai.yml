@@ -1,0 +1,59 @@
+name: "TraceRoot AI: Autonomous Telemetry-to-Code Incident Resolver"
+
+on:
+  workflow_dispatch:
+    inputs:
+      incident_json:
+        description: 'Incident payload JSON string or traceback'
+        required: false
+        default: '{"service_name": "algorise-engine", "error_type": "KeyError", "error_message": "\x27anomaly_factor\x27", "stack_trace": "Traceback (most recent call last):\n  File \"engine/security.py\", line 15, in check_rate_limit\n    weights[\x27anomaly_factor\x27]\nKeyError: \x27anomaly_factor\x27"}'
+      stage_hotfix:
+        description: 'Automatically cut emergency hotfix branch & commit patch'
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  traceroot-resolver:
+    name: "Autonomous Incident Triage & Hotfix Generation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository with History
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest
+
+      - name: Step 1 - Stage Incident Telemetry Payload
+        run: |
+          mkdir -p .autotest/incidents
+          echo '${{ github.event.inputs.incident_json }}' > .autotest/incidents/incoming_incident.json
+
+      - name: Step 2 - Execute TraceRoot AI Triage & Hotfix Synthesis
+        run: |
+          python -m trace_root_ai.cli triage \
+            --incident .autotest/incidents/incoming_incident.json \
+            ${{ github.event.inputs.stage_hotfix == 'true' && '--stage' || '' }} \
+            --output incident_triage_report.md
+          cat incident_triage_report.md >> $GITHUB_STEP_SUMMARY
+          cat incident_triage_report.md
+
+      - name: Step 3 - Regression Verification against Synthesized Hotfix
+        run: |
+          echo "Running unit test verification..."
+          python -m pytest tests/ -o addopts=""
