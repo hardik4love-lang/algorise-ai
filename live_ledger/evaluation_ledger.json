@@ -1,10 +1,10 @@
 {
-  "ledger_id": "751d4c82-df2b-4942-948a-5fc30667b2e5",
-  "timestamp": "2026-10-14T14:20:02.841698+00:00",
+  "ledger_id": "c6d2bc9e-65cc-4138-ae33-17c811b7db5c",
+  "timestamp": "2026-10-14T14:24:32.385467+00:00",
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
-  "total_evaluated": 2,
+  "total_evaluated": 10,
   "opportunities": [
     {
       "task_id": "gh-5021",
@@ -25,7 +25,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T14:20:02.841560+00:00"
+      "created_at": "2026-10-14T14:24:32.385361+00:00"
     },
     {
       "task_id": "gh-1573",
@@ -46,7 +46,175 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T14:20:02.841627+00:00"
+      "created_at": "2026-10-14T14:24:32.385387+00:00"
+    },
+    {
+      "task_id": "gh-1556",
+      "title": "[Bounty] bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1556",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385393+00:00"
+    },
+    {
+      "task_id": "gh-1602",
+      "title": "[Bounty] EKEODKDE9DKE9DO BOUNTY",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1602",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385398+00:00"
+    },
+    {
+      "task_id": "gh-1558",
+      "title": "[Bounty] Reverse bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1558",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385403+00:00"
+    },
+    {
+      "task_id": "gh-13",
+      "title": "Bounty marketplace UI (/, /bounties, /bounties/[id], /create)",
+      "repository": "rylsherdamz-rgb/stellar-forge",
+      "url": "https://github.com/rylsherdamz-rgb/stellar-forge/issues/13",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385407+00:00"
+    },
+    {
+      "task_id": "gh-1570",
+      "title": "[Bounty] bitcoin bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1570",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385414+00:00"
+    },
+    {
+      "task_id": "gh-1",
+      "title": "bounty test",
+      "repository": "contendaClara/test",
+      "url": "https://github.com/contendaClara/test/issues/1",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385427+00:00"
+    },
+    {
+      "task_id": "gh-1891",
+      "title": "[Bounty] \ud83d\udccb 2 open bounties right now",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1891",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385434+00:00"
+    },
+    {
+      "task_id": "gh-1593",
+      "title": "[Bounty] $239398281948585883* bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1593",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-14T14:24:32.385441+00:00"
     }
   ]
 }
