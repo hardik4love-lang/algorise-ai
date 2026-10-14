@@ -1,0 +1,83 @@
+name: "ModernizeAI: Autonomous SDK Upgrade & Codemod Gate"
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: 'Target package to upgrade (e.g. pydantic, datetime, langchain)'
+        required: true
+        default: 'datetime'
+      target_version:
+        description: 'Target version specification (e.g. 3.12, 2.0, 0.3)'
+        required: false
+        default: ''
+      apply_write:
+        description: 'Apply changes and commit branch (true/false)'
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  modernize-audit:
+    name: "Autonomous AST Codemod Transformation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest
+
+      - name: Step 1 - Synthesize Migration Plan
+        run: |
+          echo "Synthesizing AST migration plan for ${{ github.event.inputs.package_name }}..."
+          python -m modernize_ai.cli plan \
+            --package "${{ github.event.inputs.package_name }}" \
+            ${{ github.event.inputs.target_version && format('--to {0}', github.event.inputs.target_version) || '' }}
+
+      - name: Step 2 - Execute Codemods & Generate Diff
+        run: |
+          python -m modernize_ai.cli apply \
+            --package "${{ github.event.inputs.package_name }}" \
+            ${{ github.event.inputs.target_version && format('--to {0}', github.event.inputs.target_version) || '' }} \
+            ${{ github.event.inputs.apply_write == 'true' && '--write' || '' }} \
+            --output modernize_report.md
+          cat modernize_report.md >> $GITHUB_STEP_SUMMARY
+          cat modernize_report.md
+
+      - name: Step 3 - Regression Verification (If Modified)
+        if: github.event.inputs.apply_write == 'true'
+        run: |
+          echo "Executing test suite against modernized AST..."
+          python -m pytest tests/ -o addopts=""
+
+      - name: Step 4 - Stage & Open Automated Migration PR
+        if: github.event.inputs.apply_write == 'true'
+        run: |
+          git config user.name "modernize-ai[bot]"
+          git config user.email "modernize@algorise.ai"
+          BRANCH_NAME="modernize-ai/upgrade-${{ github.event.inputs.package_name }}-$(date +%s)"
+          git checkout -b "$BRANCH_NAME"
+          git add -A
+          if git diff-index --quiet HEAD; then
+            echo "No AST changes needed; codebase already modernized."
+          else
+            git commit -m "chore(deps): autonomous AST upgrade for ${{ github.event.inputs.package_name }}"
+            git push origin "$BRANCH_NAME"
+            echo "Pushed migration branch $BRANCH_NAME"
+          fi
