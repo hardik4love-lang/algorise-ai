@@ -25,6 +25,10 @@ jobs:
   modernize-audit:
     name: "Autonomous AST Codemod Transformation"
     runs-on: ubuntu-latest
+    env:
+      PKG_NAME: ${{ github.event.inputs.package_name }}
+      TARGET_VER: ${{ github.event.inputs.target_version }}
+      APPLY_WRITE: ${{ github.event.inputs.apply_write }}
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
@@ -45,18 +49,24 @@ jobs:
 
       - name: Step 1 - Synthesize Migration Plan
         run: |
-          echo "Synthesizing AST migration plan for ${{ github.event.inputs.package_name }}..."
-          python -m modernize_ai.cli plan \
-            --package "${{ github.event.inputs.package_name }}" \
-            ${{ github.event.inputs.target_version && format('--to {0}', github.event.inputs.target_version) || '' }}
+          echo "Synthesizing AST migration plan for $PKG_NAME..."
+          TARGET_FLAG=""
+          if [ -n "$TARGET_VER" ]; then
+            TARGET_FLAG="--to $TARGET_VER"
+          fi
+          python -m modernize_ai.cli plan --package "$PKG_NAME" $TARGET_FLAG
 
       - name: Step 2 - Execute Codemods & Generate Diff
         run: |
-          python -m modernize_ai.cli apply \
-            --package "${{ github.event.inputs.package_name }}" \
-            ${{ github.event.inputs.target_version && format('--to {0}', github.event.inputs.target_version) || '' }} \
-            ${{ github.event.inputs.apply_write == 'true' && '--write' || '' }} \
-            --output modernize_report.md
+          TARGET_FLAG=""
+          if [ -n "$TARGET_VER" ]; then
+            TARGET_FLAG="--to $TARGET_VER"
+          fi
+          WRITE_FLAG=""
+          if [ "$APPLY_WRITE" = "true" ]; then
+            WRITE_FLAG="--write"
+          fi
+          python -m modernize_ai.cli apply --package "$PKG_NAME" $TARGET_FLAG $WRITE_FLAG --output modernize_report.md
           cat modernize_report.md >> $GITHUB_STEP_SUMMARY
           cat modernize_report.md
 
@@ -71,13 +81,13 @@ jobs:
         run: |
           git config user.name "modernize-ai[bot]"
           git config user.email "modernize@algorise.ai"
-          BRANCH_NAME="modernize-ai/upgrade-${{ github.event.inputs.package_name }}-$(date +%s)"
+          BRANCH_NAME="modernize-ai/upgrade-$PKG_NAME-$(date +%s)"
           git checkout -b "$BRANCH_NAME"
           git add -A
           if git diff-index --quiet HEAD; then
             echo "No AST changes needed; codebase already modernized."
           else
-            git commit -m "chore(deps): autonomous AST upgrade for ${{ github.event.inputs.package_name }}"
+            git commit -m "chore(deps): autonomous AST upgrade for $PKG_NAME"
             git push origin "$BRANCH_NAME"
             echo "Pushed migration branch $BRANCH_NAME"
           fi

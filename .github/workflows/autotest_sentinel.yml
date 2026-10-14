@@ -60,11 +60,13 @@ jobs:
 
       - name: Step 4 - Autonomous Quarantine Enforcement
         if: always()
+        env:
+          QUARANTINE_THRESHOLD: ${{ github.event.inputs.quarantine_threshold || '0.75' }}
         run: |
           if [ -f .autotest/telemetry.json ]; then
             python -m autotest_sentinel.cli quarantine \
               --telemetry .autotest/telemetry.json \
-              --threshold ${{ github.event.inputs.quarantine_threshold || '0.75' }}
+              --threshold "$QUARANTINE_THRESHOLD"
           fi
 
       - name: Step 5 - Generate Executive DevEx & Compute Savings Report
