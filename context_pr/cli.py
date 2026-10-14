@@ -56,6 +56,7 @@ def main():
         prog="context-pr",
         description="Autonomous Semantic Blast-Radius & Interface Invariant PR Reviewer",
     )
+    parser.add_argument("command", nargs="?", default="review", help="Command to execute (e.g. review, audit)")
     parser.add_argument("--base", default="HEAD~1", help="Base git ref for diff comparison (default: HEAD~1)")
     parser.add_argument("--head", default="HEAD", help="Head git ref (default: HEAD)")
     parser.add_argument("--files", nargs="*", help="Explicit list of files to evaluate")
