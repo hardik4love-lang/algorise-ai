@@ -1,6 +1,6 @@
 {
-  "ledger_id": "ac8c1957-dcac-4841-8cc2-51d4ce6f832d",
-  "timestamp": "2026-10-14T16:24:24.660017+00:00",
+  "ledger_id": "ee6d44d3-0a1a-46ba-aa88-3b5449230571",
+  "timestamp": "2026-10-14T21:14:37.266846+00:00",
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
@@ -25,7 +25,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659890+00:00"
+      "created_at": "2026-10-14T21:14:37.266740+00:00"
     },
     {
       "task_id": "gh-1573",
@@ -46,7 +46,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659922+00:00"
+      "created_at": "2026-10-14T21:14:37.266765+00:00"
     },
     {
       "task_id": "gh-1556",
@@ -67,7 +67,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659929+00:00"
+      "created_at": "2026-10-14T21:14:37.266772+00:00"
     },
     {
       "task_id": "gh-1602",
@@ -88,7 +88,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659934+00:00"
+      "created_at": "2026-10-14T21:14:37.266777+00:00"
     },
     {
       "task_id": "gh-1558",
@@ -109,7 +109,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659939+00:00"
+      "created_at": "2026-10-14T21:14:37.266781+00:00"
     },
     {
       "task_id": "gh-13",
@@ -130,7 +130,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659944+00:00"
+      "created_at": "2026-10-14T21:14:37.266787+00:00"
     },
     {
       "task_id": "gh-1570",
@@ -151,7 +151,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659949+00:00"
+      "created_at": "2026-10-14T21:14:37.266795+00:00"
     },
     {
       "task_id": "gh-1",
@@ -172,7 +172,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659967+00:00"
+      "created_at": "2026-10-14T21:14:37.266808+00:00"
     },
     {
       "task_id": "gh-1891",
@@ -193,13 +193,13 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659973+00:00"
+      "created_at": "2026-10-14T21:14:37.266814+00:00"
     },
     {
-      "task_id": "gh-1593",
-      "title": "[Bounty] $239398281948585883* bounty",
-      "repository": "zhangjiayang6835-cyber/bounty-plaza",
-      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1593",
+      "task_id": "gh-1",
+      "title": "\ud83c\udfaf Bounty-Radar",
+      "repository": "hanoi96international-gif/Test",
+      "url": "https://github.com/hanoi96international-gif/Test/issues/1",
       "gross_payout_usd": 50.0,
       "expected_net_revenue": 47.5,
       "prioritization_score": 19.11,
@@ -214,7 +214,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-14T16:24:24.659979+00:00"
+      "created_at": "2026-10-14T21:14:37.266822+00:00"
     }
   ]
 }
