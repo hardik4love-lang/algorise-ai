@@ -3,6 +3,8 @@ ContextPR: Contract & Invariant Extractor
 Inspects AST function signatures and type contracts between git commits to flag breaking API shifts.
 """
 
+from __future__ import annotations
+
 import ast
 from typing import Dict, List, Optional, Tuple
 

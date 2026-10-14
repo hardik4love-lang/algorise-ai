@@ -3,6 +3,8 @@ ContextPR: Synthetic Invariant Test Synthesizer
 Generates property-based invariant test suites targeting modified function signatures.
 """
 
+from __future__ import annotations
+
 from typing import List
 from .models import ChangedSymbol, SyntheticInvariantTest
 

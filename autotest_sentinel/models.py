@@ -3,6 +3,8 @@ AutoTest Sentinel: Data Models
 Defines core representations for test executions, flakiness classifications, and repair suggestions.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum

@@ -4,10 +4,12 @@ Builds reverse AST dependency graphs across a repository to compute downstream
 impact and risk scores for pull request diffs.
 """
 
+from __future__ import annotations
+
 import ast
 import os
 from collections import defaultdict, deque
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
 
 from .models import BlastRadiusNode, BlastRadiusReport, ChangedSymbol, RiskLevel
 

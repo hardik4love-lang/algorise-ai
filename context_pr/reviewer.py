@@ -3,6 +3,8 @@ ContextPR: Automated PR Reviewer & Summary Formatter
 Transforms blast radius telemetry and invariant checks into actionable GitHub PR reviews.
 """
 
+from __future__ import annotations
+
 from typing import List
 from .models import BlastRadiusReport, ChangedSymbol, RiskLevel, SyntheticInvariantTest
 
