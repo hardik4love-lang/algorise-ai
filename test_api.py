@@ -8,10 +8,23 @@ import urllib.request
 import json
 from engine.api_gateway import run_server
 
+import socket
+
+def wait_for_port(port: int = 8099, host: str = "127.0.0.1", timeout: float = 5.0) -> bool:
+    """Polls until the server socket accepts connections deterministically."""
+    start = time.time()
+    while time.time() - start < timeout:
+        try:
+            with socket.create_connection((host, port), timeout=0.1):
+                return True
+        except OSError:
+            pass
+    return False
+
 def start_server_thread():
     t = threading.Thread(target=run_server, args=(8099,), daemon=True)
     t.start()
-    time.sleep(0.6)
+    wait_for_port(8099)
 
 def test_api():
     print("=" * 70)
