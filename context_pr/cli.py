@@ -68,6 +68,10 @@ def main():
     files = args.files or get_git_diff_files(args.base, args.head)
     if not files:
         print("[*] No Python files modified between base and head. Blast radius is empty.")
+        if args.output:
+            with open(args.output, "w", encoding="utf-8") as out:
+                out.write("### ContextPR: Semantic Blast-Radius & Invariant Gate\n\nNo Python files were modified in this changeset. Blast radius is empty (0 modified, 0 impacted).\n")
+            print(f"[+] Review written to {args.output}")
         sys.exit(0)
 
     print(f"[*] ContextPR analyzing {len(files)} modified file(s)...")

@@ -49,8 +49,10 @@ jobs:
             --base ${{ env.BASE_REF }} \
             --head ${{ env.HEAD_REF }} \
             --output context_pr_review.md
-          cat context_pr_review.md >> $GITHUB_STEP_SUMMARY
-          cat context_pr_review.md
+          if [ -f context_pr_review.md ]; then
+            cat context_pr_review.md >> $GITHUB_STEP_SUMMARY
+            cat context_pr_review.md
+          fi
 
       - name: Post ContextPR Comment to Pull Request
         if: github.event_name == 'pull_request'
