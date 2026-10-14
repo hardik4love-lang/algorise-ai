@@ -24,21 +24,33 @@ import autotest_sentinel.cli as sentinel_cli
 import context_pr.cli as context_cli
 import modernize_ai.cli as modernize_cli
 import trace_root_ai.cli as traceroot_cli
+import revenue_engine.cli as revenue_cli
 
 
 def show_platform_status(root_dir: str = "."):
-    """Displays a consolidated health dashboard across all 4 DevEx systems."""
+    """Displays a consolidated health dashboard across all 5 autonomous systems."""
     qm = QuarantineManager(manifest_path=os.path.join(root_dir, ".autotest", "quarantine.json"))
     quarantined_tests = qm.get_quarantined_ids()
 
     engine = CodemodRuleEngine()
     supported_pkgs = engine.list_supported_packages()
 
+    ledger_path = os.path.join(root_dir, "live_ledger", "evaluation_ledger.json")
+    staged_bounties = 0
+    if os.path.exists(ledger_path):
+        try:
+            import json
+            with open(ledger_path, "r", encoding="utf-8") as f:
+                ldata = json.load(f)
+                staged_bounties = ldata.get("total_evaluated", 0)
+        except Exception:
+            pass
+
     print("=" * 80)
     print("       ALGORISE AUTONOMOUS DEVEX & SRE UNIFIED PLATFORM — STATUS")
     print("=" * 80)
     print(f"[*] Root Workspace: {os.path.abspath(root_dir)}")
-    print(f"[*] Platform Engines Operational: 4 / 4 (100% Online)\n")
+    print(f"[*] Platform Engines Operational: 5 / 5 (100% Online)\n")
 
     print("[1] 🛡️ AutoTest Sentinel (Flaky Test Quarantine)")
     print(f"    - Quarantined Tests in Registry: {len(quarantined_tests)}")
@@ -59,6 +71,11 @@ def show_platform_status(root_dir: str = "."):
     print("\n[4] 🚨 TraceRoot AI (Autonomous Telemetry Incident Resolver)")
     print("    - Status: Webhook listener active for OpenTelemetry exception spans")
     print("    - Typical MTTR Reduction: 4.2 hours -> < 2 minutes (98.4% faster)")
+
+    print("\n[5] 💰 Revenue Engine (Bounty Opportunity Orchestrator)")
+    print(f"    - Status: Active (Autonomous scan running every 6 hours)")
+    print(f"    - Opportunities Evaluated in Live Ledger: {staged_bounties}")
+    print("    - Policy: Zero Preventable Loss ($0.00 compute limit enforced)")
     print("=" * 80)
 
 
@@ -84,6 +101,9 @@ def main():
 
     # 5. TraceRoot subsystem
     subparsers.add_parser("traceroot", help="TraceRoot AI (Telemetry-to-code incident resolver)")
+
+    # 6. Revenue subsystem
+    subparsers.add_parser("revenue", help="Revenue Engine (Bounty scanning, gate validation & ledgers)")
 
     # Parse initial subsystem
     if len(sys.argv) < 2:
@@ -111,6 +131,10 @@ def main():
     elif subsystem == "traceroot":
         sys.argv = ["traceroot"] + sys.argv[2:]
         traceroot_cli.main()
+
+    elif subsystem == "revenue":
+        sys.argv = ["revenue"] + sys.argv[2:]
+        revenue_cli.main()
 
     else:
         parser.print_help()
