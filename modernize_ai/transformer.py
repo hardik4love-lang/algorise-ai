@@ -20,6 +20,18 @@ class CodemodVisitor(ast.NodeTransformer):
         self.transformations_count = 0
 
     def visit_ImportFrom(self, node: ast.ImportFrom) -> ast.AST:
+        # If importing from datetime and replacing utcnow with timezone.utc, ensure timezone is imported
+        if node.module == "datetime":
+            has_utcnow_rule = any(
+                r.source_symbol == "utcnow" and r.rule_type == RuleType.REPLACE_CALL_WITH_EXPR
+                for r in self.rules
+            )
+            if has_utcnow_rule:
+                imported_names = {alias.name for alias in node.names}
+                if "timezone" not in imported_names:
+                    node.names.append(ast.alias(name="timezone"))
+                    self.transformations_count += 1
+
         for rule in self.rules:
             if rule.rule_type == RuleType.REPLACE_IMPORT:
                 if rule.old_module and node.module == rule.old_module:
