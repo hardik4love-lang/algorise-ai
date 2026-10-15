@@ -65,7 +65,7 @@
   {
     "repo": "tenstorrent/tt-metal",
     "number": 60613,
-    "title": "[ops] ttnn.sort: fp32 NaN sorts past the \u00c2\u00b1inf padding, so padding indices leak on every factory",
+    "title": "[ops] ttnn.sort: fp32 NaN sorts past the \u00b1inf padding, so padding indices leak on every factory",
     "url": "https://github.com/tenstorrent/tt-metal/issues/60613",
     "created_at": "2026-10-14T17:48:28Z",
     "labels": [
@@ -78,6 +78,205 @@
     "is_bounty": false,
     "is_critical": true,
     "priority_score": 40.13
+  },
+  {
+    "repo": "veracindarella/paystream-contracts",
+    "number": 319,
+    "title": "PROD-30: Add bounty issue labels and automation script",
+    "url": "https://github.com/veracindarella/paystream-contracts/issues/319",
+    "created_at": "2026-10-15T09:10:49Z",
+    "labels": [
+      "enhancement",
+      "devops"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "dev-kp-eloper/BountyScout",
+    "number": 1594,
+    "title": "\ud83c\udfaf Bounty Alert: 19 New Opportunityies found",
+    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1594",
+    "created_at": "2026-10-15T08:59:44Z",
+    "labels": [
+      "bounty-alert"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 506,
+    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/freshness\uff09protected_floor \u53ea\u8ba4 protect.is_protected \u4e09\u6761\u771f\u6e90\u4e2d\u7684\u4e00\u6761\uff1a\u5c42\u4fdd\u62a4\uff08self/anchor\uff09\u4e0e\u6309\u5206\u4fdd\u62a4\uff08importance\u22650.70\uff09\u8282\u70b9\u5728\u68c0\u7d22\u671f\u62ff SCORE_FLOOR \u800c\u975e\u4fdd\u62a4\u4e0b\u754c\uff0c30 \u5929\u540e\u6392\u5e8f\u5206\u5dee 1.56 \u500d\u30011 \u5e74\u540e\u5dee 778 \u500d\uff1b\u5b88\u536b\u81ea\u5df1\u628a\u53d7\u4fdd\u62a4\u5939\u5177\u9489\u6210\u300c\u672a\u4fdd\u62a4\u300d\uff0cP1",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/506",
+    "created_at": "2026-10-15T08:56:02Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 158,
+    "title": "Codegen: expression-form `?` eagerly executes skipped `&&` / `||` operands",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/158",
+    "created_at": "2026-10-15T08:53:02Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "freedom-winds/BountyScout",
+    "number": 1255,
+    "title": "\ud83c\udfaf Bounty Alert: 18 New Opportunityies found",
+    "url": "https://github.com/freedom-winds/BountyScout/issues/1255",
+    "created_at": "2026-10-15T08:51:19Z",
+    "labels": [
+      "bounty-alert"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "PHASE-STELLAR/Phase",
+    "number": 428,
+    "title": "# Spike 564 \u2014 Deny-list governance v2: appeals, TTL, signed vetoes and cross-surface propagation",
+    "url": "https://github.com/PHASE-STELLAR/Phase/issues/428",
+    "created_at": "2026-10-15T08:49:50Z",
+    "labels": [
+      "help wanted",
+      "SPIKE",
+      "advanced"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 505,
+    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1alimit=None \u65f6 query_nodes/get_recent_context/get_nodes_by_tag \u629b IntegrityError\uff0c\u800c\u540c\u65cf query_nodes_by_time \u53e3\u5f84\uff08None=\u5168\u91cf\uff09\u6b63\u5e38",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/505",
+    "created_at": "2026-10-15T08:45:25Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "alston-personal/agentmanager",
+    "number": 2003,
+    "title": "Bounty Golden Path v1: qualified paid-issue discovery \u2192 governed execution \u2192 verified payout",
+    "url": "https://github.com/alston-personal/agentmanager/issues/2003",
+    "created_at": "2026-10-15T08:42:58Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "soroban-tooling/soroban-keeper-network",
+    "number": 747,
+    "title": "docs(security): bug bounty scope and rewards",
+    "url": "https://github.com/soroban-tooling/soroban-keeper-network/issues/747",
+    "created_at": "2026-10-15T08:41:26Z",
+    "labels": [
+      "docs",
+      "intermediate",
+      "security"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 504,
+    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/whitebox_kb/aeis_core\uff09LayeredStore.decay_cycle \u7684 CONTEXT \u8282\u70b9\u5206\u652f\u4e0d\u770b\u8c41\u514d\u6807\u8bb0\uff1a\u8d70 protect_node \u6b63\u5f0f\u63a5\u53e3\u767b\u8bb0\u7684\u300c\u4e0d\u53ef\u9057\u5fd8\u300d\u8282\u70b9\u4ecd\u5728\u7b2c 55 \u8f6e\u88ab\u771f\u5220\u9664\uff0c\u4e14\u5220\u9664\u65f6\u8fde\u5e26\u5207\u65ad\u5176\u5168\u90e8\u90bb\u63a5\u8fb9\uff1b\u5168\u4ed3\u96f6\u5b88\u536b\uff0cP1",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/504",
+    "created_at": "2026-10-15T08:37:49Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 503,
+    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1afind_rejected_paths \u7684 description+reason \u672a\u9632 NULL\u2014\u2014\u4e00\u884c rejected_paths \u7a7a\u503c\u5373\u8ba9 propose_promotion \u629b TypeError",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/503",
+    "created_at": "2026-10-15T08:35:59Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "PHASE-STELLAR/Phase",
+    "number": 427,
+    "title": "# Spike 563 \u2014 Generalized bot-gate mesh: Turnstile plus real hashcash plus fallback CAPTCHA",
+    "url": "https://github.com/PHASE-STELLAR/Phase/issues/427",
+    "created_at": "2026-10-15T08:35:26Z",
+    "labels": [
+      "help wanted",
+      "SPIKE",
+      "advanced"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraloom-labs/paraloom-prover-wasm",
+    "number": 6,
+    "title": "[BOUNTY] Medium: prove_transact 64-bit leaf_index truncation mismatch and silent invalid proof emission on unsatisfied witness invariants",
+    "url": "https://github.com/paraloom-labs/paraloom-prover-wasm/issues/6",
+    "created_at": "2026-10-15T08:30:42Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 155,
+    "title": "[soundness] `?` is never checked against its operand \u2014 on option/int/closure-local calls accepted with 0 diagnostics and emits non-compiling Go (E4/T20 unimplemented)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/155",
+    "created_at": "2026-10-15T08:28:27Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 502,
+    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1aescalation_points \u7684 condition/trigger \u4e3a NULL \u65f6 check_escalation \u629b TypeError\u2014\u2014list_escalation_points \u539f\u6837\u8fd4\u56de None",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/502",
+    "created_at": "2026-10-15T08:25:50Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
   },
   {
     "repo": "BasedHardware/omi",
