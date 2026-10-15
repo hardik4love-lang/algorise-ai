@@ -1,11 +1,119 @@
 {
   "ledger_id": "50e13134-b0d6-42b0-a0df-89fa27274e49",
-  "timestamp": "2026-10-15T02:56:43.497625+00:00",
+  "timestamp": "2026-10-15T16:17:37.158273+00:00",
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
-  "total_evaluated": 10,
+  "total_evaluated": 15,
   "opportunities": [
+    {
+      "task_id": "gh-omi-21521",
+      "title": "fix(watch): stop Apple Watch recording on disconnect or forget device (#20780)",
+      "repository": "BasedHardware/omi",
+      "url": "https://github.com/BasedHardware/omi/pull/21521",
+      "gross_payout_usd": 100.0,
+      "expected_net_revenue": 100.0,
+      "prioritization_score": 99.0,
+      "confidence_score": 1.0,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe",
+        "maintainer_approved",
+        "merged_to_main"
+      ],
+      "status": "MERGED_WON_PAYOUT_PENDING",
+      "merged_by": "kodjima33 (Nik Shevchenko)",
+      "created_at": "2026-10-15T16:17:37.158211+00:00"
+    },
+    {
+      "task_id": "gh-tt-60777",
+      "title": "[Bug fix] ttnn.sort: pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",
+      "repository": "tenstorrent/tt-metal",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
+      "gross_payout_usd": 200.0,
+      "expected_net_revenue": 200.0,
+      "prioritization_score": 85.0,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "OPEN_SUBMITTED_AWAITING_REVIEW",
+      "created_at": "2026-10-15T16:17:37.158234+00:00"
+    },
+    {
+      "task_id": "gh-omi-21524",
+      "title": "fix(ble): retry failed codec reads and prevent defaulting to PCM8 (#20779)",
+      "repository": "BasedHardware/omi",
+      "url": "https://github.com/BasedHardware/omi/pull/21524",
+      "gross_payout_usd": 75.0,
+      "expected_net_revenue": 75.0,
+      "prioritization_score": 80.0,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "IN_REVIEW_CHANGES_ADDRESSED",
+      "created_at": "2026-10-15T16:17:37.158244+00:00"
+    },
+    {
+      "task_id": "gh-omi-21671",
+      "title": "fix(deploy): specify --cpu=2 for backend-sync to support 6Gi/8Gi memory (#21668)",
+      "repository": "BasedHardware/omi",
+      "url": "https://github.com/BasedHardware/omi/pull/21671",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 50.0,
+      "prioritization_score": 75.0,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "OPEN_MERGEABLE",
+      "created_at": "2026-10-15T16:17:37.158250+00:00"
+    },
+    {
+      "task_id": "h1-4115591",
+      "title": "Actions Toolkit Unquoted Expression Injection in releases.yml",
+      "repository": "actions/toolkit",
+      "url": "https://hackerone.com/bugs?report_id=4115591",
+      "gross_payout_usd": 15000.0,
+      "expected_net_revenue": 15000.0,
+      "prioritization_score": 95.0,
+      "confidence_score": 0.98,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "SUBMITTED_AWAITING_TRIAGE",
+      "created_at": "2026-10-15T16:17:37.158256+00:00"
+    },
     {
       "task_id": "gh-5021",
       "title": "bounty bounty bounty bounty bounty bounty bounty bounty bounty ",
