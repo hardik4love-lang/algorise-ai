@@ -97,9 +97,10 @@
         "within_quotas",
         "risk_acceptable",
         "tools_authorized",
-        "idempotent_safe"
+        "idempotent_safe",
+        "reviewer_approved"
       ],
-      "status": "IN_REVIEW_CHANGES_ADDRESSED",
+      "status": "APPROVED_BY_COLLABORATOR",
       "created_at": "2026-10-15T16:17:37.158244+00:00"
     },
     {
