@@ -57,6 +57,31 @@
       "created_at": "2026-10-15T16:17:37.158234+00:00"
     },
     {
+      "task_id": "gh-tt-60791",
+      "title": "[Bug fix] layernorm_welford: reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)",
+      "repository": "tenstorrent/tt-metal",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
+      "gross_payout_usd": 200.0,
+      "expected_net_revenue": 200.0,
+      "prioritization_score": 90.0,
+      "confidence_score": 0.98,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe",
+        "cycode_sast_passed",
+        "cycode_secrets_passed",
+        "cycode_licenses_passed",
+        "cycode_dependencies_passed"
+      ],
+      "status": "OPEN_SUBMITTED_CHECKS_PASSING",
+      "created_at": "2026-10-15T17:24:50+00:00"
+    },
+    {
       "task_id": "gh-omi-21524",
       "title": "fix(ble): retry failed codec reads and prevent defaulting to PCM8 (#20779)",
       "repository": "BasedHardware/omi",

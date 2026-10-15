@@ -55,6 +55,14 @@ TRACKED_PRS = [
         "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
         "bounty_est": "$100 - $300",
         "role": "Hardware Bitonic Sort Op Bugfix"
+    },
+    {
+        "repo": "tenstorrent/tt-metal",
+        "pr_number": 60791,
+        "title": "fix(ops): reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)",
+        "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
+        "bounty_est": "$100 - $300",
+        "role": "Welford Layernorm LLK Assert Op Bugfix"
     }
 ]
 

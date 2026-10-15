@@ -1,37 +1,5 @@
 [
   {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60764,
-    "title": "[Bug] layernorm_welford trips the unp_A_dst_format LLK assert for fp32 input on Wormhole and hangs the device",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60764",
-    "created_at": "2026-10-15T14:32:21Z",
-    "labels": [
-      "bug",
-      "community"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60670,
-    "title": "Wan2.2 T2V VAE decode regressed ~2x on BH galaxy between 2026-09-14 and 09-15 nightlies; bh_sc1 e2e job red since",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60670",
-    "created_at": "2026-10-14T23:57:15Z",
-    "labels": [
-      "bug",
-      "models",
-      "blackhole",
-      "perf"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
     "repo": "BasedHardware/omi",
     "number": 21678,
     "title": "Bounty Proposal: Hume Webhook Callback Resilience & Malformed Payload Hardening ($50 USD)",
@@ -90,6 +58,21 @@
     "is_bounty": false,
     "is_critical": true,
     "priority_score": 40.05
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60764,
+    "title": "[Bug] layernorm_welford trips the unp_A_dst_format LLK assert for fp32 input on Wormhole and hangs the device",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60764",
+    "created_at": "2026-10-15T14:32:21Z",
+    "labels": [
+      "bug",
+      "community"
+    ],
+    "competing_prs": 2,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.98
   },
   {
     "repo": "elizaOS/eliza",
