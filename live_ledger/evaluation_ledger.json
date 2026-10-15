@@ -26,9 +26,14 @@
         "maintainer_approved",
         "merged_to_main"
       ],
-      "status": "MERGED_WON_PAYOUT_PENDING",
+      "status": "PAYOUT_CLAIM_DISPATCHED",
       "merged_by": "kodjima33 (Nik Shevchenko)",
-      "created_at": "2026-10-15T16:17:37.158211+00:00"
+      "created_at": "2026-10-15T16:17:37.158211+00:00",
+      "payout_details": {
+        "method": "paypal",
+        "email": "shruhicollections@gmail.com",
+        "claim_email_recipient": "team@basedhardware.com"
+      }
     },
     {
       "task_id": "gh-tt-60777",
