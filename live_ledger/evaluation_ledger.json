@@ -119,10 +119,18 @@
         "within_quotas",
         "risk_acceptable",
         "tools_authorized",
-        "idempotent_safe"
+        "idempotent_safe",
+        "maintainer_approved",
+        "merged_to_main"
       ],
-      "status": "OPEN_MERGEABLE",
-      "created_at": "2026-10-15T16:17:37.158250+00:00"
+      "status": "PAYOUT_CLAIM_DISPATCHED",
+      "merged_by": "Git-on-my-level",
+      "created_at": "2026-10-15T16:17:37.158250+00:00",
+      "payout_details": {
+        "method": "paypal",
+        "email": "shruhicollections@gmail.com",
+        "claim_email_recipient": "team@basedhardware.com"
+      }
     },
     {
       "task_id": "gh-omi-21768",
