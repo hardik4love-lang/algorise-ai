@@ -105,6 +105,11 @@ def main():
     # 6. Revenue subsystem
     subparsers.add_parser("revenue", help="Revenue Engine (Bounty scanning, gate validation & ledgers)")
 
+    # 7. API Gateway subsystem
+    api_parser = subparsers.add_parser("api", help="Start the DevEx Commercial Metering API Gateway")
+    api_parser.add_argument("--host", default="127.0.0.1", help="Host interface to bind to")
+    api_parser.add_argument("--port", type=int, default=8000, help="Port to listen on")
+
     # Parse initial subsystem
     if len(sys.argv) < 2:
         parser.print_help()
@@ -135,6 +140,12 @@ def main():
     elif subsystem == "revenue":
         sys.argv = ["revenue"] + sys.argv[2:]
         revenue_cli.main()
+
+    elif subsystem == "api":
+        args = parser.parse_args()
+        import uvicorn
+        print(f"[*] Starting Algorise DevEx Gateway on http://{args.host}:{args.port}")
+        uvicorn.run("devex.api:app", host=args.host, port=args.port, reload=False)
 
     else:
         parser.print_help()
