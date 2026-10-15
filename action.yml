@@ -38,5 +38,8 @@ runs:
     - name: Execute Algorise DevEx Engine
       id: run_devex
       shell: bash
+      env:
+        DEVEX_CMD: ${{ inputs.command }}
+        DEVEX_ARGS: ${{ inputs.args }}
       run: |
-        devex ${{ inputs.command }} ${{ inputs.args }}
+        devex "$DEVEX_CMD" $DEVEX_ARGS

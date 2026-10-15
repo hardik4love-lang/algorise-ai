@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  algorise-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: algorise-devex-api
+    command: ["python", "-m", "uvicorn", "engine.main:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV=development
+      - REDIS_URL=redis://redis:6379/0
+      - DATABASE_URL=postgresql+asyncpg://algorise:algorise_pass@postgres:5432/algorise_db
+    depends_on:
+      - redis
+      - postgres
+    restart: unless-stopped
+    networks:
+      - algorise-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: algorise-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    volumes:
+      - redis-data:/data
+    networks:
+      - algorise-net
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: algorise-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=algorise
+      - POSTGRES_PASSWORD=algorise_pass
+      - POSTGRES_DB=algorise_db
+    restart: unless-stopped
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - algorise-net
+
+volumes:
+  redis-data:
+  pg-data:
+
+networks:
+  algorise-net:
+    driver: bridge
