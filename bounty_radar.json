@@ -1,6 +1,21 @@
 [
   {
     "repo": "tenstorrent/tt-metal",
+    "number": 60764,
+    "title": "[Bug] layernorm_welford trips the unp_A_dst_format LLK assert for fp32 input on Wormhole and hangs the device",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60764",
+    "created_at": "2026-10-15T14:32:21Z",
+    "labels": [
+      "bug",
+      "community"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
     "number": 60670,
     "title": "Wan2.2 T2V VAE decode regressed ~2x on BH galaxy between 2026-09-14 and 09-15 nightlies; bh_sc1 e2e job red since",
     "url": "https://github.com/tenstorrent/tt-metal/issues/60670",
@@ -10,20 +25,6 @@
       "models",
       "blackhole",
       "perf"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60650,
-    "title": "[ttnn.concat]: bfloat8_b last-dim concat with 32-wide inputs takes the transpose fallback on Blackhole and changes values",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60650",
-    "created_at": "2026-10-14T22:06:48Z",
-    "labels": [
-      "bug"
     ],
     "competing_prs": 0,
     "is_bounty": false,
@@ -41,238 +42,6 @@
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 20.05
-  },
-  {
-    "repo": "dev-kp-eloper/BountyScout",
-    "number": 1595,
-    "title": "\ud83c\udfaf Bounty Alert: 17 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1595",
-    "created_at": "2026-10-15T14:07:07Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "OracleDesk/OracleDesk-SmartContract",
-    "number": 149,
-    "title": "Pay resolution bounties to permissionless callers of resolve_price and finalize_signers",
-    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/149",
-    "created_at": "2026-10-15T14:05:26Z",
-    "labels": [
-      "enhancement",
-      "complexity/large",
-      "contracts"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "OracleDesk/OracleDesk-SmartContract",
-    "number": 101,
-    "title": "Add a keeper agent that resolves, finalizes and settles markets automatically",
-    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/101",
-    "created_at": "2026-10-15T13:58:43Z",
-    "labels": [
-      "enhancement",
-      "agents",
-      "complexity/large"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "freedom-winds/BountyScout",
-    "number": 1256,
-    "title": "\ud83c\udfaf Bounty Alert: 18 New Opportunityies found",
-    "url": "https://github.com/freedom-winds/BountyScout/issues/1256",
-    "created_at": "2026-10-15T13:56:56Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 598,
-    "title": "intake: \u63d2\u4ef6\u6d4b\u8bc4\u62a5\u544a \u00b7 dsh-ops 0.3.0\uff08Windows x64 \u539f\u751f shell/\u6587\u4ef6\u5de5\u5177\u96c6\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/598",
-    "created_at": "2026-10-15T13:54:22Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 597,
-    "title": "[intake \u8f93\u5165] lingshu \u53ea\u8bfb\u5b89\u5168\u5ba1\u8ba1\uff08\u7b2c\u4e8c\u8f6e\uff09\uff1a7 \u6761\u589e\u91cf\u53d1\u73b0\uff081\u00d7P1 / 6\u00d7P2\uff09+ 2 \u6761\u65e2\u6709 P0 \u7684\u72ec\u7acb\u590d\u6838\u8bc1\u636e + \u5168\u91cf 2149 \u7528\u4f8b\u9996\u8dd1\u8bfb\u6570\uff1b\u542b 9 \u5904\u81ea\u6211\u8bef\u62a5\u62e6\u4e0b\u7559\u75d5",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/597",
-    "created_at": "2026-10-15T13:52:56Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "OracleDesk/OracleDesk-SmartContract",
-    "number": 45,
-    "title": "Add permissionless settlement of treasury positions and exposure release",
-    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/45",
-    "created_at": "2026-10-15T13:50:56Z",
-    "labels": [
-      "enhancement",
-      "complexity/large",
-      "contracts"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "OracleDesk/OracleDesk-SmartContract",
-    "number": 38,
-    "title": "Add permissionless Reflector price snapshots to survive oracle history retention",
-    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/38",
-    "created_at": "2026-10-15T13:49:58Z",
-    "labels": [
-      "bug",
-      "complexity/large",
-      "contracts"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 595,
-    "title": "hive-memory-bench: `check_all.py` \u7684 `check_card` \u6536\u4e0b `units` \u5374\u4e0d\u8bfb",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/595",
-    "created_at": "2026-10-15T13:44:30Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 594,
-    "title": "hive-memory-bench \u2014 `score_points` \u7684 `field` \u53c2\u6570\u4e0d\u8bfb\uff1a\u8bc4\u5206\u5236\u7f3a\u4e00\u4e2a\u7ef4\u5ea6\u5165\u53e3",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/594",
-    "created_at": "2026-10-15T13:43:13Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 593,
-    "title": "hive-memory-bench: `judge_audit.py` \u7684 `evaluate_anchors` \u4e0d\u8bfb `verdict`",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/593",
-    "created_at": "2026-10-15T13:39:40Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "momoponwork1415-lgtm/wordpress-bounty-harness",
-    "number": 270,
-    "title": "2026-10-15\u30ec\u30d3\u30e5\u30fc: pilot\u524d\u306b\u63a2\u7d22\u306e\u53d6\u308a\u3053\u307c\u3057\u7d4c\u8def\u3092\u9589\u3058\u3001\u4f5c\u308a\u8fbc\u307f\u306e\u505c\u6b62\u6761\u4ef6\u3092\u6c7a\u3081\u308b",
-    "url": "https://github.com/momoponwork1415-lgtm/wordpress-bounty-harness/issues/270",
-    "created_at": "2026-10-15T13:38:37Z",
-    "labels": [
-      "needs-triage"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 592,
-    "title": "hive-memory-bench \u00b7 `judge.py` \u7684 `axis_evidence`\uff1a`card` \u4e0e `open_mode` \u90fd\u6ca1\u843d\u70b9",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/592",
-    "created_at": "2026-10-15T13:38:10Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 206,
-    "title": "[soundness] Closure ascribed locals, closure assignments, and self/peer rebinds erase non_owned_origin and may_share (follow-up gaps in #75/#137/#141)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/206",
-    "created_at": "2026-10-15T13:37:34Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 591,
-    "title": "hive-memory-bench / `chain/tools/synth.py`\uff1a`build_keys` \u7684\u968f\u673a\u6e90 `rng` \u88ab\u4e22\u5f03",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/591",
-    "created_at": "2026-10-15T13:36:23Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21217,
-    "title": "Offline backlog older than 30 days is permanently refused with no bulk export or recovery path",
-    "url": "https://github.com/BasedHardware/omi/issues/21217",
-    "created_at": "2026-10-11T14:36:18Z",
-    "labels": [
-      "bug",
-      "capture"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21216,
-    "title": "Paid users repeatedly hit 'Omi servers are busy' during sync and their offline backlog keeps growing",
-    "url": "https://github.com/BasedHardware/omi/issues/21216",
-    "created_at": "2026-10-11T14:35:05Z",
-    "labels": [
-      "bug",
-      "capture"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
   },
   {
     "repo": "tenstorrent/tt-metal",
@@ -323,18 +92,6 @@
     "priority_score": 40.05
   },
   {
-    "repo": "BasedHardware/omi",
-    "number": 21218,
-    "title": "[Bounty proposal] fix(action-items): completing an already-completed task rewrites its completed_at ($40 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21218",
-    "created_at": "2026-10-11T14:41:46Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.83
-  },
-  {
     "repo": "elizaOS/eliza",
     "number": 35929,
     "title": "Cloud phone sign-in fails: Login Twilio Verify rejects credentials (401 / 20003)",
@@ -359,39 +116,15 @@
     "priority_score": 19.83
   },
   {
-    "repo": "BasedHardware/omi",
-    "number": 21223,
-    "title": "[Bounty proposal] fix(cli): omi chat is unreachable after omi auth login --browser, the login it asks for ($75 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21223",
-    "created_at": "2026-10-11T15:06:25Z",
-    "labels": [],
-    "competing_prs": 4,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.75
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21220,
-    "title": "[Bounty proposal] fix(notifications): timezone validators accept zones the daily-summary scheduler never selects ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21220",
-    "created_at": "2026-10-11T14:51:33Z",
-    "labels": [],
-    "competing_prs": 4,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.75
-  },
-  {
     "repo": "elizaOS/eliza",
     "number": 34820,
     "title": "Track Shared iMessage and Cloud launch acceptance, diagnostics, and Dedicated backups",
     "url": "https://github.com/elizaOS/eliza/issues/34820",
     "created_at": "2026-10-10T05:07:43Z",
     "labels": [],
-    "competing_prs": 12,
+    "competing_prs": 14,
     "is_bounty": false,
     "is_critical": false,
-    "priority_score": 19.15
+    "priority_score": 19.0
   }
 ]

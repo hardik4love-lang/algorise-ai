@@ -47,6 +47,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21671",
         "bounty_est": "P0 Hotfix",
         "role": "Main CI Outage Restoration"
+    },
+    {
+        "repo": "tenstorrent/tt-metal",
+        "pr_number": 60777,
+        "title": "fix(ops): pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",
+        "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
+        "bounty_est": "$100 - $300",
+        "role": "Hardware Bitonic Sort Op Bugfix"
     }
 ]
 
