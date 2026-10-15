@@ -1,38 +1,6 @@
 [
   {
     "repo": "tenstorrent/tt-metal",
-    "number": 60694,
-    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding subtile-broadcast branch skips L1 and output-shard checks, throws or hangs on DRAM-sharded / off-grid output (#58407 item 15)",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60694",
-    "created_at": "2026-10-15T03:47:32Z",
-    "labels": [
-      "bug",
-      "op_cat: eltwise",
-      "MCW"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60693,
-    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding scalar branch skips L1 and output-shard checks, aliases DRAM / off-grid buffers as CBs (#58407 item 14)",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60693",
-    "created_at": "2026-10-15T03:47:28Z",
-    "labels": [
-      "bug",
-      "op_cat: eltwise",
-      "MCW"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
     "number": 60670,
     "title": "Wan2.2 T2V VAE decode regressed ~2x on BH galaxy between 2026-09-14 and 09-15 nightlies; bh_sc1 e2e job red since",
     "url": "https://github.com/tenstorrent/tt-metal/issues/60670",
@@ -80,40 +48,11 @@
     "priority_score": 40.13
   },
   {
-    "repo": "veracindarella/paystream-contracts",
-    "number": 319,
-    "title": "PROD-30: Add bounty issue labels and automation script",
-    "url": "https://github.com/veracindarella/paystream-contracts/issues/319",
-    "created_at": "2026-10-15T09:10:49Z",
-    "labels": [
-      "enhancement",
-      "devops"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "dev-kp-eloper/BountyScout",
-    "number": 1594,
-    "title": "\ud83c\udfaf Bounty Alert: 19 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1594",
-    "created_at": "2026-10-15T08:59:44Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 506,
-    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/freshness\uff09protected_floor \u53ea\u8ba4 protect.is_protected \u4e09\u6761\u771f\u6e90\u4e2d\u7684\u4e00\u6761\uff1a\u5c42\u4fdd\u62a4\uff08self/anchor\uff09\u4e0e\u6309\u5206\u4fdd\u62a4\uff08importance\u22650.70\uff09\u8282\u70b9\u5728\u68c0\u7d22\u671f\u62ff SCORE_FLOOR \u800c\u975e\u4fdd\u62a4\u4e0b\u754c\uff0c30 \u5929\u540e\u6392\u5e8f\u5206\u5dee 1.56 \u500d\u30011 \u5e74\u540e\u5dee 778 \u500d\uff1b\u5b88\u536b\u81ea\u5df1\u628a\u53d7\u4fdd\u62a4\u5939\u5177\u9489\u6210\u300c\u672a\u4fdd\u62a4\u300d\uff0cP1",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/506",
-    "created_at": "2026-10-15T08:56:02Z",
+    "repo": "BasedHardware/omi",
+    "number": 21678,
+    "title": "Bounty Proposal: Hume Webhook Callback Resilience & Malformed Payload Hardening ($50 USD)",
+    "url": "https://github.com/BasedHardware/omi/issues/21678",
+    "created_at": "2026-10-15T10:11:38Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -121,25 +60,14 @@
     "priority_score": 20.05
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 158,
-    "title": "Codegen: expression-form `?` eagerly executes skipped `&&` / `||` operands",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/158",
-    "created_at": "2026-10-15T08:53:02Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "freedom-winds/BountyScout",
-    "number": 1255,
-    "title": "\ud83c\udfaf Bounty Alert: 18 New Opportunityies found",
-    "url": "https://github.com/freedom-winds/BountyScout/issues/1255",
-    "created_at": "2026-10-15T08:51:19Z",
+    "repo": "tari-project/special_contributions",
+    "number": 212,
+    "title": "Contribution: fix(networking): add a transport upgrade timeout to bound pending inbound connections (tari-project/tari-ootle#2948)",
+    "url": "https://github.com/tari-project/special_contributions/issues/212",
+    "created_at": "2026-10-15T10:01:17Z",
     "labels": [
-      "bounty-alert"
+      "retro-bounty",
+      "bounty-S"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -147,54 +75,15 @@
     "priority_score": 20.05
   },
   {
-    "repo": "PHASE-STELLAR/Phase",
-    "number": 428,
-    "title": "# Spike 564 \u2014 Deny-list governance v2: appeals, TTL, signed vetoes and cross-surface propagation",
-    "url": "https://github.com/PHASE-STELLAR/Phase/issues/428",
-    "created_at": "2026-10-15T08:49:50Z",
+    "repo": "0xLizTech/stellarforge",
+    "number": 157,
+    "title": "Add a bug bounty program draft",
+    "url": "https://github.com/0xLizTech/stellarforge/issues/157",
+    "created_at": "2026-10-15T09:56:50Z",
     "labels": [
-      "help wanted",
-      "SPIKE",
-      "advanced"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 505,
-    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1alimit=None \u65f6 query_nodes/get_recent_context/get_nodes_by_tag \u629b IntegrityError\uff0c\u800c\u540c\u65cf query_nodes_by_time \u53e3\u5f84\uff08None=\u5168\u91cf\uff09\u6b63\u5e38",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/505",
-    "created_at": "2026-10-15T08:45:25Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "alston-personal/agentmanager",
-    "number": 2003,
-    "title": "Bounty Golden Path v1: qualified paid-issue discovery \u2192 governed execution \u2192 verified payout",
-    "url": "https://github.com/alston-personal/agentmanager/issues/2003",
-    "created_at": "2026-10-15T08:42:58Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "soroban-tooling/soroban-keeper-network",
-    "number": 747,
-    "title": "docs(security): bug bounty scope and rewards",
-    "url": "https://github.com/soroban-tooling/soroban-keeper-network/issues/747",
-    "created_at": "2026-10-15T08:41:26Z",
-    "labels": [
-      "docs",
-      "intermediate",
+      "documentation",
+      "difficulty: medium",
+      "phase-1",
       "security"
     ],
     "competing_prs": 0,
@@ -203,39 +92,14 @@
     "priority_score": 20.05
   },
   {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 504,
-    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/whitebox_kb/aeis_core\uff09LayeredStore.decay_cycle \u7684 CONTEXT \u8282\u70b9\u5206\u652f\u4e0d\u770b\u8c41\u514d\u6807\u8bb0\uff1a\u8d70 protect_node \u6b63\u5f0f\u63a5\u53e3\u767b\u8bb0\u7684\u300c\u4e0d\u53ef\u9057\u5fd8\u300d\u8282\u70b9\u4ecd\u5728\u7b2c 55 \u8f6e\u88ab\u771f\u5220\u9664\uff0c\u4e14\u5220\u9664\u65f6\u8fde\u5e26\u5207\u65ad\u5176\u5168\u90e8\u90bb\u63a5\u8fb9\uff1b\u5168\u4ed3\u96f6\u5b88\u536b\uff0cP1",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/504",
-    "created_at": "2026-10-15T08:37:49Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 503,
-    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1afind_rejected_paths \u7684 description+reason \u672a\u9632 NULL\u2014\u2014\u4e00\u884c rejected_paths \u7a7a\u503c\u5373\u8ba9 propose_promotion \u629b TypeError",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/503",
-    "created_at": "2026-10-15T08:35:59Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "PHASE-STELLAR/Phase",
-    "number": 427,
-    "title": "# Spike 563 \u2014 Generalized bot-gate mesh: Turnstile plus real hashcash plus fallback CAPTCHA",
-    "url": "https://github.com/PHASE-STELLAR/Phase/issues/427",
-    "created_at": "2026-10-15T08:35:26Z",
+    "repo": "tari-project/special_contributions",
+    "number": 211,
+    "title": "Security report: tari-ootle transaction_manifest: address!(\"template_\u2026\") writes a tagged PublishedTemplateAddress that cannot decode into a template's TemplateAddress (ISSUE-2951)",
+    "url": "https://github.com/tari-project/special_contributions/issues/211",
+    "created_at": "2026-10-15T09:55:04Z",
     "labels": [
-      "help wanted",
-      "SPIKE",
-      "advanced"
+      "retro-bounty",
+      "bounty-S"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -243,23 +107,26 @@
     "priority_score": 20.05
   },
   {
-    "repo": "paraloom-labs/paraloom-prover-wasm",
-    "number": 6,
-    "title": "[BOUNTY] Medium: prove_transact 64-bit leaf_index truncation mismatch and silent invalid proof emission on unsatisfied witness invariants",
-    "url": "https://github.com/paraloom-labs/paraloom-prover-wasm/issues/6",
-    "created_at": "2026-10-15T08:30:42Z",
-    "labels": [],
+    "repo": "tari-project/special_contributions",
+    "number": 210,
+    "title": "Security report: tari-ootle walletd: input detection misses six substate kinds the engine requires, so a template, UTXO or receipt argument is rejected after the fee is paid (ISSUE-2950)",
+    "url": "https://github.com/tari-project/special_contributions/issues/210",
+    "created_at": "2026-10-15T09:54:53Z",
+    "labels": [
+      "retro-bounty",
+      "bounty-S"
+    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 20.05
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 155,
-    "title": "[soundness] `?` is never checked against its operand \u2014 on option/int/closure-local calls accepted with 0 diagnostics and emits non-compiling Go (E4/T20 unimplemented)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/155",
-    "created_at": "2026-10-15T08:28:27Z",
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 516,
+    "title": "md_cg \u79df\u6237\u53cd\u67e5\u95f8\u88ab\u767b\u8bb0\u8868\u8def\u5f84\u6ce8\u5165\u65c1\u8def\uff1a`MDCG_TENANT_REGISTRY`\uff08\u8c03\u7528\u65b9\u53ef\u63a7 env\uff09\u6307\u5411\u7a7a/\u635f\u574f\u6587\u4ef6 \u21d2 `_resolve_root` \u53cd\u67e5\u96f6\u547d\u4e2d \u21d2 \u300cA \u7684\u5168\u5c40\u4ee4\u724c + `MDCG_ROOT`=B \u7684\u767b\u8bb0\u6839\u300d\u6062\u590d\u6210 #98 \u539f\u6837\u8de8\u79df\u6237\u8bfb\u5199\u2014\u2014**\u6388\u6743\u68c0\u67e5\u7684\u6570\u636e\u6e90\u672c\u8eab\u53ef\u88ab\u653b\u51fb\u8005\u66ff\u6362**\u3002",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/516",
+    "created_at": "2026-10-15T09:46:56Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -268,11 +135,112 @@
   },
   {
     "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 502,
-    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1aescalation_points \u7684 condition/trigger \u4e3a NULL \u65f6 check_escalation \u629b TypeError\u2014\u2014list_escalation_points \u539f\u6837\u8fd4\u56de None",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/502",
-    "created_at": "2026-10-15T08:25:50Z",
+    "number": 515,
+    "title": "\u3010\u8d21\u732e\u4ea4\u4ed8\u3011lingshu #650 \u5df2\u5408\u5e76\uff1aPillow \u4e0b\u754c 12.2 \u843d\u5728\u5df2\u77e5\u6f0f\u6d1e\u6bb5\uff0bCI \u4e0b\u754c\u6863\u6bcf\u6b21\u5b9e\u88c5\u8be5\u7248\u672c\uff08PR #664 \u2192 merge 8d47095\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/515",
+    "created_at": "2026-10-15T09:45:37Z",
     "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 514,
+    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/trust\uff09\u964d\u7ea7\u8c41\u514d\u5224\u636e\u53ea\u8ba4\u4e24\u6761\u4fdd\u62a4\u771f\u6e90\uff1atrust.stamp:193 \u7684 prot=bool(fm.get(\"protected\") or fm.get(\"immutable\")) \u6f0f\u6389 protect.is_protected \u4e09\u6761\u771f\u6e90\u4e2d\u7684\u5c42\u4fdd\u62a4\uff08self/anchor\uff09\uff0c\u81f4\u5c42\u4fdd\u62a4\u8282\u70b9\u7ecf set_state\uff08\u81ea\u79f0\u300c\u552f\u4e00\u63a8\u8fdb\u5165\u53e3\u300d\uff09\u843d\u76d8\u964d\u7ea7\u65f6\u6536\u4e0d\u5230\u8c41\u514d\uff0ctrust.py \u5168\u6587 0 \u6b21\u5f15\u7528 is_protected/PROTECTED_LAYERS\uff1b\u540c\u6b3e\u5224\u65ad\u5728 lifecycle.py:205 \u9010\u5b57\u8282\u91cd\u590d\uff08#318 \u66fe\u5224\u5b9a\u6210\u7acb\u5e76\u5efa\u8bae\u53e6\u4ef6\uff0c\u672a\u72ec\u7acb\u7acb\u6848\uff09\uff1b\u5b88\u536b test_trust \u4ec5\u76f4\u4f20 protected \u5f62\u53c2\u3001\u4e0d\u6d4b fm \u5f62\u6001\u8bc6\u522b\uff0c\u6253\u6b63\u786e\u4fee\u6cd5\u4ecd 127/0\uff08\u96f6\u5224\u522b\u529b\uff09\uff1b\u6309\u5206\u4fdd\u62a4\u65b9\u5411\u5df2\u88ab cg.add \u81ea\u52a8\u8865\u4f4d\u6d88\u89e3\u3001\u672c\u6761\u4e0d\u4e3b\u5f20\uff0cP1",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/514",
+    "created_at": "2026-10-15T09:39:55Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 513,
+    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/sustain\uff09\u5fc3\u8df3\u53f0\u8d26\u300c\u5931\u8d25\u6863\u5fc5\u987b\u5728\u53f0\u8d26\u53ef\u89c1\u300d\u672a\u5151\u73b0\uff1a\u552f\u4e00\u8bfb\u51fa\u53e3 heartbeat_ledger_stats \u6309 kind==\"beat\" \u8fc7\u6ee4\u4e14\u53ea\u628a\u884c\u964d\u6210 t \u6570\u503c\uff0c\u4e1a\u52a1\u6863\u5931\u8d25\u7684 kind=\"tick\" \u884c\uff08\u5e26 ok=False+error\uff09\u96f6\u8bfb\u51fa\u53e3\u3001kind=\"beat\" \u7684\u5931\u8d25\u5fc3\u8df3\u88ab\u5f53\u6210\u4e00\u6b21\u6b63\u5e38\u5468\u671f\u8ba1\u5165\u300c\u8fde\u7eed\u65e0\u65ad\u300d\uff1b\u5e38\u91cf\u6ce8\u91ca :283 \u81ea\u8ff0 tick \u884c\u300c\u4e0d\u88ab\u8be5\u8fc7\u6ee4\u541e\u6389\u300d\u4e0e\u5b9e\u73b0\u6070\u597d\u76f8\u53cd\uff1bbeat() \u5199\u6233\u5931\u8d25\u5728 last_tick_error \u9762\u4ea6\u4e0d\u53ef\u89c1\uff08\u5355\u5411\u4e0d\u53ef\u89c1\uff09\uff1b\u5b88\u536b test_heartbeat_ledger.py \u4e0d\u6d4b\u8be5\u65b9\u5411\uff08\u6253\u6b63\u786e\u4fee\u6cd5\u4ecd 38/0\uff0c\u96f6\u5224\u522b\u529b\uff09\uff0cP1",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/513",
+    "created_at": "2026-10-15T09:28:59Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 512,
+    "title": "dsh-memory \u65f6\u6548\u8f74\u7f3a\u53e3\u65cf\uff1a\u300c\u5df2\u8fc7\u671f\u300d\u8282\u70b9\u9ed8\u8ba4\u5168\u7a0b\u7167\u5e38\u670d\u52a1\u2014\u2014\u68c0\u7d22\u9ed8\u8ba4\u53ec\u56de\uff08`validity` \u663e\u5f0f\u542f\u7528\u624d\u8fc7\u6ee4\u3001\u5168\u516c\u5171\u5165\u53e3\u7f3a\u7701\u5173\uff09\u3001\u547d\u4e2d\u8ba1\u6570\u7167\u6da8\u3001`promote_memories` \u5347\u683c\u626b\u63cf**\u4e0d\u67e5 `is_expired`**\u2014\u2014\u8fc7\u671f\u6307\u4ee4\u53ef\u88ab\u70d8\u8fdb knowledge \u957f\u671f\u5c42\uff08eTAMP \u65f6\u95f4\u8f74\u53d8\u4f53\uff1a\u65f6\u6548\u5b57\u6bb5\u5b58\u5728\u4f46\u751f\u547d\u5468\u671f\u5404\u9636\u6bb5\u90fd\u4e0d\u6d88\u8d39\uff09\u3002",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/512",
+    "created_at": "2026-10-15T09:27:20Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 511,
+    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1a_tx \u65e0\u5d4c\u5957\u611f\u77e5\u2014\u2014\u5185\u5c42 @_transactional \u7684 commit \u63d0\u524d\u63d0\u4ea4\u6574\u6761\u4e8b\u52a1\uff0c\u5916\u5c42 rollback \u5931\u6548\uff08ingest_frame \u771f\u5b9e\u8def\u5f84\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/511",
+    "created_at": "2026-10-15T09:27:09Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 510,
+    "title": "\u3010\u8d21\u732e\u7533\u62a5\u3011dsh-memory \u4e00\u4ef6\uff1areadcache \u53ea\u5728 MdCGOS \u88c5\u914d\uff0c\u57fa\u7c7b MdCG \u7684\u76f4\u63a5\u4f7f\u7528\u8005\uff08backfill/migrate/build_postings \u7b49 CLI \u5168\u5e93\u626b\u63cf\u5de5\u5177\uff09\u5168\u8d70\u65e0\u7f13\u5b58\u8def\u5f84\u2014\u2014\u540c\u5e93\u540c\u67e5\u8be2 30.6 vs 6.2 ms/\u67e5\u8be2\uff084.9\u00d7\uff09\uff0c\u8bfb\u76d8\u89e3\u6790\u5360 62%\u2014\u2014\u9644\u590d\u73b0\u8bfb\u6570\u4e0e\u67e5\u91cd",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/510",
+    "created_at": "2026-10-15T09:23:09Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Ikalus1988/MisakaNet",
+    "number": 3281,
+    "title": "pr-agent and the shape guard disagree about a quoted closing keyword \u2014 a PR documenting the bug is blocked by it",
+    "url": "https://github.com/Ikalus1988/MisakaNet/issues/3281",
+    "created_at": "2026-10-15T09:23:01Z",
+    "labels": [
+      "needs-ac"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 509,
+    "title": "\u3010\u8d21\u732e\u7533\u62a5\u3011lingshu \u4e09\u4ef6\uff1aadd_node \u540c\u5c42\u539f\u4f4d\u8986\u76d6\u62b9\u6389\u4e0d\u53ef\u9057\u5fd8\u4fdd\u62a4\uff08no_forget \u9759\u9ed8\u4e22\u5931\u3001SUB \u53ef\u6362\u53d7\u4fdd\u62a4\u8282\u70b9\u5185\u5bb9\uff09\uff1bclose() \u540e conn property \u590d\u7528\u6b7b\u8fde\u63a5\uff08\u516c\u5f00\u9762\u5168 ProgrammingError\u3001:memory: \u65b0\u7ebf\u7a0b\u5f97\u7a7a\u5e93\uff09\uff1bM5 \u53bb\u91cd\u5168\u5c42\u626b\u63cf\u4f7f\u5199\u5165\u7ebf\u6027\u9000\u5316\uff089.3\u219244 ms/\u6761\uff0c\u7cbe\u7b80\u5224\u540c\u5b57\u6bb5\u5b9e\u6d4b\u7701 48\u201377%\uff09\u2014\u2014\u9644\u590d\u73b0\u8bfb\u6570\u4e0e\u5168\u91cf\u67e5\u91cd",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/509",
+    "created_at": "2026-10-15T09:22:48Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "veracindarella/paystream-contracts",
+    "number": 338,
+    "title": "OPS-27: Add GitHub label definitions file for consistent labelling",
+    "url": "https://github.com/veracindarella/paystream-contracts/issues/338",
+    "created_at": "2026-10-15T09:16:01Z",
+    "labels": [
+      "devops",
+      "Stellar Wave"
+    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -294,14 +262,31 @@
     "priority_score": 40.05
   },
   {
-    "repo": "BasedHardware/omi",
-    "number": 21216,
-    "title": "Paid users repeatedly hit 'Omi servers are busy' during sync and their offline backlog keeps growing",
-    "url": "https://github.com/BasedHardware/omi/issues/21216",
-    "created_at": "2026-10-11T14:35:05Z",
+    "repo": "tenstorrent/tt-metal",
+    "number": 60694,
+    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding subtile-broadcast branch skips L1 and output-shard checks, throws or hangs on DRAM-sharded / off-grid output (#58407 item 15)",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60694",
+    "created_at": "2026-10-15T03:47:32Z",
     "labels": [
       "bug",
-      "capture"
+      "op_cat: eltwise",
+      "MCW"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60693,
+    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding scalar branch skips L1 and output-shard checks, aliases DRAM / off-grid buffers as CBs (#58407 item 14)",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60693",
+    "created_at": "2026-10-15T03:47:28Z",
+    "labels": [
+      "bug",
+      "op_cat: eltwise",
+      "MCW"
     ],
     "competing_prs": 1,
     "is_bounty": false,
