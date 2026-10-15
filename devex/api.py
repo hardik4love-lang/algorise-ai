@@ -1,14 +1,14 @@
 """
-Algorise DevEx Platform: Commercial Metering Gateway API (TECH-203)
+Algorise DevEx Platform: Commercial Metering Gateway API (TECH-203, TECH-301, TECH-302)
 Provides multi-tenant REST endpoints for centralized flaky test quarantine,
-AST blast radius telemetry, and developer seat metering.
+AST blast radius telemetry, role-based access control (RBAC), and autonomous incident healing mesh.
 """
 
 from __future__ import annotations
 
 import os
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,20 +23,41 @@ from autotest_sentinel.quarantine import QuarantineManager
 from context_pr.blast_radius import BlastRadiusAnalyzer
 
 # ---------------------------------------------------------------------------
-# Multi-Tenant Auth & Metering Registry
+# Multi-Tenant Auth, Scopes & RBAC Registry (TECH-301)
 # ---------------------------------------------------------------------------
+
+ALL_SCOPES = [
+    "quarantine:read",
+    "quarantine:write",
+    "blast_radius:read",
+    "incident:heal",
+    "usage:read",
+    "admin:*",
+]
 
 TENANT_REGISTRY: Dict[str, Dict[str, Any]] = {
     "alg_live_test_key_9981": {
         "client": "Acme Corp",
         "tier": "Enterprise Tier",
+        "role": "admin",
+        "scopes": ALL_SCOPES,
         "quota": 50000,
         "requests_used": 0,
     },
     "alg_demo_client_key_001": {
         "client": "Starlight Labs",
         "tier": "Growth Tier",
+        "role": "developer",
+        "scopes": ["quarantine:read", "quarantine:write", "blast_radius:read", "usage:read"],
         "quota": 10000,
+        "requests_used": 0,
+    },
+    "alg_readonly_key_002": {
+        "client": "Observer Team",
+        "tier": "Viewer Tier",
+        "role": "viewer",
+        "scopes": ["quarantine:read", "blast_radius:read", "usage:read"],
+        "quota": 5000,
         "requests_used": 0,
     },
 }
@@ -47,6 +68,8 @@ if _env_key and _env_key not in TENANT_REGISTRY:
     TENANT_REGISTRY[_env_key] = {
         "client": "Environment Admin",
         "tier": "Enterprise Custom",
+        "role": "admin",
+        "scopes": ALL_SCOPES,
         "quota": 100000,
         "requests_used": 0,
     }
@@ -80,6 +103,19 @@ def authenticate_api_key(
     return tenant
 
 
+def require_scope(required_scope: str) -> Callable:
+    """Enforces fine-grained permission scope check (RBAC) on endpoints."""
+    def scope_checker(tenant: Dict[str, Any] = Depends(authenticate_api_key)) -> Dict[str, Any]:
+        scopes = tenant.get("scopes", [])
+        if "admin:*" in scopes or required_scope in scopes:
+            return tenant
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail=f"Forbidden: Insufficient privileges. Required scope: '{required_scope}'.",
+        )
+    return scope_checker
+
+
 # ---------------------------------------------------------------------------
 # FastAPI Application & Request Models
 # ---------------------------------------------------------------------------
@@ -87,7 +123,7 @@ def authenticate_api_key(
 app = FastAPI(
     title="Algorise DevEx Commercial Metering Gateway",
     version="1.0.0",
-    description="Enterprise API Gateway for AutoTest Sentinel & ContextPR Blast Radius telemetry.",
+    description="Enterprise API Gateway for AutoTest Sentinel, ContextPR, and Autonomous Healing Mesh.",
 )
 
 app.add_middleware(
@@ -115,6 +151,7 @@ async def metering_headers_middleware(request: Request, call_next):
         tenant = TENANT_REGISTRY[key]
         response.headers["X-Algorise-Tenant"] = tenant["client"]
         response.headers["X-Algorise-Tier"] = tenant["tier"]
+        response.headers["X-Algorise-Role"] = tenant.get("role", "developer")
         response.headers["X-Algorise-Requests-Used"] = str(tenant["requests_used"])
         response.headers["X-Algorise-Quota-Remaining"] = str(
             max(0, tenant["quota"] - tenant["requests_used"])
@@ -139,6 +176,16 @@ class BlastRadiusRequest(BaseModel):
     root_dir: Optional[str] = Field(None, description="Root directory to analyze. Defaults to current directory.")
 
 
+class IncidentHealRequest(BaseModel):
+    incident_id: str = Field(..., description="Unique incident identifier, e.g. INC-901")
+    service_name: str = Field("core-engine", description="Affected microservice name")
+    error_type: str = Field(..., description="Exception type, e.g. KeyError, ZeroDivisionError, AttributeError")
+    error_message: str = Field(..., description="Exception error message string")
+    stack_trace: str = Field(..., description="Raw formatted Python exception traceback")
+    root_dir: Optional[str] = Field(None, description="Repository root directory")
+    auto_stage: bool = Field(False, description="Whether to apply and stage hotfix immediately")
+
+
 # ---------------------------------------------------------------------------
 # API Endpoints
 # ---------------------------------------------------------------------------
@@ -156,17 +203,20 @@ def health_check() -> Dict[str, Any]:
             "context_pr": "OPERATIONAL",
             "modernize_ai": "OPERATIONAL",
             "trace_root_ai": "OPERATIONAL",
+            "healing_mesh": "OPERATIONAL",
             "revenue_engine": "OPERATIONAL",
         },
     }
 
 
 @app.get("/v1/usage")
-def get_usage_metrics(tenant: Dict[str, Any] = Depends(authenticate_api_key)) -> Dict[str, Any]:
+def get_usage_metrics(tenant: Dict[str, Any] = Depends(require_scope("usage:read"))) -> Dict[str, Any]:
     """Returns seat consumption and rate limit quota for the authenticated tenant."""
     return {
         "client": tenant["client"],
         "tier": tenant["tier"],
+        "role": tenant.get("role", "developer"),
+        "scopes": tenant.get("scopes", []),
         "quota": tenant["quota"],
         "requests_used": tenant["requests_used"],
         "quota_remaining": max(0, tenant["quota"] - tenant["requests_used"]),
@@ -177,7 +227,7 @@ def get_usage_metrics(tenant: Dict[str, Any] = Depends(authenticate_api_key)) ->
 def list_quarantined_tests(
     active_only: bool = True,
     manifest_path: Optional[str] = None,
-    tenant: Dict[str, Any] = Depends(authenticate_api_key),
+    tenant: Dict[str, Any] = Depends(require_scope("quarantine:read")),
 ) -> Dict[str, Any]:
     """Retrieves all quarantined test records from the registry."""
     qm = QuarantineManager(manifest_path=manifest_path)
@@ -200,12 +250,11 @@ def list_quarantined_tests(
 def add_to_quarantine(
     payload: QuarantineAddRequest,
     manifest_path: Optional[str] = None,
-    tenant: Dict[str, Any] = Depends(authenticate_api_key),
+    tenant: Dict[str, Any] = Depends(require_scope("quarantine:write")),
 ) -> Dict[str, Any]:
     """Declares a test as quarantined to prevent CI pipeline blockage."""
     qm = QuarantineManager(manifest_path=manifest_path)
 
-    # Map string root_cause to RootCauseHypothesis enum if valid
     try:
         cause_enum = RootCauseHypothesis(payload.root_cause)
     except ValueError:
@@ -238,7 +287,7 @@ def add_to_quarantine(
 def remove_from_quarantine(
     test_id: str,
     manifest_path: Optional[str] = None,
-    tenant: Dict[str, Any] = Depends(authenticate_api_key),
+    tenant: Dict[str, Any] = Depends(require_scope("quarantine:write")),
 ) -> Dict[str, Any]:
     """Removes a healed test from quarantine, restoring it to standard CI execution."""
     qm = QuarantineManager(manifest_path=manifest_path)
@@ -258,7 +307,7 @@ def remove_from_quarantine(
 @app.post("/v1/blast-radius")
 def evaluate_blast_radius(
     payload: BlastRadiusRequest,
-    tenant: Dict[str, Any] = Depends(authenticate_api_key),
+    tenant: Dict[str, Any] = Depends(require_scope("blast_radius:read")),
 ) -> Dict[str, Any]:
     """
     Computes transitive downstream impact graph and risk tier using AST caching.
@@ -296,3 +345,28 @@ def evaluate_blast_radius(
             "cache_misses": analyzer.cache_misses,
         },
     }
+
+
+@app.post("/v1/incidents/heal")
+def heal_production_incident(
+    payload: IncidentHealRequest,
+    tenant: Dict[str, Any] = Depends(require_scope("incident:heal")),
+) -> Dict[str, Any]:
+    """
+    TECH-302: Distributed Autonomous Healing Mesh
+    Correlates incident telemetry, synthesizes localized AST hotfix, and validates blast radius.
+    """
+    from trace_root_ai.mesh import AutonomousHealingMesh
+    from trace_root_ai.models import IncidentPayload
+
+    incident = IncidentPayload(
+        incident_id=payload.incident_id,
+        service_name=payload.service_name,
+        error_type=payload.error_type,
+        error_message=payload.error_message,
+        raw_stack_trace=payload.stack_trace,
+    )
+
+    mesh = AutonomousHealingMesh(root_dir=payload.root_dir or ".")
+    result = mesh.process_incident(incident=incident, auto_stage=payload.auto_stage)
+    return result.model_dump()
