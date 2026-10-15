@@ -30,6 +30,12 @@ PR_TARGETS = [
         "pr_number": 21524,
         "title": "fix(ble): retry failed codec reads and prevent defaulting to PCM8 (#20779)",
         "url": "https://github.com/BasedHardware/omi/pull/21524"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21671,
+        "title": "fix(deploy): specify --cpu=2 for backend-sync to support 6Gi/8Gi memory (#21668)",
+        "url": "https://github.com/BasedHardware/omi/pull/21671"
     }
 ]
 
