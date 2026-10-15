@@ -63,6 +63,14 @@ TRACKED_PRS = [
         "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
         "bounty_est": "$100 - $300",
         "role": "Welford Layernorm LLK Assert Op Bugfix"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21768,
+        "title": "fix(bee): support 3-byte millivolts battery format and clamp legacy percentage (#21749)",
+        "url": "https://github.com/BasedHardware/omi/pull/21768",
+        "bounty_est": "$50 - $100",
+        "role": "Bee Frontier Battery Parser Stability"
     }
 ]
 

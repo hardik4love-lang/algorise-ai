@@ -124,6 +124,28 @@
       "created_at": "2026-10-15T16:17:37.158250+00:00"
     },
     {
+      "task_id": "gh-omi-21768",
+      "title": "fix(bee): support 3-byte millivolts battery format and clamp legacy percentage (#21749)",
+      "repository": "BasedHardware/omi",
+      "url": "https://github.com/BasedHardware/omi/pull/21768",
+      "gross_payout_usd": 75.0,
+      "expected_net_revenue": 75.0,
+      "prioritization_score": 85.0,
+      "confidence_score": 0.98,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe",
+        "hermetic_tests_passed"
+      ],
+      "status": "OPEN_SUBMITTED_AWAITING_REVIEW",
+      "created_at": "2026-10-15T19:49:20+00:00"
+    },
+    {
       "task_id": "h1-4115591",
       "title": "Actions Toolkit Unquoted Expression Injection in releases.yml",
       "repository": "actions/toolkit",
