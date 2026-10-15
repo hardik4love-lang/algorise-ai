@@ -1,0 +1,184 @@
+[
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60694,
+    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding subtile-broadcast branch skips L1 and output-shard checks, throws or hangs on DRAM-sharded / off-grid output (#58407 item 15)",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60694",
+    "created_at": "2026-10-15T03:47:32Z",
+    "labels": [
+      "bug",
+      "op_cat: eltwise",
+      "MCW"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60693,
+    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding scalar branch skips L1 and output-shard checks, aliases DRAM / off-grid buffers as CBs (#58407 item 14)",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60693",
+    "created_at": "2026-10-15T03:47:28Z",
+    "labels": [
+      "bug",
+      "op_cat: eltwise",
+      "MCW"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60670,
+    "title": "Wan2.2 T2V VAE decode regressed ~2x on BH galaxy between 2026-09-14 and 09-15 nightlies; bh_sc1 e2e job red since",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60670",
+    "created_at": "2026-10-14T23:57:15Z",
+    "labels": [
+      "bug",
+      "models",
+      "blackhole",
+      "perf"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60650,
+    "title": "[ttnn.concat]: bfloat8_b last-dim concat with 32-wide inputs takes the transpose fallback on Blackhole and changes values",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60650",
+    "created_at": "2026-10-14T22:06:48Z",
+    "labels": [
+      "bug"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60613,
+    "title": "[ops] ttnn.sort: fp32 NaN sorts past the \u00c2\u00b1inf padding, so padding indices leak on every factory",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60613",
+    "created_at": "2026-10-14T17:48:28Z",
+    "labels": [
+      "bug",
+      "op_cat: TM",
+      "community",
+      "ign-ops"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21217,
+    "title": "Offline backlog older than 30 days is permanently refused with no bulk export or recovery path",
+    "url": "https://github.com/BasedHardware/omi/issues/21217",
+    "created_at": "2026-10-11T14:36:18Z",
+    "labels": [
+      "bug",
+      "capture"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21216,
+    "title": "Paid users repeatedly hit 'Omi servers are busy' during sync and their offline backlog keeps growing",
+    "url": "https://github.com/BasedHardware/omi/issues/21216",
+    "created_at": "2026-10-11T14:35:05Z",
+    "labels": [
+      "bug",
+      "capture"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21218,
+    "title": "[Bounty proposal] fix(action-items): completing an already-completed task rewrites its completed_at ($40 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21218",
+    "created_at": "2026-10-11T14:41:46Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.83
+  },
+  {
+    "repo": "elizaOS/eliza",
+    "number": 35929,
+    "title": "Cloud phone sign-in fails: Login Twilio Verify rejects credentials (401 / 20003)",
+    "url": "https://github.com/elizaOS/eliza/issues/35929",
+    "created_at": "2026-10-12T23:56:14Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": false,
+    "is_critical": false,
+    "priority_score": 19.83
+  },
+  {
+    "repo": "elizaOS/eliza",
+    "number": 35132,
+    "title": "Shared iMessage: OpenRouter fallback returns 401 after Cerebras 429",
+    "url": "https://github.com/elizaOS/eliza/issues/35132",
+    "created_at": "2026-10-10T17:24:15Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": false,
+    "is_critical": false,
+    "priority_score": 19.83
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21223,
+    "title": "[Bounty proposal] fix(cli): omi chat is unreachable after omi auth login --browser, the login it asks for ($75 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21223",
+    "created_at": "2026-10-11T15:06:25Z",
+    "labels": [],
+    "competing_prs": 4,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.75
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21220,
+    "title": "[Bounty proposal] fix(notifications): timezone validators accept zones the daily-summary scheduler never selects ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21220",
+    "created_at": "2026-10-11T14:51:33Z",
+    "labels": [],
+    "competing_prs": 4,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.75
+  },
+  {
+    "repo": "elizaOS/eliza",
+    "number": 34820,
+    "title": "Track Shared iMessage and Cloud launch acceptance, diagnostics, and Dedicated backups",
+    "url": "https://github.com/elizaOS/eliza/issues/34820",
+    "created_at": "2026-10-10T05:07:43Z",
+    "labels": [],
+    "competing_prs": 12,
+    "is_bounty": false,
+    "is_critical": false,
+    "priority_score": 19.15
+  }
+]

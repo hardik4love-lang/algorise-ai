@@ -1,17 +1,20 @@
-name: "Bounty Triage & Review Monitor"
+name: "24/7 Autonomous Bounty Hunter & Triage Engine"
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '*/30 * * * *'  # Runs every 30 minutes 24/7
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
-  monitor:
-    name: "Poll Active Pull Requests & Review Alerts"
+  hunt:
+    name: "Autonomous Hunt & PR Triage"
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout Code Repository
         uses: actions/checkout@v4
@@ -22,13 +25,21 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Run Bounty PR Monitor
+      - name: Execute 24/7 Bounty Hunter Cycle
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          python scripts/monitor_bounties.py > monitor_summary.txt
-          cat monitor_summary.txt
-          echo "### 📡 Bounty Triage Status Report" >> $GITHUB_STEP_SUMMARY
-          echo '```text' >> $GITHUB_STEP_SUMMARY
-          cat monitor_summary.txt >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          python scripts/hunt_bounties_247.py
+          if [ -f bounty_radar.md ]; then
+            cat bounty_radar.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Commit & Persist Updated Radar Ledger
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bounty_radar.json bounty_radar.md || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(radar): update 24/7 bounty discovery ledger [skip ci]"
+            git push origin master
+          fi
