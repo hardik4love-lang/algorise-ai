@@ -31,23 +31,6 @@
     "priority_score": 40.13
   },
   {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60613,
-    "title": "[ops] ttnn.sort: fp32 NaN sorts past the \u00b1inf padding, so padding indices leak on every factory",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60613",
-    "created_at": "2026-10-14T17:48:28Z",
-    "labels": [
-      "bug",
-      "op_cat: TM",
-      "community",
-      "ign-ops"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
     "repo": "BasedHardware/omi",
     "number": 21678,
     "title": "Bounty Proposal: Hume Webhook Callback Resilience & Malformed Payload Hardening ($50 USD)",
@@ -60,14 +43,13 @@
     "priority_score": 20.05
   },
   {
-    "repo": "tari-project/special_contributions",
-    "number": 212,
-    "title": "Contribution: fix(networking): add a transport upgrade timeout to bound pending inbound connections (tari-project/tari-ootle#2948)",
-    "url": "https://github.com/tari-project/special_contributions/issues/212",
-    "created_at": "2026-10-15T10:01:17Z",
+    "repo": "dev-kp-eloper/BountyScout",
+    "number": 1595,
+    "title": "\ud83c\udfaf Bounty Alert: 17 New Opportunityies found",
+    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1595",
+    "created_at": "2026-10-15T14:07:07Z",
     "labels": [
-      "retro-bounty",
-      "bounty-S"
+      "bounty-alert"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -75,16 +57,15 @@
     "priority_score": 20.05
   },
   {
-    "repo": "0xLizTech/stellarforge",
-    "number": 157,
-    "title": "Add a bug bounty program draft",
-    "url": "https://github.com/0xLizTech/stellarforge/issues/157",
-    "created_at": "2026-10-15T09:56:50Z",
+    "repo": "OracleDesk/OracleDesk-SmartContract",
+    "number": 149,
+    "title": "Pay resolution bounties to permissionless callers of resolve_price and finalize_signers",
+    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/149",
+    "created_at": "2026-10-15T14:05:26Z",
     "labels": [
-      "documentation",
-      "difficulty: medium",
-      "phase-1",
-      "security"
+      "enhancement",
+      "complexity/large",
+      "contracts"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -92,14 +73,15 @@
     "priority_score": 20.05
   },
   {
-    "repo": "tari-project/special_contributions",
-    "number": 211,
-    "title": "Security report: tari-ootle transaction_manifest: address!(\"template_\u2026\") writes a tagged PublishedTemplateAddress that cannot decode into a template's TemplateAddress (ISSUE-2951)",
-    "url": "https://github.com/tari-project/special_contributions/issues/211",
-    "created_at": "2026-10-15T09:55:04Z",
+    "repo": "OracleDesk/OracleDesk-SmartContract",
+    "number": 101,
+    "title": "Add a keeper agent that resolves, finalizes and settles markets automatically",
+    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/101",
+    "created_at": "2026-10-15T13:58:43Z",
     "labels": [
-      "retro-bounty",
-      "bounty-S"
+      "enhancement",
+      "agents",
+      "complexity/large"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -107,112 +89,13 @@
     "priority_score": 20.05
   },
   {
-    "repo": "tari-project/special_contributions",
-    "number": 210,
-    "title": "Security report: tari-ootle walletd: input detection misses six substate kinds the engine requires, so a template, UTXO or receipt argument is rejected after the fee is paid (ISSUE-2950)",
-    "url": "https://github.com/tari-project/special_contributions/issues/210",
-    "created_at": "2026-10-15T09:54:53Z",
+    "repo": "freedom-winds/BountyScout",
+    "number": 1256,
+    "title": "\ud83c\udfaf Bounty Alert: 18 New Opportunityies found",
+    "url": "https://github.com/freedom-winds/BountyScout/issues/1256",
+    "created_at": "2026-10-15T13:56:56Z",
     "labels": [
-      "retro-bounty",
-      "bounty-S"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 516,
-    "title": "md_cg \u79df\u6237\u53cd\u67e5\u95f8\u88ab\u767b\u8bb0\u8868\u8def\u5f84\u6ce8\u5165\u65c1\u8def\uff1a`MDCG_TENANT_REGISTRY`\uff08\u8c03\u7528\u65b9\u53ef\u63a7 env\uff09\u6307\u5411\u7a7a/\u635f\u574f\u6587\u4ef6 \u21d2 `_resolve_root` \u53cd\u67e5\u96f6\u547d\u4e2d \u21d2 \u300cA \u7684\u5168\u5c40\u4ee4\u724c + `MDCG_ROOT`=B \u7684\u767b\u8bb0\u6839\u300d\u6062\u590d\u6210 #98 \u539f\u6837\u8de8\u79df\u6237\u8bfb\u5199\u2014\u2014**\u6388\u6743\u68c0\u67e5\u7684\u6570\u636e\u6e90\u672c\u8eab\u53ef\u88ab\u653b\u51fb\u8005\u66ff\u6362**\u3002",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/516",
-    "created_at": "2026-10-15T09:46:56Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 515,
-    "title": "\u3010\u8d21\u732e\u4ea4\u4ed8\u3011lingshu #650 \u5df2\u5408\u5e76\uff1aPillow \u4e0b\u754c 12.2 \u843d\u5728\u5df2\u77e5\u6f0f\u6d1e\u6bb5\uff0bCI \u4e0b\u754c\u6863\u6bcf\u6b21\u5b9e\u88c5\u8be5\u7248\u672c\uff08PR #664 \u2192 merge 8d47095\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/515",
-    "created_at": "2026-10-15T09:45:37Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 514,
-    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/trust\uff09\u964d\u7ea7\u8c41\u514d\u5224\u636e\u53ea\u8ba4\u4e24\u6761\u4fdd\u62a4\u771f\u6e90\uff1atrust.stamp:193 \u7684 prot=bool(fm.get(\"protected\") or fm.get(\"immutable\")) \u6f0f\u6389 protect.is_protected \u4e09\u6761\u771f\u6e90\u4e2d\u7684\u5c42\u4fdd\u62a4\uff08self/anchor\uff09\uff0c\u81f4\u5c42\u4fdd\u62a4\u8282\u70b9\u7ecf set_state\uff08\u81ea\u79f0\u300c\u552f\u4e00\u63a8\u8fdb\u5165\u53e3\u300d\uff09\u843d\u76d8\u964d\u7ea7\u65f6\u6536\u4e0d\u5230\u8c41\u514d\uff0ctrust.py \u5168\u6587 0 \u6b21\u5f15\u7528 is_protected/PROTECTED_LAYERS\uff1b\u540c\u6b3e\u5224\u65ad\u5728 lifecycle.py:205 \u9010\u5b57\u8282\u91cd\u590d\uff08#318 \u66fe\u5224\u5b9a\u6210\u7acb\u5e76\u5efa\u8bae\u53e6\u4ef6\uff0c\u672a\u72ec\u7acb\u7acb\u6848\uff09\uff1b\u5b88\u536b test_trust \u4ec5\u76f4\u4f20 protected \u5f62\u53c2\u3001\u4e0d\u6d4b fm \u5f62\u6001\u8bc6\u522b\uff0c\u6253\u6b63\u786e\u4fee\u6cd5\u4ecd 127/0\uff08\u96f6\u5224\u522b\u529b\uff09\uff1b\u6309\u5206\u4fdd\u62a4\u65b9\u5411\u5df2\u88ab cg.add \u81ea\u52a8\u8865\u4f4d\u6d88\u89e3\u3001\u672c\u6761\u4e0d\u4e3b\u5f20\uff0cP1",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/514",
-    "created_at": "2026-10-15T09:39:55Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 513,
-    "title": "[intake \u8f93\u5165] dsh-memory\uff08md_cg/sustain\uff09\u5fc3\u8df3\u53f0\u8d26\u300c\u5931\u8d25\u6863\u5fc5\u987b\u5728\u53f0\u8d26\u53ef\u89c1\u300d\u672a\u5151\u73b0\uff1a\u552f\u4e00\u8bfb\u51fa\u53e3 heartbeat_ledger_stats \u6309 kind==\"beat\" \u8fc7\u6ee4\u4e14\u53ea\u628a\u884c\u964d\u6210 t \u6570\u503c\uff0c\u4e1a\u52a1\u6863\u5931\u8d25\u7684 kind=\"tick\" \u884c\uff08\u5e26 ok=False+error\uff09\u96f6\u8bfb\u51fa\u53e3\u3001kind=\"beat\" \u7684\u5931\u8d25\u5fc3\u8df3\u88ab\u5f53\u6210\u4e00\u6b21\u6b63\u5e38\u5468\u671f\u8ba1\u5165\u300c\u8fde\u7eed\u65e0\u65ad\u300d\uff1b\u5e38\u91cf\u6ce8\u91ca :283 \u81ea\u8ff0 tick \u884c\u300c\u4e0d\u88ab\u8be5\u8fc7\u6ee4\u541e\u6389\u300d\u4e0e\u5b9e\u73b0\u6070\u597d\u76f8\u53cd\uff1bbeat() \u5199\u6233\u5931\u8d25\u5728 last_tick_error \u9762\u4ea6\u4e0d\u53ef\u89c1\uff08\u5355\u5411\u4e0d\u53ef\u89c1\uff09\uff1b\u5b88\u536b test_heartbeat_ledger.py \u4e0d\u6d4b\u8be5\u65b9\u5411\uff08\u6253\u6b63\u786e\u4fee\u6cd5\u4ecd 38/0\uff0c\u96f6\u5224\u522b\u529b\uff09\uff0cP1",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/513",
-    "created_at": "2026-10-15T09:28:59Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 512,
-    "title": "dsh-memory \u65f6\u6548\u8f74\u7f3a\u53e3\u65cf\uff1a\u300c\u5df2\u8fc7\u671f\u300d\u8282\u70b9\u9ed8\u8ba4\u5168\u7a0b\u7167\u5e38\u670d\u52a1\u2014\u2014\u68c0\u7d22\u9ed8\u8ba4\u53ec\u56de\uff08`validity` \u663e\u5f0f\u542f\u7528\u624d\u8fc7\u6ee4\u3001\u5168\u516c\u5171\u5165\u53e3\u7f3a\u7701\u5173\uff09\u3001\u547d\u4e2d\u8ba1\u6570\u7167\u6da8\u3001`promote_memories` \u5347\u683c\u626b\u63cf**\u4e0d\u67e5 `is_expired`**\u2014\u2014\u8fc7\u671f\u6307\u4ee4\u53ef\u88ab\u70d8\u8fdb knowledge \u957f\u671f\u5c42\uff08eTAMP \u65f6\u95f4\u8f74\u53d8\u4f53\uff1a\u65f6\u6548\u5b57\u6bb5\u5b58\u5728\u4f46\u751f\u547d\u5468\u671f\u5404\u9636\u6bb5\u90fd\u4e0d\u6d88\u8d39\uff09\u3002",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/512",
-    "created_at": "2026-10-15T09:27:20Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 511,
-    "title": "\u3010intake \u8f93\u5165\u3011lingshu\uff1a_tx \u65e0\u5d4c\u5957\u611f\u77e5\u2014\u2014\u5185\u5c42 @_transactional \u7684 commit \u63d0\u524d\u63d0\u4ea4\u6574\u6761\u4e8b\u52a1\uff0c\u5916\u5c42 rollback \u5931\u6548\uff08ingest_frame \u771f\u5b9e\u8def\u5f84\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/511",
-    "created_at": "2026-10-15T09:27:09Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 510,
-    "title": "\u3010\u8d21\u732e\u7533\u62a5\u3011dsh-memory \u4e00\u4ef6\uff1areadcache \u53ea\u5728 MdCGOS \u88c5\u914d\uff0c\u57fa\u7c7b MdCG \u7684\u76f4\u63a5\u4f7f\u7528\u8005\uff08backfill/migrate/build_postings \u7b49 CLI \u5168\u5e93\u626b\u63cf\u5de5\u5177\uff09\u5168\u8d70\u65e0\u7f13\u5b58\u8def\u5f84\u2014\u2014\u540c\u5e93\u540c\u67e5\u8be2 30.6 vs 6.2 ms/\u67e5\u8be2\uff084.9\u00d7\uff09\uff0c\u8bfb\u76d8\u89e3\u6790\u5360 62%\u2014\u2014\u9644\u590d\u73b0\u8bfb\u6570\u4e0e\u67e5\u91cd",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/510",
-    "created_at": "2026-10-15T09:23:09Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Ikalus1988/MisakaNet",
-    "number": 3281,
-    "title": "pr-agent and the shape guard disagree about a quoted closing keyword \u2014 a PR documenting the bug is blocked by it",
-    "url": "https://github.com/Ikalus1988/MisakaNet/issues/3281",
-    "created_at": "2026-10-15T09:23:01Z",
-    "labels": [
-      "needs-ac"
+      "bounty-alert"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -221,10 +104,10 @@
   },
   {
     "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 509,
-    "title": "\u3010\u8d21\u732e\u7533\u62a5\u3011lingshu \u4e09\u4ef6\uff1aadd_node \u540c\u5c42\u539f\u4f4d\u8986\u76d6\u62b9\u6389\u4e0d\u53ef\u9057\u5fd8\u4fdd\u62a4\uff08no_forget \u9759\u9ed8\u4e22\u5931\u3001SUB \u53ef\u6362\u53d7\u4fdd\u62a4\u8282\u70b9\u5185\u5bb9\uff09\uff1bclose() \u540e conn property \u590d\u7528\u6b7b\u8fde\u63a5\uff08\u516c\u5f00\u9762\u5168 ProgrammingError\u3001:memory: \u65b0\u7ebf\u7a0b\u5f97\u7a7a\u5e93\uff09\uff1bM5 \u53bb\u91cd\u5168\u5c42\u626b\u63cf\u4f7f\u5199\u5165\u7ebf\u6027\u9000\u5316\uff089.3\u219244 ms/\u6761\uff0c\u7cbe\u7b80\u5224\u540c\u5b57\u6bb5\u5b9e\u6d4b\u7701 48\u201377%\uff09\u2014\u2014\u9644\u590d\u73b0\u8bfb\u6570\u4e0e\u5168\u91cf\u67e5\u91cd",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/509",
-    "created_at": "2026-10-15T09:22:48Z",
+    "number": 598,
+    "title": "intake: \u63d2\u4ef6\u6d4b\u8bc4\u62a5\u544a \u00b7 dsh-ops 0.3.0\uff08Windows x64 \u539f\u751f shell/\u6587\u4ef6\u5de5\u5177\u96c6\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/598",
+    "created_at": "2026-10-15T13:54:22Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -232,15 +115,130 @@
     "priority_score": 20.05
   },
   {
-    "repo": "veracindarella/paystream-contracts",
-    "number": 338,
-    "title": "OPS-27: Add GitHub label definitions file for consistent labelling",
-    "url": "https://github.com/veracindarella/paystream-contracts/issues/338",
-    "created_at": "2026-10-15T09:16:01Z",
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 597,
+    "title": "[intake \u8f93\u5165] lingshu \u53ea\u8bfb\u5b89\u5168\u5ba1\u8ba1\uff08\u7b2c\u4e8c\u8f6e\uff09\uff1a7 \u6761\u589e\u91cf\u53d1\u73b0\uff081\u00d7P1 / 6\u00d7P2\uff09+ 2 \u6761\u65e2\u6709 P0 \u7684\u72ec\u7acb\u590d\u6838\u8bc1\u636e + \u5168\u91cf 2149 \u7528\u4f8b\u9996\u8dd1\u8bfb\u6570\uff1b\u542b 9 \u5904\u81ea\u6211\u8bef\u62a5\u62e6\u4e0b\u7559\u75d5",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/597",
+    "created_at": "2026-10-15T13:52:56Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "OracleDesk/OracleDesk-SmartContract",
+    "number": 45,
+    "title": "Add permissionless settlement of treasury positions and exposure release",
+    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/45",
+    "created_at": "2026-10-15T13:50:56Z",
     "labels": [
-      "devops",
-      "Stellar Wave"
+      "enhancement",
+      "complexity/large",
+      "contracts"
     ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "OracleDesk/OracleDesk-SmartContract",
+    "number": 38,
+    "title": "Add permissionless Reflector price snapshots to survive oracle history retention",
+    "url": "https://github.com/OracleDesk/OracleDesk-SmartContract/issues/38",
+    "created_at": "2026-10-15T13:49:58Z",
+    "labels": [
+      "bug",
+      "complexity/large",
+      "contracts"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 595,
+    "title": "hive-memory-bench: `check_all.py` \u7684 `check_card` \u6536\u4e0b `units` \u5374\u4e0d\u8bfb",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/595",
+    "created_at": "2026-10-15T13:44:30Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 594,
+    "title": "hive-memory-bench \u2014 `score_points` \u7684 `field` \u53c2\u6570\u4e0d\u8bfb\uff1a\u8bc4\u5206\u5236\u7f3a\u4e00\u4e2a\u7ef4\u5ea6\u5165\u53e3",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/594",
+    "created_at": "2026-10-15T13:43:13Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 593,
+    "title": "hive-memory-bench: `judge_audit.py` \u7684 `evaluate_anchors` \u4e0d\u8bfb `verdict`",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/593",
+    "created_at": "2026-10-15T13:39:40Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "momoponwork1415-lgtm/wordpress-bounty-harness",
+    "number": 270,
+    "title": "2026-10-15\u30ec\u30d3\u30e5\u30fc: pilot\u524d\u306b\u63a2\u7d22\u306e\u53d6\u308a\u3053\u307c\u3057\u7d4c\u8def\u3092\u9589\u3058\u3001\u4f5c\u308a\u8fbc\u307f\u306e\u505c\u6b62\u6761\u4ef6\u3092\u6c7a\u3081\u308b",
+    "url": "https://github.com/momoponwork1415-lgtm/wordpress-bounty-harness/issues/270",
+    "created_at": "2026-10-15T13:38:37Z",
+    "labels": [
+      "needs-triage"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 592,
+    "title": "hive-memory-bench \u00b7 `judge.py` \u7684 `axis_evidence`\uff1a`card` \u4e0e `open_mode` \u90fd\u6ca1\u843d\u70b9",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/592",
+    "created_at": "2026-10-15T13:38:10Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 206,
+    "title": "[soundness] Closure ascribed locals, closure assignments, and self/peer rebinds erase non_owned_origin and may_share (follow-up gaps in #75/#137/#141)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/206",
+    "created_at": "2026-10-15T13:37:34Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 591,
+    "title": "hive-memory-bench / `chain/tools/synth.py`\uff1a`build_keys` \u7684\u968f\u673a\u6e90 `rng` \u88ab\u4e22\u5f03",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/591",
+    "created_at": "2026-10-15T13:36:23Z",
+    "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -255,6 +253,37 @@
     "labels": [
       "bug",
       "capture"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21216,
+    "title": "Paid users repeatedly hit 'Omi servers are busy' during sync and their offline backlog keeps growing",
+    "url": "https://github.com/BasedHardware/omi/issues/21216",
+    "created_at": "2026-10-11T14:35:05Z",
+    "labels": [
+      "bug",
+      "capture"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60752,
+    "title": "pool2d: SlidingWindowConfig hash omits ceil_pad_hw, so DRAM-sliced calls share a program and return wrong values",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60752",
+    "created_at": "2026-10-15T13:18:42Z",
+    "labels": [
+      "bug",
+      "op_cat: pool2D",
+      "MCW"
     ],
     "competing_prs": 1,
     "is_bounty": false,
