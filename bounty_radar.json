@@ -1,10 +1,215 @@
 [
   {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60792,
+    "title": "ttnn.exp with fast-mode float32 input returns NaN instead of +inf for x >= 89",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60792",
+    "created_at": "2026-10-15T17:29:24Z",
+    "labels": [
+      "bug",
+      "op_cat: eltwise"
+    ],
+    "competing_prs": 0,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.13
+  },
+  {
     "repo": "BasedHardware/omi",
     "number": 21678,
     "title": "Bounty Proposal: Hume Webhook Callback Resilience & Malformed Payload Hardening ($50 USD)",
     "url": "https://github.com/BasedHardware/omi/issues/21678",
     "created_at": "2026-10-15T10:11:38Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "marceld23/BlocksBeyondTheStars",
+    "number": 2640,
+    "title": "Lodges: small inhabited huts in the wilderness (new saves only)",
+    "url": "https://github.com/marceld23/BlocksBeyondTheStars/issues/2640",
+    "created_at": "2026-10-15T18:19:04Z",
+    "labels": [
+      "enhancement",
+      "area: server",
+      "package: wilderness folk 2026-10"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 619,
+    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory\uff1a#345 \u9650\u6d41\u95f8\u53ea\u8ba4\u300c\u58f0\u660e\u300d\u5bc6\u7ea7 \u2014\u2014 \u540c id \u6539\u5199\u65e2\u6709 private \u8282\u70b9\u4e0d\u91cd\u4f20 sensitivity \u65f6\u660e\u6587\u9aa8\u67b6\u4ecd\u843d _writelimit.json\uff08\u7ef4\u62a4\u8005\u5df2\u5224\u300c\u62a5\u544a\u6210\u7acb\u300d\u5e76\u6309\u5efa\u8bae\u65b9\u6848 1 \u4fee\u590d\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/619",
+    "created_at": "2026-10-15T18:17:57Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "freedom-winds/BountyScout",
+    "number": 1257,
+    "title": "\ud83c\udfaf Bounty Alert: 15 New Opportunityies found",
+    "url": "https://github.com/freedom-winds/BountyScout/issues/1257",
+    "created_at": "2026-10-15T18:05:17Z",
+    "labels": [
+      "bounty-alert"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "verdikta/verdikta-arbiter",
+    "number": 84,
+    "title": "ai-node: images can still exceed a provider's request-wide limits (100 images, 20\u201332 MB) together \u2014 add a deterministic request budget to the normalizer",
+    "url": "https://github.com/verdikta/verdikta-arbiter/issues/84",
+    "created_at": "2026-10-15T18:03:44Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 618,
+    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory #397 / #398 \u72ec\u7acb\u9a8c\u8bc1\u590d\u8dd1\uff1a\u4e09\u7ad9\u70b9 + \u56db\u7ad9\u70b9\u5168\u90e8\u590d\u73b0\uff08\u57fa\u7ebf 801da85\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/618",
+    "created_at": "2026-10-15T18:03:17Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "asentum-network/asentum-explorer",
+    "number": 43,
+    "title": "[Docs] Getting-started sidebar links to /docs/getting-started/polygon \u2192 404",
+    "url": "https://github.com/asentum-network/asentum-explorer/issues/43",
+    "created_at": "2026-10-15T18:03:04Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "verdikta/verdikta-arbiter",
+    "number": 83,
+    "title": "external-adapter: log a summary of the AI Node request, not the full payload \u2014 attachment contents never reach the logger",
+    "url": "https://github.com/verdikta/verdikta-arbiter/issues/83",
+    "created_at": "2026-10-15T18:02:58Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 617,
+    "title": "[intake \u8f93\u5165] dsh-memory\uff08hive/exec.py\uff09_redact_pii \u524d\u7f00\u65cf\u7f3a\u53e3\uff1a12 \u7c7b\u4e3b\u6d41 token\uff08glpat/AIza/JWT/gsk_/pk_live/\u88f8hex\uff09\u96f6\u8986\u76d6",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/617",
+    "created_at": "2026-10-15T18:00:30Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-memory",
+    "number": 419,
+    "title": "[hive/exec.py][Security][P2] _redact_pii \u524d\u7f00\u65cf\u7f3a\u53e3\uff1aglpat-/AIza/xox*/JWT/gsk_/pk_live_/\u88f8hex \u7b49 12 \u7c7b\u4e3b\u6d41\u51ed\u636e\u96f6\u8986\u76d6\uff0c\u539f\u6587\u53ef\u5916\u53d1",
+    "url": "https://github.com/FuRongJun-1999/dsh-memory/issues/419",
+    "created_at": "2026-10-15T18:00:18Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 238,
+    "title": "[soundness] copy(dst, src) bypasses T22 const deep-immutability (HYB-E3006), loses may_share across block scopes on scope_pop, and is ignored inside closures (0 diagnostics on 44a08b9)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/238",
+    "created_at": "2026-10-15T17:39:07Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21747,
+    "title": "[loop-c] main CI red: gha-FAIL: backend unit shards result was 'failure'",
+    "url": "https://github.com/BasedHardware/omi/issues/21747",
+    "created_at": "2026-10-15T17:30:40Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "ahmedfuzayl-gif/commit-monitor",
+    "number": 139,
+    "title": "commit-monitor: new leads 2026-10-15_1727Z",
+    "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/139",
+    "created_at": "2026-10-15T17:27:43Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "progidyken-hub/BLUEWHALE",
+    "number": 296,
+    "title": "security: Publish formal SECURITY.md with vulnerability disclosure policy and PGP key",
+    "url": "https://github.com/progidyken-hub/BLUEWHALE/issues/296",
+    "created_at": "2026-10-15T17:26:18Z",
+    "labels": [
+      "documentation",
+      "security",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 615,
+    "title": "\u3010\u8d21\u732e\u7533\u62a5\u3011lingshu #676 + #677 + #680\uff1a10/13\u201310/15 \u5171 114 \u4e2a issue \u9010\u4e2a\u590d\u73b0\u590d\u6838\uff083 \u4e2a P0 \u4fee\u590d\u672a\u95ed\u73af\u30011 \u4e2a\u4fee\u590d\u56de\u5f52\u30017 \u4e2a\u9519\u4ed3\u30016 \u4e2a\u5df2\u4fee\u672a\u5173\u300120+ \u4efd\u62a5\u544a\u52d8\u8bef\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/615",
+    "created_at": "2026-10-15T17:23:17Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "HCTDIP/corps-jobs",
+    "number": 92,
+    "title": "Railway \u8d4f\u91d1\uff1a\u6709 6 \u6761\u503c\u5f97\u62a2",
+    "url": "https://github.com/HCTDIP/corps-jobs/issues/92",
+    "created_at": "2026-10-15T17:22:26Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -20,38 +225,6 @@
     "labels": [
       "bug",
       "op_cat: pool2D",
-      "MCW"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60694,
-    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding subtile-broadcast branch skips L1 and output-shard checks, throws or hangs on DRAM-sharded / off-grid output (#58407 item 15)",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60694",
-    "created_at": "2026-10-15T03:47:32Z",
-    "labels": [
-      "bug",
-      "op_cat: eltwise",
-      "MCW"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60693,
-    "title": "[ttnn/experimental/quasar] binary_ng is_native_L1_sharding scalar branch skips L1 and output-shard checks, aliases DRAM / off-grid buffers as CBs (#58407 item 14)",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60693",
-    "created_at": "2026-10-15T03:47:28Z",
-    "labels": [
-      "bug",
-      "op_cat: eltwise",
       "MCW"
     ],
     "competing_prs": 1,
