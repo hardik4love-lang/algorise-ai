@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-16T09:33:58.342926+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-16T14:39:08.190984+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -10,22 +10,23 @@
 | [#60791](https://github.com/tenstorrent/tt-metal/pull/60791) | `tenstorrent/tt-metal` | Welford Layernorm LLK Assert Op Bugfix | `OPEN` | **$100 - $300** |
 | [#21768](https://github.com/BasedHardware/omi/pull/21768) | `BasedHardware/omi` | Bee Frontier Battery Parser Stability | `OPEN` | **$50 - $100** |
 | [#21811](https://github.com/BasedHardware/omi/pull/21811) | `BasedHardware/omi` | Critical P1 Production Outage Restoration | `OPEN` | **$100 - $200** |
+| [#21855](https://github.com/BasedHardware/omi/pull/21855) | `BasedHardware/omi` | Canonical Product State Integrity & Goal Deletion Idempotency | `OPEN` | **$50** |
 
 ## Top Unassigned Bounty Targets (0 Competing PRs)
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `tenstorrent/tt-metal` | [#60849](https://github.com/tenstorrent/tt-metal/issues/60849) | [Quasar] llk_unpack_tilize_init changes the row stride  | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/60849) |
-| `tenstorrent/tt-metal` | [#60848](https://github.com/tenstorrent/tt-metal/issues/60848) | Quasar: helper-owned and temporary DataflowBuffers drai | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/60848) |
-| `BasedHardware/omi` | [#21678](https://github.com/BasedHardware/omi/issues/21678) | Bounty Proposal: Hume Webhook Callback Resilience & Mal | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/21678) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `FuRongJun-1999/dsh-bounty` | [#772](https://github.com/FuRongJun-1999/dsh-bounty/issues/772) | [intake][贡献交付][安全] fix(#463): 幽灵摘除补 protect.is_protecte | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/772) |
-| `FuRongJun-1999/dsh-bounty` | [#771](https://github.com/FuRongJun-1999/dsh-bounty/issues/771) | [intake][贡献交付][安全] fix(#467): identity 写侧补 sensitivity  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/771) |
-| `FuRongJun-1999/dsh-bounty` | [#770](https://github.com/FuRongJun-1999/dsh-bounty/issues/770) | [intake 输入] dsh-memory **#498**（新立案 P1）：合并痕迹对账**依赖索引新鲜度 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/770) |
-| `FuRongJun-1999/dsh-memory` | [#498](https://github.com/FuRongJun-1999/dsh-memory/issues/498) | [md_cg/twophase][Security/可信性][P1] 合并痕迹对账**依赖索引新鲜度**：崩溃 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/498) |
-| `FuRongJun-1999/dsh-bounty` | [#769](https://github.com/FuRongJun-1999/dsh-bounty/issues/769) | 【intake 输入】dsh-memory #492：写链链尾执行器无条件付 97% 观测开销（redunda | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/769) |
-| `FuRongJun-1999/dsh-bounty` | [#768](https://github.com/FuRongJun-1999/dsh-bounty/issues/768) | 【intake 输入】dsh-memory #491：`verify_code` 同进程裸 exec 无沙箱无 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/768) |
-| `FuRongJun-1999/dsh-bounty` | [#767](https://github.com/FuRongJun-1999/dsh-bounty/issues/767) | 【intake 输入】dsh-memory #490：`/roleplay` 三个 GET 读端点零鉴权（三导 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/767) |
-| `paraloom-labs/paraloom-core` | [#946](https://github.com/paraloom-labs/paraloom-core/issues/946) | [Bug]: On-chain settlement records phantom half-settlem | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/946) |
-| `Uuriko/project-room` | [#3765](https://github.com/Uuriko/project-room/issues/3765) | Public lot receipt headline misstates multi-movement lo | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3765) |
-| `GoodDollar/GoodWidget` | [#257](https://github.com/GoodDollar/GoodWidget/issues/257) | [GoodBounty] Fix per-chain decimals, wallet-gate, and c | 0 | `20.05` | [Inspect](https://github.com/GoodDollar/GoodWidget/issues/257) |
-| `shakurJJ/chainsettle-contract` | [#645](https://github.com/shakurJJ/chainsettle-contract/issues/645) | feat: keeper bounty for permissionless maintenance call | 0 | `20.05` | [Inspect](https://github.com/shakurJJ/chainsettle-contract/issues/645) |
+| `lorenzopalaia/HackTrack-EU` | [#24](https://github.com/lorenzopalaia/HackTrack-EU/issues/24) | Hackathon add request: AI Fixathon: Vulnerability disco | 0 | `20.05` | [Inspect](https://github.com/lorenzopalaia/HackTrack-EU/issues/24) |
+| `rudimentall1/AegisForge` | [#113](https://github.com/rudimentall1/AegisForge/issues/113) | Architecture decision: when to add the first Solidity e | 0 | `20.05` | [Inspect](https://github.com/rudimentall1/AegisForge/issues/113) |
+| `paraloom-labs/paraloom-wallet` | [#89](https://github.com/paraloom-labs/paraloom-wallet/issues/89) | [BOUNTY] Medium: Uncaught transient RPC errors aborting | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-wallet/issues/89) |
+| `paraloom-labs/paraloom-core` | [#969](https://github.com/paraloom-labs/paraloom-core/issues/969) | [BOUNTY] Medium: Uncaught transient RPC errors aborting | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/969) |
+| `INVERSEARENA/inversearena-frontend` | [#1553](https://github.com/INVERSEARENA/inversearena-frontend/issues/1553) | Allow permissionless round resolution after the reveal  | 0 | `20.05` | [Inspect](https://github.com/INVERSEARENA/inversearena-frontend/issues/1553) |
+| `paraloom-labs/paraloom-core` | [#968](https://github.com/paraloom-labs/paraloom-core/issues/968) | [BOUNTY] Medium: Request-response codec bincode length- | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/968) |
+| `shawndibble/neocom-desk` | [#3915](https://github.com/shawndibble/neocom-desk/issues/3915) | Wallet Journal on a phone: two-line rows grouped by day | 0 | `20.05` | [Inspect](https://github.com/shawndibble/neocom-desk/issues/3915) |
+| `shawndibble/neocom-desk` | [#3914](https://github.com/shawndibble/neocom-desk/issues/3914) | Wallet Journal: hideable daily In / Out chart in Where  | 0 | `20.05` | [Inspect](https://github.com/shawndibble/neocom-desk/issues/3914) |
+| `dseelinger/d47` | [#1219](https://github.com/dseelinger/d47/issues/1219) | Massacre mission stacking | 0 | `20.05` | [Inspect](https://github.com/dseelinger/d47/issues/1219) |
+| `DeltaV-Station/Delta-v` | [#6627](https://github.com/DeltaV-Station/Delta-v/issues/6627) | Academy map missing mass scanner console in salv dock. | 0 | `20.05` | [Inspect](https://github.com/DeltaV-Station/Delta-v/issues/6627) |
+| `postmark-town/postmark` | [#3884](https://github.com/postmark-town/postmark/issues/3884) | Candor first parcel: submitted body differs from the ex | 0 | `20.05` | [Inspect](https://github.com/postmark-town/postmark/issues/3884) |
+| `zeroking1998/KF2-Optimizer-Next` | [#971](https://github.com/zeroking1998/KF2-Optimizer-Next/issues/971) | Narrow per-frame HUD pawn scans to their consumed class | 0 | `20.05` | [Inspect](https://github.com/zeroking1998/KF2-Optimizer-Next/issues/971) |
+| `neatlogs/neatroots` | [#256](https://github.com/neatlogs/neatroots/issues/256) | A check saved over MCP's `create_check` loads as a user | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/256) |
+| `shawndibble/neocom-desk` | [#3908](https://github.com/shawndibble/neocom-desk/issues/3908) | Wallet Journal: Where the ISK went side panel filters t | 0 | `20.05` | [Inspect](https://github.com/shawndibble/neocom-desk/issues/3908) |
