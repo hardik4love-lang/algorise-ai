@@ -39,13 +39,39 @@ class BlastRadiusAnalyzer:
 
     CORE_COMPONENTS = {"engine", "database", "security", "auth", "api_gateway", "gateway"}
 
-    def __init__(self, root_dir: str = "."):
+    DEFAULT_CACHE_PATH = os.path.join(".context_pr", "ast_cache.json")
+
+    def __init__(self, root_dir: str = ".", cache_path: Optional[str] = None):
         self.root_dir = os.path.abspath(root_dir)
+        self.cache_path = cache_path or os.path.join(self.root_dir, self.DEFAULT_CACHE_PATH)
         # graph[imported_file] -> list of files that import it
         self.reverse_deps: Dict[str, Set[str]] = defaultdict(set)
         # import_symbols[(consumer_file, imported_file)] -> list of symbols
         self.symbol_links: Dict[Tuple[str, str], List[str]] = defaultdict(list)
+        self.cache_hits: int = 0
+        self.cache_misses: int = 0
         self._build_dependency_graph()
+
+    def _load_cache(self) -> Dict[str, dict]:
+        if os.path.exists(self.cache_path):
+            try:
+                import json
+                with open(self.cache_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception:
+                pass
+        return {}
+
+    def _save_cache(self, cache: Dict[str, dict]) -> None:
+        try:
+            import json
+            cache_dir = os.path.dirname(self.cache_path)
+            if cache_dir and not os.path.exists(cache_dir):
+                os.makedirs(cache_dir, exist_ok=True)
+            with open(self.cache_path, "w", encoding="utf-8") as f:
+                json.dump(cache, f, indent=2)
+        except Exception:
+            pass
 
     def _normalize_path(self, path: str) -> str:
         if not os.path.isabs(path):
@@ -62,8 +88,11 @@ class BlastRadiusAnalyzer:
         return mod.replace("/", ".")
 
     def _build_dependency_graph(self):
-        """Scans all Python files to construct the import dependency graph."""
+        """Scans Python files to construct the import dependency graph using incremental AST cache."""
+        import hashlib
         py_files: Dict[str, str] = {}  # module_name -> relative_path
+        cache = self._load_cache()
+        updated_cache = {}
 
         for root, _, files in os.walk(self.root_dir):
             if any(part in root for part in [".git", ".pytest_cache", "node_modules", "dist", "build", "venv"]):
@@ -78,14 +107,33 @@ class BlastRadiusAnalyzer:
         for mod_name, rel_path in py_files.items():
             full_path = os.path.join(self.root_dir, rel_path)
             try:
-                with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
-                    content = f.read()
-                tree = ast.parse(content, filename=rel_path)
-                visitor = ImportVisitor()
-                visitor.visit(tree)
+                with open(full_path, "rb") as f:
+                    raw_bytes = f.read()
+                file_hash = hashlib.sha256(raw_bytes).hexdigest()
+
+                cached_entry = cache.get(rel_path)
+                if cached_entry and cached_entry.get("hash") == file_hash:
+                    self.cache_hits += 1
+                    imported_modules = cached_entry.get("imported_modules", [])
+                    imported_symbols = cached_entry.get("imported_symbols", {})
+                    updated_cache[rel_path] = cached_entry
+                else:
+                    self.cache_misses += 1
+                    content = raw_bytes.decode("utf-8", errors="ignore")
+                    tree = ast.parse(content, filename=rel_path)
+                    visitor = ImportVisitor()
+                    visitor.visit(tree)
+                    imported_modules = list(visitor.imported_modules)
+                    imported_symbols = dict(visitor.imported_symbols)
+                    entry = {
+                        "hash": file_hash,
+                        "imported_modules": imported_modules,
+                        "imported_symbols": imported_symbols
+                    }
+                    updated_cache[rel_path] = entry
 
                 # Link dependencies
-                for imp_mod in visitor.imported_modules:
+                for imp_mod in imported_modules:
                     target_rel = py_files.get(imp_mod)
                     if not target_rel:
                         # Check package prefix
@@ -94,11 +142,13 @@ class BlastRadiusAnalyzer:
 
                     if target_rel and target_rel != rel_path:
                         self.reverse_deps[target_rel].add(rel_path)
-                        symbols = visitor.imported_symbols.get(imp_mod, [])
+                        symbols = imported_symbols.get(imp_mod, [])
                         if symbols:
                             self.symbol_links[(rel_path, target_rel)].extend(symbols)
             except Exception:
                 continue
+
+        self._save_cache(updated_cache)
 
     def compute_blast_radius(
         self,

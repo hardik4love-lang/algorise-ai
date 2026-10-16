@@ -52,4 +52,6 @@ dist/
 *.db-wal
 .release-artifacts/
 .release-state.json
+.context_pr/
+.autotest/
 

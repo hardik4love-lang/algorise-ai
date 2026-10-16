@@ -1,0 +1,45 @@
+name: 'Algorise DevEx & Autonomous SRE Toolchain'
+description: 'Autonomous developer experience sentry: AutoTest Sentinel flaky test quarantine, ContextPR AST blast-radius, ModernizeAI codemods, and TraceRoot incident healing.'
+author: 'hardik4love-lang'
+
+branding:
+  icon: 'shield-check'
+  color: 'purple'
+
+inputs:
+  command:
+    description: 'DevEx subcommand to execute (status, sentinel, context, modernize, traceroot)'
+    required: false
+    default: 'status'
+  args:
+    description: 'Additional CLI arguments to pass to the command'
+    required: false
+    default: ''
+
+outputs:
+  review_summary:
+    description: 'Output summary from the executed DevEx engine'
+    value: ${{ steps.run_devex.outputs.summary }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python Environment
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Install Algorise DevEx Suite
+      shell: bash
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e ${{ github.action_path }}
+
+    - name: Execute Algorise DevEx Engine
+      id: run_devex
+      shell: bash
+      env:
+        DEVEX_CMD: ${{ inputs.command }}
+        DEVEX_ARGS: ${{ inputs.args }}
+      run: |
+        devex "$DEVEX_CMD" $DEVEX_ARGS

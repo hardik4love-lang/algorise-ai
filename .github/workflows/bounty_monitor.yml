@@ -1,0 +1,45 @@
+name: "24/7 Autonomous Bounty Hunter & Triage Engine"
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'  # Runs every 30 minutes 24/7
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  hunt:
+    name: "Autonomous Hunt & PR Triage"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Execute 24/7 Bounty Hunter Cycle
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python scripts/hunt_bounties_247.py
+          if [ -f bounty_radar.md ]; then
+            cat bounty_radar.md >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Commit & Persist Updated Radar Ledger
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bounty_radar.json bounty_radar.md || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(radar): update 24/7 bounty discovery ledger [skip ci]"
+            git push origin master
+          fi

@@ -1,52 +1,117 @@
 """
 AutoTest Sentinel: Quarantine Manager
 Manages declarative test quarantine manifests, isolates non-deterministic tests,
-and generates GitHub Actions step annotations.
+and generates GitHub Actions step annotations. Supports local and cloud-native backends.
 """
 from datetime import datetime, timedelta, timezone
 import json
 import os
 from typing import Dict, List, Optional
+import httpx
 from .models import FlakinessReport, QuarantineManifest
 
 class QuarantineManager:
     """
     Handles isolation of flaky tests to unblock CI merge gates
-    while preserving test failure visibility.
+    while preserving test failure visibility. Supports distributed cloud sync.
     """
     DEFAULT_MANIFEST_PATH = os.path.join('.autotest', 'quarantine.json')
 
-    def __init__(self, manifest_path: Optional[str]=None):
+    def __init__(
+        self,
+        manifest_path: Optional[str] = None,
+        remote_url: Optional[str] = None,
+        api_token: Optional[str] = None
+    ):
         self.manifest_path = manifest_path or self.DEFAULT_MANIFEST_PATH
+        self.remote_url = remote_url or os.environ.get("ALGORISE_QUARANTINE_URL")
+        self.api_token = api_token or os.environ.get("ALGORISE_API_TOKEN")
         self.manifest = self._load_or_create_manifest()
 
     def _load_or_create_manifest(self) -> QuarantineManifest:
+        # 1. Attempt remote cloud fetch if remote_url is configured
+        if self.remote_url:
+            try:
+                headers = {"Authorization": f"Bearer {self.api_token}"} if self.api_token else {}
+                with httpx.Client(timeout=3.0) as client:
+                    resp = client.get(self.remote_url, headers=headers)
+                    if resp.status_code == 200:
+                        data = resp.json()
+                        manifest = QuarantineManifest(
+                            version=data.get('version', '1.0.0'),
+                            updated_at=data.get('updated_at', datetime.now(timezone.utc).isoformat()),
+                            quarantined_tests=data.get('quarantined_tests', {})
+                        )
+                        # Sync remote back to local cache
+                        self._save_to_local_file(manifest)
+                        return manifest
+            except Exception:
+                pass  # Fall back to local manifest gracefully
+
+        # 2. Fall back to local manifest
         if os.path.exists(self.manifest_path):
             try:
                 with open(self.manifest_path, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    return QuarantineManifest(version=data.get('version', '1.0.0'), updated_at=data.get('updated_at', datetime.now(timezone.utc).isoformat()), quarantined_tests=data.get('quarantined_tests', {}))
+                    return QuarantineManifest(
+                        version=data.get('version', '1.0.0'),
+                        updated_at=data.get('updated_at', datetime.now(timezone.utc).isoformat()),
+                        quarantined_tests=data.get('quarantined_tests', {})
+                    )
             except Exception:
                 pass
         return QuarantineManifest()
 
-    def save_manifest(self) -> None:
-        """Persists the quarantine state to disk."""
+    def _save_to_local_file(self, manifest: QuarantineManifest) -> None:
         directory = os.path.dirname(self.manifest_path)
-        if directory and (not os.path.exists(directory)):
+        if directory and not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
-        self.manifest.updated_at = datetime.now(timezone.utc).isoformat()
+        manifest.updated_at = datetime.now(timezone.utc).isoformat()
         with open(self.manifest_path, 'w', encoding='utf-8') as f:
-            json.dump({'version': self.manifest.version, 'updated_at': self.manifest.updated_at, 'quarantined_tests': self.manifest.quarantined_tests}, f, indent=2)
+            json.dump({
+                'version': manifest.version,
+                'updated_at': manifest.updated_at,
+                'quarantined_tests': manifest.quarantined_tests
+            }, f, indent=2)
 
-    def quarantine_test(self, report: FlakinessReport, reason: Optional[str]=None, ttl_days: int=14) -> bool:
+    def save_manifest(self) -> None:
+        """Persists the quarantine state to disk and cloud backend if enabled."""
+        self._save_to_local_file(self.manifest)
+
+        # Sync to remote cloud backend if configured
+        if self.remote_url:
+            try:
+                headers = {
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {self.api_token}" if self.api_token else ""
+                }
+                payload = {
+                    'version': self.manifest.version,
+                    'updated_at': self.manifest.updated_at,
+                    'quarantined_tests': self.manifest.quarantined_tests
+                }
+                with httpx.Client(timeout=3.0) as client:
+                    client.put(self.remote_url, json=payload, headers=headers)
+            except Exception:
+                pass
+
+    def quarantine_test(self, report: FlakinessReport, reason: Optional[str] = None, ttl_days: int = 14) -> bool:
         """
         Adds a test to the quarantine registry with an expiration TTL.
         Returns True if newly added, False if already present.
         """
         now = datetime.now(timezone.utc)
         expires_at = (now + timedelta(days=ttl_days)).isoformat()
-        entry = {'test_id': report.test_id, 'file_path': report.file_path, 'flakiness_score': report.flakiness_score, 'root_cause': report.root_cause.value, 'failure_rate': round(report.failure_rate, 4), 'reason': reason or report.remediation_notes, 'quarantined_at': now.isoformat(), 'expires_at': expires_at}
+        entry = {
+            'test_id': report.test_id,
+            'file_path': report.file_path,
+            'flakiness_score': report.flakiness_score,
+            'root_cause': report.root_cause.value,
+            'failure_rate': round(report.failure_rate, 4),
+            'reason': reason or report.remediation_notes,
+            'quarantined_at': now.isoformat(),
+            'expires_at': expires_at
+        }
         is_new = report.test_id not in self.manifest.quarantined_tests
         self.manifest.quarantined_tests[report.test_id] = entry
         self.save_manifest()

@@ -21,6 +21,9 @@ jobs:
   traceroot-resolver:
     name: "Autonomous Incident Triage & Hotfix Generation"
     runs-on: ubuntu-latest
+    env:
+      INCIDENT_PAYLOAD: ${{ github.event.inputs.incident_json }}
+      STAGE_HOTFIX: ${{ github.event.inputs.stage_hotfix }}
     steps:
       - name: Checkout Code Repository with History
         uses: actions/checkout@v4
@@ -42,13 +45,17 @@ jobs:
       - name: Step 1 - Stage Incident Telemetry Payload
         run: |
           mkdir -p .autotest/incidents
-          echo '${{ github.event.inputs.incident_json }}' > .autotest/incidents/incoming_incident.json
+          printf '%s\n' "$INCIDENT_PAYLOAD" > .autotest/incidents/incoming_incident.json
 
       - name: Step 2 - Execute TraceRoot AI Triage & Hotfix Synthesis
         run: |
+          STAGE_FLAG=""
+          if [ "$STAGE_HOTFIX" = "true" ]; then
+            STAGE_FLAG="--stage"
+          fi
           python -m trace_root_ai.cli triage \
             --incident .autotest/incidents/incoming_incident.json \
-            ${{ github.event.inputs.stage_hotfix == 'true' && '--stage' || '' }} \
+            $STAGE_FLAG \
             --output incident_triage_report.md
           cat incident_triage_report.md >> $GITHUB_STEP_SUMMARY
           cat incident_triage_report.md
