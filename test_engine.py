@@ -297,14 +297,20 @@ class TestAPIGateway:
         assert "algorise_" in response.text
 
     def test_list_bots_endpoint(self, client):
-        response = client.get("/api/v1/bots/list")
+        response = client.get(
+            "/api/v1/bots/list",
+            headers={"X-Algorise-Key": "alg_live_test_key_9981"},
+        )
         assert response.status_code == 200
         data = response.json()
         assert data["total_hero_bots"] == 100
         assert len(data["bots"]) == 100
 
     def test_tuning_status_endpoint(self, client):
-        response = client.get("/api/v1/tuning/status")
+        response = client.get(
+            "/api/v1/tuning/status",
+            headers={"X-Algorise-Key": "alg_live_test_key_9981"},
+        )
         assert response.status_code == 200
         data = response.json()
         assert data["audit_status"] == "CERTIFIED_OPTIMIZED"
