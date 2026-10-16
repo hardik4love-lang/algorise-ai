@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-16T00:17:49.035289+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-16T04:51:24.926374+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -16,15 +16,15 @@
 | `tenstorrent/tt-metal` | [#60849](https://github.com/tenstorrent/tt-metal/issues/60849) | [Quasar] llk_unpack_tilize_init changes the row stride  | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/60849) |
 | `tenstorrent/tt-metal` | [#60848](https://github.com/tenstorrent/tt-metal/issues/60848) | Quasar: helper-owned and temporary DataflowBuffers drai | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/60848) |
 | `BasedHardware/omi` | [#21678](https://github.com/BasedHardware/omi/issues/21678) | Bounty Proposal: Hume Webhook Callback Resilience & Mal | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/21678) |
-| `FuRongJun-1999/dsh-bounty` | [#638](https://github.com/FuRongJun-1999/dsh-bounty/issues/638) | dsh-bench：插件页 slug 撞名**静默覆盖**（#12③ 只修了报告页）；报告页撞名的 `Buil | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/638) |
-| `FuRongJun-1999/dsh-bounty` | [#637](https://github.com/FuRongJun-1999/dsh-bounty/issues/637) | dsh-bench：#12② 的版本键把 `@v2.0.0`、`@2.0.0-rc1` 判成不可解析 `(0, | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/637) |
-| `FuRongJun-1999/dsh-bounty` | [#636](https://github.com/FuRongJun-1999/dsh-bounty/issues/636) | dsh-bench：`public_check.py` 遇到偶数字节的 GBK / Latin-1 文本文件直 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/636) |
-| `Uuriko/project-room` | [#3599](https://github.com/Uuriko/project-room/issues/3599) | [High] NDJSON export→restore silently corrupts name-mat | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3599) |
-| `FuRongJun-1999/dsh-bounty` | [#635](https://github.com/FuRongJun-1999/dsh-bounty/issues/635) | dsh-bench：`--as-of`（#8①）可以**回拨**复算时钟——已过 90 天的正式报告复活为「排 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/635) |
-| `FuRongJun-1999/dsh-bounty` | [#634](https://github.com/FuRongJun-1999/dsh-bounty/issues/634) | dsh-bench：#20 L1 允许成本为 `null`（没测到）后，单价**不再复算**——`total_ | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/634) |
-| `FuRongJun-1999/dsh-bounty` | [#633](https://github.com/FuRongJun-1999/dsh-bounty/issues/633) | dsh-bench：发布闸（#3）不扫 `data/examples/`，而默认构建会把示例渲染上站——校验器 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/633) |
-| `Uuriko/project-room` | [#3594](https://github.com/Uuriko/project-room/issues/3594) | [Security] Settled bounty lot receipts are public by de | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3594) |
-| `FuRongJun-1999/dsh-bounty` | [#632](https://github.com/FuRongJun-1999/dsh-bounty/issues/632) | dsh-bench：账本对账（#12④）**不分月份**——10 月发布 1 份正式报告，9 月账本必判「不对 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/632) |
-| `FuRongJun-1999/dsh-bounty` | [#631](https://github.com/FuRongJun-1999/dsh-bounty/issues/631) | dsh-bench：证据链只认 `evidence_id`——报告挂**另一实验**的合格证据（实验/分析 i | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/631) |
-| `Uuriko/project-room` | [#3591](https://github.com/Uuriko/project-room/issues/3591) | Bounty escrow: deadline/challenge boundaries are a race | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3591) |
-| `limitlessprojects/Go-Hybrid` | [#268](https://github.com/limitlessprojects/Go-Hybrid/issues/268) | [wildcard] Self-Hosted In-Process Analysis: Native Go L | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/268) |
+| `FuRongJun-1999/dsh-bounty` | [#736](https://github.com/FuRongJun-1999/dsh-bounty/issues/736) | [intake 输入] dsh-memory 脑端**安全专项**只读审计（第七轮）：2 条新立案（**1×P | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/736) |
+| `Loomirr/TTGames-Workshop` | [#11](https://github.com/Loomirr/TTGames-Workshop/issues/11) | TCS PC: where the hardcoded character behaviours live ( | 0 | `20.05` | [Inspect](https://github.com/Loomirr/TTGames-Workshop/issues/11) |
+| `FuRongJun-1999/dsh-memory` | [#445](https://github.com/FuRongJun-1999/dsh-memory/issues/445) | [md_cg/metacognition][Security][P1] 反思台账 `_reflection.j | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/445) |
+| `FuRongJun-1999/dsh-memory` | [#444](https://github.com/FuRongJun-1999/dsh-memory/issues/444) | [md_cg/scrub][Security][P0] `scrub` 的同族矛盾处置把**两个节点的正文原文 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/444) |
+| `abdulsalam-create/bounty-watch` | [#127](https://github.com/abdulsalam-create/bounty-watch/issues/127) | bounty-watch 2026-10-16: 0 new, 0 resumed, 3 watchlist  | 0 | `20.05` | [Inspect](https://github.com/abdulsalam-create/bounty-watch/issues/127) |
+| `FuRongJun-1999/dsh-memory` | [#439](https://github.com/FuRongJun-1999/dsh-memory/issues/439) | [md_cg/mdcos][P1] #297 密级继承单点未接 3 个兄弟写入口：add_goal/add_r | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/439) |
+| `paraloom-labs/paraloom-core` | [#940](https://github.com/paraloom-labs/paraloom-core/issues/940) | [BOUNTY] Incomplete wallet wipe leaks unencrypted swap  | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/940) |
+| `paraloom-labs/paraloom-core` | [#939](https://github.com/paraloom-labs/paraloom-core/issues/939) | [BOUNTY] scanForNotes permanent note-discovery DoS via  | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/939) |
+| `paraloom-labs/paraloom-core` | [#938](https://github.com/paraloom-labs/paraloom-core/issues/938) | [BOUNTY] Medium: prove_transact 64-bit leaf_index trunc | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/938) |
+| `linqinghao/agents-radar` | [#191](https://github.com/linqinghao/agents-radar/issues/191) | 🎨 生成式 UI 生态日报 2026-10-16 | 0 | `20.05` | [Inspect](https://github.com/linqinghao/agents-radar/issues/191) |
+| `FuRongJun-1999/dsh-bench` | [#31](https://github.com/FuRongJun-1999/dsh-bench/issues/31) | [P1 汇总十三] 账本只对已有月份对账：有正式报告的月份可以没有账本、未来月份账本照收；`--officia | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bench/issues/31) |
+| `dsect-net/quantum` | [#51](https://github.com/dsect-net/quantum/issues/51) | Backlog: Notekeeper gamification — earn Quantum credits | 0 | `20.05` | [Inspect](https://github.com/dsect-net/quantum/issues/51) |
