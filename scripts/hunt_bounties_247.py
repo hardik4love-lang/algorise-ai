@@ -95,6 +95,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21876",
         "bounty_est": "$50",
         "role": "Staged Tasks Creation Dedup & Firestore Index Sorting"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21898,
+        "title": "fix(tests): preload calendar_render in calendar unit stubs and adapt to model_text event format (#21897)",
+        "url": "https://github.com/BasedHardware/omi/pull/21898",
+        "bounty_est": "$50",
+        "role": "P0 CI Recovery: Preload calendar_render in Unit Stubs"
     }
 ]
 
