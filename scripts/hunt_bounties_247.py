@@ -71,6 +71,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21768",
         "bounty_est": "$50 - $100",
         "role": "Bee Frontier Battery Parser Stability"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21811,
+        "title": "fix(sync): unblock backfill queue with owner deferral and NotFound resilience (#21122)",
+        "url": "https://github.com/BasedHardware/omi/pull/21811",
+        "bounty_est": "$100 - $200",
+        "role": "Critical P1 Production Outage Restoration"
     }
 ]
 
