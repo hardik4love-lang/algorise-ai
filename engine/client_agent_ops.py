@@ -30,15 +30,22 @@ fb_engine = FacebookAgentEngine(api_version=settings.fb_graph_api_version)
 
 async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
     """
-    Idempotently seeds Shruhi Collections (shruhicollections.in) on SURAT PRO TIER (₹29,999/mo)
-    with zero fake data and verified catalogue settings.
+    Idempotently ensures Shruhi Collections (shruhicollections.in) exists on SURAT PRO TIER (₹29,999/mo).
+    
+    This function should only be used in development/testing environments.
+    In production, clients should be created through the normal onboarding process.
     """
+    from sqlalchemy import delete
+    
+    # Only allow in non-production environments
+    if settings.environment == "production":
+        raise HTTPException(
+            status_code=403,
+            detail="Automatic client seeding is disabled in production"
+        )
+    
     client_id = "client_srt_shruhi"
-    pin = "2026"
-    hashed_pin = hash_pin(pin)
-    api_key = "alg_live_shruhi_surat_pro_2026"
-    api_key_hash = hashlib.sha256(api_key.encode("utf-8")).hexdigest()
-
+    
     async with db_manager.session() as session:
         # Purge any previously seeded fake leads
         await session.execute(
@@ -49,24 +56,30 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
 
         existing = (await session.execute(select(Client).where(Client.id == client_id))).scalar_one_or_none()
         if existing:
+            # Update existing record to ensure it has correct data
             existing.fb_page_id = "61586357894191"
             existing.fb_page_name = "Shruhi Collections | Surat (ID: 61586357894191) & Shruhi collections (ID: 61586323275145)"
             existing.city = "100% Online Store • www.shruhicollections.in"
+            # Clear any simulated token
             if existing.fb_access_token == "simulated_token":
                 existing.fb_access_token = None
         else:
+            # Create new client - in a real implementation, these would come from environment variables
+            # or a secure configuration service, not be hardcoded
             shruhi_client = Client(
                 id=client_id,
                 name="Shruhi Collections — Official Boutique (shruhicollections.in)",
                 tier="Surat Business Pro",
-                api_key_hash=api_key_hash,
+                # In production, these would be set via environment variables or secure config
+                api_key_hash="",  # Must be set via proper configuration
                 phone="+91 63552 85433",
                 email="orders@shruhicollections.in",
                 city="100% Online Store • www.shruhicollections.in",
-                pin_hash=hashed_pin,
+                # PIN hash would be set properly in production
+                pin_hash="",  # Must be set via proper configuration
                 fb_page_id="61586357894191",
                 fb_page_name="Shruhi Collections | Surat (ID: 61586357894191) & Shruhi collections (ID: 61586323275145)",
-                fb_access_token=None,
+                fb_access_token=None,  # Should be set via environment variable
                 is_active=True,
                 settings={
                     "area": "100% Online Store • www.shruhicollections.in",
@@ -117,7 +130,8 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
 
     return {
         "client_id": client_id,
-        "pin": pin,
+        # In a real implementation, these would not be returned in production
+        "pin": "NOT_SET_IN_PRODUCTION" if settings.environment == "production" else "2026",
         "fb_page_id": "61586357894191",
         "fb_page_2_id": "61586323275145",
         "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",

@@ -74,8 +74,6 @@ api_key_header = APIKeyHeader(name="X-Algorise-Key", auto_error=False)
 async def get_api_key(api_key: str = Depends(api_key_header)) -> str:
     """Dependency to extract API key from header."""
     if not api_key:
-        if settings.environment != "production":
-            return "alg_live_test_key_9981"
         raise HTTPException(
             status_code=401,
             detail="Authentication failed: Missing required 'X-Algorise-Key' header",
