@@ -12,166 +12,12 @@
     "priority_score": 20.05
   },
   {
-    "repo": "lorenzopalaia/HackTrack-EU",
-    "number": 24,
-    "title": "Hackathon add request: AI Fixathon: Vulnerability discovery agents (Porto, 18\u201320 Nov 2026)",
-    "url": "https://github.com/lorenzopalaia/HackTrack-EU/issues/24",
-    "created_at": "2026-10-16T14:36:39Z",
+    "repo": "mautic/mautic",
+    "number": 17863,
+    "title": "Prevent duplicate marketing email sends when campaigns run concurrently",
+    "url": "https://github.com/mautic/mautic/issues/17863",
+    "created_at": "2026-10-16T18:25:46Z",
     "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "rudimentall1/AegisForge",
-    "number": 113,
-    "title": "Architecture decision: when to add the first Solidity end-to-end case",
-    "url": "https://github.com/rudimentall1/AegisForge/issues/113",
-    "created_at": "2026-10-16T14:34:18Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-wallet",
-    "number": 89,
-    "title": "[BOUNTY] Medium: Uncaught transient RPC errors aborting waitForFunding/waitForSwapConfirmation settlement polls, inpage PRIVATE_SWAP stale GET_SWAP_STATUS resolution, fetchV3Leaves intra-slot/payload bounds, and base58Decode/v0 recoverReshieldedNote defects (paraloom-wallet)",
-    "url": "https://github.com/paraloom-labs/paraloom-wallet/issues/89",
-    "created_at": "2026-10-16T14:32:12Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 969,
-    "title": "[BOUNTY] Medium: Uncaught transient RPC errors aborting waitForFunding/waitForSwapConfirmation settlement polls, inpage PRIVATE_SWAP stale GET_SWAP_STATUS resolution, fetchV3Leaves intra-slot/payload bounds, and base58Decode/v0 recoverReshieldedNote defects (paraloom-wallet)",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/969",
-    "created_at": "2026-10-16T14:32:11Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "INVERSEARENA/inversearena-frontend",
-    "number": 1553,
-    "title": "Allow permissionless round resolution after the reveal window when the host is inactive",
-    "url": "https://github.com/INVERSEARENA/inversearena-frontend/issues/1553",
-    "created_at": "2026-10-16T14:29:17Z",
-    "labels": [
-      "drips-wave",
-      "high",
-      "200-points"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 968,
-    "title": "[BOUNTY] Medium: Request-response codec bincode length-prefix OOM, co-sign round correlation bypass, forgotten peer resurrection, and /metrics readiness mismatch",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/968",
-    "created_at": "2026-10-16T14:26:57Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "shawndibble/neocom-desk",
-    "number": 3915,
-    "title": "Wallet Journal on a phone: two-line rows grouped by day with each day's net",
-    "url": "https://github.com/shawndibble/neocom-desk/issues/3915",
-    "created_at": "2026-10-16T14:10:47Z",
-    "labels": [
-      "enhancement",
-      "in-progress"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "shawndibble/neocom-desk",
-    "number": 3914,
-    "title": "Wallet Journal: hideable daily In / Out chart in Where the ISK went, click a day to filter",
-    "url": "https://github.com/shawndibble/neocom-desk/issues/3914",
-    "created_at": "2026-10-16T14:10:44Z",
-    "labels": [
-      "enhancement",
-      "in-progress"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "dseelinger/d47",
-    "number": 1219,
-    "title": "Massacre mission stacking",
-    "url": "https://github.com/dseelinger/d47/issues/1219",
-    "created_at": "2026-10-16T14:05:38Z",
-    "labels": [
-      "enhancement",
-      "under-speced"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "DeltaV-Station/Delta-v",
-    "number": 6627,
-    "title": "Academy map missing mass scanner console in salv dock.",
-    "url": "https://github.com/DeltaV-Station/Delta-v/issues/6627",
-    "created_at": "2026-10-16T13:54:37Z",
-    "labels": [
-      "S: Untriaged"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "postmark-town/postmark",
-    "number": 3884,
-    "title": "Candor first parcel: submitted body differs from the exact requested marker",
-    "url": "https://github.com/postmark-town/postmark/issues/3884",
-    "created_at": "2026-10-16T13:54:25Z",
-    "labels": [
-      "illuminator"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "zeroking1998/KF2-Optimizer-Next",
-    "number": 971,
-    "title": "Narrow per-frame HUD pawn scans to their consumed classes",
-    "url": "https://github.com/zeroking1998/KF2-Optimizer-Next/issues/971",
-    "created_at": "2026-10-16T13:52:19Z",
-    "labels": [
-      "area: ui",
-      "performance",
-      "cleanup",
-      "area: online"
-    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -179,10 +25,10 @@
   },
   {
     "repo": "neatlogs/neatroots",
-    "number": 256,
-    "title": "A check saved over MCP's `create_check` loads as a user check, so a coding agent can add a halt rule with no approval [bounty requested]",
-    "url": "https://github.com/neatlogs/neatroots/issues/256",
-    "created_at": "2026-10-16T13:49:21Z",
+    "number": 290,
+    "title": "Feature proposal: findings have no list page, so the documented goes-quiet-after-3-dismissals control can only be driven one run at a time (bounty requested)",
+    "url": "https://github.com/neatlogs/neatroots/issues/290",
+    "created_at": "2026-10-16T18:24:06Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -190,19 +36,346 @@
     "priority_score": 20.05
   },
   {
-    "repo": "shawndibble/neocom-desk",
-    "number": 3908,
-    "title": "Wallet Journal: Where the ISK went side panel filters the Journal, across all Characters, own-Character transfers netted, PLEX as its own row",
-    "url": "https://github.com/shawndibble/neocom-desk/issues/3908",
-    "created_at": "2026-10-16T13:44:51Z",
+    "repo": "neatlogs/neatroots",
+    "number": 289,
+    "title": "Feature proposal: a compare view for two runs, since compare_runs is MCP-only today (bounty requested)",
+    "url": "https://github.com/neatlogs/neatroots/issues/289",
+    "created_at": "2026-10-16T18:23:50Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 288,
+    "title": "Feature proposal: show what a run, a project and a period cost, from a bundled price table and the tokens already stored (bounty requested)",
+    "url": "https://github.com/neatlogs/neatroots/issues/288",
+    "created_at": "2026-10-16T18:23:40Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 287,
+    "title": "Feature proposal: retention is value-blind, so a run with findings is evicted before a clean run (bounty requested)",
+    "url": "https://github.com/neatlogs/neatroots/issues/287",
+    "created_at": "2026-10-16T18:22:56Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 286,
+    "title": "[Bug]: hooks_connected reads 0 for every TypeScript user, and neatroots doctor says nothing about steering",
+    "url": "https://github.com/neatlogs/neatroots/issues/286",
+    "created_at": "2026-10-16T18:22:46Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 285,
+    "title": "[Bug]: preview_check counts a run as checked when its question was never judged, and nothing says why a check did not fire",
+    "url": "https://github.com/neatlogs/neatroots/issues/285",
+    "created_at": "2026-10-16T18:22:37Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 284,
+    "title": "[Bug]: scope: session is accepted by the schema and listed in the docs, but the engine silently runs it as scope: trace",
+    "url": "https://github.com/neatlogs/neatroots/issues/284",
+    "created_at": "2026-10-16T18:21:56Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 283,
+    "title": "[Bug]: a copy of the store without its blob tree reads back as empty prompts and outputs (no store verify, and meta.schema_version is never read)",
+    "url": "https://github.com/neatlogs/neatroots/issues/283",
+    "created_at": "2026-10-16T18:21:47Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
+    "number": 281,
+    "title": "[Bug]: the Checks page counts failed model calls and quiet findings as Findings, so the precision number understates every check",
+    "url": "https://github.com/neatlogs/neatroots/issues/281",
+    "created_at": "2026-10-16T18:21:37Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraspell/xcm-tools",
+    "number": 2163,
+    "title": "[Bug bounty] SDK (Dedot): no transfer from Acala or Karura can be built \u2014 CheckNonce is encoded with the wrong shape (runtime trap) and Token currency ids are rejected",
+    "url": "https://github.com/paraspell/xcm-tools/issues/2163",
+    "created_at": "2026-10-16T18:16:47Z",
     "labels": [
-      "enhancement",
-      "in-progress"
+      "Bug bounty \ud83d\udcb0"
     ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 20.05
+  },
+  {
+    "repo": "marceld23/BlocksBeyondTheStars",
+    "number": 2693,
+    "title": "Same-name settlements on different bodies share a mission board, mission ids and NPC memory",
+    "url": "https://github.com/marceld23/BlocksBeyondTheStars/issues/2693",
+    "created_at": "2026-10-16T18:16:29Z",
+    "labels": [
+      "bug",
+      "area: server",
+      "package: hash variety 2026-10"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraspell/xcm-tools",
+    "number": 2162,
+    "title": "[Bug bounty] XCM API: rate limit window is 60 ms instead of 60 s \u2014 RATE_LIMIT_TTL_SEC is passed to @nestjs/throttler, which expects milliseconds",
+    "url": "https://github.com/paraspell/xcm-tools/issues/2162",
+    "created_at": "2026-10-16T18:16:08Z",
+    "labels": [
+      "Confirmed bug \ud83e\udeb2",
+      "Bug bounty \ud83d\udcb0",
+      "Paid \ud83d\udcb8",
+      "Will be fixed by maintainers"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "SecureBananaLabs/bug-bounty",
+    "number": 13334,
+    "title": "PAYMENT: USDC on Base wallet for PR #13332 ($780) and PR #13333 ($430)",
+    "url": "https://github.com/SecureBananaLabs/bug-bounty/issues/13334",
+    "created_at": "2026-10-16T18:11:44Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraspell/xcm-tools",
+    "number": 2161,
+    "title": "[Bug bounty] SDK (Dedot): every transfer from AssetHubPolkadot / PeoplePolkadot fails with \"SignedExtension for VerifyMultiSignature requires input but is not implemented\"",
+    "url": "https://github.com/paraspell/xcm-tools/issues/2161",
+    "created_at": "2026-10-16T18:11:04Z",
+    "labels": [
+      "Bug bounty \ud83d\udcb0"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21869,
+    "title": "Paying Neo (legacy Unlimited) subscriber shown as Free plan and metered at 300 min despite paid Sept 17 renewal",
+    "url": "https://github.com/BasedHardware/omi/issues/21869",
+    "created_at": "2026-10-16T14:57:12Z",
+    "labels": [
+      "bug"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 60937,
+    "title": "ccl_fusion_mcast_2d: packer_l1_acc off at two K blocks, and sharded output shares partials across N blocks",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/60937",
+    "created_at": "2026-10-16T15:26:17Z",
+    "labels": [
+      "bug",
+      "op_cat: ccl"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21916,
+    "title": "[Bounty proposal] fix(database): sanitize inputs and add stream error boundaries to batch pipeline privacy queries ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21916",
+    "created_at": "2026-10-16T17:57:46Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21914,
+    "title": "[Bounty proposal] fix(database): sanitize document id, add timestamp boundary to api key metadata ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21914",
+    "created_at": "2026-10-16T17:49:40Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21911,
+    "title": "[Bounty proposal] fix(database): prevent read mutation and harden date boundaries in action item codec ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21911",
+    "created_at": "2026-10-16T17:42:05Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21907,
+    "title": "[Bounty proposal] fix(database): sanitize uid and period, add error boundary to budget choice ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21907",
+    "created_at": "2026-10-16T17:30:45Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21903,
+    "title": "[Bounty proposal] fix(database): add stream fault tolerance and client injection to trends ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21903",
+    "created_at": "2026-10-16T17:14:20Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21901,
+    "title": "[Bounty proposal] fix(database): sanitize uid and protect session streams in channel visibility ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21901",
+    "created_at": "2026-10-16T17:08:06Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21899,
+    "title": "[Bounty proposal] fix(database): sanitize uid and guard voice preferences against store failures ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21899",
+    "created_at": "2026-10-16T17:02:19Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21895,
+    "title": "[Bounty proposal] fix(database): sanitize phone call overrides and add fault-tolerant client injection ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21895",
+    "created_at": "2026-10-16T16:47:30Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21892,
+    "title": "[Bounty proposal] fix(database): sanitize review config inputs and harden version gating ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21892",
+    "created_at": "2026-10-16T16:37:53Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21878,
+    "title": "[Bounty proposal] fix(database): sanitize plan_key attribution and guard hourly usage increments ( proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21878",
+    "created_at": "2026-10-16T15:54:12Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21875,
+    "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score for index sorting ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21875",
+    "created_at": "2026-10-16T15:44:21Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21867,
+    "title": "[Bounty Proposal] Fix apps, persona, and speech-profile temp-file leaks, pricing/cache lifecycle, and locked-memory guards ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21867",
+    "created_at": "2026-10-16T14:42:20Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
   },
   {
     "repo": "BasedHardware/omi",
@@ -258,78 +431,6 @@
     "title": "[Bounty Proposal] fix(conversations): purge vectors/tasks in merge cleanup, reject duplicate merge IDs, and sync task description edits ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21844",
     "created_at": "2026-10-16T11:41:35Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21841,
-    "title": "[Bounty Proposal] fix(backend): enforce locks, cancel reminders, and filter soft-deleted action items ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21841",
-    "created_at": "2026-10-16T11:20:07Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21838,
-    "title": "[Bounty Proposal] fix(backend): guard soft-deleted tombstones and sync search index in conversation sync mutations ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21838",
-    "created_at": "2026-10-16T11:03:37Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21833,
-    "title": "[Bounty Proposal] fix(folders): decode folder conversations for read, filter visibility, and exclude hidden rows from counts ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21833",
-    "created_at": "2026-10-16T10:51:22Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21824,
-    "title": "[Bounty Proposal] fix(retrieval): sync action-item vectors across chat tools, tool services, and undo ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21824",
-    "created_at": "2026-10-16T09:03:49Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21812,
-    "title": "[Bounty Proposal] fix(listen): isolate reconnect and prepare rollover finalizations ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21812",
-    "created_at": "2026-10-16T06:40:04Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21809,
-    "title": "[Bounty Proposal] fix(integrations): explicit-null context.filters and non-string webhook fields drop notifications or abort fanout ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21809",
-    "created_at": "2026-10-16T06:17:34Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": true,
