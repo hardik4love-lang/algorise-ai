@@ -79,6 +79,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21811",
         "bounty_est": "$100 - $200",
         "role": "Critical P1 Production Outage Restoration"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21855,
+        "title": "fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency (#21854)",
+        "url": "https://github.com/BasedHardware/omi/pull/21855",
+        "bounty_est": "$50",
+        "role": "Canonical Product State Integrity & Goal Deletion Idempotency"
     }
 ]
 
