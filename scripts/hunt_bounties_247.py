@@ -87,6 +87,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21855",
         "bounty_est": "$50",
         "role": "Canonical Product State Integrity & Goal Deletion Idempotency"
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 21876,
+        "title": "fix(staged_tasks): filter completed entities in creation dedup and default relevance_score (#21875)",
+        "url": "https://github.com/BasedHardware/omi/pull/21876",
+        "bounty_est": "$50",
+        "role": "Staged Tasks Creation Dedup & Firestore Index Sorting"
     }
 ]
 
