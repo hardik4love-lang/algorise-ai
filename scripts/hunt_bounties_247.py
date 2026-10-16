@@ -95,6 +95,14 @@ TRACKED_PRS = [
         "url": "https://github.com/BasedHardware/omi/pull/21876",
         "bounty_est": "$50",
         "role": "Staged Tasks Creation Dedup & Firestore Index Sorting"
+    },
+    {
+        "repo": "calcom/cal.com",
+        "pr_number": 30353,
+        "title": "fix(oauth2): support space-separated scopes per RFC 6749 (#30348)",
+        "url": "https://github.com/calcom/cal.diy/pull/30353",
+        "bounty_est": "$50 - $100",
+        "role": "RFC 6749 OAuth 2.0 Scope Delimiter Parser"
     }
 ]
 
