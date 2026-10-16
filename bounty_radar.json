@@ -55,6 +55,184 @@
     "priority_score": 20.05
   },
   {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 772,
+    "title": "[intake][\u8d21\u732e\u4ea4\u4ed8][\u5b89\u5168] fix(#463): \u5e7d\u7075\u6458\u9664\u8865 protect.is_protected \u95f8\u2014\u2014\u53d7\u4fdd\u62a4\u8282\u70b9\u4e0d\u518d\u88ab\u65e0\u95f8 _unstage\uff08PR #501\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/772",
+    "created_at": "2026-10-16T09:24:20Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 771,
+    "title": "[intake][\u8d21\u732e\u4ea4\u4ed8][\u5b89\u5168] fix(#467): identity \u5199\u4fa7\u8865 sensitivity \u900f\u4f20\u2014\u2014designer \u53ef\u5199 private \u4e0d\u518d\u9759\u9ed8\u964d internal\uff08PR #500\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/771",
+    "created_at": "2026-10-16T09:20:41Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 770,
+    "title": "[intake \u8f93\u5165] dsh-memory **#498**\uff08\u65b0\u7acb\u6848 P1\uff09\uff1a\u5408\u5e76\u75d5\u8ff9\u5bf9\u8d26**\u4f9d\u8d56\u7d22\u5f15\u65b0\u9c9c\u5ea6** \u21d2 \u6062\u590d\u671f\u628a\u5df2\u843d\u76d8\u7684 gMERGE \u5224\u6210 `interrupted/node_missing`\uff1b\u542b\u4fee\u590d PR [#499](https://github.com/FuRongJun-1999/dsh-memory/pull/499)\uff08\u5b88\u536b 9/9 + \u53d8\u5f02 3 \u7ea2\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/770",
+    "created_at": "2026-10-16T09:19:45Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-memory",
+    "number": 498,
+    "title": "[md_cg/twophase][Security/\u53ef\u4fe1\u6027][P1] \u5408\u5e76\u75d5\u8ff9\u5bf9\u8d26**\u4f9d\u8d56\u7d22\u5f15\u65b0\u9c9c\u5ea6**\uff1a\u5d29\u6e83\u7a97\u53e3\u5185\u7d22\u5f15\u672a\u6301\u4e45\u5316 \u21d2 \u76d8\u9762\u660e\u660e\u5df2\u6709 `merge_source_ids`\uff0c\u6062\u590d\u671f\u4ecd\u5224 `interrupted/node_missing`\uff08\u4e0e\u76d8\u9762\u76f8\u53cd\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-memory/issues/498",
+    "created_at": "2026-10-16T09:17:39Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 769,
+    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory #492\uff1a\u5199\u94fe\u94fe\u5c3e\u6267\u884c\u5668\u65e0\u6761\u4ef6\u4ed8 97% \u89c2\u6d4b\u5f00\u9500\uff08redundancy 31.7ms/\u6b21\uff1b\u5df2\u5b9e\u8dd1\u590d\u73b0\uff0c\u4e0e\u5df2\u7ed3\u7b97 #482 \u5b9e\u6d4b\u533a\u5206\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/769",
+    "created_at": "2026-10-16T09:07:37Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 768,
+    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory #491\uff1a`verify_code` \u540c\u8fdb\u7a0b\u88f8 exec \u65e0\u6c99\u7bb1\u65e0\u8d85\u65f6\uff08#91 \u5df2\u4fee verifier.py\uff0c\u540c\u65cf\u53e6\u4e00\u8f7d\u4f53\u81f3\u4eca\u672a\u6536\uff1b\u5df2\u5b9e\u8dd1\u590d\u73b0\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/768",
+    "created_at": "2026-10-16T09:07:31Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 767,
+    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory #490\uff1a`/roleplay` \u4e09\u4e2a GET \u8bfb\u7aef\u70b9\u96f6\u9274\u6743\uff08\u4e09\u5bfc\u5165\u6b63\u6587/\u5b8c\u6574\u8f6c\u5f55/\u7ffb\u8bd1\u8868\uff1b\u653b\u51fb\u8005\u89c6\u89d2\u5b89\u5168\u4e13\u9879\uff0c\u5df2\u5b9e\u8dd1\u590d\u73b0\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/767",
+    "created_at": "2026-10-16T09:07:25Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraloom-labs/paraloom-core",
+    "number": 946,
+    "title": "[Bug]: On-chain settlement records phantom half-settlement Merkle roots & 2x history eviction, allows vault self-withdrawals that strand TVL cap, and misreports slash/unbonding state",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/946",
+    "created_at": "2026-10-16T08:24:19Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Uuriko/project-room",
+    "number": 3765,
+    "title": "Public lot receipt headline misstates multi-movement lots: split settlements show the full award as the movement; fee/payout legs invisible on the HTML face",
+    "url": "https://github.com/Uuriko/project-room/issues/3765",
+    "created_at": "2026-10-16T08:01:35Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "GoodDollar/GoodWidget",
+    "number": 257,
+    "title": "[GoodBounty] Fix per-chain decimals, wallet-gate, and chain-selection bugs in Bridging GoodWidget",
+    "url": "https://github.com/GoodDollar/GoodWidget/issues/257",
+    "created_at": "2026-10-16T07:47:22Z",
+    "labels": [
+      "draft"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "shakurJJ/chainsettle-contract",
+    "number": 645,
+    "title": "feat: keeper bounty for permissionless maintenance calls",
+    "url": "https://github.com/shakurJJ/chainsettle-contract/issues/645",
+    "created_at": "2026-10-16T07:41:20Z",
+    "labels": [
+      "enhancement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "thirdshiftworks/opportunity-scanner",
+    "number": 4,
+    "title": "[Opportunity] Bounty $50: recipe for Ryzen AI 890M (Radeon 890M iGPU) \u2014 $50.0",
+    "url": "https://github.com/thirdshiftworks/opportunity-scanner/issues/4",
+    "created_at": "2026-10-16T07:40:02Z",
+    "labels": [
+      "new"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "thirdshiftworks/opportunity-scanner",
+    "number": 3,
+    "title": "[Opportunity] [$400] Per-service container images: ship each image only the code and dependencies it runs \u2014 $400.0",
+    "url": "https://github.com/thirdshiftworks/opportunity-scanner/issues/3",
+    "created_at": "2026-10-16T07:40:01Z",
+    "labels": [
+      "new"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "thirdshiftworks/opportunity-scanner",
+    "number": 2,
+    "title": "[Opportunity] [$750] WebGL renderer for the 3D memory graph: 50,000 nodes at interactive frame rates \u2014 $750.0",
+    "url": "https://github.com/thirdshiftworks/opportunity-scanner/issues/2",
+    "created_at": "2026-10-16T07:40:00Z",
+    "labels": [
+      "new"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
     "repo": "BasedHardware/omi",
     "number": 21824,
     "title": "[Bounty Proposal] fix(retrieval): sync action-item vectors across chat tools, tool services, and undo ($50 proposed)",
