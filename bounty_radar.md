@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-16T18:40:50.411945+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-16T21:57:38.668486+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -18,17 +18,17 @@
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `mautic/mautic` | [#17863](https://github.com/mautic/mautic/issues/17863) | Prevent duplicate marketing email sends when campaigns  | 0 | `20.05` | [Inspect](https://github.com/mautic/mautic/issues/17863) |
-| `neatlogs/neatroots` | [#290](https://github.com/neatlogs/neatroots/issues/290) | Feature proposal: findings have no list page, so the do | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/290) |
-| `neatlogs/neatroots` | [#289](https://github.com/neatlogs/neatroots/issues/289) | Feature proposal: a compare view for two runs, since co | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/289) |
-| `neatlogs/neatroots` | [#288](https://github.com/neatlogs/neatroots/issues/288) | Feature proposal: show what a run, a project and a peri | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/288) |
-| `neatlogs/neatroots` | [#287](https://github.com/neatlogs/neatroots/issues/287) | Feature proposal: retention is value-blind, so a run wi | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/287) |
-| `neatlogs/neatroots` | [#286](https://github.com/neatlogs/neatroots/issues/286) | [Bug]: hooks_connected reads 0 for every TypeScript use | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/286) |
-| `neatlogs/neatroots` | [#285](https://github.com/neatlogs/neatroots/issues/285) | [Bug]: preview_check counts a run as checked when its q | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/285) |
-| `neatlogs/neatroots` | [#284](https://github.com/neatlogs/neatroots/issues/284) | [Bug]: scope: session is accepted by the schema and lis | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/284) |
-| `neatlogs/neatroots` | [#283](https://github.com/neatlogs/neatroots/issues/283) | [Bug]: a copy of the store without its blob tree reads  | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/283) |
-| `neatlogs/neatroots` | [#281](https://github.com/neatlogs/neatroots/issues/281) | [Bug]: the Checks page counts failed model calls and qu | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/281) |
-| `paraspell/xcm-tools` | [#2163](https://github.com/paraspell/xcm-tools/issues/2163) | [Bug bounty] SDK (Dedot): no transfer from Acala or Kar | 0 | `20.05` | [Inspect](https://github.com/paraspell/xcm-tools/issues/2163) |
-| `marceld23/BlocksBeyondTheStars` | [#2693](https://github.com/marceld23/BlocksBeyondTheStars/issues/2693) | Same-name settlements on different bodies share a missi | 0 | `20.05` | [Inspect](https://github.com/marceld23/BlocksBeyondTheStars/issues/2693) |
-| `paraspell/xcm-tools` | [#2162](https://github.com/paraspell/xcm-tools/issues/2162) | [Bug bounty] XCM API: rate limit window is 60 ms instea | 0 | `20.05` | [Inspect](https://github.com/paraspell/xcm-tools/issues/2162) |
-| `SecureBananaLabs/bug-bounty` | [#13334](https://github.com/SecureBananaLabs/bug-bounty/issues/13334) | PAYMENT: USDC on Base wallet for PR #13332 ($780) and P | 0 | `20.05` | [Inspect](https://github.com/SecureBananaLabs/bug-bounty/issues/13334) |
+| `paraspell/xcm-tools` | [#2168](https://github.com/paraspell/xcm-tools/issues/2168) | [Bug bounty] AssetHub fallback transfer can exceed the  | 0 | `20.05` | [Inspect](https://github.com/paraspell/xcm-tools/issues/2168) |
+| `ahmedfuzayl-gif/commit-monitor` | [#144](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/144) | commit-monitor: new leads 2026-10-16_2145Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/144) |
+| `HCTDIP/corps-jobs` | [#97](https://github.com/HCTDIP/corps-jobs/issues/97) | Railway 赏金：有 3 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/97) |
+| `Zenith-options/backend` | [#245](https://github.com/Zenith-options/backend/issues/245) | Implement Keeper Bounty Accrual and Reward Distribution | 0 | `20.05` | [Inspect](https://github.com/Zenith-options/backend/issues/245) |
+| `abdulsalam-create/bounty-watch` | [#132](https://github.com/abdulsalam-create/bounty-watch/issues/132) | bounty-watch 2026-10-16: 0 new, 1 resumed, 5 watchlist  | 0 | `20.05` | [Inspect](https://github.com/abdulsalam-create/bounty-watch/issues/132) |
+| `ZecHub/zec-bounties` | [#421](https://github.com/ZecHub/zec-bounties/issues/421) | Question: reward requests for merged PRs under the new  | 0 | `20.05` | [Inspect](https://github.com/ZecHub/zec-bounties/issues/421) |
+| `dev-kp-eloper/BountyScout` | [#1602](https://github.com/dev-kp-eloper/BountyScout/issues/1602) | 🎯 Bounty Alert: 13 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1602) |
+| `paraspell/xcm-tools` | [#2165](https://github.com/paraspell/xcm-tools/issues/2165) | [Bug bounty] Snowbridge client cache drops public clien | 0 | `20.05` | [Inspect](https://github.com/paraspell/xcm-tools/issues/2165) |
+| `vdavid/cmdr` | [#462](https://github.com/vdavid/cmdr/issues/462) | Match Cmdr's competitors in enterprise readiness | 0 | `20.05` | [Inspect](https://github.com/vdavid/cmdr/issues/462) |
+| `neatlogs/neatroots` | [#324](https://github.com/neatlogs/neatroots/issues/324) | [Bug]: oversized bodies on /v1/logs and /v1/trace answe | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/324) |
+| `neatlogs/neatroots` | [#323](https://github.com/neatlogs/neatroots/issues/323) | [Bug]: the SPA fallback marks missing /assets/* paths a | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/323) |
+| `neatlogs/neatroots` | [#322](https://github.com/neatlogs/neatroots/issues/322) | [Bug]: a URL with a malformed percent-escape (/%zz) ret | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/322) |
+| `usewhisk/whisk` | [#85](https://github.com/usewhisk/whisk/issues/85) | External audit of @usewhisk/cctp and the core executors | 0 | `20.05` | [Inspect](https://github.com/usewhisk/whisk/issues/85) |
+| `freedom-winds/BountyScout` | [#1263](https://github.com/freedom-winds/BountyScout/issues/1263) | 🎯 Bounty Alert: 13 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1263) |
