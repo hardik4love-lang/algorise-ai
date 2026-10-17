@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-17T21:38:14.465000+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-17T23:51:37.100207+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -20,16 +20,16 @@
 |---|---|---|---|---|---|
 | `limitlessprojects/Go-Hybrid` | [#462](https://github.com/limitlessprojects/Go-Hybrid/issues/462) | [wildcard] Isolated WASM task cells: replace cross-task | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/462) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `WeighInNG/WeighIn` | [#113](https://github.com/WeighInNG/WeighIn/issues/113) | Retain a valid computed diff when report delivery subse | 0 | `20.05` | [Inspect](https://github.com/WeighInNG/WeighIn/issues/113) |
-| `WeighInNG/WeighIn` | [#112](https://github.com/WeighInNG/WeighIn/issues/112) | Validate baseline ref arguments before invoking Git | 0 | `20.05` | [Inspect](https://github.com/WeighInNG/WeighIn/issues/112) |
-| `WeighInNG/WeighIn` | [#111](https://github.com/WeighInNG/WeighIn/issues/111) | Reject unsupported network metadata before building HEA | 0 | `20.05` | [Inspect](https://github.com/WeighInNG/WeighIn/issues/111) |
-| `WeighInNG/WeighIn` | [#110](https://github.com/WeighInNG/WeighIn/issues/110) | Preserve unowned Docker containers during network start | 0 | `20.05` | [Inspect](https://github.com/WeighInNG/WeighIn/issues/110) |
-| `WeighInNG/WeighIn` | [#109](https://github.com/WeighInNG/WeighIn/issues/109) | Verify an existing deployment still executes the config | 0 | `20.05` | [Inspect](https://github.com/WeighInNG/WeighIn/issues/109) |
-| `accesslayerorg/accesslayer-contracts` | [#1071](https://github.com/accesslayerorg/accesslayer-contracts/issues/1071) | Add governance contract for protocol parameter voting | 0 | `20.05` | [Inspect](https://github.com/accesslayerorg/accesslayer-contracts/issues/1071) |
-| `stxtxm/bitbrawler` | [#1185](https://github.com/stxtxm/bitbrawler/issues/1185) | Proposition: Pixel Companion — un familier qui grandit  | 0 | `20.05` | [Inspect](https://github.com/stxtxm/bitbrawler/issues/1185) |
-| `stxtxm/bitbrawler` | [#1184](https://github.com/stxtxm/bitbrawler/issues/1184) | Proposition: Pixel Sets — 6 familles d'équipement à 2-3 | 0 | `20.05` | [Inspect](https://github.com/stxtxm/bitbrawler/issues/1184) |
-| `Hugo0/swarmmemo` | [#12](https://github.com/Hugo0/swarmmemo/issues/12) | fix(js): bound wallet-key local file read after initial | 0 | `20.05` | [Inspect](https://github.com/Hugo0/swarmmemo/issues/12) |
-| `ahmedfuzayl-gif/commit-monitor` | [#148](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/148) | commit-monitor: new leads 2026-10-17_2105Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/148) |
-| `HCTDIP/corps-jobs` | [#102](https://github.com/HCTDIP/corps-jobs/issues/102) | Railway 赏金：有 7 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/102) |
-| `WritzProtocol/writz` | [#269](https://github.com/WritzProtocol/writz/issues/269) | [security] Close GHSA-vwvv-3255-783f once recovery ship | 0 | `20.05` | [Inspect](https://github.com/WritzProtocol/writz/issues/269) |
-| `accesslayerorg/accesslayer-server` | [#1061](https://github.com/accesslayerorg/accesslayer-server/issues/1061) | Add key freeze event indexer and freeze status REST end | 0 | `20.05` | [Inspect](https://github.com/accesslayerorg/accesslayer-server/issues/1061) |
+| `Uuriko/project-room` | [#3962](https://github.com/Uuriko/project-room/issues/3962) | [QA-WAVE-C L2] Fresh-room members read 0.00 credits unt | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3962) |
+| `Uuriko/project-room` | [#3958](https://github.com/Uuriko/project-room/issues/3958) | Stranger receipt: paid settlement (lot_) receipts absen | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3958) |
+| `Uuriko/project-room` | [#3957](https://github.com/Uuriko/project-room/issues/3957) | Front door orphans /about: root page gives a cold stran | 0 | `20.05` | [Inspect](https://github.com/Uuriko/project-room/issues/3957) |
+| `Djbrl/bitbounty` | [#95](https://github.com/Djbrl/bitbounty/issues/95) | Integration · I6 · E2E testing + adversarial UI/UX revi | 0 | `20.05` | [Inspect](https://github.com/Djbrl/bitbounty/issues/95) |
+| `FuRongJun-1999/dsh-bounty` | [#900](https://github.com/FuRongJun-1999/dsh-bounty/issues/900) | 【intake 输入】hive-memory-bench：synth.py 重跑产物在 Windows 上与发 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/900) |
+| `FuRongJun-1999/hive-memory-bench` | [#58](https://github.com/FuRongJun-1999/hive-memory-bench/issues/58) | chain/tools/synth.py 生成物与已发布快照在 Windows 上不逐字节相同（README  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/hive-memory-bench/issues/58) |
+| `HCTDIP/corps-jobs` | [#103](https://github.com/HCTDIP/corps-jobs/issues/103) | Railway 赏金：有 4 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/103) |
+| `FuRongJun-1999/dsh-bounty` | [#899](https://github.com/FuRongJun-1999/dsh-bounty/issues/899) | 【intake 输入】dsh-memory：#364 新增守卫的 M3 变异锚点在 main 上命中 0 次、 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/899) |
+| `FuRongJun-1999/dsh-memory` | [#543](https://github.com/FuRongJun-1999/dsh-memory/issues/543) | PR #364 新增守卫的 M3 变异锚点在 main 上命中 0 次：--mutate 基线自检 rc=1， | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/543) |
+| `ZecHub/zec-bounties` | [#426](https://github.com/ZecHub/zec-bounties/issues/426) | Availability of existing submission-review-thread bount | 0 | `20.05` | [Inspect](https://github.com/ZecHub/zec-bounties/issues/426) |
+| `freedom-winds/BountyScout` | [#1271](https://github.com/freedom-winds/BountyScout/issues/1271) | 🎯 Bounty Alert: 8 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1271) |
+| `paraloom-labs/paraloom-core` | [#1000](https://github.com/paraloom-labs/paraloom-core/issues/1000) | [BOUNTY] Medium: transact_spl records no SPL withdrawal | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1000) |
+| `facesnatcher56-star/curse` | [#70](https://github.com/facesnatcher56-star/curse/issues/70) | [Design notes] Proc passive and power-upgrade ideas (ow | 0 | `20.05` | [Inspect](https://github.com/facesnatcher56-star/curse/issues/70) |
