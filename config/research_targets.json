@@ -1,0 +1,182 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-10-17T08:00:00Z",
+  "scoring_weights": {
+    "vulnerability_density": 1.0,
+    "scope_breadth": 1.0,
+    "tech_stack_complexity": 1.0,
+    "reward_velocity": 1.0,
+    "historical_yield": 1.0,
+    "duplicate_penalty": 1.0
+  },
+  "targets": [
+    {
+      "target_id": "gh-tenstorrent-tt-metal",
+      "name": "Tenstorrent TT-Metal / TTNN Kernel Compute Engine",
+      "platform": "github",
+      "scope_type": "source_code_and_hardware_sim",
+      "scope_url": "https://github.com/tenstorrent/tt-metal",
+      "repo": "tenstorrent/tt-metal",
+      "bounty_tier": "critical",
+      "average_bounty_usd": 300.0,
+      "variables": {
+        "V_D": 0.85,
+        "S_B": 8.0,
+        "C_T": 5.0,
+        "R_V": 9.0,
+        "H_Y": 1.6,
+        "D_C": 0.8
+      },
+      "asset_endpoints": [
+        "https://api.github.com/repos/tenstorrent/tt-metal/releases",
+        "https://api.github.com/repos/tenstorrent/tt-metal/commits"
+      ],
+      "triage_tags": ["c_cpp", "buffer_overflow", "unpack_modes", "kernel_panic", "race_condition"],
+      "active": true
+    },
+    {
+      "target_id": "gh-basedhardware-omi",
+      "name": "BasedHardware Omi Open Source AI Wearable",
+      "platform": "github",
+      "scope_type": "full_stack_mobile_and_backend",
+      "scope_url": "https://github.com/BasedHardware/omi",
+      "repo": "BasedHardware/omi",
+      "bounty_tier": "high",
+      "average_bounty_usd": 100.0,
+      "variables": {
+        "V_D": 0.75,
+        "S_B": 7.0,
+        "C_T": 4.0,
+        "R_V": 8.5,
+        "H_Y": 1.8,
+        "D_C": 1.2
+      },
+      "asset_endpoints": [
+        "https://api.github.com/repos/BasedHardware/omi/releases",
+        "https://api.github.com/repos/BasedHardware/omi/commits"
+      ],
+      "triage_tags": ["python", "fastapi", "auth_bypass", "deadlock", "offline_sync", "idor"],
+      "active": true
+    },
+    {
+      "target_id": "h1-shopify-core",
+      "name": "Shopify Commerce Platform & Partner APIs",
+      "platform": "hackerone",
+      "scope_type": "web_api_and_graphql",
+      "scope_url": "https://hackerone.com/shopify",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 1500.0,
+      "variables": {
+        "V_D": 0.65,
+        "S_B": 9.5,
+        "C_T": 4.5,
+        "R_V": 10.0,
+        "H_Y": 1.4,
+        "D_C": 2.5
+      },
+      "asset_endpoints": [
+        "https://app.shopify.com/services/ping",
+        "https://shopify.dev/api/admin-graphql"
+      ],
+      "triage_tags": ["graphql_introspection", "idor", "bfla", "webhook_forgery", "oauth_leak"],
+      "active": true
+    },
+    {
+      "target_id": "bc-tesla-infotainment",
+      "name": "Tesla Vehicle & Telematics API Gateway",
+      "platform": "bugcrowd",
+      "scope_type": "cloud_infrastructure_and_api",
+      "scope_url": "https://bugcrowd.com/tesla",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 2500.0,
+      "variables": {
+        "V_D": 0.55,
+        "S_B": 8.0,
+        "C_T": 5.0,
+        "R_V": 10.0,
+        "H_Y": 1.2,
+        "D_C": 2.8
+      },
+      "asset_endpoints": [
+        "https://owner-api.teslamotors.com",
+        "https://auth.tesla.com/oauth2/v3/authorize"
+      ],
+      "triage_tags": ["telematics_api", "jwt_none_alg", "broken_auth", "ssrf", "rate_limiting"],
+      "active": true
+    },
+    {
+      "target_id": "h1-gitlab-community",
+      "name": "GitLab CI/CD & Project Workspace",
+      "platform": "hackerone",
+      "scope_type": "source_code_and_web_app",
+      "scope_url": "https://hackerone.com/gitlab",
+      "repo": "gitlabhq/gitlabhq",
+      "bounty_tier": "critical",
+      "average_bounty_usd": 2000.0,
+      "variables": {
+        "V_D": 0.70,
+        "S_B": 9.0,
+        "C_T": 4.5,
+        "R_V": 9.5,
+        "H_Y": 1.5,
+        "D_C": 2.2
+      },
+      "asset_endpoints": [
+        "https://gitlab.com/api/v4/version",
+        "https://gitlab.com/jwt/auth"
+      ],
+      "triage_tags": ["ci_cd_injection", "rce", "ssrf", "runner_breakout", "access_control"],
+      "active": true
+    },
+    {
+      "target_id": "bc-netflix-media",
+      "name": "Netflix Streaming & Partner Studio Ingestion",
+      "platform": "bugcrowd",
+      "scope_type": "web_api_and_microservices",
+      "scope_url": "https://bugcrowd.com/netflix",
+      "repo": null,
+      "bounty_tier": "high",
+      "average_bounty_usd": 1200.0,
+      "variables": {
+        "V_D": 0.50,
+        "S_B": 8.5,
+        "C_T": 4.0,
+        "R_V": 9.0,
+        "H_Y": 1.3,
+        "D_C": 2.4
+      },
+      "asset_endpoints": [
+        "https://api-global.netflix.com/healthcheck",
+        "https://www.netflix.com/api/shakti"
+      ],
+      "triage_tags": ["api_gateway", "cors_misconfig", "subdomain_takeover", "jwt_tampering"],
+      "active": true
+    },
+    {
+      "target_id": "gh-elizaos-eliza",
+      "name": "ElizaOS Multi-Agent Autonomous Framework",
+      "platform": "github",
+      "scope_type": "agentic_ai_orchestration",
+      "scope_url": "https://github.com/elizaOS/eliza",
+      "repo": "elizaOS/eliza",
+      "bounty_tier": "medium",
+      "average_bounty_usd": 150.0,
+      "variables": {
+        "V_D": 0.80,
+        "S_B": 6.5,
+        "C_T": 3.5,
+        "R_V": 7.5,
+        "H_Y": 1.4,
+        "D_C": 1.0
+      },
+      "asset_endpoints": [
+        "https://api.github.com/repos/elizaOS/eliza/releases",
+        "https://api.github.com/repos/elizaOS/eliza/commits"
+      ],
+      "triage_tags": ["typescript", "agentic_injection", "prompt_leak", "untrusted_eval", "api_key_exposure"],
+      "active": true
+    }
+  ]
+}

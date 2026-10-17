@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: HackerOne Platform Portal
+    url: https://hackerone.com/bugs
+    about: Submit vetted security advisories directly to active HackerOne programs.
+  - name: Bugcrowd Researcher Dashboard
+    url: https://tracker.bugcrowd.com/submissions
+    about: Submit verified vulnerability reports to Bugcrowd programs.
+  - name: Algorise Security Operations Ledger
+    url: https://github.com/hardik4love-lang/algorise-ai/blob/master/TARGET_PRIORITY_MATRIX.md
+    about: Review real-time target priority scores and automated delta logs.

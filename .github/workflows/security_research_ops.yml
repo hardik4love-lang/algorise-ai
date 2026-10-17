@@ -1,0 +1,88 @@
+name: "Autonomous Security Research Operations & Target Prioritization"
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Runs every 6 hours 24/7 (Passes zero-cost threshold)
+  workflow_dispatch:
+    inputs:
+      execution_mode:
+        description: 'Execution Mode (full or fast)'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - fast
+      dispatch_webhook:
+        description: 'Dispatch alert to SECURITY_OPS_WEBHOOK'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  research-ops-cycle:
+    name: "Evaluate Target Priority Matrix (TPS) & Recon Delta"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verify GitHub API Rate Limit & Circuit Breakers
+        id: api-guard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REMAINING=$(gh api rate_limit --jq '.resources.core.remaining' 2>/dev/null || echo "5000")
+          echo "GitHub API Core Quota Remaining: $REMAINING"
+          if [ "$REMAINING" -lt 50 ]; then
+            echo "API quota dangerously low (< 50). Tripping circuit breaker to prevent disruption."
+            exit 1
+          fi
+
+      - name: Execute Security Research Ops Engine
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SECURITY_OPS_WEBHOOK: ${{ secrets.SECURITY_OPS_WEBHOOK }}
+        run: |
+          MODE="${{ github.event.inputs.execution_mode || 'full' }}"
+          echo "Executing in mode: $MODE"
+          python scripts/research_ops_engine.py \
+            --config config/research_targets.json \
+            --output TARGET_PRIORITY_MATRIX.md \
+            --ledger data/research_ledger.json \
+            --mode "$MODE" \
+            --summary
+
+      - name: Upload Research Ledger Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-research-ledger
+          path: data/research_ledger.json
+          retention-days: 14
+
+      - name: Commit & Persist Updated Matrix and Ledger
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add TARGET_PRIORITY_MATRIX.md data/research_ledger.json config/research_targets.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(security-ops): update target priority matrix and ledger [skip ci]"
+            git push origin master
+          else
+            echo "No matrix updates to commit."
+          fi

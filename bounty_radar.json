@@ -1,21 +1,5 @@
 [
   {
-    "repo": "tenstorrent/tt-metal",
-    "number": 61018,
-    "title": "Quasar matmul: fp32_dest_acc_en fails in the 2D/1D/Reuse factories (partials DFB has no unpack_modes entry)",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/61018",
-    "created_at": "2026-10-17T02:54:43Z",
-    "labels": [
-      "bug",
-      "op_cat: mm",
-      "Quasar"
-    ],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.13
-  },
-  {
     "repo": "elizaOS/eliza",
     "number": 36589,
     "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
@@ -28,193 +12,6 @@
     "priority_score": 20.05
   },
   {
-    "repo": "orbitmechanic/cellular_autonoma",
-    "number": 22,
-    "title": "Toxin model: quorum reports, non-enriching accusation, jury-released quarantine (peroxisome+vacuole)",
-    "url": "https://github.com/orbitmechanic/cellular_autonoma/issues/22",
-    "created_at": "2026-10-17T04:51:51Z",
-    "labels": [
-      "enhancement"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "orbitmechanic/cellular_autonoma",
-    "number": 19,
-    "title": "v2.1 proposal: the full organelle cast as optional modules, wired by gene expression",
-    "url": "https://github.com/orbitmechanic/cellular_autonoma/issues/19",
-    "created_at": "2026-10-17T04:51:47Z",
-    "labels": [
-      "enhancement",
-      "design"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "abdulsalam-create/bounty-watch",
-    "number": 133,
-    "title": "bounty-watch 2026-10-17: 0 new, 1 resumed, 1 watchlist changes",
-    "url": "https://github.com/abdulsalam-create/bounty-watch/issues/133",
-    "created_at": "2026-10-17T04:31:23Z",
-    "labels": [
-      "bounty-watch"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ChengshuLi/WorldAtlas",
-    "number": 2370,
-    "title": "Evaluate complete New Zealand ADM2 native repair package",
-    "url": "https://github.com/ChengshuLi/WorldAtlas/issues/2370",
-    "created_at": "2026-10-17T04:13:57Z",
-    "labels": [
-      "type:engineering",
-      "kind:work-item",
-      "status:ready"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 977,
-    "title": "[BOUNTY] Medium: verify_validator_quorum orphan-PDA minority settlement bypass, IncrementalMerkleTree::append non-atomic subtree mutation, and u64 withdrawal fee overflow",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/977",
-    "created_at": "2026-10-17T04:01:36Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ludovit-scholtz/capitalism",
-    "number": 616,
-    "title": "Labor market slice B: staffing fill rate and strikes (follow-up to #603)",
-    "url": "https://github.com/ludovit-scholtz/capitalism/issues/616",
-    "created_at": "2026-10-17T04:00:04Z",
-    "labels": [
-      "team-a"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "odiseo159-beep/mergit",
-    "number": 2,
-    "title": "Attack the reentrancy guard, do not just trust it",
-    "url": "https://github.com/odiseo159-beep/mergit/issues/2",
-    "created_at": "2026-10-17T03:50:50Z",
-    "labels": [
-      "bounty"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "odiseo159-beep/mergit",
-    "number": 1,
-    "title": "Prove the race between challenging and refunding",
-    "url": "https://github.com/odiseo159-beep/mergit/issues/1",
-    "created_at": "2026-10-17T03:50:49Z",
-    "labels": [
-      "bounty"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 976,
-    "title": "[BOUNTY] Medium: ShieldedPool::credit_commitment deduplicates by Commitment hash instead of on-chain leaf index, and decode_compiled_deposit credits gross amount instead of realized vault received delta for deposit_note_spl",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/976",
-    "created_at": "2026-10-17T03:48:21Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "dev-kp-eloper/BountyScout",
-    "number": 1604,
-    "title": "\u00f0\u0178\u017d\u00af Bounty Alert: 9 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1604",
-    "created_at": "2026-10-17T03:35:45Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 353,
-    "title": "[improvement] make([]T, len, cap) (valid Go) is rejected as HYB-E2005 with a diagnostic claiming Go rejects it",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/353",
-    "created_at": "2026-10-17T03:34:06Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 352,
-    "title": "In-app coding-agent chat \u00e2\u20ac\u201d process lifecycle, permissions, Codex sandbox, I/O handling",
-    "url": "https://github.com/neatlogs/neatroots/issues/352",
-    "created_at": "2026-10-17T03:31:29Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 351,
-    "title": "Check engine lifecycle \u00e2\u20ac\u201d concurrency, local LLM calibration, end-of-run pipeline, dedupe",
-    "url": "https://github.com/neatlogs/neatroots/issues/351",
-    "created_at": "2026-10-17T03:31:27Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 350,
-    "title": "Config & check registry sync \u00e2\u20ac\u201d CLI init, server memory, settings API, cloud redaction",
-    "url": "https://github.com/neatlogs/neatroots/issues/350",
-    "created_at": "2026-10-17T03:31:25Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
     "repo": "BasedHardware/omi",
     "number": 21869,
     "title": "Paying Neo (legacy Unlimited) subscriber shown as Free plan and metered at 300 min despite paid Sept 17 renewal",
@@ -222,6 +19,21 @@
     "created_at": "2026-10-16T14:57:12Z",
     "labels": [
       "bug"
+    ],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "tenstorrent/tt-metal",
+    "number": 61047,
+    "title": "[Bug][ttnn]: ttnn.mse_loss and ttnn.l1_loss crash or corrupt optional_output_tensor on SUM/MEAN reductions",
+    "url": "https://github.com/tenstorrent/tt-metal/issues/61047",
+    "created_at": "2026-10-17T05:20:05Z",
+    "labels": [
+      "bug",
+      "community"
     ],
     "competing_prs": 1,
     "is_bounty": false,
