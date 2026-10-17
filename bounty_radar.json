@@ -15,21 +15,6 @@
     "priority_score": 20.05
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 417,
-    "title": "[wildcard] Serializable shared-state regions instead of exclusive ownership",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/417",
-    "created_at": "2026-10-17T10:36:18Z",
-    "labels": [
-      "\ud83d\udc8e Bounty",
-      "wildcard"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
     "repo": "elizaOS/eliza",
     "number": 36589,
     "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
@@ -42,71 +27,11 @@
     "priority_score": 20.05
   },
   {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 992,
-    "title": "[BOUNTY] Medium: apply_heartbeat accepts sequence 0 replays and snapshots exhibit torn state across non-atomic mutex locks",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/992",
-    "created_at": "2026-10-17T16:33:03Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 885,
-    "title": "`bounty_list.validate` \u4e0d\u6821\u9a8c `render` \u76f4\u63a5\u7d22\u5f15\u7684**\u56db\u4e2a\u9876\u5c42\u952e** \u21d2 \u7f3a\u952e\u65f6\u300c\u6821\u9a8c\u65e0\u9519\u300d\u4f46\u88f8\u5d29 `KeyError`\uff0c\u9000\u51fa\u7801\u4e0e\u300c\u4ea7\u7269\u6f02\u79fb\u300d\u649e\u7801",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/885",
-    "created_at": "2026-10-17T16:22:12Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 884,
-    "title": "`check_fix_has_guard.count_in_tests` \u628a **git \u8c03\u7528\u5931\u8d25**\u5f53\u6210\u300c0 \u6b21\u51fa\u73b0\u300d\u21d2 \u4f1a\u63a8\u51fa\u300c\u540c\u7c7b\u65e2\u6709\u5b9e\u73b0\u4e5f\u96f6\u5b88\u536b\u300d\u7684\u9519\u8bef\u7ed3\u8bba",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/884",
-    "created_at": "2026-10-17T16:20:02Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 883,
-    "title": "`check_marker_reverts.py` \u7684**\u6f0f\u62a5**\uff1a\u5220\u9664\u884c\u5185\u5bb9\u4ee5 `--` \u5f00\u5934\u65f6\u88ab\u5f53\u6210 git \u6587\u4ef6\u5934\u8df3\u8fc7 \u21d2 \u9759\u9ed8\u56de\u9000\u770b\u4e0d\u89c1",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/883",
-    "created_at": "2026-10-17T16:19:08Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 882,
-    "title": "`check_links.py` \u7684 G3 \u5360\u4f4d\u5b88\u536b\u6309**\u6574\u4e32\u5b50\u4e32**\u5339\u914d \u21d2 `notexample.com` \u8fd9\u7c7b\u5408\u6cd5\u94fe\u63a5\u88ab\u8bef\u5224\u4e3a\u5360\u4f4d\uff08\u800c\u5b83\u662f `promo` \u60ac\u8d4f\u7684\u9a8c\u6536\u5224\u636e\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/882",
-    "created_at": "2026-10-17T16:14:32Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
     "repo": "dev-kp-eloper/BountyScout",
-    "number": 1607,
-    "title": "\ud83c\udfaf Bounty Alert: 11 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1607",
-    "created_at": "2026-10-17T16:11:19Z",
+    "number": 1608,
+    "title": "\ud83c\udfaf Bounty Alert: 10 New Opportunityies found",
+    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1608",
+    "created_at": "2026-10-17T19:05:04Z",
     "labels": [
       "bounty-alert"
     ],
@@ -116,14 +41,12 @@
     "priority_score": 20.05
   },
   {
-    "repo": "kwizzlesurp10-ctrl/x402-mcp",
-    "number": 664,
-    "title": "change-control: existing files mutated on push-master-9276b9d8f708 [evt:94bad72c83]",
-    "url": "https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664",
-    "created_at": "2026-10-17T16:10:53Z",
-    "labels": [
-      "change-control"
-    ],
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 492,
+    "title": "[tooling] Decode checker JSON as UTF-8 independently of the host locale",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/492",
+    "created_at": "2026-10-17T18:52:32Z",
+    "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -131,61 +54,11 @@
   },
   {
     "repo": "paraloom-labs/paraloom-core",
-    "number": 990,
-    "title": "[BOUNTY] Medium: Unchecked withdrawal amount in transact_submit causes arithmetic negation overflow and sign inversion",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/990",
-    "created_at": "2026-10-17T16:08:40Z",
+    "number": 998,
+    "title": "[BOUNTY] Medium: PrivateSwapRelayer burns note nullifier and strands funds on post-withdraw fee/overhead failure",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/998",
+    "created_at": "2026-10-17T18:47:08Z",
     "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ahmedfuzayl-gif/commit-monitor",
-    "number": 147,
-    "title": "commit-monitor: new leads 2026-10-17_1601Z",
-    "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147",
-    "created_at": "2026-10-17T16:01:28Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 471,
-    "title": "[wildcard] Scoped Task Regions (join_scope): Zero-Copy Borrowed Read-Sharing Across Tasks with Compile-Time Join Guarantees",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/471",
-    "created_at": "2026-10-17T16:00:15Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "HCTDIP/corps-jobs",
-    "number": 101,
-    "title": "Railway \u8d4f\u91d1\uff1a\u6709 7 \u6761\u503c\u5f97\u62a2",
-    "url": "https://github.com/HCTDIP/corps-jobs/issues/101",
-    "created_at": "2026-10-17T15:57:07Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "kwizzlesurp10-ctrl/x402-mcp",
-    "number": 663,
-    "title": "change-control: existing files mutated on pr-662 [evt:24007296e2]",
-    "url": "https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663",
-    "created_at": "2026-10-17T15:56:28Z",
-    "labels": [
-      "change-control"
-    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -193,10 +66,10 @@
   },
   {
     "repo": "paraloom-labs/paraloom-core",
-    "number": 988,
-    "title": "[BOUNTY] Medium: Non-atomic state transitions in ComputeStorage allow job duplication and state desync across column families",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/988",
-    "created_at": "2026-10-17T15:40:51Z",
+    "number": 996,
+    "title": "[BOUNTY] Medium: Coordinator::split_task arithmetic panic and unauthenticated handle_task_error parent task memory leak",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/996",
+    "created_at": "2026-10-17T18:20:40Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -204,23 +77,52 @@
     "priority_score": 20.05
   },
   {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 880,
-    "title": "\u3010\u6d4b\u8bc4\u62a5\u544a\u3011\u5de5\u4f5c\u6d41\u63d2\u4ef6\u4e0a\u4e0b\u6587\u7a0e \u00b7 \u7b2c 16 \u6279\uff08\u81ea\u52a8\u8bc4\u6d4b\u6d41\u6c34\u7ebf\uff09\uff1a3 \u4ef6\u5b9e\u6d4b",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/880",
-    "created_at": "2026-10-17T15:25:20Z",
-    "labels": [],
+    "repo": "allurco/caribbean-adventure",
+    "number": 440,
+    "title": "Fight text: whose crew, captain names, and the glory and bounty won",
+    "url": "https://github.com/allurco/caribbean-adventure/issues/440",
+    "created_at": "2026-10-17T18:11:31Z",
+    "labels": [
+      "enhancement",
+      "needs-triage"
+    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 20.05
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
+    "repo": "freedom-winds/BountyScout",
+    "number": 1269,
+    "title": "\ud83c\udfaf Bounty Alert: 13 New Opportunityies found",
+    "url": "https://github.com/freedom-winds/BountyScout/issues/1269",
+    "created_at": "2026-10-17T17:48:50Z",
+    "labels": [
+      "bounty-alert"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "neatlogs/neatroots",
     "number": 463,
-    "title": "[tooling] Keep differential corpus reporting after checker/build/run timeout",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/463",
-    "created_at": "2026-10-17T15:08:54Z",
+    "title": "Feature proposal: replay a run N times and report how often each finding comes back (bounty requested)",
+    "url": "https://github.com/neatlogs/neatroots/issues/463",
+    "created_at": "2026-10-17T17:42:02Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "ZecHub/zechub",
+    "number": 2427,
+    "title": "Add Greek (el) to the wiki: offering to be the Greek language lead",
+    "url": "https://github.com/ZecHub/zechub/issues/2427",
+    "created_at": "2026-10-17T17:38:01Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -229,27 +131,104 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
-    "number": 456,
-    "title": "P0 soundness: inner loop header self-shadowing on back-edge, block/multi-value self-shadow share retention across scope_pop, user method return shapes, and reslice/index/append borrow-root & return loan-escape bypasses (HYB-E3003 / E3004 / E3104)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/456",
-    "created_at": "2026-10-17T14:44:07Z",
+    "number": 482,
+    "title": "[wildcard] Monotone task regions: shared evolving facts with schedule-independent observations",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/482",
+    "created_at": "2026-10-17T17:36:29Z",
     "labels": [],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 449,
-    "title": "[soundness] P0 regressions in #230/#251: post-closure outer locals shadow nested captures (E3001/E3003) and unscoped/composite rebinds drop A3 slot-loan invalidation (E3102)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/449",
-    "created_at": "2026-10-17T13:38:26Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 109,
+    "title": "Keeper Bounty Token Selection Arbitrarily Favors First Token in Multi-Token Estates",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/109",
+    "created_at": "2026-10-17T17:34:58Z",
+    "labels": [
+      "enhancement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 71,
+    "title": "FailedPayout Storage Key Collision Vulnerability When Beneficiary and Keeper Are Same Address",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/71",
+    "created_at": "2026-10-17T17:33:34Z",
+    "labels": [
+      "bug",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 66,
+    "title": "Keeper Bounty Deduction Precedes Fixed-Amount Payouts, Arbitrarily Shrinking Designated Inheritances",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/66",
+    "created_at": "2026-10-17T17:33:23Z",
+    "labels": [
+      "enhancement",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 63,
+    "title": "release_inheritance Permits Unauthenticated Payouts to Arbitrary Caller Addresses for Keeper Bounty",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/63",
+    "created_at": "2026-10-17T17:33:16Z",
+    "labels": [
+      "enhancement",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 61,
+    "title": "Missing Fuzz Targets for distribute and release_inheritance Multi-Token Payouts",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/61",
+    "created_at": "2026-10-17T17:33:11Z",
+    "labels": [
+      "enhancement",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "Gospelsam019/williams-contracts",
+    "number": 32,
+    "title": "Proportional Dust Remainder Asymmetry Systematically Favors Final Beneficiary",
+    "url": "https://github.com/Gospelsam019/williams-contracts/issues/32",
+    "created_at": "2026-10-17T17:32:00Z",
+    "labels": [
+      "enhancement",
+      "Stellar Wave"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
   },
   {
     "repo": "BasedHardware/omi",
@@ -271,18 +250,6 @@
     "title": "Bounty programme: current cycle settlement and PayPal eligibility",
     "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/432",
     "created_at": "2026-10-17T11:43:10Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 22017,
-    "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/22017",
-    "created_at": "2026-10-17T11:37:17Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": true,
@@ -351,6 +318,30 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
+    "number": 456,
+    "title": "P0 soundness: inner loop header self-shadowing on back-edge, block/multi-value self-shadow share retention across scope_pop, user method return shapes, and reslice/index/append borrow-root & return loan-escape bypasses (HYB-E3003 / E3004 / E3104)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/456",
+    "created_at": "2026-10-17T14:44:07Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.98
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 449,
+    "title": "[soundness] P0 regressions in #230/#251: post-closure outer locals shadow nested captures (E3001/E3003) and unscoped/composite rebinds drop A3 slot-loan invalidation (E3102)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/449",
+    "created_at": "2026-10-17T13:38:26Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.98
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
     "number": 445,
     "title": "[soundness] P0: closures in an else-if chain condition inside a closure skip the nested boundary pass \u2014 #229 shapes race again at c53978b",
     "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/445",
@@ -362,16 +353,16 @@
     "priority_score": 39.98
   },
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 435,
-    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
-    "created_at": "2026-10-17T12:01:59Z",
+    "repo": "BasedHardware/omi",
+    "number": 22017,
+    "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/22017",
+    "created_at": "2026-10-17T11:37:17Z",
     "labels": [],
     "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
   },
   {
     "repo": "BasedHardware/omi",
@@ -471,22 +462,10 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
-    "number": 438,
-    "title": "[soundness] P0: rebinding a name clears the freeze on storage a defer captured",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/438",
-    "created_at": "2026-10-17T12:15:54Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.91
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 415,
-    "title": "[soundness] P0: deferred call keeps a live reference, so moving the value into a task races",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/415",
-    "created_at": "2026-10-17T10:34:20Z",
+    "number": 435,
+    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
+    "created_at": "2026-10-17T12:01:59Z",
     "labels": [],
     "competing_prs": 3,
     "is_bounty": false,
@@ -536,9 +515,9 @@
     "url": "https://github.com/elizaOS/eliza/issues/34820",
     "created_at": "2026-10-10T05:07:43Z",
     "labels": [],
-    "competing_prs": 18,
+    "competing_prs": 25,
     "is_bounty": false,
     "is_critical": false,
-    "priority_score": 18.7
+    "priority_score": 18.18
   }
 ]

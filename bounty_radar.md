@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-17T16:36:06.055183+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-17T19:05:40.387677+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -19,17 +19,17 @@
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
 | `limitlessprojects/Go-Hybrid` | [#462](https://github.com/limitlessprojects/Go-Hybrid/issues/462) | [wildcard] Isolated WASM task cells: replace cross-task | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/462) |
-| `limitlessprojects/Go-Hybrid` | [#417](https://github.com/limitlessprojects/Go-Hybrid/issues/417) | [wildcard] Serializable shared-state regions instead of | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/417) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `paraloom-labs/paraloom-core` | [#992](https://github.com/paraloom-labs/paraloom-core/issues/992) | [BOUNTY] Medium: apply_heartbeat accepts sequence 0 rep | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/992) |
-| `FuRongJun-1999/dsh-bounty` | [#885](https://github.com/FuRongJun-1999/dsh-bounty/issues/885) | `bounty_list.validate` 不校验 `render` 直接索引的**四个顶层键** ⇒ 缺键 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/885) |
-| `FuRongJun-1999/dsh-bounty` | [#884](https://github.com/FuRongJun-1999/dsh-bounty/issues/884) | `check_fix_has_guard.count_in_tests` 把 **git 调用失败**当成「0 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/884) |
-| `FuRongJun-1999/dsh-bounty` | [#883](https://github.com/FuRongJun-1999/dsh-bounty/issues/883) | `check_marker_reverts.py` 的**漏报**：删除行内容以 `--` 开头时被当成 gi | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/883) |
-| `FuRongJun-1999/dsh-bounty` | [#882](https://github.com/FuRongJun-1999/dsh-bounty/issues/882) | `check_links.py` 的 G3 占位守卫按**整串子串**匹配 ⇒ `notexample.com | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/882) |
-| `dev-kp-eloper/BountyScout` | [#1607](https://github.com/dev-kp-eloper/BountyScout/issues/1607) | 🎯 Bounty Alert: 11 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1607) |
-| `kwizzlesurp10-ctrl/x402-mcp` | [#664](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664) | change-control: existing files mutated on push-master-9 | 0 | `20.05` | [Inspect](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664) |
-| `paraloom-labs/paraloom-core` | [#990](https://github.com/paraloom-labs/paraloom-core/issues/990) | [BOUNTY] Medium: Unchecked withdrawal amount in transac | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/990) |
-| `ahmedfuzayl-gif/commit-monitor` | [#147](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147) | commit-monitor: new leads 2026-10-17_1601Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147) |
-| `limitlessprojects/Go-Hybrid` | [#471](https://github.com/limitlessprojects/Go-Hybrid/issues/471) | [wildcard] Scoped Task Regions (join_scope): Zero-Copy  | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/471) |
-| `HCTDIP/corps-jobs` | [#101](https://github.com/HCTDIP/corps-jobs/issues/101) | Railway 赏金：有 7 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/101) |
-| `kwizzlesurp10-ctrl/x402-mcp` | [#663](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663) | change-control: existing files mutated on pr-662 [evt:2 | 0 | `20.05` | [Inspect](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663) |
+| `dev-kp-eloper/BountyScout` | [#1608](https://github.com/dev-kp-eloper/BountyScout/issues/1608) | 🎯 Bounty Alert: 10 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1608) |
+| `limitlessprojects/Go-Hybrid` | [#492](https://github.com/limitlessprojects/Go-Hybrid/issues/492) | [tooling] Decode checker JSON as UTF-8 independently of | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/492) |
+| `paraloom-labs/paraloom-core` | [#998](https://github.com/paraloom-labs/paraloom-core/issues/998) | [BOUNTY] Medium: PrivateSwapRelayer burns note nullifie | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/998) |
+| `paraloom-labs/paraloom-core` | [#996](https://github.com/paraloom-labs/paraloom-core/issues/996) | [BOUNTY] Medium: Coordinator::split_task arithmetic pan | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/996) |
+| `allurco/caribbean-adventure` | [#440](https://github.com/allurco/caribbean-adventure/issues/440) | Fight text: whose crew, captain names, and the glory an | 0 | `20.05` | [Inspect](https://github.com/allurco/caribbean-adventure/issues/440) |
+| `freedom-winds/BountyScout` | [#1269](https://github.com/freedom-winds/BountyScout/issues/1269) | 🎯 Bounty Alert: 13 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1269) |
+| `neatlogs/neatroots` | [#463](https://github.com/neatlogs/neatroots/issues/463) | Feature proposal: replay a run N times and report how o | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/463) |
+| `ZecHub/zechub` | [#2427](https://github.com/ZecHub/zechub/issues/2427) | Add Greek (el) to the wiki: offering to be the Greek la | 0 | `20.05` | [Inspect](https://github.com/ZecHub/zechub/issues/2427) |
+| `limitlessprojects/Go-Hybrid` | [#482](https://github.com/limitlessprojects/Go-Hybrid/issues/482) | [wildcard] Monotone task regions: shared evolving facts | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/482) |
+| `Gospelsam019/williams-contracts` | [#109](https://github.com/Gospelsam019/williams-contracts/issues/109) | Keeper Bounty Token Selection Arbitrarily Favors First  | 0 | `20.05` | [Inspect](https://github.com/Gospelsam019/williams-contracts/issues/109) |
+| `Gospelsam019/williams-contracts` | [#71](https://github.com/Gospelsam019/williams-contracts/issues/71) | FailedPayout Storage Key Collision Vulnerability When B | 0 | `20.05` | [Inspect](https://github.com/Gospelsam019/williams-contracts/issues/71) |
+| `Gospelsam019/williams-contracts` | [#66](https://github.com/Gospelsam019/williams-contracts/issues/66) | Keeper Bounty Deduction Precedes Fixed-Amount Payouts,  | 0 | `20.05` | [Inspect](https://github.com/Gospelsam019/williams-contracts/issues/66) |
+| `Gospelsam019/williams-contracts` | [#63](https://github.com/Gospelsam019/williams-contracts/issues/63) | release_inheritance Permits Unauthenticated Payouts to  | 0 | `20.05` | [Inspect](https://github.com/Gospelsam019/williams-contracts/issues/63) |
