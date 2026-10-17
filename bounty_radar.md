@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-17T00:17:18.475847+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-17T04:52:06.964970+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -17,18 +17,18 @@
 ## Top Unassigned Bounty Targets (0 Competing PRs)
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `tenstorrent/tt-metal` | [#61018](https://github.com/tenstorrent/tt-metal/issues/61018) | Quasar matmul: fp32_dest_acc_en fails in the 2D/1D/Reus | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61018) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `mnnobre/rathena` | [#2](https://github.com/mnnobre/rathena/issues/2) | [Living World] Governanca Municipal, Regentes de IA e Q | 0 | `20.05` | [Inspect](https://github.com/mnnobre/rathena/issues/2) |
-| `DaltonTheDeveloper/squash-live-test` | [#2](https://github.com/DaltonTheDeveloper/squash-live-test/issues/2) | humanBytes: MB-scale values shown as KB (live $5 test) | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/squash-live-test/issues/2) |
-| `HCTDIP/corps-jobs` | [#98](https://github.com/HCTDIP/corps-jobs/issues/98) | Railway 赏金：有 4 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/98) |
-| `boundlessfi/builders` | [#412](https://github.com/boundlessfi/builders/issues/412) | Remove the archived bounties app from the repo | 0 | `20.05` | [Inspect](https://github.com/boundlessfi/builders/issues/412) |
-| `boundlessfi/builders` | [#411](https://github.com/boundlessfi/builders/issues/411) | Delete unused components and dependencies | 0 | `20.05` | [Inspect](https://github.com/boundlessfi/builders/issues/411) |
-| `boundlessfi/builders` | [#408](https://github.com/boundlessfi/builders/issues/408) | Tell visitors how a builder gets listed | 0 | `20.05` | [Inspect](https://github.com/boundlessfi/builders/issues/408) |
-| `dev-kp-eloper/BountyScout` | [#1603](https://github.com/dev-kp-eloper/BountyScout/issues/1603) | 🎯 Bounty Alert: 8 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1603) |
-| `openai/codex` | [#54732](https://github.com/openai/codex/issues/54732) | Composer Predictions: pasting into an empty composer fa | 0 | `20.05` | [Inspect](https://github.com/openai/codex/issues/54732) |
-| `paraspell/xcm-tools` | [#2169](https://github.com/paraspell/xcm-tools/issues/2169) | [Bug bounty] SDK (Dedot): getFromRpc sends every RPC tw | 0 | `20.05` | [Inspect](https://github.com/paraspell/xcm-tools/issues/2169) |
-| `limitlessprojects/Go-Hybrid` | [#347](https://github.com/limitlessprojects/Go-Hybrid/issues/347) | [wildcard] Flip GUARANTEES Row 16 & Deadlock-Freedom fr | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/347) |
-| `LiamVisionary/bee-scouts` | [#11](https://github.com/LiamVisionary/bee-scouts/issues/11) | Show the 'Hall bounties' list on the SuperAgent API Hal | 0 | `20.05` | [Inspect](https://github.com/LiamVisionary/bee-scouts/issues/11) |
-| `freedom-winds/BountyScout` | [#1264](https://github.com/freedom-winds/BountyScout/issues/1264) | 🎯 Bounty Alert: 10 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1264) |
-| `limitlessprojects/Go-Hybrid` | [#346](https://github.com/limitlessprojects/Go-Hybrid/issues/346) | docs: resolve stale Phase 0 instructions in AGENTS.md | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/346) |
-| `limitlessprojects/Go-Hybrid` | [#345](https://github.com/limitlessprojects/Go-Hybrid/issues/345) | [wildcard] Make hy-emit untrusted: independently valida | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/345) |
+| `orbitmechanic/cellular_autonoma` | [#22](https://github.com/orbitmechanic/cellular_autonoma/issues/22) | Toxin model: quorum reports, non-enriching accusation,  | 0 | `20.05` | [Inspect](https://github.com/orbitmechanic/cellular_autonoma/issues/22) |
+| `orbitmechanic/cellular_autonoma` | [#19](https://github.com/orbitmechanic/cellular_autonoma/issues/19) | v2.1 proposal: the full organelle cast as optional modu | 0 | `20.05` | [Inspect](https://github.com/orbitmechanic/cellular_autonoma/issues/19) |
+| `abdulsalam-create/bounty-watch` | [#133](https://github.com/abdulsalam-create/bounty-watch/issues/133) | bounty-watch 2026-10-17: 0 new, 1 resumed, 1 watchlist  | 0 | `20.05` | [Inspect](https://github.com/abdulsalam-create/bounty-watch/issues/133) |
+| `ChengshuLi/WorldAtlas` | [#2370](https://github.com/ChengshuLi/WorldAtlas/issues/2370) | Evaluate complete New Zealand ADM2 native repair packag | 0 | `20.05` | [Inspect](https://github.com/ChengshuLi/WorldAtlas/issues/2370) |
+| `paraloom-labs/paraloom-core` | [#977](https://github.com/paraloom-labs/paraloom-core/issues/977) | [BOUNTY] Medium: verify_validator_quorum orphan-PDA min | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/977) |
+| `ludovit-scholtz/capitalism` | [#616](https://github.com/ludovit-scholtz/capitalism/issues/616) | Labor market slice B: staffing fill rate and strikes (f | 0 | `20.05` | [Inspect](https://github.com/ludovit-scholtz/capitalism/issues/616) |
+| `odiseo159-beep/mergit` | [#2](https://github.com/odiseo159-beep/mergit/issues/2) | Attack the reentrancy guard, do not just trust it | 0 | `20.05` | [Inspect](https://github.com/odiseo159-beep/mergit/issues/2) |
+| `odiseo159-beep/mergit` | [#1](https://github.com/odiseo159-beep/mergit/issues/1) | Prove the race between challenging and refunding | 0 | `20.05` | [Inspect](https://github.com/odiseo159-beep/mergit/issues/1) |
+| `paraloom-labs/paraloom-core` | [#976](https://github.com/paraloom-labs/paraloom-core/issues/976) | [BOUNTY] Medium: ShieldedPool::credit_commitment dedupl | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/976) |
+| `dev-kp-eloper/BountyScout` | [#1604](https://github.com/dev-kp-eloper/BountyScout/issues/1604) | 🎯 Bounty Alert: 9 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1604) |
+| `limitlessprojects/Go-Hybrid` | [#353](https://github.com/limitlessprojects/Go-Hybrid/issues/353) | [improvement] make([]T, len, cap) (valid Go) is rejecte | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/353) |
+| `neatlogs/neatroots` | [#352](https://github.com/neatlogs/neatroots/issues/352) | In-app coding-agent chat — process lifecycle, permissio | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/352) |
+| `neatlogs/neatroots` | [#351](https://github.com/neatlogs/neatroots/issues/351) | Check engine lifecycle — concurrency, local LLM calibra | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/351) |
