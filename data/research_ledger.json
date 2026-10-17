@@ -326,5 +326,46 @@
         "tier": "P2 - MEDIUM YIELD"
       }
     ]
+  },
+  {
+    "timestamp": "2026-10-17T10:10:29.463170+00:00",
+    "total_targets": 12,
+    "top_targets": [
+      {
+        "target_id": "gh-tenstorrent-tt-metal",
+        "name": "Tenstorrent TT-Metal / TTNN Kernel Compute Engine",
+        "platform": "github",
+        "tps_normalized": 45.33,
+        "tier": "P0 - CRITICAL YIELD"
+      },
+      {
+        "target_id": "gh-basedhardware-omi",
+        "name": "BasedHardware Omi Open Source AI Wearable",
+        "platform": "github",
+        "tps_normalized": 24.34,
+        "tier": "P2 - MEDIUM YIELD"
+      },
+      {
+        "target_id": "h1-gitlab-community",
+        "name": "GitLab CI/CD & Project Workspace",
+        "platform": "hackerone",
+        "tps_normalized": 21.04,
+        "tier": "P2 - MEDIUM YIELD"
+      },
+      {
+        "target_id": "h1-airbnb-global",
+        "name": "Airbnb Marketplace & Host Platform",
+        "platform": "hackerone",
+        "tps_normalized": 19.64,
+        "tier": "P2 - MEDIUM YIELD"
+      },
+      {
+        "target_id": "h1-shopify-core",
+        "name": "Shopify Commerce Platform & Partner APIs",
+        "platform": "hackerone",
+        "tps_normalized": 18.52,
+        "tier": "P2 - MEDIUM YIELD"
+      }
+    ]
   }
 ]
