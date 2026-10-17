@@ -326,7 +326,14 @@ def dispatch_webhook(evaluated: List[Dict[str, Any]], webhook_url: str):
     for i, t in enumerate(top3, 1):
         text_lines.append(f"• *#{i} {t['name']}* (`{t['platform']}`) - TPS: `{t['scoring']['tps_normalized']}` ({t['scoring']['tier']})")
 
-    payload = {"text": "\n".join(text_lines)}
+    message_text = "\n".join(text_lines)
+    # Universal payload compatible with Slack, Discord, Matrix, and Google Chat webhooks
+    payload = {
+        "text": message_text,
+        "content": message_text,
+        "msgtype": "m.text",
+        "body": message_text
+    }
     data = json.dumps(payload).encode("utf-8")
     req = urllib.request.Request(webhook_url, data=data, headers={"Content-Type": "application/json"})
     try:

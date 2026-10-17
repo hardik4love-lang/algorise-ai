@@ -26,21 +26,6 @@
     "priority_score": 40.05
   },
   {
-    "repo": "tenstorrent/tt-metal",
-    "number": 61047,
-    "title": "[Bug][ttnn]: ttnn.mse_loss and ttnn.l1_loss crash or corrupt optional_output_tensor on SUM/MEAN reductions",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/61047",
-    "created_at": "2026-10-17T05:20:05Z",
-    "labels": [
-      "bug",
-      "community"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
     "repo": "BasedHardware/omi",
     "number": 21990,
     "title": "[Bounty proposal] MCP OAuth token refresh during chat tool calls is not persisted and breaks rotating refresh-token integrations ($50)",
