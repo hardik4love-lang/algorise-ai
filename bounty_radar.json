@@ -12,11 +12,128 @@
     "priority_score": 20.05
   },
   {
+    "repo": "mnnobre/rathena",
+    "number": 2,
+    "title": "[Living World] Governanca Municipal, Regentes de IA e Quests de Bounties de MVPs (Estilo AIKA)",
+    "url": "https://github.com/mnnobre/rathena/issues/2",
+    "created_at": "2026-10-17T00:16:48Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "DaltonTheDeveloper/squash-live-test",
+    "number": 2,
+    "title": "humanBytes: MB-scale values shown as KB (live $5 test)",
+    "url": "https://github.com/DaltonTheDeveloper/squash-live-test/issues/2",
+    "created_at": "2026-10-17T00:05:46Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "HCTDIP/corps-jobs",
+    "number": 98,
+    "title": "Railway \u8d4f\u91d1\uff1a\u6709 4 \u6761\u503c\u5f97\u62a2",
+    "url": "https://github.com/HCTDIP/corps-jobs/issues/98",
+    "created_at": "2026-10-16T23:55:46Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "boundlessfi/builders",
+    "number": 412,
+    "title": "Remove the archived bounties app from the repo",
+    "url": "https://github.com/boundlessfi/builders/issues/412",
+    "created_at": "2026-10-16T23:26:27Z",
+    "labels": [
+      "documentation",
+      "good first issue",
+      "Stellar Wave",
+      "blocked",
+      "Improvement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "boundlessfi/builders",
+    "number": 411,
+    "title": "Delete unused components and dependencies",
+    "url": "https://github.com/boundlessfi/builders/issues/411",
+    "created_at": "2026-10-16T23:26:23Z",
+    "labels": [
+      "good first issue",
+      "Stellar Wave",
+      "blocked",
+      "Improvement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "boundlessfi/builders",
+    "number": 408,
+    "title": "Tell visitors how a builder gets listed",
+    "url": "https://github.com/boundlessfi/builders/issues/408",
+    "created_at": "2026-10-16T23:25:42Z",
+    "labels": [
+      "enhancement",
+      "frontend",
+      "Stellar Wave",
+      "blocked"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "dev-kp-eloper/BountyScout",
+    "number": 1603,
+    "title": "\ud83c\udfaf Bounty Alert: 8 New Opportunityies found",
+    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1603",
+    "created_at": "2026-10-16T23:18:57Z",
+    "labels": [
+      "bounty-alert"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "openai/codex",
+    "number": 54732,
+    "title": "Composer Predictions: pasting into an empty composer fails until a character is typed",
+    "url": "https://github.com/openai/codex/issues/54732",
+    "created_at": "2026-10-16T23:13:47Z",
+    "labels": [
+      "bug",
+      "app"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
     "repo": "paraspell/xcm-tools",
-    "number": 2168,
-    "title": "[Bug bounty] AssetHub fallback transfer can exceed the swap\u2019s minimum output",
-    "url": "https://github.com/paraspell/xcm-tools/issues/2168",
-    "created_at": "2026-10-16T21:53:30Z",
+    "number": 2169,
+    "title": "[Bug bounty] SDK (Dedot): getFromRpc sends every RPC twice and leaks an unhandled rejection that crashes Node.js even when the caller catches the error",
+    "url": "https://github.com/paraspell/xcm-tools/issues/2169",
+    "created_at": "2026-10-16T23:05:48Z",
     "labels": [
       "Bug bounty \ud83d\udcb0"
     ],
@@ -26,11 +143,11 @@
     "priority_score": 20.05
   },
   {
-    "repo": "ahmedfuzayl-gif/commit-monitor",
-    "number": 144,
-    "title": "commit-monitor: new leads 2026-10-16_2145Z",
-    "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/144",
-    "created_at": "2026-10-16T21:45:01Z",
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 347,
+    "title": "[wildcard] Flip GUARANTEES Row 16 & Deadlock-Freedom from \"No claim\" to Guaranteed: Affine tx[T]/rx[T] Endpoint Split + Acyclic Wait-For Epochs in Pass B",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/347",
+    "created_at": "2026-10-16T23:04:32Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -38,142 +155,14 @@
     "priority_score": 20.05
   },
   {
-    "repo": "HCTDIP/corps-jobs",
-    "number": 97,
-    "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
-    "url": "https://github.com/HCTDIP/corps-jobs/issues/97",
-    "created_at": "2026-10-16T21:44:03Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Zenith-options/backend",
-    "number": 245,
-    "title": "Implement Keeper Bounty Accrual and Reward Distribution",
-    "url": "https://github.com/Zenith-options/backend/issues/245",
-    "created_at": "2026-10-16T21:21:21Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "abdulsalam-create/bounty-watch",
-    "number": 132,
-    "title": "bounty-watch 2026-10-16: 0 new, 1 resumed, 5 watchlist changes",
-    "url": "https://github.com/abdulsalam-create/bounty-watch/issues/132",
-    "created_at": "2026-10-16T21:13:33Z",
+    "repo": "LiamVisionary/bee-scouts",
+    "number": 11,
+    "title": "Show the 'Hall bounties' list on the SuperAgent API Hall page",
+    "url": "https://github.com/LiamVisionary/bee-scouts/issues/11",
+    "created_at": "2026-10-16T22:33:54Z",
     "labels": [
-      "bounty-watch"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ZecHub/zec-bounties",
-    "number": 421,
-    "title": "Question: reward requests for merged PRs under the new 5-completed-bounties rule",
-    "url": "https://github.com/ZecHub/zec-bounties/issues/421",
-    "created_at": "2026-10-16T21:04:48Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "dev-kp-eloper/BountyScout",
-    "number": 1602,
-    "title": "\ud83c\udfaf Bounty Alert: 13 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1602",
-    "created_at": "2026-10-16T20:40:55Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraspell/xcm-tools",
-    "number": 2165,
-    "title": "[Bug bounty] Snowbridge client cache drops public clients without closing their WebSocket transports (leaked auto-reconnecting sockets)",
-    "url": "https://github.com/paraspell/xcm-tools/issues/2165",
-    "created_at": "2026-10-16T20:18:48Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "vdavid/cmdr",
-    "number": 462,
-    "title": "Match Cmdr's competitors in enterprise readiness",
-    "url": "https://github.com/vdavid/cmdr/issues/462",
-    "created_at": "2026-10-16T20:14:36Z",
-    "labels": [
-      "enhancement",
-      "claude-created",
-      "website"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 324,
-    "title": "[Bug]: oversized bodies on /v1/logs and /v1/trace answer 400 instead of 413",
-    "url": "https://github.com/neatlogs/neatroots/issues/324",
-    "created_at": "2026-10-16T19:34:11Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 323,
-    "title": "[Bug]: the SPA fallback marks missing /assets/* paths as immutable, so browsers cache index.html as an asset",
-    "url": "https://github.com/neatlogs/neatroots/issues/323",
-    "created_at": "2026-10-16T19:34:10Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 322,
-    "title": "[Bug]: a URL with a malformed percent-escape (/%zz) returns 500 instead of the app",
-    "url": "https://github.com/neatlogs/neatroots/issues/322",
-    "created_at": "2026-10-16T19:34:04Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "usewhisk/whisk",
-    "number": 85,
-    "title": "External audit of @usewhisk/cctp and the core executors",
-    "url": "https://github.com/usewhisk/whisk/issues/85",
-    "created_at": "2026-10-16T19:31:45Z",
-    "labels": [
-      "phase-5-revenue",
-      "fund-safety"
+      "bee-proposal",
+      "bee-547"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -182,10 +171,10 @@
   },
   {
     "repo": "freedom-winds/BountyScout",
-    "number": 1263,
-    "title": "\ud83c\udfaf Bounty Alert: 13 New Opportunityies found",
-    "url": "https://github.com/freedom-winds/BountyScout/issues/1263",
-    "created_at": "2026-10-16T19:18:15Z",
+    "number": 1264,
+    "title": "\ud83c\udfaf Bounty Alert: 10 New Opportunityies found",
+    "url": "https://github.com/freedom-winds/BountyScout/issues/1264",
+    "created_at": "2026-10-16T22:31:30Z",
     "labels": [
       "bounty-alert"
     ],
@@ -195,12 +184,40 @@
     "priority_score": 20.05
   },
   {
-    "repo": "Zenith-options/frontend",
-    "number": 263,
-    "title": "Launch a Bug Bounty Program and Vulnerability Disclosure Process for the Vault Stack",
-    "url": "https://github.com/Zenith-options/frontend/issues/263",
-    "created_at": "2026-10-16T19:13:48Z",
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 346,
+    "title": "docs: resolve stale Phase 0 instructions in AGENTS.md",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/346",
+    "created_at": "2026-10-16T22:29:37Z",
     "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 345,
+    "title": "[wildcard] Make hy-emit untrusted: independently validated lowering to plain Go",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/345",
+    "created_at": "2026-10-16T22:12:20Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "fil-donadoni/tolaria",
+    "number": 5699,
+    "title": "Grammar Gap: spell \u203a effect clause \u203a Distribute three +N/+N counters among one, two, or three target creatures",
+    "url": "https://github.com/fil-donadoni/tolaria/issues/5699",
+    "created_at": "2026-10-16T22:10:20Z",
+    "labels": [
+      "enhancement",
+      "ready-for-agent",
+      "area:mechanics"
+    ],
     "competing_prs": 0,
     "is_bounty": true,
     "is_critical": false,
@@ -226,30 +243,6 @@
     "title": "[Bounty proposal] fix(database): add stream fault tolerance and client injection to trends ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21903",
     "created_at": "2026-10-16T17:14:20Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21895,
-    "title": "[Bounty proposal] fix(database): sanitize phone call overrides and add fault-tolerant client injection ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21895",
-    "created_at": "2026-10-16T16:47:30Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21892,
-    "title": "[Bounty proposal] fix(database): sanitize review config inputs and harden version gating ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21892",
-    "created_at": "2026-10-16T16:37:53Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": true,
@@ -294,46 +287,10 @@
   },
   {
     "repo": "BasedHardware/omi",
-    "number": 21863,
-    "title": "[Bounty Proposal] fix(developer,mcp): sync action-item vectors, filter locked MCP tasks, and harden developer conversation endpoints ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21863",
-    "created_at": "2026-10-16T14:16:49Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
     "number": 21854,
     "title": "[Bounty Proposal] fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21854",
     "created_at": "2026-10-16T12:56:39Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21852,
-    "title": "[Bounty Proposal] fix(chat): clean up session files and temp thumbnails, guard rating/sharing endpoints, and harden level migration ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21852",
-    "created_at": "2026-10-16T12:29:47Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21848,
-    "title": "[Bounty Proposal] fix(memories): encrypt/rekey evidence in migrations, encrypt refined content, and harden public/mutation paths ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21848",
-    "created_at": "2026-10-16T12:02:09Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": true,
@@ -354,49 +311,10 @@
   },
   {
     "repo": "BasedHardware/omi",
-    "number": 21841,
-    "title": "[Bounty Proposal] fix(backend): enforce locks, cancel reminders, and filter soft-deleted action items ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21841",
-    "created_at": "2026-10-16T11:20:07Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "tenstorrent/tt-metal",
-    "number": 60937,
-    "title": "ccl_fusion_mcast_2d: packer_l1_acc off at two K blocks, and sharded output shares partials across N blocks",
-    "url": "https://github.com/tenstorrent/tt-metal/issues/60937",
-    "created_at": "2026-10-16T15:26:17Z",
-    "labels": [
-      "bug",
-      "op_cat: ccl"
-    ],
-    "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
-  },
-  {
-    "repo": "BasedHardware/omi",
     "number": 21916,
     "title": "[Bounty proposal] fix(database): sanitize inputs and add stream error boundaries to batch pipeline privacy queries ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21916",
     "created_at": "2026-10-16T17:57:46Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21914,
-    "title": "[Bounty proposal] fix(database): sanitize document id, add timestamp boundary to api key metadata ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21914",
-    "created_at": "2026-10-16T17:49:40Z",
     "labels": [],
     "competing_prs": 2,
     "is_bounty": true,
@@ -450,6 +368,78 @@
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21895,
+    "title": "[Bounty proposal] fix(database): sanitize phone call overrides and add fault-tolerant client injection ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21895",
+    "created_at": "2026-10-16T16:47:30Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21892,
+    "title": "[Bounty proposal] fix(database): sanitize review config inputs and harden version gating ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21892",
+    "created_at": "2026-10-16T16:37:53Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21863,
+    "title": "[Bounty Proposal] fix(developer,mcp): sync action-item vectors, filter locked MCP tasks, and harden developer conversation endpoints ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21863",
+    "created_at": "2026-10-16T14:16:49Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21852,
+    "title": "[Bounty Proposal] fix(chat): clean up session files and temp thumbnails, guard rating/sharing endpoints, and harden level migration ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21852",
+    "created_at": "2026-10-16T12:29:47Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21848,
+    "title": "[Bounty Proposal] fix(memories): encrypt/rekey evidence in migrations, encrypt refined content, and harden public/mutation paths ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21848",
+    "created_at": "2026-10-16T12:02:09Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21914,
+    "title": "[Bounty proposal] fix(database): sanitize document id, add timestamp boundary to api key metadata ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21914",
+    "created_at": "2026-10-16T17:49:40Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.83
   },
   {
     "repo": "elizaOS/eliza",
