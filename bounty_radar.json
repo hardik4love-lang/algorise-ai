@@ -111,18 +111,6 @@
   },
   {
     "repo": "BasedHardware/omi",
-    "number": 21841,
-    "title": "[Bounty Proposal] fix(backend): enforce locks, cancel reminders, and filter soft-deleted action items ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21841",
-    "created_at": "2026-10-16T11:20:07Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
     "number": 21916,
     "title": "[Bounty proposal] fix(database): sanitize inputs and add stream error boundaries to batch pipeline privacy queries ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21916",
