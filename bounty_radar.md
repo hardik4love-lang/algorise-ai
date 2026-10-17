@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-17T13:07:05.470478+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-17T16:36:06.055183+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -18,18 +18,18 @@
 ## Top Unassigned Bounty Targets (0 Competing PRs)
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `limitlessprojects/Go-Hybrid` | [#462](https://github.com/limitlessprojects/Go-Hybrid/issues/462) | [wildcard] Isolated WASM task cells: replace cross-task | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/462) |
 | `limitlessprojects/Go-Hybrid` | [#417](https://github.com/limitlessprojects/Go-Hybrid/issues/417) | [wildcard] Serializable shared-state regions instead of | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/417) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `tari-project/special_contributions` | [#236](https://github.com/tari-project/special_contributions/issues/236) | Security report: tari-ootle tIP-0006 spend-script predi | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/236) |
-| `Trauma-Station/Trauma-Station` | [#5065](https://github.com/Trauma-Station/Trauma-Station/issues/5065) | u can get multiple nukie cruiship callers by canceling  | 0 | `20.05` | [Inspect](https://github.com/Trauma-Station/Trauma-Station/issues/5065) |
-| `FuRongJun-1999/dsh-bounty` | [#838](https://github.com/FuRongJun-1999/dsh-bounty/issues/838) | [intake 输入] dsh-interconnect 0.11.24 深度测评：双实例双向投递、6 种失败 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/838) |
-| `FuRongJun-1999/dsh-bounty` | [#837](https://github.com/FuRongJun-1999/dsh-bounty/issues/837) | [intake 输入] dsh-message-edit 0.2.3 深度测评：当前宿主 3 条独立阻断与分支 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/837) |
-| `FuRongJun-1999/dsh-bounty` | [#836](https://github.com/FuRongJun-1999/dsh-bounty/issues/836) | [intake 输入] dsh-genui 0.12.0 深度测评：真实浏览器 action 回路、双恢复与异 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/836) |
-| `FuRongJun-1999/dsh-memory` | [#539](https://github.com/FuRongJun-1999/dsh-memory/issues/539) | 【intake 输入】dsh-memory #361（P0）：gated 写入带六要素时一致性闸判 BLIND | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-memory/issues/539) |
-| `dev-kp-eloper/BountyScout` | [#1606](https://github.com/dev-kp-eloper/BountyScout/issues/1606) | 🎯 Bounty Alert: 11 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1606) |
-| `FuRongJun-1999/dsh-bounty` | [#835](https://github.com/FuRongJun-1999/dsh-bounty/issues/835) | [intake 输入][test/Windows] 面板导出缺 Windows 文件名守卫（P2：NUL/CO | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/835) |
-| `TokenNotIncluded/lmm-api` | [#935](https://github.com/TokenNotIncluded/lmm-api/issues/935) | [upstream-port] 表格行入场动画结束后释放 transform（new-api 5e959519 | 0 | `20.05` | [Inspect](https://github.com/TokenNotIncluded/lmm-api/issues/935) |
-| `fil-donadoni/tolaria` | [#5763](https://github.com/fil-donadoni/tolaria/issues/5763) | Grammar Gap: spell › effect clause › Distribute three + | 0 | `20.05` | [Inspect](https://github.com/fil-donadoni/tolaria/issues/5763) |
-| `FuRongJun-1999/dsh-bounty` | [#834](https://github.com/FuRongJun-1999/dsh-bounty/issues/834) | 【intake 输入】DSH 插件上下文成本评测**方法论对比**（4 类口径 × 33 臂实证 · 含 2  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/834) |
-| `tari-project/special_contributions` | [#235](https://github.com/tari-project/special_contributions/issues/235) | Security report: tari-ootle a confidential commitment o | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/235) |
-| `davexstudio-dev/CodeSphere-Platform` | [#225](https://github.com/davexstudio-dev/CodeSphere-Platform/issues/225) | Paiements mobile money et cadre légal par pays | 0 | `20.05` | [Inspect](https://github.com/davexstudio-dev/CodeSphere-Platform/issues/225) |
+| `paraloom-labs/paraloom-core` | [#992](https://github.com/paraloom-labs/paraloom-core/issues/992) | [BOUNTY] Medium: apply_heartbeat accepts sequence 0 rep | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/992) |
+| `FuRongJun-1999/dsh-bounty` | [#885](https://github.com/FuRongJun-1999/dsh-bounty/issues/885) | `bounty_list.validate` 不校验 `render` 直接索引的**四个顶层键** ⇒ 缺键 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/885) |
+| `FuRongJun-1999/dsh-bounty` | [#884](https://github.com/FuRongJun-1999/dsh-bounty/issues/884) | `check_fix_has_guard.count_in_tests` 把 **git 调用失败**当成「0 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/884) |
+| `FuRongJun-1999/dsh-bounty` | [#883](https://github.com/FuRongJun-1999/dsh-bounty/issues/883) | `check_marker_reverts.py` 的**漏报**：删除行内容以 `--` 开头时被当成 gi | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/883) |
+| `FuRongJun-1999/dsh-bounty` | [#882](https://github.com/FuRongJun-1999/dsh-bounty/issues/882) | `check_links.py` 的 G3 占位守卫按**整串子串**匹配 ⇒ `notexample.com | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/882) |
+| `dev-kp-eloper/BountyScout` | [#1607](https://github.com/dev-kp-eloper/BountyScout/issues/1607) | 🎯 Bounty Alert: 11 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1607) |
+| `kwizzlesurp10-ctrl/x402-mcp` | [#664](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664) | change-control: existing files mutated on push-master-9 | 0 | `20.05` | [Inspect](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664) |
+| `paraloom-labs/paraloom-core` | [#990](https://github.com/paraloom-labs/paraloom-core/issues/990) | [BOUNTY] Medium: Unchecked withdrawal amount in transac | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/990) |
+| `ahmedfuzayl-gif/commit-monitor` | [#147](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147) | commit-monitor: new leads 2026-10-17_1601Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147) |
+| `limitlessprojects/Go-Hybrid` | [#471](https://github.com/limitlessprojects/Go-Hybrid/issues/471) | [wildcard] Scoped Task Regions (join_scope): Zero-Copy  | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/471) |
+| `HCTDIP/corps-jobs` | [#101](https://github.com/HCTDIP/corps-jobs/issues/101) | Railway 赏金：有 7 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/101) |
+| `kwizzlesurp10-ctrl/x402-mcp` | [#663](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663) | change-control: existing files mutated on pr-662 [evt:2 | 0 | `20.05` | [Inspect](https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663) |

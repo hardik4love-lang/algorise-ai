@@ -1,6 +1,21 @@
 [
   {
     "repo": "limitlessprojects/Go-Hybrid",
+    "number": 462,
+    "title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/462",
+    "created_at": "2026-10-17T15:01:39Z",
+    "labels": [
+      "\ud83d\udc8e Bounty",
+      "wildcard"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
     "number": 417,
     "title": "[wildcard] Serializable shared-state regions instead of exclusive ownership",
     "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/417",
@@ -27,40 +42,11 @@
     "priority_score": 20.05
   },
   {
-    "repo": "tari-project/special_contributions",
-    "number": 236,
-    "title": "Security report: tari-ootle tIP-0006 spend-script predicates mutate engine state from the \"side-effect-free\" read-only frame (address allocation / signer-proof creation escape the sandbox deny-list) (GHSA-mjmv-783x-rxh7)",
-    "url": "https://github.com/tari-project/special_contributions/issues/236",
-    "created_at": "2026-10-17T13:00:19Z",
-    "labels": [
-      "retro-bounty",
-      "bounty-S"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Trauma-Station/Trauma-Station",
-    "number": 5065,
-    "title": "u can get multiple nukie cruiship callers by canceling it without accepting",
-    "url": "https://github.com/Trauma-Station/Trauma-Station/issues/5065",
-    "created_at": "2026-10-17T12:55:44Z",
-    "labels": [
-      "S: Untriaged"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 838,
-    "title": "[intake \u8f93\u5165] dsh-interconnect 0.11.24 \u6df1\u5ea6\u6d4b\u8bc4\uff1a\u53cc\u5b9e\u4f8b\u53cc\u5411\u6295\u9012\u30016 \u79cd\u5931\u8d25\u539f\u56e0\u4e0e\u91cd\u542f\u6062\u590d",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/838",
-    "created_at": "2026-10-17T12:52:51Z",
+    "repo": "paraloom-labs/paraloom-core",
+    "number": 992,
+    "title": "[BOUNTY] Medium: apply_heartbeat accepts sequence 0 replays and snapshots exhibit torn state across non-atomic mutex locks",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/992",
+    "created_at": "2026-10-17T16:33:03Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -69,10 +55,10 @@
   },
   {
     "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 837,
-    "title": "[intake \u8f93\u5165] dsh-message-edit 0.2.3 \u6df1\u5ea6\u6d4b\u8bc4\uff1a\u5f53\u524d\u5bbf\u4e3b 3 \u6761\u72ec\u7acb\u963b\u65ad\u4e0e\u5206\u652f\u4e8b\u4ef6\u8bc1\u636e",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/837",
-    "created_at": "2026-10-17T12:50:43Z",
+    "number": 885,
+    "title": "`bounty_list.validate` \u4e0d\u6821\u9a8c `render` \u76f4\u63a5\u7d22\u5f15\u7684**\u56db\u4e2a\u9876\u5c42\u952e** \u21d2 \u7f3a\u952e\u65f6\u300c\u6821\u9a8c\u65e0\u9519\u300d\u4f46\u88f8\u5d29 `KeyError`\uff0c\u9000\u51fa\u7801\u4e0e\u300c\u4ea7\u7269\u6f02\u79fb\u300d\u649e\u7801",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/885",
+    "created_at": "2026-10-17T16:22:12Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -81,10 +67,10 @@
   },
   {
     "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 836,
-    "title": "[intake \u8f93\u5165] dsh-genui 0.12.0 \u6df1\u5ea6\u6d4b\u8bc4\uff1a\u771f\u5b9e\u6d4f\u89c8\u5668 action \u56de\u8def\u3001\u53cc\u6062\u590d\u4e0e\u5f02\u5e38\u8f93\u5165",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/836",
-    "created_at": "2026-10-17T12:48:07Z",
+    "number": 884,
+    "title": "`check_fix_has_guard.count_in_tests` \u628a **git \u8c03\u7528\u5931\u8d25**\u5f53\u6210\u300c0 \u6b21\u51fa\u73b0\u300d\u21d2 \u4f1a\u63a8\u51fa\u300c\u540c\u7c7b\u65e2\u6709\u5b9e\u73b0\u4e5f\u96f6\u5b88\u536b\u300d\u7684\u9519\u8bef\u7ed3\u8bba",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/884",
+    "created_at": "2026-10-17T16:20:02Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -92,11 +78,23 @@
     "priority_score": 20.05
   },
   {
-    "repo": "FuRongJun-1999/dsh-memory",
-    "number": 539,
-    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory #361\uff08P0\uff09\uff1agated \u5199\u5165\u5e26\u516d\u8981\u7d20\u65f6\u4e00\u81f4\u6027\u95f8\u5224 BLINDSPOT\uff0c\u6b63\u6587\u65e2\u4e0d\u843d\u76d8\u4e5f\u4e0d\u5165\u961f\uff08\u6c11\u6cd5\u5178 200/200 \u4e22\u5931\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-memory/issues/539",
-    "created_at": "2026-10-17T12:47:13Z",
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 883,
+    "title": "`check_marker_reverts.py` \u7684**\u6f0f\u62a5**\uff1a\u5220\u9664\u884c\u5185\u5bb9\u4ee5 `--` \u5f00\u5934\u65f6\u88ab\u5f53\u6210 git \u6587\u4ef6\u5934\u8df3\u8fc7 \u21d2 \u9759\u9ed8\u56de\u9000\u770b\u4e0d\u89c1",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/883",
+    "created_at": "2026-10-17T16:19:08Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 882,
+    "title": "`check_links.py` \u7684 G3 \u5360\u4f4d\u5b88\u536b\u6309**\u6574\u4e32\u5b50\u4e32**\u5339\u914d \u21d2 `notexample.com` \u8fd9\u7c7b\u5408\u6cd5\u94fe\u63a5\u88ab\u8bef\u5224\u4e3a\u5360\u4f4d\uff08\u800c\u5b83\u662f `promo` \u60ac\u8d4f\u7684\u9a8c\u6536\u5224\u636e\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/882",
+    "created_at": "2026-10-17T16:14:32Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -105,10 +103,10 @@
   },
   {
     "repo": "dev-kp-eloper/BountyScout",
-    "number": 1606,
+    "number": 1607,
     "title": "\ud83c\udfaf Bounty Alert: 11 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1606",
-    "created_at": "2026-10-17T12:46:12Z",
+    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1607",
+    "created_at": "2026-10-17T16:11:19Z",
     "labels": [
       "bounty-alert"
     ],
@@ -118,11 +116,25 @@
     "priority_score": 20.05
   },
   {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 835,
-    "title": "[intake \u8f93\u5165][test/Windows] \u9762\u677f\u5bfc\u51fa\u7f3a Windows \u6587\u4ef6\u540d\u5b88\u536b\uff08P2\uff1aNUL/CON \u5e7d\u7075\u6587\u4ef6\u3001`x:stream` \u5199 ADS \u4e3b\u6587\u4ef6 0 \u5b57\u8282\u3001\u5c3e\u70b9\u4e0d\u53ef\u8fbe\uff0c\u5747\u62a5\u5bfc\u51fa\u6210\u529f\uff09\uff0b DELETE \u8fde\u5e26\u5220\u9664\u9690\u85cf\u522b\u540d\uff08P3\uff09\uff0b Host \u6805\u680f\u73af\u56de\u5730\u5740\u8bc6\u522b\u4e0d\u5168\uff08P3\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/835",
-    "created_at": "2026-10-17T12:44:15Z",
+    "repo": "kwizzlesurp10-ctrl/x402-mcp",
+    "number": 664,
+    "title": "change-control: existing files mutated on push-master-9276b9d8f708 [evt:94bad72c83]",
+    "url": "https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/664",
+    "created_at": "2026-10-17T16:10:53Z",
+    "labels": [
+      "change-control"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraloom-labs/paraloom-core",
+    "number": 990,
+    "title": "[BOUNTY] Medium: Unchecked withdrawal amount in transact_submit causes arithmetic negation overflow and sign inversion",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/990",
+    "created_at": "2026-10-17T16:08:40Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -130,97 +142,11 @@
     "priority_score": 20.05
   },
   {
-    "repo": "TokenNotIncluded/lmm-api",
-    "number": 935,
-    "title": "[upstream-port] \u8868\u683c\u884c\u5165\u573a\u52a8\u753b\u7ed3\u675f\u540e\u91ca\u653e transform\uff08new-api 5e959519\uff0c\u524d\u7aef\uff09",
-    "url": "https://github.com/TokenNotIncluded/lmm-api/issues/935",
-    "created_at": "2026-10-17T12:43:53Z",
-    "labels": [
-      "bot",
-      "upstream-port"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "fil-donadoni/tolaria",
-    "number": 5763,
-    "title": "Grammar Gap: spell \u203a effect clause \u203a Distribute three +N/+N counters among one, two, or three target creatures",
-    "url": "https://github.com/fil-donadoni/tolaria/issues/5763",
-    "created_at": "2026-10-17T12:39:58Z",
-    "labels": [
-      "enhancement",
-      "ready-for-agent",
-      "area:mechanics"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 834,
-    "title": "\u3010intake \u8f93\u5165\u3011DSH \u63d2\u4ef6\u4e0a\u4e0b\u6587\u6210\u672c\u8bc4\u6d4b**\u65b9\u6cd5\u8bba\u5bf9\u6bd4**\uff084 \u7c7b\u53e3\u5f84 \u00d7 33 \u81c2\u5b9e\u8bc1 \u00b7 \u542b 2 \u6761\u65b9\u6cd5\u5b66\u53cd\u4f8b\u4e0e 4 \u9053\u6d41\u6c34\u7ebf\u5b88\u536b\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/834",
-    "created_at": "2026-10-17T12:38:03Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "tari-project/special_contributions",
-    "number": 235,
-    "title": "Security report: tari-ootle a confidential commitment of value zero satisfies rule!(resource(X)) (GHSA-3cj6-rxgj-2349)",
-    "url": "https://github.com/tari-project/special_contributions/issues/235",
-    "created_at": "2026-10-17T12:37:43Z",
-    "labels": [
-      "retro-bounty",
-      "bounty-M"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "davexstudio-dev/CodeSphere-Platform",
-    "number": 225,
-    "title": "Paiements mobile money et cadre l\u00e9gal par pays",
-    "url": "https://github.com/davexstudio-dev/CodeSphere-Platform/issues/225",
-    "created_at": "2026-10-17T12:34:50Z",
-    "labels": [
-      "wayfinder:research"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "davexstudio-dev/CodeSphere-Platform",
-    "number": 218,
-    "title": "Carte : CodeSphere, plateforme d'\u00e9change des devs d'Afrique",
-    "url": "https://github.com/davexstudio-dev/CodeSphere-Platform/issues/218",
-    "created_at": "2026-10-17T12:34:22Z",
-    "labels": [
-      "wayfinder:map"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 833,
-    "title": "\u3010\u6d4b\u8bc4\u62a5\u544a\u3011\u5de5\u4f5c\u6d41\u63d2\u4ef6\u4e0a\u4e0b\u6587\u7a0e \u00b7 \u7b2c 7 \u6279\uff08\u81ea\u52a8\u8bc4\u6d4b\u6d41\u6c34\u7ebf\uff09\uff1a4 \u4ef6\u5b9e\u6d4b",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/833",
-    "created_at": "2026-10-17T12:31:34Z",
+    "repo": "ahmedfuzayl-gif/commit-monitor",
+    "number": 147,
+    "title": "commit-monitor: new leads 2026-10-17_1601Z",
+    "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/147",
+    "created_at": "2026-10-17T16:01:28Z",
     "labels": [],
     "competing_prs": 0,
     "is_bounty": true,
@@ -229,10 +155,84 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
-    "number": 438,
-    "title": "[soundness] P0 regression: rebinding a name clears the freeze on storage a defer captured (rejects on 8dd0002, accepts on c53978b)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/438",
-    "created_at": "2026-10-17T12:15:54Z",
+    "number": 471,
+    "title": "[wildcard] Scoped Task Regions (join_scope): Zero-Copy Borrowed Read-Sharing Across Tasks with Compile-Time Join Guarantees",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/471",
+    "created_at": "2026-10-17T16:00:15Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "HCTDIP/corps-jobs",
+    "number": 101,
+    "title": "Railway \u8d4f\u91d1\uff1a\u6709 7 \u6761\u503c\u5f97\u62a2",
+    "url": "https://github.com/HCTDIP/corps-jobs/issues/101",
+    "created_at": "2026-10-17T15:57:07Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "kwizzlesurp10-ctrl/x402-mcp",
+    "number": 663,
+    "title": "change-control: existing files mutated on pr-662 [evt:24007296e2]",
+    "url": "https://github.com/kwizzlesurp10-ctrl/x402-mcp/issues/663",
+    "created_at": "2026-10-17T15:56:28Z",
+    "labels": [
+      "change-control"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "paraloom-labs/paraloom-core",
+    "number": 988,
+    "title": "[BOUNTY] Medium: Non-atomic state transitions in ComputeStorage allow job duplication and state desync across column families",
+    "url": "https://github.com/paraloom-labs/paraloom-core/issues/988",
+    "created_at": "2026-10-17T15:40:51Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 880,
+    "title": "\u3010\u6d4b\u8bc4\u62a5\u544a\u3011\u5de5\u4f5c\u6d41\u63d2\u4ef6\u4e0a\u4e0b\u6587\u7a0e \u00b7 \u7b2c 16 \u6279\uff08\u81ea\u52a8\u8bc4\u6d4b\u6d41\u6c34\u7ebf\uff09\uff1a3 \u4ef6\u5b9e\u6d4b",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/880",
+    "created_at": "2026-10-17T15:25:20Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 463,
+    "title": "[tooling] Keep differential corpus reporting after checker/build/run timeout",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/463",
+    "created_at": "2026-10-17T15:08:54Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 456,
+    "title": "P0 soundness: inner loop header self-shadowing on back-edge, block/multi-value self-shadow share retention across scope_pop, user method return shapes, and reslice/index/append borrow-root & return loan-escape bypasses (HYB-E3003 / E3004 / E3104)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/456",
+    "created_at": "2026-10-17T14:44:07Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": false,
@@ -241,34 +241,10 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
-    "number": 435,
-    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
-    "created_at": "2026-10-17T12:01:59Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 399,
-    "title": "[soundness] P0: block-scoped assignment drops may_share edges - accepted program races",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/399",
-    "created_at": "2026-10-17T09:01:59Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 392,
-    "title": "[soundness] P0: field store of a reference-typed value does not materialize may_share - accepted program races",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/392",
-    "created_at": "2026-10-17T08:43:07Z",
+    "number": 449,
+    "title": "[soundness] P0 regressions in #230/#251: post-closure outer locals shadow nested captures (E3001/E3003) and unscoped/composite rebinds drop A3 slot-loan invalidation (E3102)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/449",
+    "created_at": "2026-10-17T13:38:26Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": false,
@@ -295,18 +271,6 @@
     "title": "Bounty programme: current cycle settlement and PayPal eligibility",
     "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/432",
     "created_at": "2026-10-17T11:43:10Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 404,
-    "title": "Bounty program: Argentina eligibility, USDC payout network and cycle dates",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/404",
-    "created_at": "2026-10-17T09:31:58Z",
     "labels": [],
     "competing_prs": 1,
     "is_bounty": true,
@@ -387,10 +351,22 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
-    "number": 406,
-    "title": "Soundness (P0): `regexbinding` 4,096 B fast-path stack-budget lie overflows into sibling goroutine stacks (`0xc0000005` / `unknown caller pc`), plus comma-ok map lookup (`v, ok := m[k]`) and closure `const` local borrow/move bypass `HYB-E3003`/`E3004`/`E3006`/`E3102`",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/406",
-    "created_at": "2026-10-17T09:37:32Z",
+    "number": 445,
+    "title": "[soundness] P0: closures in an else-if chain condition inside a closure skip the nested boundary pass \u2014 #229 shapes race again at c53978b",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/445",
+    "created_at": "2026-10-17T13:15:26Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.98
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 435,
+    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
+    "created_at": "2026-10-17T12:01:59Z",
     "labels": [],
     "competing_prs": 2,
     "is_bounty": false,
@@ -495,6 +471,18 @@
   },
   {
     "repo": "limitlessprojects/Go-Hybrid",
+    "number": 438,
+    "title": "[soundness] P0: rebinding a name clears the freeze on storage a defer captured",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/438",
+    "created_at": "2026-10-17T12:15:54Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.91
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
     "number": 415,
     "title": "[soundness] P0: deferred call keeps a live reference, so moving the value into a task races",
     "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/415",
@@ -548,9 +536,9 @@
     "url": "https://github.com/elizaOS/eliza/issues/34820",
     "created_at": "2026-10-10T05:07:43Z",
     "labels": [],
-    "competing_prs": 15,
+    "competing_prs": 18,
     "is_bounty": false,
     "is_critical": false,
-    "priority_score": 18.93
+    "priority_score": 18.7
   }
 ]
