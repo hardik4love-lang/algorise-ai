@@ -1,5 +1,5 @@
 # 🛡️ Security Research Target Priority Matrix (TPS)
-**Generated:** `2026-10-17 07:44:37 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `7`
+**Generated:** `2026-10-17 07:50:29 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `7`
 
 ## 📊 Operational Throughput Overview
 | Metric | Value | Threshold / SLA |
@@ -23,13 +23,13 @@ Optimized non-overlapping cognitive windows to eliminate context-switching frict
 ## 🎯 Quantitative Target Priority Score (TPS) Ranking
 | Rank | Target / Platform | Scope Type | TPS (Norm) | Priority Tier | Primary Attack Vectors | Status / Delta |
 |---|---|---|---|---|---|---|
-| **#1** | [Tenstorrent TT-Metal / TTNN Kernel Compute Engine](https://github.com/tenstorrent/tt-metal)<br>`(Github)` | `source_code_and_hardware_sim` | **`45.33`** | `P0 - CRITICAL YIELD` | `c_cpp`, `buffer_overflow`, `unpack_modes` | Rel: `v0.80.0` |
-| **#2** | [BasedHardware Omi Open Source AI Wearable](https://github.com/BasedHardware/omi)<br>`(Github)` | `full_stack_mobile_and_backend` | **`24.34`** | `P2 - MEDIUM YIELD` | `python`, `fastapi`, `auth_bypass` | Rel: `v0.12.496+12496-macos` |
-| **#3** | [GitLab CI/CD & Project Workspace](https://hackerone.com/gitlab)<br>`(Hackerone)` | `source_code_and_web_app` | **`21.04`** | `P2 - MEDIUM YIELD` | `ci_cd_injection`, `rce`, `ssrf` | HTTP: `401` (REACHABLE) |
-| **#4** | [Shopify Commerce Platform & Partner APIs](https://hackerone.com/shopify)<br>`(Hackerone)` | `web_api_and_graphql` | **`18.52`** | `P2 - MEDIUM YIELD` | `graphql_introspection`, `idor`, `bfla` | HTTP: `200` (ONLINE) |
-| **#5** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `pr-evidence-11` |
-| **#6** | [Tesla Vehicle & Telematics API Gateway](https://bugcrowd.com/tesla)<br>`(Bugcrowd)` | `cloud_infrastructure_and_api` | **`11.58`** | `P3 - LOW / BACKLOG` | `telematics_api`, `jwt_none_alg`, `broken_auth` | HTTP: `404` (REACHABLE) |
-| **#7** | [Netflix Streaming & Partner Studio Ingestion](https://bugcrowd.com/netflix)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`9.75`** | `P3 - LOW / BACKLOG` | `api_gateway`, `cors_misconfig`, `subdomain_takeover` | HTTP: `0` (TIMEOUT) |
+| **#1** | [Tenstorrent TT-Metal / TTNN Kernel Compute Engine](https://github.com/tenstorrent/tt-metal)<br>`(Github)` | `source_code_and_hardware_sim` | **`45.33`** | `P0 - CRITICAL YIELD` | `c_cpp`, `buffer_overflow`, `unpack_modes` | Rel: `N/A` |
+| **#2** | [BasedHardware Omi Open Source AI Wearable](https://github.com/BasedHardware/omi)<br>`(Github)` | `full_stack_mobile_and_backend` | **`24.34`** | `P2 - MEDIUM YIELD` | `python`, `fastapi`, `auth_bypass` | Rel: `N/A` |
+| **#3** | [GitLab CI/CD & Project Workspace](https://hackerone.com/gitlab)<br>`(Hackerone)` | `source_code_and_web_app` | **`21.04`** | `P2 - MEDIUM YIELD` | `ci_cd_injection`, `rce`, `ssrf` | HTTP: `N/A` (OK) |
+| **#4** | [Shopify Commerce Platform & Partner APIs](https://hackerone.com/shopify)<br>`(Hackerone)` | `web_api_and_graphql` | **`18.52`** | `P2 - MEDIUM YIELD` | `graphql_introspection`, `idor`, `bfla` | HTTP: `N/A` (OK) |
+| **#5** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `N/A` |
+| **#6** | [Tesla Vehicle & Telematics API Gateway](https://bugcrowd.com/tesla)<br>`(Bugcrowd)` | `cloud_infrastructure_and_api` | **`11.58`** | `P3 - LOW / BACKLOG` | `telematics_api`, `jwt_none_alg`, `broken_auth` | HTTP: `N/A` (OK) |
+| **#7** | [Netflix Streaming & Partner Studio Ingestion](https://bugcrowd.com/netflix)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`9.75`** | `P3 - LOW / BACKLOG` | `api_gateway`, `cors_misconfig`, `subdomain_takeover` | HTTP: `N/A` (OK) |
 
 ## 🔍 Target Handoff & Action Protocols
 ### #1 Tenstorrent TT-Metal / TTNN Kernel Compute Engine (`Github`)
