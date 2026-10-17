@@ -1,5 +1,5 @@
 # 🛡️ Security Research Target Priority Matrix (TPS)
-**Generated:** `2026-10-17 07:58:46 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `12`
+**Generated:** `2026-10-17 08:00:20 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `12`
 
 ## 📊 Operational Throughput Overview
 | Metric | Value | Threshold / SLA |
@@ -23,18 +23,18 @@ Optimized non-overlapping cognitive windows to eliminate context-switching frict
 ## 🎯 Quantitative Target Priority Score (TPS) Ranking
 | Rank | Target / Platform | Scope Type | TPS (Norm) | Priority Tier | Primary Attack Vectors | Status / Delta |
 |---|---|---|---|---|---|---|
-| **#1** | [Tenstorrent TT-Metal / TTNN Kernel Compute Engine](https://github.com/tenstorrent/tt-metal)<br>`(Github)` | `source_code_and_hardware_sim` | **`45.33`** | `P0 - CRITICAL YIELD` | `c_cpp`, `buffer_overflow`, `unpack_modes` | Rel: `N/A` |
-| **#2** | [BasedHardware Omi Open Source AI Wearable](https://github.com/BasedHardware/omi)<br>`(Github)` | `full_stack_mobile_and_backend` | **`24.34`** | `P2 - MEDIUM YIELD` | `python`, `fastapi`, `auth_bypass` | Rel: `N/A` |
-| **#3** | [GitLab CI/CD & Project Workspace](https://hackerone.com/gitlab)<br>`(Hackerone)` | `source_code_and_web_app` | **`21.04`** | `P2 - MEDIUM YIELD` | `ci_cd_injection`, `rce`, `ssrf` | HTTP: `N/A` (OK) |
-| **#4** | [Airbnb Marketplace & Host Platform](https://hackerone.com/airbnb)<br>`(Hackerone)` | `web_api_and_graphql` | **`19.64`** | `P2 - MEDIUM YIELD` | `graphql`, `idor`, `bfla` | HTTP: `N/A` (OK) |
-| **#5** | [Shopify Commerce Platform & Partner APIs](https://hackerone.com/shopify)<br>`(Hackerone)` | `web_api_and_graphql` | **`18.52`** | `P2 - MEDIUM YIELD` | `graphql_introspection`, `idor`, `bfla` | HTTP: `N/A` (OK) |
-| **#6** | [Uber Mobility & Autonomous Platform](https://hackerone.com/uber)<br>`(Hackerone)` | `cloud_infrastructure_and_api` | **`17.1`** | `P2 - MEDIUM YIELD` | `oauth_flow`, `telematics_api`, `idor` | HTTP: `N/A` (OK) |
-| **#7** | [Cal.com Open Source Scheduling Infrastructure](https://github.com/calcom/cal.com)<br>`(Github)` | `source_code_and_web_app` | **`17.1`** | `P2 - MEDIUM YIELD` | `typescript`, `nextjs`, `oauth_delimiter` | Rel: `N/A` |
-| **#8** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `N/A` |
-| **#9** | [ExpressVPN Core Protocols & Routing](https://bugcrowd.com/expressvpn)<br>`(Bugcrowd)` | `network_infrastructure` | **`12.7`** | `P3 - LOW / BACKLOG` | `dns_leak`, `tunnel_breakout`, `privilege_escalation` | HTTP: `N/A` (OK) |
-| **#10** | [Upwork Enterprise Escrow & Freelance APIs](https://bugcrowd.com/upwork)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`12.3`** | `P3 - LOW / BACKLOG` | `payment_gateway`, `bfla`, `idor` | HTTP: `N/A` (OK) |
-| **#11** | [Tesla Vehicle & Telematics API Gateway](https://bugcrowd.com/tesla)<br>`(Bugcrowd)` | `cloud_infrastructure_and_api` | **`11.58`** | `P3 - LOW / BACKLOG` | `telematics_api`, `jwt_none_alg`, `broken_auth` | HTTP: `N/A` (OK) |
-| **#12** | [Netflix Streaming & Partner Studio Ingestion](https://bugcrowd.com/netflix)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`9.75`** | `P3 - LOW / BACKLOG` | `api_gateway`, `cors_misconfig`, `subdomain_takeover` | HTTP: `N/A` (OK) |
+| **#1** | [Tenstorrent TT-Metal / TTNN Kernel Compute Engine](https://github.com/tenstorrent/tt-metal)<br>`(Github)` | `source_code_and_hardware_sim` | **`45.33`** | `P0 - CRITICAL YIELD` | `c_cpp`, `buffer_overflow`, `unpack_modes` | Rel: `v0.80.0` |
+| **#2** | [BasedHardware Omi Open Source AI Wearable](https://github.com/BasedHardware/omi)<br>`(Github)` | `full_stack_mobile_and_backend` | **`24.34`** | `P2 - MEDIUM YIELD` | `python`, `fastapi`, `auth_bypass` | Rel: `v0.12.497+12497-macos` |
+| **#3** | [GitLab CI/CD & Project Workspace](https://hackerone.com/gitlab)<br>`(Hackerone)` | `source_code_and_web_app` | **`21.04`** | `P2 - MEDIUM YIELD` | `ci_cd_injection`, `rce`, `ssrf` | HTTP: `401` (REACHABLE) |
+| **#4** | [Airbnb Marketplace & Host Platform](https://hackerone.com/airbnb)<br>`(Hackerone)` | `web_api_and_graphql` | **`19.64`** | `P2 - MEDIUM YIELD` | `graphql`, `idor`, `bfla` | HTTP: `404` (REACHABLE) |
+| **#5** | [Shopify Commerce Platform & Partner APIs](https://hackerone.com/shopify)<br>`(Hackerone)` | `web_api_and_graphql` | **`18.52`** | `P2 - MEDIUM YIELD` | `graphql_introspection`, `idor`, `bfla` | HTTP: `200` (ONLINE) |
+| **#6** | [Uber Mobility & Autonomous Platform](https://hackerone.com/uber)<br>`(Hackerone)` | `cloud_infrastructure_and_api` | **`17.1`** | `P2 - MEDIUM YIELD` | `oauth_flow`, `telematics_api`, `idor` | HTTP: `404` (REACHABLE) |
+| **#7** | [Cal.com Open Source Scheduling Infrastructure](https://github.com/calcom/cal.com)<br>`(Github)` | `source_code_and_web_app` | **`17.1`** | `P2 - MEDIUM YIELD` | `typescript`, `nextjs`, `oauth_delimiter` | Rel: `v6.2.0` |
+| **#8** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `pr-evidence-11` |
+| **#9** | [ExpressVPN Core Protocols & Routing](https://bugcrowd.com/expressvpn)<br>`(Bugcrowd)` | `network_infrastructure` | **`12.7`** | `P3 - LOW / BACKLOG` | `dns_leak`, `tunnel_breakout`, `privilege_escalation` | HTTP: `200` (ONLINE) |
+| **#10** | [Upwork Enterprise Escrow & Freelance APIs](https://bugcrowd.com/upwork)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`12.3`** | `P3 - LOW / BACKLOG` | `payment_gateway`, `bfla`, `idor` | HTTP: `403` (REACHABLE) |
+| **#11** | [Tesla Vehicle & Telematics API Gateway](https://bugcrowd.com/tesla)<br>`(Bugcrowd)` | `cloud_infrastructure_and_api` | **`11.58`** | `P3 - LOW / BACKLOG` | `telematics_api`, `jwt_none_alg`, `broken_auth` | HTTP: `404` (REACHABLE) |
+| **#12** | [Netflix Streaming & Partner Studio Ingestion](https://bugcrowd.com/netflix)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`9.75`** | `P3 - LOW / BACKLOG` | `api_gateway`, `cors_misconfig`, `subdomain_takeover` | HTTP: `0` (TIMEOUT) |
 
 ## 🔍 Target Handoff & Action Protocols
 ### #1 Tenstorrent TT-Metal / TTNN Kernel Compute Engine (`Github`)
