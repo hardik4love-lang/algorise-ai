@@ -1,4 +1,4 @@
-# 🎯 Autonomous Bounty Radar — 2026-10-17T04:52:06.964970+00:00
+# 🎯 Autonomous Bounty Radar — 2026-10-17T04:52:39.042274+00:00
 
 ## Active Tracked PRs
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -28,7 +28,7 @@
 | `odiseo159-beep/mergit` | [#2](https://github.com/odiseo159-beep/mergit/issues/2) | Attack the reentrancy guard, do not just trust it | 0 | `20.05` | [Inspect](https://github.com/odiseo159-beep/mergit/issues/2) |
 | `odiseo159-beep/mergit` | [#1](https://github.com/odiseo159-beep/mergit/issues/1) | Prove the race between challenging and refunding | 0 | `20.05` | [Inspect](https://github.com/odiseo159-beep/mergit/issues/1) |
 | `paraloom-labs/paraloom-core` | [#976](https://github.com/paraloom-labs/paraloom-core/issues/976) | [BOUNTY] Medium: ShieldedPool::credit_commitment dedupl | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/976) |
-| `dev-kp-eloper/BountyScout` | [#1604](https://github.com/dev-kp-eloper/BountyScout/issues/1604) | 🎯 Bounty Alert: 9 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1604) |
+| `dev-kp-eloper/BountyScout` | [#1604](https://github.com/dev-kp-eloper/BountyScout/issues/1604) | ðŸŽ¯ Bounty Alert: 9 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1604) |
 | `limitlessprojects/Go-Hybrid` | [#353](https://github.com/limitlessprojects/Go-Hybrid/issues/353) | [improvement] make([]T, len, cap) (valid Go) is rejecte | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/353) |
-| `neatlogs/neatroots` | [#352](https://github.com/neatlogs/neatroots/issues/352) | In-app coding-agent chat — process lifecycle, permissio | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/352) |
-| `neatlogs/neatroots` | [#351](https://github.com/neatlogs/neatroots/issues/351) | Check engine lifecycle — concurrency, local LLM calibra | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/351) |
+| `neatlogs/neatroots` | [#352](https://github.com/neatlogs/neatroots/issues/352) | In-app coding-agent chat â€” process lifecycle, permiss | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/352) |
+| `neatlogs/neatroots` | [#351](https://github.com/neatlogs/neatroots/issues/351) | Check engine lifecycle â€” concurrency, local LLM calib | 0 | `20.05` | [Inspect](https://github.com/neatlogs/neatroots/issues/351) |
