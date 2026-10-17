@@ -16,6 +16,7 @@
 | [GHSA-8gf8-6f6r-2h54](https://github.com/BasedHardware/omi/security/advisories) | `BasedHardware/omi` | Silent Mass Key Revocation & Excessive Scopes in Connect-an-Agent | `TRIAGE` | **$50 - $100** |
 | [#61086](https://github.com/tenstorrent/tt-metal/pull/61086) | `tenstorrent/tt-metal` | Quasar Matmul FP32 Unpack Modes Program Factory | `OPEN` | **$100 - $300** |
 | [#30353](https://github.com/calcom/cal.diy/pull/30353) | `calcom/cal.com` | RFC 6749 OAuth 2.0 Scope Delimiter Parser | `OPEN` | **$50 - $100** |
+| [#30355](https://github.com/calcom/cal.diy/pull/30355) | `calcom/cal.com` | Docker Compose Localhost Port Hardening & Image Pinning | `OPEN` | **$50 - $100** |
 
 ## Top Unassigned Bounty Targets (0 Competing PRs)
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
