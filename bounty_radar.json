@@ -1,5 +1,20 @@
 [
   {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 417,
+    "title": "[wildcard] Serializable shared-state regions instead of exclusive ownership",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/417",
+    "created_at": "2026-10-17T10:36:18Z",
+    "labels": [
+      "\u00f0\u0178\u2019\u017d Bounty",
+      "wildcard"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
     "repo": "elizaOS/eliza",
     "number": 36589,
     "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
@@ -10,6 +25,54 @@
     "is_bounty": false,
     "is_critical": false,
     "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 438,
+    "title": "[soundness] P0 regression: rebinding a name clears the freeze on storage a defer captured (rejects on 8dd0002, accepts on c53978b)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/438",
+    "created_at": "2026-10-17T12:15:54Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 435,
+    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
+    "created_at": "2026-10-17T12:01:59Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 399,
+    "title": "[soundness] P0: block-scoped assignment drops may_share edges - accepted program races",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/399",
+    "created_at": "2026-10-17T09:01:59Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 392,
+    "title": "[soundness] P0: field store of a reference-typed value does not materialize may_share - accepted program races",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/392",
+    "created_at": "2026-10-17T08:43:07Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
   },
   {
     "repo": "BasedHardware/omi",
@@ -24,6 +87,42 @@
     "is_bounty": false,
     "is_critical": true,
     "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 432,
+    "title": "Bounty programme: current cycle settlement and PayPal eligibility",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/432",
+    "created_at": "2026-10-17T11:43:10Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 404,
+    "title": "Bounty program: Argentina eligibility, USDC payout network and cycle dates",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/404",
+    "created_at": "2026-10-17T09:31:58Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 22017,
+    "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/22017",
+    "created_at": "2026-10-17T11:37:17Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.98
   },
   {
     "repo": "BasedHardware/omi",
@@ -63,18 +162,6 @@
   },
   {
     "repo": "BasedHardware/omi",
-    "number": 21878,
-    "title": "[Bounty proposal] fix(database): sanitize plan_key attribution and guard hourly usage increments ( proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21878",
-    "created_at": "2026-10-16T15:54:12Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
     "number": 21875,
     "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score for index sorting ($50 proposed)",
     "url": "https://github.com/BasedHardware/omi/issues/21875",
@@ -98,16 +185,16 @@
     "priority_score": 19.98
   },
   {
-    "repo": "BasedHardware/omi",
-    "number": 21844,
-    "title": "[Bounty Proposal] fix(conversations): purge vectors/tasks in merge cleanup, reject duplicate merge IDs, and sync task description edits ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21844",
-    "created_at": "2026-10-16T11:41:35Z",
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 406,
+    "title": "Soundness (P0): `regexbinding` 4,096 B fast-path stack-budget lie overflows into sibling goroutine stacks (`0xc0000005` / `unknown caller pc`), plus comma-ok map lookup (`v, ok := m[k]`) and closure `const` local borrow/move bypass `HYB-E3003`/`E3004`/`E3006`/`E3102`",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/406",
+    "created_at": "2026-10-17T09:37:32Z",
     "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
+    "competing_prs": 2,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.98
   },
   {
     "repo": "BasedHardware/omi",
@@ -192,6 +279,30 @@
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 19.9
+  },
+  {
+    "repo": "BasedHardware/omi",
+    "number": 21878,
+    "title": "[Bounty proposal] fix(database): sanitize plan_key attribution and guard hourly usage increments ( proposed)",
+    "url": "https://github.com/BasedHardware/omi/issues/21878",
+    "created_at": "2026-10-16T15:54:12Z",
+    "labels": [],
+    "competing_prs": 2,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 19.9
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 415,
+    "title": "[soundness] P0: deferred call keeps a live reference, so moving the value into a task races",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/415",
+    "created_at": "2026-10-17T10:34:20Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.91
   },
   {
     "repo": "BasedHardware/omi",

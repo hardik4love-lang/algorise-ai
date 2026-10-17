@@ -25,60 +25,36 @@ if sys.platform == "win32":
 # ---------------------------------------------------------------------------
 TRACKED_PRS = [
     {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 413,
+        "title": "fix(check): type-check receive operands and reject non-channel values (#409)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/413",
+        "bounty_est": "$75 - $100",
+        "role": "Soundness Type Checker (Recv Operand)"
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 427,
+        "title": "fix(check): type-check for-in iterable operands and reject non-iterables (#411)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/427",
+        "bounty_est": "$75 - $100",
+        "role": "Soundness Type Checker (For-In Iterable)"
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 430,
+        "title": "fix(check): type-check operand types for conditions, index, slice, call, and builtins (#425)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/430",
+        "bounty_est": "$75 - $100",
+        "role": "Soundness Type Checker (Operand Types & Builtins)"
+    },
+    {
         "repo": "BasedHardware/omi",
-        "pr_number": 21521,
-        "title": "fix(watch): stop Apple Watch recording on forget (#20780)",
-        "url": "https://github.com/BasedHardware/omi/pull/21521",
+        "pr_number": 21999,
+        "title": "fix(sync): sequenced stale job recovery and atomic lease renewal (#21998)",
+        "url": "https://github.com/BasedHardware/omi/pull/21999",
         "bounty_est": "$100 - $200",
-        "role": "Critical P1 Privacy Defect"
-    },
-    {
-        "repo": "BasedHardware/omi",
-        "pr_number": 21524,
-        "title": "fix(ble): retry failed codec reads and prevent defaulting to PCM8 (#20779)",
-        "url": "https://github.com/BasedHardware/omi/pull/21524",
-        "bounty_est": "$50 - $100",
-        "role": "Audio Codec Stability"
-    },
-    {
-        "repo": "BasedHardware/omi",
-        "pr_number": 21671,
-        "title": "fix(deploy): specify --cpu=2 for backend-sync to support 6Gi/8Gi memory (#21668)",
-        "url": "https://github.com/BasedHardware/omi/pull/21671",
-        "bounty_est": "P0 Hotfix",
-        "role": "Main CI Outage Restoration"
-    },
-    {
-        "repo": "tenstorrent/tt-metal",
-        "pr_number": 60777,
-        "title": "fix(ops): pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",
-        "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
-        "bounty_est": "$100 - $300",
-        "role": "Hardware Bitonic Sort Op Bugfix"
-    },
-    {
-        "repo": "tenstorrent/tt-metal",
-        "pr_number": 60791,
-        "title": "fix(ops): reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)",
-        "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
-        "bounty_est": "$100 - $300",
-        "role": "Welford Layernorm LLK Assert Op Bugfix"
-    },
-    {
-        "repo": "BasedHardware/omi",
-        "pr_number": 21768,
-        "title": "fix(bee): support 3-byte millivolts battery format and clamp legacy percentage (#21749)",
-        "url": "https://github.com/BasedHardware/omi/pull/21768",
-        "bounty_est": "$50 - $100",
-        "role": "Bee Frontier Battery Parser Stability"
-    },
-    {
-        "repo": "BasedHardware/omi",
-        "pr_number": 21811,
-        "title": "fix(sync): unblock backfill queue with owner deferral and NotFound resilience (#21122)",
-        "url": "https://github.com/BasedHardware/omi/pull/21811",
-        "bounty_est": "$100 - $200",
-        "role": "Critical P1 Production Outage Restoration"
+        "role": "Critical Queue Sync Stability"
     },
     {
         "repo": "BasedHardware/omi",
@@ -97,19 +73,52 @@ TRACKED_PRS = [
         "role": "Staged Tasks Creation Dedup & Firestore Index Sorting"
     },
     {
-        "repo": "calcom/cal.com",
+        "repo": "calcom/cal.diy",
         "pr_number": 30353,
         "title": "fix(oauth2): support space-separated scopes per RFC 6749 (#30348)",
         "url": "https://github.com/calcom/cal.diy/pull/30353",
         "bounty_est": "$50 - $100",
         "role": "RFC 6749 OAuth 2.0 Scope Delimiter Parser"
+    },
+    {
+        "repo": "calcom/cal.diy",
+        "pr_number": 30355,
+        "title": "fix(docker): bind ports to 127.0.0.1 in docker-compose (#30351)",
+        "url": "https://github.com/calcom/cal.diy/pull/30355",
+        "bounty_est": "$50 - $100",
+        "role": "Security Localhost Port Isolation"
+    },
+    {
+        "repo": "tenstorrent/tt-metal",
+        "pr_number": 60777,
+        "title": "fix(ops): pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",
+        "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
+        "bounty_est": "$100 - $300",
+        "role": "Hardware Bitonic Sort Op Bugfix"
+    },
+    {
+        "repo": "tenstorrent/tt-metal",
+        "pr_number": 60791,
+        "title": "fix(ops): reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)",
+        "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
+        "bounty_est": "$100 - $300",
+        "role": "Welford Layernorm LLK Assert Op Bugfix"
+    },
+    {
+        "repo": "tenstorrent/tt-metal",
+        "pr_number": 61086,
+        "title": "fix(host): resolve symbol resolution and build warnings",
+        "url": "https://github.com/tenstorrent/tt-metal/pull/61086",
+        "bounty_est": "$100 - $200",
+        "role": "Host Runtime Symbol Fix"
     }
 ]
 
 TARGET_REPOS = [
+    "limitlessprojects/Go-Hybrid",
     "BasedHardware/omi",
     "tenstorrent/tt-metal",
-    "calcom/cal.com",
+    "calcom/cal.diy",
     "twentyhq/twenty",
     "elizaOS/eliza"
 ]
