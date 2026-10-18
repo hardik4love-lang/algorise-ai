@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T13:04:42.993846+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T16:44:44.512927+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -24,21 +24,21 @@
 |---|---|---|---|---|---|
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `FuRongJun-1999/dsh-bounty` | [#976](https://github.com/FuRongJun-1999/dsh-bounty/issues/976) | [intake 输入] dsh-web-search-pool 0.4.0 双平台实测：Windows 匿名搜 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/976) |
-| `udaysharmadev/Gravitas` | [#70](https://github.com/udaysharmadev/Gravitas/issues/70) | [host] Antigravity/OpenCode lifecycle fixture corpus +  | 0 | `20.05` | [Inspect](https://github.com/udaysharmadev/Gravitas/issues/70) |
-| `ivcained/fiddy` | [#1](https://github.com/ivcained/fiddy/issues/1) | Fiddy: Farcaster client + read node + 3-command tutoria | 0 | `20.05` | [Inspect](https://github.com/ivcained/fiddy/issues/1) |
-| `FuRongJun-1999/dsh-bounty` | [#975](https://github.com/FuRongJun-1999/dsh-bounty/issues/975) | [intake 输入] 【测评报告】DSH 插件测评站 review.lingshulab.com 收录插件深 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/975) |
+| `FuRongJun-1999/dsh-bounty` | [#1004](https://github.com/FuRongJun-1999/dsh-bounty/issues/1004) | 【贡献申请】dsh-memory #555：e81caab0 未恢复的 14 个守卫（P0） | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1004) |
+| `FuRongJun-1999/dsh-bounty` | [#1003](https://github.com/FuRongJun-1999/dsh-bounty/issues/1003) | [intake 输入] 【测评报告】dsh-cite 0.5.0 解析 / 去重 / 往返导出深测（Linux | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1003) |
+| `FuRongJun-1999/dsh-bounty` | [#1002](https://github.com/FuRongJun-1999/dsh-bounty/issues/1002) | [intake 输入] 【测评报告】dsh-ffmpeg 0.5.0 体验快测＋安全面（音视频 · 方法试验） | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1002) |
+| `FuRongJun-1999/dsh-bounty` | [#1001](https://github.com/FuRongJun-1999/dsh-bounty/issues/1001) | [intake 输入] 【测评报告】dsh-code-security 0.5.0 安全快测（Linux）：s | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1001) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#610](https://github.com/limitlessprojects/Go-Hybrid/issues/610) | [wildcard] Make FFI claims proof-carrying: verify bound | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/610) |
-| `limitlessprojects/Go-Hybrid` | [#630](https://github.com/limitlessprojects/Go-Hybrid/issues/630) | [soundness] P1 (hy-emit): a parenthesized type-elided l | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/630) |
-| `limitlessprojects/Go-Hybrid` | [#614](https://github.com/limitlessprojects/Go-Hybrid/issues/614) | [Soundness/Emit] Slice .pop() erases element shape (O5. | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/614) |
-| `limitlessprojects/Go-Hybrid` | [#634](https://github.com/limitlessprojects/Go-Hybrid/issues/634) | [wildcard] Delete sendability analysis: task regions as | 1 | `19.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/634) |
-| `limitlessprojects/Go-Hybrid` | [#640](https://github.com/limitlessprojects/Go-Hybrid/issues/640) | Soundness & buildability gaps in `make`/`new` shape res | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/640) |
-| `limitlessprojects/Go-Hybrid` | [#623](https://github.com/limitlessprojects/Go-Hybrid/issues/623) | [soundness] Channel direction is never checked at value | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/623) |
+| `limitlessprojects/Go-Hybrid` | [#683](https://github.com/limitlessprojects/Go-Hybrid/issues/683) | [soundness] untyped float constants past float64/float3 | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/683) |
+| `limitlessprojects/Go-Hybrid` | [#679](https://github.com/limitlessprojects/Go-Hybrid/issues/679) | [soundness] Address-of on sub-slice/call-returned eleme | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/679) |
+| `limitlessprojects/Go-Hybrid` | [#672](https://github.com/limitlessprojects/Go-Hybrid/issues/672) | [soundness] untyped nil local declarations (var x = nil | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/672) |
+| `limitlessprojects/Go-Hybrid` | [#658](https://github.com/limitlessprojects/Go-Hybrid/issues/658) | [soundness] Foreign Go names are never resolved (M4/M5) | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/658) |
+| `limitlessprojects/Go-Hybrid` | [#656](https://github.com/limitlessprojects/Go-Hybrid/issues/656) | [soundness] `*T`-receiver method call on a non-addressa | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/656) |
+| `limitlessprojects/Go-Hybrid` | [#682](https://github.com/limitlessprojects/Go-Hybrid/issues/682) | [soundness] P2: 16 accepted-but-unbuildable type/shape  | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/682) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
