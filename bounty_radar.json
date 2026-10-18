@@ -1,523 +1,672 @@
-[
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 462,
-    "title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/462",
-    "created_at": "2026-10-17T15:01:39Z",
-    "labels": [
-      "\ud83d\udc8e Bounty",
-      "wildcard"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "elizaOS/eliza",
-    "number": 36589,
-    "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
-    "url": "https://github.com/elizaOS/eliza/issues/36589",
-    "created_at": "2026-10-16T06:07:57Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": false,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "dev-kp-eloper/BountyScout",
-    "number": 1608,
-    "title": "\ud83c\udfaf Bounty Alert: 10 New Opportunityies found",
-    "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1608",
-    "created_at": "2026-10-17T19:05:04Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 492,
-    "title": "[tooling] Decode checker JSON as UTF-8 independently of the host locale",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/492",
-    "created_at": "2026-10-17T18:52:32Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 998,
-    "title": "[BOUNTY] Medium: PrivateSwapRelayer burns note nullifier and strands funds on post-withdraw fee/overhead failure",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/998",
-    "created_at": "2026-10-17T18:47:08Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 996,
-    "title": "[BOUNTY] Medium: Coordinator::split_task arithmetic panic and unauthenticated handle_task_error parent task memory leak",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/996",
-    "created_at": "2026-10-17T18:20:40Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "allurco/caribbean-adventure",
-    "number": 440,
-    "title": "Fight text: whose crew, captain names, and the glory and bounty won",
-    "url": "https://github.com/allurco/caribbean-adventure/issues/440",
-    "created_at": "2026-10-17T18:11:31Z",
-    "labels": [
-      "enhancement",
-      "needs-triage"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "freedom-winds/BountyScout",
-    "number": 1269,
-    "title": "\ud83c\udfaf Bounty Alert: 13 New Opportunityies found",
-    "url": "https://github.com/freedom-winds/BountyScout/issues/1269",
-    "created_at": "2026-10-17T17:48:50Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "neatlogs/neatroots",
-    "number": 463,
-    "title": "Feature proposal: replay a run N times and report how often each finding comes back (bounty requested)",
-    "url": "https://github.com/neatlogs/neatroots/issues/463",
-    "created_at": "2026-10-17T17:42:02Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ZecHub/zechub",
-    "number": 2427,
-    "title": "Add Greek (el) to the wiki: offering to be the Greek language lead",
-    "url": "https://github.com/ZecHub/zechub/issues/2427",
-    "created_at": "2026-10-17T17:38:01Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 482,
-    "title": "[wildcard] Monotone task regions: shared evolving facts with schedule-independent observations",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/482",
-    "created_at": "2026-10-17T17:36:29Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 109,
-    "title": "Keeper Bounty Token Selection Arbitrarily Favors First Token in Multi-Token Estates",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/109",
-    "created_at": "2026-10-17T17:34:58Z",
-    "labels": [
-      "enhancement"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 71,
-    "title": "FailedPayout Storage Key Collision Vulnerability When Beneficiary and Keeper Are Same Address",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/71",
-    "created_at": "2026-10-17T17:33:34Z",
-    "labels": [
-      "bug",
-      "Stellar Wave"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 66,
-    "title": "Keeper Bounty Deduction Precedes Fixed-Amount Payouts, Arbitrarily Shrinking Designated Inheritances",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/66",
-    "created_at": "2026-10-17T17:33:23Z",
-    "labels": [
-      "enhancement",
-      "Stellar Wave"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 63,
-    "title": "release_inheritance Permits Unauthenticated Payouts to Arbitrary Caller Addresses for Keeper Bounty",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/63",
-    "created_at": "2026-10-17T17:33:16Z",
-    "labels": [
-      "enhancement",
-      "Stellar Wave"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 61,
-    "title": "Missing Fuzz Targets for distribute and release_inheritance Multi-Token Payouts",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/61",
-    "created_at": "2026-10-17T17:33:11Z",
-    "labels": [
-      "enhancement",
-      "Stellar Wave"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Gospelsam019/williams-contracts",
-    "number": 32,
-    "title": "Proportional Dust Remainder Asymmetry Systematically Favors Final Beneficiary",
-    "url": "https://github.com/Gospelsam019/williams-contracts/issues/32",
-    "created_at": "2026-10-17T17:32:00Z",
-    "labels": [
-      "enhancement",
-      "Stellar Wave"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21869,
-    "title": "Paying Neo (legacy Unlimited) subscriber shown as Free plan and metered at 300 min despite paid Sept 17 renewal",
-    "url": "https://github.com/BasedHardware/omi/issues/21869",
-    "created_at": "2026-10-16T14:57:12Z",
-    "labels": [
-      "bug"
-    ],
-    "competing_prs": 1,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 40.05
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 432,
-    "title": "Bounty programme: current cycle settlement and PayPal eligibility",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/432",
-    "created_at": "2026-10-17T11:43:10Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21990,
-    "title": "[Bounty proposal] MCP OAuth token refresh during chat tool calls is not persisted and breaks rotating refresh-token integrations ($50)",
-    "url": "https://github.com/BasedHardware/omi/issues/21990",
-    "created_at": "2026-10-17T04:40:57Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21953,
-    "title": "[Bounty Proposal] Persona refresh includes paywall-locked conversation context and memory previews ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21953",
-    "created_at": "2026-10-17T00:41:28Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21903,
-    "title": "[Bounty proposal] fix(database): add stream fault tolerance and client injection to trends ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21903",
-    "created_at": "2026-10-16T17:14:20Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21875,
-    "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score for index sorting ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21875",
-    "created_at": "2026-10-16T15:44:21Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21854,
-    "title": "[Bounty Proposal] fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21854",
-    "created_at": "2026-10-16T12:56:39Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 456,
-    "title": "P0 soundness: inner loop header self-shadowing on back-edge, block/multi-value self-shadow share retention across scope_pop, user method return shapes, and reslice/index/append borrow-root & return loan-escape bypasses (HYB-E3003 / E3004 / E3104)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/456",
-    "created_at": "2026-10-17T14:44:07Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 449,
-    "title": "[soundness] P0 regressions in #230/#251: post-closure outer locals shadow nested captures (E3001/E3003) and unscoped/composite rebinds drop A3 slot-loan invalidation (E3102)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/449",
-    "created_at": "2026-10-17T13:38:26Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 445,
-    "title": "[soundness] P0: closures in an else-if chain condition inside a closure skip the nested boundary pass \u2014 #229 shapes race again at c53978b",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/445",
-    "created_at": "2026-10-17T13:15:26Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 22017,
-    "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/22017",
-    "created_at": "2026-10-17T11:37:17Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21916,
-    "title": "[Bounty proposal] fix(database): sanitize inputs and add stream error boundaries to batch pipeline privacy queries ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21916",
-    "created_at": "2026-10-16T17:57:46Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21911,
-    "title": "[Bounty proposal] fix(database): prevent read mutation and harden date boundaries in action item codec ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21911",
-    "created_at": "2026-10-16T17:42:05Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21907,
-    "title": "[Bounty proposal] fix(database): sanitize uid and period, add error boundary to budget choice ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21907",
-    "created_at": "2026-10-16T17:30:45Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21901,
-    "title": "[Bounty proposal] fix(database): sanitize uid and protect session streams in channel visibility ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21901",
-    "created_at": "2026-10-16T17:08:06Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21899,
-    "title": "[Bounty proposal] fix(database): sanitize uid and guard voice preferences against store failures ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21899",
-    "created_at": "2026-10-16T17:02:19Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21895,
-    "title": "[Bounty proposal] fix(database): sanitize phone call overrides and add fault-tolerant client injection ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21895",
-    "created_at": "2026-10-16T16:47:30Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21892,
-    "title": "[Bounty proposal] fix(database): sanitize review config inputs and harden version gating ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21892",
-    "created_at": "2026-10-16T16:37:53Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21878,
-    "title": "[Bounty proposal] fix(database): sanitize plan_key attribution and guard hourly usage increments ( proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21878",
-    "created_at": "2026-10-16T15:54:12Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.9
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 435,
-    "title": "[soundness] P0: address-of laundered through a call escapes the move freeze",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/435",
-    "created_at": "2026-10-17T12:01:59Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.91
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21914,
-    "title": "[Bounty proposal] fix(database): sanitize document id, add timestamp boundary to api key metadata ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21914",
-    "created_at": "2026-10-16T17:49:40Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.83
-  },
-  {
-    "repo": "elizaOS/eliza",
-    "number": 35929,
-    "title": "Cloud phone sign-in fails: Login Twilio Verify rejects credentials (401 / 20003)",
-    "url": "https://github.com/elizaOS/eliza/issues/35929",
-    "created_at": "2026-10-12T23:56:14Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": false,
-    "is_critical": false,
-    "priority_score": 19.83
-  },
-  {
-    "repo": "elizaOS/eliza",
-    "number": 35132,
-    "title": "Shared iMessage: OpenRouter fallback returns 401 after Cerebras 429",
-    "url": "https://github.com/elizaOS/eliza/issues/35132",
-    "created_at": "2026-10-10T17:24:15Z",
-    "labels": [],
-    "competing_prs": 3,
-    "is_bounty": false,
-    "is_critical": false,
-    "priority_score": 19.83
-  },
-  {
-    "repo": "elizaOS/eliza",
-    "number": 34820,
-    "title": "Track Shared iMessage and Cloud launch acceptance, diagnostics, and Dedicated backups",
-    "url": "https://github.com/elizaOS/eliza/issues/34820",
-    "created_at": "2026-10-10T05:07:43Z",
-    "labels": [],
-    "competing_prs": 25,
-    "is_bounty": false,
-    "is_critical": false,
-    "priority_score": 18.18
-  }
-]
+{
+  "generated_at": "2026-10-18T05:44:01.338918+00:00",
+  "tracked_prs": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "pr_number": 497,
+      "title": "fix(tools): decode checker JSON as UTF-8 independently of host locale (#492)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/497",
+      "bounty_est": "$75 - $100",
+      "role": "Corpus Harness UTF-8 Decoder (MERGED upstream)",
+      "is_merged": true,
+      "status_str": "\ud83d\udfe3 MERGED"
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "pr_number": 569,
+      "title": "spike(w008): settlement regions for own-handle tasks (#257)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/569",
+      "bounty_est": "$250 - $500",
+      "role": "Wildcard W-008 Settlement Region Spike",
+      "is_merged": false,
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "pr_number": 413,
+      "title": "fix(check): type-check receive operands and reject non-channel values (#409)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/413",
+      "bounty_est": "$75 - $100",
+      "role": "Soundness Type Checker (Recv Operand)",
+      "status_str": "\ud83d\udd34 CLOSED"
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "pr_number": 427,
+      "title": "fix(check): type-check for-in iterable operands and reject non-iterables (#411)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/427",
+      "bounty_est": "$75 - $100",
+      "role": "Soundness Type Checker (For-In Iterable)",
+      "status_str": "\ud83d\udd34 CLOSED"
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "pr_number": 430,
+      "title": "fix(check): type-check operand types for conditions, index, slice, call, and builtins (#425)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/430",
+      "bounty_est": "$75 - $100",
+      "role": "Soundness Type Checker (Operand Types & Builtins)",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "pr_number": 21999,
+      "title": "fix(sync): sequenced stale job recovery and atomic lease renewal (#21998)",
+      "url": "https://github.com/BasedHardware/omi/pull/21999",
+      "bounty_est": "$100 - $200",
+      "role": "Critical Queue Sync Stability",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "pr_number": 21855,
+      "title": "fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency (#21854)",
+      "url": "https://github.com/BasedHardware/omi/pull/21855",
+      "bounty_est": "$50",
+      "role": "Canonical Product State Integrity & Goal Deletion Idempotency",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "pr_number": 21876,
+      "title": "fix(staged_tasks): filter completed entities in creation dedup and default relevance_score (#21875)",
+      "url": "https://github.com/BasedHardware/omi/pull/21876",
+      "bounty_est": "$50",
+      "role": "Staged Tasks Creation Dedup & Firestore Index Sorting",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "calcom/cal.diy",
+      "pr_number": 30353,
+      "title": "fix(oauth2): support space-separated scopes per RFC 6749 (#30348)",
+      "url": "https://github.com/calcom/cal.diy/pull/30353",
+      "bounty_est": "$50 - $100",
+      "role": "RFC 6749 OAuth 2.0 Scope Delimiter Parser",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "calcom/cal.diy",
+      "pr_number": 30355,
+      "title": "fix(docker): bind ports to 127.0.0.1 in docker-compose (#30351)",
+      "url": "https://github.com/calcom/cal.diy/pull/30355",
+      "bounty_est": "$50 - $100",
+      "role": "Security Localhost Port Isolation",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "pr_number": 60777,
+      "title": "fix(ops): pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/60777",
+      "bounty_est": "$100 - $300",
+      "role": "Hardware Bitonic Sort Op Bugfix",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "pr_number": 60791,
+      "title": "fix(ops): reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/60791",
+      "bounty_est": "$100 - $300",
+      "role": "Welford Layernorm LLK Assert Op Bugfix",
+      "status_str": "\ud83d\udfe2 OPEN"
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "pr_number": 61086,
+      "title": "fix(host): resolve symbol resolution and build warnings",
+      "url": "https://github.com/tenstorrent/tt-metal/pull/61086",
+      "bounty_est": "$100 - $200",
+      "role": "Host Runtime Symbol Fix",
+      "status_str": "\ud83d\udfe2 OPEN"
+    }
+  ],
+  "platform_1_algora": [
+    {
+      "repo": "BasedHardware/omi",
+      "number": 22091,
+      "title": "[Bounty proposal] fix(database): sanitize uid and protect announcement streams against store failures ( proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/22091",
+      "created_at": "2026-10-18T04:56:02Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "elizaOS/eliza",
+      "number": 36589,
+      "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
+      "url": "https://github.com/elizaOS/eliza/issues/36589",
+      "created_at": "2026-10-16T06:07:57Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21990,
+      "title": "[Bounty proposal] MCP OAuth token refresh during chat tool calls is not persisted and breaks rotating refresh-token integrations ($50)",
+      "url": "https://github.com/BasedHardware/omi/issues/21990",
+      "created_at": "2026-10-17T04:40:57Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21953,
+      "title": "[Bounty Proposal] Persona refresh includes paywall-locked conversation context and memory previews ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21953",
+      "created_at": "2026-10-17T00:41:28Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21903,
+      "title": "[Bounty proposal] fix(database): add stream fault tolerance and client injection to trends ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21903",
+      "created_at": "2026-10-16T17:14:20Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21875,
+      "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score for index sorting ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21875",
+      "created_at": "2026-10-16T15:44:21Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 22017,
+      "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/22017",
+      "created_at": "2026-10-17T11:37:17Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.9
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21911,
+      "title": "[Bounty proposal] fix(database): prevent read mutation and harden date boundaries in action item codec ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21911",
+      "created_at": "2026-10-16T17:42:05Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.9
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21907,
+      "title": "[Bounty proposal] fix(database): sanitize uid and period, add error boundary to budget choice ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21907",
+      "created_at": "2026-10-16T17:30:45Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.9
+    },
+    {
+      "repo": "BasedHardware/omi",
+      "number": 21901,
+      "title": "[Bounty proposal] fix(database): sanitize uid and protect session streams in channel visibility ($50 proposed)",
+      "url": "https://github.com/BasedHardware/omi/issues/21901",
+      "created_at": "2026-10-16T17:08:06Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.9
+    }
+  ],
+  "platform_2_gohybrid": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 567,
+      "title": "[soundness] P0: stores into non-addressable map elements (m[k].f = v / &m[k].f) and pointer-target O8 slot loans (var q *T; q = &m[k]) pass hyb check (0 diagnostics) and fail go build",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/567",
+      "created_at": "2026-10-18T05:01:51Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 562,
+      "title": "[soundness] P0: conditional/closure rebind origin laundering, outermost closure lexical scope/rebind blindness, and loop continue back-edge / defer move gaps bypass HYB-E3001/E3003/E3004",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/562",
+      "created_at": "2026-10-18T04:51:34Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 553,
+      "title": "[soundness] P0: callee-returned file-level const composites and intra-callee multi-value return sharing bypass T22, O5.1, O5.2, and A3",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/553",
+      "created_at": "2026-10-18T03:22:53Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 548,
+      "title": "[soundness] P0: clear() builtin and in-place package mutators (sort.ints / sort.slice) bypass T22 const immutability (HYB-E3006) and A3 map-slot loan invalidation (HYB-E3102)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/548",
+      "created_at": "2026-10-18T02:57:25Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 532,
+      "title": "[soundness] Slot-loan paren/field/closure/match-guard escapes, cyclic/shadowed const init, boolean/shadowed array lengths, and channel direction/recv bypasses (0 diagnostics)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/532",
+      "created_at": "2026-10-18T00:23:42Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 529,
+      "title": "[soundness] constant overflow and float truncation in channel send statements and select send cases silently accepted: ch <- 300 passes check, emitted Go fails to build",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/529",
+      "created_at": "2026-10-17T22:57:30Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 523,
+      "title": "[soundness] floating-point constant zero divisors and float modulo bypass HYB-E6001: x / 0.0 and const c = 1.0 / 0.0 pass check, emitted Go fails to build",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/523",
+      "created_at": "2026-10-17T22:38:47Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 462,
+      "title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/462",
+      "created_at": "2026-10-17T15:01:39Z",
+      "labels": [
+        "\u00f0\u0178\u2019\u017d Bounty",
+        "wildcard"
+      ],
+      "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 560,
+      "title": "[soundness] P0: append into bounded const reslices bypasses T22 (HYB-E3006 data race) and overlapping O8 slot loans / indexed field stores bypass HYB-E3102 (lost write on store-back)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/560",
+      "created_at": "2026-10-18T03:58:29Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 546,
+      "title": "[soundness] P0: O8 slot-loan store-back emitted after a sibling-branch `move` \u00e2\u20ac\u201d accepted program races on the moved map",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/546",
+      "created_at": "2026-10-18T02:32:02Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
+    }
+  ],
+  "platform_3_security": [
+    {
+      "target_id": "gh-tenstorrent-tt-metal",
+      "name": "Tenstorrent TT-Metal / TTNN Kernel Compute Engine",
+      "platform": "github",
+      "scope_type": "source_code_and_hardware_sim",
+      "scope_url": "https://github.com/tenstorrent/tt-metal",
+      "repo": "tenstorrent/tt-metal",
+      "bounty_tier": "critical",
+      "average_bounty_usd": 300.0,
+      "variables": {
+        "V_D": 0.85,
+        "S_B": 8.0,
+        "C_T": 5.0,
+        "R_V": 9.0,
+        "H_Y": 1.6,
+        "D_C": 0.8
+      },
+      "asset_endpoints": [
+        "https://api.github.com/repos/tenstorrent/tt-metal/releases",
+        "https://api.github.com/repos/tenstorrent/tt-metal/commits"
+      ],
+      "triage_tags": [
+        "c_cpp",
+        "buffer_overflow",
+        "unpack_modes",
+        "kernel_panic",
+        "race_condition"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "gh-basedhardware-omi",
+      "name": "BasedHardware Omi Open Source AI Wearable",
+      "platform": "github",
+      "scope_type": "full_stack_mobile_and_backend",
+      "scope_url": "https://github.com/BasedHardware/omi",
+      "repo": "BasedHardware/omi",
+      "bounty_tier": "high",
+      "average_bounty_usd": 100.0,
+      "variables": {
+        "V_D": 0.75,
+        "S_B": 7.0,
+        "C_T": 4.0,
+        "R_V": 8.5,
+        "H_Y": 1.8,
+        "D_C": 1.2
+      },
+      "asset_endpoints": [
+        "https://api.github.com/repos/BasedHardware/omi/releases",
+        "https://api.github.com/repos/BasedHardware/omi/commits"
+      ],
+      "triage_tags": [
+        "python",
+        "fastapi",
+        "auth_bypass",
+        "deadlock",
+        "offline_sync",
+        "idor"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "h1-airbnb-global",
+      "name": "Airbnb Marketplace & Host Platform",
+      "platform": "hackerone",
+      "scope_type": "web_api_and_graphql",
+      "scope_url": "https://hackerone.com/airbnb",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 3000.0,
+      "variables": {
+        "V_D": 0.6,
+        "S_B": 9.5,
+        "C_T": 4.5,
+        "R_V": 9.8,
+        "H_Y": 1.5,
+        "D_C": 2.2
+      },
+      "asset_endpoints": [
+        "https://www.airbnb.com/api/v2",
+        "https://api.airbnb.com/v2/listings"
+      ],
+      "triage_tags": [
+        "graphql",
+        "idor",
+        "bfla",
+        "oauth",
+        "payment_fraud"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "h1-shopify-core",
+      "name": "Shopify Commerce Platform & Partner APIs",
+      "platform": "hackerone",
+      "scope_type": "web_api_and_graphql",
+      "scope_url": "https://hackerone.com/shopify",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 1500.0,
+      "variables": {
+        "V_D": 0.65,
+        "S_B": 9.5,
+        "C_T": 4.5,
+        "R_V": 10.0,
+        "H_Y": 1.4,
+        "D_C": 2.5
+      },
+      "asset_endpoints": [
+        "https://app.shopify.com/services/ping",
+        "https://shopify.dev/api/admin-graphql"
+      ],
+      "triage_tags": [
+        "graphql_introspection",
+        "idor",
+        "bfla",
+        "webhook_forgery",
+        "oauth_leak"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "h1-uber-technologies",
+      "name": "Uber Mobility & Autonomous Platform",
+      "platform": "hackerone",
+      "scope_type": "cloud_infrastructure_and_api",
+      "scope_url": "https://hackerone.com/uber",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 3500.0,
+      "variables": {
+        "V_D": 0.58,
+        "S_B": 9.8,
+        "C_T": 5.0,
+        "R_V": 10.0,
+        "H_Y": 1.3,
+        "D_C": 2.6
+      },
+      "asset_endpoints": [
+        "https://api.uber.com/v1/health",
+        "https://login.uber.com"
+      ],
+      "triage_tags": [
+        "oauth_flow",
+        "telematics_api",
+        "idor",
+        "privilege_escalation",
+        "ssrf"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "bc-tesla-infotainment",
+      "name": "Tesla Vehicle & Telematics API Gateway",
+      "platform": "bugcrowd",
+      "scope_type": "cloud_infrastructure_and_api",
+      "scope_url": "https://bugcrowd.com/tesla",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 2500.0,
+      "variables": {
+        "V_D": 0.55,
+        "S_B": 8.0,
+        "C_T": 5.0,
+        "R_V": 10.0,
+        "H_Y": 1.2,
+        "D_C": 2.8
+      },
+      "asset_endpoints": [
+        "https://owner-api.teslamotors.com",
+        "https://auth.tesla.com/oauth2/v3/authorize"
+      ],
+      "triage_tags": [
+        "telematics_api",
+        "jwt_none_alg",
+        "broken_auth",
+        "ssrf",
+        "rate_limiting"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "h1-gitlab-community",
+      "name": "GitLab CI/CD & Project Workspace",
+      "platform": "hackerone",
+      "scope_type": "source_code_and_web_app",
+      "scope_url": "https://hackerone.com/gitlab",
+      "repo": "gitlabhq/gitlabhq",
+      "bounty_tier": "critical",
+      "average_bounty_usd": 2000.0,
+      "variables": {
+        "V_D": 0.7,
+        "S_B": 9.0,
+        "C_T": 4.5,
+        "R_V": 9.5,
+        "H_Y": 1.5,
+        "D_C": 2.2
+      },
+      "asset_endpoints": [
+        "https://gitlab.com/api/v4/version",
+        "https://gitlab.com/jwt/auth"
+      ],
+      "triage_tags": [
+        "ci_cd_injection",
+        "rce",
+        "ssrf",
+        "runner_breakout",
+        "access_control"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "bc-upwork-platform",
+      "name": "Upwork Enterprise Escrow & Freelance APIs",
+      "platform": "bugcrowd",
+      "scope_type": "web_api_and_microservices",
+      "scope_url": "https://bugcrowd.com/upwork",
+      "repo": null,
+      "bounty_tier": "high",
+      "average_bounty_usd": 1500.0,
+      "variables": {
+        "V_D": 0.52,
+        "S_B": 8.5,
+        "C_T": 4.2,
+        "R_V": 8.8,
+        "H_Y": 1.4,
+        "D_C": 2.1
+      },
+      "asset_endpoints": [
+        "https://www.upwork.com/api/v3",
+        "https://api.upwork.com/graphql"
+      ],
+      "triage_tags": [
+        "payment_gateway",
+        "bfla",
+        "idor",
+        "graphql_batching",
+        "cors_bypass"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "bc-expressvpn-client",
+      "name": "ExpressVPN Core Protocols & Routing",
+      "platform": "bugcrowd",
+      "scope_type": "network_infrastructure",
+      "scope_url": "https://bugcrowd.com/expressvpn",
+      "repo": null,
+      "bounty_tier": "critical",
+      "average_bounty_usd": 2500.0,
+      "variables": {
+        "V_D": 0.48,
+        "S_B": 7.5,
+        "C_T": 4.8,
+        "R_V": 9.5,
+        "H_Y": 1.3,
+        "D_C": 1.8
+      },
+      "asset_endpoints": [
+        "https://www.expressvpn.com",
+        "https://api.expressvpn.com/v1"
+      ],
+      "triage_tags": [
+        "dns_leak",
+        "tunnel_breakout",
+        "privilege_escalation",
+        "certificate_bypass"
+      ],
+      "active": true
+    },
+    {
+      "target_id": "bc-netflix-media",
+      "name": "Netflix Streaming & Partner Studio Ingestion",
+      "platform": "bugcrowd",
+      "scope_type": "web_api_and_microservices",
+      "scope_url": "https://bugcrowd.com/netflix",
+      "repo": null,
+      "bounty_tier": "high",
+      "average_bounty_usd": 1200.0,
+      "variables": {
+        "V_D": 0.5,
+        "S_B": 8.5,
+        "C_T": 4.0,
+        "R_V": 9.0,
+        "H_Y": 1.3,
+        "D_C": 2.4
+      },
+      "asset_endpoints": [
+        "https://api-global.netflix.com/healthcheck",
+        "https://www.netflix.com/api/shakti"
+      ],
+      "triage_tags": [
+        "api_gateway",
+        "cors_misconfig",
+        "subdomain_takeover",
+        "jwt_tampering"
+      ],
+      "active": true
+    }
+  ]
+}

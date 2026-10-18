@@ -26,6 +26,24 @@ if sys.platform == "win32":
 TRACKED_PRS = [
     {
         "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 497,
+        "title": "fix(tools): decode checker JSON as UTF-8 independently of host locale (#492)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/497",
+        "bounty_est": "$75 - $100",
+        "role": "Corpus Harness UTF-8 Decoder (MERGED upstream)",
+        "is_merged": True
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 569,
+        "title": "spike(w008): settlement regions for own-handle tasks (#257)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/569",
+        "bounty_est": "$250 - $500",
+        "role": "Wildcard W-008 Settlement Region Spike",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
         "pr_number": 413,
         "title": "fix(check): type-check receive operands and reject non-channel values (#409)",
         "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/413",
@@ -140,13 +158,16 @@ def check_active_prs():
         out = run_cmd(["gh", "api", f"repos/{repo}/pulls/{num}", "--jq", "{state: .state, merged: .merged, comments: .comments}"])
         if out:
             data = json.loads(out)
-            state_str = "🟣 MERGED" if data.get("merged") else ("🟢 OPEN" if data.get("state") == "open" else "🔴 CLOSED")
+            is_merged = data.get("merged", False) or pr.get("is_merged", False)
+            state_str = "🟣 MERGED" if is_merged else ("🟢 OPEN" if data.get("state") == "open" else "🔴 CLOSED")
+            pr["status_str"] = state_str
             print(f"  • PR #{num} [{pr['bounty_est']}]: {state_str}")
             print(f"    Title: {pr['title']}")
             print(f"    URL:   {pr['url']}")
             print(f"    Comments count: {data.get('comments', 0)}")
         else:
-            print(f"  • PR #{num}: Unable to fetch status")
+            pr["status_str"] = "🟣 MERGED" if pr.get("is_merged") else "🟢 OPEN"
+            print(f"  • PR #{num}: {pr['status_str']} (cached)")
     print("-" * 80)
 
 def search_repo_bounties(repo: str) -> list:
@@ -160,10 +181,9 @@ def search_repo_bounties(repo: str) -> list:
             title = iss.get("title", "")
             labels = [lbl.get("name", "") if isinstance(lbl, dict) else str(lbl) for lbl in iss.get("labels", [])]
             is_bounty = any("bounty" in l.lower() for l in labels) or "bounty" in title.lower() or "$" in title
-            is_p1 = "p1" in labels or "critical" in title.lower() or "bug" in labels or "p0" in title.lower()
+            is_p1 = "p1" in labels or "critical" in title.lower() or "bug" in labels or "p0" in title.lower() or "soundness" in title.lower()
             if is_bounty or is_p1 or len(issues) <= 5:
                 iss_num = iss.get("number")
-                # Fast check for PRs referencing this issue
                 prs_raw = run_cmd(["gh", "pr", "list", "--repo", repo, "--search", str(iss_num), "--state", "all", "--json", "number"])
                 pr_count = len(json.loads(prs_raw)) if prs_raw else 0
                 results.append({
@@ -215,8 +235,18 @@ def compute_priority(opp: dict) -> float:
     competition_penalty = opp.get("competing_prs", 0) * 0.3
     risk = 0.2 + competition_penalty
     cost_penalty = 0.0
-    # priority_score = (enr * 0.40) + (urgency * 0.20) - (risk * 0.25) - (cost_penalty * 0.15)
     return round((enr * 0.40) + (urgency * 0.20) - (risk * 0.25) - (cost_penalty * 0.15), 2)
+
+def load_security_targets() -> list:
+    cfg_path = os.path.join(os.path.dirname(__file__), "..", "config", "research_targets.json")
+    if not os.path.exists(cfg_path):
+        return []
+    try:
+        with open(cfg_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data.get("targets", [])
+    except Exception:
+        return []
 
 def hunt_cycle():
     check_active_prs()
@@ -245,43 +275,78 @@ def hunt_cycle():
             seen_urls.add(u)
             deduped.append(o)
 
-    # Sort descending by priority score and ascending by competing PRs
     deduped.sort(key=lambda x: (x["competing_prs"], -x["priority_score"]))
 
-    print(f"[+] Total opportunities scanned: {len(deduped)}")
-    print(f"[+] Opportunities with 0 competing PRs: {sum(1 for o in deduped if o['competing_prs'] == 0)}")
+    # Group into platforms:
+    platform_1_algora = [o for o in deduped if "Go-Hybrid" not in o.get("repo", "")]
+    platform_2_gohybrid = [o for o in deduped if "Go-Hybrid" in o.get("repo", "")]
+    platform_3_security = load_security_targets()
 
     # Generate Markdown Radar Report
     radar_md = [
-        f"# 🎯 Autonomous Bounty Radar — {datetime.now(timezone.utc).isoformat()}",
+        f"# 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix",
+        f"**Generated:** `{datetime.now(timezone.utc).isoformat()}` | **Status:** `ACTIVE 24/7 DAEMON`",
         "",
-        "## Active Tracked PRs",
+        "## 📡 Tracked Fleet Portfolio",
         "| PR | Target Repo | Role | Status | Bounty Est. |",
         "|---|---|---|---|---|"
     ]
     for pr in TRACKED_PRS:
-        radar_md.append(f"| [#{pr['pr_number']}]({pr['url']}) | `{pr['repo']}` | {pr['role']} | `OPEN` | **{pr['bounty_est']}** |")
+        status = pr.get("status_str", "🟢 OPEN")
+        radar_md.append(f"| [#{pr['pr_number']}]({pr['url']}) | `{pr['repo']}` | {pr['role']} | `{status}` | **{pr['bounty_est']}** |")
 
     radar_md.extend([
         "",
-        "## Top Unassigned Bounty Targets (0 Competing PRs)",
+        "---",
+        "## 🌐 Platform 1: Algora / GitHub Open Source Opportunities",
         "| Repo | Issue | Title | Competing PRs | Priority Score | Action |",
         "|---|---|---|---|---|---|"
     ])
-
-    top_targets = [o for o in deduped if o["competing_prs"] == 0][:15]
-    for t in top_targets:
+    for t in platform_1_algora[:6]:
         title_clean = t['title'][:55].replace('|', '-')
         radar_md.append(f"| `{t['repo']}` | [#{t['number']}]({t['url']}) | {title_clean} | {t['competing_prs']} | `{t['priority_score']}` | [Inspect]({t['url']}) |")
+
+    radar_md.extend([
+        "",
+        "---",
+        "## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards",
+        "| Repo | Issue | Title | Competing PRs | Priority Score | Action |",
+        "|---|---|---|---|---|---|"
+    ])
+    for t in platform_2_gohybrid[:6]:
+        title_clean = t['title'][:55].replace('|', '-')
+        radar_md.append(f"| `{t['repo']}` | [#{t['number']}]({t['url']}) | {title_clean} | {t['competing_prs']} | `{t['priority_score']}` | [Inspect]({t['url']}) |")
+
+    radar_md.extend([
+        "",
+        "---",
+        "## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)",
+        "| Target | Platform | Scope URL | Avg Payout | Tier | Focus Vectors |",
+        "|---|---|---|---|---|---|"
+    ])
+    for sec in platform_3_security[:6]:
+        sec_name = sec.get("name", "Unknown")[:45]
+        sec_plat = sec.get("platform", "").upper()
+        sec_url = sec.get("scope_url", "")
+        sec_pay = f"${sec.get('average_bounty_usd', 1000):.0f}"
+        sec_tier = sec.get("bounty_tier", "high").upper()
+        sec_tags = ", ".join(sec.get("triage_tags", [])[:3])
+        radar_md.append(f"| {sec_name} | `{sec_plat}` | [Scope]({sec_url}) | **{sec_pay}** | `{sec_tier}` | `{sec_tags}` |")
 
     report_path = os.path.join(os.getcwd(), "bounty_radar.md")
     with open(report_path, "w", encoding="utf-8") as f:
         f.write("\n".join(radar_md))
 
-    # Save JSON ledger
+    # Save structured JSON ledger
     ledger_path = os.path.join(os.getcwd(), "bounty_radar.json")
     with open(ledger_path, "w", encoding="utf-8") as f:
-        json.dump(deduped, f, indent=2)
+        json.dump({
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "tracked_prs": TRACKED_PRS,
+            "platform_1_algora": platform_1_algora[:10],
+            "platform_2_gohybrid": platform_2_gohybrid[:10],
+            "platform_3_security": platform_3_security[:10]
+        }, f, indent=2)
 
     print(f"[✓] Bounty radar generated: {report_path}")
     print(f"[✓] Bounty ledger updated: {ledger_path}")
