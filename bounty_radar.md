@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T08:41:37.082174+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T13:04:42.993846+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `BasedHardware/omi` | [#22103](https://github.com/BasedHardware/omi/issues/22103) | Desktop chat allowance is charged for Hermes/Claude/Ope | 0 | `40.13` | [Inspect](https://github.com/BasedHardware/omi/issues/22103) |
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `paraloom-labs/paraloom-core` | [#1019](https://github.com/paraloom-labs/paraloom-core/issues/1019) | [BOUNTY] Medium: Private compute consensus/commitment b | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1019) |
-| `ayaangazali/eyes` | [#117](https://github.com/ayaangazali/eyes/issues/117) | Sub-cent bounties are rounded silently, so 10.004 passe | 0 | `20.05` | [Inspect](https://github.com/ayaangazali/eyes/issues/117) |
-| `ayaangazali/eyes` | [#106](https://github.com/ayaangazali/eyes/issues/106) | Idempotent retries are re-checked against current polic | 0 | `20.05` | [Inspect](https://github.com/ayaangazali/eyes/issues/106) |
+| `FuRongJun-1999/dsh-bounty` | [#976](https://github.com/FuRongJun-1999/dsh-bounty/issues/976) | [intake 输入] dsh-web-search-pool 0.4.0 双平台实测：Windows 匿名搜 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/976) |
+| `udaysharmadev/Gravitas` | [#70](https://github.com/udaysharmadev/Gravitas/issues/70) | [host] Antigravity/OpenCode lifecycle fixture corpus +  | 0 | `20.05` | [Inspect](https://github.com/udaysharmadev/Gravitas/issues/70) |
+| `ivcained/fiddy` | [#1](https://github.com/ivcained/fiddy/issues/1) | Fiddy: Farcaster client + read node + 3-command tutoria | 0 | `20.05` | [Inspect](https://github.com/ivcained/fiddy/issues/1) |
+| `FuRongJun-1999/dsh-bounty` | [#975](https://github.com/FuRongJun-1999/dsh-bounty/issues/975) | [intake 输入] 【测评报告】DSH 插件测评站 review.lingshulab.com 收录插件深 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/975) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#596](https://github.com/limitlessprojects/Go-Hybrid/issues/596) | Tooling: test-registration guard counts commented and e | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/596) |
-| `limitlessprojects/Go-Hybrid` | [#593](https://github.com/limitlessprojects/Go-Hybrid/issues/593) | [soundness] P0 (hy-emit): parenthesized O8 slot loan —  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/593) |
-| `limitlessprojects/Go-Hybrid` | [#579](https://github.com/limitlessprojects/Go-Hybrid/issues/579) | [soundness] Multi-value local defines bypass move/const | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/579) |
-| `limitlessprojects/Go-Hybrid` | [#575](https://github.com/limitlessprojects/Go-Hybrid/issues/575) | [soundness] P0: 5 accepted-but-unsound ownership & lowe | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/575) |
-| `limitlessprojects/Go-Hybrid` | [#567](https://github.com/limitlessprojects/Go-Hybrid/issues/567) | [soundness] P0: stores into non-addressable map element | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/567) |
-| `limitlessprojects/Go-Hybrid` | [#562](https://github.com/limitlessprojects/Go-Hybrid/issues/562) | [soundness] P0: conditional/closure rebind origin laund | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/562) |
+| `limitlessprojects/Go-Hybrid` | [#610](https://github.com/limitlessprojects/Go-Hybrid/issues/610) | [wildcard] Make FFI claims proof-carrying: verify bound | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/610) |
+| `limitlessprojects/Go-Hybrid` | [#630](https://github.com/limitlessprojects/Go-Hybrid/issues/630) | [soundness] P1 (hy-emit): a parenthesized type-elided l | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/630) |
+| `limitlessprojects/Go-Hybrid` | [#614](https://github.com/limitlessprojects/Go-Hybrid/issues/614) | [Soundness/Emit] Slice .pop() erases element shape (O5. | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/614) |
+| `limitlessprojects/Go-Hybrid` | [#634](https://github.com/limitlessprojects/Go-Hybrid/issues/634) | [wildcard] Delete sendability analysis: task regions as | 1 | `19.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/634) |
+| `limitlessprojects/Go-Hybrid` | [#640](https://github.com/limitlessprojects/Go-Hybrid/issues/640) | Soundness & buildability gaps in `make`/`new` shape res | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/640) |
+| `limitlessprojects/Go-Hybrid` | [#623](https://github.com/limitlessprojects/Go-Hybrid/issues/623) | [soundness] Channel direction is never checked at value | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/623) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
