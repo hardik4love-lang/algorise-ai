@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T19:18:33.895766+00:00",
+  "generated_at": "2026-10-18T21:43:03.358234+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -147,11 +147,71 @@
       "priority_score": 20.05
     },
     {
-      "repo": "xopherdeep/do-it-for-the-xp",
-      "number": 149,
-      "title": "Quest wizard rough edges: GM listed as a hero, odd reward scale, wrong suggested steps, cut-off button",
-      "url": "https://github.com/xopherdeep/do-it-for-the-xp/issues/149",
-      "created_at": "2026-10-18T18:56:43Z",
+      "repo": "alleycatassetacquisitions/alleycat-rs",
+      "number": 52,
+      "title": "Accept 4-digit pdn_code in QuickdrawMatch and resolve player UUID on backend for offline registration",
+      "url": "https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52",
+      "created_at": "2026-10-18T21:32:06Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "ahmedfuzayl-gif/commit-monitor",
+      "number": 151,
+      "title": "commit-monitor: new leads 2026-10-18_2116Z",
+      "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151",
+      "created_at": "2026-10-18T21:16:36Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "alleycatassetacquisitions/pdn",
+      "number": 299,
+      "title": "game: Synchronize DuelCountdown / Duel start between Hunter and Bounty",
+      "url": "https://github.com/alleycatassetacquisitions/pdn/issues/299",
+      "created_at": "2026-10-18T21:12:54Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "HCTDIP/corps-jobs",
+      "number": 107,
+      "title": "Railway \u8d4f\u91d1\uff1a\u6709 9 \u6761\u503c\u5f97\u62a2",
+      "url": "https://github.com/HCTDIP/corps-jobs/issues/107",
+      "created_at": "2026-10-18T21:03:05Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "alleycatassetacquisitions/pdn",
+      "number": 296,
+      "title": "alleycat-server: Migrate player registration to alleycat-rs protobuf (GET /device/players/by-pin/{pin})",
+      "url": "https://github.com/alleycatassetacquisitions/pdn/issues/296",
+      "created_at": "2026-10-18T20:54:47Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "LegendofKEK/bichael",
+      "number": 423,
+      "title": "RootAnchor.post stores any non-empty certificate",
+      "url": "https://github.com/LegendofKEK/bichael/issues/423",
+      "created_at": "2026-10-18T20:37:56Z",
       "labels": [
         "bug"
       ],
@@ -161,64 +221,15 @@
       "priority_score": 20.05
     },
     {
-      "repo": "DaltonTheDeveloper/cal.diy",
-      "number": 1,
-      "title": "OAuth scope parser fails on space-separated scopes",
-      "url": "https://github.com/DaltonTheDeveloper/cal.diy/issues/1",
-      "created_at": "2026-10-18T18:55:18Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "DaltonTheDeveloper/archestra",
-      "number": 1,
-      "title": "Agent picker hides agents shared with me but authored by others",
-      "url": "https://github.com/DaltonTheDeveloper/archestra/issues/1",
-      "created_at": "2026-10-18T18:55:16Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "DaltonTheDeveloper/activepieces",
-      "number": 1,
-      "title": "Form body serialization flattens array values",
-      "url": "https://github.com/DaltonTheDeveloper/activepieces/issues/1",
-      "created_at": "2026-10-18T18:55:14Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "DaltonTheDeveloper/documenso",
-      "number": 1,
-      "title": "extractInitials drops an initial on names with extra spaces",
-      "url": "https://github.com/DaltonTheDeveloper/documenso/issues/1",
-      "created_at": "2026-10-18T18:55:13Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "CredenceOrg/Credence-Contracts",
-      "number": 1610,
-      "title": "feat(bounty-escrow): turn the analytics-only crate into a deployable escrow contract with lock, release and refund",
-      "url": "https://github.com/CredenceOrg/Credence-Contracts/issues/1610",
-      "created_at": "2026-10-18T18:41:16Z",
+      "repo": "relayhop/sn-monetization-runtime",
+      "number": 1306,
+      "title": "[radar] SN open bounty 2026-10-18T20:33",
+      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1306",
+      "created_at": "2026-10-18T20:33:00Z",
       "labels": [
-        "enhancement",
-        "area:bounty-escrow",
-        "difficulty:hard",
-        "smart-contracts"
+        "radar",
+        "sn",
+        "bounty"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -226,25 +237,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "dubinc/dub",
-      "number": 4750,
-      "title": "Bulk link update ignores `ext_`-prefixed `externalIds` (`.refine` used instead of `.transform`)",
-      "url": "https://github.com/dubinc/dub/issues/4750",
-      "created_at": "2026-10-18T18:32:30Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "documenso/documenso",
-      "number": 3453,
-      "title": "\"ISO 8601\" date format stamps a literal \"XXX\" instead of the timezone offset on signed date fields",
-      "url": "https://github.com/documenso/documenso/issues/3453",
-      "created_at": "2026-10-18T18:27:26Z",
+      "repo": "LucasSKrewer/kenshi-achievements",
+      "number": 35,
+      "title": "Contar sequestros e prisioneiros entregues",
+      "url": "https://github.com/LucasSKrewer/kenshi-achievements/issues/35",
+      "created_at": "2026-10-18T20:20:20Z",
       "labels": [
-        "status: triage"
+        "enhancement",
+        "research"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -253,6 +253,78 @@
     }
   ],
   "platform_2_gohybrid": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 730,
+      "title": "[soundness] Exclusive integer range `lo..hi` re-evaluates `hi` on every iteration, inside the loop variable's scope: `for n in 0..n` runs zero times, `0..n` and `0..=n-1` disagree (accepted program builds and prints wrong results)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/730",
+      "created_at": "2026-10-18T21:18:38Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 728,
+      "title": "[soundness] A Hybrid identifier spelled like a Go type (`float64`, `int64`, `uint8`, ...) captures the emitter's lowering of `f64(x)` / `i64(x)` / `u8(x)`: accepted program builds and prints a wrong result (or fails go build)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/728",
+      "created_at": "2026-10-18T21:18:36Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 727,
+      "title": "[soundness] hy-syntax: a `fn(...) T` type absorbs identifiers on the following lines as extra result types: `var cb fn() int` swallows the next statement (accepted, emitted Go is a syntax error); struct fields after a fn-typed field disappear",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/727",
+      "created_at": "2026-10-18T21:18:35Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 726,
+      "title": "[soundness] `f()?` on a user function or method that returns bare `error` passes hyb check, then fails go build (`assignment mismatch: 2 variables but f returns 1 value`) (E1/E3)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/726",
+      "created_at": "2026-10-18T21:18:34Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 725,
+      "title": "[soundness] Typed constant arithmetic that overflows its type (`const top u8 = 255; top + 1`, `i64(1) << 63`, `u8(0) - 1`) passes hyb check, then fails go build (X1/X2)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/725",
+      "created_at": "2026-10-18T21:18:33Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 729,
+      "title": "[soundness] G3 constraints are never enforced on generic functions: `<` / `+` / `==` on an `any` type parameter, and a non-comparable type argument for `comparable`, pass hyb check and fail go build",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/729",
+      "created_at": "2026-10-18T21:18:37Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
     {
       "repo": "limitlessprojects/Go-Hybrid",
       "number": 695,
@@ -270,48 +342,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 694,
-      "title": "[soundness] [soundness] Pointer-parameter auto-addressing in hy-emit bypasses Class-4 const value-copy sendability and T22 const-mutation checks (`task worker(s)` emits `go worker(&s)`)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/694",
-      "created_at": "2026-10-18T17:05:08Z",
-      "labels": [
-        "soundness"
-      ],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 687,
-      "title": "[soundness] P2: duplicate constant map-literal keys pass hyb check, emitted Go fails (duplicate key in map literal)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/687",
-      "created_at": "2026-10-18T16:46:56Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
       "number": 679,
       "title": "[soundness] Address-of on sub-slice/call-returned elements (`&xs[0:][0]`, `&id(xs)[0]`) and multi-return borrow unpacks (`p, k := borrow_pair(&st)`) bypass O4/O5/O2/T22 and cause a `go run -race` data race",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/679",
       "created_at": "2026-10-18T15:49:41Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 657,
-      "title": "[soundness] `errors.wrap(err, \"ctx\")`, the spec's documented wrapping API (E2), passes `hyb check` and emits `errors.Wrap`, which does not exist in Go",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/657",
-      "created_at": "2026-10-18T14:48:34Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
@@ -329,42 +363,6 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 655,
-      "title": "[soundness] T22 `let` immutability is never enforced: reassigning a `let` binding (`=`, `+=`, `++`, closure store, tuple assign) passes `hyb check` with 0 diagnostics",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/655",
-      "created_at": "2026-10-18T14:48:26Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 654,
-      "title": "[soundness] `break loop` / `continue loop` bind to the innermost `for` instead of the nearest `loop` (LX14): accepted program builds and runs the wrong control flow",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/654",
-      "created_at": "2026-10-18T14:48:22Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 683,
-      "title": "[soundness] untyped float constants past float64/float32 range pass hyb check at declaration, assignment, return, literal-element, and append sites, then fail go build (issue #228 family D, float leg)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/683",
-      "created_at": "2026-10-18T16:15:53Z",
-      "labels": [],
-      "competing_prs": 3,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.91
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",

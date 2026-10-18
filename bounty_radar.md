@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T19:18:33.895226+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T21:43:03.357809+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -24,21 +24,21 @@
 |---|---|---|---|---|---|
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `xopherdeep/do-it-for-the-xp` | [#149](https://github.com/xopherdeep/do-it-for-the-xp/issues/149) | Quest wizard rough edges: GM listed as a hero, odd rewa | 0 | `20.05` | [Inspect](https://github.com/xopherdeep/do-it-for-the-xp/issues/149) |
-| `DaltonTheDeveloper/cal.diy` | [#1](https://github.com/DaltonTheDeveloper/cal.diy/issues/1) | OAuth scope parser fails on space-separated scopes | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/cal.diy/issues/1) |
-| `DaltonTheDeveloper/archestra` | [#1](https://github.com/DaltonTheDeveloper/archestra/issues/1) | Agent picker hides agents shared with me but authored b | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/archestra/issues/1) |
-| `DaltonTheDeveloper/activepieces` | [#1](https://github.com/DaltonTheDeveloper/activepieces/issues/1) | Form body serialization flattens array values | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/activepieces/issues/1) |
+| `alleycatassetacquisitions/alleycat-rs` | [#52](https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52) | Accept 4-digit pdn_code in QuickdrawMatch and resolve p | 0 | `20.05` | [Inspect](https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52) |
+| `ahmedfuzayl-gif/commit-monitor` | [#151](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151) | commit-monitor: new leads 2026-10-18_2116Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151) |
+| `alleycatassetacquisitions/pdn` | [#299](https://github.com/alleycatassetacquisitions/pdn/issues/299) | game: Synchronize DuelCountdown / Duel start between Hu | 0 | `20.05` | [Inspect](https://github.com/alleycatassetacquisitions/pdn/issues/299) |
+| `HCTDIP/corps-jobs` | [#107](https://github.com/HCTDIP/corps-jobs/issues/107) | Railway 赏金：有 9 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/107) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#695](https://github.com/limitlessprojects/Go-Hybrid/issues/695) | [wildcard] Eliminate the Checker/Emitter Semantic Split | 1 | `19.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/695) |
-| `limitlessprojects/Go-Hybrid` | [#694](https://github.com/limitlessprojects/Go-Hybrid/issues/694) | [soundness] [soundness] Pointer-parameter auto-addressi | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/694) |
-| `limitlessprojects/Go-Hybrid` | [#687](https://github.com/limitlessprojects/Go-Hybrid/issues/687) | [soundness] P2: duplicate constant map-literal keys pas | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/687) |
-| `limitlessprojects/Go-Hybrid` | [#679](https://github.com/limitlessprojects/Go-Hybrid/issues/679) | [soundness] Address-of on sub-slice/call-returned eleme | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/679) |
-| `limitlessprojects/Go-Hybrid` | [#657](https://github.com/limitlessprojects/Go-Hybrid/issues/657) | [soundness] `errors.wrap(err, "ctx")`, the spec's docum | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/657) |
-| `limitlessprojects/Go-Hybrid` | [#656](https://github.com/limitlessprojects/Go-Hybrid/issues/656) | [soundness] `*T`-receiver method call on a non-addressa | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/656) |
+| `limitlessprojects/Go-Hybrid` | [#730](https://github.com/limitlessprojects/Go-Hybrid/issues/730) | [soundness] Exclusive integer range `lo..hi` re-evaluat | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/730) |
+| `limitlessprojects/Go-Hybrid` | [#728](https://github.com/limitlessprojects/Go-Hybrid/issues/728) | [soundness] A Hybrid identifier spelled like a Go type  | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/728) |
+| `limitlessprojects/Go-Hybrid` | [#727](https://github.com/limitlessprojects/Go-Hybrid/issues/727) | [soundness] hy-syntax: a `fn(...) T` type absorbs ident | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/727) |
+| `limitlessprojects/Go-Hybrid` | [#726](https://github.com/limitlessprojects/Go-Hybrid/issues/726) | [soundness] `f()?` on a user function or method that re | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/726) |
+| `limitlessprojects/Go-Hybrid` | [#725](https://github.com/limitlessprojects/Go-Hybrid/issues/725) | [soundness] Typed constant arithmetic that overflows it | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/725) |
+| `limitlessprojects/Go-Hybrid` | [#729](https://github.com/limitlessprojects/Go-Hybrid/issues/729) | [soundness] G3 constraints are never enforced on generi | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/729) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
