@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T06:16:13.024245+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T08:41:37.082174+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -8,7 +8,7 @@
 | [#569](https://github.com/limitlessprojects/Go-Hybrid/pull/569) | `limitlessprojects/Go-Hybrid` | Wildcard W-008 Settlement Region Spike | `🟢 OPEN` | **$250 - $500** |
 | [#413](https://github.com/limitlessprojects/Go-Hybrid/pull/413) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (Recv Operand) | `🔴 CLOSED` | **$75 - $100** |
 | [#427](https://github.com/limitlessprojects/Go-Hybrid/pull/427) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (For-In Iterable) | `🔴 CLOSED` | **$75 - $100** |
-| [#430](https://github.com/limitlessprojects/Go-Hybrid/pull/430) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (Operand Types & Builtins) | `🟢 OPEN` | **$75 - $100** |
+| [#430](https://github.com/limitlessprojects/Go-Hybrid/pull/430) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (Operand Types & Builtins) | `🟣 MERGED` | **$75 - $100** |
 | [#21999](https://github.com/BasedHardware/omi/pull/21999) | `BasedHardware/omi` | Critical Queue Sync Stability | `🟢 OPEN` | **$100 - $200** |
 | [#21855](https://github.com/BasedHardware/omi/pull/21855) | `BasedHardware/omi` | Canonical Product State Integrity & Goal Deletion Idempotency | `🟢 OPEN` | **$50** |
 | [#21876](https://github.com/BasedHardware/omi/pull/21876) | `BasedHardware/omi` | Staged Tasks Creation Dedup & Firestore Index Sorting | `🟢 OPEN` | **$50** |
@@ -25,20 +25,20 @@
 | `BasedHardware/omi` | [#22103](https://github.com/BasedHardware/omi/issues/22103) | Desktop chat allowance is charged for Hermes/Claude/Ope | 0 | `40.13` | [Inspect](https://github.com/BasedHardware/omi/issues/22103) |
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `BasedHardware/omi` | [#21990](https://github.com/BasedHardware/omi/issues/21990) | [Bounty proposal] MCP OAuth token refresh during chat t | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21990) |
-| `BasedHardware/omi` | [#21953](https://github.com/BasedHardware/omi/issues/21953) | [Bounty Proposal] Persona refresh includes paywall-lock | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21953) |
-| `BasedHardware/omi` | [#21903](https://github.com/BasedHardware/omi/issues/21903) | [Bounty proposal] fix(database): add stream fault toler | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21903) |
+| `paraloom-labs/paraloom-core` | [#1019](https://github.com/paraloom-labs/paraloom-core/issues/1019) | [BOUNTY] Medium: Private compute consensus/commitment b | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1019) |
+| `ayaangazali/eyes` | [#117](https://github.com/ayaangazali/eyes/issues/117) | Sub-cent bounties are rounded silently, so 10.004 passe | 0 | `20.05` | [Inspect](https://github.com/ayaangazali/eyes/issues/117) |
+| `ayaangazali/eyes` | [#106](https://github.com/ayaangazali/eyes/issues/106) | Idempotent retries are re-checked against current polic | 0 | `20.05` | [Inspect](https://github.com/ayaangazali/eyes/issues/106) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `limitlessprojects/Go-Hybrid` | [#596](https://github.com/limitlessprojects/Go-Hybrid/issues/596) | Tooling: test-registration guard counts commented and e | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/596) |
+| `limitlessprojects/Go-Hybrid` | [#593](https://github.com/limitlessprojects/Go-Hybrid/issues/593) | [soundness] P0 (hy-emit): parenthesized O8 slot loan —  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/593) |
+| `limitlessprojects/Go-Hybrid` | [#579](https://github.com/limitlessprojects/Go-Hybrid/issues/579) | [soundness] Multi-value local defines bypass move/const | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/579) |
+| `limitlessprojects/Go-Hybrid` | [#575](https://github.com/limitlessprojects/Go-Hybrid/issues/575) | [soundness] P0: 5 accepted-but-unsound ownership & lowe | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/575) |
 | `limitlessprojects/Go-Hybrid` | [#567](https://github.com/limitlessprojects/Go-Hybrid/issues/567) | [soundness] P0: stores into non-addressable map element | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/567) |
 | `limitlessprojects/Go-Hybrid` | [#562](https://github.com/limitlessprojects/Go-Hybrid/issues/562) | [soundness] P0: conditional/closure rebind origin laund | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/562) |
-| `limitlessprojects/Go-Hybrid` | [#553](https://github.com/limitlessprojects/Go-Hybrid/issues/553) | [soundness] P0: callee-returned file-level const compos | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/553) |
-| `limitlessprojects/Go-Hybrid` | [#548](https://github.com/limitlessprojects/Go-Hybrid/issues/548) | [soundness] P0: clear() builtin and in-place package mu | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/548) |
-| `limitlessprojects/Go-Hybrid` | [#532](https://github.com/limitlessprojects/Go-Hybrid/issues/532) | [soundness] Slot-loan paren/field/closure/match-guard e | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/532) |
-| `limitlessprojects/Go-Hybrid` | [#523](https://github.com/limitlessprojects/Go-Hybrid/issues/523) | [soundness] floating-point constant zero divisors and f | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/523) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

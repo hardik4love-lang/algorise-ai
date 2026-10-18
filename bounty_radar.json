@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T06:16:13.025709+00:00",
+  "generated_at": "2026-10-18T08:41:37.082645+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -46,7 +46,7 @@
       "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/430",
       "bounty_est": "$75 - $100",
       "role": "Soundness Type Checker (Operand Types & Builtins)",
-      "status_str": "\ud83d\udfe2 OPEN"
+      "status_str": "\ud83d\udfe3 MERGED"
     },
     {
       "repo": "BasedHardware/omi",
@@ -161,91 +161,151 @@
       "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21990,
-      "title": "[Bounty proposal] MCP OAuth token refresh during chat tool calls is not persisted and breaks rotating refresh-token integrations ($50)",
-      "url": "https://github.com/BasedHardware/omi/issues/21990",
-      "created_at": "2026-10-17T04:40:57Z",
+      "repo": "paraloom-labs/paraloom-core",
+      "number": 1019,
+      "title": "[BOUNTY] Medium: Private compute consensus/commitment binding bypasses, Poseidon commitment mismatch, and TEE attestation verification gaps",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1019",
+      "created_at": "2026-10-18T08:29:51Z",
       "labels": [],
-      "competing_prs": 1,
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.98
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21953,
-      "title": "[Bounty Proposal] Persona refresh includes paywall-locked conversation context and memory previews ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21953",
-      "created_at": "2026-10-17T00:41:28Z",
-      "labels": [],
-      "competing_prs": 1,
+      "repo": "ayaangazali/eyes",
+      "number": 117,
+      "title": "Sub-cent bounties are rounded silently, so 10.004 passes a $10 max",
+      "url": "https://github.com/ayaangazali/eyes/issues/117",
+      "created_at": "2026-10-18T08:06:53Z",
+      "labels": [
+        "bug",
+        "qa",
+        "severity: low"
+      ],
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.98
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21903,
-      "title": "[Bounty proposal] fix(database): add stream fault tolerance and client injection to trends ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21903",
-      "created_at": "2026-10-16T17:14:20Z",
-      "labels": [],
-      "competing_prs": 1,
+      "repo": "ayaangazali/eyes",
+      "number": 106,
+      "title": "Idempotent retries are re-checked against current policy before the key lookup, which can lead to a second paid task",
+      "url": "https://github.com/ayaangazali/eyes/issues/106",
+      "created_at": "2026-10-18T08:06:14Z",
+      "labels": [
+        "bug",
+        "qa",
+        "severity: medium"
+      ],
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.98
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21875,
-      "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score for index sorting ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21875",
-      "created_at": "2026-10-16T15:44:21Z",
-      "labels": [],
-      "competing_prs": 1,
+      "repo": "ayaangazali/eyes",
+      "number": 99,
+      "title": "A photo is withheld forever when moderation was unavailable, even after ops releases the task and the agent pays",
+      "url": "https://github.com/ayaangazali/eyes/issues/99",
+      "created_at": "2026-10-18T08:05:50Z",
+      "labels": [
+        "bug",
+        "qa",
+        "severity: high"
+      ],
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.98
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 22017,
-      "title": "[Bounty proposal] fix(database): sanitize identifiers, clamp lease duration, and guard count query in first-open obligations ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/22017",
-      "created_at": "2026-10-17T11:37:17Z",
+      "repo": "rroland10/dex223-bug-bounty",
+      "number": 29,
+      "title": "[Security Audit Report] Critical MarginModule uint8 Position Counter Overflow (Total Protocol Drain), Cross-Standard ERC-20/ERC-223 Swap Accounting & Liquidation DoS, Oracle Zero-Liquidity Pool Selection, and OwnableListing Ban Bypass",
+      "url": "https://github.com/rroland10/dex223-bug-bounty/issues/29",
+      "created_at": "2026-10-18T07:42:10Z",
       "labels": [],
-      "competing_prs": 2,
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.9
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21911,
-      "title": "[Bounty proposal] fix(database): prevent read mutation and harden date boundaries in action item codec ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21911",
-      "created_at": "2026-10-16T17:42:05Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 952,
+      "title": "[intake \u8f93\u5165][SSRF/\u5951\u7ea6] dsh-reliable-web \u4e3b SSRF \u9632\u7ebf\u5b8c\u6574\uff0c\u4f46 IPv6 \u7279\u6b8a\u8303\u56f4\uff08::/96\u3001fec0::/10\u30012001:2::/48\u30013fff::/20\uff09\u88ab\u5224 public\uff08P4\uff09\uff0b\u4e3b\u673a\u540d\u9ed1\u540d\u5355\u88ab\u5c3e\u70b9 FQDN \u7ed5\u8fc7\u7b2c\u4e00\u9053\u95f8\uff08P4\uff09\uff0b\u91cd\u5b9a\u5411\u4e0a\u9650\u9519\u8bef\u7801\u4e0d\u5728\u8bcd\u8868\u4e14\u88ab\u91cd\u5305\u88c5\u4e3a WEB_PROVIDER_ERROR\u3001\u9884\u7b97\u8017\u5c3d\u7801\u5b58\u5728\u4e9a\u6beb\u79d2\u7ade\u4e89\uff08P4\uff09\uff0bJina reader URL \u672a\u7f16\u7801\u62fc\u63a5\u81f4 query/fragment \u53d8\u5f62\uff08P4\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/952",
+      "created_at": "2026-10-18T07:35:49Z",
       "labels": [],
-      "competing_prs": 2,
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.9
+      "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 21907,
-      "title": "[Bounty proposal] fix(database): sanitize uid and period, add error boundary to budget choice ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21907",
-      "created_at": "2026-10-16T17:30:45Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 951,
+      "title": "[intake \u8f93\u5165][Node/\u96f6\u4f9d\u8d56] \u989d\u5ea6\u67e5\u8be2\u4fe1\u4efb CheckLogin \u8fd4\u56de\u7684 `AIPayHost` \u4e14\u65e0\u4e3b\u673a\u767d\u540d\u5355\uff0cCloud-IDE JWT \u53ef\u88ab\u8f6c\u53d1\u81f3\u4efb\u610f\u4e3b\u673a\uff08\u542b\u660e\u6587 http\uff09\uff08P3\uff09\uff0b PAT \u5151\u6362/\u63a7\u5236\u53f0\u767b\u5f55\u7b49\u51ed\u636e\u7aef\u70b9\u7684 host \u5b57\u6bb5\u65e0 scheme \u6821\u9a8c\uff0c\u914d\u7f6e\u53ef\u6307\u5411\u660e\u6587 http \u81f4\u957f\u671f\u51ed\u8bc1\u660e\u6587\u5916\u53d1\uff08P4\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/951",
+      "created_at": "2026-10-18T07:35:35Z",
       "labels": [],
-      "competing_prs": 2,
+      "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
-      "priority_score": 19.9
+      "priority_score": 20.05
     }
   ],
   "platform_2_gohybrid": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 596,
+      "title": "Tooling: test-registration guard counts commented and echoed commands as execution",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/596",
+      "created_at": "2026-10-18T08:16:52Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 593,
+      "title": "[soundness] P0 (hy-emit): parenthesized O8 slot loan \u2014 `hyb check` accepts, `hyb build` emits Go that cannot compile, and the store-back is silently dropped",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/593",
+      "created_at": "2026-10-18T07:56:18Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 579,
+      "title": "[soundness] Multi-value local defines bypass move/const/nil checks, handle loans dropped across move/consume, and parenthesized/move sendability bypasses",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/579",
+      "created_at": "2026-10-18T06:57:12Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 575,
+      "title": "[soundness] P0: 5 accepted-but-unsound ownership & lowering bypasses on main (1e1a665) \u2014 pre-defer multi-return aliases, inline closure param stores, composite const refs, parenthesized O8 slot loans, and nested place receives",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/575",
+      "created_at": "2026-10-18T06:21:53Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
     {
       "repo": "limitlessprojects/Go-Hybrid",
       "number": 567,
@@ -272,42 +332,6 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 553,
-      "title": "[soundness] P0: callee-returned file-level const composites and intra-callee multi-value return sharing bypass T22, O5.1, O5.2, and A3",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/553",
-      "created_at": "2026-10-18T03:22:53Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 548,
-      "title": "[soundness] P0: clear() builtin and in-place package mutators (sort.ints / sort.slice) bypass T22 const immutability (HYB-E3006) and A3 map-slot loan invalidation (HYB-E3102)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/548",
-      "created_at": "2026-10-18T02:57:25Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 532,
-      "title": "[soundness] Slot-loan paren/field/closure/match-guard escapes, cyclic/shadowed const init, boolean/shadowed array lengths, and channel direction/recv bypasses (0 diagnostics)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/532",
-      "created_at": "2026-10-18T00:23:42Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
       "number": 523,
       "title": "[soundness] floating-point constant zero divisors and float modulo bypass HYB-E6001: x / 0.0 and const c = 1.0 / 0.0 pass check, emitted Go fails to build",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/523",
@@ -320,18 +344,27 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 462,
-      "title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/462",
-      "created_at": "2026-10-17T15:01:39Z",
-      "labels": [
-        "\u00f0\u0178\u2019\u017d Bounty",
-        "wildcard"
-      ],
-      "competing_prs": 1,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 19.98
+      "number": 586,
+      "title": "[soundness] P0: 5 accepted-but-unbuildable constant-folding, type-alias, and slice/index/make bound bypasses (HYB-E6001/E6002/E6004/E6005/E1002/E2005)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/586",
+      "created_at": "2026-10-18T07:14:40Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 583,
+      "title": "[Soundness] T24 slot-loan address-of (&n.field, &n.items[i]) and O2 LOAN-ESCAPE (HYB-E3104) bypassed via field/index projection, conditional assignment, inner-block shadowing, parallel binding, and closures",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/583",
+      "created_at": "2026-10-18T07:06:04Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -339,30 +372,6 @@
       "title": "[soundness] P0: append into bounded const reslices bypasses T22 (HYB-E3006 data race) and overlapping O8 slot loans / indexed field stores bypass HYB-E3102 (lost write on store-back)",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/560",
       "created_at": "2026-10-18T03:58:29Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 546,
-      "title": "[soundness] P0: O8 slot-loan store-back emitted after a sibling-branch `move` \u00e2\u20ac\u201d accepted program races on the moved map",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/546",
-      "created_at": "2026-10-18T02:32:02Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 533,
-      "title": "[soundness] Shadowed package imports, write-only/duplicate bindings, hy-emit scope-hint bleed across shadow/closure boundaries, and eager multi-guarded match ? evaluation",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/533",
-      "created_at": "2026-10-18T00:24:19Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
