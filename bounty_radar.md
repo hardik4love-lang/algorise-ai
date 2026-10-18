@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T16:44:44.512927+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T19:18:33.895226+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -24,21 +24,21 @@
 |---|---|---|---|---|---|
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `FuRongJun-1999/dsh-bounty` | [#1004](https://github.com/FuRongJun-1999/dsh-bounty/issues/1004) | 【贡献申请】dsh-memory #555：e81caab0 未恢复的 14 个守卫（P0） | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1004) |
-| `FuRongJun-1999/dsh-bounty` | [#1003](https://github.com/FuRongJun-1999/dsh-bounty/issues/1003) | [intake 输入] 【测评报告】dsh-cite 0.5.0 解析 / 去重 / 往返导出深测（Linux | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1003) |
-| `FuRongJun-1999/dsh-bounty` | [#1002](https://github.com/FuRongJun-1999/dsh-bounty/issues/1002) | [intake 输入] 【测评报告】dsh-ffmpeg 0.5.0 体验快测＋安全面（音视频 · 方法试验） | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1002) |
-| `FuRongJun-1999/dsh-bounty` | [#1001](https://github.com/FuRongJun-1999/dsh-bounty/issues/1001) | [intake 输入] 【测评报告】dsh-code-security 0.5.0 安全快测（Linux）：s | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1001) |
+| `xopherdeep/do-it-for-the-xp` | [#149](https://github.com/xopherdeep/do-it-for-the-xp/issues/149) | Quest wizard rough edges: GM listed as a hero, odd rewa | 0 | `20.05` | [Inspect](https://github.com/xopherdeep/do-it-for-the-xp/issues/149) |
+| `DaltonTheDeveloper/cal.diy` | [#1](https://github.com/DaltonTheDeveloper/cal.diy/issues/1) | OAuth scope parser fails on space-separated scopes | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/cal.diy/issues/1) |
+| `DaltonTheDeveloper/archestra` | [#1](https://github.com/DaltonTheDeveloper/archestra/issues/1) | Agent picker hides agents shared with me but authored b | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/archestra/issues/1) |
+| `DaltonTheDeveloper/activepieces` | [#1](https://github.com/DaltonTheDeveloper/activepieces/issues/1) | Form body serialization flattens array values | 0 | `20.05` | [Inspect](https://github.com/DaltonTheDeveloper/activepieces/issues/1) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#683](https://github.com/limitlessprojects/Go-Hybrid/issues/683) | [soundness] untyped float constants past float64/float3 | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/683) |
-| `limitlessprojects/Go-Hybrid` | [#679](https://github.com/limitlessprojects/Go-Hybrid/issues/679) | [soundness] Address-of on sub-slice/call-returned eleme | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/679) |
-| `limitlessprojects/Go-Hybrid` | [#672](https://github.com/limitlessprojects/Go-Hybrid/issues/672) | [soundness] untyped nil local declarations (var x = nil | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/672) |
-| `limitlessprojects/Go-Hybrid` | [#658](https://github.com/limitlessprojects/Go-Hybrid/issues/658) | [soundness] Foreign Go names are never resolved (M4/M5) | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/658) |
-| `limitlessprojects/Go-Hybrid` | [#656](https://github.com/limitlessprojects/Go-Hybrid/issues/656) | [soundness] `*T`-receiver method call on a non-addressa | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/656) |
-| `limitlessprojects/Go-Hybrid` | [#682](https://github.com/limitlessprojects/Go-Hybrid/issues/682) | [soundness] P2: 16 accepted-but-unbuildable type/shape  | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/682) |
+| `limitlessprojects/Go-Hybrid` | [#695](https://github.com/limitlessprojects/Go-Hybrid/issues/695) | [wildcard] Eliminate the Checker/Emitter Semantic Split | 1 | `19.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/695) |
+| `limitlessprojects/Go-Hybrid` | [#694](https://github.com/limitlessprojects/Go-Hybrid/issues/694) | [soundness] [soundness] Pointer-parameter auto-addressi | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/694) |
+| `limitlessprojects/Go-Hybrid` | [#687](https://github.com/limitlessprojects/Go-Hybrid/issues/687) | [soundness] P2: duplicate constant map-literal keys pas | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/687) |
+| `limitlessprojects/Go-Hybrid` | [#679](https://github.com/limitlessprojects/Go-Hybrid/issues/679) | [soundness] Address-of on sub-slice/call-returned eleme | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/679) |
+| `limitlessprojects/Go-Hybrid` | [#657](https://github.com/limitlessprojects/Go-Hybrid/issues/657) | [soundness] `errors.wrap(err, "ctx")`, the spec's docum | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/657) |
+| `limitlessprojects/Go-Hybrid` | [#656](https://github.com/limitlessprojects/Go-Hybrid/issues/656) | [soundness] `*T`-receiver method call on a non-addressa | 2 | `39.98` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/656) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

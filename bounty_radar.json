@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T16:44:44.513762+00:00",
+  "generated_at": "2026-10-18T19:18:33.895766+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -147,11 +147,25 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1004,
-      "title": "\u3010\u8d21\u732e\u7533\u8bf7\u3011dsh-memory #555\uff1ae81caab0 \u672a\u6062\u590d\u7684 14 \u4e2a\u5b88\u536b\uff08P0\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1004",
-      "created_at": "2026-10-18T16:43:55Z",
+      "repo": "xopherdeep/do-it-for-the-xp",
+      "number": 149,
+      "title": "Quest wizard rough edges: GM listed as a hero, odd reward scale, wrong suggested steps, cut-off button",
+      "url": "https://github.com/xopherdeep/do-it-for-the-xp/issues/149",
+      "created_at": "2026-10-18T18:56:43Z",
+      "labels": [
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "DaltonTheDeveloper/cal.diy",
+      "number": 1,
+      "title": "OAuth scope parser fails on space-separated scopes",
+      "url": "https://github.com/DaltonTheDeveloper/cal.diy/issues/1",
+      "created_at": "2026-10-18T18:55:18Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -159,11 +173,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1003,
-      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-cite 0.5.0 \u89e3\u6790 / \u53bb\u91cd / \u5f80\u8fd4\u5bfc\u51fa\u6df1\u6d4b\uff08Linux \u00b7 \u65b9\u6cd5\u8bd5\u9a8c\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1003",
-      "created_at": "2026-10-18T16:43:38Z",
+      "repo": "DaltonTheDeveloper/archestra",
+      "number": 1,
+      "title": "Agent picker hides agents shared with me but authored by others",
+      "url": "https://github.com/DaltonTheDeveloper/archestra/issues/1",
+      "created_at": "2026-10-18T18:55:16Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -171,11 +185,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1002,
-      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-ffmpeg 0.5.0 \u4f53\u9a8c\u5feb\u6d4b\uff0b\u5b89\u5168\u9762\uff08\u97f3\u89c6\u9891 \u00b7 \u65b9\u6cd5\u8bd5\u9a8c\uff09\uff1aargv \u65e0 shell\uff0c68 \u6b21\u7279\u6b8a\u6587\u4ef6\u540d\u8c03\u7528\u96f6\u6ce8\u5165\uff1b\u4f46\u9ed8\u8ba4\u914d\u7f6e\u4e0b extract frames \u4f1a\u9759\u9ed8\u8986\u76d6\u5df2\u6709\u56fe\u7247\uff08P1\uff09\uff0coverwrite=true \u65f6\u540c\u8f93\u5165\u4fdd\u62a4\u53ef\u88ab\u7b2c\u4e8c\u4e2a\u8f93\u5165\u6216\u8f6f\u94fe\u63a5\u7ed5\u8fc7\u3001\u6539\u5199\u6e90\u6587\u4ef6\uff08P1\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1002",
-      "created_at": "2026-10-18T16:43:35Z",
+      "repo": "DaltonTheDeveloper/activepieces",
+      "number": 1,
+      "title": "Form body serialization flattens array values",
+      "url": "https://github.com/DaltonTheDeveloper/activepieces/issues/1",
+      "created_at": "2026-10-18T18:55:14Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -183,11 +197,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1001,
-      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-code-security 0.5.0 \u5b89\u5168\u5feb\u6d4b\uff08Linux\uff09\uff1asecure_diff \u6267\u884c\u88ab\u626b\u4ed3\u5e93 git \u914d\u7f6e\u7684 fsmonitor/clean \u547d\u4ee4\u3001clean \u8fc7\u6ee4\u5668\u53ef\u85cf\u6389\u65b0\u589e\u884c\u5224\u300c\u901a\u8fc7\u300d\uff08P1\uff09\uff0b SEC-008 \u628a\u53c2\u6570\u5316\u67e5\u8be2\u5224\u4e3a\u6ce8\u5165\uff08P2\uff09\uff0b \u7b26\u53f7\u94fe\u63a5\u8d8a\u754c\u5199\uff08P2\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1001",
-      "created_at": "2026-10-18T16:43:32Z",
+      "repo": "DaltonTheDeveloper/documenso",
+      "number": 1,
+      "title": "extractInitials drops an initial on names with extra spaces",
+      "url": "https://github.com/DaltonTheDeveloper/documenso/issues/1",
+      "created_at": "2026-10-18T18:55:13Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -195,11 +209,28 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1000,
-      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-review 0.3.0 \u4f53\u9a8c\u5feb\u6d4b\uff08\u4ee3\u7801\u8bc4\u5ba1 \u00b7 \u786e\u5b9a\u6027\u5c42\u5ba1\u8ba1 \u00b7 \u65b9\u6cd5\u8bd5\u9a8c\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1000",
-      "created_at": "2026-10-18T16:43:29Z",
+      "repo": "CredenceOrg/Credence-Contracts",
+      "number": 1610,
+      "title": "feat(bounty-escrow): turn the analytics-only crate into a deployable escrow contract with lock, release and refund",
+      "url": "https://github.com/CredenceOrg/Credence-Contracts/issues/1610",
+      "created_at": "2026-10-18T18:41:16Z",
+      "labels": [
+        "enhancement",
+        "area:bounty-escrow",
+        "difficulty:hard",
+        "smart-contracts"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "dubinc/dub",
+      "number": 4750,
+      "title": "Bulk link update ignores `ext_`-prefixed `externalIds` (`.refine` used instead of `.transform`)",
+      "url": "https://github.com/dubinc/dub/issues/4750",
+      "created_at": "2026-10-18T18:32:30Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -207,36 +238,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 999,
-      "title": "\u3010intake \u8f93\u5165\u3011dsh-codex-port 0.3.0 \u6d4b\u8bc4\uff1aallowed-tools \u88ab\u5f3a\u5236\u6539\u6210 Bash\uff0c`~` \u76ee\u6807\u9759\u9ed8\u843d\u9519\u4f4d\u7f6e",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/999",
-      "created_at": "2026-10-18T16:26:17Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 998,
-      "title": "\u3010intake \u8f93\u5165\u3011dsh-calendar 0.11.0 \u6d4b\u8bc4\uff1astart-only \u9ed8\u8ba4 end \u53d6 now+7d\uff0c\u672a\u6765 start \u62a5\u9519/\u8fc7\u53bb\u7a97\u53e3\u653e\u5927\uff1bhealth \u56de\u663e URL \u51ed\u636e\uff1btsdav \u4f9d\u8d56\u6f02\u79fb",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/998",
-      "created_at": "2026-10-18T16:26:16Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 997,
-      "title": "\u3010intake \u8f93\u5165\u3011dsh-email 0.17.1 \u6d4b\u8bc4\uff1aIMAP/SMTP \u8ba4\u8bc1\u4e32\u56de\u663e\u4e0e STARTTLS \u964d\u7ea7\uff08F1/F2 P2\uff0cF3 P3\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/997",
-      "created_at": "2026-10-18T16:26:14Z",
-      "labels": [],
+      "repo": "documenso/documenso",
+      "number": 3453,
+      "title": "\"ISO 8601\" date format stamps a literal \"XXX\" instead of the timezone offset on signed date fields",
+      "url": "https://github.com/documenso/documenso/issues/3453",
+      "created_at": "2026-10-18T18:27:26Z",
+      "labels": [
+        "status: triage"
+      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -246,15 +255,44 @@
   "platform_2_gohybrid": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 683,
-      "title": "[soundness] untyped float constants past float64/float32 range pass hyb check at declaration, assignment, return, literal-element, and append sites, then fail go build (issue #228 family D, float leg)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/683",
-      "created_at": "2026-10-18T16:15:53Z",
-      "labels": [],
+      "number": 695,
+      "title": "[wildcard] Eliminate the Checker/Emitter Semantic Split: Emit-Driven Verification via Explicit Desugared MIR (`hy-mir`)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/695",
+      "created_at": "2026-10-18T17:07:14Z",
+      "labels": [
+        "\ud83d\udc8e Bounty",
+        "wildcard"
+      ],
       "competing_prs": 1,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 19.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 694,
+      "title": "[soundness] [soundness] Pointer-parameter auto-addressing in hy-emit bypasses Class-4 const value-copy sendability and T22 const-mutation checks (`task worker(s)` emits `go worker(&s)`)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/694",
+      "created_at": "2026-10-18T17:05:08Z",
+      "labels": [
+        "soundness"
+      ],
+      "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.05
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 687,
+      "title": "[soundness] P2: duplicate constant map-literal keys pass hyb check, emitted Go fails (duplicate key in map literal)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/687",
+      "created_at": "2026-10-18T16:46:56Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -262,54 +300,6 @@
       "title": "[soundness] Address-of on sub-slice/call-returned elements (`&xs[0:][0]`, `&id(xs)[0]`) and multi-return borrow unpacks (`p, k := borrow_pair(&st)`) bypass O4/O5/O2/T22 and cause a `go run -race` data race",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/679",
       "created_at": "2026-10-18T15:49:41Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 672,
-      "title": "[soundness] untyped nil local declarations (var x = nil / x := nil / let x = nil) pass hyb check with 0 diagnostics and emit Go that fails go build (\"use of untyped nil in variable declaration\")",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/672",
-      "created_at": "2026-10-18T15:19:48Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 658,
-      "title": "[soundness] Foreign Go names are never resolved (M4/M5): `io.eof`, `http.status_ok`, `math.sqrt`, `fmt.no_such_function` and imports outside the curated allowlist all pass `hyb check`, then fail `go build`",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/658",
-      "created_at": "2026-10-18T14:48:38Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 656,
-      "title": "[soundness] `*T`-receiver method call on a non-addressable receiver (map element, call result, struct literal) passes `hyb check`, emitted Go fails `go build`",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/656",
-      "created_at": "2026-10-18T14:48:30Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 682,
-      "title": "[soundness] P2: 16 accepted-but-unbuildable type/shape bypasses in the buildable operand pass (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/682",
-      "created_at": "2026-10-18T16:13:40Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
@@ -322,6 +312,18 @@
       "title": "[soundness] `errors.wrap(err, \"ctx\")`, the spec's documented wrapping API (E2), passes `hyb check` and emits `errors.Wrap`, which does not exist in Go",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/657",
       "created_at": "2026-10-18T14:48:34Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 656,
+      "title": "[soundness] `*T`-receiver method call on a non-addressable receiver (map element, call result, struct literal) passes `hyb check`, emitted Go fails `go build`",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/656",
+      "created_at": "2026-10-18T14:48:30Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
@@ -354,15 +356,27 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 646,
-      "title": "[soundness] set/option builtin surface (T9/T20) passes hyb check but emits unbuildable Go: len(set), delete(set, v), o.unwrap(), o.or(d), o.is_some() \u2014 and for v in set is falsely rejected E2009",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/646",
-      "created_at": "2026-10-18T14:12:21Z",
+      "number": 683,
+      "title": "[soundness] untyped float constants past float64/float32 range pass hyb check at declaration, assignment, return, literal-element, and append sites, then fail go build (issue #228 family D, float leg)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/683",
+      "created_at": "2026-10-18T16:15:53Z",
       "labels": [],
-      "competing_prs": 2,
+      "competing_prs": 3,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 39.98
+      "priority_score": 39.91
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 658,
+      "title": "[soundness] Foreign Go names are never resolved (M4/M5): `io.eof`, `http.status_ok`, `math.sqrt`, `fmt.no_such_function` and imports outside the curated allowlist all pass `hyb check`, then fail `go build`",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/658",
+      "created_at": "2026-10-18T14:48:38Z",
+      "labels": [],
+      "competing_prs": 3,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.91
     }
   ],
   "platform_3_security": [
