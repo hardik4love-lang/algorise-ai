@@ -1,20 +1,5 @@
 [
   {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 462,
-    "title": "[wildcard] Isolated WASM task cells: replace cross-task alias proofs with a wire boundary",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/462",
-    "created_at": "2026-10-17T15:01:39Z",
-    "labels": [
-      "\ud83d\udc8e Bounty",
-      "wildcard"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
     "repo": "elizaOS/eliza",
     "number": 36589,
     "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
@@ -27,51 +12,13 @@
     "priority_score": 20.05
   },
   {
-    "repo": "Uuriko/project-room",
-    "number": 3962,
-    "title": "[QA-WAVE-C L2] Fresh-room members read 0.00 credits until the first escrow write: genesis issuance is lazy and balances() never triggers it",
-    "url": "https://github.com/Uuriko/project-room/issues/3962",
-    "created_at": "2026-10-17T23:34:32Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Uuriko/project-room",
-    "number": 3958,
-    "title": "Stranger receipt: paid settlement (lot_) receipts absent from /receipts index, and the lot receipt page shows From = To (same account), no worker/poster names, no description of the work",
-    "url": "https://github.com/Uuriko/project-room/issues/3958",
-    "created_at": "2026-10-17T23:30:14Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Uuriko/project-room",
-    "number": 3957,
-    "title": "Front door orphans /about: root page gives a cold stranger no what/who/first-action/cost (static view is only 'PROJECT ROOM / Connecting to room service\u2026')",
-    "url": "https://github.com/Uuriko/project-room/issues/3957",
-    "created_at": "2026-10-17T23:30:00Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "Djbrl/bitbounty",
-    "number": 95,
-    "title": "Integration \u00b7 I6 \u00b7 E2E testing + adversarial UI/UX review",
-    "url": "https://github.com/Djbrl/bitbounty/issues/95",
-    "created_at": "2026-10-17T23:28:17Z",
+    "repo": "GranSkreaReforged/GSOOffline",
+    "number": 88,
+    "title": "Idea: Auction House",
+    "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/88",
+    "created_at": "2026-10-18T03:38:11Z",
     "labels": [
-      "pts:3",
-      "wave:2",
-      "area:integration"
+      "question"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -79,126 +26,14 @@
     "priority_score": 20.05
   },
   {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 900,
-    "title": "\u3010intake \u8f93\u5165\u3011hive-memory-bench\uff1asynth.py \u91cd\u8dd1\u4ea7\u7269\u5728 Windows \u4e0a\u4e0e\u53d1\u5e03\u5feb\u7167\u4e0d\u9010\u5b57\u8282\u76f8\u540c\uff08\u4e0a\u6e38 #58\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/900",
-    "created_at": "2026-10-17T23:26:57Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/hive-memory-bench",
-    "number": 58,
-    "title": "chain/tools/synth.py \u751f\u6210\u7269\u4e0e\u5df2\u53d1\u5e03\u5feb\u7167\u5728 Windows \u4e0a\u4e0d\u9010\u5b57\u8282\u76f8\u540c\uff08README \u00a78\u300c\u56fa\u5b9a\u79cd\u5b50\u4e0b\u9010\u5b57\u8282\u76f8\u540c\u300d\u5728\u91cd\u8dd1\u8def\u5f84\u4e0a\u4e0d\u6210\u7acb\uff09",
-    "url": "https://github.com/FuRongJun-1999/hive-memory-bench/issues/58",
-    "created_at": "2026-10-17T23:26:24Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "HCTDIP/corps-jobs",
-    "number": 103,
-    "title": "Railway \u8d4f\u91d1\uff1a\u6709 4 \u6761\u503c\u5f97\u62a2",
-    "url": "https://github.com/HCTDIP/corps-jobs/issues/103",
-    "created_at": "2026-10-17T23:26:10Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-bounty",
-    "number": 899,
-    "title": "\u3010intake \u8f93\u5165\u3011dsh-memory\uff1a#364 \u65b0\u589e\u5b88\u536b\u7684 M3 \u53d8\u5f02\u951a\u70b9\u5728 main \u4e0a\u547d\u4e2d 0 \u6b21\u3001--mutate \u81ea\u68c0 rc=1\uff08\u4e0a\u6e38 #543\uff09",
-    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/899",
-    "created_at": "2026-10-17T22:56:20Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "FuRongJun-1999/dsh-memory",
-    "number": 543,
-    "title": "PR #364 \u65b0\u589e\u5b88\u536b\u7684 M3 \u53d8\u5f02\u951a\u70b9\u5728 main \u4e0a\u547d\u4e2d 0 \u6b21\uff1a--mutate \u57fa\u7ebf\u81ea\u68c0 rc=1\uff0c\u5ba3\u79f0\u7684\u300c\u5b9a\u70b9\u53d8\u5f02 3/3\u300d\u4e0d\u53ef\u590d\u73b0",
-    "url": "https://github.com/FuRongJun-1999/dsh-memory/issues/543",
-    "created_at": "2026-10-17T22:55:55Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "ZecHub/zec-bounties",
-    "number": 426,
-    "title": "Availability of existing submission-review-thread bounty (0.09 ZEC)",
-    "url": "https://github.com/ZecHub/zec-bounties/issues/426",
-    "created_at": "2026-10-17T22:53:44Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "freedom-winds/BountyScout",
-    "number": 1271,
-    "title": "\ud83c\udfaf Bounty Alert: 8 New Opportunityies found",
-    "url": "https://github.com/freedom-winds/BountyScout/issues/1271",
-    "created_at": "2026-10-17T22:53:21Z",
-    "labels": [
-      "bounty-alert"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "paraloom-labs/paraloom-core",
-    "number": 1000,
-    "title": "[BOUNTY] Medium: transact_spl records no SPL withdrawal volume \u2014 the native total_withdrawn ledger has no SPL counterpart",
-    "url": "https://github.com/paraloom-labs/paraloom-core/issues/1000",
-    "created_at": "2026-10-17T22:50:33Z",
-    "labels": [],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "facesnatcher56-star/curse",
-    "number": 70,
-    "title": "[Design notes] Proc passive and power-upgrade ideas (owner picks: Blood Debt + Provoke, Carrion Momentum, Splitting Grudge, Thunder Residue)",
-    "url": "https://github.com/facesnatcher56-star/curse/issues/70",
-    "created_at": "2026-10-17T22:44:38Z",
-    "labels": [
-      "parked"
-    ],
-    "competing_prs": 0,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 20.05
-  },
-  {
-    "repo": "gavmor/software-dev-sim",
-    "number": 6,
-    "title": "Poach devs from rival companies",
-    "url": "https://github.com/gavmor/software-dev-sim/issues/6",
-    "created_at": "2026-10-17T22:24:04Z",
+    "repo": "GranSkreaReforged/GSOOffline",
+    "number": 86,
+    "title": "Bounty Abandom Mechanic",
+    "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/86",
+    "created_at": "2026-10-18T03:20:26Z",
     "labels": [
       "enhancement",
-      "expansion"
+      "planned"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -206,15 +41,14 @@
     "priority_score": 20.05
   },
   {
-    "repo": "Djbrl/bitbounty",
-    "number": 87,
-    "title": "Money (Bitnob) \u00b7 B7 \u00b7 Test payout in sats to a Lightning Address",
-    "url": "https://github.com/Djbrl/bitbounty/issues/87",
-    "created_at": "2026-10-17T22:20:51Z",
+    "repo": "o87enterprises-ai/MonkeyITM",
+    "number": 1,
+    "title": "Wanted: security researchers to try to break MonkeyITM",
+    "url": "https://github.com/o87enterprises-ai/MonkeyITM/issues/1",
+    "created_at": "2026-10-18T03:19:33Z",
     "labels": [
-      "pts:2",
-      "wave:1",
-      "area:money"
+      "help wanted",
+      "security"
     ],
     "competing_prs": 0,
     "is_bounty": true,
@@ -222,14 +56,187 @@
     "priority_score": 20.05
   },
   {
-    "repo": "BasedHardware/omi",
-    "number": 21869,
-    "title": "Paying Neo (legacy Unlimited) subscriber shown as Free plan and metered at 300 min despite paid Sept 17 renewal",
-    "url": "https://github.com/BasedHardware/omi/issues/21869",
-    "created_at": "2026-10-16T14:57:12Z",
+    "repo": "tari-project/special_contributions",
+    "number": 237,
+    "title": "Security report: tari-ootle ootle-wasm / ootle.ts: stealth amounts outside u64 are reduced modulo 2^64 at the WASM boundary, so 2^64 + 5 is built, proven and validated as 5 (ISSUE-2982)",
+    "url": "https://github.com/tari-project/special_contributions/issues/237",
+    "created_at": "2026-10-18T03:02:26Z",
     "labels": [
-      "bug"
+      "retro-bounty",
+      "bounty-S"
     ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "NSPG13/agent-bounties",
+    "number": 1651,
+    "title": "Maintainer notice: complete hosted autonomous-v2 with two verification choices",
+    "url": "https://github.com/NSPG13/agent-bounties/issues/1651",
+    "created_at": "2026-10-18T02:53:28Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 925,
+    "title": "[intake \u8f93\u5165][Windows] pwsh \u8def\u7531\u70ed\u8def\u5f84\u53ea\u505a\u5b58\u5728\u6027\u68c0\u67e5\u3001\u4ece\u4e0d\u9a8c\u8bc1\u4e3b\u7248\u672c \u22657\uff0cPS6 \u6216\u4efb\u610f\u540c\u540d pwsh.exe \u88ab\u9759\u9ed8\u5f53 PS7 \u8def\u7531\uff08P3\uff09\uff0b PATH \u76f8\u5bf9\u6761\u76ee\u672a\u8fc7\u6ee4\uff0cpwsh.exe \u53ef\u88ab CWD \u52ab\u6301\uff08P4\uff09\uff0b tar \u515c\u5e95\u88f8\u540d tar.exe\uff0cCreateProcess CWD \u4f18\u5148\u547d\u4e2d\uff08P4\uff09\uff0b \u4fbf\u643a\u4e0b\u8f7d\u65e0 SHA-256/\u7b7e\u540d\u6821\u9a8c\u3001URL \u65e0\u4e3b\u673a\u767d\u540d\u5355\uff08P4\uff09\uff0b existsSync \u5224\u5b58\u5728\uff0c\u76ee\u5f55\u88ab\u8bef\u5224\u4e3a pwsh\uff08P4\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/925",
+    "created_at": "2026-10-18T02:46:48Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 924,
+    "title": "[intake \u8f93\u5165][security/Windows] \u7ba1\u7406\u53f0\u8bbe\u5907\u8868 UA/kind \u672a\u8f6c\u4e49\u81f4\u5b58\u50a8\u578b XSS\uff0c\u672a\u8ba4\u8bc1\u5c40\u57df\u7f51\u653b\u51fb\u8005\u53ef\u7a83\u53d6\u4e3b\u4ee4\u724c\uff08A\uff09\uff0b \u4e3b\u4ee4\u724c\u968f\u542f\u52a8\u6a2a\u5e45\u660e\u6587\u843d\u76d8 plugin-gateway.log\uff08C\uff09\uff0b \u7f51\u5173\u9ed8\u8ba4\u7ed1\u5b9a 0.0.0.0 \u4e14 /health \u672a\u8ba4\u8bc1\u6cc4\u9732\u7248\u672c/PID/\u4e0a\u6e38\uff08D\uff09\uff0b \u63d2\u4ef6\u4fa7\u7ba1\u7406\u53d8\u66f4\u7aef\u70b9\u65e0\u81ea\u6709\u9274\u6743\u3001\u5b8c\u5168\u4f9d\u8d56 DSH \u5bbf\u4e3b\u767b\u5f55\u8fb9\u754c\uff08D\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/924",
+    "created_at": "2026-10-18T02:44:24Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 923,
+    "title": "[intake \u8f93\u5165][plugin/security] \u4e3b\u4eba userOpenid \u5b58\u800c\u4e0d\u7528\uff1a\u5165\u7ad9 senderId \u96f6\u6821\u9a8c\u3001\u5355\u4e00\u4fe1\u4efb\u817e\u8baf\u5e73\u53f0\u89c4\u5219\uff08B\uff09\uff0b \u8bbe\u7f6e/\u51ed\u636e/\u505c\u542f\u8def\u7531\u5168\u90e8\u65e0\u9274\u6743\u3001text/plain CSRF \u53ef\u8fbe\uff08B\uff09\uff0b \u9644\u4ef6\u4e0b\u8f7d\u65e0 URL \u6821\u9a8c\u4e14\u9ed8\u8ba4\u8ddf\u968f 302\uff08C\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/923",
+    "created_at": "2026-10-18T02:43:51Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 922,
+    "title": "[intake \u8f93\u5165][security/\u79fb\u52a8\u7f51\u5173] \u786c\u7f16\u7801\u5168\u5c40\u65e5\u5fd7\u8def\u5f84\u4e14\u672a\u8ba4\u8bc1\u6e90\u53ef\u6ce8\u5165\u6362\u884c\u4f2a\u9020\u65e5\u5fd7\uff08P3\uff09\uff0bdirectory \u9762\u7f3a\u5c11 workspace \u7ea6\u675f\uff08P4\uff09\uff0bWebSocket upgrade \u65e0 Origin \u7eb5\u6df1\uff08P4\uff09\uff0bpairingCode \u7ed5\u8fc7 allowQueryToken \u95e8\u63a7\uff08P4\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/922",
+    "created_at": "2026-10-18T02:43:36Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 921,
+    "title": "[intake \u8f93\u5165][\u5b89\u5168/\u8de8\u5e73\u53f0] \u9ed8\u8ba4\u96f6\u914d\u5bf9\u4e0b 0.0.0.0 \u5bf9\u7aef\u670d\u52a1\u672a\u6388\u6743\u63a5\u53d7\u4efb\u52a1\u6d3e\u53d1\u5e76\u53ef\u8bfb\u56de\u4efb\u52a1\u6b63\u6587\uff08P1\uff09\uff0b \u7ec4\u64ad\u540d\u7247\u4f2a\u9020\u53ef\u6ce8\u5165\u5047\u5bf9\u7aef\u3001\u52ab\u6301\u771f\u5b9e\u8bb0\u5f55\u5e76\u968f\u4efb\u52a1\u7a83\u53d6\u914d\u5bf9\u7801\uff08P2\uff09\uff0b windows-arm64 sidecar \u8d44\u4ea7\u672a\u9489\u6869\u6821\u9a8c\u548c\u3001\u9759\u9ed8\u8df3\u8fc7\u5b8c\u6574\u6027\u6821\u9a8c\uff08P3\uff09\uff0b /mesh/api/state \u660e\u6587\u56de\u4f20\u914d\u5bf9\u7801\u4e14 /mesh/api/* \u63d2\u4ef6\u4fa7\u96f6\u9274\u6743\uff08P3\uff09\uff0b \u56de\u73af XFF \u53ef\u4f2a\u9020 tsnet \u6765\u6e90\u5f71\u54cd\u6743\u9650\u6863\u4f4d\u4e0e\u5f52\u56e0\uff08P4\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/921",
+    "created_at": "2026-10-18T02:43:21Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 920,
+    "title": "[intake \u8f93\u5165][security/Windows] /ocr/api/settings \u65e0\u9274\u6743\u53ef\u533f\u540d\u6539\u5199\u8bc6\u522b\u540e\u7aef\u5730\u5740\u4e0e\u5bc6\u94a5\uff08B\uff09\uff0b \u4ea7\u7269\u56fe\u7247 URL \u65e0\u6821\u9a8c fetch \u81f4 SSRF\uff08B\uff09\uff0b \u4efb\u610f\u7edd\u5bf9\u8def\u5f84\u8bfb+\u4efb\u610f\u76ee\u5f55\u5199\u65e0\u5de5\u4f5c\u533a\u56f4\u680f\uff08C\uff09\uff0b readZip \u65e0\u603b\u91cf\u4e0a\u9650 zip \u70b8\u5f39 DoS\uff08C\uff09\uff0b \u5bc6\u94a5/token \u660e\u6587\u843d\u76d8\uff08D\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/920",
+    "created_at": "2026-10-18T02:43:03Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "dseelinger/d47",
+    "number": 1289,
+    "title": "Show credit ledger on a Commander page",
+    "url": "https://github.com/dseelinger/d47/issues/1289",
+    "created_at": "2026-10-18T02:42:33Z",
+    "labels": [
+      "enhancement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "dseelinger/d47",
+    "number": 1287,
+    "title": "Show BGS work on a Commander page",
+    "url": "https://github.com/dseelinger/d47/issues/1287",
+    "created_at": "2026-10-18T02:07:46Z",
+    "labels": [
+      "enhancement"
+    ],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "useverdex/verdex",
+    "number": 2,
+    "title": "VerdexIndexPlans rebate locking & dust share cap, VerdexVaults zero-sale rebalance loop, Base Auto-Invest ABI crash, and VerdexTerm push notifications",
+    "url": "https://github.com/useverdex/verdex/issues/2",
+    "created_at": "2026-10-18T01:54:47Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "FuRongJun-1999/dsh-bounty",
+    "number": 919,
+    "title": "[intake \u8f93\u5165][test/Windows] `cmd /c start \"\" <target>` \u5bf9\u65e0\u7a7a\u683c\u542b `&` \u7684\u76ee\u6807\u5b58\u5728\u53c2\u6570\u6ce8\u5165\uff0c\u7528\u6237\u914d\u7f6e\u7684\u4e0b\u8f7d\u76f4\u94fe/\u515c\u5e95\u9875\u53ef\u843d\u5730\u4e3a\u547d\u4ee4\u6267\u884c\uff08B\uff09\uff0b \u4f53\u79ef\u5b89\u5168\u95f8\u4e25\u683c\u6863\u5b8c\u5168\u4e0d\u6821\u9a8c\u57df\u540d\u4e0e\u534f\u8bae\uff0c`http://` \u4efb\u610f\u4e3b\u673a 224MiB \u6587\u4ef6\u53ef\u4e0b\u8f7d\u5230\u684c\u9762\uff08C\uff09\uff0b `maskPathsInText` \u5bf9\u542b\u7a7a\u683c\u8def\u5f84\u53ea\u63a9\u5230\u7b2c\u4e00\u4e2a\u7a7a\u683c\u3001\u5176\u4f59\u6bb5\u660e\u6587\u6b8b\u7559\uff08D\uff09",
+    "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/919",
+    "created_at": "2026-10-18T01:52:26Z",
+    "labels": [],
+    "competing_prs": 0,
+    "is_bounty": true,
+    "is_critical": false,
+    "priority_score": 20.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 553,
+    "title": "[soundness] P0: callee-returned file-level const composites and intra-callee multi-value return sharing bypass T22, O5.1, O5.2, and A3",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/553",
+    "created_at": "2026-10-18T03:22:53Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 548,
+    "title": "[soundness] P0: clear() builtin and in-place package mutators (sort.ints / sort.slice) bypass T22 const immutability (HYB-E3006) and A3 map-slot loan invalidation (HYB-E3102)",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/548",
+    "created_at": "2026-10-18T02:57:25Z",
+    "labels": [],
+    "competing_prs": 1,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 40.05
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 546,
+    "title": "[soundness] P0: O8 slot-loan store-back emitted after a sibling-branch `move` \u2014 accepted program races on the moved map",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/546",
+    "created_at": "2026-10-18T02:32:02Z",
+    "labels": [],
     "competing_prs": 1,
     "is_bounty": false,
     "is_critical": true,
@@ -282,42 +289,6 @@
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21854,
-    "title": "[Bounty Proposal] fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21854",
-    "created_at": "2026-10-16T12:56:39Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "BasedHardware/omi",
-    "number": 21844,
-    "title": "[Bounty Proposal] fix(conversations): purge vectors/tasks in merge cleanup, reject duplicate merge IDs, and sync task description edits ($50 proposed)",
-    "url": "https://github.com/BasedHardware/omi/issues/21844",
-    "created_at": "2026-10-16T11:41:35Z",
-    "labels": [],
-    "competing_prs": 1,
-    "is_bounty": true,
-    "is_critical": false,
-    "priority_score": 19.98
-  },
-  {
-    "repo": "limitlessprojects/Go-Hybrid",
-    "number": 456,
-    "title": "P0 soundness: inner loop header self-shadowing on back-edge, block/multi-value self-shadow share retention across scope_pop, user method return shapes, and reslice/index/append borrow-root & return loan-escape bypasses (HYB-E3003 / E3004 / E3104)",
-    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/456",
-    "created_at": "2026-10-17T14:44:07Z",
-    "labels": [],
-    "competing_prs": 2,
-    "is_bounty": false,
-    "is_critical": true,
-    "priority_score": 39.98
   },
   {
     "repo": "BasedHardware/omi",
@@ -414,6 +385,18 @@
     "is_bounty": true,
     "is_critical": false,
     "priority_score": 19.9
+  },
+  {
+    "repo": "limitlessprojects/Go-Hybrid",
+    "number": 547,
+    "title": "[soundness] P0: shadowing loop binder defeats the O8 last-use flush \u2014 store-back deferred past `task worker(move m)`, data race",
+    "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/547",
+    "created_at": "2026-10-18T02:32:03Z",
+    "labels": [],
+    "competing_prs": 3,
+    "is_bounty": false,
+    "is_critical": true,
+    "priority_score": 39.91
   },
   {
     "repo": "BasedHardware/omi",
