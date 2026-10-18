@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T21:43:03.358234+00:00",
+  "generated_at": "2026-10-18T23:59:31.683209+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -123,18 +123,6 @@
   ],
   "platform_1_algora": [
     {
-      "repo": "BasedHardware/omi",
-      "number": 22091,
-      "title": "[Bounty proposal] fix(database): sanitize uid and protect announcement streams against store failures ( proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/22091",
-      "created_at": "2026-10-18T04:56:02Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
       "repo": "elizaOS/eliza",
       "number": 36589,
       "title": "[iMessage] Investigate observed ten-minute gap before Blooio inbound ingestion",
@@ -147,35 +135,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "alleycatassetacquisitions/alleycat-rs",
-      "number": 52,
-      "title": "Accept 4-digit pdn_code in QuickdrawMatch and resolve player UUID on backend for offline registration",
-      "url": "https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52",
-      "created_at": "2026-10-18T21:32:06Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "ahmedfuzayl-gif/commit-monitor",
-      "number": 151,
-      "title": "commit-monitor: new leads 2026-10-18_2116Z",
-      "url": "https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151",
-      "created_at": "2026-10-18T21:16:36Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "alleycatassetacquisitions/pdn",
-      "number": 299,
-      "title": "game: Synchronize DuelCountdown / Duel start between Hunter and Bounty",
-      "url": "https://github.com/alleycatassetacquisitions/pdn/issues/299",
-      "created_at": "2026-10-18T21:12:54Z",
+      "repo": "gigs-sh/gigs-sh",
+      "number": 16,
+      "title": "[gig] Squash",
+      "url": "https://github.com/gigs-sh/gigs-sh/issues/16",
+      "created_at": "2026-10-18T23:52:24Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -184,10 +148,10 @@
     },
     {
       "repo": "HCTDIP/corps-jobs",
-      "number": 107,
-      "title": "Railway \u8d4f\u91d1\uff1a\u6709 9 \u6761\u503c\u5f97\u62a2",
-      "url": "https://github.com/HCTDIP/corps-jobs/issues/107",
-      "created_at": "2026-10-18T21:03:05Z",
+      "number": 108,
+      "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
+      "url": "https://github.com/HCTDIP/corps-jobs/issues/108",
+      "created_at": "2026-10-18T23:40:46Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -195,25 +159,15 @@
       "priority_score": 20.05
     },
     {
-      "repo": "alleycatassetacquisitions/pdn",
-      "number": 296,
-      "title": "alleycat-server: Migrate player registration to alleycat-rs protobuf (GET /device/players/by-pin/{pin})",
-      "url": "https://github.com/alleycatassetacquisitions/pdn/issues/296",
-      "created_at": "2026-10-18T20:54:47Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "LegendofKEK/bichael",
-      "number": 423,
-      "title": "RootAnchor.post stores any non-empty certificate",
-      "url": "https://github.com/LegendofKEK/bichael/issues/423",
-      "created_at": "2026-10-18T20:37:56Z",
+      "repo": "eschnitzler/EmpireCore",
+      "number": 528,
+      "title": "Event minigames and currencies: lucky wheel, gacha, colossus, donations, bounty hunter, artifacts",
+      "url": "https://github.com/eschnitzler/EmpireCore/issues/528",
+      "created_at": "2026-10-18T23:12:09Z",
       "labels": [
-        "bug"
+        "enhancement",
+        "client-sync",
+        "priority: low"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -222,10 +176,10 @@
     },
     {
       "repo": "relayhop/sn-monetization-runtime",
-      "number": 1306,
-      "title": "[radar] SN open bounty 2026-10-18T20:33",
-      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1306",
-      "created_at": "2026-10-18T20:33:00Z",
+      "number": 1308,
+      "title": "[radar] SN open bounty 2026-10-18T23:01",
+      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1308",
+      "created_at": "2026-10-18T23:01:41Z",
       "labels": [
         "radar",
         "sn",
@@ -237,15 +191,66 @@
       "priority_score": 20.05
     },
     {
-      "repo": "LucasSKrewer/kenshi-achievements",
-      "number": 35,
-      "title": "Contar sequestros e prisioneiros entregues",
-      "url": "https://github.com/LucasSKrewer/kenshi-achievements/issues/35",
-      "created_at": "2026-10-18T20:20:20Z",
+      "repo": "dev-kp-eloper/BountyScout",
+      "number": 1616,
+      "title": "\ud83c\udfaf Bounty Alert: 4 New Opportunityies found",
+      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1616",
+      "created_at": "2026-10-18T22:52:10Z",
       "labels": [
-        "enhancement",
-        "research"
+        "bounty-alert"
       ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "freedom-winds/BountyScout",
+      "number": 1278,
+      "title": "\ud83c\udfaf Bounty Alert: 4 New Opportunityies found",
+      "url": "https://github.com/freedom-winds/BountyScout/issues/1278",
+      "created_at": "2026-10-18T22:46:00Z",
+      "labels": [
+        "bounty-alert"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "BaaRai/ARTEX",
+      "number": 107,
+      "title": "Define Loop C guardrails before any harness search",
+      "url": "https://github.com/BaaRai/ARTEX/issues/107",
+      "created_at": "2026-10-18T22:33:40Z",
+      "labels": [
+        "feature"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "picsoritdidnthappen/poidh-app",
+      "number": 1576,
+      "title": "CI format:check fails on staging (17 files), so every PR shows a red check",
+      "url": "https://github.com/picsoritdidnthappen/poidh-app/issues/1576",
+      "created_at": "2026-10-18T22:19:43Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "picsoritdidnthappen/poidh-app",
+      "number": 1575,
+      "title": "\"Create wallet\" (ZeroDev smart account) users cannot create bounties",
+      "url": "https://github.com/picsoritdidnthappen/poidh-app/issues/1575",
+      "created_at": "2026-10-18T22:19:38Z",
+      "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -253,18 +258,6 @@
     }
   ],
   "platform_2_gohybrid": [
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 730,
-      "title": "[soundness] Exclusive integer range `lo..hi` re-evaluates `hi` on every iteration, inside the loop variable's scope: `for n in 0..n` runs zero times, `0..n` and `0..=n-1` disagree (accepted program builds and prints wrong results)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/730",
-      "created_at": "2026-10-18T21:18:38Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
     {
       "repo": "limitlessprojects/Go-Hybrid",
       "number": 728,
@@ -279,15 +272,39 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
+      "number": 730,
+      "title": "[soundness] Exclusive integer range `lo..hi` re-evaluates `hi` on every iteration, inside the loop variable's scope: `for n in 0..n` runs zero times, `0..n` and `0..=n-1` disagree (accepted program builds and prints wrong results)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/730",
+      "created_at": "2026-10-18T21:18:38Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 729,
+      "title": "[soundness] G3 constraints are never enforced on generic functions: `<` / `+` / `==` on an `any` type parameter, and a non-comparable type argument for `comparable`, pass hyb check and fail go build",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/729",
+      "created_at": "2026-10-18T21:18:37Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
       "number": 727,
       "title": "[soundness] hy-syntax: a `fn(...) T` type absorbs identifiers on the following lines as extra result types: `var cb fn() int` swallows the next statement (accepted, emitted Go is a syntax error); struct fields after a fn-typed field disappear",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/727",
       "created_at": "2026-10-18T21:18:35Z",
       "labels": [],
-      "competing_prs": 0,
+      "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.13
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -296,10 +313,10 @@
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/726",
       "created_at": "2026-10-18T21:18:34Z",
       "labels": [],
-      "competing_prs": 0,
+      "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.13
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -307,18 +324,6 @@
       "title": "[soundness] Typed constant arithmetic that overflows its type (`const top u8 = 255; top + 1`, `i64(1) << 63`, `u8(0) - 1`) passes hyb check, then fails go build (X1/X2)",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/725",
       "created_at": "2026-10-18T21:18:33Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 729,
-      "title": "[soundness] G3 constraints are never enforced on generic functions: `<` / `+` / `==` on an `any` type parameter, and a non-comparable type argument for `comparable`, pass hyb check and fail go build",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/729",
-      "created_at": "2026-10-18T21:18:37Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,

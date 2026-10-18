@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T21:43:03.357809+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T23:59:31.682920+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `alleycatassetacquisitions/alleycat-rs` | [#52](https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52) | Accept 4-digit pdn_code in QuickdrawMatch and resolve p | 0 | `20.05` | [Inspect](https://github.com/alleycatassetacquisitions/alleycat-rs/issues/52) |
-| `ahmedfuzayl-gif/commit-monitor` | [#151](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151) | commit-monitor: new leads 2026-10-18_2116Z | 0 | `20.05` | [Inspect](https://github.com/ahmedfuzayl-gif/commit-monitor/issues/151) |
-| `alleycatassetacquisitions/pdn` | [#299](https://github.com/alleycatassetacquisitions/pdn/issues/299) | game: Synchronize DuelCountdown / Duel start between Hu | 0 | `20.05` | [Inspect](https://github.com/alleycatassetacquisitions/pdn/issues/299) |
-| `HCTDIP/corps-jobs` | [#107](https://github.com/HCTDIP/corps-jobs/issues/107) | Railway 赏金：有 9 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/107) |
+| `gigs-sh/gigs-sh` | [#16](https://github.com/gigs-sh/gigs-sh/issues/16) | [gig] Squash | 0 | `20.05` | [Inspect](https://github.com/gigs-sh/gigs-sh/issues/16) |
+| `HCTDIP/corps-jobs` | [#108](https://github.com/HCTDIP/corps-jobs/issues/108) | Railway 赏金：有 3 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/108) |
+| `eschnitzler/EmpireCore` | [#528](https://github.com/eschnitzler/EmpireCore/issues/528) | Event minigames and currencies: lucky wheel, gacha, col | 0 | `20.05` | [Inspect](https://github.com/eschnitzler/EmpireCore/issues/528) |
+| `relayhop/sn-monetization-runtime` | [#1308](https://github.com/relayhop/sn-monetization-runtime/issues/1308) | [radar] SN open bounty 2026-10-18T23:01 | 0 | `20.05` | [Inspect](https://github.com/relayhop/sn-monetization-runtime/issues/1308) |
+| `dev-kp-eloper/BountyScout` | [#1616](https://github.com/dev-kp-eloper/BountyScout/issues/1616) | 🎯 Bounty Alert: 4 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1616) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#730](https://github.com/limitlessprojects/Go-Hybrid/issues/730) | [soundness] Exclusive integer range `lo..hi` re-evaluat | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/730) |
 | `limitlessprojects/Go-Hybrid` | [#728](https://github.com/limitlessprojects/Go-Hybrid/issues/728) | [soundness] A Hybrid identifier spelled like a Go type  | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/728) |
-| `limitlessprojects/Go-Hybrid` | [#727](https://github.com/limitlessprojects/Go-Hybrid/issues/727) | [soundness] hy-syntax: a `fn(...) T` type absorbs ident | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/727) |
-| `limitlessprojects/Go-Hybrid` | [#726](https://github.com/limitlessprojects/Go-Hybrid/issues/726) | [soundness] `f()?` on a user function or method that re | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/726) |
-| `limitlessprojects/Go-Hybrid` | [#725](https://github.com/limitlessprojects/Go-Hybrid/issues/725) | [soundness] Typed constant arithmetic that overflows it | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/725) |
+| `limitlessprojects/Go-Hybrid` | [#730](https://github.com/limitlessprojects/Go-Hybrid/issues/730) | [soundness] Exclusive integer range `lo..hi` re-evaluat | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/730) |
 | `limitlessprojects/Go-Hybrid` | [#729](https://github.com/limitlessprojects/Go-Hybrid/issues/729) | [soundness] G3 constraints are never enforced on generi | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/729) |
+| `limitlessprojects/Go-Hybrid` | [#727](https://github.com/limitlessprojects/Go-Hybrid/issues/727) | [soundness] hy-syntax: a `fn(...) T` type absorbs ident | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/727) |
+| `limitlessprojects/Go-Hybrid` | [#726](https://github.com/limitlessprojects/Go-Hybrid/issues/726) | [soundness] `f()?` on a user function or method that re | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/726) |
+| `limitlessprojects/Go-Hybrid` | [#725](https://github.com/limitlessprojects/Go-Hybrid/issues/725) | [soundness] Typed constant arithmetic that overflows it | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/725) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
