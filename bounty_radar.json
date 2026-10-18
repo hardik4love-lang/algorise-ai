@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T05:44:01.338918+00:00",
+  "generated_at": "2026-10-18T06:16:13.025709+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -124,6 +124,20 @@
   "platform_1_algora": [
     {
       "repo": "BasedHardware/omi",
+      "number": 22103,
+      "title": "Desktop chat allowance is charged for Hermes/Claude/OpenClaw turns that never use Omi's models",
+      "url": "https://github.com/BasedHardware/omi/issues/22103",
+      "created_at": "2026-10-18T05:48:18Z",
+      "labels": [
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "BasedHardware/omi",
       "number": 22091,
       "title": "[Bounty proposal] fix(database): sanitize uid and protect announcement streams against store failures ( proposed)",
       "url": "https://github.com/BasedHardware/omi/issues/22091",
@@ -229,18 +243,6 @@
       "is_bounty": true,
       "is_critical": false,
       "priority_score": 19.9
-    },
-    {
-      "repo": "BasedHardware/omi",
-      "number": 21901,
-      "title": "[Bounty proposal] fix(database): sanitize uid and protect session streams in channel visibility ($50 proposed)",
-      "url": "https://github.com/BasedHardware/omi/issues/21901",
-      "created_at": "2026-10-16T17:08:06Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 19.9
     }
   ],
   "platform_2_gohybrid": [
@@ -306,18 +308,6 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 529,
-      "title": "[soundness] constant overflow and float truncation in channel send statements and select send cases silently accepted: ch <- 300 passes check, emitted Go fails to build",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/529",
-      "created_at": "2026-10-17T22:57:30Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
       "number": 523,
       "title": "[soundness] floating-point constant zero divisors and float modulo bypass HYB-E6001: x / 0.0 and const c = 1.0 / 0.0 pass check, emitted Go fails to build",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/523",
@@ -361,6 +351,18 @@
       "title": "[soundness] P0: O8 slot-loan store-back emitted after a sibling-branch `move` \u00e2\u20ac\u201d accepted program races on the moved map",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/546",
       "created_at": "2026-10-18T02:32:02Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 533,
+      "title": "[soundness] Shadowed package imports, write-only/duplicate bindings, hy-emit scope-hint bleed across shadow/closure boundaries, and eager multi-guarded match ? evaluation",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/533",
+      "created_at": "2026-10-18T00:24:19Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,

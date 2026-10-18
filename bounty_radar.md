@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T05:44:01.338268+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-18T06:16:13.024245+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,12 +22,12 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `BasedHardware/omi` | [#22103](https://github.com/BasedHardware/omi/issues/22103) | Desktop chat allowance is charged for Hermes/Claude/Ope | 0 | `40.13` | [Inspect](https://github.com/BasedHardware/omi/issues/22103) |
 | `BasedHardware/omi` | [#22091](https://github.com/BasedHardware/omi/issues/22091) | [Bounty proposal] fix(database): sanitize uid and prote | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22091) |
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
 | `BasedHardware/omi` | [#21990](https://github.com/BasedHardware/omi/issues/21990) | [Bounty proposal] MCP OAuth token refresh during chat t | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21990) |
 | `BasedHardware/omi` | [#21953](https://github.com/BasedHardware/omi/issues/21953) | [Bounty Proposal] Persona refresh includes paywall-lock | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21953) |
 | `BasedHardware/omi` | [#21903](https://github.com/BasedHardware/omi/issues/21903) | [Bounty proposal] fix(database): add stream fault toler | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21903) |
-| `BasedHardware/omi` | [#21875](https://github.com/BasedHardware/omi/issues/21875) | [Bounty Proposal] fix(staged_tasks): filter completed e | 1 | `19.98` | [Inspect](https://github.com/BasedHardware/omi/issues/21875) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
@@ -38,7 +38,7 @@
 | `limitlessprojects/Go-Hybrid` | [#553](https://github.com/limitlessprojects/Go-Hybrid/issues/553) | [soundness] P0: callee-returned file-level const compos | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/553) |
 | `limitlessprojects/Go-Hybrid` | [#548](https://github.com/limitlessprojects/Go-Hybrid/issues/548) | [soundness] P0: clear() builtin and in-place package mu | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/548) |
 | `limitlessprojects/Go-Hybrid` | [#532](https://github.com/limitlessprojects/Go-Hybrid/issues/532) | [soundness] Slot-loan paren/field/closure/match-guard e | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/532) |
-| `limitlessprojects/Go-Hybrid` | [#529](https://github.com/limitlessprojects/Go-Hybrid/issues/529) | [soundness] constant overflow and float truncation in c | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/529) |
+| `limitlessprojects/Go-Hybrid` | [#523](https://github.com/limitlessprojects/Go-Hybrid/issues/523) | [soundness] floating-point constant zero divisors and f | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/523) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

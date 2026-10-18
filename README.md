@@ -192,6 +192,17 @@ tests/test_trace_root_ai.py ....                                         [100%]
 
 ---
 
+## 🛡️ Security Research & Bug Bounty Operations Manual
+
+For solo security researchers and bug bounty hunters targeting a sustained throughput of **10 vulnerability reports per day** across HackerOne, Bugcrowd, and GitHub:
+- **Comprehensive Operational Manual:** [`SECURITY_RESEARCH_OPERATIONS_MANUAL.md`](SECURITY_RESEARCH_OPERATIONS_MANUAL.md)
+- **Target Priority Score (TPS) Matrix:** [`TARGET_PRIORITY_MATRIX.md`](TARGET_PRIORITY_MATRIX.md)
+- **Mathematical Scoring Engine:** [`scripts/research_ops_engine.py`](scripts/research_ops_engine.py)
+- **Modular Advisory Templates:** [`.github/ISSUE_TEMPLATE/`](.github/ISSUE_TEMPLATE/)
+- **Live 24/7 Bounty Radar:** [`bounty_radar.md`](bounty_radar.md)
+
+---
+
 ## Web Platform & Live Simulator
 
 The repository also includes the frontend portal for Algorise AI:
