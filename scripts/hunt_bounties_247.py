@@ -129,6 +129,78 @@ TRACKED_PRS = [
         "url": "https://github.com/tenstorrent/tt-metal/pull/61086",
         "bounty_est": "$100 - $200",
         "role": "Host Runtime Symbol Fix"
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 712,
+        "title": "fix(hy-check): reject duplicate constant keys in map literals (fixes #687)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/712",
+        "bounty_est": "$75 - $150",
+        "role": "Duplicate Constant Map-Literal Keys Reject",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 713,
+        "title": "fix(hy-check): reject out-of-bounds constant string index and slice bounds (fixes #708)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/713",
+        "bounty_est": "$75 - $150",
+        "role": "Constant String Index/Slice Bounds Check",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 714,
+        "title": "fix(hy-check): enforce borrow roots on sub-slice elements and classify unrooted pointer shapes (fixes #679)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/714",
+        "bounty_est": "$75 - $150",
+        "role": "Sub-Slice Element Address-of Race Soundness",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 715,
+        "title": "feat(spike): add W-016 hy-mir explicit desugared verification spike (#695)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/715",
+        "bounty_est": "$250 - $500",
+        "role": "W-016 hy-mir Semantic Split Elimination Spike",
+        "is_merged": False
+    },
+    {
+        "repo": "BasedHardware/omi",
+        "pr_number": 22218,
+        "title": "fix(action-items): coerce naive and ISO string timestamps in sort keys to prevent HTTP 500 (#22181)",
+        "url": "https://github.com/BasedHardware/omi/pull/22218",
+        "bounty_est": "$50",
+        "role": "Action Items Timestamp Sort Key HTTP 500 Coercion",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 796,
+        "title": "fix(hy-check): reject type names used in value positions (fixes #778)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/796",
+        "bounty_est": "$75 - $150",
+        "role": "Soundness Type Name in Value Position Check",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 804,
+        "title": "fix(hy-check): reject make on directional channels (fixes #793)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/804",
+        "bounty_est": "$75 - $150",
+        "role": "Soundness Make Directional Channel Check",
+        "is_merged": False
+    },
+    {
+        "repo": "limitlessprojects/Go-Hybrid",
+        "pr_number": 825,
+        "title": "fix(hy-check): reject user declarations colliding with prelude names (fixes #777)",
+        "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/825",
+        "bounty_est": "$75 - $150",
+        "role": "Soundness Prelude Name Collision Check",
+        "is_merged": False
     }
 ]
 
