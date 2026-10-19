@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-18T23:59:31.683209+00:00",
+  "generated_at": "2026-10-19T04:28:18.633187+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -135,11 +135,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "gigs-sh/gigs-sh",
-      "number": 16,
-      "title": "[gig] Squash",
-      "url": "https://github.com/gigs-sh/gigs-sh/issues/16",
-      "created_at": "2026-10-18T23:52:24Z",
+      "repo": "paraloom-labs/paraloom-core",
+      "number": 1034,
+      "title": "[BOUNTY] Medium: wait_for_settlement accepts uninitialized system-owned nf_pda accounts, OnChainSubmitter discards realized post-fee balance, and quorum_available skips owner/stake checks",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1034",
+      "created_at": "2026-10-19T04:17:03Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -147,11 +147,60 @@
       "priority_score": 20.05
     },
     {
-      "repo": "HCTDIP/corps-jobs",
-      "number": 108,
-      "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
-      "url": "https://github.com/HCTDIP/corps-jobs/issues/108",
-      "created_at": "2026-10-18T23:40:46Z",
+      "repo": "patrickkellyyoung-ai/swarm-agora-mcp",
+      "number": 4,
+      "title": "[BOUNTY #3] High-Throughput MoE KV-Cache Compression Benchmark",
+      "url": "https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/4",
+      "created_at": "2026-10-19T04:11:43Z",
+      "labels": [
+        "help wanted",
+        "good first issue",
+        "bounty",
+        "bot-task"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "patrickkellyyoung-ai/swarm-agora-mcp",
+      "number": 3,
+      "title": "[BOUNTY #2] Automated CVE & Threat Surface Detection on Windows Kernel Drivers",
+      "url": "https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/3",
+      "created_at": "2026-10-19T04:11:40Z",
+      "labels": [
+        "help wanted",
+        "good first issue",
+        "bounty",
+        "bot-task"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "tari-project/special_contributions",
+      "number": 241,
+      "title": "Security report: tari-ootle unauthenticated peer forces an unbounded, unaccounted full-history state scan on a validator (`sync_state` work is decoupled from its response and from the peer's liveness) (GHSA-58hr-fqpx-8qcc)",
+      "url": "https://github.com/tari-project/special_contributions/issues/241",
+      "created_at": "2026-10-19T04:04:04Z",
+      "labels": [
+        "retro-bounty",
+        "bounty-M"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "russellyeo-oss/energy-alert-assistant",
+      "number": 2534,
+      "title": "/if(empty(triggerOutputs()?['body/subject']), 'Energy alert', triggerOutputs()?['body/subject'])",
+      "url": "https://github.com/russellyeo-oss/energy-alert-assistant/issues/2534",
+      "created_at": "2026-10-19T04:01:26Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -159,15 +208,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "eschnitzler/EmpireCore",
-      "number": 528,
-      "title": "Event minigames and currencies: lucky wheel, gacha, colossus, donations, bounty hunter, artifacts",
-      "url": "https://github.com/eschnitzler/EmpireCore/issues/528",
-      "created_at": "2026-10-18T23:12:09Z",
+      "repo": "tari-project/special_contributions",
+      "number": 240,
+      "title": "Security report: tari-ootle consensus: a cross-shard transaction with max_epoch outside the validity window locks its local inputs in LocalPrepared and never releases them, because #2905's timeout keys off the unbounded max_epoch (GHSA-x45g-95p8-g67h)",
+      "url": "https://github.com/tari-project/special_contributions/issues/240",
+      "created_at": "2026-10-19T03:57:48Z",
       "labels": [
-        "enhancement",
-        "client-sync",
-        "priority: low"
+        "retro-bounty",
+        "bounty-S"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -175,15 +223,13 @@
       "priority_score": 20.05
     },
     {
-      "repo": "relayhop/sn-monetization-runtime",
-      "number": 1308,
-      "title": "[radar] SN open bounty 2026-10-18T23:01",
-      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1308",
-      "created_at": "2026-10-18T23:01:41Z",
+      "repo": "tilakpatell/tilakpatell.com",
+      "number": 1062,
+      "title": "felucia-water-tower",
+      "url": "https://github.com/tilakpatell/tilakpatell.com/issues/1062",
+      "created_at": "2026-10-19T03:57:07Z",
       "labels": [
-        "radar",
-        "sn",
-        "bounty"
+        "gen3d"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -191,53 +237,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "dev-kp-eloper/BountyScout",
-      "number": 1616,
-      "title": "\ud83c\udfaf Bounty Alert: 4 New Opportunityies found",
-      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1616",
-      "created_at": "2026-10-18T22:52:10Z",
-      "labels": [
-        "bounty-alert"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "freedom-winds/BountyScout",
-      "number": 1278,
-      "title": "\ud83c\udfaf Bounty Alert: 4 New Opportunityies found",
-      "url": "https://github.com/freedom-winds/BountyScout/issues/1278",
-      "created_at": "2026-10-18T22:46:00Z",
-      "labels": [
-        "bounty-alert"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "BaaRai/ARTEX",
-      "number": 107,
-      "title": "Define Loop C guardrails before any harness search",
-      "url": "https://github.com/BaaRai/ARTEX/issues/107",
-      "created_at": "2026-10-18T22:33:40Z",
-      "labels": [
-        "feature"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "picsoritdidnthappen/poidh-app",
-      "number": 1576,
-      "title": "CI format:check fails on staging (17 files), so every PR shows a red check",
-      "url": "https://github.com/picsoritdidnthappen/poidh-app/issues/1576",
-      "created_at": "2026-10-18T22:19:43Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1024,
+      "title": "[intake] \u8d21\u732e\u7533\u62a5\uff08\u9010\u4ef6\uff09\uff1alingshu \u96f6\u5f15\u7528\u53c2\u6570\u4e94\u5904\u5220\u7b7e\u540d\u6536\u53e3\uff08dsh-bounty #112/#114/#115/#116/#117\uff09\u2014\u2014 PR #511 \u5df2\u5408\u5e76",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1024",
+      "created_at": "2026-10-19T03:55:46Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -245,12 +249,16 @@
       "priority_score": 20.05
     },
     {
-      "repo": "picsoritdidnthappen/poidh-app",
-      "number": 1575,
-      "title": "\"Create wallet\" (ZeroDev smart account) users cannot create bounties",
-      "url": "https://github.com/picsoritdidnthappen/poidh-app/issues/1575",
-      "created_at": "2026-10-18T22:19:38Z",
-      "labels": [],
+      "repo": "ChefLee5/The-Sound-of-Essentials-Website",
+      "number": 2,
+      "title": "\ud83e\udd16 Weekly Agentic Recon & Self-Improvement Work Order (2026-10-19)",
+      "url": "https://github.com/ChefLee5/The-Sound-of-Essentials-Website/issues/2",
+      "created_at": "2026-10-19T03:44:36Z",
+      "labels": [
+        "agentic-loop",
+        "seo",
+        "weekly-recon"
+      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -260,10 +268,10 @@
   "platform_2_gohybrid": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 728,
-      "title": "[soundness] A Hybrid identifier spelled like a Go type (`float64`, `int64`, `uint8`, ...) captures the emitter's lowering of `f64(x)` / `i64(x)` / `u8(x)`: accepted program builds and prints a wrong result (or fails go build)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/728",
-      "created_at": "2026-10-18T21:18:36Z",
+      "number": 778,
+      "title": "[soundness] P2: a type name used in a value position passes hyb check \u2014 emitted Go fails with \"holder (type) is not an expression\" (assignment, argument, arithmetic, return)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/778",
+      "created_at": "2026-10-19T03:50:00Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": false,
@@ -272,10 +280,24 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 730,
-      "title": "[soundness] Exclusive integer range `lo..hi` re-evaluates `hi` on every iteration, inside the loop variable's scope: `for n in 0..n` runs zero times, `0..n` and `0..=n-1` disagree (accepted program builds and prints wrong results)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/730",
-      "created_at": "2026-10-18T21:18:38Z",
+      "number": 775,
+      "title": "P0 (hy-check): generic struct TypeShape erasure drops type arguments in shape_may_share, shape_holds_closure, and field_borrow_kind \u2014 bypassing O5.2/O5.1/T22/A5/O2 (HYB-E3003/E3004/E3006/E3001/E3104) with confirmed go run -race data races",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/775",
+      "created_at": "2026-10-19T03:26:51Z",
+      "labels": [
+        "soundness"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 782,
+      "title": "[soundness] ForKind::Iterate and MatchBind drop const/may-share provenance under index/self-shadowing and omit stack-borrow taint (HYB-E3003, HYB-E3004, HYB-E3006, HYB-E3104)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/782",
+      "created_at": "2026-10-19T04:04:29Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -284,10 +306,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 729,
-      "title": "[soundness] G3 constraints are never enforced on generic functions: `<` / `+` / `==` on an `any` type parameter, and a non-comparable type argument for `comparable`, pass hyb check and fail go build",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/729",
-      "created_at": "2026-10-18T21:18:37Z",
+      "number": 777,
+      "title": "[soundness] P2: user declarations named some/option collide with the injected prelude \u2014 hyb check accepts, emitted Go fails (redeclared in this block)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/777",
+      "created_at": "2026-10-19T03:48:57Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -296,10 +318,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 727,
-      "title": "[soundness] hy-syntax: a `fn(...) T` type absorbs identifiers on the following lines as extra result types: `var cb fn() int` swallows the next statement (accepted, emitted Go is a syntax error); struct fields after a fn-typed field disappear",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/727",
-      "created_at": "2026-10-18T21:18:35Z",
+      "number": 773,
+      "title": "[soundness] T22 const deep-immutability (HYB-E3006) bypassed by interprocedural append, self-shadowing bounded reslices (c := c[:1]), and const composites holding spare-capacity slices",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/773",
+      "created_at": "2026-10-19T03:18:58Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -308,10 +330,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 726,
-      "title": "[soundness] `f()?` on a user function or method that returns bare `error` passes hyb check, then fails go build (`assignment mismatch: 2 variables but f returns 1 value`) (E1/E3)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/726",
-      "created_at": "2026-10-18T21:18:34Z",
+      "number": 772,
+      "title": "[soundness] generic struct type-argument erasure in hy-check bypasses Tier-0 alias freeze (HYB-E3003), non-owned move (HYB-E3004), const deep immutability (HYB-E3006), closure/handle move perimeter (HYB-E3001/E3002), A3 slot loans (HYB-E3102), and N1/N3 (HYB-E4001/E4002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/772",
+      "created_at": "2026-10-19T03:18:57Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -320,10 +342,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 725,
-      "title": "[soundness] Typed constant arithmetic that overflows its type (`const top u8 = 255; top + 1`, `i64(1) << 63`, `u8(0) - 1`) passes hyb check, then fails go build (X1/X2)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/725",
-      "created_at": "2026-10-18T21:18:33Z",
+      "number": 753,
+      "title": "[soundness] option[T] TypeShape erasure allows &option[chan T] / &option[atomic] borrows across tasks (HYB-E3001/E3103/E3104 data race) and send/recv/range on option[T] (HYB-E3007/E2008/E2009)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/753",
+      "created_at": "2026-10-19T01:34:40Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -332,10 +354,22 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 695,
-      "title": "[wildcard] Eliminate the Checker/Emitter Semantic Split: Emit-Driven Verification via Explicit Desugared MIR (`hy-mir`)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/695",
-      "created_at": "2026-10-18T17:07:14Z",
+      "number": 752,
+      "title": "[soundness] move-wrapped expressions in match, for-in, return, copy, and map mutations drop non-owned/const/borrow/A3 provenance (HYB-E3004, HYB-E3006, HYB-E3102, HYB-E3104)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/752",
+      "created_at": "2026-10-19T01:32:39Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 757,
+      "title": "[wildcard] Kill libhyrt.a, cgo, and the 3-tier FFI bridge: AOT-transpile Rust boundary crates via wasm32 to pure bounds-checked Go (wasm2go linear-memory arenas per OwnHandle)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/757",
+      "created_at": "2026-10-19T02:10:37Z",
       "labels": [
         "\ud83d\udc8e Bounty",
         "wildcard"
@@ -344,42 +378,6 @@
       "is_bounty": true,
       "is_critical": false,
       "priority_score": 19.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 679,
-      "title": "[soundness] Address-of on sub-slice/call-returned elements (`&xs[0:][0]`, `&id(xs)[0]`) and multi-return borrow unpacks (`p, k := borrow_pair(&st)`) bypass O4/O5/O2/T22 and cause a `go run -race` data race",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/679",
-      "created_at": "2026-10-18T15:49:41Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 656,
-      "title": "[soundness] `*T`-receiver method call on a non-addressable receiver (map element, call result, struct literal) passes `hyb check`, emitted Go fails `go build`",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/656",
-      "created_at": "2026-10-18T14:48:30Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 658,
-      "title": "[soundness] Foreign Go names are never resolved (M4/M5): `io.eof`, `http.status_ok`, `math.sqrt`, `fmt.no_such_function` and imports outside the curated allowlist all pass `hyb check`, then fail `go build`",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/658",
-      "created_at": "2026-10-18T14:48:38Z",
-      "labels": [],
-      "competing_prs": 3,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.91
     }
   ],
   "platform_3_security": [

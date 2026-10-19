@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-18T23:59:31.682920+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-19T04:28:18.632844+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -23,22 +23,22 @@
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
 | `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `gigs-sh/gigs-sh` | [#16](https://github.com/gigs-sh/gigs-sh/issues/16) | [gig] Squash | 0 | `20.05` | [Inspect](https://github.com/gigs-sh/gigs-sh/issues/16) |
-| `HCTDIP/corps-jobs` | [#108](https://github.com/HCTDIP/corps-jobs/issues/108) | Railway 赏金：有 3 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/108) |
-| `eschnitzler/EmpireCore` | [#528](https://github.com/eschnitzler/EmpireCore/issues/528) | Event minigames and currencies: lucky wheel, gacha, col | 0 | `20.05` | [Inspect](https://github.com/eschnitzler/EmpireCore/issues/528) |
-| `relayhop/sn-monetization-runtime` | [#1308](https://github.com/relayhop/sn-monetization-runtime/issues/1308) | [radar] SN open bounty 2026-10-18T23:01 | 0 | `20.05` | [Inspect](https://github.com/relayhop/sn-monetization-runtime/issues/1308) |
-| `dev-kp-eloper/BountyScout` | [#1616](https://github.com/dev-kp-eloper/BountyScout/issues/1616) | 🎯 Bounty Alert: 4 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1616) |
+| `paraloom-labs/paraloom-core` | [#1034](https://github.com/paraloom-labs/paraloom-core/issues/1034) | [BOUNTY] Medium: wait_for_settlement accepts uninitiali | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1034) |
+| `patrickkellyyoung-ai/swarm-agora-mcp` | [#4](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/4) | [BOUNTY #3] High-Throughput MoE KV-Cache Compression Be | 0 | `20.05` | [Inspect](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/4) |
+| `patrickkellyyoung-ai/swarm-agora-mcp` | [#3](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/3) | [BOUNTY #2] Automated CVE & Threat Surface Detection on | 0 | `20.05` | [Inspect](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/3) |
+| `tari-project/special_contributions` | [#241](https://github.com/tari-project/special_contributions/issues/241) | Security report: tari-ootle unauthenticated peer forces | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/241) |
+| `russellyeo-oss/energy-alert-assistant` | [#2534](https://github.com/russellyeo-oss/energy-alert-assistant/issues/2534) | /if(empty(triggerOutputs()?['body/subject']), 'Energy a | 0 | `20.05` | [Inspect](https://github.com/russellyeo-oss/energy-alert-assistant/issues/2534) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#728](https://github.com/limitlessprojects/Go-Hybrid/issues/728) | [soundness] A Hybrid identifier spelled like a Go type  | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/728) |
-| `limitlessprojects/Go-Hybrid` | [#730](https://github.com/limitlessprojects/Go-Hybrid/issues/730) | [soundness] Exclusive integer range `lo..hi` re-evaluat | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/730) |
-| `limitlessprojects/Go-Hybrid` | [#729](https://github.com/limitlessprojects/Go-Hybrid/issues/729) | [soundness] G3 constraints are never enforced on generi | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/729) |
-| `limitlessprojects/Go-Hybrid` | [#727](https://github.com/limitlessprojects/Go-Hybrid/issues/727) | [soundness] hy-syntax: a `fn(...) T` type absorbs ident | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/727) |
-| `limitlessprojects/Go-Hybrid` | [#726](https://github.com/limitlessprojects/Go-Hybrid/issues/726) | [soundness] `f()?` on a user function or method that re | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/726) |
-| `limitlessprojects/Go-Hybrid` | [#725](https://github.com/limitlessprojects/Go-Hybrid/issues/725) | [soundness] Typed constant arithmetic that overflows it | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/725) |
+| `limitlessprojects/Go-Hybrid` | [#778](https://github.com/limitlessprojects/Go-Hybrid/issues/778) | [soundness] P2: a type name used in a value position pa | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/778) |
+| `limitlessprojects/Go-Hybrid` | [#775](https://github.com/limitlessprojects/Go-Hybrid/issues/775) | P0 (hy-check): generic struct TypeShape erasure drops t | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/775) |
+| `limitlessprojects/Go-Hybrid` | [#782](https://github.com/limitlessprojects/Go-Hybrid/issues/782) | [soundness] ForKind::Iterate and MatchBind drop const/m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/782) |
+| `limitlessprojects/Go-Hybrid` | [#777](https://github.com/limitlessprojects/Go-Hybrid/issues/777) | [soundness] P2: user declarations named some/option col | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/777) |
+| `limitlessprojects/Go-Hybrid` | [#773](https://github.com/limitlessprojects/Go-Hybrid/issues/773) | [soundness] T22 const deep-immutability (HYB-E3006) byp | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/773) |
+| `limitlessprojects/Go-Hybrid` | [#772](https://github.com/limitlessprojects/Go-Hybrid/issues/772) | [soundness] generic struct type-argument erasure in hy- | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/772) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
