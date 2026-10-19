@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-19T10:12:36.446741+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-19T17:06:23.440234+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `FuRongJun-1999/dsh-bounty` | [#1060](https://github.com/FuRongJun-1999/dsh-bounty/issues/1060) | [intake 输入] 【测评报告】dsh-remotion 0.6.0 安全面快测（视频工作台 · Stud | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1060) |
-| `FuRongJun-1999/dsh-bounty` | [#1059](https://github.com/FuRongJun-1999/dsh-bounty/issues/1059) | [intake 输入] 【测评报告】dsh-rss 0.7.0（stardustlc）安全快测（RSS / A | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1059) |
-| `FuRongJun-1999/dsh-bounty` | [#1058](https://github.com/FuRongJun-1999/dsh-bounty/issues/1058) | [intake 输入] 【测评报告】dsh-minimal-ptc 0.5.6（stardustlc）安全快测 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1058) |
-| `FuRongJun-1999/dsh-bounty` | [#1057](https://github.com/FuRongJun-1999/dsh-bounty/issues/1057) | [intake 输入] 【测评报告】dsh-slack 0.3.4 体验快测＋安全面（Slack 通知 · S | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1057) |
-| `FuRongJun-1999/dsh-bounty` | [#1056](https://github.com/FuRongJun-1999/dsh-bounty/issues/1056) | [intake 输入] 【测评报告】dsh-voice 0.3.6 Linux 安全快测（TTS/STT ·  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1056) |
-| `FuRongJun-1999/dsh-bounty` | [#1055](https://github.com/FuRongJun-1999/dsh-bounty/issues/1055) | [intake 输入] 【测评报告】dsh-ppt 0.11.0 安全与正确性快测（演示文稿 · 本地 moc | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1055) |
+| `FuRongJun-1999/dsh-bounty` | [#1174](https://github.com/FuRongJun-1999/dsh-bounty/issues/1174) | [intake 输入] 【测评报告】dsh-vision：/api/vision/* 三路零鉴权——POST  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1174) |
+| `FuRongJun-1999/dsh-bounty` | [#1173](https://github.com/FuRongJun-1999/dsh-bounty/issues/1173) | [intake 输入] 【测评报告】dsh-session-context-menu：右键菜单路由缺 Orig | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1173) |
+| `FuRongJun-1999/dsh-bounty` | [#1172](https://github.com/FuRongJun-1999/dsh-bounty/issues/1172) | [intake 输入] 【测评报告】DSH-EasyRewrite：/bubble/* 八路写面缺 Origi | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1172) |
+| `FuRongJun-1999/dsh-bounty` | [#1171](https://github.com/FuRongJun-1999/dsh-bounty/issues/1171) | [intake 输入] 【测评报告】dsh-im-gateway：渠道管理 API 整面零鉴权——可注入攻击者 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1171) |
+| `lizTheDeveloper/privacy-the-game` | [#377](https://github.com/lizTheDeveloper/privacy-the-game/issues/377) | [find opt-out] eFunds: find the official opt-out route | 0 | `20.05` | [Inspect](https://github.com/lizTheDeveloper/privacy-the-game/issues/377) |
+| `lizTheDeveloper/privacy-the-game` | [#376](https://github.com/lizTheDeveloper/privacy-the-game/issues/376) | [find opt-out] Early Warning Services, LLC: find the of | 0 | `20.05` | [Inspect](https://github.com/lizTheDeveloper/privacy-the-game/issues/376) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#855](https://github.com/limitlessprojects/Go-Hybrid/issues/855) | [P0 Soundness] Slicing an addressable value-copy array  | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/855) |
-| `limitlessprojects/Go-Hybrid` | [#854](https://github.com/limitlessprojects/Go-Hybrid/issues/854) | [P0 Soundness] walk_stmt_param_stores and expr_slot_ori | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/854) |
-| `limitlessprojects/Go-Hybrid` | [#853](https://github.com/limitlessprojects/Go-Hybrid/issues/853) | [P0 Soundness] record_copy_may_share and record_callee_ | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/853) |
-| `limitlessprojects/Go-Hybrid` | [#844](https://github.com/limitlessprojects/Go-Hybrid/issues/844) | [P0 Soundness] record_storage_from_snapshot drops non_o | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/844) |
-| `limitlessprojects/Go-Hybrid` | [#843](https://github.com/limitlessprojects/Go-Hybrid/issues/843) | [P0 Soundness] rebind_assign_targets and scan_block_con | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/843) |
-| `limitlessprojects/Go-Hybrid` | [#839](https://github.com/limitlessprojects/Go-Hybrid/issues/839) | [soundness] hy-check: closure captured-variable whole-b | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/839) |
+| `limitlessprojects/Go-Hybrid` | [#916](https://github.com/limitlessprojects/Go-Hybrid/issues/916) | [Soundness] hy-check: panic, recover, min, max, real, i | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/916) |
+| `limitlessprojects/Go-Hybrid` | [#914](https://github.com/limitlessprojects/Go-Hybrid/issues/914) | [Soundness] hy-check: multi-target compound assignments | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/914) |
+| `limitlessprojects/Go-Hybrid` | [#912](https://github.com/limitlessprojects/Go-Hybrid/issues/912) | [Soundness] hy-check: plain break and continue outside  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/912) |
+| `limitlessprojects/Go-Hybrid` | [#908](https://github.com/limitlessprojects/Go-Hybrid/issues/908) | [Soundness] hy-check: slice literal items and map liter | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/908) |
+| `limitlessprojects/Go-Hybrid` | [#905](https://github.com/limitlessprojects/Go-Hybrid/issues/905) | [Soundness] hy-check: parallel assignments and multi-ta | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/905) |
+| `limitlessprojects/Go-Hybrid` | [#900](https://github.com/limitlessprojects/Go-Hybrid/issues/900) | [soundness] Mismatched operand types in equality operat | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/900) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
