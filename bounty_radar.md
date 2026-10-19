@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-19T17:06:23.440234+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-19T21:41:13.730308+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `FuRongJun-1999/dsh-bounty` | [#1174](https://github.com/FuRongJun-1999/dsh-bounty/issues/1174) | [intake 输入] 【测评报告】dsh-vision：/api/vision/* 三路零鉴权——POST  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1174) |
-| `FuRongJun-1999/dsh-bounty` | [#1173](https://github.com/FuRongJun-1999/dsh-bounty/issues/1173) | [intake 输入] 【测评报告】dsh-session-context-menu：右键菜单路由缺 Orig | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1173) |
-| `FuRongJun-1999/dsh-bounty` | [#1172](https://github.com/FuRongJun-1999/dsh-bounty/issues/1172) | [intake 输入] 【测评报告】DSH-EasyRewrite：/bubble/* 八路写面缺 Origi | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1172) |
-| `FuRongJun-1999/dsh-bounty` | [#1171](https://github.com/FuRongJun-1999/dsh-bounty/issues/1171) | [intake 输入] 【测评报告】dsh-im-gateway：渠道管理 API 整面零鉴权——可注入攻击者 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1171) |
-| `lizTheDeveloper/privacy-the-game` | [#377](https://github.com/lizTheDeveloper/privacy-the-game/issues/377) | [find opt-out] eFunds: find the official opt-out route | 0 | `20.05` | [Inspect](https://github.com/lizTheDeveloper/privacy-the-game/issues/377) |
-| `lizTheDeveloper/privacy-the-game` | [#376](https://github.com/lizTheDeveloper/privacy-the-game/issues/376) | [find opt-out] Early Warning Services, LLC: find the of | 0 | `20.05` | [Inspect](https://github.com/lizTheDeveloper/privacy-the-game/issues/376) |
+| `picsoritdidnthappen/poidh-app` | [#1584](https://github.com/picsoritdidnthappen/poidh-app/issues/1584) | MCP / WebMCP edge cases: v2-era ids get calldata for a  | 0 | `20.05` | [Inspect](https://github.com/picsoritdidnthappen/poidh-app/issues/1584) |
+| `GrayFace/MMExtension` | [#21](https://github.com/GrayFace/MMExtension/issues/21) | Game crashes when looting bodies | 0 | `20.05` | [Inspect](https://github.com/GrayFace/MMExtension/issues/21) |
+| `cranebeaker/coop-anything` | [#61](https://github.com/cranebeaker/coop-anything/issues/61) | Claim: King's Bounty: Crossworlds | 0 | `20.05` | [Inspect](https://github.com/cranebeaker/coop-anything/issues/61) |
+| `lometur/HearthDAoC` | [#143](https://github.com/lometur/HearthDAoC/issues/143) | Remove Atlas ROGs (random generated magic items) from l | 0 | `20.05` | [Inspect](https://github.com/lometur/HearthDAoC/issues/143) |
+| `those-who-run/those-who-run` | [#359](https://github.com/those-who-run/those-who-run/issues/359) | docs: an AI contribution policy, and intake that keeps  | 0 | `20.05` | [Inspect](https://github.com/those-who-run/those-who-run/issues/359) |
+| `lometur/HearthDAoC` | [#141](https://github.com/lometur/HearthDAoC/issues/141) | Remove the cheap top-level item merchants from the capi | 0 | `20.05` | [Inspect](https://github.com/lometur/HearthDAoC/issues/141) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#916](https://github.com/limitlessprojects/Go-Hybrid/issues/916) | [Soundness] hy-check: panic, recover, min, max, real, i | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/916) |
-| `limitlessprojects/Go-Hybrid` | [#914](https://github.com/limitlessprojects/Go-Hybrid/issues/914) | [Soundness] hy-check: multi-target compound assignments | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/914) |
-| `limitlessprojects/Go-Hybrid` | [#912](https://github.com/limitlessprojects/Go-Hybrid/issues/912) | [Soundness] hy-check: plain break and continue outside  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/912) |
-| `limitlessprojects/Go-Hybrid` | [#908](https://github.com/limitlessprojects/Go-Hybrid/issues/908) | [Soundness] hy-check: slice literal items and map liter | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/908) |
-| `limitlessprojects/Go-Hybrid` | [#905](https://github.com/limitlessprojects/Go-Hybrid/issues/905) | [Soundness] hy-check: parallel assignments and multi-ta | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/905) |
-| `limitlessprojects/Go-Hybrid` | [#900](https://github.com/limitlessprojects/Go-Hybrid/issues/900) | [soundness] Mismatched operand types in equality operat | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/900) |
+| `limitlessprojects/Go-Hybrid` | [#939](https://github.com/limitlessprojects/Go-Hybrid/issues/939) | [wildcard] Kill the human-written repro: a self-submitt | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/939) |
+| `limitlessprojects/Go-Hybrid` | [#940](https://github.com/limitlessprojects/Go-Hybrid/issues/940) | Triage Board (auto-updated daily — pin me) | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/940) |
+| `limitlessprojects/Go-Hybrid` | [#936](https://github.com/limitlessprojects/Go-Hybrid/issues/936) | [Soundness] hy-check: make non-integer/constant sizes,  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/936) |
+| `limitlessprojects/Go-Hybrid` | [#934](https://github.com/limitlessprojects/Go-Hybrid/issues/934) | [Soundness] hy-check: undefined field selection/assignm | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/934) |
+| `limitlessprojects/Go-Hybrid` | [#929](https://github.com/limitlessprojects/Go-Hybrid/issues/929) | [Soundness] hy-check: multi-value binding arity mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/929) |
+| `limitlessprojects/Go-Hybrid` | [#927](https://github.com/limitlessprojects/Go-Hybrid/issues/927) | [Soundness] hy-check: copy and clear operand types and  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/927) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
