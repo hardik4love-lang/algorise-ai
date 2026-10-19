@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-19T04:28:18.632844+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-19T10:12:36.446741+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `elizaOS/eliza` | [#36589](https://github.com/elizaOS/eliza/issues/36589) | [iMessage] Investigate observed ten-minute gap before B | 0 | `20.05` | [Inspect](https://github.com/elizaOS/eliza/issues/36589) |
-| `paraloom-labs/paraloom-core` | [#1034](https://github.com/paraloom-labs/paraloom-core/issues/1034) | [BOUNTY] Medium: wait_for_settlement accepts uninitiali | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1034) |
-| `patrickkellyyoung-ai/swarm-agora-mcp` | [#4](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/4) | [BOUNTY #3] High-Throughput MoE KV-Cache Compression Be | 0 | `20.05` | [Inspect](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/4) |
-| `patrickkellyyoung-ai/swarm-agora-mcp` | [#3](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/3) | [BOUNTY #2] Automated CVE & Threat Surface Detection on | 0 | `20.05` | [Inspect](https://github.com/patrickkellyyoung-ai/swarm-agora-mcp/issues/3) |
-| `tari-project/special_contributions` | [#241](https://github.com/tari-project/special_contributions/issues/241) | Security report: tari-ootle unauthenticated peer forces | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/241) |
-| `russellyeo-oss/energy-alert-assistant` | [#2534](https://github.com/russellyeo-oss/energy-alert-assistant/issues/2534) | /if(empty(triggerOutputs()?['body/subject']), 'Energy a | 0 | `20.05` | [Inspect](https://github.com/russellyeo-oss/energy-alert-assistant/issues/2534) |
+| `FuRongJun-1999/dsh-bounty` | [#1060](https://github.com/FuRongJun-1999/dsh-bounty/issues/1060) | [intake 输入] 【测评报告】dsh-remotion 0.6.0 安全面快测（视频工作台 · Stud | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1060) |
+| `FuRongJun-1999/dsh-bounty` | [#1059](https://github.com/FuRongJun-1999/dsh-bounty/issues/1059) | [intake 输入] 【测评报告】dsh-rss 0.7.0（stardustlc）安全快测（RSS / A | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1059) |
+| `FuRongJun-1999/dsh-bounty` | [#1058](https://github.com/FuRongJun-1999/dsh-bounty/issues/1058) | [intake 输入] 【测评报告】dsh-minimal-ptc 0.5.6（stardustlc）安全快测 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1058) |
+| `FuRongJun-1999/dsh-bounty` | [#1057](https://github.com/FuRongJun-1999/dsh-bounty/issues/1057) | [intake 输入] 【测评报告】dsh-slack 0.3.4 体验快测＋安全面（Slack 通知 · S | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1057) |
+| `FuRongJun-1999/dsh-bounty` | [#1056](https://github.com/FuRongJun-1999/dsh-bounty/issues/1056) | [intake 输入] 【测评报告】dsh-voice 0.3.6 Linux 安全快测（TTS/STT ·  | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1056) |
+| `FuRongJun-1999/dsh-bounty` | [#1055](https://github.com/FuRongJun-1999/dsh-bounty/issues/1055) | [intake 输入] 【测评报告】dsh-ppt 0.11.0 安全与正确性快测（演示文稿 · 本地 moc | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1055) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#778](https://github.com/limitlessprojects/Go-Hybrid/issues/778) | [soundness] P2: a type name used in a value position pa | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/778) |
-| `limitlessprojects/Go-Hybrid` | [#775](https://github.com/limitlessprojects/Go-Hybrid/issues/775) | P0 (hy-check): generic struct TypeShape erasure drops t | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/775) |
-| `limitlessprojects/Go-Hybrid` | [#782](https://github.com/limitlessprojects/Go-Hybrid/issues/782) | [soundness] ForKind::Iterate and MatchBind drop const/m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/782) |
-| `limitlessprojects/Go-Hybrid` | [#777](https://github.com/limitlessprojects/Go-Hybrid/issues/777) | [soundness] P2: user declarations named some/option col | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/777) |
-| `limitlessprojects/Go-Hybrid` | [#773](https://github.com/limitlessprojects/Go-Hybrid/issues/773) | [soundness] T22 const deep-immutability (HYB-E3006) byp | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/773) |
-| `limitlessprojects/Go-Hybrid` | [#772](https://github.com/limitlessprojects/Go-Hybrid/issues/772) | [soundness] generic struct type-argument erasure in hy- | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/772) |
+| `limitlessprojects/Go-Hybrid` | [#855](https://github.com/limitlessprojects/Go-Hybrid/issues/855) | [P0 Soundness] Slicing an addressable value-copy array  | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/855) |
+| `limitlessprojects/Go-Hybrid` | [#854](https://github.com/limitlessprojects/Go-Hybrid/issues/854) | [P0 Soundness] walk_stmt_param_stores and expr_slot_ori | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/854) |
+| `limitlessprojects/Go-Hybrid` | [#853](https://github.com/limitlessprojects/Go-Hybrid/issues/853) | [P0 Soundness] record_copy_may_share and record_callee_ | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/853) |
+| `limitlessprojects/Go-Hybrid` | [#844](https://github.com/limitlessprojects/Go-Hybrid/issues/844) | [P0 Soundness] record_storage_from_snapshot drops non_o | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/844) |
+| `limitlessprojects/Go-Hybrid` | [#843](https://github.com/limitlessprojects/Go-Hybrid/issues/843) | [P0 Soundness] rebind_assign_targets and scan_block_con | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/843) |
+| `limitlessprojects/Go-Hybrid` | [#839](https://github.com/limitlessprojects/Go-Hybrid/issues/839) | [soundness] hy-check: closure captured-variable whole-b | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/839) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
