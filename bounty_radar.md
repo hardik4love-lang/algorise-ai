@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-19T21:41:13.730308+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-20T00:57:42.178431+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `picsoritdidnthappen/poidh-app` | [#1584](https://github.com/picsoritdidnthappen/poidh-app/issues/1584) | MCP / WebMCP edge cases: v2-era ids get calldata for a  | 0 | `20.05` | [Inspect](https://github.com/picsoritdidnthappen/poidh-app/issues/1584) |
-| `GrayFace/MMExtension` | [#21](https://github.com/GrayFace/MMExtension/issues/21) | Game crashes when looting bodies | 0 | `20.05` | [Inspect](https://github.com/GrayFace/MMExtension/issues/21) |
-| `cranebeaker/coop-anything` | [#61](https://github.com/cranebeaker/coop-anything/issues/61) | Claim: King's Bounty: Crossworlds | 0 | `20.05` | [Inspect](https://github.com/cranebeaker/coop-anything/issues/61) |
-| `lometur/HearthDAoC` | [#143](https://github.com/lometur/HearthDAoC/issues/143) | Remove Atlas ROGs (random generated magic items) from l | 0 | `20.05` | [Inspect](https://github.com/lometur/HearthDAoC/issues/143) |
-| `those-who-run/those-who-run` | [#359](https://github.com/those-who-run/those-who-run/issues/359) | docs: an AI contribution policy, and intake that keeps  | 0 | `20.05` | [Inspect](https://github.com/those-who-run/those-who-run/issues/359) |
-| `lometur/HearthDAoC` | [#141](https://github.com/lometur/HearthDAoC/issues/141) | Remove the cheap top-level item merchants from the capi | 0 | `20.05` | [Inspect](https://github.com/lometur/HearthDAoC/issues/141) |
+| `tenstorrent/tt-metal` | [#61497](https://github.com/tenstorrent/tt-metal/issues/61497) | [data_format] BFP host pack/unpack use 32-bit offsets;  | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61497) |
+| `tenstorrent/tt-metal` | [#61496](https://github.com/tenstorrent/tt-metal/issues/61496) | [selective_reduce_combine] LOCAL_COMBINE writer exits w | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61496) |
+| `tenstorrent/tt-metal` | [#61495](https://github.com/tenstorrent/tt-metal/issues/61495) | [moe_grouped_topk] n_groups=1 with 32 experts reads a s | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61495) |
+| `cantrip-rs/cantrip-rs` | [#383](https://github.com/cantrip-rs/cantrip-rs/issues/383) | Card: Chevill, Bane of Monsters | 0 | `20.05` | [Inspect](https://github.com/cantrip-rs/cantrip-rs/issues/383) |
+| `FuRongJun-1999/dsh-bounty` | [#1194](https://github.com/FuRongJun-1999/dsh-bounty/issues/1194) | [intake 输入] 【测评报告/独立复核】dsh-hyperframes 0.7.0 Windows 真实 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1194) |
+| `HCTDIP/corps-jobs` | [#113](https://github.com/HCTDIP/corps-jobs/issues/113) | Railway 赏金：有 1 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/113) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#939](https://github.com/limitlessprojects/Go-Hybrid/issues/939) | [wildcard] Kill the human-written repro: a self-submitt | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/939) |
-| `limitlessprojects/Go-Hybrid` | [#940](https://github.com/limitlessprojects/Go-Hybrid/issues/940) | Triage Board (auto-updated daily — pin me) | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/940) |
+| `limitlessprojects/Go-Hybrid` | [#953](https://github.com/limitlessprojects/Go-Hybrid/issues/953) | [soundness] hy-emit: emit_match drops O8 slot-loan stor | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/953) |
+| `limitlessprojects/Go-Hybrid` | [#946](https://github.com/limitlessprojects/Go-Hybrid/issues/946) | [soundness] hy-check & hy-emit: closure-captured/loop-c | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/946) |
+| `limitlessprojects/Go-Hybrid` | [#939](https://github.com/limitlessprojects/Go-Hybrid/issues/939) | [wildcard] Kill the human-written repro: a self-submitt | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/939) |
 | `limitlessprojects/Go-Hybrid` | [#936](https://github.com/limitlessprojects/Go-Hybrid/issues/936) | [Soundness] hy-check: make non-integer/constant sizes,  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/936) |
 | `limitlessprojects/Go-Hybrid` | [#934](https://github.com/limitlessprojects/Go-Hybrid/issues/934) | [Soundness] hy-check: undefined field selection/assignm | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/934) |
 | `limitlessprojects/Go-Hybrid` | [#929](https://github.com/limitlessprojects/Go-Hybrid/issues/929) | [Soundness] hy-check: multi-value binding arity mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/929) |
-| `limitlessprojects/Go-Hybrid` | [#927](https://github.com/limitlessprojects/Go-Hybrid/issues/927) | [Soundness] hy-check: copy and clear operand types and  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/927) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

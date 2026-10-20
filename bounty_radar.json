@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T21:41:13.730666+00:00",
+  "generated_at": "2026-10-20T00:57:42.179015+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -123,50 +123,57 @@
   ],
   "platform_1_algora": [
     {
-      "repo": "picsoritdidnthappen/poidh-app",
-      "number": 1584,
-      "title": "MCP / WebMCP edge cases: v2-era ids get calldata for a different bounty, + 19 more (report)",
-      "url": "https://github.com/picsoritdidnthappen/poidh-app/issues/1584",
-      "created_at": "2026-10-19T21:21:29Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "GrayFace/MMExtension",
-      "number": 21,
-      "title": "Game crashes when looting bodies",
-      "url": "https://github.com/GrayFace/MMExtension/issues/21",
-      "created_at": "2026-10-19T21:19:35Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "cranebeaker/coop-anything",
-      "number": 61,
-      "title": "Claim: King's Bounty: Crossworlds",
-      "url": "https://github.com/cranebeaker/coop-anything/issues/61",
-      "created_at": "2026-10-19T21:10:39Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "lometur/HearthDAoC",
-      "number": 143,
-      "title": "Remove Atlas ROGs (random generated magic items) from loot and rewards: stay in period",
-      "url": "https://github.com/lometur/HearthDAoC/issues/143",
-      "created_at": "2026-10-19T21:09:11Z",
+      "repo": "tenstorrent/tt-metal",
+      "number": 61497,
+      "title": "[data_format] BFP host pack/unpack use 32-bit offsets; tensors above 2^31 elements crash or corrupt",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61497",
+      "created_at": "2026-10-19T22:59:06Z",
       "labels": [
-        "enhancement",
-        "area:gameplay"
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "number": 61496,
+      "title": "[selective_reduce_combine] LOCAL_COMBINE writer exits with semaphore increments in flight on Blackhole",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61496",
+      "created_at": "2026-10-19T22:59:02Z",
+      "labels": [
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "number": 61495,
+      "title": "[moe_grouped_topk] n_groups=1 with 32 experts reads a second tile past both inputs",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61495",
+      "created_at": "2026-10-19T22:58:59Z",
+      "labels": [
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "cantrip-rs/cantrip-rs",
+      "number": 383,
+      "title": "Card: Chevill, Bane of Monsters",
+      "url": "https://github.com/cantrip-rs/cantrip-rs/issues/383",
+      "created_at": "2026-10-20T00:53:15Z",
+      "labels": [
+        "card",
+        "priority:low",
+        "format:pioneer"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -174,30 +181,12 @@
       "priority_score": 20.05
     },
     {
-      "repo": "those-who-run/those-who-run",
-      "number": 359,
-      "title": "docs: an AI contribution policy, and intake that keeps strangers' text away from the agents",
-      "url": "https://github.com/those-who-run/those-who-run/issues/359",
-      "created_at": "2026-10-19T21:01:32Z",
-      "labels": [
-        "quality",
-        "stream: health"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "lometur/HearthDAoC",
-      "number": 141,
-      "title": "Remove the cheap top-level item merchants from the capitals (before remote play, #41)",
-      "url": "https://github.com/lometur/HearthDAoC/issues/141",
-      "created_at": "2026-10-19T21:00:02Z",
-      "labels": [
-        "enhancement",
-        "area:gameplay"
-      ],
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1194,
+      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a/\u72ec\u7acb\u590d\u6838\u3011dsh-hyperframes 0.7.0 Windows \u771f\u5b9e DSH \u5bbf\u4e3b UI \u589e\u91cf\u590d\u6838\uff1a\u5b89\u88c5/21 \u6280\u80fd/\u5de5\u4f5c\u53f0\u8868\u5355\u4e0e\u4fee\u8ba2/\u516d\u7c7b\u62d2\u7edd\u5224\u636e\u5728\u771f\u5b9e\u5bbf\u4e3b\u4e2d\u5168\u8fc7\uff1b\u8865 #1065 \u660e\u786e\u7559\u767d\u7684 Windows+\u5bbf\u4e3b UI \u9762\uff1b\u9884\u89c8\u4e0e MP4 \u56e0 114 MB headless-shell \u4e0b\u8f7d\u672a\u5b8c\u6210\u6807\u672a\u9a8c",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1194",
+      "created_at": "2026-10-20T00:50:25Z",
+      "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -205,10 +194,10 @@
     },
     {
       "repo": "HCTDIP/corps-jobs",
-      "number": 111,
-      "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
-      "url": "https://github.com/HCTDIP/corps-jobs/issues/111",
-      "created_at": "2026-10-19T20:43:32Z",
+      "number": 113,
+      "title": "Railway \u8d4f\u91d1\uff1a\u6709 1 \u6761\u503c\u5f97\u62a2",
+      "url": "https://github.com/HCTDIP/corps-jobs/issues/113",
+      "created_at": "2026-10-20T00:40:20Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -216,27 +205,15 @@
       "priority_score": 20.05
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 22641,
-      "title": "fix(backend): normalize naive/aware/ISO timestamps in smart_merge_policy and smart_merge_state",
-      "url": "https://github.com/BasedHardware/omi/issues/22641",
-      "created_at": "2026-10-19T20:42:13Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "johnephraim949-web/cypher-gridpay-contracts",
-      "number": 233,
-      "title": "refund: Add standby backup arbitrator auto-substitution on `ArbitrationTimedOut` (`test_arbitration_timeout.rs`)",
-      "url": "https://github.com/johnephraim949-web/cypher-gridpay-contracts/issues/233",
-      "created_at": "2026-10-19T20:40:33Z",
+      "repo": "relayhop/sn-monetization-runtime",
+      "number": 1314,
+      "title": "[radar] SN open bounty 2026-10-20T00:14",
+      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1314",
+      "created_at": "2026-10-20T00:14:57Z",
       "labels": [
-        "enhancement",
-        "refund",
-        "Stellar Wave"
+        "radar",
+        "sn",
+        "bounty"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -244,16 +221,41 @@
       "priority_score": 20.05
     },
     {
-      "repo": "johnephraim949-web/cypher-gridpay-contracts",
-      "number": 222,
-      "title": "refund: Add Schelling-point minority vote slashing and coherent consensus rewards in `ArbitrationCaseDecided`",
-      "url": "https://github.com/johnephraim949-web/cypher-gridpay-contracts/issues/222",
-      "created_at": "2026-10-19T20:40:01Z",
+      "repo": "sidhulyalkar/unicorn-stampede",
+      "number": 61,
+      "title": "Bounty Board launch: hosted preview, playtests, score policy and submission gates",
+      "url": "https://github.com/sidhulyalkar/unicorn-stampede/issues/61",
+      "created_at": "2026-10-19T23:58:24Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "allurco/caribbean-adventure",
+      "number": 454,
+      "title": "Fight over: say when attacking a merchant puts a bounty on you",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/454",
+      "created_at": "2026-10-19T23:40:35Z",
       "labels": [
         "enhancement",
-        "refund",
-        "security",
-        "Stellar Wave"
+        "needs-triage"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "allurco/caribbean-adventure",
+      "number": 453,
+      "title": "Fight over: say when a fight completes an assassination mission",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/453",
+      "created_at": "2026-10-19T23:40:33Z",
+      "labels": [
+        "enhancement",
+        "needs-triage"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -264,27 +266,39 @@
   "platform_2_gohybrid": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
+      "number": 953,
+      "title": "[soundness] hy-emit: emit_match drops O8 slot-loan store-back on else_arm in has_unguarded_some branch",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/953",
+      "created_at": "2026-10-19T22:59:07Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 946,
+      "title": "[soundness] hy-check & hy-emit: closure-captured/loop-carried O8 map-slot loans bypass HYB-E3102 across move/re-loan (`l.last` vs `effective_loan_last`), and `for`/`match` loan lowering clobbers or drops slot write-backs",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/946",
+      "created_at": "2026-10-19T22:45:48Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
       "number": 939,
       "title": "[wildcard] Kill the human-written repro: a self-submitting soundness pipeline (grammar fuzz \u2192 accept-gate \u2192 emit \u2192 go build \u2192 shrink \u2192 auto-file)",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/939",
       "created_at": "2026-10-19T20:33:45Z",
       "labels": [],
-      "competing_prs": 0,
+      "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 940,
-      "title": "Triage Board (auto-updated daily \u2014 pin me)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/940",
-      "created_at": "2026-10-19T20:42:04Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -336,30 +350,6 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 925,
-      "title": "[Soundness] hy-check: single call return statements bypass return arity and void checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/925",
-      "created_at": "2026-10-19T18:51:06Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 922,
-      "title": "[Soundness] hy-check: binary arithmetic and relational operators permit mismatched numeric types (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/922",
-      "created_at": "2026-10-19T17:34:06Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
       "number": 920,
       "title": "[Soundness] hy-check: auto-addressed *T calls, range/match/copy/out-param borrow propagation, index-stored borrows, and closure borrow captures bypass HYB-E3104, HYB-E3103, HYB-E3003, and HYB-E3004",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/920",
@@ -372,15 +362,27 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 918,
-      "title": "[Soundness] hy-check: address-of operator (&) on non-addressable expressions bypasses front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/918",
-      "created_at": "2026-10-19T17:14:58Z",
+      "number": 925,
+      "title": "[Soundness] hy-check: single call return statements bypass return arity and void checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/925",
+      "created_at": "2026-10-19T18:51:06Z",
       "labels": [],
-      "competing_prs": 1,
+      "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.05
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 922,
+      "title": "[Soundness] hy-check: binary arithmetic and relational operators permit mismatched numeric types (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/922",
+      "created_at": "2026-10-19T17:34:06Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
     }
   ],
   "platform_3_security": [
