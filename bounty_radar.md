@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-20T11:07:33.409521+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-20T15:47:17.864842+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `tenstorrent/tt-metal` | [#61572](https://github.com/tenstorrent/tt-metal/issues/61572) | [ccl]: Fabric mux buffers at l1_unreserved_base overlap | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61572) |
-| `FuRongJun-1999/dsh-bounty` | [#1268](https://github.com/FuRongJun-1999/dsh-bounty/issues/1268) | [intake 输入] 【安全快测】dsh-memory-vault 0.3.0：模型可静默写入全局预设，下一 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1268) |
-| `FuRongJun-1999/dsh-bounty` | [#1267](https://github.com/FuRongJun-1999/dsh-bounty/issues/1267) | [intake 输入] 【安全快测】dsh-core-memory 2.0.0：模型可无确认改写全局核心记忆， | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1267) |
-| `tari-project/special_contributions` | [#275](https://github.com/tari-project/special_contributions/issues/275) | Security report: tari-ootle mutable authorization signa | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/275) |
-| `0xjevons/monkeytrading` | [#43](https://github.com/0xjevons/monkeytrading/issues/43) | Security policy and bug bounty | 0 | `20.05` | [Inspect](https://github.com/0xjevons/monkeytrading/issues/43) |
-| `FuRongJun-1999/dsh-bounty` | [#1266](https://github.com/FuRongJun-1999/dsh-bounty/issues/1266) | [intake 输入] 【安全快测】dsh-hermes-memory 0.3.0（lcthe）：`memor | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1266) |
+| `BasedHardware/omi` | [#22860](https://github.com/BasedHardware/omi/issues/22860) | Bounty Proposal: Reusable Deploy Ancestry Guard & CI Pi | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22860) |
+| `angeloasante/Diaspora_AI_Visa_data` | [#92](https://github.com/angeloasante/Diaspora_AI_Visa_data/issues/92) | [Data Issue] Cannot represent intended-stay passport va | 0 | `20.05` | [Inspect](https://github.com/angeloasante/Diaspora_AI_Visa_data/issues/92) |
+| `suitenumerique/meet` | [#1842](https://github.com/suitenumerique/meet/issues/1842) | Frequently asked questions: language change not indicat | 0 | `20.05` | [Inspect](https://github.com/suitenumerique/meet/issues/1842) |
+| `xaviercallens/HiveMind` | [#59](https://github.com/xaviercallens/HiveMind/issues/59) | [Season 6 Bounty HM-S6-04] Season 6 Autonomous Agent Ar | 0 | `20.05` | [Inspect](https://github.com/xaviercallens/HiveMind/issues/59) |
+| `xaviercallens/HiveMind` | [#60](https://github.com/xaviercallens/HiveMind/issues/60) | [Season 6 Bounty HM-S6-05] Formal Lean 4 Proofs (Theore | 0 | `20.05` | [Inspect](https://github.com/xaviercallens/HiveMind/issues/60) |
+| `xaviercallens/HiveMind` | [#58](https://github.com/xaviercallens/HiveMind/issues/58) | [Season 6 Bounty HM-S6-03] Zero-Knowledge Succinct Acti | 0 | `20.05` | [Inspect](https://github.com/xaviercallens/HiveMind/issues/58) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#998](https://github.com/limitlessprojects/Go-Hybrid/issues/998) | [Soundness] typed-const overflow via assignment into na | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/998) |
-| `limitlessprojects/Go-Hybrid` | [#990](https://github.com/limitlessprojects/Go-Hybrid/issues/990) | [Soundness] hy-check: same-scope local redeclarations a | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/990) |
-| `limitlessprojects/Go-Hybrid` | [#982](https://github.com/limitlessprojects/Go-Hybrid/issues/982) | [Soundness] hy-check: (T, error) return signatures acce | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/982) |
-| `limitlessprojects/Go-Hybrid` | [#971](https://github.com/limitlessprojects/Go-Hybrid/issues/971) | [Soundness] hy-check: bare expression statements and de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/971) |
-| `limitlessprojects/Go-Hybrid` | [#970](https://github.com/limitlessprojects/Go-Hybrid/issues/970) | P0 soundness: a slice-element loan (`&xs[0]`) is not in | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/970) |
-| `limitlessprojects/Go-Hybrid` | [#966](https://github.com/limitlessprojects/Go-Hybrid/issues/966) | [soundness] bind_match_arm and multi-value process_loca | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/966) |
+| `limitlessprojects/Go-Hybrid` | [#1031](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) | [Soundness] hy-check: return type mismatches against de | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) |
+| `limitlessprojects/Go-Hybrid` | [#1037](https://github.com/limitlessprojects/Go-Hybrid/issues/1037) | [tooling] Conflict-marker gate reports clean when candi | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1037) |
+| `limitlessprojects/Go-Hybrid` | [#1035](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) | [soundness] Critical: user-declared `panic` silently de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) |
+| `limitlessprojects/Go-Hybrid` | [#1032](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) | [Soundness] hy-check: while loop condition type mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) |
+| `limitlessprojects/Go-Hybrid` | [#1029](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) | [Soundness] hy-check: call argument type mismatches aga | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) |
+| `limitlessprojects/Go-Hybrid` | [#1013](https://github.com/limitlessprojects/Go-Hybrid/issues/1013) | [Soundness] hy-check: void calls and 0-value builtins i | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1013) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

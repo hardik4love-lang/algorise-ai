@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T11:07:33.410127+00:00",
+  "generated_at": "2026-10-20T15:47:17.865507+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -123,25 +123,11 @@
   ],
   "platform_1_algora": [
     {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61572,
-      "title": "[ccl]: Fabric mux buffers at l1_unreserved_base overlap PrefetcherPipe persistent L1",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61572",
-      "created_at": "2026-10-20T06:32:44Z",
-      "labels": [
-        "bug"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1268,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-memory-vault 0.3.0\uff1a\u6a21\u578b\u53ef\u9759\u9ed8\u5199\u5165\u5168\u5c40\u9884\u8bbe\uff0c\u4e0b\u4e00\u4f1a\u8bdd\u4ee5\u7528\u6237\u8eab\u4efd\u6ce8\u5165\uff1bscope=all/\u65e0 cwd \u8de8\u9879\u76ee\u653e\u5f00\uff08P1/P2\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1268",
-      "created_at": "2026-10-20T11:05:08Z",
+      "repo": "BasedHardware/omi",
+      "number": 22860,
+      "title": "Bounty Proposal: Reusable Deploy Ancestry Guard & CI Pipeline Hardening ($100 - $125 USD)",
+      "url": "https://github.com/BasedHardware/omi/issues/22860",
+      "created_at": "2026-10-20T12:39:50Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -149,11 +135,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1267,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-core-memory 2.0.0\uff1a\u6a21\u578b\u53ef\u65e0\u786e\u8ba4\u6539\u5199\u5168\u5c40\u6838\u5fc3\u8bb0\u5fc6\uff0c\u65b0\u4f1a\u8bdd\u5168\u6587\u6ce8\u5165 system prompt\uff08\u9ed8\u8ba4\u65e0\u4e0a\u9650\uff1bP1/P2\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1267",
-      "created_at": "2026-10-20T11:04:01Z",
+      "repo": "angeloasante/Diaspora_AI_Visa_data",
+      "number": 92,
+      "title": "[Data Issue] Cannot represent intended-stay passport validity without a six-month fallback",
+      "url": "https://github.com/angeloasante/Diaspora_AI_Visa_data/issues/92",
+      "created_at": "2026-10-20T15:27:03Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -161,42 +147,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "tari-project/special_contributions",
-      "number": 275,
-      "title": "Security report: tari-ootle mutable authorization signature order transfers new-account ownership to an attacker (GHSA-8v88-58fr-4878)",
-      "url": "https://github.com/tari-project/special_contributions/issues/275",
-      "created_at": "2026-10-20T11:03:26Z",
-      "labels": [
-        "retro-bounty",
-        "bounty-M"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "0xjevons/monkeytrading",
-      "number": 43,
-      "title": "Security policy and bug bounty",
-      "url": "https://github.com/0xjevons/monkeytrading/issues/43",
-      "created_at": "2026-10-20T11:03:06Z",
-      "labels": [
-        "feature",
-        "ready-to-build",
-        "wave-6"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1266,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-hermes-memory 0.3.0\uff08lcthe\uff09\uff1a`memory_pin` \u7531\u6a21\u578b\u5355\u65b9\u8c03\u7528\u5373\u53ef\u5199\u5165\"\u5e38\u9a7b\u6307\u4ee4\"\uff0c\u63d2\u4ef6\u628a\u6765\u6e90\u786c\u7f16\u7801\u4e3a `explicit`\uff08\u7528\u6237\u663e\u5f0f\u6388\u6743\uff09\uff0c\u518d\u4ee5 user \u89d2\u8272\u6ce8\u5165\u4e4b\u540e\u6bcf\u4e00\u4e2a\u65b0\u4f1a\u8bdd",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1266",
-      "created_at": "2026-10-20T11:02:36Z",
+      "repo": "suitenumerique/meet",
+      "number": 1842,
+      "title": "Frequently asked questions: language change not indicated on \"bug bounty\"",
+      "url": "https://github.com/suitenumerique/meet/issues/1842",
+      "created_at": "2026-10-20T15:08:58Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -204,11 +159,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1265,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-plugin-notify 0.1.3\uff08huguangyu666\uff09\uff1a`/notify/api*` \u4e09\u6761\u8def\u7531\u96f6\u9274\u6743\u2014\u2014\u8de8\u7ad9 POST \u5373\u53ef\u8ba9\u63d2\u4ef6\u7528\u684c\u9762\u901a\u77e5+\u4e2d\u6587\u8bed\u97f3\u64ad\u62a5\u653b\u51fb\u8005\u6587\u672c\uff0c\u5e76\u63a5\u7ba1\u5bbf\u4e3b `notify` \u8bbe\u7f6e\u547d\u540d\u7a7a\u95f4\uff0c\u628a\u653b\u51fb\u8005\u6587\u6848\u56fa\u5316\u6210\u300c\u6bcf\u4e2a\u56de\u5408\u7ed3\u675f\u81ea\u52a8\u5ff5\u300d\u7684\u6a21\u677f",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1265",
-      "created_at": "2026-10-20T11:01:37Z",
+      "repo": "xaviercallens/HiveMind",
+      "number": 59,
+      "title": "[Season 6 Bounty HM-S6-04] Season 6 Autonomous Agent Arena (Missions 21-24): Self-Play Code Repair & Live Strategy Optimizer HUD (+2,500 $HIVE)",
+      "url": "https://github.com/xaviercallens/HiveMind/issues/59",
+      "created_at": "2026-10-20T15:00:33Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -216,11 +171,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1264,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-knowledge 0.5.2\uff1a`/knowledge` \u9762\u677f API \u53ea\u6709 MinerU \u7ba1\u7406\u8def\u7531\u6709\u56de\u73af\u6805\u680f\uff0c\u5176\u4f59\u5199\u9762/\u8bfb\u9762\u96f6\u9274\u6743\uff08\u53ef\u6539\u5d4c\u5165\u7aef\u70b9\u3001\u4efb\u610f\u8def\u5f84\u5bfc\u5165\u3001\u5220\u9664\uff09",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1264",
-      "created_at": "2026-10-20T11:00:37Z",
+      "repo": "xaviercallens/HiveMind",
+      "number": 60,
+      "title": "[Season 6 Bounty HM-S6-05] Formal Lean 4 Proofs (Theorems 49-56) for EF21-DiLoCo Contraction & UCB1 Bandit Regret Bounds (+3,000 $HIVE)",
+      "url": "https://github.com/xaviercallens/HiveMind/issues/60",
+      "created_at": "2026-10-20T15:00:33Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -228,11 +183,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1263,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-session-manager 0.7.4\uff08hkkz9522\uff09\uff1a`/session-manager/api` \u5168\u8def\u7531\u96f6\u9274\u6743\uff0c\u8de8\u7ad9 text/plain \u7b80\u5355\u8bf7\u6c42\u5373\u53ef\u7269\u7406\u5220\u9664\u4f1a\u8bdd\u76ee\u5f55",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1263",
-      "created_at": "2026-10-20T10:59:16Z",
+      "repo": "xaviercallens/HiveMind",
+      "number": 58,
+      "title": "[Season 6 Bounty HM-S6-03] Zero-Knowledge Succinct Activation Commitments (ZK-OPoI v4) & Cross-Guild Slashing Insurance Pool (+3,000 $HIVE)",
+      "url": "https://github.com/xaviercallens/HiveMind/issues/58",
+      "created_at": "2026-10-20T15:00:32Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -240,11 +195,47 @@
       "priority_score": 20.05
     },
     {
-      "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1262,
-      "title": "[intake \u8f93\u5165] \u3010\u5b89\u5168\u5feb\u6d4b\u3011dsh-cron-panel 0.1.13\uff08a792883583\uff09\uff1a`/cron-panel/*` \u6574\u9762\u96f6\u9274\u6743\u2014\u2014\u4e0d\u6821\u9a8c\u4efb\u4f55\u8bf7\u6c42\u6765\u6e90\u5373\u53ef `/bin/sh -c` \u6267\u884c\u4efb\u610f\u547d\u4ee4\u5e76\u8bfb\u56de stdout\u3001\u628a\u653b\u51fb\u8005\u547d\u4ee4\u5199\u8fdb\u7cfb\u7edf crontab \u6301\u4e45\u5316\u3001\u518d\u6309\u8c03\u7528\u65b9\u81ea\u62a5\u7684\u884c\u53f7\u5220\u6389\u7528\u6237\u81ea\u5df1\u7684\u5b9a\u65f6\u4efb\u52a1",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1262",
-      "created_at": "2026-10-20T10:57:41Z",
+      "repo": "xaviercallens/HiveMind",
+      "number": 57,
+      "title": "[Season 6 Bounty HM-S6-02] 128-Expert 3-Tier Hierarchical MoE (E=128, Top-2) with Token-Tree Lookahead NVMe Prefetching (+3,500 $HIVE)",
+      "url": "https://github.com/xaviercallens/HiveMind/issues/57",
+      "created_at": "2026-10-20T15:00:31Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "xaviercallens/HiveMind",
+      "number": 56,
+      "title": "[Season 6 Bounty HM-S6-01] Asynchronous Error-Feedback Residual Buffer (EF21-DiLoCo) for Ultra-Sparse Top-1% FP8 Outer Loops (+3,000 $HIVE)",
+      "url": "https://github.com/xaviercallens/HiveMind/issues/56",
+      "created_at": "2026-10-20T15:00:30Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "paraloom-labs/paraloom-core",
+      "number": 1141,
+      "title": "[BOUNTY] Medium: TransactSpl settlement pipeline hardcodes SPL_TOKEN_PROGRAM_ID, permanently locking shielded Token-2022 assets deposited via deposit_note_spl",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1141",
+      "created_at": "2026-10-20T14:54:13Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "Element-Ventures-Canada-Ltd/openchokepoint",
+      "number": 41,
+      "title": "[Slice L6] Workforce and test-facility capacity map",
+      "url": "https://github.com/Element-Ventures-Canada-Ltd/openchokepoint/issues/41",
+      "created_at": "2026-10-20T14:51:00Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -255,13 +246,71 @@
   "platform_2_gohybrid": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 998,
-      "title": "[Soundness] typed-const overflow via assignment into narrow-typed var passes check, fails go build (HYB-E6002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/998",
-      "created_at": "2026-10-20T10:37:39Z",
-      "labels": [
-        "soundness"
-      ],
+      "number": 1031,
+      "title": "[Soundness] hy-check: return type mismatches against declared result types bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1031",
+      "created_at": "2026-10-20T13:45:38Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1037,
+      "title": "[tooling] Conflict-marker gate reports clean when candidate files cannot be read (tested patch)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1037",
+      "created_at": "2026-10-20T15:38:33Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1035,
+      "title": "[soundness] Critical: user-declared `panic` silently defeats option.unwrap() \u2014 accepted program returns 0 instead of HY-PANIC/unwrap-none",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1035",
+      "created_at": "2026-10-20T15:06:37Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1032,
+      "title": "[Soundness] hy-check: while loop condition type mismatch bypasses front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1032",
+      "created_at": "2026-10-20T13:55:18Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1029,
+      "title": "[Soundness] hy-check: call argument type mismatches against parameter types bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1029",
+      "created_at": "2026-10-20T13:39:11Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1013,
+      "title": "[Soundness] hy-check: void calls and 0-value builtins in integer range bounds and string interpolation bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1013",
+      "created_at": "2026-10-20T12:43:25Z",
+      "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
@@ -293,61 +342,11 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 971,
-      "title": "[Soundness] hy-check: bare expression statements and deferred calls discarding values of builtins or type conversions bypass front-end checks (HYB-E1002 / HYB-E2001)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/971",
-      "created_at": "2026-10-20T05:41:44Z",
+      "number": 1021,
+      "title": "[Soundness] hy-check: void match subjects and conflicting pattern literal types bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1021",
+      "created_at": "2026-10-20T13:06:24Z",
       "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 970,
-      "title": "P0 soundness: a slice-element loan (`&xs[0]`) is not invalidated when its slice is re-bound \u2014 OOB store-back panic + silent wrong-element write",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/970",
-      "created_at": "2026-10-20T05:39:06Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 966,
-      "title": "[soundness] bind_match_arm and multi-value process_local omit shadow_links on self-shadowed bindings, allowing concurrent map writes after move (O5.1 / O5.2 bypass)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/966",
-      "created_at": "2026-10-20T04:53:54Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 953,
-      "title": "[soundness] hy-emit: emit_match drops O8 slot-loan store-back on else_arm in has_unguarded_some branch",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/953",
-      "created_at": "2026-10-19T22:59:07Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 999,
-      "title": "[Soundness] const index OOB via assignment on var-declared array passes check, fails go build (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/999",
-      "created_at": "2026-10-20T10:37:50Z",
-      "labels": [
-        "soundness"
-      ],
       "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
@@ -355,15 +354,15 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 974,
-      "title": "soundness: conditional branch rebinding and inner-block shadowing clobber return-origin and multi-return alias tracking in hy-check",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/974",
-      "created_at": "2026-10-20T06:00:46Z",
+      "number": 1015,
+      "title": "[Soundness / False Positive] multi-value call arguments bypass argument type checks and false-reject method/closure calls",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1015",
+      "created_at": "2026-10-20T12:44:55Z",
       "labels": [],
-      "competing_prs": 3,
+      "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 39.91
+      "priority_score": 39.98
     }
   ],
   "platform_3_security": [
