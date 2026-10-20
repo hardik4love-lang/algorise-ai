@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T15:47:17.865507+00:00",
+  "generated_at": "2026-10-20T19:54:39.995173+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -123,6 +123,21 @@
   ],
   "platform_1_algora": [
     {
+      "repo": "tenstorrent/tt-metal",
+      "number": 61727,
+      "title": "Tiled ttnn.reshape hangs after execute_trace: cached mapping tensor allocated in trace-owned memory",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61727",
+      "created_at": "2026-10-20T17:32:20Z",
+      "labels": [
+        "bug",
+        "community"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
       "repo": "BasedHardware/omi",
       "number": 22860,
       "title": "Bounty Proposal: Reusable Deploy Ancestry Guard & CI Pipeline Hardening ($100 - $125 USD)",
@@ -135,11 +150,40 @@
       "priority_score": 20.05
     },
     {
-      "repo": "angeloasante/Diaspora_AI_Visa_data",
-      "number": 92,
-      "title": "[Data Issue] Cannot represent intended-stay passport validity without a six-month fallback",
-      "url": "https://github.com/angeloasante/Diaspora_AI_Visa_data/issues/92",
-      "created_at": "2026-10-20T15:27:03Z",
+      "repo": "doomsday-network/doomsday",
+      "number": 3,
+      "title": "\u26a1 Official GPU Hashrate Benchmark Leaderboard (CUDA DoomHash) \u2014 Post Your GPU Speeds!",
+      "url": "https://github.com/doomsday-network/doomsday/issues/3",
+      "created_at": "2026-10-20T19:47:01Z",
+      "labels": [
+        "documentation",
+        "help wanted"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "nunomaduro/dev-null.sh",
+      "number": 884,
+      "title": "Feature Request Voting/Queue",
+      "url": "https://github.com/nunomaduro/dev-null.sh/issues/884",
+      "created_at": "2026-10-20T19:17:49Z",
+      "labels": [
+        "enhancement"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "MyZubster-Ecosystem/myzubster",
+      "number": 1638,
+      "title": "[OPT-IN] Contributor responsibilities for the simplified MyZubster MVP",
+      "url": "https://github.com/MyZubster-Ecosystem/myzubster/issues/1638",
+      "created_at": "2026-10-20T19:08:03Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -147,11 +191,39 @@
       "priority_score": 20.05
     },
     {
-      "repo": "suitenumerique/meet",
-      "number": 1842,
-      "title": "Frequently asked questions: language change not indicated on \"bug bounty\"",
-      "url": "https://github.com/suitenumerique/meet/issues/1842",
-      "created_at": "2026-10-20T15:08:58Z",
+      "repo": "dev-kp-eloper/BountyScout",
+      "number": 1625,
+      "title": "\ud83c\udfaf Bounty Alert: 9 New Opportunityies found",
+      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1625",
+      "created_at": "2026-10-20T19:01:40Z",
+      "labels": [
+        "bounty-alert"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "smv620/Discord-DMbot",
+      "number": 2149,
+      "title": "Recap style: the owner's four default examples replace the placeholder",
+      "url": "https://github.com/smv620/Discord-DMbot/issues/2149",
+      "created_at": "2026-10-20T19:00:30Z",
+      "labels": [
+        "session: CloudDev"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "components-web-app/api-components-bundle",
+      "number": 557,
+      "title": "Turn on private vulnerability reporting and add a SECURITY.md",
+      "url": "https://github.com/components-web-app/api-components-bundle/issues/557",
+      "created_at": "2026-10-20T18:52:58Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -159,84 +231,28 @@
       "priority_score": 20.05
     },
     {
-      "repo": "xaviercallens/HiveMind",
-      "number": 59,
-      "title": "[Season 6 Bounty HM-S6-04] Season 6 Autonomous Agent Arena (Missions 21-24): Self-Play Code Repair & Live Strategy Optimizer HUD (+2,500 $HIVE)",
-      "url": "https://github.com/xaviercallens/HiveMind/issues/59",
-      "created_at": "2026-10-20T15:00:33Z",
-      "labels": [],
+      "repo": "brianrobt/credkeeper",
+      "number": 15,
+      "title": "Pre-launch docs: THREAT-MODEL.md, SECURITY.md, and a fair comparison table",
+      "url": "https://github.com/brianrobt/credkeeper/issues/15",
+      "created_at": "2026-10-20T18:49:59Z",
+      "labels": [
+        "security"
+      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
       "priority_score": 20.05
     },
     {
-      "repo": "xaviercallens/HiveMind",
-      "number": 60,
-      "title": "[Season 6 Bounty HM-S6-05] Formal Lean 4 Proofs (Theorems 49-56) for EF21-DiLoCo Contraction & UCB1 Bandit Regret Bounds (+3,000 $HIVE)",
-      "url": "https://github.com/xaviercallens/HiveMind/issues/60",
-      "created_at": "2026-10-20T15:00:33Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "xaviercallens/HiveMind",
-      "number": 58,
-      "title": "[Season 6 Bounty HM-S6-03] Zero-Knowledge Succinct Activation Commitments (ZK-OPoI v4) & Cross-Guild Slashing Insurance Pool (+3,000 $HIVE)",
-      "url": "https://github.com/xaviercallens/HiveMind/issues/58",
-      "created_at": "2026-10-20T15:00:32Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "xaviercallens/HiveMind",
-      "number": 57,
-      "title": "[Season 6 Bounty HM-S6-02] 128-Expert 3-Tier Hierarchical MoE (E=128, Top-2) with Token-Tree Lookahead NVMe Prefetching (+3,500 $HIVE)",
-      "url": "https://github.com/xaviercallens/HiveMind/issues/57",
-      "created_at": "2026-10-20T15:00:31Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "xaviercallens/HiveMind",
-      "number": 56,
-      "title": "[Season 6 Bounty HM-S6-01] Asynchronous Error-Feedback Residual Buffer (EF21-DiLoCo) for Ultra-Sparse Top-1% FP8 Outer Loops (+3,000 $HIVE)",
-      "url": "https://github.com/xaviercallens/HiveMind/issues/56",
-      "created_at": "2026-10-20T15:00:30Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "paraloom-labs/paraloom-core",
-      "number": 1141,
-      "title": "[BOUNTY] Medium: TransactSpl settlement pipeline hardcodes SPL_TOKEN_PROGRAM_ID, permanently locking shielded Token-2022 assets deposited via deposit_note_spl",
-      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1141",
-      "created_at": "2026-10-20T14:54:13Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "Element-Ventures-Canada-Ltd/openchokepoint",
-      "number": 41,
-      "title": "[Slice L6] Workforce and test-facility capacity map",
-      "url": "https://github.com/Element-Ventures-Canada-Ltd/openchokepoint/issues/41",
-      "created_at": "2026-10-20T14:51:00Z",
-      "labels": [],
+      "repo": "freedom-winds/BountyScout",
+      "number": 1288,
+      "title": "\ud83c\udfaf Bounty Alert: 12 New Opportunityies found",
+      "url": "https://github.com/freedom-winds/BountyScout/issues/1288",
+      "created_at": "2026-10-20T18:20:43Z",
+      "labels": [
+        "bounty-alert"
+      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -258,15 +274,39 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1037,
-      "title": "[tooling] Conflict-marker gate reports clean when candidate files cannot be read (tested patch)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1037",
-      "created_at": "2026-10-20T15:38:33Z",
+      "number": 1046,
+      "title": "[Soundness] hy-check: projected map-element borrows (&m[k].f, &m[k][i]) in argument and expression positions bypass HYB-E3104 / HYB-E2010",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1046",
+      "created_at": "2026-10-20T19:46:18Z",
       "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1044,
+      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
+      "created_at": "2026-10-20T19:44:20Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1042,
+      "title": "[Soundness] call_shape, call_result_tys, ty_of_expr, and multi_value_tys drop return shapes and TypeExprs on function-value calls and container projections, bypassing HYB-E3003 / HYB-E3004",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1042",
+      "created_at": "2026-10-20T18:29:50Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -330,34 +370,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 982,
-      "title": "[Soundness] hy-check: (T, error) return signatures accept non-error values in error slot and emit invalid multi-value sugar (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/982",
-      "created_at": "2026-10-20T06:47:45Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
       "number": 1021,
       "title": "[Soundness] hy-check: void match subjects and conflicting pattern literal types bypass front-end checks (HYB-E1002)",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1021",
       "created_at": "2026-10-20T13:06:24Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1015,
-      "title": "[Soundness / False Positive] multi-value call arguments bypass argument type checks and false-reject method/closure calls",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1015",
-      "created_at": "2026-10-20T12:44:55Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
