@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T19:54:39.995173+00:00",
+  "generated_at": "2026-10-20T23:00:27.688643+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -124,6 +124,40 @@
   "platform_1_algora": [
     {
       "repo": "tenstorrent/tt-metal",
+      "number": 61774,
+      "title": "[Quasar] Batched llk_unpack_AB ignores DFB stride: tile p of a batch is read p entries on, not p strides on",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61774",
+      "created_at": "2026-10-20T22:42:11Z",
+      "labels": [
+        "bug",
+        "LLK",
+        "Quasar"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
+      "number": 61772,
+      "title": "[SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_chunk_size >= 256 (unpack/math/pack deadlock in no-mop matmul)",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61772",
+      "created_at": "2026-10-20T22:14:27Z",
+      "labels": [
+        "bug",
+        "LLK",
+        "Hangs_Taskforce",
+        "wormhole",
+        "op_cat: SDPA"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
       "number": 61727,
       "title": "Tiled ttnn.reshape hangs after execute_trace: cached mapping tensor allocated in trace-owned memory",
       "url": "https://github.com/tenstorrent/tt-metal/issues/61727",
@@ -138,11 +172,11 @@
       "priority_score": 40.13
     },
     {
-      "repo": "BasedHardware/omi",
-      "number": 22860,
-      "title": "Bounty Proposal: Reusable Deploy Ancestry Guard & CI Pipeline Hardening ($100 - $125 USD)",
-      "url": "https://github.com/BasedHardware/omi/issues/22860",
-      "created_at": "2026-10-20T12:39:50Z",
+      "repo": "airdropia/earn-ops",
+      "number": 2,
+      "title": "superteam digest 2026-10-20",
+      "url": "https://github.com/airdropia/earn-ops/issues/2",
+      "created_at": "2026-10-20T22:49:11Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -150,14 +184,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "doomsday-network/doomsday",
-      "number": 3,
-      "title": "\u26a1 Official GPU Hashrate Benchmark Leaderboard (CUDA DoomHash) \u2014 Post Your GPU Speeds!",
-      "url": "https://github.com/doomsday-network/doomsday/issues/3",
-      "created_at": "2026-10-20T19:47:01Z",
+      "repo": "GranSkreaReforged/GSOOffline",
+      "number": 109,
+      "title": "Testing and Balance: Deaths Toll and Cowards Mark",
+      "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/109",
+      "created_at": "2026-10-20T22:36:24Z",
       "labels": [
-        "documentation",
-        "help wanted"
+        "question",
+        "planned"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -165,25 +199,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "nunomaduro/dev-null.sh",
-      "number": 884,
-      "title": "Feature Request Voting/Queue",
-      "url": "https://github.com/nunomaduro/dev-null.sh/issues/884",
-      "created_at": "2026-10-20T19:17:49Z",
-      "labels": [
-        "enhancement"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "MyZubster-Ecosystem/myzubster",
-      "number": 1638,
-      "title": "[OPT-IN] Contributor responsibilities for the simplified MyZubster MVP",
-      "url": "https://github.com/MyZubster-Ecosystem/myzubster/issues/1638",
-      "created_at": "2026-10-20T19:08:03Z",
+      "repo": "sybil-solutions/local-ai-registry",
+      "number": 349,
+      "title": "Bounty: a 27B-class model (Ternary-Bonsai-2-27B) validated on an 8 GB consumer GPU",
+      "url": "https://github.com/sybil-solutions/local-ai-registry/issues/349",
+      "created_at": "2026-10-20T22:26:30Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -191,13 +211,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "dev-kp-eloper/BountyScout",
-      "number": 1625,
-      "title": "\ud83c\udfaf Bounty Alert: 9 New Opportunityies found",
-      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1625",
-      "created_at": "2026-10-20T19:01:40Z",
+      "repo": "zhangjiayang6835-cyber/bounty-plaza",
+      "number": 4061,
+      "title": "[Bounty] [TEST BOUNTY] Fix typo in README",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4061",
+      "created_at": "2026-10-20T22:25:17Z",
       "labels": [
-        "bounty-alert"
+        "bounty",
+        "real"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -205,39 +226,15 @@
       "priority_score": 20.05
     },
     {
-      "repo": "smv620/Discord-DMbot",
-      "number": 2149,
-      "title": "Recap style: the owner's four default examples replace the placeholder",
-      "url": "https://github.com/smv620/Discord-DMbot/issues/2149",
-      "created_at": "2026-10-20T19:00:30Z",
+      "repo": "GranSkreaReforged/GSOOffline",
+      "number": 108,
+      "title": "Testing and Balance: Bounty System",
+      "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/108",
+      "created_at": "2026-10-20T22:20:33Z",
       "labels": [
-        "session: CloudDev"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "components-web-app/api-components-bundle",
-      "number": 557,
-      "title": "Turn on private vulnerability reporting and add a SECURITY.md",
-      "url": "https://github.com/components-web-app/api-components-bundle/issues/557",
-      "created_at": "2026-10-20T18:52:58Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "brianrobt/credkeeper",
-      "number": 15,
-      "title": "Pre-launch docs: THREAT-MODEL.md, SECURITY.md, and a fair comparison table",
-      "url": "https://github.com/brianrobt/credkeeper/issues/15",
-      "created_at": "2026-10-20T18:49:59Z",
-      "labels": [
-        "security"
+        "enhancement",
+        "question",
+        "planned"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -246,13 +243,25 @@
     },
     {
       "repo": "freedom-winds/BountyScout",
-      "number": 1288,
-      "title": "\ud83c\udfaf Bounty Alert: 12 New Opportunityies found",
-      "url": "https://github.com/freedom-winds/BountyScout/issues/1288",
-      "created_at": "2026-10-20T18:20:43Z",
+      "number": 1289,
+      "title": "\ud83c\udfaf Bounty Alert: 7 New Opportunityies found",
+      "url": "https://github.com/freedom-winds/BountyScout/issues/1289",
+      "created_at": "2026-10-20T22:05:57Z",
       "labels": [
         "bounty-alert"
       ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "HCTDIP/corps-jobs",
+      "number": 117,
+      "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
+      "url": "https://github.com/HCTDIP/corps-jobs/issues/117",
+      "created_at": "2026-10-20T21:53:22Z",
+      "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -278,18 +287,6 @@
       "title": "[Soundness] hy-check: projected map-element borrows (&m[k].f, &m[k][i]) in argument and expression positions bypass HYB-E3104 / HYB-E2010",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1046",
       "created_at": "2026-10-20T19:46:18Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1044,
-      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
-      "created_at": "2026-10-20T19:44:20Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -367,6 +364,18 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1044,
+      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
+      "created_at": "2026-10-20T19:44:20Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",

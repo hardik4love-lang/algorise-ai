@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-20T19:54:39.994725+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-20T23:00:27.688357+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,12 +22,12 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `tenstorrent/tt-metal` | [#61774](https://github.com/tenstorrent/tt-metal/issues/61774) | [Quasar] Batched llk_unpack_AB ignores DFB stride: tile | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61774) |
+| `tenstorrent/tt-metal` | [#61772](https://github.com/tenstorrent/tt-metal/issues/61772) | [SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_ | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61772) |
 | `tenstorrent/tt-metal` | [#61727](https://github.com/tenstorrent/tt-metal/issues/61727) | Tiled ttnn.reshape hangs after execute_trace: cached ma | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61727) |
-| `BasedHardware/omi` | [#22860](https://github.com/BasedHardware/omi/issues/22860) | Bounty Proposal: Reusable Deploy Ancestry Guard & CI Pi | 0 | `20.05` | [Inspect](https://github.com/BasedHardware/omi/issues/22860) |
-| `doomsday-network/doomsday` | [#3](https://github.com/doomsday-network/doomsday/issues/3) | ⚡ Official GPU Hashrate Benchmark Leaderboard (CUDA Doo | 0 | `20.05` | [Inspect](https://github.com/doomsday-network/doomsday/issues/3) |
-| `nunomaduro/dev-null.sh` | [#884](https://github.com/nunomaduro/dev-null.sh/issues/884) | Feature Request Voting/Queue | 0 | `20.05` | [Inspect](https://github.com/nunomaduro/dev-null.sh/issues/884) |
-| `MyZubster-Ecosystem/myzubster` | [#1638](https://github.com/MyZubster-Ecosystem/myzubster/issues/1638) | [OPT-IN] Contributor responsibilities for the simplifie | 0 | `20.05` | [Inspect](https://github.com/MyZubster-Ecosystem/myzubster/issues/1638) |
-| `dev-kp-eloper/BountyScout` | [#1625](https://github.com/dev-kp-eloper/BountyScout/issues/1625) | 🎯 Bounty Alert: 9 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/dev-kp-eloper/BountyScout/issues/1625) |
+| `airdropia/earn-ops` | [#2](https://github.com/airdropia/earn-ops/issues/2) | superteam digest 2026-10-20 | 0 | `20.05` | [Inspect](https://github.com/airdropia/earn-ops/issues/2) |
+| `GranSkreaReforged/GSOOffline` | [#109](https://github.com/GranSkreaReforged/GSOOffline/issues/109) | Testing and Balance: Deaths Toll and Cowards Mark | 0 | `20.05` | [Inspect](https://github.com/GranSkreaReforged/GSOOffline/issues/109) |
+| `sybil-solutions/local-ai-registry` | [#349](https://github.com/sybil-solutions/local-ai-registry/issues/349) | Bounty: a 27B-class model (Ternary-Bonsai-2-27B) valida | 0 | `20.05` | [Inspect](https://github.com/sybil-solutions/local-ai-registry/issues/349) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
@@ -35,10 +35,10 @@
 |---|---|---|---|---|---|
 | `limitlessprojects/Go-Hybrid` | [#1031](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) | [Soundness] hy-check: return type mismatches against de | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) |
 | `limitlessprojects/Go-Hybrid` | [#1046](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) | [Soundness] hy-check: projected map-element borrows (&m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) |
-| `limitlessprojects/Go-Hybrid` | [#1044](https://github.com/limitlessprojects/Go-Hybrid/issues/1044) | [Soundness] hy-check: HYB-E3011 channel element check i | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1044) |
 | `limitlessprojects/Go-Hybrid` | [#1042](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) | [Soundness] call_shape, call_result_tys, ty_of_expr, an | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) |
 | `limitlessprojects/Go-Hybrid` | [#1035](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) | [soundness] Critical: user-declared `panic` silently de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) |
 | `limitlessprojects/Go-Hybrid` | [#1032](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) | [Soundness] hy-check: while loop condition type mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) |
+| `limitlessprojects/Go-Hybrid` | [#1029](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) | [Soundness] hy-check: call argument type mismatches aga | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
