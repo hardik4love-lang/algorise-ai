@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-20T05:53:21.920283+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-20T11:07:33.409521+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `tari-project/special_contributions` | [#272](https://github.com/tari-project/special_contributions/issues/272) | Security report: tari-ootle silent non-reading peer sti | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/272) |
-| `FuRongJun-1999/dsh-bounty` | [#1232](https://github.com/FuRongJun-1999/dsh-bounty/issues/1232) | [intake 输入] 【测评报告】dsh-model-usage 1.0.5（PonyDevAI·模型额度/ | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1232) |
-| `FuRongJun-1999/dsh-bounty` | [#1231](https://github.com/FuRongJun-1999/dsh-bounty/issues/1231) | [intake 输入] 【测评报告】@liustack/modsearch 5.10.10：设置路由零鉴权，未 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1231) |
-| `FuRongJun-1999/dsh-bounty` | [#1230](https://github.com/FuRongJun-1999/dsh-bounty/issues/1230) | 【intake 输入】lingshu #487②：宿主 import 前 insert vendor 带偏启动 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1230) |
-| `FuRongJun-1999/dsh-bounty` | [#1229](https://github.com/FuRongJun-1999/dsh-bounty/issues/1229) | [intake 输入] 【测评报告】dsh-graded-mode 0.0.1-rc1：四条面板路由零鉴权，未 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1229) |
-| `tari-project/special_contributions` | [#270](https://github.com/tari-project/special_contributions/issues/270) | Contribution: fix(networking): verify peer records and  | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/270) |
+| `tenstorrent/tt-metal` | [#61572](https://github.com/tenstorrent/tt-metal/issues/61572) | [ccl]: Fabric mux buffers at l1_unreserved_base overlap | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61572) |
+| `FuRongJun-1999/dsh-bounty` | [#1268](https://github.com/FuRongJun-1999/dsh-bounty/issues/1268) | [intake 输入] 【安全快测】dsh-memory-vault 0.3.0：模型可静默写入全局预设，下一 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1268) |
+| `FuRongJun-1999/dsh-bounty` | [#1267](https://github.com/FuRongJun-1999/dsh-bounty/issues/1267) | [intake 输入] 【安全快测】dsh-core-memory 2.0.0：模型可无确认改写全局核心记忆， | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1267) |
+| `tari-project/special_contributions` | [#275](https://github.com/tari-project/special_contributions/issues/275) | Security report: tari-ootle mutable authorization signa | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/275) |
+| `0xjevons/monkeytrading` | [#43](https://github.com/0xjevons/monkeytrading/issues/43) | Security policy and bug bounty | 0 | `20.05` | [Inspect](https://github.com/0xjevons/monkeytrading/issues/43) |
+| `FuRongJun-1999/dsh-bounty` | [#1266](https://github.com/FuRongJun-1999/dsh-bounty/issues/1266) | [intake 输入] 【安全快测】dsh-hermes-memory 0.3.0（lcthe）：`memor | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1266) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#970](https://github.com/limitlessprojects/Go-Hybrid/issues/970) | P0 soundness: a slice-element loan (`&xs[0]`) is not in | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/970) |
+| `limitlessprojects/Go-Hybrid` | [#998](https://github.com/limitlessprojects/Go-Hybrid/issues/998) | [Soundness] typed-const overflow via assignment into na | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/998) |
+| `limitlessprojects/Go-Hybrid` | [#990](https://github.com/limitlessprojects/Go-Hybrid/issues/990) | [Soundness] hy-check: same-scope local redeclarations a | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/990) |
+| `limitlessprojects/Go-Hybrid` | [#982](https://github.com/limitlessprojects/Go-Hybrid/issues/982) | [Soundness] hy-check: (T, error) return signatures acce | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/982) |
 | `limitlessprojects/Go-Hybrid` | [#971](https://github.com/limitlessprojects/Go-Hybrid/issues/971) | [Soundness] hy-check: bare expression statements and de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/971) |
-| `limitlessprojects/Go-Hybrid` | [#968](https://github.com/limitlessprojects/Go-Hybrid/issues/968) | [Soundness] hy-check: struct conversions, bool conversi | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/968) |
+| `limitlessprojects/Go-Hybrid` | [#970](https://github.com/limitlessprojects/Go-Hybrid/issues/970) | P0 soundness: a slice-element loan (`&xs[0]`) is not in | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/970) |
 | `limitlessprojects/Go-Hybrid` | [#966](https://github.com/limitlessprojects/Go-Hybrid/issues/966) | [soundness] bind_match_arm and multi-value process_loca | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/966) |
-| `limitlessprojects/Go-Hybrid` | [#963](https://github.com/limitlessprojects/Go-Hybrid/issues/963) | [Soundness] hy-check: string index assignments and map  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/963) |
-| `limitlessprojects/Go-Hybrid` | [#953](https://github.com/limitlessprojects/Go-Hybrid/issues/953) | [soundness] hy-emit: emit_match drops O8 slot-loan stor | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/953) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
