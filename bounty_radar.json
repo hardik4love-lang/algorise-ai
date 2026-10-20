@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T00:57:42.179015+00:00",
+  "generated_at": "2026-10-20T05:53:21.921152+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -123,57 +123,14 @@
   ],
   "platform_1_algora": [
     {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61497,
-      "title": "[data_format] BFP host pack/unpack use 32-bit offsets; tensors above 2^31 elements crash or corrupt",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61497",
-      "created_at": "2026-10-19T22:59:06Z",
+      "repo": "tari-project/special_contributions",
+      "number": 272,
+      "title": "Security report: tari-ootle silent non-reading peer still pins a streaming RPC session indefinitely after #2917 (no wall-clock bound on the response send) (GHSA-v77f-rjx8-53xj)",
+      "url": "https://github.com/tari-project/special_contributions/issues/272",
+      "created_at": "2026-10-20T05:51:49Z",
       "labels": [
-        "bug"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61496,
-      "title": "[selective_reduce_combine] LOCAL_COMBINE writer exits with semaphore increments in flight on Blackhole",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61496",
-      "created_at": "2026-10-19T22:59:02Z",
-      "labels": [
-        "bug"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61495,
-      "title": "[moe_grouped_topk] n_groups=1 with 32 experts reads a second tile past both inputs",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61495",
-      "created_at": "2026-10-19T22:58:59Z",
-      "labels": [
-        "bug"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "cantrip-rs/cantrip-rs",
-      "number": 383,
-      "title": "Card: Chevill, Bane of Monsters",
-      "url": "https://github.com/cantrip-rs/cantrip-rs/issues/383",
-      "created_at": "2026-10-20T00:53:15Z",
-      "labels": [
-        "card",
-        "priority:low",
-        "format:pioneer"
+        "retro-bounty",
+        "bounty-M"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -182,10 +139,10 @@
     },
     {
       "repo": "FuRongJun-1999/dsh-bounty",
-      "number": 1194,
-      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a/\u72ec\u7acb\u590d\u6838\u3011dsh-hyperframes 0.7.0 Windows \u771f\u5b9e DSH \u5bbf\u4e3b UI \u589e\u91cf\u590d\u6838\uff1a\u5b89\u88c5/21 \u6280\u80fd/\u5de5\u4f5c\u53f0\u8868\u5355\u4e0e\u4fee\u8ba2/\u516d\u7c7b\u62d2\u7edd\u5224\u636e\u5728\u771f\u5b9e\u5bbf\u4e3b\u4e2d\u5168\u8fc7\uff1b\u8865 #1065 \u660e\u786e\u7559\u767d\u7684 Windows+\u5bbf\u4e3b UI \u9762\uff1b\u9884\u89c8\u4e0e MP4 \u56e0 114 MB headless-shell \u4e0b\u8f7d\u672a\u5b8c\u6210\u6807\u672a\u9a8c",
-      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1194",
-      "created_at": "2026-10-20T00:50:25Z",
+      "number": 1232,
+      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-model-usage 1.0.5\uff08PonyDevAI\u00b7\u6a21\u578b\u989d\u5ea6/\u7528\u91cf\u4eea\u8868\u76d8\uff09\uff1a\u771f\u673a\u989d\u5ea6\u5b9e\u8bfb\uff0badmit \u56f4\u680f\u9694\u79bb\u5185\u6838\u5b9e\u6d4b 401/403 \u77e9\u9635\u2014\u2014\u5224\u5b9a\u771f\u6709\u7528\uff1b\u88f8\u524d\u7f00\u2260\u88f8\u5954\u7684\u5224\u522b\u5f8b\u7cbe\u5316\uff1b\u51ed\u636e\u53ea\u5b58 env \u540d\u8d70\u5bbf\u4e3b\u51ed\u636e\u5e93\uff08\u8303\u672c\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1232",
+      "created_at": "2026-10-20T05:51:33Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -193,11 +150,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "HCTDIP/corps-jobs",
-      "number": 113,
-      "title": "Railway \u8d4f\u91d1\uff1a\u6709 1 \u6761\u503c\u5f97\u62a2",
-      "url": "https://github.com/HCTDIP/corps-jobs/issues/113",
-      "created_at": "2026-10-20T00:40:20Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1231,
+      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011@liustack/modsearch 5.10.10\uff1a\u8bbe\u7f6e\u8def\u7531\u96f6\u9274\u6743\uff0c\u672a\u8ba4\u8bc1\u5373\u53ef\u8986\u5199\u641c\u7d22\u5f15\u64ce apiKey \u4e0e baseURL",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1231",
+      "created_at": "2026-10-20T05:47:05Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -205,27 +162,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "relayhop/sn-monetization-runtime",
-      "number": 1314,
-      "title": "[radar] SN open bounty 2026-10-20T00:14",
-      "url": "https://github.com/relayhop/sn-monetization-runtime/issues/1314",
-      "created_at": "2026-10-20T00:14:57Z",
-      "labels": [
-        "radar",
-        "sn",
-        "bounty"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "sidhulyalkar/unicorn-stampede",
-      "number": 61,
-      "title": "Bounty Board launch: hosted preview, playtests, score policy and submission gates",
-      "url": "https://github.com/sidhulyalkar/unicorn-stampede/issues/61",
-      "created_at": "2026-10-19T23:58:24Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1230,
+      "title": "\u3010intake \u8f93\u5165\u3011lingshu #487\u2461\uff1a\u5bbf\u4e3b import \u524d insert vendor \u5e26\u504f\u542f\u52a8\u9762\u2014\u2014\u811a\u672c\u76ee\u5f55\u6bd2\u7ec4\u4ef6\u5728\u5f15\u64ce\u6784\u9020\u671f\u6267\u884c\uff08\u53ef\u590d\u73b0\u3001\u9644\u5b88\u536b\u4e0e\u5b9a\u70b9\u53d8\u5f02\u81ea\u8bc1 \u00b7 **PR #833**\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1230",
+      "created_at": "2026-10-20T05:44:10Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -233,14 +174,26 @@
       "priority_score": 20.05
     },
     {
-      "repo": "allurco/caribbean-adventure",
-      "number": 454,
-      "title": "Fight over: say when attacking a merchant puts a bounty on you",
-      "url": "https://github.com/allurco/caribbean-adventure/issues/454",
-      "created_at": "2026-10-19T23:40:35Z",
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1229,
+      "title": "[intake \u8f93\u5165] \u3010\u6d4b\u8bc4\u62a5\u544a\u3011dsh-graded-mode 0.0.1-rc1\uff1a\u56db\u6761\u9762\u677f\u8def\u7531\u96f6\u9274\u6743\uff0c\u672a\u8ba4\u8bc1\u5373\u53ef\u6539\u5199\u5168\u5c40\u5206\u7ea7\u7b56\u7565\u5e76\u843d\u76d8",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1229",
+      "created_at": "2026-10-20T05:42:35Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "tari-project/special_contributions",
+      "number": 270,
+      "title": "Contribution: fix(networking): verify peer records and bound timestamps in libp2p-peersync (tari-project/tari-ootle#2914)",
+      "url": "https://github.com/tari-project/special_contributions/issues/270",
+      "created_at": "2026-10-20T05:34:09Z",
       "labels": [
-        "enhancement",
-        "needs-triage"
+        "retro-bounty",
+        "bounty-S"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -248,15 +201,51 @@
       "priority_score": 20.05
     },
     {
-      "repo": "allurco/caribbean-adventure",
-      "number": 453,
-      "title": "Fight over: say when a fight completes an assassination mission",
-      "url": "https://github.com/allurco/caribbean-adventure/issues/453",
-      "created_at": "2026-10-19T23:40:33Z",
+      "repo": "tari-project/special_contributions",
+      "number": 269,
+      "title": "Security report: tari-ootle confidential withdraw accepts and then destroys revealed change when no change output is present (engine value-conservation break; guarded in mint_confidential, not in withdraw) (GHSA-7532-3fg4-fcgw)",
+      "url": "https://github.com/tari-project/special_contributions/issues/269",
+      "created_at": "2026-10-20T05:31:59Z",
       "labels": [
-        "enhancement",
-        "needs-triage"
+        "retro-bounty",
+        "bounty-S"
       ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "Tarsnap/scrypt",
+      "number": 447,
+      "title": "README KDF example points to an old header location and shows stale sample output",
+      "url": "https://github.com/Tarsnap/scrypt/issues/447",
+      "created_at": "2026-10-20T05:30:06Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1228,
+      "title": "\u3010intake \u8f93\u5165\u3011lingshu #825\uff1awmmv.text \u7684 CJK limits \u53ea\u8ba4\u952e\u3001lines \u72ec\u7acb\u4e8e text\u2014\u2014\u53ef\u8bfb\u6027\u786c\u95e8\u5bf9\u6b63\u6587\u65e0\u7ea6\u675f\uff08\u53ef\u590d\u73b0\u3001\u9644\u5b88\u536b\u4e0e\u5b9a\u70b9\u53d8\u5f02\u81ea\u8bc1 \u00b7 **PR #832**\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1228",
+      "created_at": "2026-10-20T05:29:47Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "FuRongJun-1999/dsh-bounty",
+      "number": 1227,
+      "title": "\u3010intake \u8f93\u5165\u3011lingshu #521\uff1aOPPOSITE \u6291\u5236\u5355\u5411\u6ee1\u989d\u2014\u2014\u5199\u5e8f\u51b3\u5b9a\u771f\u547d\u9898\u53bb\u7559\uff08\u53ef\u590d\u73b0\u3001\u9644\u5b88\u536b\u4e0e\u5b9a\u70b9\u53d8\u5f02\u81ea\u8bc1 \u00b7 **PR #830**\uff09",
+      "url": "https://github.com/FuRongJun-1999/dsh-bounty/issues/1227",
+      "created_at": "2026-10-20T05:27:49Z",
+      "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -264,6 +253,66 @@
     }
   ],
   "platform_2_gohybrid": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 970,
+      "title": "P0 soundness: a slice-element loan (`&xs[0]`) is not invalidated when its slice is re-bound \u2014 OOB store-back panic + silent wrong-element write",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/970",
+      "created_at": "2026-10-20T05:39:06Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 971,
+      "title": "[Soundness] hy-check: bare expression statements and deferred calls discarding values of builtins or type conversions bypass front-end checks (HYB-E1002 / HYB-E2001)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/971",
+      "created_at": "2026-10-20T05:41:44Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 968,
+      "title": "[Soundness] hy-check: struct conversions, bool conversions, and invalid conversion operand types bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/968",
+      "created_at": "2026-10-20T05:05:01Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 966,
+      "title": "[soundness] bind_match_arm and multi-value process_local omit shadow_links on self-shadowed bindings, allowing concurrent map writes after move (O5.1 / O5.2 bypass)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/966",
+      "created_at": "2026-10-20T04:53:54Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 963,
+      "title": "[Soundness] hy-check: string index assignments and map index key type mismatches bypass front-end checks (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/963",
+      "created_at": "2026-10-20T04:26:22Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
     {
       "repo": "limitlessprojects/Go-Hybrid",
       "number": 953,
@@ -282,18 +331,6 @@
       "title": "[soundness] hy-check & hy-emit: closure-captured/loop-carried O8 map-slot loans bypass HYB-E3102 across move/re-loan (`l.last` vs `effective_loan_last`), and `for`/`match` loan lowering clobbers or drops slot write-backs",
       "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/946",
       "created_at": "2026-10-19T22:45:48Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 939,
-      "title": "[wildcard] Kill the human-written repro: a self-submitting soundness pipeline (grammar fuzz \u2192 accept-gate \u2192 emit \u2192 go build \u2192 shrink \u2192 auto-file)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/939",
-      "created_at": "2026-10-19T20:33:45Z",
       "labels": [],
       "competing_prs": 1,
       "is_bounty": false,
@@ -335,54 +372,6 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 927,
-      "title": "[Soundness] hy-check: copy and clear operand types and builtin return values bypass front-end checks (HYB-E1002 / HYB-E2005)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/927",
-      "created_at": "2026-10-19T19:11:41Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 920,
-      "title": "[Soundness] hy-check: auto-addressed *T calls, range/match/copy/out-param borrow propagation, index-stored borrows, and closure borrow captures bypass HYB-E3104, HYB-E3103, HYB-E3003, and HYB-E3004",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/920",
-      "created_at": "2026-10-19T17:29:29Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 925,
-      "title": "[Soundness] hy-check: single call return statements bypass return arity and void checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/925",
-      "created_at": "2026-10-19T18:51:06Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 922,
-      "title": "[Soundness] hy-check: binary arithmetic and relational operators permit mismatched numeric types (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/922",
-      "created_at": "2026-10-19T17:34:06Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
     }
   ],
   "platform_3_security": [

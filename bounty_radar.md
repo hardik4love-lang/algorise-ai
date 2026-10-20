@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-20T00:57:42.178431+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-20T05:53:21.920283+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `tenstorrent/tt-metal` | [#61497](https://github.com/tenstorrent/tt-metal/issues/61497) | [data_format] BFP host pack/unpack use 32-bit offsets;  | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61497) |
-| `tenstorrent/tt-metal` | [#61496](https://github.com/tenstorrent/tt-metal/issues/61496) | [selective_reduce_combine] LOCAL_COMBINE writer exits w | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61496) |
-| `tenstorrent/tt-metal` | [#61495](https://github.com/tenstorrent/tt-metal/issues/61495) | [moe_grouped_topk] n_groups=1 with 32 experts reads a s | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61495) |
-| `cantrip-rs/cantrip-rs` | [#383](https://github.com/cantrip-rs/cantrip-rs/issues/383) | Card: Chevill, Bane of Monsters | 0 | `20.05` | [Inspect](https://github.com/cantrip-rs/cantrip-rs/issues/383) |
-| `FuRongJun-1999/dsh-bounty` | [#1194](https://github.com/FuRongJun-1999/dsh-bounty/issues/1194) | [intake 输入] 【测评报告/独立复核】dsh-hyperframes 0.7.0 Windows 真实 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1194) |
-| `HCTDIP/corps-jobs` | [#113](https://github.com/HCTDIP/corps-jobs/issues/113) | Railway 赏金：有 1 条值得抢 | 0 | `20.05` | [Inspect](https://github.com/HCTDIP/corps-jobs/issues/113) |
+| `tari-project/special_contributions` | [#272](https://github.com/tari-project/special_contributions/issues/272) | Security report: tari-ootle silent non-reading peer sti | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/272) |
+| `FuRongJun-1999/dsh-bounty` | [#1232](https://github.com/FuRongJun-1999/dsh-bounty/issues/1232) | [intake 输入] 【测评报告】dsh-model-usage 1.0.5（PonyDevAI·模型额度/ | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1232) |
+| `FuRongJun-1999/dsh-bounty` | [#1231](https://github.com/FuRongJun-1999/dsh-bounty/issues/1231) | [intake 输入] 【测评报告】@liustack/modsearch 5.10.10：设置路由零鉴权，未 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1231) |
+| `FuRongJun-1999/dsh-bounty` | [#1230](https://github.com/FuRongJun-1999/dsh-bounty/issues/1230) | 【intake 输入】lingshu #487②：宿主 import 前 insert vendor 带偏启动 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1230) |
+| `FuRongJun-1999/dsh-bounty` | [#1229](https://github.com/FuRongJun-1999/dsh-bounty/issues/1229) | [intake 输入] 【测评报告】dsh-graded-mode 0.0.1-rc1：四条面板路由零鉴权，未 | 0 | `20.05` | [Inspect](https://github.com/FuRongJun-1999/dsh-bounty/issues/1229) |
+| `tari-project/special_contributions` | [#270](https://github.com/tari-project/special_contributions/issues/270) | Contribution: fix(networking): verify peer records and  | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/270) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `limitlessprojects/Go-Hybrid` | [#970](https://github.com/limitlessprojects/Go-Hybrid/issues/970) | P0 soundness: a slice-element loan (`&xs[0]`) is not in | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/970) |
+| `limitlessprojects/Go-Hybrid` | [#971](https://github.com/limitlessprojects/Go-Hybrid/issues/971) | [Soundness] hy-check: bare expression statements and de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/971) |
+| `limitlessprojects/Go-Hybrid` | [#968](https://github.com/limitlessprojects/Go-Hybrid/issues/968) | [Soundness] hy-check: struct conversions, bool conversi | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/968) |
+| `limitlessprojects/Go-Hybrid` | [#966](https://github.com/limitlessprojects/Go-Hybrid/issues/966) | [soundness] bind_match_arm and multi-value process_loca | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/966) |
+| `limitlessprojects/Go-Hybrid` | [#963](https://github.com/limitlessprojects/Go-Hybrid/issues/963) | [Soundness] hy-check: string index assignments and map  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/963) |
 | `limitlessprojects/Go-Hybrid` | [#953](https://github.com/limitlessprojects/Go-Hybrid/issues/953) | [soundness] hy-emit: emit_match drops O8 slot-loan stor | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/953) |
-| `limitlessprojects/Go-Hybrid` | [#946](https://github.com/limitlessprojects/Go-Hybrid/issues/946) | [soundness] hy-check & hy-emit: closure-captured/loop-c | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/946) |
-| `limitlessprojects/Go-Hybrid` | [#939](https://github.com/limitlessprojects/Go-Hybrid/issues/939) | [wildcard] Kill the human-written repro: a self-submitt | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/939) |
-| `limitlessprojects/Go-Hybrid` | [#936](https://github.com/limitlessprojects/Go-Hybrid/issues/936) | [Soundness] hy-check: make non-integer/constant sizes,  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/936) |
-| `limitlessprojects/Go-Hybrid` | [#934](https://github.com/limitlessprojects/Go-Hybrid/issues/934) | [Soundness] hy-check: undefined field selection/assignm | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/934) |
-| `limitlessprojects/Go-Hybrid` | [#929](https://github.com/limitlessprojects/Go-Hybrid/issues/929) | [Soundness] hy-check: multi-value binding arity mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/929) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
