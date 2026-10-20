@@ -1,6 +1,6 @@
 {
-  "ledger_id": "24503cbd-73b8-4c06-8e27-4b42310b7e43",
-  "timestamp": "2026-10-20T16:15:57.966895+00:00",
+  "ledger_id": "97a68fd4-d7fd-492b-9d71-b147d08bebed",
+  "timestamp": "2026-10-20T21:11:19.140765+00:00",
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
@@ -25,7 +25,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966777+00:00"
+      "created_at": "2026-10-20T21:11:19.140649+00:00"
     },
     {
       "task_id": "gh-1573",
@@ -46,7 +46,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966804+00:00"
+      "created_at": "2026-10-20T21:11:19.140674+00:00"
     },
     {
       "task_id": "gh-1556",
@@ -67,7 +67,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966813+00:00"
+      "created_at": "2026-10-20T21:11:19.140683+00:00"
     },
     {
       "task_id": "gh-1602",
@@ -88,7 +88,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966820+00:00"
+      "created_at": "2026-10-20T21:11:19.140689+00:00"
     },
     {
       "task_id": "gh-1558",
@@ -109,7 +109,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966826+00:00"
+      "created_at": "2026-10-20T21:11:19.140695+00:00"
     },
     {
       "task_id": "gh-13",
@@ -130,7 +130,28 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966832+00:00"
+      "created_at": "2026-10-20T21:11:19.140701+00:00"
+    },
+    {
+      "task_id": "gh-20",
+      "title": "research(bounties): on-chain optimization bounties with verifier contracts",
+      "repository": "QMeshPy/distributed-quantum",
+      "url": "https://github.com/QMeshPy/distributed-quantum/issues/20",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-20T21:11:19.140707+00:00"
     },
     {
       "task_id": "gh-1570",
@@ -151,7 +172,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966839+00:00"
+      "created_at": "2026-10-20T21:11:19.140722+00:00"
     },
     {
       "task_id": "gh-1897",
@@ -172,7 +193,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966853+00:00"
+      "created_at": "2026-10-20T21:11:19.140729+00:00"
     },
     {
       "task_id": "gh-1891",
@@ -193,28 +214,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966860+00:00"
-    },
-    {
-      "task_id": "gh-1",
-      "title": "\ud83c\udfaf Bounty-Radar",
-      "repository": "hanoi96international-gif/Test",
-      "url": "https://github.com/hanoi96international-gif/Test/issues/1",
-      "gross_payout_usd": 50.0,
-      "expected_net_revenue": 47.5,
-      "prioritization_score": 19.11,
-      "confidence_score": 0.95,
-      "gates_passed": [
-        "thought_validated",
-        "enr_positive",
-        "within_budget",
-        "within_quotas",
-        "risk_acceptable",
-        "tools_authorized",
-        "idempotent_safe"
-      ],
-      "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T16:15:57.966867+00:00"
+      "created_at": "2026-10-20T21:11:19.140736+00:00"
     }
   ]
 }
