@@ -1,6 +1,6 @@
 {
-  "ledger_id": "18cbb69d-c070-4016-a559-3e05533fd15b",
-  "timestamp": "2026-10-20T03:10:08.662230+00:00",
+  "ledger_id": "bd57f720-1652-4768-a19b-6b229bddc453",
+  "timestamp": "2026-10-20T10:51:40.463753+00:00",
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
@@ -25,7 +25,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662159+00:00"
+      "created_at": "2026-10-20T10:51:40.463637+00:00"
     },
     {
       "task_id": "gh-1573",
@@ -46,7 +46,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662176+00:00"
+      "created_at": "2026-10-20T10:51:40.463664+00:00"
     },
     {
       "task_id": "gh-1556",
@@ -67,7 +67,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662180+00:00"
+      "created_at": "2026-10-20T10:51:40.463672+00:00"
     },
     {
       "task_id": "gh-1602",
@@ -88,7 +88,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662184+00:00"
+      "created_at": "2026-10-20T10:51:40.463678+00:00"
     },
     {
       "task_id": "gh-1558",
@@ -109,7 +109,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662187+00:00"
+      "created_at": "2026-10-20T10:51:40.463685+00:00"
     },
     {
       "task_id": "gh-13",
@@ -130,7 +130,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662191+00:00"
+      "created_at": "2026-10-20T10:51:40.463691+00:00"
     },
     {
       "task_id": "gh-1570",
@@ -151,7 +151,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662194+00:00"
+      "created_at": "2026-10-20T10:51:40.463697+00:00"
     },
     {
       "task_id": "gh-1897",
@@ -172,7 +172,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662205+00:00"
+      "created_at": "2026-10-20T10:51:40.463711+00:00"
     },
     {
       "task_id": "gh-1891",
@@ -193,7 +193,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662210+00:00"
+      "created_at": "2026-10-20T10:51:40.463719+00:00"
     },
     {
       "task_id": "gh-1",
@@ -214,7 +214,7 @@
         "idempotent_safe"
       ],
       "status": "APPROVED_FOR_TRIAGE",
-      "created_at": "2026-10-20T03:10:08.662214+00:00"
+      "created_at": "2026-10-20T10:51:40.463725+00:00"
     }
   ]
 }
