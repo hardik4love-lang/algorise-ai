@@ -101,9 +101,15 @@ jobs:
         format: sarif
         output: trivy-results.sarif
         severity: CRITICAL,HIGH
+        # Only vulnerabilities with an available fix block the build.
+        # Base-image OS advisories without a fix cannot be remediated by
+        # this repository, and gating on them makes the pipeline permanently
+        # red while providing no signal.
+        ignore-unfixed: true
         exit-code: '1'
 
     - name: Upload Trivy Results
+      if: always()
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: trivy-results.sarif
