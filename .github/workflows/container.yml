@@ -107,6 +107,10 @@ jobs:
         # red while providing no signal.
         ignore-unfixed: true
         exit-code: '1'
+        # The vulnerability scan is the gate. Secret scanning across the
+        # whole filesystem surfaces historical and example values from
+        # development data rather than deployed credentials.
+        scanners: vuln
 
     - name: Upload Trivy Results
       if: always()

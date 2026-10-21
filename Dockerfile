@@ -37,12 +37,18 @@ RUN groupadd -g 10001 algorise && \
 COPY --from=builder /root/.local /home/algorise/.local
 COPY . /app
 
-RUN chown -R algorise:algorise /app /home/algorise
+# data/ holds runtime-created local state (agent memory, checkpoints,
+# quarantine DLQ, distribution store). The application creates it on
+# demand, so the image ships the directory empty and writable.
+RUN mkdir -p /app/data && \
+    chown -R algorise:algorise /app /home/algorise && \
+    chmod 770 /app/data
 
 USER algorise
 ENV PATH="/home/algorise/.local/bin:$PATH" \
     PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app
 
 EXPOSE 8000 9090
 

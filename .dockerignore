@@ -1,17 +1,87 @@
-.git
+# Build context hygiene.
+#
+# The image is an API runtime, not a source archive. Copying the repository
+# history, local databases and build artifacts into it bloats the layer,
+# leaks development data and gives the secret scanner real credentials to
+# find from git history.
+
+.git/
 .gitignore
-__pycache__
-*.pyc
+.gitattributes
+.github/
+__pycache__/
+*.py[cod]
 *.pyo
 *.pyd
+*.bat
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local and CI state
+.algorise/
+.autotest/
+.context_pr/
+.release-artifacts/
+.release-state.json
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Local databases carry development data and are not part of the runtime.
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Secrets must never enter the build context.
 .env
 .env.*
-*.bat
-.vscode
-.idea
-*.log
+*.pem
+*.key
+secrets/
+
+# Dependencies and build output are produced inside the image.
+node_modules/
+dist/
+build/
+*.tgz
+*.whl
+tmp*/
+
+# Tests are not part of the runtime image.
 tests/
 scratch/
+
+# Repository maintenance scripts.
 deploy_to_ghpages.py
 update_domain.py
 fix_links.py
+
+# data/ holds runtime-created local state (agent memory, checkpoints,
+# quarantine DLQ, distribution store). Every consumer creates the directory
+# on demand, so the image ships without it and the volume is created at
+# runtime instead of baking local state into the layer.
+data/
+
+# Documentation and data exports are not needed at runtime.
+# README.md stays: pyproject.toml declares it as the package readme and the
+# build fails without it. The negation must follow the pattern it undoes.
+**/*.md
+!README.md
+leads/
+live_ledger/
+industry/
+compare/
+
+# assets/ is loaded at runtime: the distribution engine reads the Facebook
+# groups directory from it. Only the large media files are excluded.
+assets/*.mp4
+assets/*.jpg
+assets/hero_100_bots.js
+assets/live_scraped_jobs.js
+
