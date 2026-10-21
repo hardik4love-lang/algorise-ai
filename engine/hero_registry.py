@@ -207,8 +207,9 @@ class HeroBotRunner(BaseAlgoriseBot):
         trace = [f"[{name}] Ingested task payload for sector '{sector}'"]
 
         # 1. Deterministic Causal Safety Audit
-        action_intent = input_payload.get("proposed_action", {"action": "standard_execution", "target": bot_id})
-        is_safe, safety_code, audit_flags = self.safety_gate.audit_bot_action(b_id, action_intent)
+        action_intent = input_payload.get("proposed_action", {})
+        audit_payload = {**input_payload, **action_intent} if action_intent else dict(input_payload)
+        is_safe, safety_code, audit_flags = self.safety_gate.audit_bot_action(b_id, audit_payload)
         trace.append(f"[{name}] Causal Safety Gate: {safety_code} (Passed: {is_safe})")
 
         if not is_safe:

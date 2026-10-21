@@ -70,3 +70,10 @@ class QuarantineManifest:
     version: str = '1.0.0'
     updated_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     quarantined_tests: Dict[str, Dict] = field(default_factory=dict)
+
+    def generate_pytest_deselection_args(self) -> List[str]:
+        """Generates pytest --deselect arguments for all quarantined tests."""
+        args = []
+        for test_id in self.quarantined_tests.keys():
+            args.extend(["--deselect", test_id])
+        return args

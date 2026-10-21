@@ -4,8 +4,9 @@ Handles encryption, API key management, rate limiting, and input validation.
 """
 import hashlib
 import hmac
-import secrets
+import json
 import time
+from collections import deque
 from typing import Dict, Any, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -60,6 +61,7 @@ class APIKeyInfo:
     last_used: Optional[datetime] = None
     is_active: bool = True
     scopes: Tuple[str, ...] = ('read', 'write', 'execute')
+    usage_count: int = 0
 
 class APIKeyManager:
     """Manages API key validation and quota tracking."""
@@ -72,7 +74,14 @@ class APIKeyManager:
         """Load API keys from settings."""
         for key, info in settings.api_keys.items():
             key_hash = self._hash_key(key)
-            self._keys_cache[key_hash] = APIKeyInfo(client_id=info.get('client', 'unknown'), client_name=info.get('client', 'unknown'), tier=info.get('tier', 'Growth'), quota=info.get('quota', 10000), created_at=datetime.now(timezone.utc))
+            self._keys_cache[key_hash] = APIKeyInfo(
+                client_id=info.get('client', 'unknown'),
+                client_name=info.get('client', 'unknown'),
+                tier=info.get('tier', 'Growth'),
+                quota=info.get('quota', 10000),
+                created_at=datetime.now(timezone.utc),
+                usage_count=0
+            )
 
     def _hash_key(self, key: str) -> str:
         """Hash an API key for storage."""
@@ -89,11 +98,20 @@ class APIKeyManager:
 
     def check_quota(self, key_info: APIKeyInfo) -> Tuple[bool, int]:
         """Check if key has quota remaining. Returns (has_quota, remaining)."""
-        return (True, key_info.quota)
+        current_usage = getattr(key_info, "usage_count", 0)
+        remaining = max(0, key_info.quota - current_usage)
+        return (remaining > 0, remaining)
 
-    def increment_usage(self, key_info: APIKeyInfo) -> None:
-        """Increment usage counter for a key."""
-        pass
+    def increment_usage(self, key_info: APIKeyInfo, amount: int = 1) -> int:
+        """Increment usage counter for a key. Returns updated usage count."""
+        key_info.usage_count = getattr(key_info, "usage_count", 0) + amount
+        key_info.last_used = datetime.now(timezone.utc)
+        return key_info.usage_count
+
+    def reset_usage(self, key_info: APIKeyInfo) -> None:
+        """Reset usage counter for a key."""
+        key_info.usage_count = 0
+
 api_key_manager = APIKeyManager()
 from collections import deque
 import threading
@@ -259,8 +277,47 @@ def get_security_headers() -> Dict[str, str]:
     return SECURITY_HEADERS.copy()
 
 def get_cors_config() -> Dict[str, Any]:
-    """Get CORS configuration across production and local environments."""
-    return {'allow_origins': ['https://algorise-ai.com', 'https://www.algorise-ai.com', 'https://api.algorise-ai.com', 'https://shruhicollections.in', 'https://www.shruhicollections.in', 'https://hardik4love-lang.github.io', 'https://algorise.ai', 'https://app.algorise.ai', 'http://localhost:3000', 'http://localhost:8000', 'http://127.0.0.1:8000', 'http://localhost:8090', 'http://localhost:8095', 'http://localhost:5173'], 'allow_credentials': True, 'allow_methods': ['*'], 'allow_headers': ['*']}
+    """Get CORS configuration across production and local environments.
+
+    CORS_ALLOWED_ORIGINS overrides the built-in list. In production a
+    missing override is reported loudly rather than fatal, so a deployment
+    is never taken down by a configuration gap. When the override is
+    provided, only those exact origins are allowed.
+    """
+    from engine.config import get_settings
+
+    settings = get_settings()
+    raw = (settings.cors_allowed_origins or "").strip()
+    is_production = settings.environment.lower() in {"production", "prod"}
+
+    if raw:
+        origins = [o.strip() for o in raw.split(",") if o.strip()]
+    elif is_production:
+        print(
+            "WARNING: CORS_ALLOWED_ORIGINS is not set; falling back to the built-in origin "
+            "profile. Set an explicit comma-separated origin list before serving public traffic."
+        )
+        origins = [
+            'https://algorise-ai.com', 'https://www.algorise-ai.com', 'https://api.algorise-ai.com',
+            'https://shruhicollections.in', 'https://www.shruhicollections.in',
+            'https://hardik4love-lang.github.io', 'https://algorise.ai', 'https://app.algorise.ai',
+            'https://algorise-ai-backend.onrender.com',
+        ]
+    else:
+        origins = [
+            'https://algorise-ai.com', 'https://www.algorise-ai.com', 'https://api.algorise-ai.com',
+            'https://shruhicollections.in', 'https://www.shruhicollections.in',
+            'https://hardik4love-lang.github.io', 'https://algorise.ai', 'https://app.algorise.ai',
+            'http://localhost:3000', 'http://localhost:8000', 'http://127.0.0.1:8000',
+            'http://localhost:8090', 'http://localhost:8095', 'http://localhost:5173',
+        ]
+
+    return {
+        'allow_origins': origins,
+        'allow_credentials': True,
+        'allow_methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        'allow_headers': ['Authorization', 'Content-Type', 'X-Algorise-Key', 'X-Algorise-API-Key', 'X-Employer-ID'],
+    }
 
 @dataclass
 class AuditEvent:
@@ -276,10 +333,10 @@ class AuditEvent:
     user_agent: Optional[str] = None
 
 class AuditLogger:
-    """Logs security-relevant events."""
+    """Logs security-relevant events with bounded in-memory buffer."""
 
-    def __init__(self):
-        self.events: list = []
+    def __init__(self, max_events: int = 1000):
+        self.events = deque(maxlen=max_events)
 
     def log(self, event: AuditEvent) -> None:
         """Log an audit event."""
@@ -338,8 +395,15 @@ async def verify_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=H
             break
     else:
         key = ''
-    if not key and settings.environment != 'production':
-        key = 'alg_live_test_key_9981'
+    if not key:
+        if settings.environment in ('production', 'staging'):
+            audit_logger.log_auth_attempt(None, success=False)
+            return (False, None)
+        elif settings.environment in ('development', 'test', 'testing', 'local'):
+            key = 'alg_live_test_key_9981'
+        else:
+            audit_logger.log_auth_attempt(None, success=False)
+            return (False, None)
     key_info = api_key_manager.validate_key(key)
     if key_info is None:
         audit_logger.log_auth_attempt(key, success=False)
@@ -347,6 +411,7 @@ async def verify_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=H
     has_quota, remaining = api_key_manager.check_quota(key_info)
     if not has_quota:
         return (False, key_info)
+    api_key_manager.increment_usage(key_info)
     audit_logger.log_auth_attempt(api_key, success=True)
     return (True, key_info)
 
@@ -363,8 +428,23 @@ async def require_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=
             break
     else:
         key = ''
-    if not key and settings.environment != 'production':
-        key = 'alg_live_test_key_9981'
+    if not key:
+        if settings.environment in ('production', 'staging'):
+            audit_logger.log_auth_attempt(None, success=False)
+            raise HTTPException(
+                status_code=401,
+                detail="Authentication failed: Missing required 'X-Algorise-Key' header in production/staging",
+                headers={'WWW-Authenticate': 'ApiKey'},
+            )
+        elif settings.environment in ('development', 'test', 'testing', 'local'):
+            key = 'alg_live_test_key_9981'
+        else:
+            audit_logger.log_auth_attempt(None, success=False)
+            raise HTTPException(
+                status_code=401,
+                detail="Authentication failed: Missing required 'X-Algorise-Key' header",
+                headers={'WWW-Authenticate': 'ApiKey'},
+            )
     if not key:
         raise HTTPException(status_code=401, detail="Authentication failed: Missing required 'X-Algorise-Key' header", headers={'WWW-Authenticate': 'ApiKey'})
     key_info = api_key_manager.validate_key(key)
@@ -374,6 +454,7 @@ async def require_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=
     has_quota, remaining = api_key_manager.check_quota(key_info)
     if not has_quota:
         raise HTTPException(status_code=429, detail='API key quota exceeded')
+    api_key_manager.increment_usage(key_info)
     audit_logger.log_auth_attempt(key, success=True)
     return key_info
 

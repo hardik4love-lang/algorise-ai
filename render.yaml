@@ -5,7 +5,9 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt && npm install --no-audit --no-fund && python scripts/build.py
     startCommand: uvicorn engine.main:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /health
+    # /readyz verifies startup completed and the database is reachable.
+    # /health stays as the compatibility path for existing monitors.
+    healthCheckPath: /readyz
     autoDeploy: true
     envVars:
       - key: PYTHON_VERSION
@@ -14,6 +16,21 @@ services:
         value: production
       - key: APP_NAME
         value: "Algorise AI Solutions"
+      - key: LOG_LEVEL
+        value: INFO
+      # MIGRATE_ON_START stays enabled: this single-instance deployment owns
+      # its own schema. The Kubernetes migration Job is the production path.
+      - key: MIGRATE_ON_START
+        value: "true"
+      # Redis is a cache here, not a source of truth. It must not gate
+      # readiness or the service would leave rotation on a cache outage.
+      - key: REDIS_REQUIRED
+        value: "false"
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://algorise-ai.com,https://www.algorise-ai.com,https://algorise.ai,https://www.algorise.ai,https://shruhicollections.in,https://www.shruhicollections.in,https://hardik4love-lang.github.io,https://algorise-ai-backend.onrender.com"
+      # Enable once real credentials are provisioned in the Render dashboard.
+      - key: ENFORCE_PRODUCTION_SECURITY
+        value: "false"
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_CHAT_ID

@@ -36,7 +36,8 @@ async def ensure_shruhi_surat_pro_client() -> Dict[str, Any]:
     In production, clients should be created through the normal onboarding process.
     """
     from sqlalchemy import delete
-    
+    from fastapi import HTTPException
+
     # Only allow in non-production environments
     if settings.environment == "production":
         raise HTTPException(

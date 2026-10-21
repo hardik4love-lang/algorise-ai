@@ -26,6 +26,7 @@ from engine.config import get_settings
 from engine.telegram_service import AlgoriseTelegramService
 from engine.facebook_agent import FacebookAgentEngine
 from engine.database import db_manager
+from engine.hero_registry import HERO_BOT_REGISTRY_MAP, HeroBotRunner
 from engine.models_sqlalchemy import Client, Subscription, Lead, FacebookAgentJob
 
 # Domain Services & Bounded Contexts
@@ -936,12 +937,12 @@ async def list_client_hero_bots(client_id: str):
     """Returns all 100 Hero Bots included in SURAT PRO TIER."""
     from engine.hero_registry import HERO_BOT_DEFINITIONS
     bots = []
-    for b_id, name, sector, desc, base_conf, target_latency in HERO_BOT_DEFINITIONS:
+    for b_id, name, sector, description, base_conf, target_latency in HERO_BOT_DEFINITIONS:
         bots.append({
             "id": b_id,
             "name": name,
             "sector": sector,
-            "description": desc,
+            "description": description,
             "confidence_threshold": base_conf,
             "latency_sla_ms": target_latency,
         })

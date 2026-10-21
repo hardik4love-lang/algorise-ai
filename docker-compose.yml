@@ -14,8 +14,10 @@ services:
       - REDIS_URL=redis://redis:6379/0
       - DATABASE_URL=postgresql+asyncpg://algorise:algorise_pass@postgres:5432/algorise_db
     depends_on:
-      - redis
-      - postgres
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
     restart: unless-stopped
     networks:
       - algorise-net
@@ -23,8 +25,14 @@ services:
   redis:
     image: redis:7-alpine
     container_name: algorise-redis
+    command: ["redis-server", "--appendonly", "yes"]
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     restart: unless-stopped
     volumes:
       - redis-data:/data
@@ -40,6 +48,11 @@ services:
       - POSTGRES_USER=algorise
       - POSTGRES_PASSWORD=algorise_pass
       - POSTGRES_DB=algorise_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U algorise -d algorise_db"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
     restart: unless-stopped
     volumes:
       - pg-data:/var/lib/postgresql/data

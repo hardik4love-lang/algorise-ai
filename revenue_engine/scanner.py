@@ -122,29 +122,54 @@ class OpportunityScanner:
         if directory and not os.path.exists(directory):
             os.makedirs(directory, exist_ok=True)
 
+        # Load existing ledger if exists (append-only)
+        existing_opportunities = []
+        existing_ledger_id = ledger.ledger_id
+        existing_timestamp = ledger.timestamp
+        existing_agent = ledger.agent
+        existing_version = ledger.version
+        existing_policy = ledger.policy
+
+        if os.path.exists(self.ledger_path):
+            try:
+                with open(self.ledger_path, "r", encoding="utf-8") as f:
+                    existing_data = json.load(f)
+                existing_opportunities = existing_data.get("opportunities", [])
+                existing_ledger_id = existing_data.get("ledger_id", ledger.ledger_id)
+                existing_timestamp = existing_data.get("timestamp", ledger.timestamp)
+                existing_agent = existing_data.get("agent", ledger.agent)
+                existing_version = existing_data.get("version", ledger.version)
+                existing_policy = existing_data.get("policy", ledger.policy)
+            except Exception:
+                pass
+
+        # Append new opportunities
+        new_opportunities = [
+            {
+                "task_id": o.task_id,
+                "title": o.title,
+                "repository": o.repository,
+                "url": o.url,
+                "gross_payout_usd": o.gross_payout_usd,
+                "expected_net_revenue": o.expected_net_revenue,
+                "prioritization_score": o.prioritization_score,
+                "confidence_score": o.confidence_score,
+                "gates_passed": o.gates_passed,
+                "status": o.status.value,
+                "created_at": o.created_at,
+            }
+            for o in ledger.opportunities
+        ]
+        all_opportunities = existing_opportunities + new_opportunities
+
         data = {
-            "ledger_id": ledger.ledger_id,
-            "timestamp": ledger.timestamp,
-            "agent": ledger.agent,
-            "version": ledger.version,
-            "policy": ledger.policy,
-            "total_evaluated": ledger.total_evaluated,
-            "opportunities": [
-                {
-                    "task_id": o.task_id,
-                    "title": o.title,
-                    "repository": o.repository,
-                    "url": o.url,
-                    "gross_payout_usd": o.gross_payout_usd,
-                    "expected_net_revenue": o.expected_net_revenue,
-                    "prioritization_score": o.prioritization_score,
-                    "confidence_score": o.confidence_score,
-                    "gates_passed": o.gates_passed,
-                    "status": o.status.value,
-                    "created_at": o.created_at,
-                }
-                for o in ledger.opportunities
-            ],
+            "ledger_id": existing_ledger_id,
+            "timestamp": existing_timestamp,
+            "agent": existing_agent,
+            "version": existing_version,
+            "policy": existing_policy,
+            "total_evaluated": len(all_opportunities),
+            "opportunities": all_opportunities,
         }
 
         with open(self.ledger_path, "w", encoding="utf-8") as f:

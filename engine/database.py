@@ -106,11 +106,11 @@ class DatabaseManager:
             async with self.engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
         except Exception:
-            # If external DATABASE_URL on Render is unreachable, fall back to local SQLite
+            if get_settings().environment.lower() in {"production", "prod"}:
+                raise
             self.initialize(force_sqlite=True)
             async with self.engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
-
     async def drop_tables(self) -> None:
         async with self.engine.begin() as conn:
             await conn.run_sync(Base.metadata.drop_all)

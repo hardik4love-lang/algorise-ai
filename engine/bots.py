@@ -18,14 +18,55 @@ class BaseAlgoriseBot:
         raise NotImplementedError
 
     def run(self, input_payload: Dict[str, Any], bot_name: Optional[str] = None, task_id: Optional[str] = None) -> BotResult:
-        """Executes the bot from an arbitrary input payload dictionary."""
+        """Executes the bot from an arbitrary input payload dictionary with mandatory pre-flight safety audit."""
         effective_name = bot_name or input_payload.get("bot_name") or self.name
+        task_uuid = task_id or str(uuid.uuid4())
+
+        # Mandatory Pre-Flight Causal Safety Gate audit
+        from engine.guardrails import safety_gate
+        audit = safety_gate.audit_detailed(effective_name, input_payload)
+        if not audit.is_approved:
+            return BotResult(
+                task_id=task_uuid,
+                bot_name=effective_name,
+                success=False,
+                data={
+                    "error": "SAFETY_GATE_BLOCKED",
+                    "status_code": audit.status_code,
+                    "risk_score": audit.risk_score,
+                    "audit_flags": audit.audit_flags,
+                },
+                reasoning_trace=[
+                    f"[{effective_name}] Causal Safety Gate audit FAILED with risk score {audit.risk_score}.",
+                    f"[{effective_name}] Violations: {', '.join(audit.audit_flags)}",
+                ],
+                latency_ms=audit.latency_ms,
+            )
+
+        sanitized_payload = audit.sanitized_payload if audit.sanitized_payload is not None else input_payload
         task = BotTask(
-            task_id=task_id or str(uuid.uuid4()),
+            task_id=task_uuid,
             bot_name=effective_name,
-            input_payload=input_payload,
+            input_payload=sanitized_payload,
         )
-        return self.execute(task)
+        res = self.execute(task)
+        try:
+            from engine.security import audit_logger
+            audit_logger.log_api_call(
+                client_id=input_payload.get("client_id", "default_client"),
+                endpoint=f"bot://{effective_name}",
+                method="EXECUTE",
+                success=res.success,
+                details={
+                    "task_id": res.task_id,
+                    "bot_name": res.bot_name,
+                    "latency_ms": res.latency_ms,
+                    "safety_risk_score": audit.risk_score,
+                }
+            )
+        except Exception:
+            pass
+        return res
 
 class NexusBot(BaseAlgoriseBot):
     """Algorise Nexus: Autonomous Support & Action Bot with secure database action calling."""

@@ -51,10 +51,41 @@ class Settings(BaseSettings):
     # API Keys (for client authentication)
     api_keys: dict = Field(
         default_factory=lambda: {
-            "alg_live_test_key_9981": {"client": "Acme Corp", "tier": "Enterprise", "quota": 50000},
-            "alg_demo_client_key_001": {"client": "Starlight Labs", "tier": "Growth", "quota": 10000},
+            "alg_live_test_key_9981": {
+                "client": "Acme Corp",
+                "tier": "Enterprise Tier",
+                "quota": 50000,
+                "role": "admin",
+                "scopes": [
+                    "quarantine:read",
+                    "quarantine:write",
+                    "blast_radius:read",
+                    "incident:heal",
+                    "usage:read",
+                    "admin:*",
+                ],
+            },
+            "alg_demo_client_key_001": {
+                "client": "Starlight Labs",
+                "tier": "Growth Tier",
+                "quota": 10000,
+                "role": "developer",
+                "scopes": [
+                    "quarantine:read",
+                    "quarantine:write",
+                    "blast_radius:read",
+                    "usage:read",
+                ],
+            },
+            "alg_readonly_key_002": {
+                "client": "Audit Viewer",
+                "tier": "Viewer Tier",
+                "quota": 5000,
+                "role": "viewer",
+                "scopes": ["quarantine:read", "blast_radius:read", "usage:read"],
+            },
         },
-        description="Mapping of API keys to client info",
+        description="Mapping of API keys to client info, role and RBAC scopes",
     )
 
     # External APIs
@@ -81,6 +112,69 @@ class Settings(BaseSettings):
 
     # Admin Control Panel
     admin_secret: str = Field(default="algorise_surat_admin_9921", description="Admin panel access key")
+
+    # Operational flags
+    migrate_on_start: bool = Field(
+        default=True,
+        description="Run Base.metadata.create_all() during startup. Disable in production where "
+        "migrations are executed by a dedicated pre-deploy job.",
+    )
+    redis_required: bool = Field(
+        default=False,
+        description="Treat Redis as a readiness-critical dependency. Enable in production.",
+    )
+    enable_embedded_scheduler: bool = Field(
+        default=True,
+        description="Run the in-process Facebook sweep loop inside this process. Disable on API "
+        "replicas so scheduled work is executed exactly once by the dedicated scheduler workload.",
+    )
+    cors_allowed_origins: str = Field(
+        default="",
+        description="Comma-separated exact origins allowed by CORS. Empty falls back to the built-in profile.",
+    )
+    enforce_production_security: bool = Field(
+        default=False,
+        description="Make insecure production configuration fatal at startup. Enable once real "
+        "credentials are provisioned in the deployment environment.",
+    )
+
+    def validate_production_safety(self) -> None:
+        """Validates that production environment does not use insecure development defaults.
+
+        In production this reports every insecure default loudly. It is fatal
+        only when ENFORCE_PRODUCTION_SECURITY is enabled, so a deployment
+        cannot be taken down by a configuration gap while the operator is
+        still rotating credentials.
+        """
+        if self.environment.lower() not in ("production", "prod"):
+            return
+
+        insecure_defaults = []
+        if self.secret_key == "dev-secret-change-in-production":
+            insecure_defaults.append("SECRET_KEY is set to default 'dev-secret-change-in-production'")
+        if self.admin_secret == "algorise_surat_admin_9921":
+            insecure_defaults.append("ADMIN_SECRET is set to default 'algorise_surat_admin_9921'")
+        if self.fb_app_secret == "dev_fb_secret_key":
+            insecure_defaults.append("FB_APP_SECRET is set to default 'dev_fb_secret_key'")
+        if not self.migrate_on_start:
+            insecure_defaults.append(
+                "MIGRATE_ON_START is disabled; the pre-deploy migration job owns schema changes"
+            )
+
+        if not insecure_defaults:
+            return
+
+        message = (
+            "CRITICAL PRODUCTION SECURITY VIOLATION: insecure default configuration detected: "
+            + "; ".join(insecure_defaults)
+            + ". Set the corresponding environment variables."
+        )
+
+        if self.enforce_production_security:
+            raise ValueError(message)
+
+        print(f"WARNING: {message}")
+
 
 
 @lru_cache

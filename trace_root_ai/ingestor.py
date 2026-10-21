@@ -94,10 +94,27 @@ class TelemetryIngestor:
 
     def parse_json_payload(self, json_data: Dict) -> IncidentPayload:
         """Ingests an OpenTelemetry / Sentry webhook JSON payload."""
-        return self.parse_traceback(
-            raw_traceback=json_data.get("stack_trace", json_data.get("raw_exception", "")),
-            service_name=json_data.get("service_name", "algorise-service"),
-            incident_id=json_data.get("incident_id"),
-            trace_id=json_data.get("trace_id"),
-            span_id=json_data.get("span_id"),
+        # Extract error type and message directly from JSON if available
+        error_type = json_data.get("error_type", "Exception")
+        error_message = json_data.get("error_message", "")
+        raw_traceback = json_data.get("stack_trace", json_data.get("raw_exception", ""))
+        service_name = json_data.get("service_name", "algorise-service")
+        incident_id = json_data.get("incident_id")
+        trace_id = json_data.get("trace_id")
+        span_id = json_data.get("span_id")
+
+        # Parse traceback for frames and severity
+        parsed = self.parse_traceback(
+            raw_traceback=raw_traceback,
+            service_name=service_name,
+            incident_id=None,  # Will set after
+            trace_id=trace_id,
+            span_id=span_id,
         )
+
+        # Override with JSON-provided values if available
+        parsed.error_type = error_type
+        parsed.error_message = error_message or parsed.error_message
+        parsed.incident_id = incident_id or parsed.incident_id
+
+        return parsed

@@ -180,8 +180,73 @@ ERRORS_TOTAL = Counter(
     registry=REGISTRY,
 )
 
+# ── Phase 1 Resilience Metrics ─────────────────────────────────────────────
+
+CIRCUIT_BREAKER_STATE = Gauge(
+    "algorise_circuit_breaker_state",
+    "Current circuit breaker state per bot (0=CLOSED, 1=HALF_OPEN, 2=OPEN)",
+    ["bot_name"],
+    registry=REGISTRY,
+)
+
+CIRCUIT_BREAKER_TRANSITIONS = Counter(
+    "algorise_circuit_breaker_transitions_total",
+    "Total circuit breaker state transitions",
+    ["bot_name", "from_state", "to_state"],
+    registry=REGISTRY,
+)
+
+PIPELINE_STEP_RETRIES = Counter(
+    "algorise_pipeline_step_retries_total",
+    "Total retry attempts on pipeline steps",
+    ["flow_id", "bot_name", "attempt_number"],
+    registry=REGISTRY,
+)
+
+CHECKPOINT_WRITES = Counter(
+    "algorise_checkpoint_writes_total",
+    "Total checkpoint write operations",
+    ["flow_id", "store_tier", "status"],   # store_tier: hot|warm|cold
+    registry=REGISTRY,
+)
+
+CHECKPOINT_RECOVERIES = Counter(
+    "algorise_checkpoint_recoveries_total",
+    "Total checkpoint recovery (resume) operations",
+    ["flow_id", "from_store"],
+    registry=REGISTRY,
+)
+
+PIPELINE_QUEUE_DEPTH = Gauge(
+    "algorise_pipeline_queue_depth",
+    "Current number of incomplete (checkpointed but not finished) pipelines",
+    ["client_id"],
+    registry=REGISTRY,
+)
+
+AUTOFLOW_FAILED_STEPS = Counter(
+    "algorise_autoflow_failed_steps_total",
+    "Total pipeline steps that failed after all retries",
+    ["flow_id", "bot_name", "failure_strategy"],
+    registry=REGISTRY,
+)
+
+BOT_CRASHES_TOTAL = Counter(
+    "algorise_bot_crashes_total",
+    "Total bot execution crashes or unhandled exceptions",
+    ["bot_name", "error_type"],
+    registry=REGISTRY,
+)
+
+CONCURRENT_BOT_EXECUTIONS = Gauge(
+    "algorise_concurrent_bot_executions",
+    "Current active concurrent bot executions",
+    registry=REGISTRY,
+)
+
 
 def init_metrics(app_name: str = "algorise-ai", version: str = "1.0.0") -> None:
+
     """Initialize application info metrics."""
     settings = get_settings()
     APP_INFO.info({

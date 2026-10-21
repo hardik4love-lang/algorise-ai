@@ -166,11 +166,13 @@ class RedisManager:
             REDIS_OPERATION_DURATION.labels(operation="expire").observe(time.perf_counter() - start)
 
     async def keys(self, pattern: str) -> list[str]:
-        """Find keys matching pattern."""
+        """Find keys matching pattern non-blockingly using scan_iter."""
         import time
         start = time.perf_counter()
         try:
-            result = await self.client.keys(pattern)
+            result = []
+            async for k in self.client.scan_iter(match=pattern, count=100):
+                result.append(k.decode() if isinstance(k, bytes) else k)
             REDIS_OPERATIONS.labels(operation="keys", status="success").inc()
             return result
         except Exception as e:

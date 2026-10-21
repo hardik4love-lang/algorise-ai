@@ -185,6 +185,35 @@ class FlakeClassifier:
 
         return RootCauseHypothesis.UNKNOWN
 
+    def evaluate_jitter(self, durations: List[float], threshold: float = 0.35) -> bool:
+        """Evaluates timing jitter using coefficient of variation."""
+        if not durations or len(durations) < 2:
+            return False
+        mean_dur = sum(durations) / len(durations)
+        if mean_dur <= 0:
+            return False
+        variance = sum((d - mean_dur) ** 2 for d in durations) / (len(durations) - 1)
+        std_dev = math.sqrt(variance)
+        cv = std_dev / mean_dur
+        return cv > threshold
+
+    def scan_anti_patterns(self, code: str) -> List[str]:
+        """Scans source code for common flakiness anti-patterns."""
+        patterns_found = []
+        if re.search(r'time\.sleep\s*\(', code):
+            patterns_found.append('FIXED_SLEEP')
+        if re.search(r'random\.(randint|random|uniform|choice)\s*\(', code):
+            patterns_found.append('UNSEEDED_RANDOM')
+        if re.search(r'threading\.Thread', code):
+            patterns_found.append('NON_DETERMINISTIC_THREADING')
+        if re.search(r'multiprocessing\.', code):
+            patterns_found.append('NON_DETERMINISTIC_MULTIPROCESSING')
+        if re.search(r'asyncio\.sleep', code):
+            patterns_found.append('ASYNC_SLEEP')
+        if re.search(r'requests\.(get|post|put|delete)', code) and 'timeout=' not in code:
+            patterns_found.append('HTTP_NO_TIMEOUT')
+        return patterns_found
+
     def _compute_bayesian_posterior(
         self,
         effective_runs: int,

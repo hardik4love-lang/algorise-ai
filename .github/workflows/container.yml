@@ -1,0 +1,117 @@
+name: Algorise AI Container Build & Publish
+
+on:
+  push:
+    branches: [ master, main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ master, main ]
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+  security-events: write
+
+jobs:
+  build:
+    name: Build, Scan and Publish Image
+    runs-on: ubuntu-latest
+    outputs:
+      image_digest: ${{ steps.build.outputs.digest }}
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+        cache: 'pip'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and Push Image by Digest
+      id: build
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        file: ./Dockerfile
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: |
+          ghcr.io/${{ github.repository }}:${{ github.sha }}
+          ghcr.io/${{ github.repository }}:latest
+        outputs: type=image,name=ghcr.io/${{ github.repository }},push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        provenance: true
+        sbom: true
+
+    - name: Extract Image Digest
+      id: digest
+      run: |
+        digest="${{ steps.build.outputs.digest }}"
+        echo "digest=${digest}" >> "$GITHUB_OUTPUT"
+
+    - name: Generate SBOM
+      uses: anchore/sbom-action@v0
+      with:
+        image: ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+        format: spdx-json
+        output-file: sbom.spdx.json
+
+    - name: Upload SBOM Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: sbom-${{ github.sha }}
+        path: sbom.spdx.json
+
+    - name: Trivy Image Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+        format: sarif
+        output: trivy-results.sarif
+        severity: CRITICAL,HIGH
+        exit-code: '1'
+
+    - name: Upload Trivy Results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: trivy-results.sarif
+        category: trivy-image
+
+    - name: Container Smoke Test
+      run: |
+        docker pull ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+        docker run --rm -d --name smoke -p 8099:8000 \
+          -e ENVIRONMENT=production \
+          -e MIGRATE_ON_START=false \
+          -e REDIS_REQUIRED=false \
+          -e ENABLE_EMBEDDED_SCHEDULER=false \
+          -e SECRET_KEY=smoke-test-not-a-real-secret \
+          -e ADMIN_SECRET=smoke-test-not-a-real-secret \
+          -e FB_APP_SECRET=smoke-test-not-a-real-secret \
+          ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
+        for i in $(seq 1 30); do
+          if curl -fsS http://127.0.0.1:8099/livez > /dev/null; then break; fi
+          sleep 2
+        done
+        curl -fsS http://127.0.0.1:8099/livez
+        curl -fsS http://127.0.0.1:8099/readyz
+        docker rm -f smoke

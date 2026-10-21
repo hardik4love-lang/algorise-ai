@@ -109,15 +109,41 @@ class AlgoriseSafetyGate:
                 )
 
         # Stage 2: PII & Secret Leakage
-        sanitized = dict(proposed_action)
+        def _redact_value(val: Any) -> Any:
+            if isinstance(val, str):
+                s = val
+                for pii_type, pat in self.pii_patterns.items():
+                    s = pat.sub(f"[REDACTED_{pii_type.upper()}]", s)
+                return s
+            elif isinstance(val, dict):
+                return {k: _redact_value(v) for k, v in val.items()}
+            elif isinstance(val, list):
+                return [_redact_value(v) for v in val]
+            return val
+
+        sanitized = _redact_value(dict(proposed_action))
+        detected_pii = []
         for pii_type, pat in self.pii_patterns.items():
             if pat.search(action_str):
+                detected_pii.append(pii_type)
                 flags.append(f"PII_GUARD_ALERT: Suspected sensitive secret or PII exposure: '{pii_type}'")
-                risk_score = max(risk_score, 0.6)
 
-        # Stage 3: Financial Transaction Bounds
-        if "amount" in proposed_action or "price" in proposed_action or "order_value" in proposed_action:
-            val = proposed_action.get("amount") or proposed_action.get("price") or proposed_action.get("order_value")
+        if detected_pii:
+            elapsed_ms = (time.perf_counter() - started) * 1000
+            return SafetyAuditResult(
+                is_approved=False,
+                status_code="BLOCKED_PII_LEAKAGE",
+                risk_score=1.0,
+                audit_flags=flags,
+                sanitized_payload=sanitized,
+                latency_ms=elapsed_ms,
+            )
+
+        # Stage 3: Financial Transaction Bounds (expanded synonym coverage)
+        financial_keys = ("amount", "price", "order_value", "transaction_amount", "cost", "fee", "budget", "value")
+        matched_key = next((k for k in financial_keys if k in proposed_action), None)
+        if matched_key is not None:
+            val = proposed_action.get(matched_key)
             try:
                 if isinstance(val, (int, float)):
                     amt = float(val)

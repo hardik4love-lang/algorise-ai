@@ -9,7 +9,10 @@ spec:
   project: default
   source:
     repoURL: https://github.com/hardik4love-lang/algorise-ai.git
-    targetRevision: master
+    # Production deploys are promoted through the GitOps promotion workflow
+    # (.github/workflows/promote.yml) into a release tag that pins an
+    # immutable image digest. A mutable branch is never deployed.
+    targetRevision: v1.0.0
     path: gitops/k8s
   destination:
     server: https://kubernetes.default.svc

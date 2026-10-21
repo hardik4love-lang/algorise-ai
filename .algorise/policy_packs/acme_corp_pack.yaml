@@ -1,0 +1,47 @@
+pack_name: "tenant_acme_corp"
+version: "1.0"
+tenant_id: "acme_corp"
+rules:
+  - rule_id: "modernize-pydantic-v2"
+    name: "Pydantic v1 to v2 Migration"
+    description: "Automatically migrate Pydantic v1 patterns to v2"
+    scope: "tenant"
+    provenance: "tenant_pack"
+    enabled: true
+    priority: 50
+    config:
+      package: "pydantic"
+      target_version: "2.0"
+      engine: "modernize_ai"
+    dry_run_only: false
+    requires_approval: true
+    tenant_id: "acme_corp"
+
+  - rule_id: "trace-root-keyerror-handler"
+    name: "KeyError Auto-Healing"
+    description: "Automatically synthesize .get() fallback for KeyError incidents"
+    scope: "tenant"
+    provenance: "tenant_pack"
+    enabled: true
+    priority: 10
+    config:
+      error_type: "KeyError"
+      engine: "trace_root_ai"
+      auto_stage: false
+    dry_run_only: false
+    requires_approval: false
+    tenant_id: "acme_corp"
+
+  - rule_id: "custom-security-scan"
+    name: "Custom Security Scan Hook"
+    description: "Run custom security analysis via Python hook"
+    scope: "tenant"
+    provenance: "custom_hook"
+    enabled: true
+    priority: 100
+    config:
+      hook: "./hooks/security_scan.py"
+      engine: "modernize_ai"
+    dry_run_only: true
+    requires_approval: true
+    tenant_id: "acme_corp"

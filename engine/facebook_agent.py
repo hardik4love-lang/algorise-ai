@@ -11,15 +11,18 @@ and Telegram hot lead alerts. Zero simulated or fake data.
 import os
 import re
 import json
+import time
+from collections import OrderedDict
 import urllib.request
 import urllib.parse
 
 from engine.enquiry_tracking import embed_code, register_comment
 import urllib.error
 from datetime import datetime, timezone
-from typing import Dict, Any, List, Optional, Tuple, Set
+from typing import Dict, Any, List, Optional, Tuple, Set, Union
 
 from engine.config import get_settings
+from engine.logging import get_logger
 from engine.telegram_service import (
     AlgoriseTelegramService,
     TelegramNotConfigured,
@@ -27,6 +30,7 @@ from engine.telegram_service import (
 )
 
 settings = get_settings()
+logger = get_logger(__name__)
 
 # Telegram alerting is optional. A missing token disables alerting; it must
 # not prevent the module from importing, or the whole application fails to
@@ -93,13 +97,55 @@ AUTO_REPLY_TEMPLATES = {
 }
 
 
+class BoundedDeduplicationCache:
+    """
+    Thread-safe bounded in-memory deduplication cache with FIFO eviction and TTL.
+    Prevents memory leaks in perpetual 24/7 background agent execution.
+    """
+
+    def __init__(self, maxsize: int = 5000, ttl_seconds: float = 604800.0):
+        self.maxsize = maxsize
+        self.ttl_seconds = ttl_seconds
+        self._cache: OrderedDict[str, float] = OrderedDict()
+
+    def __contains__(self, item: str) -> bool:
+        if not item or item not in self._cache:
+            return False
+        timestamp = self._cache[item]
+        if (time.time() - timestamp) > self.ttl_seconds:
+            try:
+                del self._cache[item]
+            except KeyError:
+                pass
+            return False
+        return True
+
+    def add(self, item: str) -> None:
+        if not item:
+            return
+        now = time.time()
+        if item in self._cache:
+            self._cache.move_to_end(item)
+            self._cache[item] = now
+            return
+        if len(self._cache) >= self.maxsize:
+            self._cache.popitem(last=False)  # Evict oldest entry (FIFO)
+        self._cache[item] = now
+
+    def __len__(self) -> int:
+        return len(self._cache)
+
+    def clear(self) -> None:
+        self._cache.clear()
+
+
 class FacebookAgentEngine:
     """Core autonomous 24/7 agent for live Facebook 3-Page & 100-Group monitoring and conversion."""
 
     def __init__(self, api_version: str = "v19.0"):
         self.api_version = api_version
         self.base_url = f"https://graph.facebook.com/{self.api_version}"
-        self.replied_comment_ids: Set[str] = set()
+        self.replied_comment_ids = BoundedDeduplicationCache(maxsize=5000, ttl_seconds=604800.0)
 
     def match_shruhi_product(self, text: str) -> Dict[str, str]:
         lower = (text or "").lower()
@@ -438,7 +484,7 @@ class FacebookAgentEngine:
                             # No bot token or no destination: alerting is
                             # simply unavailable. Do not fabricate a send.
                             if not chat_target:
-                                _log.info(
+                                logger.info(
                                     "hot lead %s detected but TELEGRAM_CHAT_ID "
                                     "is unset; alert skipped", user_name
                                 )

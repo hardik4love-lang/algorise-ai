@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import ast
 import os
+import threading
 from collections import defaultdict, deque
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -50,7 +51,12 @@ class BlastRadiusAnalyzer:
         self.symbol_links: Dict[Tuple[str, str], List[str]] = defaultdict(list)
         self.cache_hits: int = 0
         self.cache_misses: int = 0
-        self._build_dependency_graph()
+        self._graph_built: bool = False
+        self._build_lock = threading.Lock()
+        # The graph is built eagerly so cache telemetry (hits/misses) is
+        # available to the caller immediately after construction. The
+        # incremental cache keeps the second construction cheap.
+        self._ensure_graph_built()
 
     def _load_cache(self) -> Dict[str, dict]:
         if os.path.exists(self.cache_path):
@@ -86,6 +92,30 @@ class BlastRadiusAnalyzer:
         if mod.endswith("/__init__"):
             mod = mod[:-9]
         return mod.replace("/", ".")
+
+    def _ensure_graph_built(self):
+        """Lazily initialize the dependency graph. Thread-safe for single-process use."""
+        if self._graph_built:
+            return
+        with self._build_lock:
+            if self._graph_built:
+                return
+            self._build_dependency_graph()
+            self._graph_built = True
+
+    def warmup_graph_async(self):
+        """Start background warmup of dependency graph (fire-and-forget)."""
+        import threading
+        if self._graph_built:
+            return
+        def _warmup():
+            try:
+                self._ensure_graph_built()
+            except Exception:
+                pass
+        thread = threading.Thread(target=_warmup, daemon=True)
+        thread.start()
+        return thread
 
     def _build_dependency_graph(self):
         """Scans Python files to construct the import dependency graph using incremental AST cache."""
@@ -160,6 +190,7 @@ class BlastRadiusAnalyzer:
         """
         Calculates transitive downstream blast radius starting from changed files.
         """
+        self._ensure_graph_built()
         changed_symbols = changed_symbols or []
         normalized_changed = {self._normalize_path(f) for f in changed_files}
 

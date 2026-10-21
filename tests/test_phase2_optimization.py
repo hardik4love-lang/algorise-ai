@@ -141,12 +141,18 @@ VALID_KEY = "alg_live_test_key_9981"
 
 
 def test_api_health():
-    response = client.get("/v1/health")
+    # /v1/health is a tenant-scoped endpoint and requires authentication.
+    response = client.get("/v1/health", headers={"X-Algorise-API-Key": VALID_KEY})
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
     assert data["service"] == "algorise-devex-gateway"
     assert "autotest_sentinel" in data["engines"]
+
+
+def test_api_health_requires_auth():
+    response = client.get("/v1/health")
+    assert response.status_code == 401
 
 
 def test_api_auth_unauthorized():

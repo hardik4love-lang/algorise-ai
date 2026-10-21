@@ -43,6 +43,7 @@ spec:
         prometheus.io/path: "/metrics"
     spec:
       serviceAccountName: algorise-workload-identity
+      terminationGracePeriodSeconds: 45
       securityContext:
         runAsNonRoot: true
         runAsUser: 10001
@@ -50,6 +51,13 @@ spec:
         fsGroup: 10001
         seccompProfile:
           type: RuntimeDefault
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: topology.kubernetes.io/zone
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: algorise-ai
       containers:
         - name: engine
           image: ghcr.io/hardik4love-lang/algorise-ai:v1.0.0
@@ -58,9 +66,12 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: algorise-ai-config
+            - secretRef:
+                name: algorise-ai-secrets
           env:
-            - name: ENVIRONMENT
-              value: "production"
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "http://otel-collector-gateway.telemetry.svc.cluster.local:4317"
             - name: OTEL_SERVICE_NAME
@@ -78,26 +89,54 @@ spec:
             capabilities:
               drop:
                 - ALL
+          # Liveness only proves the process is alive. Readiness proves the
+          # service finished startup and its dependencies are usable. The
+          # startup probe gates traffic until the first successful readiness
+          # evaluation, so a slow start is never misread as a crash.
+          startupProbe:
+            httpGet:
+              path: /readyz
+              port: http
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 24
           livenessProbe:
             httpGet:
-              path: /health
+              path: /livez
               port: http
-            initialDelaySeconds: 15
             periodSeconds: 10
             timeoutSeconds: 3
             failureThreshold: 3
           readinessProbe:
             httpGet:
-              path: /health
+              path: /readyz
               port: http
-            initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 2
             successThreshold: 1
             failureThreshold: 2
+
           volumeMounts:
             - name: tmp-volume
               mountPath: /tmp
       volumes:
         - name: tmp-volume
           emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: algorise-ai
+  namespace: algorise-prod
+  labels:
+    app.kubernetes.io/name: algorise-ai
+    app.kubernetes.io/managed-by: argocd
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: algorise-ai
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+      protocol: TCP

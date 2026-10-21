@@ -54,6 +54,7 @@ dist/
 .release-state.json
 .context_pr/
 .autotest/
+tmp*/
 config/aria_telegram_state.json
 config/aria_telegram_config.json
 

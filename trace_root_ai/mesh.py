@@ -31,6 +31,15 @@ class HealingMeshResult(BaseModel):
     verification_passed: bool
     remediation_summary: str
 
+    @property
+    def status(self) -> str:
+        if not self.hotfix_synthesized:
+            return "failed"
+        if self.auto_staged:
+            return "staged"
+        return "simulated"
+
+
 
 class AutonomousHealingMesh:
     """

@@ -1,0 +1,109 @@
+name: Algorise AI GitOps Promotion
+
+# Promotes an immutable image digest into the GitOps environment repository
+# through a reviewed pull request. The working tree here is not deployed
+# directly: Argo CD owns the cluster state and Argo Rollouts performs the
+# canary rollout.
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_digest:
+        description: 'Immutable image digest (sha256:...) to promote'
+        required: true
+        type: string
+      environment:
+        description: 'Target environment overlay'
+        required: true
+        default: production
+        type: choice
+        options: [ staging, production ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+jobs:
+  promote:
+    name: Open GitOps Promotion PR
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: main
+        path: gitops-repo
+
+    - name: Validate Digest Format
+      run: |
+        if [[ ! "${{ inputs.image_digest }}" =~ ^sha256:[a-f0-9]{64}$ ]]; then
+          echo "::error::image_digest must be an immutable sha256 digest"
+          exit 1
+        fi
+
+    - name: Update Image Digest
+      working-directory: gitops-repo
+      run: |
+        python - "${{ inputs.image_digest }}" <<'PY'
+        import io, os, re, sys
+
+        digest = sys.argv[1]
+        root = "gitops"
+        changed = []
+
+        for dirpath, _dirnames, filenames in os.walk(root):
+            for name in filenames:
+                if not name.endswith((".yaml", ".yml")):
+                    continue
+                path = os.path.join(dirpath, name)
+                with io.open(path, encoding="utf-8") as handle:
+                    text = handle.read()
+                original = text
+                # Replace tag-pinned images with the digest-pinned reference.
+                text = re.sub(
+                    r"(image:\s*ghcr\.io/hardik4love-lang/algorise-ai):[A-Za-z0-9._-]+",
+                    r"\1@" + digest,
+                    text,
+                )
+                if text != original:
+                    with io.open(path, "w", encoding="utf-8") as handle:
+                        handle.write(text)
+                    changed.append(path)
+
+        if not changed:
+            print("No image references updated")
+        for path in changed:
+            print("updated:", path)
+        PY
+
+    - name: Verify Manifests Parse
+      working-directory: gitops-repo
+      run: |
+        python -c "
+        import glob, yaml, sys
+        count = 0
+        for path in glob.glob('gitops/**/*.y*ml', recursive=True):
+            with open(path, encoding='utf-8') as handle:
+                list(yaml.safe_load_all(handle))
+            count += 1
+        print(f'validated {count} manifest files')
+        "
+
+    - name: Create Promotion Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: chore/promote-${{ inputs.environment }}-${{ github.run_id }}
+        commit-message: "chore(gitops): promote ${{ inputs.environment }} to ${{ inputs.image_digest }}"
+        title: "chore(gitops): promote ${{ inputs.environment }} to ${{ inputs.image_digest }}"
+        body: |
+          Automated promotion of the Algorise AI image.
+
+          - Environment: ${{ inputs.environment }}
+          - Image digest: ${{ inputs.image_digest }}
+          - Source run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          This PR updates digest-pinned image references. Argo CD syncs it and
+          Argo Rollouts performs the canary analysis.
+        add-paths: gitops

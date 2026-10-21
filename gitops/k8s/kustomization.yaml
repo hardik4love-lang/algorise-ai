@@ -4,8 +4,12 @@ kind: Kustomization
 namespace: algorise-prod
 
 resources:
+  - namespace.yaml
   - rollout.yaml
   - service.yaml
+  - pdb.yaml
+  - secrets.yaml
+  - migration-job.yaml
   - networkpolicy.yaml
   - keda-scaledobject.yaml
   - kyverno-policies.yaml

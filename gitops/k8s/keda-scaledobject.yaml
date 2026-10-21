@@ -31,6 +31,8 @@ spec:
     - type: prometheus
       metadata:
         serverAddress: http://victoriametrics.telemetry.svc.cluster.local:8428
-        metricName: http_requests_per_second
+        # Metric and label names must match the counters exported by
+        # engine/metrics.py, otherwise the trigger never fires.
+        metricName: algorise_http_requests_total
         threshold: "75"
-        query: sum(rate(http_requests_total{app="algorise-ai"}[1m]))
+        query: sum(rate(algorise_http_requests_total[1m]))
