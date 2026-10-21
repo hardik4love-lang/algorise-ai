@@ -16,8 +16,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY pyproject.toml README.md ./
 
-# Install core devex + server dependencies into user directory
-RUN pip install --no-cache-dir --user .[server]
+# pip, setuptools, wheel and build are upgraded before the install. The
+# versions bundled in the base image carry known path-traversal and
+# privilege-escalation advisories, and this build tooling is what installs
+# every other package into the image. The upgrade has to happen before the
+# project install, because the project install itself runs through pip.
+RUN python -m pip install --no-cache-dir --upgrade \
+        pip \
+        setuptools \
+        wheel \
+        build
+
+# Install core devex + server dependencies into user directory.
+RUN python -m pip install --no-cache-dir --user .[server]
+
+# Remove the build tooling from the builder output. It is not needed at
+# runtime, and the advisories above apply to the copies that would
+# otherwise be carried into the final image.
+RUN python -m pip uninstall -y --no-input \
+        pip \
+        setuptools \
+        wheel \
+        build \
+    || true
 
 # --- Stage 2: Final Minimal Runtime ---
 FROM python:3.11-slim AS runtime
@@ -32,6 +53,15 @@ WORKDIR /app
 # Create non-root system user for security
 RUN groupadd -g 10001 algorise && \
     useradd -u 10001 -g algorise -s /bin/bash -m algorise
+
+# The base image ships pip, setuptools and wheel with known path-traversal
+# and privilege-escalation advisories. The runtime never installs or builds
+# anything, so the build tooling is removed from the final image.
+RUN python -m pip uninstall -y --no-input \
+        pip \
+        setuptools \
+        wheel \
+    || true
 
 # Copy installed python packages from builder
 COPY --from=builder /root/.local /home/algorise/.local
