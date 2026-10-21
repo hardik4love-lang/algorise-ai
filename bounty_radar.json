@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T06:30:41.686286+00:00",
+  "generated_at": "2026-10-21T12:47:45.421013+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -124,6 +124,22 @@
   "platform_1_algora": [
     {
       "repo": "tenstorrent/tt-metal",
+      "number": 61835,
+      "title": "[ttnn/experimental/quasar] matmul auto-config never caps per-core block to output, block-sharded shard larger than output (#58407 item 16)",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61835",
+      "created_at": "2026-10-21T09:09:24Z",
+      "labels": [
+        "bug",
+        "op_cat: mm",
+        "MCW"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
       "number": 61816,
       "title": "[profiler]: host buffer sizing overflows 32-bit arithmetic on Blackhole and silently truncates device data",
       "url": "https://github.com/tenstorrent/tt-metal/issues/61816",
@@ -137,29 +153,92 @@
       "priority_score": 40.13
     },
     {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61772,
-      "title": "[SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_chunk_size >= 256 (unpack/math/pack deadlock in no-mop matmul)",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61772",
-      "created_at": "2026-10-20T22:14:27Z",
+      "repo": "Ikalus1988/MisakaNet",
+      "number": 3624,
+      "title": "[Bounty] Answer the 2 linked question(s)",
+      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3624",
+      "created_at": "2026-10-21T12:18:23Z",
       "labels": [
-        "bug",
-        "LLK",
-        "Hangs_Taskforce",
-        "wormhole",
-        "op_cat: SDPA"
+        "ready",
+        "bounty"
       ],
       "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "Ikalus1988/MisakaNet",
+      "number": 3623,
+      "title": "[Bounty] Answer the 2 linked question(s)",
+      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3623",
+      "created_at": "2026-10-21T12:18:22Z",
+      "labels": [
+        "ready",
+        "bounty"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "Ikalus1988/MisakaNet",
+      "number": 3622,
+      "title": "[Bounty] Answer the 2 linked question(s)",
+      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3622",
+      "created_at": "2026-10-21T12:18:20Z",
+      "labels": [
+        "ready",
+        "bounty"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "GoodDollar/GoodWidget",
+      "number": 264,
+      "title": "[DRAFT][GoodBounty] Finalize Widget showcase in Storybook PR (#253)",
+      "url": "https://github.com/GoodDollar/GoodWidget/issues/264",
+      "created_at": "2026-10-21T12:16:30Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
     },
     {
       "repo": "paraloom-labs/paraloom-core",
-      "number": 1160,
-      "title": "[BOUNTY] Medium: CommitmentGenerator scheme mismatch (Poseidon vs Pedersen), proof_codec trailing-byte/endianness bugs, transaction validation gaps, and Coordinator HA failover task stranding",
-      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1160",
-      "created_at": "2026-10-21T06:27:09Z",
+      "number": 1169,
+      "title": "[BOUNTY] Low: deposit decoder rejects trailing instruction bytes that the on-chain program accepts",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1169",
+      "created_at": "2026-10-21T12:09:02Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "paraloom-labs/paraloom-core",
+      "number": 1168,
+      "title": "[BOUNTY] Medium: privateSwap spends shielded SOL before enforcing SWAP_OVERHEAD_LAMPORTS + 25 bps fee floor, drops unused overhead SOL after reshieldToken, and leaves sub-reserve stranded SOL unrecovered (paraloom-wallet#104)",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1168",
+      "created_at": "2026-10-21T12:08:29Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "paraloom-labs/paraloom-wallet",
+      "number": 104,
+      "title": "[BOUNTY] Medium: privateSwap spends shielded SOL before enforcing SWAP_OVERHEAD_LAMPORTS + 25 bps fee floor, drops unused overhead SOL after reshieldToken, and leaves sub-reserve stranded SOL unrecovered",
+      "url": "https://github.com/paraloom-labs/paraloom-wallet/issues/104",
+      "created_at": "2026-10-21T12:07:20Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -168,68 +247,10 @@
     },
     {
       "repo": "tari-project/special_contributions",
-      "number": 280,
-      "title": "Security report: tari-ootle non-canonical confidential mask in a payer-crafted output panics the receiving wallet (persistent walletd crash loop) (GHSA-mm9x-928m-8gjc)",
-      "url": "https://github.com/tari-project/special_contributions/issues/280",
-      "created_at": "2026-10-21T06:24:38Z",
-      "labels": [
-        "retro-bounty",
-        "bounty-L"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "tari-project/special_contributions",
-      "number": 279,
-      "title": "Security report: tari-ootle foreign proposal notification from an unrelated committee suppresses the honest notification, so the block is never fetched from the committee that holds it (GHSA-mxc7-fprj-8xq2)",
-      "url": "https://github.com/tari-project/special_contributions/issues/279",
-      "created_at": "2026-10-21T06:21:48Z",
-      "labels": [
-        "retro-bounty",
-        "bounty-L"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "dmavs412/twilights-eve-wow",
-      "number": 244,
-      "title": "Tower of Azora: the Phased Dungeon with three Redridge stops, the Shadow of Morganth and quests 94601\u201394605",
-      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/244",
-      "created_at": "2026-10-21T06:21:31Z",
-      "labels": [
-        "ready-for-agent"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "dmavs412/twilights-eve-wow",
-      "number": 243,
-      "title": "Stone Cairn Lake: The Vigil Defaced, Rites at the Stone, An Echo in the Ore and four bounties",
-      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/243",
-      "created_at": "2026-10-21T06:21:30Z",
-      "labels": [
-        "ready-for-agent"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "tari-project/special_contributions",
-      "number": 278,
-      "title": "Security report: tari-ootle consensus: timeout vote signatures bind no network, so a timeout certificate verifies on any network where the signers are committee members (ISSUE-2848)",
-      "url": "https://github.com/tari-project/special_contributions/issues/278",
-      "created_at": "2026-10-21T06:05:38Z",
+      "number": 291,
+      "title": "Bug report: tari-ootle coalesced UTXO protobuf frames are dropped and wallet scan cursor skips owned outputs (GHSA-mf7r-4pfr-2qg3)",
+      "url": "https://github.com/tari-project/special_contributions/issues/291",
+      "created_at": "2026-10-21T12:05:45Z",
       "labels": [
         "retro-bounty",
         "bounty-S"
@@ -238,37 +259,21 @@
       "is_bounty": true,
       "is_critical": false,
       "priority_score": 20.05
-    },
-    {
-      "repo": "dmavs412/twilights-eve-wow",
-      "number": 237,
-      "title": "Jasperlode Mine: the Phased Dungeon, the Eye Below and quests 94401\u201394404",
-      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/237",
-      "created_at": "2026-10-21T05:56:51Z",
-      "labels": [
-        "ready-for-agent"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "dmavs412/twilights-eve-wow",
-      "number": 236,
-      "title": "Crystal Lake and Fargodeep: Narg's Orders, The Dead Courier, The Keystone and four bounties",
-      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/236",
-      "created_at": "2026-10-21T05:56:48Z",
-      "labels": [
-        "ready-for-agent"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
     }
   ],
   "platform_2_gohybrid": [
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1112,
+      "title": "[Soundness] hy-check: assigning a typed int variable to a float64 variable passes check, fails go build (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1112",
+      "created_at": "2026-10-21T12:27:14Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
     {
       "repo": "limitlessprojects/Go-Hybrid",
       "number": 1031,
@@ -280,6 +285,42 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1107,
+      "title": "[wildcard] Kill foreign.rs Hand-Maintained Stubs & the M5 19-Package Wall via Zero-Annotation Go AST + Escape-Summary Boundary Synthesis",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1107",
+      "created_at": "2026-10-21T11:57:48Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1105,
+      "title": "soundness(hy-check): ForKind::Iterate 2-var BorrowHandle/OwnHandle escape, non-literal/aliased set[T] arity, and option/generic send-only chan & iterable gaps (HYB-E2009)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1105",
+      "created_at": "2026-10-21T11:47:17Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1083,
+      "title": "soundness(hy-check): const with non-constant type ascriptions (any, option[T]), local/closure const chains, and conversion/len shadowing bypass or misfire HYB-E6003 (const_init.rs)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1083",
+      "created_at": "2026-10-21T08:54:24Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -340,54 +381,6 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1029,
-      "title": "[Soundness] hy-check: call argument type mismatches against parameter types bypass front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1029",
-      "created_at": "2026-10-20T13:39:11Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1013,
-      "title": "[Soundness] hy-check: void calls and 0-value builtins in integer range bounds and string interpolation bypass front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1013",
-      "created_at": "2026-10-20T12:43:25Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1069,
-      "title": "soundness(hy-check): unwrapped Send/Select move-marker blindness, select-arm state leakage, and self-move/return const & loan provenance loss",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1069",
-      "created_at": "2026-10-21T04:26:07Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1044,
-      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
-      "created_at": "2026-10-20T19:44:20Z",
-      "labels": [],
-      "competing_prs": 2,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 39.98
     }
   ],
   "platform_3_security": [

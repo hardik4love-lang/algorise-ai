@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-21T06:30:41.685730+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-21T12:47:45.420431+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `tenstorrent/tt-metal` | [#61835](https://github.com/tenstorrent/tt-metal/issues/61835) | [ttnn/experimental/quasar] matmul auto-config never cap | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61835) |
 | `tenstorrent/tt-metal` | [#61816](https://github.com/tenstorrent/tt-metal/issues/61816) | [profiler]: host buffer sizing overflows 32-bit arithme | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61816) |
-| `tenstorrent/tt-metal` | [#61772](https://github.com/tenstorrent/tt-metal/issues/61772) | [SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_ | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61772) |
-| `paraloom-labs/paraloom-core` | [#1160](https://github.com/paraloom-labs/paraloom-core/issues/1160) | [BOUNTY] Medium: CommitmentGenerator scheme mismatch (P | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1160) |
-| `tari-project/special_contributions` | [#280](https://github.com/tari-project/special_contributions/issues/280) | Security report: tari-ootle non-canonical confidential  | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/280) |
-| `tari-project/special_contributions` | [#279](https://github.com/tari-project/special_contributions/issues/279) | Security report: tari-ootle foreign proposal notificati | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/279) |
-| `dmavs412/twilights-eve-wow` | [#244](https://github.com/dmavs412/twilights-eve-wow/issues/244) | Tower of Azora: the Phased Dungeon with three Redridge  | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/244) |
+| `Ikalus1988/MisakaNet` | [#3624](https://github.com/Ikalus1988/MisakaNet/issues/3624) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3624) |
+| `Ikalus1988/MisakaNet` | [#3623](https://github.com/Ikalus1988/MisakaNet/issues/3623) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3623) |
+| `Ikalus1988/MisakaNet` | [#3622](https://github.com/Ikalus1988/MisakaNet/issues/3622) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3622) |
+| `GoodDollar/GoodWidget` | [#264](https://github.com/GoodDollar/GoodWidget/issues/264) | [DRAFT][GoodBounty] Finalize Widget showcase in Storybo | 0 | `20.05` | [Inspect](https://github.com/GoodDollar/GoodWidget/issues/264) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `limitlessprojects/Go-Hybrid` | [#1112](https://github.com/limitlessprojects/Go-Hybrid/issues/1112) | [Soundness] hy-check: assigning a typed int variable to | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1112) |
 | `limitlessprojects/Go-Hybrid` | [#1031](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) | [Soundness] hy-check: return type mismatches against de | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) |
+| `limitlessprojects/Go-Hybrid` | [#1107](https://github.com/limitlessprojects/Go-Hybrid/issues/1107) | [wildcard] Kill foreign.rs Hand-Maintained Stubs & the  | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1107) |
+| `limitlessprojects/Go-Hybrid` | [#1105](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) | soundness(hy-check): ForKind::Iterate 2-var BorrowHandl | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) |
+| `limitlessprojects/Go-Hybrid` | [#1083](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) | soundness(hy-check): const with non-constant type ascri | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) |
 | `limitlessprojects/Go-Hybrid` | [#1072](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) | soundness(hy-check): managed non-owned/GC-field move au | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) |
-| `limitlessprojects/Go-Hybrid` | [#1046](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) | [Soundness] hy-check: projected map-element borrows (&m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) |
-| `limitlessprojects/Go-Hybrid` | [#1042](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) | [Soundness] call_shape, call_result_tys, ty_of_expr, an | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) |
-| `limitlessprojects/Go-Hybrid` | [#1035](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) | [soundness] Critical: user-declared `panic` silently de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) |
-| `limitlessprojects/Go-Hybrid` | [#1032](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) | [Soundness] hy-check: while loop condition type mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
