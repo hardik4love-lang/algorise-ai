@@ -4,7 +4,7 @@
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
-  "total_evaluated": 10,
+  "total_evaluated": 20,
   "opportunities": [
     {
       "task_id": "gh-5021",
@@ -215,6 +215,216 @@
       ],
       "status": "APPROVED_FOR_TRIAGE",
       "created_at": "2026-10-21T16:31:05.807146+00:00"
+    },
+    {
+      "task_id": "gh-5021",
+      "title": "bounty bounty bounty bounty bounty bounty bounty bounty bounty ",
+      "repository": "Trauma-Station/Trauma-Station",
+      "url": "https://github.com/Trauma-Station/Trauma-Station/issues/5021",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331044+00:00"
+    },
+    {
+      "task_id": "gh-46",
+      "title": "[BOUNTY #XX] Claiming Bounty #30 - Restaurant POS Interface",
+      "repository": "bujiproject-art/agentmidasopendevteam",
+      "url": "https://github.com/bujiproject-art/agentmidasopendevteam/issues/46",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331083+00:00"
+    },
+    {
+      "task_id": "gh-1573",
+      "title": "[Bounty] Bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1573",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331094+00:00"
+    },
+    {
+      "task_id": "gh-1556",
+      "title": "[Bounty] bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1556",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331105+00:00"
+    },
+    {
+      "task_id": "gh-4061",
+      "title": "[Bounty] [TEST BOUNTY] Fix typo in README",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4061",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331113+00:00"
+    },
+    {
+      "task_id": "gh-1602",
+      "title": "[Bounty] EKEODKDE9DKE9DO BOUNTY",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1602",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331122+00:00"
+    },
+    {
+      "task_id": "gh-1558",
+      "title": "[Bounty] Reverse bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1558",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331130+00:00"
+    },
+    {
+      "task_id": "gh-1570",
+      "title": "[Bounty] bitcoin bounty",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1570",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331151+00:00"
+    },
+    {
+      "task_id": "gh-13",
+      "title": "Bounty marketplace UI (/, /bounties, /bounties/[id], /create)",
+      "repository": "rylsherdamz-rgb/stellar-forge",
+      "url": "https://github.com/rylsherdamz-rgb/stellar-forge/issues/13",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331162+00:00"
+    },
+    {
+      "task_id": "gh-1897",
+      "title": "[Bounty] [Bounty: $45] Validate input to bytes32ToStellarAddress",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/1897",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-21T21:10:44.331170+00:00"
     }
   ]
 }
