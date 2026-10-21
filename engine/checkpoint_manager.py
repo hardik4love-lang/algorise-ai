@@ -111,7 +111,16 @@ class _RedisCache:
         url = redis_url or os.getenv("REDIS_URL", "redis://localhost:6379/0")
         try:
             import redis
-            self._client = redis.from_url(url, decode_responses=True, socket_timeout=2)
+            # A short connect timeout matters: this is constructed during
+            # import, and a long timeout on a missing Redis stalls the
+            # whole startup. The cold store is the fallback, so failing
+            # fast is correct here.
+            self._client = redis.from_url(
+                url,
+                decode_responses=True,
+                socket_timeout=1,
+                socket_connect_timeout=1,
+            )
             self._client.ping()
             log.info("checkpoint_redis_connected", url=url)
         except Exception as exc:
@@ -187,6 +196,21 @@ CREATE TABLE IF NOT EXISTS pipeline_checkpoints (
 CREATE INDEX IF NOT EXISTS idx_checkpoint_lookup
     ON pipeline_checkpoints(flow_id, execution_id);
 """
+
+
+_SHARED_REDIS_CACHE: Optional[_RedisCache] = None
+
+
+def _shared_redis_cache(redis_url: Optional[str] = None) -> _RedisCache:
+    """Return the process-wide Redis cache, creating it on first use.
+
+    The cache is created once so a missing Redis costs a single
+    connection attempt rather than one per CheckpointManager.
+    """
+    global _SHARED_REDIS_CACHE
+    if _SHARED_REDIS_CACHE is None:
+        _SHARED_REDIS_CACHE = _RedisCache(redis_url=redis_url)
+    return _SHARED_REDIS_CACHE
 
 
 class _ColdStore:
@@ -305,7 +329,12 @@ class CheckpointManager:
         db_path:   Optional[str] = None,
     ):
         self._hot   = _HotCache()
-        self._warm  = _RedisCache(redis_url=redis_url)
+        # The Redis connection is shared across every manager instance.
+        # Each manager used to open its own connection, and a missing
+        # Redis meant one connection attempt per manager. With five
+        # managers that is five sequential timeouts during import, which
+        # delays startup for every process that touches this module.
+        self._warm  = _shared_redis_cache(redis_url)
         self._cold  = _ColdStore(db_path=db_path or _COLD_STORE_PATH)
 
     def save(self, cp: PipelineCheckpoint) -> bool:

@@ -18,31 +18,44 @@ algorise-devex = "devex.cli:main"
 devex = "devex.cli:main"
 
 [project.optional-dependencies]
+# These pins must stay identical to requirements.txt. The Docker image
+# installs from this file while Render installs from requirements.txt, so
+# any drift between the two produces an image that behaves differently
+# from the deployed service. A clean install of the unpinned ranges
+# resolved SQLAlchemy 2.1.6, which the OpenTelemetry SQLAlchemy
+# instrumentor does not support, and the service failed to start.
 server = [
-    "fastapi>=0.109.0",
-    "uvicorn[standard]>=0.27.0",
-    "redis>=5.0.0",
-    "sqlalchemy>=2.0.0",
-    "alembic>=1.13.0",
-    "asyncpg>=0.29.0",
-    "aiosqlite>=0.19.0",
-    "loguru>=0.7.0",
-    "requests>=2.31.0",
-    "httpx>=0.26.0",
-    "structlog>=24.1.0",
-    "opentelemetry-api>=1.22.0",
-    "opentelemetry-sdk>=1.22.0",
-    "opentelemetry-exporter-otlp>=1.22.0",
-    "opentelemetry-instrumentation-fastapi>=0.42b0",
-    "opentelemetry-instrumentation-redis>=0.42b0",
-    "opentelemetry-instrumentation-sqlalchemy>=0.42b0",
-    "prometheus-client>=0.19.0",
-    "python-json-logger>=2.0.0",
-    "python-multipart>=0.0.6",
-    "email-validator>=2.1.0",
-    "cryptography>=41.0.0",
-    "passlib[bcrypt]>=1.7.4",
-    "python-jose[cryptography]>=3.3.0",
+    "aiosqlite==0.22.1",
+    "alembic==1.20.0",
+    "asyncpg==0.31.0",
+    "cryptography==46.0.3",
+    "email-validator==2.3.0",
+    "fastapi==0.128.0",
+    "greenlet==3.5.5",
+    "httpx==0.28.1",
+    "loguru==0.7.3",
+    "opentelemetry-api==1.44.0",
+    "opentelemetry-exporter-otlp-proto-grpc==1.44.0",
+    "opentelemetry-instrumentation-fastapi==0.65b0",
+    "opentelemetry-instrumentation-redis==0.65b0",
+    "opentelemetry-instrumentation-sqlalchemy==0.65b0",
+    "opentelemetry-sdk==1.44.0",
+    "passlib[bcrypt]==1.7.4",
+    "prometheus-client==0.26.0",
+    "pydantic==2.12.5",
+    "pydantic-settings==2.12.0",
+    "python-dotenv==1.2.1",
+    "python-jose[cryptography]==3.5.0",
+    "python-json-logger==4.2.0",
+    "python-multipart==0.0.21",
+    "pyyaml==6.0.3",
+    "redis==8.1.0",
+    "requests==2.32.5",
+    "sqlalchemy[asyncio]==2.0.54",
+    "structlog==26.1.0",
+    "telethon==1.45.0",
+    "tenacity==9.1.4",
+    "uvicorn[standard]==0.40.0",
 ]
 dev = [
     "pytest>=7.4.0",

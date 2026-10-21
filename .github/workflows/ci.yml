@@ -50,6 +50,17 @@ jobs:
         python scripts/build.py
         python scripts/build.py --check-all
 
+    - name: Dependency Coverage Check
+      # The container installs from pyproject while Render installs from
+      # requirements.txt. A module imported by the engine but missing from
+      # the installed set raises ImportError at startup.
+      run: python scripts/check_dependency_coverage.py
+
+    - name: Dependency Parity Check
+      # The two dependency sets must declare the same pinned versions, or
+      # the image and the deployed service run different libraries.
+      run: python scripts/check_dependency_parity.py
+
     - name: Route Registration Check
       # A router that fails to import is swallowed by the lazy loader. The
       # build then succeeds and the service serves a subset of the API
