@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-20T23:00:27.688357+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-21T01:29:03.508751+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,12 +22,12 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `tenstorrent/tt-metal` | [#61774](https://github.com/tenstorrent/tt-metal/issues/61774) | [Quasar] Batched llk_unpack_AB ignores DFB stride: tile | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61774) |
 | `tenstorrent/tt-metal` | [#61772](https://github.com/tenstorrent/tt-metal/issues/61772) | [SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_ | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61772) |
 | `tenstorrent/tt-metal` | [#61727](https://github.com/tenstorrent/tt-metal/issues/61727) | Tiled ttnn.reshape hangs after execute_trace: cached ma | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61727) |
-| `airdropia/earn-ops` | [#2](https://github.com/airdropia/earn-ops/issues/2) | superteam digest 2026-10-20 | 0 | `20.05` | [Inspect](https://github.com/airdropia/earn-ops/issues/2) |
-| `GranSkreaReforged/GSOOffline` | [#109](https://github.com/GranSkreaReforged/GSOOffline/issues/109) | Testing and Balance: Deaths Toll and Cowards Mark | 0 | `20.05` | [Inspect](https://github.com/GranSkreaReforged/GSOOffline/issues/109) |
-| `sybil-solutions/local-ai-registry` | [#349](https://github.com/sybil-solutions/local-ai-registry/issues/349) | Bounty: a 27B-class model (Ternary-Bonsai-2-27B) valida | 0 | `20.05` | [Inspect](https://github.com/sybil-solutions/local-ai-registry/issues/349) |
+| `ZcashCommunityGrants/zcashcommunitygrants` | [#506](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506) | Grant Application - {Zcash Durable Payment Outbox} | 0 | `20.05` | [Inspect](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506) |
+| `freedom-winds/BountyScout` | [#1290](https://github.com/freedom-winds/BountyScout/issues/1290) | 🎯 Bounty Alert: 7 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1290) |
+| `Krilliac/ArcaneCore` | [#1165](https://github.com/Krilliac/ArcaneCore/issues/1165) | [bot-qa] stall: goal Vendor target 6374 map 0 near -950 | 0 | `20.05` | [Inspect](https://github.com/Krilliac/ArcaneCore/issues/1165) |
+| `loiste-interactive/Obenseuer-Issues` | [#6190](https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190) | [v0.5.08] Filling my cans at the fermentation room in t | 0 | `20.05` | [Inspect](https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20T23:00:27.688643+00:00",
+  "generated_at": "2026-10-21T01:29:03.509258+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -124,22 +124,6 @@
   "platform_1_algora": [
     {
       "repo": "tenstorrent/tt-metal",
-      "number": 61774,
-      "title": "[Quasar] Batched llk_unpack_AB ignores DFB stride: tile p of a batch is read p entries on, not p strides on",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61774",
-      "created_at": "2026-10-20T22:42:11Z",
-      "labels": [
-        "bug",
-        "LLK",
-        "Quasar"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "tenstorrent/tt-metal",
       "number": 61772,
       "title": "[SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_chunk_size >= 256 (unpack/math/pack deadlock in no-mop matmul)",
       "url": "https://github.com/tenstorrent/tt-metal/issues/61772",
@@ -172,70 +156,12 @@
       "priority_score": 40.13
     },
     {
-      "repo": "airdropia/earn-ops",
-      "number": 2,
-      "title": "superteam digest 2026-10-20",
-      "url": "https://github.com/airdropia/earn-ops/issues/2",
-      "created_at": "2026-10-20T22:49:11Z",
+      "repo": "ZcashCommunityGrants/zcashcommunitygrants",
+      "number": 506,
+      "title": "Grant Application - {Zcash Durable Payment Outbox}",
+      "url": "https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506",
+      "created_at": "2026-10-21T01:19:03Z",
       "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "GranSkreaReforged/GSOOffline",
-      "number": 109,
-      "title": "Testing and Balance: Deaths Toll and Cowards Mark",
-      "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/109",
-      "created_at": "2026-10-20T22:36:24Z",
-      "labels": [
-        "question",
-        "planned"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "sybil-solutions/local-ai-registry",
-      "number": 349,
-      "title": "Bounty: a 27B-class model (Ternary-Bonsai-2-27B) validated on an 8 GB consumer GPU",
-      "url": "https://github.com/sybil-solutions/local-ai-registry/issues/349",
-      "created_at": "2026-10-20T22:26:30Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "zhangjiayang6835-cyber/bounty-plaza",
-      "number": 4061,
-      "title": "[Bounty] [TEST BOUNTY] Fix typo in README",
-      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4061",
-      "created_at": "2026-10-20T22:25:17Z",
-      "labels": [
-        "bounty",
-        "real"
-      ],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "GranSkreaReforged/GSOOffline",
-      "number": 108,
-      "title": "Testing and Balance: Bounty System",
-      "url": "https://github.com/GranSkreaReforged/GSOOffline/issues/108",
-      "created_at": "2026-10-20T22:20:33Z",
-      "labels": [
-        "enhancement",
-        "question",
-        "planned"
-      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
@@ -243,10 +169,10 @@
     },
     {
       "repo": "freedom-winds/BountyScout",
-      "number": 1289,
+      "number": 1290,
       "title": "\ud83c\udfaf Bounty Alert: 7 New Opportunityies found",
-      "url": "https://github.com/freedom-winds/BountyScout/issues/1289",
-      "created_at": "2026-10-20T22:05:57Z",
+      "url": "https://github.com/freedom-winds/BountyScout/issues/1290",
+      "created_at": "2026-10-21T01:16:42Z",
       "labels": [
         "bounty-alert"
       ],
@@ -256,12 +182,84 @@
       "priority_score": 20.05
     },
     {
-      "repo": "HCTDIP/corps-jobs",
-      "number": 117,
-      "title": "Railway \u8d4f\u91d1\uff1a\u6709 3 \u6761\u503c\u5f97\u62a2",
-      "url": "https://github.com/HCTDIP/corps-jobs/issues/117",
-      "created_at": "2026-10-20T21:53:22Z",
+      "repo": "Krilliac/ArcaneCore",
+      "number": 1165,
+      "title": "[bot-qa] stall: goal Vendor target 6374 map 0 near -9500,-100",
+      "url": "https://github.com/Krilliac/ArcaneCore/issues/1165",
+      "created_at": "2026-10-21T01:06:04Z",
+      "labels": [
+        "bot-qa"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "loiste-interactive/Obenseuer-Issues",
+      "number": 6190,
+      "title": "[v0.5.08] Filling my cans at the fermentation room in the moonshiner coop is theft",
+      "url": "https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190",
+      "created_at": "2026-10-21T00:28:37Z",
       "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "lambdaclass/stabileo",
+      "number": 505,
+      "title": "Public bug bounty for wrong-result bugs",
+      "url": "https://github.com/lambdaclass/stabileo/issues/505",
+      "created_at": "2026-10-21T00:23:23Z",
+      "labels": [
+        "roadmap:solver-proofs"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "relayhop/ClaudeEarnSelf-runtime",
+      "number": 1138,
+      "title": "[demand] high-priority 2026-10-21T00:04",
+      "url": "https://github.com/relayhop/ClaudeEarnSelf-runtime/issues/1138",
+      "created_at": "2026-10-21T00:04:54Z",
+      "labels": [
+        "radar",
+        "demand"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "carlos1888/bang-pravidla",
+      "number": 14,
+      "title": "feat: Kampa\u0148ov\u00fd re\u017eim & Sez\u00f3nn\u00ed liga party (Legacy BANG! & League Table)",
+      "url": "https://github.com/carlos1888/bang-pravidla/issues/14",
+      "created_at": "2026-10-20T23:01:10Z",
+      "labels": [
+        "enhancement",
+        "feature"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "dev-kp-eloper/BountyScout",
+      "number": 1628,
+      "title": "\ud83c\udfaf Bounty Alert: 8 New Opportunityies found",
+      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1628",
+      "created_at": "2026-10-20T23:00:57Z",
+      "labels": [
+        "bounty-alert"
+      ],
       "competing_prs": 0,
       "is_bounty": true,
       "is_critical": false,
