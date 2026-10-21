@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-21T01:29:03.508751+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-21T06:30:41.685730+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -22,23 +22,23 @@
 ## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
+| `tenstorrent/tt-metal` | [#61816](https://github.com/tenstorrent/tt-metal/issues/61816) | [profiler]: host buffer sizing overflows 32-bit arithme | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61816) |
 | `tenstorrent/tt-metal` | [#61772](https://github.com/tenstorrent/tt-metal/issues/61772) | [SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_ | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61772) |
-| `tenstorrent/tt-metal` | [#61727](https://github.com/tenstorrent/tt-metal/issues/61727) | Tiled ttnn.reshape hangs after execute_trace: cached ma | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61727) |
-| `ZcashCommunityGrants/zcashcommunitygrants` | [#506](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506) | Grant Application - {Zcash Durable Payment Outbox} | 0 | `20.05` | [Inspect](https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506) |
-| `freedom-winds/BountyScout` | [#1290](https://github.com/freedom-winds/BountyScout/issues/1290) | 🎯 Bounty Alert: 7 New Opportunityies found | 0 | `20.05` | [Inspect](https://github.com/freedom-winds/BountyScout/issues/1290) |
-| `Krilliac/ArcaneCore` | [#1165](https://github.com/Krilliac/ArcaneCore/issues/1165) | [bot-qa] stall: goal Vendor target 6374 map 0 near -950 | 0 | `20.05` | [Inspect](https://github.com/Krilliac/ArcaneCore/issues/1165) |
-| `loiste-interactive/Obenseuer-Issues` | [#6190](https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190) | [v0.5.08] Filling my cans at the fermentation room in t | 0 | `20.05` | [Inspect](https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190) |
+| `paraloom-labs/paraloom-core` | [#1160](https://github.com/paraloom-labs/paraloom-core/issues/1160) | [BOUNTY] Medium: CommitmentGenerator scheme mismatch (P | 0 | `20.05` | [Inspect](https://github.com/paraloom-labs/paraloom-core/issues/1160) |
+| `tari-project/special_contributions` | [#280](https://github.com/tari-project/special_contributions/issues/280) | Security report: tari-ootle non-canonical confidential  | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/280) |
+| `tari-project/special_contributions` | [#279](https://github.com/tari-project/special_contributions/issues/279) | Security report: tari-ootle foreign proposal notificati | 0 | `20.05` | [Inspect](https://github.com/tari-project/special_contributions/issues/279) |
+| `dmavs412/twilights-eve-wow` | [#244](https://github.com/dmavs412/twilights-eve-wow/issues/244) | Tower of Azora: the Phased Dungeon with three Redridge  | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/244) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
 | `limitlessprojects/Go-Hybrid` | [#1031](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) | [Soundness] hy-check: return type mismatches against de | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) |
+| `limitlessprojects/Go-Hybrid` | [#1072](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) | soundness(hy-check): managed non-owned/GC-field move au | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) |
 | `limitlessprojects/Go-Hybrid` | [#1046](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) | [Soundness] hy-check: projected map-element borrows (&m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) |
 | `limitlessprojects/Go-Hybrid` | [#1042](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) | [Soundness] call_shape, call_result_tys, ty_of_expr, an | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1042) |
 | `limitlessprojects/Go-Hybrid` | [#1035](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) | [soundness] Critical: user-declared `panic` silently de | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1035) |
 | `limitlessprojects/Go-Hybrid` | [#1032](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) | [Soundness] hy-check: while loop condition type mismatc | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1032) |
-| `limitlessprojects/Go-Hybrid` | [#1029](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) | [Soundness] hy-check: call argument type mismatches aga | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1029) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

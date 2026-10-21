@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T01:29:03.509258+00:00",
+  "generated_at": "2026-10-21T06:30:41.686286+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -124,6 +124,20 @@
   "platform_1_algora": [
     {
       "repo": "tenstorrent/tt-metal",
+      "number": 61816,
+      "title": "[profiler]: host buffer sizing overflows 32-bit arithmetic on Blackhole and silently truncates device data",
+      "url": "https://github.com/tenstorrent/tt-metal/issues/61816",
+      "created_at": "2026-10-21T06:17:36Z",
+      "labels": [
+        "bug"
+      ],
+      "competing_prs": 0,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.13
+    },
+    {
+      "repo": "tenstorrent/tt-metal",
       "number": 61772,
       "title": "[SDPA][WH] Hang with MathFidelity.LoFi + fp16 dest + q_chunk_size >= 256 (unpack/math/pack deadlock in no-mop matmul)",
       "url": "https://github.com/tenstorrent/tt-metal/issues/61772",
@@ -141,26 +155,11 @@
       "priority_score": 40.13
     },
     {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61727,
-      "title": "Tiled ttnn.reshape hangs after execute_trace: cached mapping tensor allocated in trace-owned memory",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61727",
-      "created_at": "2026-10-20T17:32:20Z",
-      "labels": [
-        "bug",
-        "community"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "ZcashCommunityGrants/zcashcommunitygrants",
-      "number": 506,
-      "title": "Grant Application - {Zcash Durable Payment Outbox}",
-      "url": "https://github.com/ZcashCommunityGrants/zcashcommunitygrants/issues/506",
-      "created_at": "2026-10-21T01:19:03Z",
+      "repo": "paraloom-labs/paraloom-core",
+      "number": 1160,
+      "title": "[BOUNTY] Medium: CommitmentGenerator scheme mismatch (Poseidon vs Pedersen), proof_codec trailing-byte/endianness bugs, transaction validation gaps, and Coordinator HA failover task stranding",
+      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1160",
+      "created_at": "2026-10-21T06:27:09Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -168,13 +167,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "freedom-winds/BountyScout",
-      "number": 1290,
-      "title": "\ud83c\udfaf Bounty Alert: 7 New Opportunityies found",
-      "url": "https://github.com/freedom-winds/BountyScout/issues/1290",
-      "created_at": "2026-10-21T01:16:42Z",
+      "repo": "tari-project/special_contributions",
+      "number": 280,
+      "title": "Security report: tari-ootle non-canonical confidential mask in a payer-crafted output panics the receiving wallet (persistent walletd crash loop) (GHSA-mm9x-928m-8gjc)",
+      "url": "https://github.com/tari-project/special_contributions/issues/280",
+      "created_at": "2026-10-21T06:24:38Z",
       "labels": [
-        "bounty-alert"
+        "retro-bounty",
+        "bounty-L"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -182,13 +182,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "Krilliac/ArcaneCore",
-      "number": 1165,
-      "title": "[bot-qa] stall: goal Vendor target 6374 map 0 near -9500,-100",
-      "url": "https://github.com/Krilliac/ArcaneCore/issues/1165",
-      "created_at": "2026-10-21T01:06:04Z",
+      "repo": "tari-project/special_contributions",
+      "number": 279,
+      "title": "Security report: tari-ootle foreign proposal notification from an unrelated committee suppresses the honest notification, so the block is never fetched from the committee that holds it (GHSA-mxc7-fprj-8xq2)",
+      "url": "https://github.com/tari-project/special_contributions/issues/279",
+      "created_at": "2026-10-21T06:21:48Z",
       "labels": [
-        "bot-qa"
+        "retro-bounty",
+        "bounty-L"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -196,25 +197,13 @@
       "priority_score": 20.05
     },
     {
-      "repo": "loiste-interactive/Obenseuer-Issues",
-      "number": 6190,
-      "title": "[v0.5.08] Filling my cans at the fermentation room in the moonshiner coop is theft",
-      "url": "https://github.com/loiste-interactive/Obenseuer-Issues/issues/6190",
-      "created_at": "2026-10-21T00:28:37Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "lambdaclass/stabileo",
-      "number": 505,
-      "title": "Public bug bounty for wrong-result bugs",
-      "url": "https://github.com/lambdaclass/stabileo/issues/505",
-      "created_at": "2026-10-21T00:23:23Z",
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 244,
+      "title": "Tower of Azora: the Phased Dungeon with three Redridge stops, the Shadow of Morganth and quests 94601\u201394605",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/244",
+      "created_at": "2026-10-21T06:21:31Z",
       "labels": [
-        "roadmap:solver-proofs"
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -222,14 +211,13 @@
       "priority_score": 20.05
     },
     {
-      "repo": "relayhop/ClaudeEarnSelf-runtime",
-      "number": 1138,
-      "title": "[demand] high-priority 2026-10-21T00:04",
-      "url": "https://github.com/relayhop/ClaudeEarnSelf-runtime/issues/1138",
-      "created_at": "2026-10-21T00:04:54Z",
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 243,
+      "title": "Stone Cairn Lake: The Vigil Defaced, Rites at the Stone, An Echo in the Ore and four bounties",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/243",
+      "created_at": "2026-10-21T06:21:30Z",
       "labels": [
-        "radar",
-        "demand"
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -237,14 +225,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "carlos1888/bang-pravidla",
-      "number": 14,
-      "title": "feat: Kampa\u0148ov\u00fd re\u017eim & Sez\u00f3nn\u00ed liga party (Legacy BANG! & League Table)",
-      "url": "https://github.com/carlos1888/bang-pravidla/issues/14",
-      "created_at": "2026-10-20T23:01:10Z",
+      "repo": "tari-project/special_contributions",
+      "number": 278,
+      "title": "Security report: tari-ootle consensus: timeout vote signatures bind no network, so a timeout certificate verifies on any network where the signers are committee members (ISSUE-2848)",
+      "url": "https://github.com/tari-project/special_contributions/issues/278",
+      "created_at": "2026-10-21T06:05:38Z",
       "labels": [
-        "enhancement",
-        "feature"
+        "retro-bounty",
+        "bounty-S"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -252,13 +240,27 @@
       "priority_score": 20.05
     },
     {
-      "repo": "dev-kp-eloper/BountyScout",
-      "number": 1628,
-      "title": "\ud83c\udfaf Bounty Alert: 8 New Opportunityies found",
-      "url": "https://github.com/dev-kp-eloper/BountyScout/issues/1628",
-      "created_at": "2026-10-20T23:00:57Z",
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 237,
+      "title": "Jasperlode Mine: the Phased Dungeon, the Eye Below and quests 94401\u201394404",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/237",
+      "created_at": "2026-10-21T05:56:51Z",
       "labels": [
-        "bounty-alert"
+        "ready-for-agent"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 236,
+      "title": "Crystal Lake and Fargodeep: Narg's Orders, The Dead Courier, The Keystone and four bounties",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/236",
+      "created_at": "2026-10-21T05:56:48Z",
+      "labels": [
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -278,6 +280,18 @@
       "is_bounty": false,
       "is_critical": true,
       "priority_score": 40.13
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1072,
+      "title": "soundness(hy-check): managed non-owned/GC-field move audit bypass, first-stmt Managed/Block channel-direction blackout, and Option/Try/alias chan-dir & recv gaps",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1072",
+      "created_at": "2026-10-21T04:59:05Z",
+      "labels": [],
+      "competing_prs": 1,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -353,22 +367,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 990,
-      "title": "[Soundness] hy-check: same-scope local redeclarations and short-define (:=) type mutations bypass front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/990",
-      "created_at": "2026-10-20T07:43:57Z",
-      "labels": [],
-      "competing_prs": 1,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.05
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1044,
-      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
-      "created_at": "2026-10-20T19:44:20Z",
+      "number": 1069,
+      "title": "soundness(hy-check): unwrapped Send/Select move-marker blindness, select-arm state leakage, and self-move/return const & loan provenance loss",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1069",
+      "created_at": "2026-10-21T04:26:07Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
@@ -377,10 +379,10 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1021,
-      "title": "[Soundness] hy-check: void match subjects and conflicting pattern literal types bypass front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1021",
-      "created_at": "2026-10-20T13:06:24Z",
+      "number": 1044,
+      "title": "[Soundness] hy-check: HYB-E3011 channel element check ignores composite inner shapes, slice/array distinction, and primitive kind mismatches",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1044",
+      "created_at": "2026-10-20T19:44:20Z",
       "labels": [],
       "competing_prs": 2,
       "is_bounty": false,
