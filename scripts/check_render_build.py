@@ -65,10 +65,11 @@ def main():
     count = len(here)
 
     # A build that silently drops routers is worse than one that fails: it
-    # serves a subset of the API and reports success. Locally the app exposes
-    # 49 routes; anything materially below that means a router failed to
-    # import and was swallowed.
-    EXPECTED_MIN = 45
+    # serves a subset of the API and reports success. The application
+    # currently registers 71 paths / 80 endpoints. The floor is set well
+    # below that so an added router does not need a constant bump, but
+    # high enough that losing a router group is caught.
+    EXPECTED_MIN = 60
     if count < EXPECTED_MIN:
         print(f"  ROUTE COUNT TOO LOW — expected >= {EXPECTED_MIN}, got {count}.")
         print("  Routers are failing to import silently.")

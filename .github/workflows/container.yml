@@ -121,6 +121,7 @@ jobs:
 
     - name: Container Smoke Test
       run: |
+        set -x
         docker pull ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
         docker run --rm -d --name smoke -p 8099:8000 \
           -e ENVIRONMENT=production \
@@ -131,10 +132,31 @@ jobs:
           -e ADMIN_SECRET=smoke-test-not-a-real-secret \
           -e FB_APP_SECRET=smoke-test-not-a-real-secret \
           ghcr.io/${{ github.repository }}@${{ steps.build.outputs.digest }}
-        for i in $(seq 1 30); do
-          if curl -fsS http://127.0.0.1:8099/livez > /dev/null; then break; fi
+
+        ready=0
+        for i in $(seq 1 45); do
+          if curl -fsS http://127.0.0.1:8099/livez > /dev/null 2>&1; then
+            ready=1
+            break
+          fi
+          # Surface the container log as soon as the process dies, so a
+          # startup crash is visible instead of a bare connection refusal.
+          if ! docker ps --filter name=smoke --format '{{.Names}}' | grep -q smoke; then
+            echo "::group::Container exited before becoming ready"
+            docker logs smoke || true
+            echo "::endgroup::"
+            exit 1
+          fi
           sleep 2
         done
+
+        if [ "$ready" -ne 1 ]; then
+          echo "::group::Container never became ready"
+          docker logs smoke || true
+          echo "::endgroup::"
+          exit 1
+        fi
+
         curl -fsS http://127.0.0.1:8099/livez
         curl -fsS http://127.0.0.1:8099/readyz
         docker rm -f smoke

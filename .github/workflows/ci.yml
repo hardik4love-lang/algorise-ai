@@ -50,6 +50,19 @@ jobs:
         python scripts/build.py
         python scripts/build.py --check-all
 
+    - name: Route Registration Check
+      # A router that fails to import is swallowed by the lazy loader. The
+      # build then succeeds and the service serves a subset of the API
+      # while reporting healthy. This makes the route table explicit.
+      run: |
+        python scripts/dump_routes.py
+        count=$(grep -c . data/routes_seen.txt)
+        echo "registered routes: $count"
+        if [ "$count" -lt 60 ]; then
+          echo "::error::only $count routes registered, routers are failing to import"
+          exit 1
+        fi
+
     - name: Release Gates (offline subset)
       # Network gates are skipped in CI; the source-level gates are the ones
       # that can fail on a pull request.
