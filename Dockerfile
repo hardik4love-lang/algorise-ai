@@ -46,8 +46,10 @@ ENV PATH="/home/algorise/.local/bin:$PATH" \
 
 EXPOSE 8000 9090
 
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()" || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/readyz').read()" || exit 1
 
-ENTRYPOINT ["devex"]
-CMD ["status"]
+# The image runs the API service. The DevEx CLI stays available as a
+# separate entrypoint for operator tooling.
+ENTRYPOINT ["uvicorn"]
+CMD ["engine.main:app", "--host", "0.0.0.0", "--port", "8000"]

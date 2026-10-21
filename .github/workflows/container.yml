@@ -53,9 +53,9 @@ jobs:
         context: .
         file: ./Dockerfile
         push: ${{ github.event_name != 'pull_request' }}
-        tags: |
-          ghcr.io/${{ github.repository }}:${{ github.sha }}
-          ghcr.io/${{ github.repository }}:latest
+        # push-by-digest publishes the content-addressed ref only. Tag refs
+        # cannot be pushed in the same invocation, so tags are attached by a
+        # separate step after the digest is known.
         outputs: type=image,name=ghcr.io/${{ github.repository }},push-by-digest=true,name-canonical=true,push=${{ github.event_name != 'pull_request' }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
@@ -67,6 +67,19 @@ jobs:
       run: |
         digest="${{ steps.build.outputs.digest }}"
         echo "digest=${digest}" >> "$GITHUB_OUTPUT"
+
+    - name: Attach Tag References to the Published Digest
+      if: github.event_name != 'pull_request'
+      run: |
+        digest="${{ steps.build.outputs.digest }}"
+        for tag in "${GITHUB_SHA}" "latest"; do
+          # The digest ref already exists in the registry; a tag ref is a
+          # pointer to it, so no rebuild is required.
+          docker buildx imagetools create \
+            --tag "ghcr.io/${{ github.repository }}:${tag}" \
+            "ghcr.io/${{ github.repository }}@${digest}"
+        done
+        docker buildx imagetools inspect "ghcr.io/${{ github.repository }}@${digest}"
 
     - name: Generate SBOM
       uses: anchore/sbom-action@v0
