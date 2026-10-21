@@ -1,5 +1,5 @@
 # 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-21T12:47:45.420431+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+**Generated:** `2026-10-21T17:56:43.307439+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
 
 ## 📡 Tracked Fleet Portfolio
 | PR | Target Repo | Role | Status | Bounty Est. |
@@ -23,22 +23,22 @@
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
 | `tenstorrent/tt-metal` | [#61835](https://github.com/tenstorrent/tt-metal/issues/61835) | [ttnn/experimental/quasar] matmul auto-config never cap | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61835) |
-| `tenstorrent/tt-metal` | [#61816](https://github.com/tenstorrent/tt-metal/issues/61816) | [profiler]: host buffer sizing overflows 32-bit arithme | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61816) |
-| `Ikalus1988/MisakaNet` | [#3624](https://github.com/Ikalus1988/MisakaNet/issues/3624) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3624) |
-| `Ikalus1988/MisakaNet` | [#3623](https://github.com/Ikalus1988/MisakaNet/issues/3623) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3623) |
-| `Ikalus1988/MisakaNet` | [#3622](https://github.com/Ikalus1988/MisakaNet/issues/3622) | [Bounty] Answer the 2 linked question(s) | 0 | `20.05` | [Inspect](https://github.com/Ikalus1988/MisakaNet/issues/3622) |
-| `GoodDollar/GoodWidget` | [#264](https://github.com/GoodDollar/GoodWidget/issues/264) | [DRAFT][GoodBounty] Finalize Widget showcase in Storybo | 0 | `20.05` | [Inspect](https://github.com/GoodDollar/GoodWidget/issues/264) |
+| `dmavs412/twilights-eve-wow` | [#281](https://github.com/dmavs412/twilights-eve-wow/issues/281) | Boss Bar: the boss template key and the per-character B | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/281) |
+| `dmavs412/twilights-eve-wow` | [#280](https://github.com/dmavs412/twilights-eve-wow/issues/280) | Boss Bar: a health bar at the top of the screen when so | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/280) |
+| `jypma-prlg/nl-portal` | [#15](https://github.com/jypma-prlg/nl-portal/issues/15) | Decide security contact address and bug-bounty policy | 0 | `20.05` | [Inspect](https://github.com/jypma-prlg/nl-portal/issues/15) |
+| `toastmd/Multiverse` | [#27](https://github.com/toastmd/Multiverse/issues/27) | Idea #5: bounties broadcast is too big, make it the sam | 0 | `20.05` | [Inspect](https://github.com/toastmd/Multiverse/issues/27) |
+| `mautic/mautic` | [#17903](https://github.com/mautic/mautic/issues/17903) | 2a - Global setting to submit all forms without trackin | 0 | `20.05` | [Inspect](https://github.com/mautic/mautic/issues/17903) |
 
 ---
 ## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
 | Repo | Issue | Title | Competing PRs | Priority Score | Action |
 |---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#1112](https://github.com/limitlessprojects/Go-Hybrid/issues/1112) | [Soundness] hy-check: assigning a typed int variable to | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1112) |
-| `limitlessprojects/Go-Hybrid` | [#1031](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) | [Soundness] hy-check: return type mismatches against de | 0 | `40.13` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1031) |
-| `limitlessprojects/Go-Hybrid` | [#1107](https://github.com/limitlessprojects/Go-Hybrid/issues/1107) | [wildcard] Kill foreign.rs Hand-Maintained Stubs & the  | 0 | `20.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1107) |
+| `limitlessprojects/Go-Hybrid` | [#1131](https://github.com/limitlessprojects/Go-Hybrid/issues/1131) | [soundness] bare unknown dotted root (no import, e.g. ` | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1131) |
+| `limitlessprojects/Go-Hybrid` | [#1119](https://github.com/limitlessprojects/Go-Hybrid/issues/1119) | [soundness] hy-check: a struct field and a method with  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1119) |
 | `limitlessprojects/Go-Hybrid` | [#1105](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) | soundness(hy-check): ForKind::Iterate 2-var BorrowHandl | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) |
 | `limitlessprojects/Go-Hybrid` | [#1083](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) | soundness(hy-check): const with non-constant type ascri | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) |
 | `limitlessprojects/Go-Hybrid` | [#1072](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) | soundness(hy-check): managed non-owned/GC-field move au | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) |
+| `limitlessprojects/Go-Hybrid` | [#1046](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) | [Soundness] hy-check: projected map-element borrows (&m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) |
 
 ---
 ## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)

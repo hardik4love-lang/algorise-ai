@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T12:47:45.421013+00:00",
+  "generated_at": "2026-10-21T17:56:43.307736+00:00",
   "tracked_prs": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -139,28 +139,13 @@
       "priority_score": 40.13
     },
     {
-      "repo": "tenstorrent/tt-metal",
-      "number": 61816,
-      "title": "[profiler]: host buffer sizing overflows 32-bit arithmetic on Blackhole and silently truncates device data",
-      "url": "https://github.com/tenstorrent/tt-metal/issues/61816",
-      "created_at": "2026-10-21T06:17:36Z",
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 281,
+      "title": "Boss Bar: the boss template key and the per-character BossFight event (realm)",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/281",
+      "created_at": "2026-10-21T17:47:35Z",
       "labels": [
-        "bug"
-      ],
-      "competing_prs": 0,
-      "is_bounty": false,
-      "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "Ikalus1988/MisakaNet",
-      "number": 3624,
-      "title": "[Bounty] Answer the 2 linked question(s)",
-      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3624",
-      "created_at": "2026-10-21T12:18:23Z",
-      "labels": [
-        "ready",
-        "bounty"
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -168,14 +153,25 @@
       "priority_score": 20.05
     },
     {
-      "repo": "Ikalus1988/MisakaNet",
-      "number": 3623,
-      "title": "[Bounty] Answer the 2 linked question(s)",
-      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3623",
-      "created_at": "2026-10-21T12:18:22Z",
+      "repo": "dmavs412/twilights-eve-wow",
+      "number": 280,
+      "title": "Boss Bar: a health bar at the top of the screen when something significant is pulled",
+      "url": "https://github.com/dmavs412/twilights-eve-wow/issues/280",
+      "created_at": "2026-10-21T17:46:32Z",
+      "labels": [],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "jypma-prlg/nl-portal",
+      "number": 15,
+      "title": "Decide security contact address and bug-bounty policy",
+      "url": "https://github.com/jypma-prlg/nl-portal/issues/15",
+      "created_at": "2026-10-21T17:46:28Z",
       "labels": [
-        "ready",
-        "bounty"
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -183,14 +179,14 @@
       "priority_score": 20.05
     },
     {
-      "repo": "Ikalus1988/MisakaNet",
-      "number": 3622,
-      "title": "[Bounty] Answer the 2 linked question(s)",
-      "url": "https://github.com/Ikalus1988/MisakaNet/issues/3622",
-      "created_at": "2026-10-21T12:18:20Z",
+      "repo": "toastmd/Multiverse",
+      "number": 27,
+      "title": "Idea #5: bounties broadcast is too big, make it the same size as taunts",
+      "url": "https://github.com/toastmd/Multiverse/issues/27",
+      "created_at": "2026-10-21T17:31:11Z",
       "labels": [
-        "ready",
-        "bounty"
+        "from-game",
+        "idea"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -198,11 +194,11 @@
       "priority_score": 20.05
     },
     {
-      "repo": "GoodDollar/GoodWidget",
-      "number": 264,
-      "title": "[DRAFT][GoodBounty] Finalize Widget showcase in Storybook PR (#253)",
-      "url": "https://github.com/GoodDollar/GoodWidget/issues/264",
-      "created_at": "2026-10-21T12:16:30Z",
+      "repo": "mautic/mautic",
+      "number": 17903,
+      "title": "2a - Global setting to submit all forms without tracking (sub-task of #17723)",
+      "url": "https://github.com/mautic/mautic/issues/17903",
+      "created_at": "2026-10-21T17:31:02Z",
       "labels": [],
       "competing_prs": 0,
       "is_bounty": true,
@@ -210,50 +206,59 @@
       "priority_score": 20.05
     },
     {
-      "repo": "paraloom-labs/paraloom-core",
-      "number": 1169,
-      "title": "[BOUNTY] Low: deposit decoder rejects trailing instruction bytes that the on-chain program accepts",
-      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1169",
-      "created_at": "2026-10-21T12:09:02Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "paraloom-labs/paraloom-core",
-      "number": 1168,
-      "title": "[BOUNTY] Medium: privateSwap spends shielded SOL before enforcing SWAP_OVERHEAD_LAMPORTS + 25 bps fee floor, drops unused overhead SOL after reshieldToken, and leaves sub-reserve stranded SOL unrecovered (paraloom-wallet#104)",
-      "url": "https://github.com/paraloom-labs/paraloom-core/issues/1168",
-      "created_at": "2026-10-21T12:08:29Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "paraloom-labs/paraloom-wallet",
-      "number": 104,
-      "title": "[BOUNTY] Medium: privateSwap spends shielded SOL before enforcing SWAP_OVERHEAD_LAMPORTS + 25 bps fee floor, drops unused overhead SOL after reshieldToken, and leaves sub-reserve stranded SOL unrecovered",
-      "url": "https://github.com/paraloom-labs/paraloom-wallet/issues/104",
-      "created_at": "2026-10-21T12:07:20Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
-    },
-    {
-      "repo": "tari-project/special_contributions",
-      "number": 291,
-      "title": "Bug report: tari-ootle coalesced UTXO protobuf frames are dropped and wallet scan cursor skips owned outputs (GHSA-mf7r-4pfr-2qg3)",
-      "url": "https://github.com/tari-project/special_contributions/issues/291",
-      "created_at": "2026-10-21T12:05:45Z",
+      "repo": "allurco/caribbean-adventure",
+      "number": 491,
+      "title": "QA script: hand-test today's combat and port rules with god mode",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/491",
+      "created_at": "2026-10-21T17:25:39Z",
       "labels": [
-        "retro-bounty",
-        "bounty-S"
+        "enhancement",
+        "ready-for-human"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "allurco/caribbean-adventure",
+      "number": 489,
+      "title": "Prize ships: take an NPC's ship after a won boarding (rule and combat step)",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/489",
+      "created_at": "2026-10-21T17:24:28Z",
+      "labels": [
+        "enhancement",
+        "ready-for-agent"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "allurco/caribbean-adventure",
+      "number": 488,
+      "title": "Fight over: report the bounty and flotilla when a merchant fight ends without a sinking or boarding",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/488",
+      "created_at": "2026-10-21T17:23:49Z",
+      "labels": [
+        "enhancement",
+        "ready-for-agent"
+      ],
+      "competing_prs": 0,
+      "is_bounty": true,
+      "is_critical": false,
+      "priority_score": 20.05
+    },
+    {
+      "repo": "allurco/caribbean-adventure",
+      "number": 487,
+      "title": "God mode: a dev switch to spawn NPCs and set up test situations",
+      "url": "https://github.com/allurco/caribbean-adventure/issues/487",
+      "created_at": "2026-10-21T17:23:27Z",
+      "labels": [
+        "enhancement",
+        "ready-for-agent"
       ],
       "competing_prs": 0,
       "is_bounty": true,
@@ -264,39 +269,29 @@
   "platform_2_gohybrid": [
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1112,
-      "title": "[Soundness] hy-check: assigning a typed int variable to a float64 variable passes check, fails go build (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1112",
-      "created_at": "2026-10-21T12:27:14Z",
+      "number": 1131,
+      "title": "[soundness] bare unknown dotted root (no import, e.g. `widgets.count`) passes hyb check on latest main, then fails `go build` - M5 allowlist leftover",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1131",
+      "created_at": "2026-10-21T17:31:00Z",
       "labels": [],
-      "competing_prs": 0,
+      "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.13
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1031,
-      "title": "[Soundness] hy-check: return type mismatches against declared result types bypass front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1031",
-      "created_at": "2026-10-20T13:45:38Z",
-      "labels": [],
-      "competing_prs": 0,
+      "number": 1119,
+      "title": "[soundness] hy-check: a struct field and a method with the same name pass check, `go build` fails (\"field and method with the same name\") (HYB-E1002, Row 13 BUILDABLE)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1119",
+      "created_at": "2026-10-21T14:50:00Z",
+      "labels": [
+        "soundness"
+      ],
+      "competing_prs": 1,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.13
-    },
-    {
-      "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1107,
-      "title": "[wildcard] Kill foreign.rs Hand-Maintained Stubs & the M5 19-Package Wall via Zero-Annotation Go AST + Escape-Summary Boundary Synthesis",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1107",
-      "created_at": "2026-10-21T11:57:48Z",
-      "labels": [],
-      "competing_prs": 0,
-      "is_bounty": true,
-      "is_critical": false,
-      "priority_score": 20.05
+      "priority_score": 40.05
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
@@ -360,27 +355,39 @@
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1035,
-      "title": "[soundness] Critical: user-declared `panic` silently defeats option.unwrap() \u2014 accepted program returns 0 instead of HY-PANIC/unwrap-none",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1035",
-      "created_at": "2026-10-20T15:06:37Z",
+      "number": 1115,
+      "title": "[soundness] serde_json.new_array / push_string handle modes, curated hex/json/atomic/fmt in-place mutators, and unproven atomic.value / pointer calls bypass HYB-E3101, HYB-E3103, HYB-E3006, and HYB-E3005 in foreign.rs",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1115",
+      "created_at": "2026-10-21T13:08:53Z",
       "labels": [],
-      "competing_prs": 1,
+      "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.05
+      "priority_score": 39.98
     },
     {
       "repo": "limitlessprojects/Go-Hybrid",
-      "number": 1032,
-      "title": "[Soundness] hy-check: while loop condition type mismatch bypasses front-end checks (HYB-E1002)",
-      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1032",
-      "created_at": "2026-10-20T13:55:18Z",
+      "number": 1112,
+      "title": "[Soundness] hy-check: assigning a typed int variable to a float64 variable passes check, fails go build (HYB-E1002)",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1112",
+      "created_at": "2026-10-21T12:27:14Z",
       "labels": [],
-      "competing_prs": 1,
+      "competing_prs": 2,
       "is_bounty": false,
       "is_critical": true,
-      "priority_score": 40.05
+      "priority_score": 39.98
+    },
+    {
+      "repo": "limitlessprojects/Go-Hybrid",
+      "number": 1069,
+      "title": "soundness(hy-check): unwrapped Send/Select move-marker blindness, select-arm state leakage, and self-move/return const & loan provenance loss",
+      "url": "https://github.com/limitlessprojects/Go-Hybrid/issues/1069",
+      "created_at": "2026-10-21T04:26:07Z",
+      "labels": [],
+      "competing_prs": 2,
+      "is_bounty": false,
+      "is_critical": true,
+      "priority_score": 39.98
     }
   ],
   "platform_3_security": [
