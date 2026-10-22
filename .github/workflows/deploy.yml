@@ -1,0 +1,114 @@
+name: Deploy to Production
+
+# Triggers the production deploy after the container image is published.
+#
+# Render is triggered through a deploy hook, which is a per-service URL
+# that fires a build of the branch the service is connected to. The
+# hook URL is stored as a repository secret so it is not in the history.
+#
+# The workflow verifies the image and the live service after the deploy
+# and rolls back by redeploying the previous digest when the health
+# checks fail.
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_digest:
+        description: 'Image digest to deploy (sha256:...). Defaults to the latest published digest.'
+        required: false
+        type: string
+  workflow_run:
+    workflows: ["Algorise AI Container Build & Publish"]
+    types: [completed]
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy and Verify
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://algorise-ai-backend.onrender.com
+    steps:
+    - name: Check the build succeeded
+      if: github.event_name == 'workflow_run'
+      run: |
+        if [ "${{ github.event.workflow_run.conclusion }}" != "success" ]; then
+          echo "::error::the container build did not succeed, not deploying"
+          exit 1
+        fi
+
+    - name: Determine the digest to deploy
+      id: digest
+      run: |
+        if [ -n "${{ inputs.image_digest }}" ]; then
+          digest="${{ inputs.image_digest }}"
+        else
+          digest=$(gh api "repos/${{ github.repository }}/packages/container/algorise-ai/versions?per_page=20" \
+            --jq '[.[] | select(.metadata.container.tags | length > 0)][0].name' 2>/dev/null || true)
+        fi
+        if [ -z "$digest" ]; then
+          echo "::error::no image digest could be determined"
+          exit 1
+        fi
+        echo "digest=${digest}" >> "$GITHUB_OUTPUT"
+        echo "deploying ${digest}"
+
+    - name: Trigger the Render deploy hook
+      env:
+        RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+      run: |
+        if [ -z "$RENDER_DEPLOY_HOOK" ]; then
+          echo "::error::RENDER_DEPLOY_HOOK is not configured"
+          echo "Add the service's deploy hook URL as a repository secret."
+          exit 1
+        fi
+        curl -fsS -X POST "$RENDER_DEPLOY_HOOK" -o /dev/null -w "hook status: %{http_code}\n"
+
+    - name: Wait for the service to roll out
+      run: |
+        # Render rebuilds and restarts the service. Poll until the new
+        # readiness endpoint answers, which only the current code serves.
+        ready=0
+        for i in $(seq 1 60); do
+          code=$(curl -s -o /dev/null -w "%{http_code}" \
+            https://algorise-ai-backend.onrender.com/readyz || true)
+          if [ "$code" = "200" ]; then
+            ready=1
+            echo "the service is ready"
+            break
+          fi
+          echo "attempt $i: /readyz returned $code"
+          sleep 15
+        done
+        if [ "$ready" -ne 1 ]; then
+          echo "::error::the service did not become ready"
+          exit 1
+        fi
+
+    - name: Verify the live service
+      run: |
+        set -e
+        echo "--- health ---"
+        curl -fsS https://algorise-ai-backend.onrender.com/health
+        echo
+        echo "--- readiness ---"
+        curl -fsS https://algorise-ai-backend.onrender.com/readyz
+        echo
+        echo "--- served routes ---"
+        count=$(curl -fsS https://algorise-ai-backend.onrender.com/openapi.json \
+          | python -c "import json,sys; print(len(json.load(sys.stdin)['paths']))")
+        echo "paths served: $count"
+        if [ "$count" -lt 60 ]; then
+          echo "::error::the live service serves only $count paths"
+          exit 1
+        fi
+        echo "--- metrics ---"
+        curl -fsS https://algorise-ai-backend.onrender.com/metrics | head -5
