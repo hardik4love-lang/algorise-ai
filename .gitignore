@@ -24,9 +24,16 @@ wheels/
 
 # Environment Variables & Secrets
 .env
+.env.*
+!.env.example
 .netrc
 *.key
 *.pem
+*.p12
+*.pfx
+*.crt
+secrets/
+credentials/
 
 # Large Archives & Packages
 *.zip
@@ -50,6 +57,14 @@ dist/
 *.db
 *.db-shm
 *.db-wal
+coverage.xml
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+logs/
+*.log
 .release-artifacts/
 .release-state.json
 .context_pr/
@@ -57,4 +72,3 @@ dist/
 tmp*/
 config/aria_telegram_state.json
 config/aria_telegram_config.json
-
