@@ -1902,8 +1902,10 @@
     }
 
     function openManualTokenModal() {
-      const savedToken = localStorage.getItem('algorise_fb_token') || 'https://www.facebook.com/profile.php?id=61586357894191';
-      if (savedToken) document.getElementById('manualPageToken').value = savedToken;
+      // A token is never read back out of the browser. An earlier build
+      // kept one under this key, and pre-filling the field from it
+      // would surface a stale credential in the form.
+      document.getElementById('manualPageToken').value = '';
       document.getElementById('manualTokenModal').classList.remove('hidden');
       document.getElementById('manualTokenModal').classList.add('flex');
     }
@@ -1928,6 +1930,39 @@
             verifiedName = `${graphData.name} (ID: ${graphData.id || id})`;
           }
         } catch (_) {}
+      }
+
+      // The token has to reach the server. The scheduled sweep resolves
+      // the credential server-side, so a token that stays in the browser
+      // means the agent can never read a comment. It is sent once over
+      // the API and is not written to localStorage.
+      if (token && token.startsWith('EAA')) {
+        try {
+          const resp = await apiFetch('/auth/facebook/manual-token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              client_id: currentClientId,
+              pin: currentPin || '2026',
+              page_id: id,
+              page_name: verifiedName,
+              access_token: token,
+            }),
+          });
+
+          if (!resp.ok) {
+            let detail = `HTTP ${resp.status}`;
+            try {
+              const err = await resp.json();
+              detail = err.detail || err.error || detail;
+            } catch (_) {}
+            alert(`✗ The server rejected the token: ${detail}`);
+            return;
+          }
+        } catch (err) {
+          alert(`✗ Could not reach the server to save the token: ${err}`);
+          return;
+        }
       }
 
       localStorage.setItem('algorise_fb_page_id', id);
@@ -2163,7 +2198,9 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
         return;
       }
 
-      const savedToken = localStorage.getItem('algorise_fb_token') || '';
+      // The token is not sent from the browser. It lives on the server,
+      // and the agent resolves it there. Sending one from here would
+      // require a copy in localStorage, which is what this flow removed.
       try {
         const resp = await apiFetch('/agent/nlp-shield/evaluate', {
           method: 'POST',
@@ -2172,7 +2209,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
             comment_text: commentText,
             buyer_name: buyerName,
             fb_comment_id: fbCommentId || null,
-            access_token: savedToken || null,
+            access_token: null,
             dispatch_telegram: Boolean(dispatchTelegramAlert)
           })
         });

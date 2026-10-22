@@ -407,9 +407,17 @@ async def facebook_oauth_callback(code: Optional[str] = None, state: Optional[st
 
 @router.post("/auth/facebook/manual-token")
 async def connect_manual_facebook_token(payload: ManualTokenRequest):
-    """Allows manual connection of Page ID and Page Access Token."""
+    """Allows manual connection of Page ID and Page Access Token.
+
+    The token is a long-lived credential. It is encrypted before it is
+    stored, the same way the scheduler expects to read it back.
+    """
     if payload.client_id == "client_srt_shruhi":
         await ensure_shruhi_surat_pro_client()
+
+    token = payload.access_token.strip()
+    if not token:
+        raise HTTPException(status_code=400, detail="An access token is required")
 
     async with db_manager.session() as session:
         query = select(Client).where(Client.id == payload.client_id)
@@ -422,7 +430,18 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
 
         client.fb_page_id = payload.page_id.strip()
         client.fb_page_name = payload.page_name.strip()
-        client.fb_access_token = payload.access_token.strip()
+        # Encrypt at rest. The scheduler decrypts before calling Graph.
+        try:
+            from engine.security import encryption_manager
+            client.fb_access_token = encryption_manager.encrypt(token)
+        except Exception:
+            # A token that cannot be encrypted is not stored. Storing it
+            # in plaintext would leave a live credential in the database.
+            logger.error("Could not encrypt the Meta access token; not storing it")
+            raise HTTPException(
+                status_code=500,
+                detail="The access token could not be encrypted and was not stored",
+            )
 
         return {
             "success": True,
@@ -862,7 +881,14 @@ async def update_client_meta_pages(client_id: str, payload: MultiPageUpdateReque
                 client.fb_page_id = p.page_id.strip()
                 client.fb_page_name = p.page_name.strip()
                 if has_valid_token:
-                    client.fb_access_token = tok
+                    # Encrypt at rest. A long-lived token in plaintext
+                    # would sit in the database unencrypted.
+                    try:
+                        from engine.security import encryption_manager
+                        client.fb_access_token = encryption_manager.encrypt(tok)
+                    except Exception:
+                        logger.error("Could not encrypt the Meta access token; not storing it")
+                        has_valid_token = False
             normalized_pages.append({
                 "slot": p.slot,
                 "page_id": p.page_id.strip(),
