@@ -25,7 +25,7 @@ settings = get_settings()
 WHATSAPP_API_VERSION = "v19.0"
 WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "108920194829102")
 WHATSAPP_TOKEN = os.getenv("WHATSAPP_CLOUD_TOKEN", "dev_whatsapp_cloud_token_simulated")
-WHATSAPP_VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN", "algorise_surat_wa_verify_9921")
+WHATSAPP_VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN", "")
 # The business number the concierge answers on. It is deployment
 # configuration, not a constant in the code.
 OFFICIAL_SHRUHI_WHATSAPP = os.getenv("WHATSAPP_BUSINESS_NUMBER", "")

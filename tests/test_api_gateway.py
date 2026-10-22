@@ -51,7 +51,7 @@ def test_api_gateway_post_bot_execution():
     handler = MockAPIHandler(
         "POST",
         "/v1/bots/execute",
-        headers={"Content-Length": str(len(payload)), "X-Algorise-Key": "alg_live_test_key_9981"},
+        headers={"Content-Length": str(len(payload)), "X-Algorise-Key": "fixture-key"},
         body=payload
     )
     handler.do_POST()

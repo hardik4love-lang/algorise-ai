@@ -43,7 +43,7 @@ def load_config() -> dict:
         except Exception:
             pass
     return {
-        "bot_token": os.getenv("TELEGRAM_BOT_TOKEN", "8721131952:AAErGD_dp6luCE__Ra8bABZApMzxuxioxxI"),
+        "bot_token": os.getenv("TELEGRAM_BOT_TOKEN", ""),
         "bot_username": "Arya_ah_bot",
         "github_account": "hardik4love-lang",
         "settlement_email": "shruhicollections@gmail.com"

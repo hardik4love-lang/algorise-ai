@@ -192,7 +192,7 @@ class AlgoriseAPIHandler(BaseHTTPRequestHandler):
 
     def _handle_post_internal(self, span: TraceSpan):
         parsed = urllib.parse.urlparse(self.path)
-        api_key = self.headers.get("X-Algorise-Key", "alg_live_test_key_9981")
+        api_key = self.headers.get("X-Algorise-Key", "fixture-key")
 
         # Read JSON body
         content_length = int(self.headers.get('Content-Length', 0))
