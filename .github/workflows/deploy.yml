@@ -1,28 +1,24 @@
 name: Deploy to Production
 
-# Triggers the production deploy after the container image is published.
+# Triggers the production deploy and verifies the live service.
 #
-# Render is triggered through a deploy hook, which is a per-service URL
-# that fires a build of the branch the service is connected to. The
-# hook URL is stored as a repository secret so it is not in the history.
+# Render rebuilds from the connected branch using render.yaml, so this
+# workflow does not push an image. It fires the service's deploy hook,
+# waits for the rollout, and then checks that the live service is
+# serving the full API.
 #
-# The workflow verifies the image and the live service after the deploy
-# and rolls back by redeploying the previous digest when the health
-# checks fail.
+# The hook URL is a per-service secret stored as a repository secret so
+# it does not appear in the history.
 
 on:
   workflow_dispatch:
-    inputs:
-      image_digest:
-        description: 'Image digest to deploy (sha256:...). Defaults to the latest published digest.'
-        required: false
-        type: string
   workflow_run:
     workflows: ["Algorise AI Container Build & Publish"]
     types: [completed]
 
 permissions:
   contents: read
+  packages: read
   deployments: write
 
 concurrency:
@@ -45,31 +41,18 @@ jobs:
           exit 1
         fi
 
-    - name: Determine the digest to deploy
-      id: digest
-      run: |
-        if [ -n "${{ inputs.image_digest }}" ]; then
-          digest="${{ inputs.image_digest }}"
-        else
-          digest=$(gh api "repos/${{ github.repository }}/packages/container/algorise-ai/versions?per_page=20" \
-            --jq '[.[] | select(.metadata.container.tags | length > 0)][0].name' 2>/dev/null || true)
-        fi
-        if [ -z "$digest" ]; then
-          echo "::error::no image digest could be determined"
-          exit 1
-        fi
-        echo "digest=${digest}" >> "$GITHUB_OUTPUT"
-        echo "deploying ${digest}"
-
     - name: Trigger the Render deploy hook
       env:
         RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
       run: |
         if [ -z "$RENDER_DEPLOY_HOOK" ]; then
           echo "::error::RENDER_DEPLOY_HOOK is not configured"
-          echo "Add the service's deploy hook URL as a repository secret."
+          echo "Add the service's deploy hook URL as a repository secret:"
+          echo "  Render dashboard -> the service -> Settings -> Deploy Hooks"
           exit 1
         fi
+        # Render rebuilds from the connected branch. The hook is what
+        # tells it to start that rebuild.
         curl -fsS -X POST "$RENDER_DEPLOY_HOOK" -o /dev/null -w "hook status: %{http_code}\n"
 
     - name: Wait for the service to roll out
