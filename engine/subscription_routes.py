@@ -46,6 +46,25 @@ telegram = AlgoriseTelegramService()
 fb_engine = FacebookAgentEngine(api_version=settings.fb_graph_api_version)
 
 
+async def _ensure_seeded_client(client_id: str) -> None:
+    """Seed the demo client outside production, and never inside it.
+
+    The seeder raises in production by design, because a client record
+    must be created through the onboarding flow. Calling it from a
+    request handler therefore turned every one of those routes into a
+    403 in production. The client either already exists or the caller
+    handles that.
+    """
+    if client_id != "client_srt_shruhi":
+        return
+    if settings.environment.lower() in ("production", "prod"):
+        return
+    try:
+        await ensure_shruhi_surat_pro_client()
+    except Exception:
+        logger.warning("Could not seed the demo client", exc_info=True)
+
+
 # ============================================================================
 # PYDANTIC SCHEMAS
 # ============================================================================
@@ -182,7 +201,7 @@ async def subscribe_client(
     biz_lower = (payload.business_name or "").lower()
     page_raw = (payload.page_url or "").strip()
     if "shruhi" in biz_lower or "61586357894191" in page_raw:
-        await ensure_shruhi_surat_pro_client()
+        await _ensure_seeded_client(payload.client_id)
         shruhi_res = {
             "success": True,
             "message": "Shruhi Collections SURAT PRO TIER active.",
@@ -290,8 +309,7 @@ async def subscribe_client(
 @router.post("/auth/client-login")
 async def client_login(payload: ClientLoginRequest):
     """Verifies client_id and 4-digit PIN for dashboard access."""
-    if payload.client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(payload.client_id)
 
     async with db_manager.session() as session:
         query = select(Client).where(Client.id == payload.client_id)
@@ -320,8 +338,7 @@ async def get_client_dashboard(
     x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
 ):
     """Returns all data needed for the client's live dashboard."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(client_id)
 
     provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
@@ -412,8 +429,7 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
     The token is a long-lived credential. It is encrypted before it is
     stored, the same way the scheduler expects to read it back.
     """
-    if payload.client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(payload.client_id)
 
     token = payload.access_token.strip()
     if not token:
@@ -459,8 +475,7 @@ async def trigger_agent_run(
     x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
 ):
     """Manually triggers an autonomous agent cycle for a client using strictly real Meta Graph API data."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(client_id)
 
     provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
@@ -595,8 +610,7 @@ async def get_client_rules(
     x_client_pin: Optional[str] = Header(None, alias="X-Client-Pin"),
 ):
     """Fetches custom catalog rules, pricing, and sensitivity settings for client."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(client_id)
 
     provided_pin = pin or x_client_pin
     async with db_manager.session() as session:
@@ -628,8 +642,7 @@ async def get_client_rules(
 @router.post("/client/{client_id}/rules")
 async def update_client_rules(client_id: str, payload: ClientRulesUpdateRequest):
     """Updates client catalog, pricing matrix, and agent sensitivity."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(payload.client_id)
 
     async with db_manager.session() as session:
         result = await session.execute(select(Client).where(Client.id == client_id))
@@ -753,15 +766,42 @@ async def receive_facebook_webhook(request: Request):
 
 @router.post("/seed/shruhi-pro")
 async def seed_shruhi_pro_endpoint():
-    """Provisions or verifies Shruhi Collections on SURAT PRO TIER (₹29,999/mo)."""
-    return await ensure_shruhi_surat_pro_client()
+    """Provisions or verifies the seeded client on its configured tier.
+
+    Seeding is a development operation. In production the client is
+    created through the onboarding flow, so this returns the existing
+    record rather than creating one.
+    """
+    client_id = "client_srt_shruhi"
+
+    if settings.environment.lower() in ("production", "prod"):
+        async with db_manager.session() as session:
+            result = await session.execute(
+                select(Client).where(Client.id == client_id)
+            )
+            client = result.scalar_one_or_none()
+            if client is None:
+                raise HTTPException(
+                    status_code=404,
+                    detail="This client has not been onboarded",
+                )
+            return {
+                "client_id": client.id,
+                "seeded": False,
+                "message": "Clients are created through the onboarding flow in production.",
+            }
+
+    await _ensure_seeded_client(client_id)
+    return {
+        "client_id": client_id,
+        "seeded": True,
+    }
 
 
 @router.get("/client/{client_id}/meta-pages")
 async def get_client_meta_pages(client_id: str, pin: Optional[str] = "2026"):
     """Returns the up to 3 connected & auto-updated Meta Pages for a SURAT PRO TIER client."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(client_id)
 
     async with db_manager.session() as session:
         result = await session.execute(select(Client).where(Client.id == client_id))
@@ -859,8 +899,7 @@ async def get_client_100_groups_and_viral_reel(client_id: str):
 @router.post("/client/{client_id}/meta-pages")
 async def update_client_meta_pages(client_id: str, payload: MultiPageUpdateRequest):
     """Saves up to 3 Connected Meta Pages for a SURAT PRO TIER client."""
-    if client_id == "client_srt_shruhi":
-        await ensure_shruhi_surat_pro_client()
+    await _ensure_seeded_client(payload.client_id)
 
     if len(payload.pages) > 3:
         raise HTTPException(status_code=400, detail="SURAT PRO TIER supports up to 3 Connected Meta Pages.")
