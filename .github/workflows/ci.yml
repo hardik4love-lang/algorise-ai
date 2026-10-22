@@ -50,6 +50,12 @@ jobs:
         python scripts/build.py
         python scripts/build.py --check-all
 
+    - name: Python Version Compatibility Check
+      # CI runs Python 3.11. Python 3.12 relaxed the f-string quoting
+      # rule, so a line that is valid on a newer interpreter fails the
+      # build. This applies the target grammar locally.
+      run: python scripts/check_python_version_compat.py
+
     - name: Client Onboarding Check
       # The onboarding SOP in INTEGRATION_PLAN.md section 3.3. A new
       # client needs the records and the code must stay multi-tenant.

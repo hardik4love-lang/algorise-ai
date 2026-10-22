@@ -114,7 +114,7 @@ class WhatsAppCloudAPIService:
         for item in SHRUHI_CATALOG:
             if any(k in lower for k in item["keys"]):
                 return (
-                    f"Namaste! 🙏 Welcome to *{ctx.business_name}* (Official Online Store: {ctx.domain or "our store"})\n\n"
+                    f"Namaste! 🙏 Welcome to *{ctx.business_name}* (Official Online Store: {ctx.domain or 'our store'})\n\n"
                     f"✨ *{item['name']}*\n"
                     f"• *Boutique Price:* {item['price']}\n"
                     f"• *Sizes Ready to Ship:* {item['sizes']} (Full S to 6XL Range)\n"
