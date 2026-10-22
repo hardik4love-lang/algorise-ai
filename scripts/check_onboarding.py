@@ -10,18 +10,22 @@ handled by the product rather than by editing code:
   4. Sector selection driving the reply templates
   5. No merchant-specific data in the client code
 
-This script checks each step against the live database and the source
-tree, and reports what is done and what still needs a credential.
+Steps 1, 2, 4 and 5 are structural: the product either supports them or
+it does not, and a regression in any of them is a build failure.
+
+Step 3 depends on a Meta credential. A token cannot be committed, so its
+absence is reported as a pending credential rather than as a failure.
+Use --require-credentials to enforce it as well, which is the right
+setting for a release or a production check.
 
 Usage:
   python scripts/check_onboarding.py
+  python scripts/check_onboarding.py --require-credentials
   python scripts/check_onboarding.py --json
 """
 import argparse
 import asyncio
 import json
-import os
-import re
 import sys
 from pathlib import Path
 
@@ -46,6 +50,9 @@ CLIENT_SURFACES = (
     "realtor_sales_console.html",
     "cocopeat.html",
 )
+
+# Steps that need a credential rather than a code change.
+CREDENTIAL_STEPS = {"step3_meta_token"}
 
 
 def check_client_records():
@@ -101,6 +108,7 @@ def check_meta_token(clients):
     with_token = [c for c in clients if c["has_token"]]
     return {
         "ok": bool(with_token),
+        "credential": True,
         "detail": (
             f"{len(with_token)} of {len(clients)} clients have a Meta access token"
             if with_token
@@ -220,6 +228,11 @@ def check_routes():
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--require-credentials",
+        action="store_true",
+        help="also fail when a credential such as the Meta token is missing",
+    )
     parser.add_argument("--json", action="store_true", help="machine-readable output")
     args = parser.parse_args()
 
@@ -243,30 +256,59 @@ def main() -> int:
     results["step5_no_merchant_literals"] = check_no_merchant_literals()
     results["onboarding_endpoints"] = check_routes()
 
-    blocked = [
-        name for name, result in results.items() if not result["ok"]
+    structural = [
+        name for name, result in results.items()
+        if not result["ok"] and name not in CREDENTIAL_STEPS
+    ]
+    pending = [
+        name for name, result in results.items()
+        if not result["ok"] and name in CREDENTIAL_STEPS
     ]
 
+    failed = structural + (pending if args.require_credentials else [])
+
     if args.json:
-        print(json.dumps({"results": results, "blocked": blocked}, indent=2))
-        return 1 if blocked else 0
+        print(json.dumps(
+            {
+                "results": results,
+                "structural_failures": structural,
+                "pending_credentials": pending,
+                "failed": failed,
+            },
+            indent=2,
+        ))
+        return 1 if failed else 0
 
     print("CLIENT ONBOARDING SOP")
     print("=" * 70)
     for name, result in results.items():
-        status = "OK  " if result["ok"] else "GAP "
+        if result["ok"]:
+            status = "OK  "
+        elif name in CREDENTIAL_STEPS:
+            status = "CRED" if not args.require_credentials else "GAP "
+        else:
+            status = "GAP "
         print(f"  {status}  {name}")
         print(f"        {result['detail']}")
         for key in ("findings", "missing"):
             for item in result.get(key, []) or []:
                 print(f"          - {item}")
     print()
-    if blocked:
-        print(f"{len(blocked)} step(s) still need work: {', '.join(blocked)}")
-    else:
+
+    if structural:
+        print(f"{len(structural)} structural gap(s): {', '.join(structural)}")
+    if pending:
+        message = (
+            f"{len(pending)} step(s) need a credential: {', '.join(pending)}"
+        )
+        if args.require_credentials:
+            print(f"{message} (enforced)")
+        else:
+            print(f"{message} (not enforced here)")
+    if not structural and not pending:
         print("Every onboarding step is complete.")
 
-    return 1 if blocked else 0
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":
