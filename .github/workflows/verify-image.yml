@@ -1,0 +1,98 @@
+name: Verify Published Image
+
+# Runs the published image the way production runs it and verifies the
+# endpoints the deploy workflow checks. This is the live run of the
+# image that was actually pushed to the registry.
+
+on:
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Image reference to verify. Defaults to the latest published tag.'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  verify:
+    name: Run the published image
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+    - name: Pull the image
+      run: |
+        IMAGE="${{ inputs.image || 'ghcr.io/hardik4love-lang/algorise-ai:latest' }}"
+        echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+        docker pull "$IMAGE"
+        docker image inspect "$IMAGE" --format \
+          'image: {{.Id}}{{"\n"}}entrypoint: {{.Config.Entrypoint}}{{"\n"}}cmd: {{.Config.Cmd}}{{"\n"}}user: {{.Config.User}}'
+
+    - name: Start the container
+      run: |
+        docker run -d --name algorise-live \
+          -p 8140:8000 \
+          -e ENVIRONMENT=production \
+          -e MIGRATE_ON_START=false \
+          -e REDIS_REQUIRED=false \
+          -e ENABLE_EMBEDDED_SCHEDULER=false \
+          -e SECRET_KEY=live-run-not-a-real-secret \
+          -e ADMIN_SECRET=live-run-not-a-real-secret \
+          -e FB_APP_SECRET=live-run-not-a-real-secret \
+          "$IMAGE"
+
+    - name: Wait for the service
+      run: |
+        ready=0
+        for i in $(seq 1 60); do
+          if curl -fsS http://127.0.0.1:8140/livez > /dev/null 2>&1; then
+            ready=1
+            break
+          fi
+          if ! docker ps --filter name=algorise-live --format '{{.Names}}' | grep -q algorise-live; then
+            echo "::group::Container exited"
+            docker logs algorise-live || true
+            echo "::endgroup::"
+            exit 1
+          fi
+          sleep 3
+        done
+        if [ "$ready" -ne 1 ]; then
+          echo "::group::Never became ready"
+          docker logs algorise-live || true
+          echo "::endgroup::"
+          exit 1
+        fi
+
+    - name: Verify the live endpoints
+      run: |
+        set -e
+        echo "--- livez ---"
+        curl -fsS http://127.0.0.1:8140/livez; echo
+        echo "--- readyz ---"
+        curl -fsS http://127.0.0.1:8140/readyz; echo
+        echo "--- health ---"
+        curl -fsS http://127.0.0.1:8140/health | head -c 400; echo
+        echo "--- openapi paths ---"
+        count=$(curl -fsS http://127.0.0.1:8140/openapi.json \
+          | python -c "import json,sys; print(len(json.load(sys.stdin)['paths']))")
+        echo "paths served: $count"
+        if [ "$count" -lt 60 ]; then
+          echo "::error::the image serves only $count paths"
+          exit 1
+        fi
+        echo "--- metrics ---"
+        curl -fsS http://127.0.0.1:8140/metrics | grep -m3 "algorise_" || true
+        echo "--- request counter after traffic ---"
+        curl -fsS -o /dev/null http://127.0.0.1:8140/livez
+        curl -fsS http://127.0.0.1:8140/metrics | grep -m2 "algorise_http_requests_total{" || true
+
+    - name: Container log
+      if: always()
+      run: docker logs --tail 40 algorise-live || true
+
+    - name: Clean up
+      if: always()
+      run: docker rm -f algorise-live || true
