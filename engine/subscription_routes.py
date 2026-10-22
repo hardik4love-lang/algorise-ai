@@ -468,6 +468,50 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
         }
 
 
+@router.post("/auth/facebook/disconnect")
+async def disconnect_facebook_token(payload: ClientLoginRequest):
+    """Removes the stored Meta access token for a client.
+
+    A token is a long-lived credential. It has to be removable when it
+    expires, when the page access is revoked, or before it is replaced
+    with a new one.
+    """
+    await _ensure_seeded_client(payload.client_id)
+
+    async with db_manager.session() as session:
+        query = select(Client).where(Client.id == payload.client_id)
+        result = await session.execute(query)
+        client = result.scalar_one_or_none()
+        if not client:
+            raise HTTPException(status_code=404, detail="Client not found")
+
+        verify_client_pin(client.pin_hash, payload.pin)
+
+        had_token = bool(client.fb_access_token)
+        client.fb_access_token = None
+
+        # The connected page list is cleared with the token, otherwise
+        # the dashboard shows a page as connected with no credential.
+        current_settings = dict(client.settings or {})
+        if current_settings.get("connected_meta_pages"):
+            for page in current_settings["connected_meta_pages"]:
+                page["connected"] = False
+            current_settings["connected_meta_pages"] = current_settings[
+                "connected_meta_pages"
+            ]
+            client.settings = current_settings
+
+        return {
+            "success": True,
+            "message": (
+                "The Meta access token was removed."
+                if had_token
+                else "No Meta access token was stored."
+            ),
+            "fb_connected": False,
+        }
+
+
 @router.post("/agent/facebook/run/{client_id}")
 async def trigger_agent_run(
     client_id: str,
