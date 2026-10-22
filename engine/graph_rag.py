@@ -46,25 +46,52 @@ class AlgoriseGraphRAG:
         self._seed_default_ontology()
 
     def _seed_default_ontology(self):
-        """Populate foundational Indian commerce and Shruhi catalog knowledge graph."""
-        # 1. Merchant node
-        self.add_node("merchant_shruhi", "MERCHANT", "Shruhi Collections", {
-            "domain": "shruhicollections.in",
-            "location": "Surat, Gujarat, India",
-            "whatsapp": "+916355285433",
+        """Populate the foundational commerce ontology and the merchant node.
+
+        The merchant node is loaded from the client configuration rather
+        than hardcoded, so the knowledge graph describes the client that
+        is actually being served.
+        """
+        # 1. Merchant node, from the client configuration.
+        merchant_node_id = "merchant_default"
+        merchant_name = "Our Store"
+        merchant_props = {
+            "location": "India",
             "currency": "INR",
-        })
+        }
+        try:
+            from engine.client_agent_ops import load_client_config
+
+            config = load_client_config("client_srt_shruhi")
+            settings = config.get("settings", {}) or {}
+            rules = settings.get("agent_rules", {}) or {}
+            merchant_node_id = f"merchant_{config.get('client_id', 'default')}"
+            merchant_name = (config.get("name") or "Our Store").split("(")[0].strip()
+            domain = (settings.get("domain") or "").replace("https://", "").rstrip("/")
+            if domain:
+                merchant_props["domain"] = domain
+            if config.get("phone"):
+                merchant_props["whatsapp"] = config["phone"]
+            if rules.get("sector"):
+                merchant_props["sector"] = rules["sector"]
+        except Exception:
+            # The ontology is still useful without a merchant node.
+            pass
+
+        self.add_node(merchant_node_id, "MERCHANT", merchant_name, merchant_props)
+        self._merchant_node_id = merchant_node_id
 
         # 2. Categories
         categories = [
             ("cat_suit", "3-Piece Suit Set"),
             ("cat_coord", "Festive Co-ord Set"),
-            ("cat_tunic", "Artisanal Tunic & Midi Dress"),
+            ("cat_tunic", "Artisan Tunic & Midi Dress"),
             ("cat_plussize", "Curvy Couture Plus-Size"),
         ]
         for cid, cname in categories:
             self.add_node(cid, "CATEGORY", cname)
-            self.add_edge("merchant_shruhi", cid, "OFFERS_CATEGORY")
+            self.add_edge(merchant_node_id, cid, "OFFERS_CATEGORY")
+
 
         # 3. Fabrics
         fabrics = [
@@ -169,7 +196,7 @@ class AlgoriseGraphRAG:
         ]
         for pol_id, ptype, pname, pattrs in policies:
             self.add_node(pol_id, ptype, pname, pattrs)
-            self.add_edge("merchant_shruhi", pol_id, "GOVERNED_BY")
+            self.add_edge(self._merchant_node_id, pol_id, "GOVERNED_BY")
             self.index_vector(pol_id, f"{pname} {str(pattrs)}")
 
     def add_node(self, node_id: str, node_type: str, name: str, attributes: Optional[Dict[str, Any]] = None):

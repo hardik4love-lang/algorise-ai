@@ -22,6 +22,7 @@ from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple, Set, Union
 
 from engine.config import get_settings
+from engine.merchant_context import MerchantContext
 from engine.logging import get_logger
 from engine.telegram_service import (
     AlgoriseTelegramService,
@@ -79,21 +80,26 @@ SHRUHI_CATALOG_COUNT = len(SHRUHI_CATALOG)
 SHRUHI_CATALOG_RANGE = "₹850 – ₹3,550"
 
 AUTO_REPLY_TEMPLATES = {
+    # The merchant identity is substituted at reply time from the client
+    # record. A template that carried a fixed name, domain and WhatsApp
+    # number meant onboarding a second client required editing this file.
     "textile": (
-        "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) તરફથી: અમારું લેટેસ્ટ હોલસેલ કેટેલોગ 4K કેટલોગ "
-        f"({SHRUHI_CATALOG_COUNT}+ Verified Designs • Sizes S to 6XL • "
-        f"{SHRUHI_CATALOG_RANGE} • 100% Online Store) તમારા Messenger DM માં મોકલ્યું છે. "
-        "તાત્કાલિક ઓર્ડર માટે WhatsApp કરો: +91 63552 85433 (https://wa.me/916355285433) ✨"
+        "નમસ્તે જી! 🙏 {business_name} ({domain}) તરફથી: "
+        "અમારું લેટેસ્ટ હોલસેલ કેટેલોગ {catalogue_claim} "
+        "તમારા Messenger DM માં મોકલ્યું છે. {contact} ✨"
     ),
     "diamond": (
-        "નમસ્તે! 💎 CVD & Lab-Grown Diamonds લાઈવ રેટ અને સર્ટિફાઈડ સ્ટોક લિસ્ટ માટે આપનો કોન્ટેક્ટ શેર કરો."
+        "નમસ્તે! 💎 CVD & Lab-Grown Diamonds લાઈવ રેટ "
+        "અને સર્ટિફાઈડ સ્ટોક લિસ્ટ માટે આપનો કોન્ટેક્ટ શેર કરો."
     ),
     "realty": (
-        "નમસ્તે! 🏢 સુરતના પ્રાઇમ લોકેશન પ્રોજેક્ટ બ્રોશર અને વિગતો આપના ઇનબોક્સમાં મોકલી છે."
+        "નમસ્તે! 🏢 સુરતના પ્રાઇમ લોકેશન પ્રોજેક્ટ "
+        "બ્રોશર અને વિગતો આપના ઇનબોક્સમાં મોકલી છે."
     ),
     "default": (
-        "નમસ્તે જી! 🙏 આપની ઇન્ક્વાયરી બદલ આભાર. વિગતો આપના Messenger DM માં મોકલી છે. WhatsApp: +91 63552 85433."
-    )
+        "નમસ્તે જી! 🙏 {business_name} માં આપનું સ્વાગત છે. "
+        "વિગતો આપના Messenger DM માં મોકલી છે. {contact}"
+    ),
 }
 
 
@@ -188,30 +194,51 @@ class FacebookAgentEngine:
 
         return score, status, intent
 
-    def select_auto_reply(self, text: str, sector: Optional[str] = None, buyer_name: str = "Valued Shopper") -> str:
-        if sector and sector.lower() in ("textile", "diamond", "realty"):
-            return AUTO_REPLY_TEMPLATES[sector.lower()]
+    def select_auto_reply(
+        self,
+        text: str,
+        sector: Optional[str] = None,
+        buyer_name: str = "Valued Shopper",
+        merchant: Optional[MerchantContext] = None,
+    ) -> str:
+        """Build the public reply for a comment.
+
+        The merchant identity comes from the client record. A reply must
+        never point a buyer at another merchant's contact details, so
+        every merchant-specific value is read from the context rather
+        than baked into a template.
+        """
+        ctx = merchant or MerchantContext(sector=sector or "default")
+
+        if ctx.sector and ctx.sector.lower() in AUTO_REPLY_TEMPLATES:
+            template = AUTO_REPLY_TEMPLATES[ctx.sector.lower()]
+            return template.format(
+                business_name=ctx.business_name,
+                domain=ctx.domain,
+                catalogue_claim=ctx.catalogue_claim,
+                contact=ctx.contact_line(),
+            )
 
         matched = self.match_shruhi_product(text)
-        has_gujarati = bool(re.search(r"[\u0A80-\u0AFF]", text or ""))
-        has_hindi = bool(re.search(r"[\u0900-\u097F]", text or ""))
+        has_gujarati = bool(re.search(r"[\u0a80-\u0aff]", text or ""))
+        has_hindi = bool(re.search(r"[\u0900-\u097f]", text or ""))
 
         if has_gujarati:
             return (
-                f"નમસ્તે {buyer_name} જી! 🙏 Shruhi Collections માં આપનું સ્વાગત છે. "
-                f"✨ {matched['name']} ({matched['price']} | સાઈઝ: {matched['sizes']}) ની સંપૂર્ણ વિગત આપના DM માં મોકલી છે. "
-                f"🛍️ 100% Online Store: https://shruhicollections.in | 📲 ઓર્ડર માટે WhatsApp કરો: https://wa.me/916355285433 (+91 63552 85433)"
+                f"\u0a8f\u0aa8\u0aae\u0ab8\u0ac7 {buyer_name} \u0a9c\u0a80! \u0af7 {ctx.business_name} \u0aae\u0a3e\u0a82 \u0a06\u0aa1\u0aa8\u0ac1\u0a82 \u0ab8\u0acd\u0ab5\u0abe\u0a97\u0aa4 \u0a9b\u0a4d\u0a8f. "
+                f"\u2728 {matched['name']} ({matched['price']} | \u0ab8\u0abe\u0a08\u0acd\u0a1c: {matched['sizes']}) \u0aa8\u0a40 \u0ab8\u0a82\u0a2a\u0ac2\u0ab0\u0acd\u0a23 \u0ab5\u0a3f\u0a17\u0a4d\u0a4a \u0a06\u0aa1\u0aa8\u0abe DM \u0aae\u0a3e\u0a82 \u0aae\u0a9b\u0a95\u0ab2\u0a40 \u0a9b\u0a4d\u0a8f. "
+                f"\u0af1\u0a3d\u0a9f {ctx.domain or '100% Online Store'} | {ctx.contact_line()}"
             )
         if has_hindi:
             return (
-                f"नमस्ते {buyer_name} जी! 🙏 Shruhi Collections में आपका स्वागत है। "
-                f"✨ {matched['name']} ({matched['price']} | साइज़: {matched['sizes']}) का पूरा 4K कैटलॉग आपके DM में भेज दिया है। "
-                f"🛍️ 100% Online Store: https://shruhicollections.in | 📲 WhatsApp ऑर्डर: https://wa.me/916355285433 (+91 63552 85433)"
+                f"\u0928\u092e\u0938\u094d\u0924\u0947 {buyer_name} \u091c\u0940! \u0af7 {ctx.business_name} \u092e\u0947\u0902 \u0906\u092a\u0915\u093e \u0938\u094d\u0935\u093e\u0917\u0924 \u0939\u0948\u0964 "
+                f"\u2728 {matched['name']} ({matched['price']} | \u0938\u093e\u0907\u095b\u093c: {matched['sizes']}) \u0915\u093e \u092a\u0942\u0930\u093e 4K \u0915\u0948\u091f\u0932\u0949\u0917 \u0906\u092a\u0915\u0947 DM \u092e\u0947\u0902 \u092d\u0947\u091c \u0926\u093f\u092f\u093e \u0939\u0948\u0964 "
+                f"\u0af1\u0a3d\u0a9f {ctx.domain or '100% Online Store'} | {ctx.contact_line()}"
             )
         return (
-            f"Namaste {buyer_name}! 🙏 Welcome to Shruhi Collections. "
-            f"✨ Full details for {matched['name']} ({matched['price']} | Sizes: {matched['sizes']}) have been sent to your DM! "
-            f"🛍️ Shop 100% Online: https://shruhicollections.in | 📲 Direct WhatsApp Order: https://wa.me/916355285433 (+91 63552 85433)"
+            f"Namaste {buyer_name}! \u0af7 Welcome to {ctx.business_name}. "
+            f"\u2728 Full details for {matched['name']} ({matched['price']} | Sizes: {matched['sizes']}) have been sent to your DM! "
+            f"\u0af1\u0a3d\u0a9f Shop 100% Online: {ctx.domain or 'our store'} | {ctx.contact_line()}"
         )
 
     def build_private_dm(
@@ -219,6 +246,7 @@ class FacebookAgentEngine:
         text: str,
         buyer_name: str = "Valued Shopper",
         comment_id: str = "",
+        merchant: Optional[MerchantContext] = None,
     ) -> str:
         """Build the private DM sent to a commenter.
 
@@ -227,9 +255,10 @@ class FacebookAgentEngine:
         back to this comment. The offer text is unchanged; only the prefilled
         message gains a reference line.
         """
+        ctx = merchant or MerchantContext()
         matched = self.match_shruhi_product(text)
         prefill = (
-            f"Hi Shruhi Collections! I saw your post on Facebook and want to "
+            f"Hi {ctx.business_name}! I saw your post on Facebook and want to "
             f"order {matched['name']} ({matched['price']})."
         )
         if comment_id:
@@ -239,17 +268,28 @@ class FacebookAgentEngine:
                 # Never fail a customer reply over attribution.
                 pass
         wa_text = urllib.parse.quote(prefill)
+        wa_link = ctx.whatsapp_link
+        if wa_link:
+            contact_block = (
+                f"\U0001f4f2 *Click to Order on Official WhatsApp ({ctx.whatsapp_display}):*\n"
+                f"{wa_link}?text={wa_text}\n\n"
+            )
+        else:
+            contact_block = (
+                f"\U0001f4f2 *Order on WhatsApp ({ctx.whatsapp_display}):*\n"
+                f"Please reply here and we will share the order link.\n\n"
+            )
+        storefront = ctx.domain or "our online store"
         return (
-            f"Namaste {buyer_name}! 🙏\n\n"
-            f"✨ *Shruhi Collections — Official Haute-Couture Online Store*\n"
-            f"• Selected Design: *{matched['name']}*\n"
-            f"• Boutique Price: *{matched['price']}*\n"
-            f"• Sizes Ready to Ship: *{matched['sizes']} (S to 6XL)*\n"
-            f"• Storefront: *100% Online Store • Pan-India & Worldwide Express Delivery*\n\n"
-            f"📲 *Click to Order on Official WhatsApp (+91 63552 85433):*\n"
-            f"https://wa.me/916355285433?text={wa_text}\n\n"
-            f"🛍️ *Explore 4K Website Catalog:*\n"
-            f"https://shruhicollections.in/"
+            f"Namaste {buyer_name}! \u0af7\n\n"
+            f"\u2728 *{ctx.business_name} \u2014 Official Online Store*\n"
+            f"\u2022 Selected Design: *{matched['name']}*\n"
+            f"\u2022 Boutique Price: *{matched['price']}*\n"
+            f"\u2022 Sizes Ready to Ship: *{matched['sizes']}*\n"
+            f"\u2022 Storefront: *100% Online Store \u2022 Pan-India & Worldwide Express Delivery*\n\n"
+            f"{contact_block}"
+            f"\U0001f6cd\ufe0f *Explore 4K Website Catalog:*\n"
+            f"{storefront}"
         )
 
     def fetch_page_comments(self, page_id: str, access_token: str) -> Tuple[List[Dict[str, Any]], Optional[str]]:
@@ -341,7 +381,8 @@ class FacebookAgentEngine:
         buyer_name: str,
         buyer_id: str,
         access_token: str,
-        sector: str = "textile"
+        sector: str = "textile",
+        merchant: Optional[MerchantContext] = None,
     ) -> Dict[str, Any]:
         """Processes a single real-time webhook or polled comment (24/7 auto-reply + DM + shield)."""
         if not comment_id or comment_id in self.replied_comment_ids:
@@ -357,11 +398,14 @@ class FacebookAgentEngine:
         if hidden:
             intent = f"[Shield Hidden Phone] {intent}"
 
-        public_reply = self.select_auto_reply(comment_text, sector, buyer_name=buyer_name)
+        public_reply = self.select_auto_reply(
+            comment_text, sector, buyer_name=buyer_name, merchant=merchant
+        )
         # comment_id is threaded through so the resulting WhatsApp enquiry
         # resolves back to this comment instead of merely being captured.
         private_dm = self.build_private_dm(
-            comment_text, buyer_name=buyer_name, comment_id=comment_id
+            comment_text, buyer_name=buyer_name, comment_id=comment_id,
+            merchant=merchant,
         )
 
         reply_res = {}
@@ -394,8 +438,18 @@ class FacebookAgentEngine:
         access_token: str,
         sector: Optional[str] = "textile",
         telegram_chat_id: Optional[int] = None,
-        force_simulation: bool = False
+        force_simulation: bool = False,
+        merchant: Optional[MerchantContext] = None,
     ) -> Dict[str, Any]:
+        # The merchant identity is resolved by the caller from the
+        # client record. When it is not supplied, fall back to the
+        # names passed in rather than to another merchant's details.
+        if merchant is None:
+            merchant = MerchantContext(
+                client_id=client_id,
+                business_name=business_name or client_name,
+                sector=sector or "default",
+            )
         if force_simulation:
             comments = [
                 {
@@ -445,19 +499,29 @@ class FacebookAgentEngine:
             if hidden:
                 intent = f"[Shield Hidden Phone] {intent}"
 
-            reply_msg = self.select_auto_reply(text, sector, buyer_name=user_name)
+            reply_msg = self.select_auto_reply(
+                text, sector, buyer_name=user_name, merchant=merchant
+            )
             reply_res = self.reply_to_comment(comm_id, reply_msg, access_token) if not force_simulation else {"id": "sim_rep_01"}
             if reply_res.get("id"):
                 replies_sent += 1
                 self.replied_comment_ids.add(comm_id)
 
-            # Also dispatch private DM with WhatsApp +91 63552 85433 link
-            dm_msg = self.build_private_dm(text, buyer_name=user_name, comment_id=comm_id)
+            # The private DM carries the merchant's own order link.
+            dm_msg = self.build_private_dm(
+                text, buyer_name=user_name, comment_id=comm_id, merchant=merchant
+            )
             if not force_simulation:
                 self.send_private_reply(page_id, comm_id, dm_msg, access_token)
 
             phone_match = re.search(r'(?:\+?91[\s-]?)?[6789]\d{9}', text)
-            phone_num = phone_match.group(0) if phone_match else "Guided to WhatsApp +91 63552 85433"
+            # A comment without a phone number is guided to the
+            # merchant's contact, which comes from the client record.
+            phone_num = (
+                phone_match.group(0)
+                if phone_match
+                else f"Guided to WhatsApp {merchant.whatsapp_display if merchant else 'our WhatsApp'}"
+            )
 
             if status in ["hot", "warm"]:
                 leads_detected += 1

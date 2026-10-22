@@ -1,7 +1,11 @@
 """
-Official Meta WhatsApp Cloud API Direct Dispatcher & 24/7 Shruhi Collections AI Receiver.
-Supports "Until I Jump In" Human Takeover (!takeover / !ai) + 29-Product Shruhi Catalog
-on Official WhatsApp +91 63552 85433 (916355285433).
+Official Meta WhatsApp Cloud API Direct Dispatcher & 24/7 AI Concierge.
+Supports "Until I Jump In" Human Takeover (!takeover / !ai) and the
+merchant catalogue reply.
+
+The number the concierge speaks for is configured, not hardcoded. A
+fixed number meant a second client was answered with the first
+merchant's contact details.
 """
 
 import os
@@ -13,7 +17,8 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime, timezone, timedelta
 
 from engine.config import get_settings
-from engine.facebook_agent import SHRUHI_CATALOG
+from engine.facebook_agent import SHRUHI_CATALOG, SHRUHI_CATALOG_COUNT
+from engine.merchant_context import MerchantContext
 
 settings = get_settings()
 
@@ -21,12 +26,14 @@ WHATSAPP_API_VERSION = "v19.0"
 WHATSAPP_PHONE_NUMBER_ID = os.getenv("WHATSAPP_PHONE_NUMBER_ID", "108920194829102")
 WHATSAPP_TOKEN = os.getenv("WHATSAPP_CLOUD_TOKEN", "dev_whatsapp_cloud_token_simulated")
 WHATSAPP_VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN", "algorise_surat_wa_verify_9921")
-OFFICIAL_SHRUHI_WHATSAPP = "+91 63552 85433"
+# The business number the concierge answers on. It is deployment
+# configuration, not a constant in the code.
+OFFICIAL_SHRUHI_WHATSAPP = os.getenv("WHATSAPP_BUSINESS_NUMBER", "")
 HUMAN_TAKEOVER_PAUSE_HOURS = 12
 
 
 class WhatsAppCloudAPIService:
-    """Direct client & 24/7 AI Concierge for Meta WhatsApp Cloud API (+91 63552 85433)."""
+    """Direct client & 24/7 AI Concierge for the Meta WhatsApp Cloud API."""
 
     def __init__(
         self,
@@ -66,11 +73,25 @@ class WhatsAppCloudAPIService:
             return False
         return True
 
-    def generate_shruhi_whatsapp_ai_reply(self, customer_phone: str, incoming_text: str, is_from_owner: bool = False) -> Optional[str]:
+    def generate_shruhi_whatsapp_ai_reply(
+        self,
+        customer_phone: str,
+        incoming_text: str,
+        is_from_owner: bool = False,
+        merchant: Optional[MerchantContext] = None,
+    ) -> Optional[str]:
         """
-        Generates 24/7 Shruhi Collections AI response for WhatsApp (+91 63552 85433)
-        unless owner has jumped in ("Until I Jump In").
+        Generates the 24/7 concierge response for WhatsApp unless the
+        owner has jumped in ("Until I Jump In").
+
+        The business name, number and domain come from the merchant
+        context, so each client is answered with its own details.
         """
+        ctx = merchant or MerchantContext(
+            business_name=os.getenv("WHATSAPP_BUSINESS_NAME", "our store"),
+            whatsapp_number=OFFICIAL_SHRUHI_WHATSAPP,
+            domain=os.getenv("WHATSAPP_BUSINESS_DOMAIN", ""),
+        )
         text = (incoming_text or "").strip()
         lower = text.lower()
 
@@ -80,7 +101,11 @@ class WhatsAppCloudAPIService:
 
         if lower in ("!ai", "/ai"):
             self.resume_ai_mode(customer_phone)
-            return "🤖 *Shruhi Collections 24/7 AI Concierge Resumed!* How may we assist you with our 29+ 4K Ethnic & Curvy Couture designs today?"
+            return (
+                f"🤖 *{ctx.business_name} 24/7 AI Concierge Resumed!* "
+                f"How may we assist you with our {SHRUHI_CATALOG_COUNT}+ "
+                f"verified designs today?"
+            )
 
         if self.is_human_takeover_active(customer_phone):
             return None
@@ -89,7 +114,7 @@ class WhatsAppCloudAPIService:
         for item in SHRUHI_CATALOG:
             if any(k in lower for k in item["keys"]):
                 return (
-                    f"Namaste! 🙏 Welcome to *Shruhi Collections* (Official Online Store: www.shruhicollections.in)\n\n"
+                    f"Namaste! 🙏 Welcome to *{ctx.business_name}* (Official Online Store: {ctx.domain or "our store"})\n\n"
                     f"✨ *{item['name']}*\n"
                     f"• *Boutique Price:* {item['price']}\n"
                     f"• *Sizes Ready to Ship:* {item['sizes']} (Full S to 6XL Range)\n"
@@ -99,24 +124,28 @@ class WhatsAppCloudAPIService:
 
         if any(w in lower for w in ["3xl", "4xl", "5xl", "6xl", "plus", "curvy", "size"]):
             return (
-                "Namaste! 🙏 *Shruhi Collections — Curvy & Plus-Size Haute Couture (S to 6XL)*\n\n"
+                f"Namaste! 🙏 *{ctx.business_name} — Curvy & Plus-Size "
+                f"Haute Couture (S to 6XL)*\n\n"
                 "We specialize in true-fit Indian Festive & Designer Suits up to *6XL*:\n"
                 "• *TEJAL 3-Piece Heavy Suit:* ₹2,850 (M to 6XL)\n"
                 "• *KAVYA Royal Bandhani Couture:* ₹3,250 (M to 6XL)\n"
                 "• *B-2876 Curvy Festive Edition:* ₹2,650 (3XL to 6XL)\n"
                 "• *GALAXY Silk Co-ord & Suit:* ₹2,450 (S to 5XL)\n\n"
-                "🛍️ Browse all 29+ 4K outfits at: https://shruhicollections.in\n"
+                f"🛍️ Browse all {SHRUHI_CATALOG_COUNT}+ designs at: "
+                f"{ctx.domain or 'our store'}\n"
                 "Reply with your preferred design code or size to book immediately!"
             )
 
         return (
-            "નમસ્તે / Namaste! 🙏 Welcome to *Shruhi Collections* (Official WhatsApp: *+91 63552 85433*)\n\n"
-            "✨ *29+ Verified 4K Designer Ethnic, Festive & Curvy Couture Outfits*\n"
+            f"નમસ્તે / Namaste! 🙏 Welcome to *{ctx.business_name}* "
+            f"(Official WhatsApp: *{ctx.whatsapp_display}*)\n\n"
+            f"✨ *{SHRUHI_CATALOG_COUNT}+ Verified 4K Designer Ethnic, "
+            f"Festive & Curvy Couture Outfits*\n"
             "• *Sizes:* S, M, L, XL, 2XL, 3XL, 4XL, 5XL & 6XL\n"
             "• *Boutique Price Range:* ₹850 – ₹3,550\n"
             "• *Storefront:* 100% Online Store • Pan-India & Worldwide Express Delivery\n\n"
-            "🛍️ *View Full 4K Catalog & Viral Runway Reel:*\n"
-            "https://shruhicollections.in/\n\n"
+            f"🛍️ *View Full 4K Catalog & Viral Runway Reel:*\n"
+            f"{ctx.domain or 'our store'}/\n\n"
             "Reply with any outfit name (e.g., *TEJAL*, *KAVYA*, *GALAXY*, *B-2876*, *ANUPAMA*, *1042*) or your size (*S–6XL*) for instant pricing & booking!"
         )
 

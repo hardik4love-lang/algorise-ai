@@ -1,0 +1,66 @@
+{
+  "client_id": "client_srt_shruhi",
+  "name": "Shruhi Collections — Official Boutique (shruhicollections.in)",
+  "tier": "Surat Business Pro",
+  "phone": "+91 63552 85433",
+  "email": "orders@shruhicollections.in",
+  "city": "100% Online Store • www.shruhicollections.in",
+  "fb_page_id": "61586357894191",
+  "fb_page_name": "Shruhi Collections | Surat (ID: 61586357894191) & Shruhi collections (ID: 61586323275145)",
+  "settings": {
+    "area": "100% Online Store • www.shruhicollections.in",
+    "domain": "https://shruhicollections.in",
+    "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
+    "fb_page_2_url": "https://www.facebook.com/profile.php?id=61586323275145",
+    "connected_pages_limit": 3,
+    "marketing_groups_joined": 100,
+    "viral_sales_reel": "assets/shruhi-viral-sales-reel-2026.mp4",
+    "sub_005s_shield": true,
+    "languages": ["Surati Gujarati", "Hindi", "English"],
+    "telegram_proxy": "@Aassqqee_bot",
+    "hero_bots_included": 100,
+    "agent_rules": {
+      "sensitivity_score": 94.0,
+      "broker_shield_enabled": true,
+      "telegram_alerts_enabled": true,
+      "whatsapp_auto_dispatch": true,
+      "sector": "textile",
+      "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.",
+      "catalog_items": [
+        {
+          "item": "TEJAL — 3-Piece Heavy Designer Suit",
+          "moq": "Sizes M to 6XL",
+          "ex_factory_rate": "₹2,850"
+        },
+        {
+          "item": "GALAXY — Festive Silk Co-ord & Suit Set",
+          "moq": "Sizes S to 5XL",
+          "ex_factory_rate": "₹2,450"
+        },
+        {
+          "item": "KAVYA — Royal Bandhani & Zari Couture",
+          "moq": "Sizes M to 6XL",
+          "ex_factory_rate": "₹3,250"
+        },
+        {
+          "item": "B-2876 — Curvy Plus-Size Festive Edition",
+          "moq": "Sizes 3XL to 6XL",
+          "ex_factory_rate": "₹2,650"
+        },
+        {
+          "item": "1042 — Everyday Chic Cotton Tunic & Set",
+          "moq": "Sizes S to 4XL",
+          "ex_factory_rate": "₹850 – ₹1,550"
+        }
+      ]
+    }
+  },
+  "subscription": {
+    "plan_tier": "pro",
+    "plan_name": "SURAT PRO TIER (₹29,999 / MONTH)",
+    "monthly_price": 29999.0,
+    "setup_fee": 29999.0,
+    "advance_amount": 5999.0
+  },
+  "notes": "SURAT PRO TIER: Connect & Keep Updated 3 Facebook Pages (61586357894191, 61586323275145 + Hub), Join 100 Relevant Marketing Groups, Post 1 Viral 4K Product Sales Reel, 24/7 Customer Reply & Guide to Client (+91 63552 85433)."
+}

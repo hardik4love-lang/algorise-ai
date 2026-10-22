@@ -13,6 +13,7 @@ from engine.config import get_settings
 from engine.database import db_manager
 from engine.facebook_agent import FacebookAgentEngine
 from engine.models_sqlalchemy import Client, FacebookAgentJob, Lead
+from engine.merchant_context import load_merchant_context
 from engine.telegram_service import AlgoriseTelegramService
 from engine.logging import get_logger
 from sqlalchemy import select
@@ -48,6 +49,10 @@ async def run_facebook_agent_sweep():
                     "fb_page_id": c.fb_page_id,
                     "fb_access_token": c.fb_access_token,
                     "settings": c.settings,
+                    # The merchant identity used in replies is resolved
+                    # from the client record, so a reply never points a
+                    # buyer at another client's contact details.
+                    "merchant": load_merchant_context(c),
                 })
 
         loop = asyncio.get_running_loop()
@@ -57,10 +62,15 @@ async def run_facebook_agent_sweep():
             async with client_semaphore:
                 client_id = c_cfg["id"]
                 client_name = c_cfg["name"]
-                page_id = c_cfg["fb_page_id"] or "61586357894191"
+                # A client without a page configured has nothing to
+                # sweep. The page id comes from the client record; it is
+                # never assumed.
+                page_id = c_cfg["fb_page_id"]
                 token = _safe_decrypt(c_cfg["fb_access_token"])
                 is_shruhi = client_id == "client_srt_shruhi" or "61586357894191" in str(page_id)
 
+                if not page_id:
+                    return
                 if not is_shruhi and (not token or not token.startswith("EAA")):
                     return
 
@@ -72,16 +82,18 @@ async def run_facebook_agent_sweep():
 
                 try:
                     if token and token.startswith("EAA"):
+                        merchant = c_cfg.get("merchant")
                         run_res = await loop.run_in_executor(
                             None,
-                            lambda cid=client_id, cname=client_name, pid=page_id, tok=token, sec=sector: fb_engine.process_client_agent_run(
+                            lambda cid=client_id, cname=client_name, pid=page_id, tok=token, sec=sector, mch=merchant: fb_engine.process_client_agent_run(
                                 client_id=cid,
                                 client_name=cname,
                                 business_name=cname.split("(")[0].strip(),
                                 page_id=pid,
                                 access_token=tok,
                                 sector=sec,
-                                force_simulation=False
+                                force_simulation=False,
+                                merchant=mch,
                             )
                         )
                     else:

@@ -127,9 +127,11 @@ class ClientHeroBotExecuteRequest(BaseModel):
 
 class PriorityOnboardingRequest(BaseModel):
     pin: str = "2026"
-    contact_name: str = "Shruhi Collections Management"
-    whatsapp_number: str = "+91 63552 85433"
-    fb_page_id: str = "61586357894191"
+    contact_name: str = "Client Management"
+    # The number is supplied by the caller. A default here would point
+    # every new client at the first merchant.
+    whatsapp_number: str = ""
+    fb_page_id: str = ""
     preferred_slot: str = "Immediate Priority Setup Call"
     notes: Optional[str] = "Meta Graph API Token & 3-Page Webhook Binding"
 
@@ -167,7 +169,7 @@ async def subscribe_client(
             )
 
     contact_name = payload.full_name or payload.owner_name or "Valued Client"
-    contact_phone = payload.phone or payload.whatsapp or "+91 63552 85433"
+    contact_phone = payload.phone or payload.whatsapp or ""
 
     tier_raw = payload.plan_tier or payload.tier or "pro"
     pricing = get_tier_pricing(tier_raw)
@@ -587,19 +589,20 @@ async def get_client_rules(
         verify_client_pin(client.pin_hash, provided_pin, is_production=(settings.environment == "production"))
 
         settings_dict = client.settings or {}
-        rules = settings_dict.get("agent_rules", {
-            "sensitivity_score": 94.0,
-            "broker_shield_enabled": True,
-            "telegram_alerts_enabled": True,
-            "whatsapp_auto_dispatch": True,
-            "sector": "textile",
-            "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (Adajan, Surat) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.",
-            "catalog_items": [
-                {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
-                {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
-                {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
-            ],
-        })
+        rules = settings_dict.get("agent_rules")
+        if not isinstance(rules, dict):
+            # The default rules describe the sector, not a merchant. The
+            # greeting is built from the client record so it never names
+            # another merchant.
+            rules = {
+                "sensitivity_score": 94.0,
+                "broker_shield_enabled": True,
+                "telegram_alerts_enabled": True,
+                "whatsapp_auto_dispatch": True,
+                "sector": "textile",
+                "custom_greeting": "",
+                "catalog_items": [],
+            }
         return {"client_id": client_id, "rules": rules}
 
 
@@ -659,7 +662,7 @@ async def verify_whatsapp_webhook(request: Request):
 
 @router.post("/whatsapp/webhook")
 async def receive_whatsapp_webhook(request: Request):
-    """Processes inbound WhatsApp messages (+91 63552 85433) with 24/7 Shruhi AI ('Until I Jump In')."""
+    """Processes inbound WhatsApp messages with the 24/7 concierge AI ('Until I Jump In')."""
     try:
         body = await request.json()
         entry = body.get("entry", [{}])[0]
@@ -695,7 +698,7 @@ async def verify_facebook_webhook(request: Request):
 
 @router.post("/facebook/webhook")
 async def receive_facebook_webhook(request: Request):
-    """Processes real-time Facebook Page & Group comments 24/7 and guides buyers to WhatsApp +91 63552 85433."""
+    """Processes real-time Facebook Page & Group comments 24/7 and guides buyers to the merchant's WhatsApp."""
     try:
         body = await request.json()
         replied = []
@@ -789,29 +792,47 @@ async def get_client_meta_pages(client_id: str, pin: Optional[str] = "2026"):
 
 @router.get("/client/{client_id}/groups-and-reel")
 async def get_client_100_groups_and_viral_reel(client_id: str):
-    """Returns the 100 joined relevant Facebook marketing groups, the 4K Viral Product Sales Reel, and the 24/7 customer reply handoff."""
+    """Returns the joined Facebook marketing groups, the Viral Product Sales Reel, and the 24/7 customer reply handoff.
+
+    The connected pages and the reply handoff come from the client
+    record. Returning a fixed set of pages meant a second client was
+    shown another merchant's pages.
+    """
     groups_data = load_100_facebook_groups()
+
+    saved_pages = []
+    merchant = None
+    try:
+        async with db_manager.session() as session:
+            result = await session.execute(select(Client).where(Client.id == client_id))
+            client = result.scalar_one_or_none()
+            if client is not None:
+                settings_dict = client.settings if isinstance(client.settings, dict) else {}
+                saved_pages = settings_dict.get("connected_meta_pages") or []
+                merchant = load_merchant_context(client)
+    except Exception:
+        saved_pages = []
+
+    contact = merchant.contact_line() if merchant else "📲 Order on WhatsApp: our WhatsApp"
+    website = merchant.domain if merchant and merchant.domain else ""
+
     return {
         "client_id": client_id,
-        "connected_pages": [
-            {"slot": 1, "page_id": "61586357894191", "name": "Shruhi Collections | Surat", "status": "Connected & Kept Updated (30 Posts + Viral Reel)"},
-            {"slot": 2, "page_id": "61586323275145", "name": "Shruhi collections", "status": "Connected & Kept Updated (30 Posts + Viral Reel)"},
-            {"slot": 3, "page_id": "shruhi_boutique_reseller_hub", "name": "Shruhi Boutique & Set-to-Set Reseller Hub", "status": "Connected & Kept Updated (30 Posts + Viral Reel)"},
-        ],
+        "connected_pages": saved_pages,
         "viral_sales_reel": {
             "url": "/assets/shruhi-viral-sales-reel-2026.mp4",
             "poster": "/assets/shruhi-viral-sales-reel-poster.jpg",
             "resolution": "1080x1920 (4K Vertical 9:16 H.264 + AAC)",
-            "posted_to_pages": 3,
-            "posted_to_groups": 100,
+            "posted_to_pages": len(saved_pages),
+            "posted_to_groups": len(groups_data.get("groups", [])) or 0,
         },
         "customer_handoff_funnel": {
             "auto_reply_24x7": True,
-            "whatsapp_target": "+91 63552 85433",
-            "whatsapp_url": "https://wa.me/916355285433",
-            "website_target": "https://shruhicollections.in",
+            "whatsapp_target": merchant.whatsapp_display if merchant else "",
+            "whatsapp_url": merchant.whatsapp_link if merchant else "",
+            "website_target": website,
         },
-        "total_groups_joined": len(groups_data.get("groups", [])) or 100,
+        "total_groups_joined": len(groups_data.get("groups", [])) or 0,
         "groups": groups_data.get("groups", []),
     }
 

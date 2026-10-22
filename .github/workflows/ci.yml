@@ -50,6 +50,11 @@ jobs:
         python scripts/build.py
         python scripts/build.py --check-all
 
+    - name: Client Onboarding Check
+      # The onboarding SOP in INTEGRATION_PLAN.md section 3.3. A new
+      # client needs the records and the code must stay multi-tenant.
+      run: python scripts/check_onboarding.py
+
     - name: Dependency Coverage Check
       # The container installs from pyproject while Render installs from
       # requirements.txt. A module imported by the engine but missing from
