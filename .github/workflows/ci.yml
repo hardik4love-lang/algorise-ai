@@ -65,12 +65,28 @@ jobs:
       # A router that fails to import is swallowed by the lazy loader. The
       # build then succeeds and the service serves a subset of the API
       # while reporting healthy. This makes the route table explicit.
+      #
+      # The OpenAPI schema is the authoritative view of what the service
+      # serves. FastAPI 0.159 keeps an included router as a single entry
+      # instead of copying its routes into app.routes, so a flat scan
+      # undercounts on that release.
       run: |
-        python scripts/dump_routes.py
-        count=$(grep -c . data/routes_seen.txt)
-        echo "registered routes: $count"
-        if [ "$count" -lt 60 ]; then
-          echo "::error::only $count routes registered, routers are failing to import"
+        python scripts/dump_routes.py | tee /tmp/routes.txt
+        openapi_count=$(grep -oP 'ROUTE_OPENAPI_COUNT=\K[0-9]+' /tmp/routes.txt)
+        walk_count=$(grep -oP 'ROUTE_COUNT=\K[0-9]+' /tmp/routes.txt)
+        missing=$(grep -oP 'ROUTE_WALK_MISSING=\K.*' /tmp/routes.txt)
+        echo "routes in the OpenAPI schema: $openapi_count"
+        echo "routes found by the walk:       $walk_count"
+        if [ -n "$missing" ]; then
+          echo "::error::the route walk missed paths served by the app: $missing"
+          exit 1
+        fi
+        if [ "$openapi_count" -lt 60 ]; then
+          echo "::error::only $openapi_count routes served, routers are failing to import"
+          exit 1
+        fi
+        if [ "$walk_count" -lt 60 ]; then
+          echo "::error::route walk found only $walk_count paths"
           exit 1
         fi
 

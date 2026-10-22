@@ -55,26 +55,37 @@ def main():
         print("  IMPORT FAILED — this is the deploy failure:")
         print("   ", (r.stdout + r.stderr)[-2500:])
         return 1
-    print(f"  {r.stdout.strip()}")
+    print(f"  {r.stdout.strip().splitlines()[0]}")
 
-    seen_file = ROOT / "data" / "routes_seen.txt"
-    here = set(
-        p.strip() for p in seen_file.read_text(encoding="utf-8").splitlines()
-        if p.strip()
-    )
-    count = len(here)
+    # The OpenAPI schema is the authoritative view of what the service
+    # serves. FastAPI 0.159 keeps an included router as one entry
+    # instead of copying its routes into app.routes, so counting
+    # app.routes alone undercounts on that release.
+    openapi_count = 0
+    for line in r.stdout.splitlines():
+        if line.startswith("ROUTE_OPENAPI_COUNT="):
+            openapi_count = int(line.split("=", 1)[1])
+            break
+
+    walk_count = 0
+    for line in r.stdout.splitlines():
+        if line.startswith("ROUTE_COUNT="):
+            walk_count = int(line.split("=", 1)[1])
+            break
 
     # A build that silently drops routers is worse than one that fails: it
     # serves a subset of the API and reports success. The application
-    # currently registers 71 paths / 80 endpoints. The floor is set well
-    # below that so an added router does not need a constant bump, but
-    # high enough that losing a router group is caught.
+    # currently serves 67 paths. The floor is set well below that so an
+    # added router does not need a constant bump, but high enough that
+    # losing a router group is caught.
     EXPECTED_MIN = 60
-    if count < EXPECTED_MIN:
-        print(f"  ROUTE COUNT TOO LOW — expected >= {EXPECTED_MIN}, got {count}.")
+    if openapi_count < EXPECTED_MIN or walk_count < EXPECTED_MIN:
+        print(f"  ROUTE COUNT TOO LOW — expected >= {EXPECTED_MIN}, "
+              f"got openapi={openapi_count} walk={walk_count}.")
         print("  Routers are failing to import silently.")
         return 1
-    print(f"  route count healthy ({count})")
+    print(f"  route count healthy (openapi={openapi_count} walk={walk_count})")
+
 
     # Restore the local view of the routes file.
     run([sys.executable, "scripts/dump_routes.py"], cwd=ROOT)
