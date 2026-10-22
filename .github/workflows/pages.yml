@@ -1,0 +1,76 @@
+name: Deploy Static Site to GitHub Pages
+
+# Publishes the built static site.
+#
+# The site is built from the source surfaces by scripts/build.py, which
+# also generates config.js with the API base URL. The previous
+# deployment pushed the whole repository onto the gh-pages branch, which
+# published the local SQLite database and the source tree along with the
+# site. This deploys only the deployable tree.
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build the site
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install build dependencies
+      run: npm install --no-audit --no-fund
+
+    - name: Build the static site
+      env:
+        API_BASE_URL: https://algorise-ai-backend.onrender.com
+      run: python scripts/build.py
+
+    - name: Verify the build is current
+      run: python scripts/build.py --check-all
+
+    - name: Remove files that must not be published
+      run: |
+        # Packaging artifacts are build output, not site content.
+        rm -f dist/*.whl dist/*.tar.gz
+        # A local database must never be published.
+        rm -f dist/*.db dist/*.db-shm dist/*.db-wal
+        # No source, no configuration, no secrets.
+        rm -rf dist/engine dist/.git dist/.github
+        find dist -name "*.py" -delete
+        find dist -name ".env*" -delete
+        echo "--- publishing ---"
+        ls -la dist | head -30
+
+    - name: Upload the artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: dist
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy
+      id: deployment
+      uses: actions/deploy-pages@v4
