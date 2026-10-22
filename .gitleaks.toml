@@ -1,0 +1,16 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Documented non-secret fixtures and placeholders"
+paths = [
+  '''^\.env\.example$''',
+  '''^tests/'''
+]
+regexes = [
+  '''^fixture-key$''',
+  '''^alg_(live|demo|readonly)_test_key_[0-9]+$''',
+  '''^sk_(live|test)_abc[0-9a-z]+$''',
+  '''^ghp_abc[0-9a-z]+$''',
+  '''^secret123$'''
+]

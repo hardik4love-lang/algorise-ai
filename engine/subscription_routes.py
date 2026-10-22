@@ -792,7 +792,7 @@ async def verify_facebook_webhook(request: Request):
     token = params.get("hub.verify_token")
     challenge = params.get("hub.challenge")
 
-    if mode == "subscribe" and token in (WHATSAPP_VERIFY_TOKEN, "shruhi_fb_verify_2026"):
+    if mode == "subscribe" and token == WHATSAPP_VERIFY_TOKEN:
         return PlainTextResponse(content=challenge or "", status_code=200)
     raise HTTPException(status_code=403, detail="Facebook verification token mismatch")
 

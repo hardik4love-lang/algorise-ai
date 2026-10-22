@@ -400,7 +400,7 @@ async def verify_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=H
             audit_logger.log_auth_attempt(None, success=False)
             return (False, None)
         elif settings.environment in ('development', 'test', 'testing', 'local'):
-            key = 'alg_live_test_key_9981'
+            key = os.getenv('ALG_TEST_KEY', 'fixture-key')
         else:
             audit_logger.log_auth_attempt(None, success=False)
             return (False, None)
@@ -437,7 +437,7 @@ async def require_api_key(api_key: Optional[str]=None, x_api_key: Optional[str]=
                 headers={'WWW-Authenticate': 'ApiKey'},
             )
         elif settings.environment in ('development', 'test', 'testing', 'local'):
-            key = 'alg_live_test_key_9981'
+            key = os.getenv('ALG_TEST_KEY', 'fixture-key')
         else:
             audit_logger.log_auth_attempt(None, success=False)
             raise HTTPException(
