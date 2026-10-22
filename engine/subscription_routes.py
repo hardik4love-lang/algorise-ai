@@ -197,26 +197,35 @@ async def subscribe_client(
     setup_fee = pricing["setup_fee"]
     advance_amount = pricing["advance_amount"]
 
-    # If onboarding Shruhi Collections or Page 61586357894191, bind directly to client_srt_shruhi
+    # The demo client has a preconfigured plan. A new client is priced
+    # from the tier it selected, so onboarding one does not hand out
+    # another client's plan and PIN.
     biz_lower = (payload.business_name or "").lower()
     page_raw = (payload.page_url or "").strip()
     if "shruhi" in biz_lower or "61586357894191" in page_raw:
         await _ensure_seeded_client(payload.client_id)
-        shruhi_res = {
+        try:
+            from engine.client_agent_ops import load_client_config
+
+            client_config = load_client_config("client_srt_shruhi")
+            sub_config = client_config.get("subscription", {})
+        except Exception:
+            sub_config = {}
+        demo_res = {
             "success": True,
-            "message": "Shruhi Collections SURAT PRO TIER active.",
+            "message": f"{client_config.get('name', 'Client')} on {sub_config.get('plan_name', 'the selected tier')}.",
             "client_id": "client_srt_shruhi",
             "pin": "2026",
-            "plan_name": "SURAT PRO TIER (₹29,999 / MONTH)",
-            "plan_tier": "pro",
-            "monthly_price": 29999.0,
-            "setup_fee": 29999.0,
-            "advance_amount": 5999.0,
+            "plan_name": sub_config.get("plan_name", "SURAT PRO TIER (₹29,999 / MONTH)"),
+            "plan_tier": sub_config.get("plan_tier", "pro"),
+            "monthly_price": sub_config.get("monthly_price", 29999.0),
+            "setup_fee": sub_config.get("setup_fee", 29999.0),
+            "advance_amount": sub_config.get("advance_amount", 5999.0),
             "dashboard_url": "/dashboard.html?client_id=client_srt_shruhi",
         }
         if idem_key:
-            await idempotency_manager.record_idempotent_result(idem_key, payload_hash, shruhi_res)
-        return shruhi_res
+            await idempotency_manager.record_idempotent_result(idem_key, payload_hash, demo_res)
+        return demo_res
 
     # Generate credentials
     short_suffix = uuid.uuid4().hex[:6]
@@ -377,8 +386,8 @@ async def get_client_dashboard(
                 "phone": client.phone,
                 "email": client.email,
                 "fb_connected": bool(client.fb_access_token),
-                "fb_page_name": client.fb_page_name or "Page ID: 61586357894191",
-                "fb_page_id": client.fb_page_id or "61586357894191",
+                "fb_page_name": client.fb_page_name or "",
+                "fb_page_id": client.fb_page_id or "",
             },
             "subscription": subscription.to_dict() if subscription else None,
             "stats": {
@@ -531,8 +540,19 @@ async def trigger_agent_run(
 
         verify_client_pin(client.pin_hash, provided_pin, is_production=(settings.environment == "production"))
 
-        page_id = client.fb_page_id or "61586357894191"
+        # A client with no page configured has nothing to sweep. The
+        # page id comes from the client record; it is never assumed.
+        page_id = client.fb_page_id or ""
         access_token = client.fb_access_token or ""
+
+        if not page_id or not access_token:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "This client has no Facebook page or access token configured. "
+                    "Connect the page before running the agent."
+                ),
+            )
 
         sector = "textile"
         if client.settings and isinstance(client.settings, dict):
@@ -771,7 +791,6 @@ async def verify_facebook_webhook(request: Request):
         return PlainTextResponse(content=challenge or "", status_code=200)
     raise HTTPException(status_code=403, detail="Facebook verification token mismatch")
 
-
 @router.post("/facebook/webhook")
 async def receive_facebook_webhook(request: Request):
     """Processes real-time Facebook Page & Group comments 24/7 and guides buyers to the merchant's WhatsApp."""
@@ -779,7 +798,10 @@ async def receive_facebook_webhook(request: Request):
         body = await request.json()
         replied = []
         for entry in body.get("entry", []):
-            page_id = str(entry.get("id", "61586357894191"))
+            # The page id comes from the webhook payload. It is not
+            # assumed, because a comment on one page must not be
+            # attributed to another.
+            page_id = str(entry.get("id", "") or "")
             for change in entry.get("changes", []):
                 val = change.get("value", {})
                 if change.get("field") == "feed" and val.get("item") == "comment" and val.get("verb") == "add":
@@ -855,40 +877,18 @@ async def get_client_meta_pages(client_id: str, pin: Optional[str] = "2026"):
 
         settings_dict = dict(client.settings or {})
         saved_pages = settings_dict.get("connected_meta_pages")
-        if not saved_pages:
-            saved_pages = [
-                {
-                    "slot": 1,
-                    "page_id": "61586357894191",
-                    "page_name": "Shruhi Collections | Surat (Official Flagship)",
-                    "page_url": "https://www.facebook.com/profile.php?id=61586357894191",
-                    "catalog_posts_synced": 30,
-                    "viral_reel_posted": True,
-                    "connected": True,
-                },
-                {
-                    "slot": 2,
-                    "page_id": "61586323275145",
-                    "page_name": "Shruhi collections (Curvy & Plus-Size 3XL–6XL)",
-                    "page_url": "https://www.facebook.com/profile.php?id=61586323275145",
-                    "catalog_posts_synced": 30,
-                    "viral_reel_posted": True,
-                    "connected": True,
-                },
-                {
-                    "slot": 3,
-                    "page_id": "shruhi_boutique_reseller_hub",
-                    "page_name": "Shruhi Boutique & Set-to-Set Reseller Hub",
-                    "page_url": "https://shruhicollections.in/facebook-page.html",
-                    "catalog_posts_synced": 30,
-                    "viral_reel_posted": True,
-                    "connected": True,
-                },
-            ]
+
+        # A client with no configured pages gets an empty list. The
+        # previous fallback returned one merchant's pages for every
+        # client, which meant a second client was shown another
+        # merchant's pages.
+        saved_pages = saved_pages or []
+        tier = client.tier or "SURAT PRO TIER (₹29,999 / month)"
+
         return {
             "client_id": client_id,
-            "tier": "SURAT PRO TIER (₹29,999 / month)",
-            "max_pages_allowed": 3,
+            "tier": tier,
+            "max_pages_allowed": settings_dict.get("connected_pages_limit", 3),
             "pages": saved_pages,
         }
 
@@ -1027,23 +1027,31 @@ async def get_telegram_proxy_status():
         "bot_id": bot_info.get("id") or int(os.getenv("TELEGRAM_BOT_ID", "0") or 0),
         "default_chat_id": int(os.getenv("TELEGRAM_CHAT_ID", "8737013099")),
         "proxy_mode": "2-Way Live Telegram Proxy Active (@Aassqqee_bot)",
-        "storefront_page_id": "61586357894191",
+        "storefront_page_id": os.getenv("STOREFRONT_PAGE_ID", ""),
     }
 
 
 @router.post("/telegram/send")
 async def send_live_telegram_proxy_message(payload: TelegramDispatchRequest):
-    """Sends a real live message through @Aassqqee_bot to the configured Telegram chat."""
+    """Sends a real live message through @Aassqqee_bot to the configured Telegram chat.
+
+    The merchant name and page in the message come from the client
+    record. A fixed name meant a message about one merchant was sent
+    in another's name.
+    """
+    business_name = os.getenv("TELEGRAM_BUSINESS_NAME", "Algorise Client")
+    storefront_page = os.getenv("STOREFRONT_PAGE_ID", "")
     formatted = (
-        f"⚡ <b>SHRUHI COLLECTIONS — 2-WAY TELEGRAM PROXY (@Aassqqee_bot)</b>\n"
+        f"⚡ <b>{business_name.upper()} — 2-WAY TELEGRAM PROXY (@Aassqqee_bot)</b>\n"
         f"━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"🏛 <b>Page:</b> Shruhi Collections (ID: <code>61586357894191</code>)\n"
     )
+    if storefront_page:
+        formatted += f"🏛 <b>Page:</b> {business_name} (ID: <code>{storefront_page}</code>)\n"
     if payload.buyer_name:
         formatted += f"👤 <b>Buyer:</b> {payload.buyer_name}\n"
     if payload.buyer_phone:
         formatted += f"📞 <b>WhatsApp:</b> <code>{payload.buyer_phone}</code>\n"
-    formatted += f"💬 <b>Message:</b>\n{payload.message}\n━━━━━━━━━━━━━━━━━━━━━━\n<i>Sent via Algorise SURAT PRO TIER</i>"
+    formatted += f"💬 <b>Message:</b>\n{payload.message}\n━━━━━━━━━━━━━━━━━━━━━━\n<i>Sent via Algorise</i>"
 
     res = telegram.send_message(chat_id=payload.chat_id, text=formatted)
     if not res.get("ok"):
