@@ -28,6 +28,7 @@ from engine.facebook_agent import FacebookAgentEngine
 from engine.database import db_manager
 from engine.hero_registry import HERO_BOT_REGISTRY_MAP, HeroBotRunner
 from engine.models_sqlalchemy import Client, Subscription, Lead, FacebookAgentJob
+from engine.scheduler import _safe_decrypt
 
 # Domain Services & Bounded Contexts
 from engine.client_billing import PLAN_PRICING, resolve_plan_tier, get_tier_pricing
@@ -543,7 +544,11 @@ async def trigger_agent_run(
         # A client with no page configured has nothing to sweep. The
         # page id comes from the client record; it is never assumed.
         page_id = client.fb_page_id or ""
-        access_token = client.fb_access_token or ""
+
+        # The token is stored encrypted, so it has to be decrypted
+        # before it is used. Sending the ciphertext to Graph produces
+        # "Cannot parse access token".
+        access_token = _safe_decrypt(client.fb_access_token)
 
         if not page_id or not access_token:
             raise HTTPException(
@@ -802,6 +807,10 @@ async def receive_facebook_webhook(request: Request):
             # assumed, because a comment on one page must not be
             # attributed to another.
             page_id = str(entry.get("id", "") or "")
+            # The token is resolved from the client record for that
+            # page, not from an environment variable, so a webhook for
+            # a second client uses that client's own credential.
+            token = await _page_access_token(page_id)
             for change in entry.get("changes", []):
                 val = change.get("value", {})
                 if change.get("field") == "feed" and val.get("item") == "comment" and val.get("verb") == "add":
@@ -810,7 +819,6 @@ async def receive_facebook_webhook(request: Request):
                     sender = val.get("from", {}) or {}
                     buyer_name = sender.get("name", "Valued Shopper")
                     buyer_id = str(sender.get("id", ""))
-                    token = os.getenv("FB_PAGE_ACCESS_TOKEN", "")
                     res = fb_engine.process_single_comment_event(
                         page_id=page_id,
                         comment_id=comment_id,
@@ -824,6 +832,23 @@ async def receive_facebook_webhook(request: Request):
         return {"status": "processed", "events": len(replied), "results": replied}
     except Exception as e:
         return {"status": "error", "message": str(e)}
+
+
+async def _page_access_token(page_id: str) -> str:
+    """Return the decrypted Meta token for the client that owns a page.
+
+    The token is stored encrypted on the client record. The environment
+    variable is only a fallback for a single-page deployment.
+    """
+    if page_id:
+        async with db_manager.session() as session:
+            result = await session.execute(
+                select(Client).where(Client.fb_page_id == page_id)
+            )
+            client = result.scalars().first()
+            if client is not None:
+                return _safe_decrypt(client.fb_access_token)
+    return os.getenv("FB_PAGE_ACCESS_TOKEN", "")
 
 
 # ============================================================================

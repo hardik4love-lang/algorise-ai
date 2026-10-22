@@ -98,8 +98,15 @@ def _client_token(explicit: Optional[str]) -> str:
 
 
 def _stored_client_token() -> Optional[str]:
+    """Return the usable Meta token for the active client.
+
+    The token is stored encrypted, so it has to be decrypted here.
+    Returning the stored value sends the ciphertext to Graph, which
+    fails with "Cannot parse access token".
+    """
     from engine.database import sync_session
     from engine.models_sqlalchemy import Client
+    from engine.scheduler import _safe_decrypt
 
     session = sync_session()
     try:
@@ -113,7 +120,7 @@ def _stored_client_token() -> Optional[str]:
         if row.fb_access_token.startswith("simulated") or \
                 row.fb_access_token.startswith("dev_"):
             return None
-        return row.fb_access_token
+        return _safe_decrypt(row.fb_access_token) or None
     finally:
         session.close()
 
