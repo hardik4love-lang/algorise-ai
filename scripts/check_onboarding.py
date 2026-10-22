@@ -189,21 +189,63 @@ def check_no_merchant_literals():
     }
 
 
+def collect_paths(routes, seen=None, depth=0):
+    """Recursively collect every registered path.
+
+    FastAPI 0.159 keeps an included router as a single entry instead of
+    copying its routes into app.routes, so a flat scan undercounts on
+    that release. The OpenAPI schema is the authoritative view and is
+    used as the primary source here.
+    """
+    if seen is None:
+        seen = set()
+    if depth > 6:
+        return seen
+
+    for route in routes or []:
+        path = getattr(route, "path", None)
+        if path:
+            seen.add(path)
+
+        original = getattr(route, "original_router", None)
+        if original is not None:
+            collect_paths(getattr(original, "routes", None), seen, depth + 1)
+
+        candidates = getattr(route, "effective_candidates", None)
+        if callable(candidates):
+            try:
+                candidates = candidates()
+            except Exception:
+                candidates = None
+        if candidates:
+            for candidate in candidates:
+                candidate_path = getattr(candidate, "path", None)
+                if candidate_path:
+                    seen.add(candidate_path)
+                collect_paths(getattr(candidate, "routes", None), seen, depth + 1)
+
+        inner = getattr(route, "router", None)
+        if inner is not None and getattr(inner, "routes", None):
+            collect_paths(inner.routes, seen, depth + 1)
+
+        nested = getattr(route, "routes", None)
+        if nested and not path:
+            collect_paths(nested, seen, depth + 1)
+
+    return seen
+
+
 def check_routes():
     """The API exposes the onboarding endpoints."""
     from engine.main import app
 
-    paths = set()
-    for route in app.routes:
-        path = getattr(route, "path", None)
-        if path:
-            paths.add(path)
-        original = getattr(route, "original_router", None)
-        if original is not None:
-            for inner in getattr(original, "routes", []):
-                inner_path = getattr(inner, "path", None)
-                if inner_path:
-                    paths.add(inner_path)
+    paths = collect_paths(app.routes)
+
+    # The OpenAPI schema is what the service actually serves.
+    try:
+        paths |= set(app.openapi().get("paths", {}))
+    except Exception:
+        pass
 
     required = {
         "/api/v1/subscribe": "client creation from the booking form",
@@ -218,7 +260,7 @@ def check_routes():
     return {
         "ok": not missing,
         "detail": (
-            "all onboarding endpoints are registered"
+            f"all onboarding endpoints are registered ({len(paths)} paths served)"
             if not missing
             else f"{len(missing)} onboarding endpoint(s) missing"
         ),
