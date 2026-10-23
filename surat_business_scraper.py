@@ -23,9 +23,19 @@ DEMO_URL = 'https://algorise-ai.com/#surat-facebook-agent'
 PITCH_URL = 'https://algorise-ai.com/field_pitch.html'
 SURAT_CLUSTERS = {'1': {'sector': 'Textiles & Sarees', 'market': 'Ring Road & Millennium Market, Surat', 'query': 'saree manufacturer wholesale ring road surat facebook OR phone', 'keywords': ['saree', 'textile', 'fabric', 'georgette', 'millennium', 'ring road']}, '2': {'sector': 'CVD & Lab-Grown Diamonds', 'market': 'Varachha & Katargam, Surat', 'query': 'cvd diamond manufacturer katargam varachha surat contact OR facebook', 'keywords': ['diamond', 'cvd', 'lab-grown', 'gem', 'varachha', 'katargam']}, '3': {'sector': 'Real Estate & Builders', 'market': 'Vesu, Pal & VIP Road, Surat', 'query': 'real estate developer builder vesu pal surat phone OR facebook', 'keywords': ['realty', 'builder', 'flat', 'vesu', 'vip road', 'commercial']}, '4': {'sector': 'Kurti & Dress Material Wholesalers', 'market': 'Udhna, Sachin GIDC & Sahara Darwaja', 'query': 'kurti wholesale manufacturer surat phone facebook', 'keywords': ['kurti', 'dress', 'wholesale', 'surat', 'gidc']}}
 
+def get_sector_demo_url(sector: str) -> str:
+    s = sector.lower()
+    if 'textile' in s or 'saree' in s or 'kurti' in s or 'dress' in s:
+        return 'https://algorise-ai.com/industry/textile-saree-wholesale-ai-agent.html'
+    if 'diamond' in s or 'cvd' in s:
+        return 'https://algorise-ai.com/industry/diamond-cvd-sales-agent.html'
+    if 'real estate' in s or 'builder' in s or 'realty' in s:
+        return 'https://algorise-ai.com/industry/real-estate-whatsapp-ai.html'
+    return 'https://algorise-ai.com/industry/b2b-lead-defense.html'
+
 def generate_personalized_pitch(biz_name: str, sector: str, phone: str) -> str:
     """Generates tailored Gujarati WhatsApp sales pitch for Surat business owners."""
-    return f'નમસ્તે {biz_name} સાહેબ, 🙏\n\nતમે દર મહિને ફેસબુક અને ઇન્સ્ટાગ્રામ એડ્સ પાછળ મોટો ખર્ચ કરો છો, પણ તમારી એડ નીચે ૧૫-૨૦ હોલસેલ વેપારીઓના ભાવ પૂછેલા મેસેજ કલાકો સુધી વગર જવાબે પડ્યા રહે છે! સૌથી મોટી મુશ્કેલી એ છે કે બીજા દલાલો તમારી એડ નીચે પોતાનો નંબર મૂકીને સીધો તમારો કસ્ટમર ચોરી જાય છે.\n\nઅમે ખાસ સુરતના {sector} વેપારીઓ માટે "Autonomous AI Facebook Sales Agent" તૈયાર કર્યું છે:\n\n⚡ ૦.૦૫ સેકન્ડમાં જાહેર રિપ્લાય + પ્રાઇવેટ મેસેન્જર ડીએમ\n🛡️ બ્રોકર શીલ્ડ: કોઈ દલાલ કમેન્ટમાં નંબર મૂકે તો ૦.૦૨ સેકન્ડમાં ઓટો-હાઈડ\n🗣️ અસલ સુરતી વેપારી ભાષા & ભાવમાં ડીલિંગ\n📲 ગ્રાહક નંબર આપે કે તરત તમારા Telegram પર હોટ લીડ એલર્ટ!\n\n💼 ખાસ સુરત ઓફર: ઓર્ડર સાથે માત્ર ૨૦% એડવાન્સ બુકિંગ.\nબાકીના ૮૦% રકમ તમારી પેજ પર AI લાઈવ થઈ જાય તે પછી જ આપવાની!\n\n👉 ૧૦ સેકન્ડનો લાઈવ ડેમો ચેક કરો: {DEMO_URL}\n👉 વિગતવાર પ્લાન & પ્રાઇસિંગ: {PITCH_URL}\n\nઆપના અનુકૂળ સમયે વાત કરવા વિનંતી.'
+    return f'નમસ્તે {biz_name} સાહેબ, 🙏\n\nતમે દર મહિને ફેસબુક અને ઇન્સ્ટાગ્રામ એડ્સ પાછળ મોટો ખર્ચ કરો છો, પણ તમારી એડ નીચે ૧૫-૨૦ હોલસેલ વેપારીઓના ભાવ પૂછેલા મેસેજ કલાકો સુધી વગર જવાબે પડ્યા રહે છે! સૌથી મોટી મુશ્કેલી એ છે કે બીજા દલાલો તમારી એડ નીચે પોતાનો નંબર મૂકીને સીધો તમારો કસ્ટમર ચોરી જાય છે.\n\nઅમે ખાસ સુરતના {sector} વેપારીઓ માટે "Autonomous AI Facebook Sales Agent" તૈયાર કર્યું છે:\n\n⚡ ૦.૦૫ સેકન્ડમાં જાહેર રિપ્લાય + પ્રાઇવેટ મેસેન્જર ડીએમ\n🛡️ બ્રોકર શીલ્ડ: કોઈ દલાલ કમેન્ટમાં નંબર મૂકે તો ૦.૦૨ સેકન્ડમાં ઓટો-હાઈડ\n🗣️ અસલ સુરતી વેપારી ભાષા & ભાવમાં ડીલિંગ\n📲 ગ્રાહક નંબર આપે કે તરત તમારા Telegram પર હોટ લીડ એલર્ટ!\n\n💼 ખાસ સુરત ઓફર: ઓર્ડર સાથે માત્ર ૨૦% એડવાન્સ બુકિંગ.\nબાકીના ૮૦% રકમ તમારી પેજ પર AI લાઈવ થઈ જાય તે પછી જ આપવાની!\n\n👉 ૧૦ સેકન્ડનો લાઈવ ડેમો ચેક કરો: {get_sector_demo_url(sector)}\n👉 વિગતવાર પ્લાન & પ્રાઇસિંગ: {PITCH_URL}\n\nઆપના અનુકૂળ સમયે વાત કરવા વિનંતી.'
 
 def extract_phone_numbers(text: str) -> list:
     """Extracts valid 10-digit Indian mobile numbers."""
