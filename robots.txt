@@ -2,5 +2,7 @@ User-agent: *
 Allow: /
 Sitemap: https://algorise-ai.com/sitemap.xml
 
-# Administrative surfaces are not for indexing.
+# Administrative & client portals are not for indexing
 Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /api/
