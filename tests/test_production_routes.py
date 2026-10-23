@@ -123,3 +123,25 @@ def test_no_handler_calls_the_seeder_directly():
         "the seeder is called directly: "
         + "; ".join(f"line {n}: {t}" for n, t in direct)
     )
+
+
+def test_roi_defense_calculator_route(production_client):
+    """Asserts that the ROI defense calculator calculates protected metrics accurately."""
+    resp = production_client.get(
+        "/api/v1/roi-defense/calculate",
+        params={
+            "ad_spend": 100000,
+            "inbound_comments": 1000,
+            "average_order_value": 50000,
+            "tier_cost": 29999,
+        },
+    )
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["status"] == "success"
+    metrics = data["metrics"]
+    assert metrics["shielded_poaching_leads"] == 180
+    assert metrics["estimated_reclaimed_orders"] == 25
+    assert metrics["monthly_reclaimed_revenue"] == 1250000.0
+    assert metrics["roi_multiplier"] == 41.7
+    assert metrics["average_reaction_latency_seconds"] == 0.048
