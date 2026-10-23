@@ -217,5 +217,26 @@ python -m http.server 3000
 
 ---
 
+---
+
+## 🛡️ Autonomous B2B Social Commerce & Ad Lead Defense Engine
+
+Algorise provides an autonomous social sales defense layer designed for B2B manufacturers, real estate developers, and wholesale exporters running paid Meta (Facebook & Instagram) ads:
+
+- **Sub-0.05s Auto-Hide Shield:** Automatically detects and masks competitor poaching attempts, rogue broker comments, and pricing inquiries within 48 milliseconds.
+- **REST Defense Calculator API:**
+  GET /api/v1/roi-defense/calculate?ad_spend=150000&inbound_comments=2500&average_order_value=45000&tier_cost=29999
+  Returns real-time structured telemetry: shielded leads, conversion projections, protected revenue, and net ROI multiplier.
+- **High-Availability Cloud Blueprint (
+ender.yaml):**
+  - Powered by Managed PostgreSQL (lgorise-postgres) with auto-normalized postgresql+asyncpg:// async drivers in engine/database.py.
+  - Configured on Render Starter tier (zero cold-start sleeps on incoming Meta/WhatsApp webhooks).
+- **Target Vertical Solutions:**
+  - **Textile & Saree Wholesalers:** [industry/textile-saree-wholesale-ai-agent.html](industry/textile-saree-wholesale-ai-agent.html)
+  - **Real Estate Builders & Developers:** [industry/real-estate-whatsapp-ai.html](industry/real-estate-whatsapp-ai.html)
+  - **CVD & Lab-Grown Diamonds:** [industry/diamond-cvd-sales-agent.html](industry/diamond-cvd-sales-agent.html)
+
+---
+
 ## License
 MIT © 2026 Algorise AI Solutions. All rights reserved.
