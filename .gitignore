@@ -34,6 +34,8 @@ wheels/
 *.crt
 secrets/
 credentials/
+*credentials*.json
+*.secret.json
 
 # Large Archives & Packages
 *.zip
@@ -65,6 +67,7 @@ htmlcov/
 .ruff_cache/
 logs/
 *.log
+
 .release-artifacts/
 .release-state.json
 .context_pr/
