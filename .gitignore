@@ -78,3 +78,6 @@ logs/
 tmp*/
 config/aria_telegram_state.json
 config/aria_telegram_config.json
+scripts/aria_executor.py
+scripts/notify_complete.py
+

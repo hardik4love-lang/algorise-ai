@@ -36,6 +36,8 @@ SURFACES = [
     "compare/manychat-alternative.html", "compare/wati-alternative.html",
     "industry/diamond-cvd-sales-agent.html",
     "industry/textile-saree-wholesale-ai-agent.html",
+    "industry/real-estate-whatsapp-ai.html",
+    "industry/b2b-lead-defense.html",
 ]
 
 # Copied verbatim from source (assets and static root files).
