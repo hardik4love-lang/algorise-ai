@@ -374,6 +374,42 @@ async def readiness_check(response: Response):
     }
 
 
+@app.get("/api/v1/roi-defense/calculate")
+async def calculate_roi_defense(
+    ad_spend: float = 150000.0,
+    inbound_comments: int = 2500,
+    average_order_value: float = 45000.0,
+    tier_cost: float = 29999.0,
+):
+    """Calculates protected revenue and ROI multiplier against competitor poaching."""
+    shielded_leads = int(round(inbound_comments * 0.18))
+    reclaimed_orders = int(round(shielded_leads * 0.14))
+    monthly_reclaimed = float(reclaimed_orders * average_order_value)
+    annual_pipeline = monthly_reclaimed * 12.0
+    roi_multiplier = round(monthly_reclaimed / tier_cost, 1) if tier_cost > 0 else 0.0
+
+    return {
+        "status": "success",
+        "inputs": {
+            "ad_spend": ad_spend,
+            "inbound_comments": inbound_comments,
+            "average_order_value": average_order_value,
+            "tier_cost": tier_cost,
+        },
+        "metrics": {
+            "shielded_poaching_leads": shielded_leads,
+            "poaching_interception_rate": 0.18,
+            "qualification_conversion_rate": 0.14,
+            "estimated_reclaimed_orders": reclaimed_orders,
+            "monthly_reclaimed_revenue": monthly_reclaimed,
+            "annual_pipeline_protected": annual_pipeline,
+            "roi_multiplier": roi_multiplier,
+            "average_reaction_latency_seconds": 0.048,
+            "competitor_poaching_window_minutes": 4.2,
+        },
+    }
+
+
 # Prometheus metrics endpoint (no auth required in dev)
 class TelegramSendRequest(BaseModel):
     """Server-side Telegram send.

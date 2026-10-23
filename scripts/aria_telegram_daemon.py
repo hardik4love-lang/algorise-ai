@@ -126,7 +126,9 @@ class AryaTelegramBot:
             f"• <b>Settlement / Email:</b> <code>shruhicollections@gmail.com</code> (Algora Escrow Active)\n\n"
             f"🏆 <b>Key Standings:</b>\n"
             f"• <b>Go-Hybrid PR #497:</b> 🟣 <b>MERGED UPSTREAM</b> ($75–$100 secured)\n"
-            f"• <b>Go-Hybrid PR #430:</b> 🟢 <b>#1 Queue Leader</b> (16/16 defect coverage)\n"
+            f"• <b>Go-Hybrid PR #430:</b> 🟣 <b>MERGED UPSTREAM</b> ($75–$100 secured)\n"
+            f"• <b>Go-Hybrid PR #587:</b> 🟢 <b>100% GREEN</b> (Const Overflow, $75–$100)\n"
+            f"• <b>Go-Hybrid PR #600:</b> 🟢 <b>100% GREEN</b> (Test Reg Guard, $50–$100)\n"
             f"• <b>Go-Hybrid PR #569:</b> 🟢 <b>Wildcard W-008 Spike</b> ($250–$500 alone in ring)\n"
             f"• <b>Algora Ticket #146152932:</b> ⏳ <b>$400–$600 Batch</b> (Monday disbursement)\n\n"
             f"⚡ <b>Quick Commands:</b>\n"
@@ -155,7 +157,9 @@ class AryaTelegramBot:
             "",
             "<b>1. Go-Hybrid Bounty Ladder:</b>",
             "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/497'>PR #497</a>: 🟣 <b>MERGED</b> (UTF-8 Decoder, $75-$100)",
-            "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/430'>PR #430</a>: 🟢 <b>#1 Queue Leader</b> (Soundness Types, $75-$100)",
+            "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/430'>PR #430</a>: 🟣 <b>MERGED</b> (Soundness Types, $75-$100)",
+            "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/587'>PR #587</a>: 🟢 <b>100% CI GREEN</b> (Const Overflow, $75-$100)",
+            "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/600'>PR #600</a>: 🟢 <b>100% CI GREEN</b> (Test Reg Guard, $50-$100)",
             "• <a href='https://github.com/limitlessprojects/Go-Hybrid/pull/569'>PR #569</a>: 🟢 <b>W-008 Sole Spike</b> (Settlement Regions, $250-$500)",
             "",
             "<b>2. Algora & Open-Source PR Fleet:</b>",
@@ -330,18 +334,49 @@ class AryaTelegramBot:
             except Exception as e:
                 print(f"[!] Error running hunt cycle: {e}")
             reply = self.get_bounties_message()
+        elif cmd in ["/execute", "/solve", "/fix", "/run", "/bounties_execute", "/do_all"]:
+            self.send_message(
+                chat_id,
+                "🚀 <b>ARIA Autonomous Execution Engine Activated!</b>\n\n"
+                "Targeting top 5 high-yield bounties:\n"
+                "1. <b>Go-Hybrid #687</b> ($75–$150)\n"
+                "2. <b>Go-Hybrid #708</b> ($75–$150)\n"
+                "3. <b>Go-Hybrid #679</b> ($75–$150)\n"
+                "4. <b>Go-Hybrid #695</b> ($250–$500)\n"
+                "5. <b>BasedHardware/omi #22181</b> ($50)\n\n"
+                "⏳ <i>Spawning execution workers... Live milestones will be sent to this chat!</i>"
+            )
+            try:
+                subprocess.Popen(["python", "-u", "scripts/aria_executor.py"], cwd=ROOT_DIR)
+                reply = "⚙️ <i>Autonomous execution in progress in background. Watch for incoming PR notifications!</i>"
+            except Exception as e:
+                reply = f"❌ Execution failed to launch: {e}"
         elif cmd in ["/help"]:
             reply = (
                 "📖 <b>ARYA EXECUTIVE OPERATIONAL MANUAL</b>\n\n"
                 "• <code>/start</code> — Introduction & initial status briefing\n"
                 "• <code>/status</code> — Comprehensive standing on all open PRs, merges & payouts\n"
                 "• <code>/bounties</code> — Active targets across Algora, Go-Hybrid and HackerOne\n"
+                "• <code>/execute</code> — ⚡ <b>AUTONOMOUSLY EXECUTE BOUNTIES & OPEN PRS</b>\n"
                 "• <code>/accounts</code> — Integrity check on hardik4love & shruhicollections\n"
                 "• <code>/radar</code> — Force an immediate re-scan of all bounty repositories\n\n"
-                "<i>You can also ask questions freely in natural language anytime.</i>"
+                "<i>You can also ask questions or say 'do all 5 bounties' freely in natural language anytime.</i>"
             )
         else:
-            reply = self.handle_conversational(text)
+            if any(w in text.lower() for w in ["do all 5", "make aria", "execute bounties", "solve bounties", "execute all", "do bounties", "run bounties", "do the bounties"]):
+                self.send_message(
+                    chat_id,
+                    "🚀 <b>ARIA Autonomous Execution Dispatched!</b>\n\n"
+                    "Command recognized: <i>Autonomous Batch Execution</i>\n"
+                    "Dispatching workers on the top 5 high-yield bounties now..."
+                )
+                try:
+                    subprocess.Popen(["python", "-u", "scripts/aria_executor.py"], cwd=ROOT_DIR)
+                    reply = "⚙️ <i>Execution workers active. Streaming live updates to you here!</i>"
+                except Exception as e:
+                    reply = f"❌ Error launching executor: {e}"
+            else:
+                reply = self.handle_conversational(text)
 
         self.send_message(chat_id, reply)
 

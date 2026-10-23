@@ -107,6 +107,14 @@ TRACKED_PRS = [
         "role": "Security Localhost Port Isolation"
     },
     {
+        "repo": "calcom/cal.diy",
+        "pr_number": 30365,
+        "title": "fix(settings): honor old primary email deletion and disconnect event types when promoting secondary email (#30364)",
+        "url": "https://github.com/calcom/cal.diy/pull/30365",
+        "bounty_est": "$50 - $100",
+        "role": "Profile Email Swap & Deletion Persistence"
+    },
+    {
         "repo": "tenstorrent/tt-metal",
         "pr_number": 60777,
         "title": "fix(ops): pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)",

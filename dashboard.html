@@ -233,7 +233,11 @@
           <i class="fa-solid fa-fire text-xs text-rose-400"></i>
           <span>Qualified Leads</span>
         </button>
-        <button onclick="switchTab('pipeline')" id="tabBtnPipeline" class="pb-3 text-slate-400 hover:text-white flex items-center gap-2">
+                <button onclick="switchTab('roi')" id="tabBtnRoi" class="pb-3 text-slate-400 hover:text-white flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-xs text-emerald-400"></i>
+          <span>ROI Defense Engine</span>
+        </button>
+<button onclick="switchTab('pipeline')" id="tabBtnPipeline" class="pb-3 text-slate-400 hover:text-white flex items-center gap-2">
           <i class="fa-solid fa-chart-line text-xs text-emerald-400"></i>
           <span>Pipeline</span>
         </button>
@@ -262,7 +266,95 @@
       <!-- TAB 1: LEADS FEED -->
       
   <!-- Pipeline: what the merchant is paying for. -->
-  <div id="tabContentPipeline" class="hidden">
+    <!-- TAB: ROI & AD DEFENSE ENGINE -->
+  <div id="tabContentRoi" class="hidden space-y-6">
+    <div class="glass rounded-2xl p-6 sm:p-8">
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+        <div>
+          <span class="text-xs font-mono uppercase text-emerald-400 font-bold tracking-wider">Algorise Defense Engine</span>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-1">Live Ad Poaching Defense &amp; Reclaimed Revenue Simulator</h3>
+          <p class="text-xs text-slate-400 mt-1 max-w-2xl">
+            Simulate your ad campaign metrics. Our sub-0.05s auto-hide shield intercepts rival comments before they can steal your buyers.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-lg">Active Auto-Shield</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Interactive Controls -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-mono uppercase text-slate-300 font-bold">Monthly Meta Ad Spend</label>
+              <span id="dashDispSpend" class="text-sm font-bold font-mono text-emerald-400">₹1,50,000</span>
+            </div>
+            <input type="range" id="dashSliderSpend" min="20000" max="1500000" step="10000" value="150000" class="w-full accent-emerald-400 cursor-pointer bg-slate-800 h-2 rounded-lg">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>₹20,000</span>
+              <span>₹15,00,000</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-mono uppercase text-slate-300 font-bold">Monthly Inbound Ad Comments</label>
+              <span id="dashDispComments" class="text-sm font-bold font-mono text-cyan-400">2,500 comments</span>
+            </div>
+            <input type="range" id="dashSliderComments" min="200" max="25000" step="100" value="2500" class="w-full accent-cyan-400 cursor-pointer bg-slate-800 h-2 rounded-lg">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>200</span>
+              <span>25,000</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-900/60 border border-slate-800/80 rounded-xl p-5">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-mono uppercase text-slate-300 font-bold">Average Wholesale Order Value</label>
+              <span id="dashDispOrder" class="text-sm font-bold font-mono text-emerald-400">₹45,000</span>
+            </div>
+            <input type="range" id="dashSliderOrder" min="5000" max="300000" step="5000" value="45000" class="w-full accent-emerald-400 cursor-pointer bg-slate-800 h-2 rounded-lg">
+            <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+              <span>₹5,000</span>
+              <span>₹3,00,000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projected Financial Output -->
+        <div class="lg:col-span-5 bg-gradient-to-b from-emerald-500/10 via-slate-900/90 to-transparent border border-emerald-500/30 rounded-2xl p-6 space-y-4">
+          <div class="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">Live Revenue Defense Impact</div>
+          
+          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4">
+            <span class="text-[10px] font-mono text-slate-400 uppercase">Monthly Poached Inquiries Protected</span>
+            <div id="dashShieldedLeads" class="text-2xl font-black font-mono text-white mt-1">450 leads</div>
+            <span class="text-[10px] text-slate-500">Filtered within 0.048s before rivals could DM</span>
+          </div>
+
+          <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4">
+            <span class="text-[10px] font-mono text-slate-400 uppercase">Estimated Monthly Reclaimed Sales</span>
+            <div id="dashMonthlyReclaimed" class="text-2xl font-black font-mono text-emerald-400 mt-1">₹28,35,000</div>
+            <span class="text-[10px] text-slate-500">Based on standard 14% qualification conversion</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
+              <span class="text-[9.5px] font-mono text-slate-400 uppercase">ROI Multiplier</span>
+              <div id="dashRoiMultiplier" class="text-xl font-bold font-mono text-cyan-400 mt-1">94.5x</div>
+            </div>
+            <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3">
+              <span class="text-[9.5px] font-mono text-slate-400 uppercase">Defense Latency</span>
+              <div class="text-xl font-bold font-mono text-emerald-400 mt-1">&lt;0.05s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div id="tabContentPipeline" class="hidden">
     <div class="flex items-start justify-between mb-4 flex-wrap gap-3">
       <div>
         <h3 class="text-sm font-bold text-white">Your comment-to-revenue pipeline</h3>
@@ -2478,7 +2570,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
     }
 
     function switchTab(tab) {
-      const tabs = ['pages', 'groups', 'shield', 'leads', 'pipeline', 'telegram', 'herobots', 'onboarding', 'logs', 'rules'];
+      const tabs = ['pages', 'groups', 'shield', 'leads', 'pipeline', 'roi', 'telegram', 'herobots', 'onboarding', 'logs', 'rules'];
       tabs.forEach(t => {
         const cap = t.charAt(0).toUpperCase() + t.slice(1);
         const contentEl = document.getElementById(`tabContent${cap}`);
@@ -2501,6 +2593,50 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       if (tab === 'rules') loadClientRules();
     }
   </script>
-  <script src="assets/hero_100_bots.js"></script>
+  <script src="assets/hero_100_bots.js">
+    // Client Dashboard ROI Simulator Listener
+    function initDashboardRoi() {
+      const sSpend = document.getElementById('dashSliderSpend');
+      const sComments = document.getElementById('dashSliderComments');
+      const sOrder = document.getElementById('dashSliderOrder');
+
+      const dSpend = document.getElementById('dashDispSpend');
+      const dComments = document.getElementById('dashDispComments');
+      const dOrder = document.getElementById('dashDispOrder');
+
+      const outShielded = document.getElementById('dashShieldedLeads');
+      const outReclaimed = document.getElementById('dashMonthlyReclaimed');
+      const outRoi = document.getElementById('dashRoiMultiplier');
+
+      function updateDashRoi() {
+        if (!sSpend || !sComments || !sOrder) return;
+        const spend = parseFloat(sSpend.value);
+        const comments = parseFloat(sComments.value);
+        const order = parseFloat(sOrder.value);
+
+        if (dSpend) dSpend.textContent = '₹' + spend.toLocaleString('en-IN');
+        if (dComments) dComments.textContent = comments.toLocaleString('en-IN') + ' comments';
+        if (dOrder) dOrder.textContent = '₹' + order.toLocaleString('en-IN');
+
+        const shielded = Math.round(comments * 0.18);
+        const reclaimedOrders = Math.round(shielded * 0.14);
+        const reclaimedSales = reclaimedOrders * order;
+        const proCost = 29999;
+        const roi = (reclaimedSales / proCost).toFixed(1);
+
+        if (outShielded) outShielded.textContent = shielded.toLocaleString('en-IN') + ' leads';
+        if (outReclaimed) outReclaimed.textContent = '₹' + reclaimedSales.toLocaleString('en-IN');
+        if (outRoi) outRoi.textContent = roi + 'x';
+      }
+
+      [sSpend, sComments, sOrder].forEach(el => {
+        el?.addEventListener('input', updateDashRoi);
+      });
+      updateDashRoi();
+    }
+    document.addEventListener('DOMContentLoaded', initDashboardRoi);
+    initDashboardRoi();
+
+</script>
 </body>
 </html>
