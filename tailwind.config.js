@@ -1,13 +1,5 @@
 /**
  * Tailwind config for the Algorise web app.
- *
- * The pages previously loaded the Tailwind Play CDN, which ships ~407 KB of
- * compiler and generates the stylesheet IN THE BROWSER. On a slow connection
- * that means the page renders unstyled for seconds, which reads as a broken
- * page. Worse, cdn.tailwindcss.com is deprecated.
- *
- * Styles are now compiled here, at build time, into one small static file.
- * No runtime compiler, no CDN dependency.
  */
 module.exports = {
   content: [
@@ -21,6 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', "system-ui", "sans-serif"],
+        mono: ['"JetBrains Mono"', "monospace"],
       },
       colors: {
         brand: {
@@ -29,6 +22,9 @@ module.exports = {
           500: "#10b981",
           600: "#059669",
           700: "#047857",
+          cyan: "#00F2FE",
+          violet: "#9B5CFF",
+          void: "#03050C",
         },
         dark: {
           900: "#0b0f19",

@@ -82,9 +82,7 @@ def sync(verbose: bool = True) -> list[str]:
         shutil.copy2(src, dest)
         copied.append(f"{dest_rel} (from {source_rel})")
 
-    # Compile Tailwind at build time. The pages used to load the Play CDN,
-    # which shipped ~407 KB of compiler and generated the stylesheet in the
-    # browser; on a slow connection the page rendered unstyled for seconds.
+    # Compile Tailwind at build time.
     r = subprocess.run(
         [_NPX, 'tailwindcss', '-i', 'app.css', '-o', str(DIST / 'app.css'),
          '--minify'],
@@ -92,9 +90,22 @@ def sync(verbose: bool = True) -> list[str]:
     )
     if r.returncode != 0:
         print(f'  WARNING: tailwind build failed:\n{(r.stdout + r.stderr)[-500:]}')
+        fallback = ROOT / 'assets' / 'app.compiled.css'
+        if fallback.exists():
+            shutil.copy2(fallback, DIST / 'app.css')
+            size = (DIST / 'app.css').stat().st_size
+            copied.append(f'app.css ({size // 1024} KB from fallback)')
+            print(f'  INFO: restored precompiled fallback stylesheet ({size // 1024} KB)')
+        else:
+            raise RuntimeError('Tailwind failed and no precompiled fallback exists!')
     else:
         size = (DIST / 'app.css').stat().st_size
         copied.append(f'app.css ({size // 1024} KB compiled)')
+        fallback = ROOT / 'assets' / 'app.compiled.css'
+        shutil.copy2(DIST / 'app.css', fallback)
+
+    if not (DIST / 'app.css').exists() or (DIST / 'app.css').stat().st_size < 1000:
+        raise RuntimeError('FATAL: dist/app.css is missing or smaller than 1KB!')
 
     # config.js is generated, never copied.
     cfg = subprocess.run(
@@ -125,6 +136,8 @@ def is_stale() -> list[str]:
 
     if not (DIST / "config.js").exists():
         stale.append("config.js (missing; run gen_config.py)")
+    if not (DIST / "app.css").exists() or (DIST / "app.css").stat().st_size < 1000:
+        stale.append("app.css (missing or uncompiled in dist/)")
     return stale
 
 
@@ -135,7 +148,7 @@ def untracked_in_dist() -> list[str]:
     should not exist, because dist/ is fully derived.
     """
     expected = (
-        set(SURFACES) | set(STATIC_FILES) | {"config.js"} | set(STATIC_DIRS)
+        set(SURFACES) | set(STATIC_FILES) | {"config.js", "app.css"} | set(STATIC_DIRS)
         | set(GENERATED)
     )
     found = []

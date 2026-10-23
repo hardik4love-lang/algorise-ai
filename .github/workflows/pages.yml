@@ -35,12 +35,16 @@ jobs:
         node-version: '20'
 
     - name: Install build dependencies
-      run: npm install --no-audit --no-fund
+      run: |
+        npm install --no-audit --no-fund
+        chmod -R +x node_modules/.bin/ || true
 
     - name: Build the static site
       env:
         API_BASE_URL: https://algorise-ai-backend.onrender.com
-      run: python scripts/build.py
+      run: |
+        python scripts/build.py
+        test -s dist/app.css || (echo "FATAL: dist/app.css is missing or empty!" && exit 1)
 
     - name: Verify the build is current
       run: python scripts/build.py --check-all
