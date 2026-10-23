@@ -1439,7 +1439,123 @@
   <!-- ========================================== -->
   <!-- 08. TRANSPARENT PRICING & BOOKING          -->
   <!-- ========================================== -->
-  <section class="sf-section" id="pricing">
+    <!-- ========================================== -->
+  <!-- 07.5 AUTONOMOUS AD DEFENSE & B2B ROI ENGINE -->
+  <!-- ========================================== -->
+  <section class="sf-section" id="roi-simulator" style="background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);">
+    <div class="sf-section-head text-center mx-auto mb-12">
+      <span class="sf-eyebrow">04.5 — LIVE B2B ROI SIMULATOR</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Calculate Your Monthly Revenue Defense &amp; Reclaimed ROI</h2>
+      <p class="text-sm text-slate-400 max-w-2xl mx-auto mt-3">
+        Every public ad comment saying <span class="text-brand-cyan font-mono">"Price?"</span> or <span class="text-brand-cyan font-mono">"Wholesale MOQ?"</span> is targeted by rival vendors within 4 minutes. See how much money Algorise protects and reclaims for your business each month.
+      </p>
+    </div>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Sliders Column (7 cols) -->
+      <div class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2.5">
+          <i class="fa-solid fa-sliders text-brand-cyan"></i> Brand Operational Parameters
+        </h3>
+
+        <!-- Slider 1: Monthly Meta Ad Spend -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Monthly Meta Ad Spend</label>
+            <span id="displayAdSpend" class="text-base font-bold font-mono text-brand-cyan">₹1,50,000</span>
+          </div>
+          <input type="range" id="sliderAdSpend" min="20000" max="1500000" step="10000" value="150000" class="w-full accent-brand-cyan cursor-pointer bg-slate-800 h-2 rounded-lg">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>₹20,000</span>
+            <span>₹15,00,000</span>
+          </div>
+        </div>
+
+        <!-- Slider 2: Monthly Inbound Comments & Inquiries -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Monthly Inbound Ad Comments</label>
+            <span id="displayComments" class="text-base font-bold font-mono text-brand-violet">2,500 inquiries</span>
+          </div>
+          <input type="range" id="sliderComments" min="200" max="25000" step="100" value="2500" class="w-full accent-brand-violet cursor-pointer bg-slate-800 h-2 rounded-lg">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>200</span>
+            <span>25,000</span>
+          </div>
+        </div>
+
+        <!-- Slider 3: Average Wholesale Order Value -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Average B2B / Wholesale Order Value</label>
+            <span id="displayOrderValue" class="text-base font-bold font-mono text-emerald-400">₹45,000</span>
+          </div>
+          <input type="range" id="sliderOrderValue" min="5000" max="300000" step="5000" value="45000" class="w-full accent-emerald-400 cursor-pointer bg-slate-800 h-2 rounded-lg">
+          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>₹5,000</span>
+            <span>₹3,00,000</span>
+          </div>
+        </div>
+
+        <!-- Live SOC Feed Telemetry Simulator -->
+        <div class="mt-8 border-t border-slate-800 pt-6">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono uppercase text-slate-400 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Interception Stream (Sub-0.05s)
+            </span>
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">Active Defense</span>
+          </div>
+          <div id="socTelemetryFeed" class="space-y-2 font-mono text-xs max-h-36 overflow-hidden">
+            <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between">
+              <span class="text-slate-300"><span class="text-brand-cyan">[0.038s]</span> Intercepted rival DM poaching on Wholesale Saree Post #4</span>
+              <span class="text-emerald-400 text-[10px] font-bold">SHIELDED</span>
+            </div>
+            <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between">
+              <span class="text-slate-300"><span class="text-brand-cyan">[0.042s]</span> Inbound Gujarati inquiry "Rate su che?" -> Directed to WhatsApp</span>
+              <span class="text-brand-cyan text-[10px] font-bold">QUALIFIED</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live ROI Output Column (5 cols) -->
+      <div class="lg:col-span-5 bg-gradient-to-b from-brand-cyan/15 via-slate-900/90 to-brand-violet/10 border-2 border-brand-cyan/50 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
+        <div class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-extrabold mb-1">PROJECTED FINANCIAL IMPACT</div>
+        <h4 class="text-2xl font-black text-white mb-6">Net Protected Revenue</h4>
+
+        <div class="space-y-5">
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Monthly Poached Inquiries Shielded</div>
+            <div id="outShieldedLeads" class="text-3xl font-extrabold font-mono text-brand-cyan mt-1">450 leads</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Based on 18% average comment section competitor poaching rate</div>
+          </div>
+
+          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
+            <div class="text-[11px] font-mono text-slate-400 uppercase">Estimated Monthly Reclaimed Sales</div>
+            <div id="outMonthlyReclaimed" class="text-3xl font-extrabold font-mono text-emerald-400 mt-1">₹28,35,000</div>
+            <div class="text-[10px] text-slate-500 mt-0.5">Assumes standard 14% qualification-to-purchase conversion</div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5">
+              <div class="text-[10px] font-mono text-slate-400 uppercase">ROI vs Surat Pro</div>
+              <div id="outRoiMultiplier" class="text-2xl font-black font-mono text-white mt-1">94.5x</div>
+            </div>
+            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5">
+              <div class="text-[10px] font-mono text-slate-400 uppercase">Response Time</div>
+              <div class="text-2xl font-black font-mono text-brand-cyan mt-1">&lt; 0.05s</div>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })" class="w-full mt-6 py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-extrabold text-xs transition-all shadow-lg hover:shadow-brand-cyan/40 hover:scale-[1.02]">
+          Deploy Autonomous Defense Now &rarr;
+        </button>
+      </div>
+    </div>
+  </section>
+
+<section class="sf-section" id="pricing">
     <div class="sf-section-head text-center mx-auto">
       <span class="sf-eyebrow">05 — TRANSPARENT PRICING</span>
       <h2>Lock in early founder access before public rollout.</h2>
@@ -2238,5 +2354,78 @@
       lucide.createIcons();
     }
   </script>
+
+  <script>
+    (function initRoiSimulator() {
+      const sliderSpend = document.getElementById('sliderAdSpend');
+      const sliderComments = document.getElementById('sliderComments');
+      const sliderOrder = document.getElementById('sliderOrderValue');
+
+      const dispSpend = document.getElementById('displayAdSpend');
+      const dispComments = document.getElementById('displayComments');
+      const dispOrder = document.getElementById('displayOrderValue');
+
+      const outShielded = document.getElementById('outShieldedLeads');
+      const outReclaimed = document.getElementById('outMonthlyReclaimed');
+      const outRoi = document.getElementById('outRoiMultiplier');
+
+      function updateCalculations() {
+        if (!sliderSpend || !sliderComments || !sliderOrder) return;
+        const spend = parseFloat(sliderSpend.value);
+        const comments = parseFloat(sliderComments.value);
+        const orderVal = parseFloat(sliderOrder.value);
+
+        dispSpend.textContent = '₹' + spend.toLocaleString('en-IN');
+        dispComments.textContent = comments.toLocaleString('en-IN') + ' inquiries';
+        dispOrder.textContent = '₹' + orderVal.toLocaleString('en-IN');
+
+        // 18% of comments are poaching targets by rivals
+        const shieldedLeads = Math.round(comments * 0.18);
+        // 14% conversion of protected leads into buyers
+        const reclaimedOrders = Math.round(shieldedLeads * 0.14);
+        const reclaimedRevenue = reclaimedOrders * orderVal;
+
+        // Surat Pro Tier price is 29,999/mo
+        const proCost = 29999;
+        const roi = (reclaimedRevenue / proCost).toFixed(1);
+
+        outShielded.textContent = shieldedLeads.toLocaleString('en-IN') + ' leads';
+        outReclaimed.textContent = '₹' + reclaimedRevenue.toLocaleString('en-IN');
+        outRoi.textContent = roi + 'x';
+      }
+
+      [sliderSpend, sliderComments, sliderOrder].forEach(el => {
+        el?.addEventListener('input', updateCalculations);
+      });
+
+      updateCalculations();
+
+      // Dynamic Live Telemetry Stream
+      const socEvents = [
+        { lat: '0.034s', text: 'Intercepted competitor price-undercut DM on Kurtis Ad #2', tag: 'SHIELDED', color: 'emerald' },
+        { lat: '0.041s', text: 'Surati inquiry "Kaik discount malse?" -> Auto-qualified to WhatsApp', tag: 'QUALIFIED', color: 'cyan' },
+        { lat: '0.029s', text: 'Poacher comment auto-hidden within 29ms on Instagram Reel', tag: 'AUTO-HIDDEN', color: 'emerald' },
+        { lat: '0.046s', text: 'Hindi wholesale inquiry "50 piece bulk booking" -> Sent to Owner', tag: 'VIP BUYER', color: 'cyan' },
+        { lat: '0.038s', text: 'Intercepted rival DM poaching on Wholesale Saree Post #4', tag: 'SHIELDED', color: 'emerald' }
+      ];
+
+      const socFeed = document.getElementById('socTelemetryFeed');
+      if (socFeed) {
+        let idx = 0;
+        setInterval(() => {
+          idx = (idx + 1) % socEvents.length;
+          const ev = socEvents[idx];
+          const row = document.createElement('div');
+          row.className = 'p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between transition-all duration-300';
+          row.innerHTML = `<span class="text-slate-300"><span class="text-brand-cyan">[${ev.lat}]</span> ${ev.text}</span><span class="text-${ev.color}-400 text-[10px] font-bold">${ev.tag}</span>`;
+          socFeed.prepend(row);
+          if (socFeed.children.length > 3) {
+            socFeed.removeChild(socFeed.lastElementChild);
+          }
+        }, 4000);
+      }
+    })();
+  </script>
+
 </body>
 </html>
