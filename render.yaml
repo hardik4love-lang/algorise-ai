@@ -1,12 +1,16 @@
+databases:
+  - name: algorise-postgres
+    databaseName: algorise_db
+    user: algorise_admin
+    plan: starter
+
 services:
   - type: web
     name: algorise-ai-backend
     runtime: python
-    plan: free
+    plan: starter
     buildCommand: pip install -r requirements.txt && npm install --no-audit --no-fund && python scripts/build.py
-    startCommand: uvicorn engine.main:app --host 0.0.0.0 --port $PORT
-    # /readyz verifies startup completed and the database is reachable.
-    # /health stays as the compatibility path for existing monitors.
+    startCommand: uvicorn engine.main:app --host 0.0.0.0 --port $PORT --workers 2
     healthCheckPath: /readyz
     autoDeploy: true
     envVars:
@@ -18,17 +22,18 @@ services:
         value: "Algorise AI Solutions"
       - key: LOG_LEVEL
         value: INFO
-      # Database migrations run as a separately approved release job.
       - key: MIGRATE_ON_START
         value: "false"
-      # Redis is a cache here, not a source of truth. It must not gate
-      # readiness or the service would leave rotation on a cache outage.
       - key: REDIS_REQUIRED
         value: "false"
       - key: CORS_ALLOWED_ORIGINS
         value: "https://algorise-ai.com,https://www.algorise-ai.com,https://algorise.ai,https://www.algorise.ai,https://shruhicollections.in,https://www.shruhicollections.in,https://hardik4love-lang.github.io,https://algorise-ai-backend.onrender.com"
       - key: ENFORCE_PRODUCTION_SECURITY
         value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: algorise-postgres
+          property: connectionString
       - key: TELEGRAM_BOT_TOKEN
         sync: false
       - key: TELEGRAM_CHAT_ID

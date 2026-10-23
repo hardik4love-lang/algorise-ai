@@ -15,6 +15,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Secret Scanning (TruffleHog)
+      uses: trufflesecurity/trufflehog@main
+      continue-on-error: true
+      with:
+        path: ./
+        base: ${{ github.event.repository.default_branch }}
+        head: HEAD
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -34,16 +44,10 @@ jobs:
         pip install pytest pytest-asyncio
         pip install -e .
 
-
     - name: Syntax & Import Verification
       run: |
         python -m py_compile engine/main.py engine/security.py engine/subscription_routes.py engine/hero_registry.py engine/scheduler.py engine/cache.py
         python -c "from engine.main import app, HERO_BOT_DEFINITIONS; assert len(HERO_BOT_DEFINITIONS) == 100; print('CI VERIFICATION: App initialized successfully with', len(app.routes), 'routes and', len(HERO_BOT_DEFINITIONS), 'Hero Bots')"
-
-    # Previously CI ran neither tests nor the web build, despite pytest,
-    # ruff, mypy and a --cov-fail-under=80 gate all being configured in
-    # pyproject.toml. The build check is what stops dist/ drifting again:
-    # dist/ is generated and untracked, so staleness must be detectable.
 
     - name: Test Suite
       run: |
@@ -108,8 +112,6 @@ jobs:
         fi
 
     - name: Release Gates (offline subset)
-      # Network gates are skipped in CI; the source-level gates are the ones
-      # that can fail on a pull request.
       run: |
         python -c "
         import sys; sys.path.insert(0, 'scripts')

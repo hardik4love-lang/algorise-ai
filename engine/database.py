@@ -30,6 +30,17 @@ def _configure_sqlite_pragmas(dbapi_connection, connection_record):
         cursor.close()
 
 
+def _normalize_db_url(db_url: str) -> str:
+    """Ensures cloud PostgreSQL URLs use the asyncpg driver."""
+    if not db_url:
+        return db_url
+    if db_url.startswith("postgres://"):
+        return db_url.replace("postgres://", "postgresql+asyncpg://", 1)
+    if db_url.startswith("postgresql://") and "+asyncpg" not in db_url:
+        return db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+    return db_url
+
+
 class DatabaseManager:
     def __init__(self):
         self._engine: AsyncEngine | None = None
@@ -37,7 +48,7 @@ class DatabaseManager:
 
     def initialize(self, force_sqlite: bool = False) -> None:
         settings = get_settings()
-        db_url = settings.database_url
+        db_url = _normalize_db_url(settings.database_url)
         if settings.environment == "production":
             if force_sqlite or not db_url or "localhost:5432" in db_url:
                 raise RuntimeError(
@@ -111,6 +122,7 @@ class DatabaseManager:
             self.initialize(force_sqlite=True)
             async with self.engine.begin() as conn:
                 await conn.run_sync(Base.metadata.create_all)
+
     async def drop_tables(self) -> None:
         async with self.engine.begin() as conn:
             await conn.run_sync(Base.metadata.drop_all)
@@ -125,17 +137,6 @@ async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
 
 
 # --- sync engine for analytics and audit recording ---------------------------
-#
-# The primary session factory is async, and AsyncSession has no .query().
-# Analytics reads and audit writes do not belong on the request path, so a
-# separate synchronous engine is created against the same database rather
-# than forcing async through code that is purely analytical.
-#
-# This exists because two modules previously did `from engine.database
-# import SessionLocal`, which does not exist here. Both wrapped the import
-# and the call in try/except, so the failure was silent: the Meta proxy
-# appeared to record every operation and recorded nothing at all.
-
 _sync_engine = None
 
 
@@ -147,26 +148,15 @@ ASYNC_TO_SYNC_DRIVERS = {
 
 
 def _database_url() -> str:
-    """The synchronous equivalent of the configured database URL.
-
-    The app is configured with async drivers (sqlite+aiosqlite,
-    postgresql+asyncpg) because the request path is async. Passing one of
-    those to create_engine() produces an engine that raises MissingGreenlet
-    on first connect, so the driver is swapped here rather than at each call
-    site.
-
-    VEDIC_TEST_DB redirects every sync session at a scratch database. Without
-    it the test suite runs against algorise_prod.db, and fixtures that clear
-    tables delete the live client's record — which is exactly what happened
-    to Shruhi Collections' row before this was added.
-    """
+    """The synchronous equivalent of the configured database URL."""
     override = os.getenv("VEDIC_TEST_DB")
     if override:
         return override if "://" in override else f"sqlite:///{override}"
 
     from engine.config import get_settings
 
-    url = getattr(get_settings(), "database_url", "") or ""
+    raw_url = getattr(get_settings(), "database_url", "") or ""
+    url = _normalize_db_url(raw_url)
     if not url or "localhost:5432" in url:
         url = "sqlite+aiosqlite:///./algorise_prod.db"
 
@@ -190,13 +180,7 @@ def sync_engine():
 
 
 def sync_session():
-    """A synchronous Session bound to the same database.
-
-    expire_on_commit is disabled: the default expires every instance on
-    commit, and reading an attribute afterwards triggers a lazy refresh,
-    which under this engine's async-configured metadata raises
-    MissingGreenlet. Analytics code holds rows across a commit.
-    """
+    """A synchronous Session bound to the same database."""
     from sqlalchemy.orm import sessionmaker
 
     return sessionmaker(bind=sync_engine(), expire_on_commit=False)()
