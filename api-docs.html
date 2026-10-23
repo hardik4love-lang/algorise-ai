@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer API &amp; Webhook Reference | Algorise AI</title>
+  <meta name="title" content="Developer API &amp; Webhook Reference | Algorise AI">
+  <meta name="description" content="Official REST API and Meta Graph webhook documentation for Algorise AI. Sub-20ms comment interception, PII masking, and multi-agent execution endpoints.">
+  <link rel="canonical" href="https://algorise-ai.com/api-docs.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://algorise-ai.com/api-docs.html">
+  <meta property="og:title" content="Developer API &amp; Webhook Reference | Algorise AI">
+  <meta property="og:description" content="Official REST API and Meta Graph webhook documentation for Algorise AI. Sub-20ms comment interception, PII masking, and multi-agent execution endpoints.">
+  <meta property="og:image" content="https://algorise-ai.com/assets/logo.jpg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { background-color: #03050C; color: #F1F5F9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+    .glass-card { background: rgba(11, 19, 43, 0.6); backdrop-filter: blur(16px); border: 1px solid rgba(0, 242, 254, 0.15); }
+    .glass-nav { background: rgba(3, 5, 12, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .code-block { background: #060913; border: 1px solid #1E293B; font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-cyan/20 selection:text-brand-cyan">
+
+  <!-- Dev Navigation Header -->
+  <header class="glass-nav sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan/20 via-emerald-500/20 to-transparent border border-brand-cyan/40 flex items-center justify-center text-brand-cyan text-lg font-mono font-bold">◈</span>
+        <div>
+          <span class="font-bold text-lg text-white tracking-tight">ALGORISE <span class="text-brand-cyan">AI</span></span>
+          <span class="block text-[10px] font-mono text-slate-400 uppercase tracking-widest">Developer API &amp; Webhooks</span>
+        </div>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-xs font-semibold text-slate-300 hover:text-white transition-colors">← Back to Platform</a>
+        <a href="security.html" class="text-xs font-mono text-brand-cyan hover:underline">Security Center</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main API Documentation Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+    <!-- Header Hero -->
+    <div class="space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-xs font-mono font-bold">
+        <span>v1.4.0 REST SPECIFICATION</span> • <span>SUB-20MS SLA</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        Algorise Autonomous API Reference
+      </h1>
+      <p class="text-slate-400 text-sm max-w-3xl leading-relaxed">
+        Integrate real-time conversational lead defense, Meta Graph comment obfuscation, and mathematical ROI telemetry directly into your enterprise ERP, Salesforce CRM, or bespoke webhook mesh.
+      </p>
+    </div>
+
+    <!-- Base URL & Authentication -->
+    <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-4">
+      <h3 class="text-base font-bold text-white flex items-center gap-2">
+        <i class="fa-solid fa-server text-brand-cyan"></i> Base Endpoint &amp; Authentication
+      </h3>
+      <div class="code-block rounded-xl p-4 text-xs text-slate-300 flex items-center justify-between">
+        <span>https://algorise-ai-backend.onrender.com/api/v1</span>
+        <button onclick="navigator.clipboard.writeText('https://algorise-ai-backend.onrender.com/api/v1'); this.textContent='✓ Copied';" class="text-brand-cyan text-[11px] font-mono font-bold px-2 py-1 rounded bg-brand-cyan/10 border border-brand-cyan/30">
+          Copy URL
+        </button>
+      </div>
+      <p class="text-xs text-slate-400 leading-relaxed">
+        Authenticate all private client requests by passing your API Key in the <code class="text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded font-mono">X-API-Key</code> request header. Public defense calculation endpoints do not require authentication tokens.
+      </p>
+    </div>
+
+    <!-- Endpoint 1: NLP Shield Evaluate -->
+    <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold px-2.5 py-1 rounded border border-emerald-500/40">POST</span>
+          <span class="font-mono text-sm sm:text-base font-bold text-white">/agent/nlp-shield/evaluate</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">&lt;0.020s Execution SLA</span>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Analyzes inbound social ad comments, extracts and cryptographically masks prospect phone numbers/emails in real-time, and formats an authenticated private WhatsApp handoff payload.
+      </p>
+
+      <!-- Request Body -->
+      <div class="space-y-2">
+        <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">JSON Request Payload</span>
+        <pre class="code-block rounded-xl p-4 text-xs text-slate-300 overflow-x-auto"><code>{
+  "comment_text": "Interested in 500 pcs wholesale lot. Call me on 98254-11209",
+  "buyer_name": "Kishanbhai (Rajkot Wholesaler)",
+  "dispatch_telegram": false
+}</code></pre>
+      </div>
+
+      <!-- Response Body -->
+      <div class="space-y-2">
+        <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">Response Payload (200 OK)</span>
+        <pre class="code-block rounded-xl p-4 text-xs text-emerald-400 overflow-x-auto"><code>{
+  "shield_triggered": true,
+  "latency_seconds": 0.0184,
+  "detected_language": "Multi-lingual Enterprise NLP",
+  "qualification_score": 99.4,
+  "public_comment_reply": "Thank you! Contact info secured in 0.018s. Catalog dispatched to private WhatsApp DM.",
+  "private_messenger_dm": "✨ Algorise Verified Client Atelier\\n• Quotation: Dispatched\\n• 24/7 Concierge Active"
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Endpoint 2: ROI Defense Calculate -->
+    <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold px-2.5 py-1 rounded border border-emerald-500/40">POST</span>
+          <span class="font-mono text-sm sm:text-base font-bold text-white">/roi-defense/calculate</span>
+        </div>
+        <span class="text-xs font-mono text-slate-400">Pure Telemetry Metric Engine</span>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Calculates pipeline leakage metrics, annual revenue recovered via sub-minute response times, and payback periods based on monthly ad spend.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div>
+          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-2">Request Body</span>
+          <pre class="code-block rounded-xl p-4 text-xs text-slate-300 overflow-x-auto"><code>{
+  "monthly_ad_spend": 150000.0,
+  "monthly_comments": 2500,
+  "avg_order_value": 45000.0
+}</code></pre>
+        </div>
+        <div>
+          <span class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider block mb-2">Response Body</span>
+          <pre class="code-block rounded-xl p-4 text-xs text-cyan-400 overflow-x-auto"><code>{
+  "annual_revenue_recovered": 3645000.0,
+  "monthly_revenue_defense": 303750.0,
+  "annual_roi_multiplier": 24.3,
+  "payback_period_days": 14.8,
+  "tier_name": "Surat Enterprise Tier"
+}</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Endpoint 3: Meta Webhook HMAC Verification -->
+    <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-4">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <span class="bg-violet-500/20 text-violet-400 font-mono text-xs font-bold px-2.5 py-1 rounded border border-violet-500/40">WEBHOOK</span>
+          <span class="font-mono text-sm sm:text-base font-bold text-white">Meta Graph API v21 Inbound Listener</span>
+        </div>
+        <span class="text-xs font-mono text-emerald-400">HMAC-SHA256 Enforced</span>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed">
+        Configure your Meta Developer App to deliver comment events to our redundant webhook listener. All incoming packets must include a valid <code class="text-brand-cyan font-mono">X-Hub-Signature-256</code> header to prevent spoofing.
+      </p>
+
+      <pre class="code-block rounded-xl p-4 text-xs text-slate-400 overflow-x-auto"><code>// Node.js Express Middleware for Signature Verification
+const verifyMetaSignature = (req, res, next) => {
+  const signature = req.headers['x-hub-signature-256'];
+  const expected = 'sha256=' + crypto.createHmac('sha256', process.env.META_APP_SECRET).update(req.rawBody).digest('hex');
+  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) {
+    return res.status(403).json({ error: 'Invalid HMAC signature' });
+  }
+  next();
+};</code></pre>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© 2026 ALGORISE AI SOLUTIONS · SURAT, GUJARAT, INDIA</span>
+      <div class="flex items-center gap-6 text-slate-400">
+        <a href="security.html" class="hover:text-brand-cyan transition-colors">Trust &amp; Security</a>
+        <a href="api-docs.html" class="hover:text-brand-cyan transition-colors">Developer API</a>
+        <a href="/" class="hover:text-brand-cyan transition-colors">Platform Home</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
