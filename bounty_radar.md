@@ -1,52 +1,73 @@
-# 🎯 ARIA Multi-Platform Bounty Radar & Execution Matrix
-**Generated:** `2026-10-21T17:56:43.307439+00:00` | **Status:** `ACTIVE 24/7 DAEMON`
+# 🎯 ARIA Multi-Platform Master Bounty Radar & Execution Matrix
+**Generated:** `2026-10-27T03:56:57.320298+00:00` | **Status:** `ACTIVE 24/7 MASTER VAULT` | **Settlement:** `PayPal: shruhicollections@gmail.com`
 
-## 📡 Tracked Fleet Portfolio
-| PR | Target Repo | Role | Status | Bounty Est. |
-|---|---|---|---|---|
-| [#497](https://github.com/limitlessprojects/Go-Hybrid/pull/497) | `limitlessprojects/Go-Hybrid` | Corpus Harness UTF-8 Decoder (MERGED upstream) | `🟣 MERGED` | **$75 - $100** |
-| [#569](https://github.com/limitlessprojects/Go-Hybrid/pull/569) | `limitlessprojects/Go-Hybrid` | Wildcard W-008 Settlement Region Spike | `🟢 OPEN` | **$250 - $500** |
-| [#413](https://github.com/limitlessprojects/Go-Hybrid/pull/413) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (Recv Operand) | `🔴 CLOSED` | **$75 - $100** |
-| [#427](https://github.com/limitlessprojects/Go-Hybrid/pull/427) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (For-In Iterable) | `🔴 CLOSED` | **$75 - $100** |
-| [#430](https://github.com/limitlessprojects/Go-Hybrid/pull/430) | `limitlessprojects/Go-Hybrid` | Soundness Type Checker (Operand Types & Builtins) | `🟣 MERGED` | **$75 - $100** |
-| [#21999](https://github.com/BasedHardware/omi/pull/21999) | `BasedHardware/omi` | Critical Queue Sync Stability | `🟢 OPEN` | **$100 - $200** |
-| [#21855](https://github.com/BasedHardware/omi/pull/21855) | `BasedHardware/omi` | Canonical Product State Integrity & Goal Deletion Idempotency | `🟢 OPEN` | **$50** |
-| [#21876](https://github.com/BasedHardware/omi/pull/21876) | `BasedHardware/omi` | Staged Tasks Creation Dedup & Firestore Index Sorting | `🟢 OPEN` | **$50** |
-| [#30353](https://github.com/calcom/cal.diy/pull/30353) | `calcom/cal.diy` | RFC 6749 OAuth 2.0 Scope Delimiter Parser | `🟢 OPEN` | **$50 - $100** |
-| [#30355](https://github.com/calcom/cal.diy/pull/30355) | `calcom/cal.diy` | Security Localhost Port Isolation | `🟢 OPEN` | **$50 - $100** |
-| [#60777](https://github.com/tenstorrent/tt-metal/pull/60777) | `tenstorrent/tt-metal` | Hardware Bitonic Sort Op Bugfix | `🟢 OPEN` | **$100 - $300** |
-| [#60791](https://github.com/tenstorrent/tt-metal/pull/60791) | `tenstorrent/tt-metal` | Welford Layernorm LLK Assert Op Bugfix | `🟢 OPEN` | **$100 - $300** |
-| [#61086](https://github.com/tenstorrent/tt-metal/pull/61086) | `tenstorrent/tt-metal` | Host Runtime Symbol Fix | `🟢 OPEN` | **$100 - $200** |
+### 📊 Master Portfolio Valuation: **$6,525.00 – $12,475.00 USD** across **64 Tracked Fleets**
+* **Secured / Merged / Escrow Queued**: **$1,225.00 – $2,050.00 USD** (12 fleets)
+* **Active In-Flight Surveillance**: **37 fleets**
 
----
-## 🌐 Platform 1: Algora / GitHub Open Source Opportunities
-| Repo | Issue | Title | Competing PRs | Priority Score | Action |
-|---|---|---|---|---|---|
-| `tenstorrent/tt-metal` | [#61835](https://github.com/tenstorrent/tt-metal/issues/61835) | [ttnn/experimental/quasar] matmul auto-config never cap | 0 | `40.13` | [Inspect](https://github.com/tenstorrent/tt-metal/issues/61835) |
-| `dmavs412/twilights-eve-wow` | [#281](https://github.com/dmavs412/twilights-eve-wow/issues/281) | Boss Bar: the boss template key and the per-character B | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/281) |
-| `dmavs412/twilights-eve-wow` | [#280](https://github.com/dmavs412/twilights-eve-wow/issues/280) | Boss Bar: a health bar at the top of the screen when so | 0 | `20.05` | [Inspect](https://github.com/dmavs412/twilights-eve-wow/issues/280) |
-| `jypma-prlg/nl-portal` | [#15](https://github.com/jypma-prlg/nl-portal/issues/15) | Decide security contact address and bug-bounty policy | 0 | `20.05` | [Inspect](https://github.com/jypma-prlg/nl-portal/issues/15) |
-| `toastmd/Multiverse` | [#27](https://github.com/toastmd/Multiverse/issues/27) | Idea #5: bounties broadcast is too big, make it the sam | 0 | `20.05` | [Inspect](https://github.com/toastmd/Multiverse/issues/27) |
-| `mautic/mautic` | [#17903](https://github.com/mautic/mautic/issues/17903) | 2a - Global setting to submit all forms without trackin | 0 | `20.05` | [Inspect](https://github.com/mautic/mautic/issues/17903) |
-
----
-## ⚡ Platform 2: Go-Hybrid Soundness Bounties & Wildcards
-| Repo | Issue | Title | Competing PRs | Priority Score | Action |
-|---|---|---|---|---|---|
-| `limitlessprojects/Go-Hybrid` | [#1131](https://github.com/limitlessprojects/Go-Hybrid/issues/1131) | [soundness] bare unknown dotted root (no import, e.g. ` | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1131) |
-| `limitlessprojects/Go-Hybrid` | [#1119](https://github.com/limitlessprojects/Go-Hybrid/issues/1119) | [soundness] hy-check: a struct field and a method with  | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1119) |
-| `limitlessprojects/Go-Hybrid` | [#1105](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) | soundness(hy-check): ForKind::Iterate 2-var BorrowHandl | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1105) |
-| `limitlessprojects/Go-Hybrid` | [#1083](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) | soundness(hy-check): const with non-constant type ascri | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1083) |
-| `limitlessprojects/Go-Hybrid` | [#1072](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) | soundness(hy-check): managed non-owned/GC-field move au | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1072) |
-| `limitlessprojects/Go-Hybrid` | [#1046](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) | [Soundness] hy-check: projected map-element borrows (&m | 1 | `40.05` | [Inspect](https://github.com/limitlessprojects/Go-Hybrid/issues/1046) |
-
----
-## 🛡️ Platform 3: Coordinated Vulnerability Disclosure (HackerOne / Bugcrowd)
-| Target | Platform | Scope URL | Avg Payout | Tier | Focus Vectors |
-|---|---|---|---|---|---|
-| Tenstorrent TT-Metal / TTNN Kernel Compute En | `GITHUB` | [Scope](https://github.com/tenstorrent/tt-metal) | **$300** | `CRITICAL` | `c_cpp, buffer_overflow, unpack_modes` |
-| BasedHardware Omi Open Source AI Wearable | `GITHUB` | [Scope](https://github.com/BasedHardware/omi) | **$100** | `HIGH` | `python, fastapi, auth_bypass` |
-| Airbnb Marketplace & Host Platform | `HACKERONE` | [Scope](https://hackerone.com/airbnb) | **$3000** | `CRITICAL` | `graphql, idor, bfla` |
-| Shopify Commerce Platform & Partner APIs | `HACKERONE` | [Scope](https://hackerone.com/shopify) | **$1500** | `CRITICAL` | `graphql_introspection, idor, bfla` |
-| Uber Mobility & Autonomous Platform | `HACKERONE` | [Scope](https://hackerone.com/uber) | **$3500** | `CRITICAL` | `oauth_flow, telematics_api, idor` |
-| Tesla Vehicle & Telematics API Gateway | `BUGCROWD` | [Scope](https://bugcrowd.com/tesla) | **$2500** | `CRITICAL` | `telematics_api, jwt_none_alg, broken_auth` |
+| ID | Platform | Target | Reference | Title & Scope | CI Telemetry | Status | Est. Bounty | Settlement Destination |
+|---|---|---|---|---|---|---|---|---|
+| [GH-OMI-23620](https://github.com/BasedHardware/omi/pull/23620) | `GITHUB` | `BasedHardware/omi` | `#23620` | fix(cli): disambiguate same-batch collisions when overw... | ✅ PASS | `🌟 APPROVED` | **$50** | `shruhicollections@gmail.com` |
+| [GH-CAL-30365](https://github.com/calcom/cal.diy/pull/30365) | `GITHUB` | `calcom/cal.diy` | `#30365` | fix(settings): honor old primary email deletion and dis... | ✅ PASS | `🌟 APPROVED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-CB-5076](https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5076) | `OPIRE` | `claude-builders-bounty/claude-builders-bounty` | `#5076` | feat(workflows): add n8n + Claude Code automated weekly... | ✅ PASS | `🟢 GREEN` | **$200** | `shruhicollections@gmail.com` |
+| [GH-TT-62546](https://github.com/tenstorrent/tt-metal/pull/62546) | `GITHUB` | `tenstorrent/tt-metal` | `#62546` | [Bug fix] allocator: preserve default L1 address alignm... | ✅ PASS | `🟢 GREEN` | **$100 – $300** | `shruhicollections@gmail.com` |
+| [GH-CB-5054](https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5054) | `OPIRE` | `claude-builders-bounty/claude-builders-bounty` | `#5054` | feat(agents): Claude Code PR review sub-agent CLI & Git... | ✅ PASS | `🟢 GREEN` | **$100** | `shruhicollections@gmail.com` |
+| [GH-CB-5051](https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5051) | `OPIRE` | `claude-builders-bounty/claude-builders-bounty` | `#5051` | feat(hooks): pre-tool-use hook blocking destructive bas... | ✅ PASS | `🟢 GREEN` | **$100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1924](https://github.com/limitlessprojects/Go-Hybrid/pull/1924) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1924` | fix(hy-check): check result arity for try-unwrapped cal... | ✅ PASS | `🟢 GREEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-CB-5053](https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5053) | `OPIRE` | `claude-builders-bounty/claude-builders-bounty` | `#5053` | feat(templates): add opinionated Next.js 15 App Router ... | ✅ PASS | `🟢 GREEN` | **$75** | `shruhicollections@gmail.com` |
+| [GH-OMI-23747](https://github.com/BasedHardware/omi/pull/23747) | `GITHUB` | `BasedHardware/omi` | `#23747` | fix(cli): harden conversations_to_tsv against speaker 0... | ✅ PASS | `🟢 GREEN` | **$50** | `shruhicollections@gmail.com` |
+| [GH-OMI-23624](https://github.com/BasedHardware/omi/pull/23624) | `GITHUB` | `BasedHardware/omi` | `#23624` | fix(retrieval): harden graph, notification settings, an... | ✅ PASS | `🟢 GREEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-CB-5052](https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5052) | `OPIRE` | `claude-builders-bounty/claude-builders-bounty` | `#5052` | feat(skills): add structured CHANGELOG generator from g... | ✅ PASS | `🟢 GREEN` | **$50** | `shruhicollections@gmail.com` |
+| [ZD-146152932](https://algora.io) | `ZENDESK` | `BasedHardware/omi` | `#146152932` | Algora Escrow Batch: 5 Merged Omi PRs (#21811, #21768, ... | ✅ PASS | `⏳ ESCROW QUEUED` | **$400 – $600** | `shruhicollections@gmail.com` |
+| [ZD-145972803](https://algora.io) | `ZENDESK` | `BasedHardware/omi` | `#145972803` | Algora Escrow Batch: Additional Settlement Ticket... | ✅ PASS | `⏳ ESCROW QUEUED` | **$150 – $300** | `shruhicollections@gmail.com` |
+| [H1-4149224](https://hackerone.com/reports/4149224) | `HACKERONE` | `actions/toolkit` | `#4149224` | [HIGH] Expression Injection via Untrusted Input in acti... | ⚪ N/A | `📨 SUBMITTED` | **$1,000 – $2,500** | `shruhicollections@gmail.com` |
+| [H1-4115591](https://hackerone.com/reports/4115591) | `HACKERONE` | `actions/toolkit` | `#4115591` | Unquoted workflow input expression evaluation in action... | ⚪ N/A | `🟡 IN REVIEW` | **$500 – $1,500** | `shruhicollections@gmail.com` |
+| [GH-OMI-21811](https://github.com/BasedHardware/omi/pull/21811) | `GITHUB` | `BasedHardware/omi` | `#21811` | fix(sync): unblock backfill queue with owner deferral a... | ✅ PASS | `🟣 MERGED` | **$100 – $200** | `shruhicollections@gmail.com` |
+| [GH-OMI-21671](https://github.com/BasedHardware/omi/pull/21671) | `GITHUB` | `BasedHardware/omi` | `#21671` | fix(deploy): specify --cpu=2 for backend-sync to suppor... | ✅ PASS | `🟣 MERGED` | **$100 – $200** | `shruhicollections@gmail.com` |
+| [GH-HYB-587](https://github.com/limitlessprojects/Go-Hybrid/pull/587) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#587` | fix(hy-check): reject constant overflow and float trunc... | ✅ PASS | `🟣 MERGED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-497](https://github.com/limitlessprojects/Go-Hybrid/pull/497) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#497` | fix(tools): decode checker JSON as UTF-8 independently ... | ✅ PASS | `🟣 MERGED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-430](https://github.com/limitlessprojects/Go-Hybrid/pull/430) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#430` | fix(check): type-check operand types for conditions, in... | ✅ PASS | `🟣 MERGED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21768](https://github.com/BasedHardware/omi/pull/21768) | `GITHUB` | `BasedHardware/omi` | `#21768` | fix(bee): support 3-byte millivolts battery format and ... | ✅ PASS | `🟣 MERGED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21524](https://github.com/BasedHardware/omi/pull/21524) | `GITHUB` | `BasedHardware/omi` | `#21524` | fix(ble): retry failed codec reads and prevent defaulti... | ✅ PASS | `🟣 MERGED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21521](https://github.com/BasedHardware/omi/pull/21521) | `GITHUB` | `BasedHardware/omi` | `#21521` | fix(watch): stop Apple Watch recording when disconnecti... | ✅ PASS | `🟣 MERGED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-569](https://github.com/limitlessprojects/Go-Hybrid/pull/569) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#569` | W-008 spike: checked settlement for own-handle task reg... | ⏳ PENDING | `🔵 OPEN` | **$250 – $500** | `shruhicollections@gmail.com` |
+| [GH-HYB-1524](https://github.com/limitlessprojects/Go-Hybrid/pull/1524) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1524` | feat(spike): add W-016 hy-mir explicit desugared verifi... | ⏳ PENDING | `🔵 OPEN` | **$200 – $400** | `shruhicollections@gmail.com` |
+| [GH-TT-61086](https://github.com/tenstorrent/tt-metal/pull/61086) | `GITHUB` | `tenstorrent/tt-metal` | `#61086` | [Bug fix] quasar matmul: configure unpack_modes for fp3... | ⏳ PENDING | `🔵 OPEN` | **$100 – $300** | `shruhicollections@gmail.com` |
+| [GH-OMI-21999](https://github.com/BasedHardware/omi/pull/21999) | `GITHUB` | `BasedHardware/omi` | `#21999` | fix(sync): recover stale sequenced sync jobs and unbloc... | ✅ PASS | `🔵 OPEN` | **$100 – $200** | `shruhicollections@gmail.com` |
+| [GH-TT-60791](https://github.com/tenstorrent/tt-metal/pull/60791) | `GITHUB` | `tenstorrent/tt-metal` | `#60791` | [Bug fix] layernorm_welford: reconfigure unpacker SrcA ... | ⏳ PENDING | `🔵 OPEN` | **$100 – $300** | `shruhicollections@gmail.com` |
+| [GH-TT-60777](https://github.com/tenstorrent/tt-metal/pull/60777) | `GITHUB` | `tenstorrent/tt-metal` | `#60777` | [Bug fix] ttnn.sort: pad float32 with max-magnitude NaN... | ⏳ PENDING | `🔵 OPEN` | **$100 – $300** | `shruhicollections@gmail.com` |
+| [GH-HYB-1925](https://github.com/limitlessprojects/Go-Hybrid/pull/1925) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1925` | fix(hy-check): reject indirect send-only channels, comp... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1741](https://github.com/limitlessprojects/Go-Hybrid/pull/1741) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1741` | fix(hy-check): reject invalid non-bool constant convers... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1522](https://github.com/limitlessprojects/Go-Hybrid/pull/1522) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1522` | fix(hy-check): enforce borrow roots on sub-slice elemen... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1506](https://github.com/limitlessprojects/Go-Hybrid/pull/1506) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1506` | fix(hy-check): reject out-of-bounds constant string ind... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1505](https://github.com/limitlessprojects/Go-Hybrid/pull/1505) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#1505` | fix(hy-check): reject duplicate constant keys in map li... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-825](https://github.com/limitlessprojects/Go-Hybrid/pull/825) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#825` | fix(hy-check): reject user declarations colliding with ... | ⏳ PENDING | `🔵 OPEN` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23711](https://github.com/BasedHardware/omi/pull/23711) | `GITHUB` | `BasedHardware/omi` | `#23711` | fix(plugins): require auth on hume-ai routes writing me... | ✅ PASS | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23706](https://github.com/BasedHardware/omi/pull/23706) | `GITHUB` | `BasedHardware/omi` | `#23706` | fix(plugins): require auth on twitter-chat-tools routes... | ✅ PASS | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23689](https://github.com/BasedHardware/omi/pull/23689) | `GITHUB` | `BasedHardware/omi` | `#23689` | fix(plugins): require auth on whoop-app tool routes rea... | ✅ PASS | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23688](https://github.com/BasedHardware/omi/pull/23688) | `GITHUB` | `BasedHardware/omi` | `#23688` | fix(capture): handle failed Ray-Ban Meta audio start an... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23659](https://github.com/BasedHardware/omi/pull/23659) | `GITHUB` | `BasedHardware/omi` | `#23659` | fix(plugins): require auth on zapier data-plane routes ... | ✅ PASS | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-23658](https://github.com/BasedHardware/omi/pull/23658) | `GITHUB` | `BasedHardware/omi` | `#23658` | fix(plugins): require auth on iq-rating routes and rend... | ✅ PASS | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-22218](https://github.com/BasedHardware/omi/pull/22218) | `GITHUB` | `BasedHardware/omi` | `#22218` | fix(action-items): coerce naive and ISO string timestam... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-CAL-30355](https://github.com/calcom/cal.diy/pull/30355) | `GITHUB` | `calcom/cal.diy` | `#30355` | fix(docker): bind redis and prisma studio ports to loca... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-CAL-30353](https://github.com/calcom/cal.diy/pull/30353) | `GITHUB` | `calcom/cal.diy` | `#30353` | fix(oauth2): support space-separated scopes per RFC 674... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21876](https://github.com/BasedHardware/omi/pull/21876) | `GITHUB` | `BasedHardware/omi` | `#21876` | fix(staged_tasks): filter completed entities in creatio... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21855](https://github.com/BasedHardware/omi/pull/21855) | `GITHUB` | `BasedHardware/omi` | `#21855` | fix(backend): filter soft-deleted entities in recommend... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-VTUBER-446](https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/pull/446) | `GITHUB` | `Open-LLM-VTuber/Open-LLM-VTuber` | `#446` | feat: infrastructure improvements - caching, telemetry,... | ⏳ PENDING | `🔵 OPEN` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-804](https://github.com/limitlessprojects/Go-Hybrid/pull/804) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#804` | fix(hy-check): reject make on directional channels (fix... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-796](https://github.com/limitlessprojects/Go-Hybrid/pull/796) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#796` | fix(hy-check): reject type names used in value position... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-715](https://github.com/limitlessprojects/Go-Hybrid/pull/715) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#715` | feat(spike): add W-016 hy-mir explicit desugared verifi... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-714](https://github.com/limitlessprojects/Go-Hybrid/pull/714) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#714` | fix(hy-check): enforce borrow roots on sub-slice elemen... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-713](https://github.com/limitlessprojects/Go-Hybrid/pull/713) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#713` | fix(hy-check): reject out-of-bounds constant string ind... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-712](https://github.com/limitlessprojects/Go-Hybrid/pull/712) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#712` | fix(hy-check): reject duplicate constant keys in map li... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-600](https://github.com/limitlessprojects/Go-Hybrid/pull/600) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#600` | fix(tools): test-registration guard parses explicit Pyt... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-427](https://github.com/limitlessprojects/Go-Hybrid/pull/427) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#427` | fix(check): type-check for-in iterable operands and rej... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-1](https://github.com/hardik4love-lang/Go-Hybrid/pull/1) | `GITHUB` | `hardik4love-lang/Go-Hybrid` | `#1` | CI Test: receive operand type check... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [GH-HYB-413](https://github.com/limitlessprojects/Go-Hybrid/pull/413) | `GITHUB` | `limitlessprojects/Go-Hybrid` | `#413` | fix(check): type-check receive operands and reject non-... | ⚪ N/A | `⚪ CLOSED` | **$75 – $100** | `shruhicollections@gmail.com` |
+| [ISSUE-OMI-21897](https://github.com/BasedHardware/omi/issues/21897) | `GITHUB` | `BasedHardware/omi` | `#21897` | [Bounty Proposal] fix(tests): preload calendar_render i... | ⚪ N/A | `⚪ CLOSED` | **$50** | `shruhicollections@gmail.com` |
+| [ISSUE-OMI-21875](https://github.com/BasedHardware/omi/issues/21875) | `GITHUB` | `BasedHardware/omi` | `#21875` | [Bounty Proposal] fix(staged_tasks): filter completed e... | ⚪ N/A | `⚪ CLOSED` | **$50** | `shruhicollections@gmail.com` |
+| [ISSUE-OMI-21854](https://github.com/BasedHardware/omi/issues/21854) | `GITHUB` | `BasedHardware/omi` | `#21854` | [Bounty Proposal] fix(backend): filter soft-deleted ent... | ⚪ N/A | `⚪ CLOSED` | **$50** | `shruhicollections@gmail.com` |
+| [GH-OMI-23713](https://github.com/BasedHardware/omi/pull/23713) | `GITHUB` | `BasedHardware/omi` | `#23713` | fix(plugins): require auth on iq-rating data-plane rout... | ⚪ N/A | `⚪ CLOSED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-XCM-2330](https://github.com/paraspell/xcm-tools/pull/2330) | `GITHUB` | `paraspell/xcm-tools` | `#2330` | fix(sdk-core): temporarily disable transfers involving ... | ⚪ N/A | `⚪ CLOSED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-XCM-2329](https://github.com/paraspell/xcm-tools/pull/2329) | `GITHUB` | `paraspell/xcm-tools` | `#2329` | fix(builder): preserve bigint amounts and normalize swa... | ⚪ N/A | `⚪ CLOSED` | **$50 – $100** | `shruhicollections@gmail.com` |
+| [GH-OMI-21898](https://github.com/BasedHardware/omi/pull/21898) | `GITHUB` | `BasedHardware/omi` | `#21898` | fix(tests): preload calendar_render in calendar unit st... | ⚪ N/A | `⚪ CLOSED` | **$50 – $100** | `shruhicollections@gmail.com` |

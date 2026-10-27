@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARIA — 24/7 Master Bounty Fleet &amp; Revenue Command Center</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: { 50: '#ecfdf5', 500: '#10b981', 600: '#059669', 900: '#064e3b' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #030712; color: #f3f4f6; }
+    .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    .glass-glow { box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.2); }
+    @keyframes pulse-slow { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(1.08); } }
+    .pulse-slow { animation: pulse-slow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0b0f19; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- TOP APP BAR -->
+  <header class="glass sticky top-0 z-40 border-b border-slate-800/80 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+    <div class="flex items-center gap-3.5">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-cyan-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+        <i class="fa-solid fa-radar text-slate-950 font-black text-lg"></i>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="font-extrabold text-white text-base tracking-tight">ARIA <span class="text-emerald-400">MASTER COMMAND</span></span>
+          <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">24/7 LIVE VAULT</span>
+        </div>
+        <span class="block text-[11px] text-slate-400 font-mono">Autonomous Fleet Surveillance • <span class="text-emerald-400 font-semibold" id="headerCount">64</span> Tracked Deliverables</span>
+      </div>
+    </div>
+
+    <!-- Settlement Badge & Controls -->
+    <div class="flex items-center gap-3">
+      <div class="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 pulse-slow"></span>
+        <span class="text-slate-400">Settlement Target:</span>
+        <span class="text-emerald-400 font-bold">shruhicollections@gmail.com</span>
+        <span class="text-[10px] text-slate-500 bg-slate-800 px-1.5 py-0.5 rounded">PayPal</span>
+      </div>
+      <button onclick="window.location.reload()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/25 transition-all active:scale-95">
+        <i class="fa-solid fa-rotate"></i>
+        <span>Sync Live</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-6 space-y-6">
+
+    <!-- KPI STATS CARDS -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass glass-glow rounded-2xl p-5 border border-emerald-500/30">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Total Valuation</span>
+          <i class="fa-solid fa-vault text-emerald-400 text-lg"></i>
+        </div>
+        <div class="mt-3 text-2xl sm:text-3xl font-extrabold text-white font-mono" id="statValuation">$0</div>
+        <div class="mt-1 text-xs text-emerald-400 font-medium flex items-center gap-1">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>Across all 64 tracked entities</span>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 border border-purple-500/30">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Secured &amp; Merged</span>
+          <i class="fa-solid fa-circle-check text-purple-400 text-lg"></i>
+        </div>
+        <div class="mt-3 text-2xl sm:text-3xl font-extrabold text-white font-mono" id="statSecured">$0</div>
+        <div class="mt-1 text-xs text-purple-400 font-medium" id="statMergedCount">0 Fleets Merged/Queued</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 border border-cyan-500/30">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Active In-Flight</span>
+          <i class="fa-solid fa-paper-plane text-cyan-400 text-lg"></i>
+        </div>
+        <div class="mt-3 text-2xl sm:text-3xl font-extrabold text-white font-mono" id="statOpenCount">0</div>
+        <div class="mt-1 text-xs text-cyan-400 font-medium">Under active triage &amp; review</div>
+      </div>
+
+      <div class="glass rounded-2xl p-5 border border-amber-500/30">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400 uppercase tracking-wider">Escrow &amp; Security</span>
+          <i class="fa-solid fa-shield-halved text-amber-400 text-lg"></i>
+        </div>
+        <div class="mt-3 text-2xl sm:text-3xl font-extrabold text-white font-mono">$2,050–$4,900</div>
+        <div class="mt-1 text-xs text-amber-400 font-medium">HackerOne &amp; Zendesk Batches</div>
+      </div>
+    </div>
+
+    <!-- FILTER & SEARCH BAR -->
+    <div class="glass rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 text-xs font-mono" id="filterTabs">
+        <button onclick="setFilter('ALL')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-emerald-500 text-slate-950" data-filter="ALL">All (64)</button>
+        <button onclick="setFilter('ACTIVE')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="ACTIVE">Active (37)</button>
+        <button onclick="setFilter('MERGED')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="MERGED">Merged &amp; Won</button>
+        <button onclick="setFilter('HACKERONE')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="HACKERONE">HackerOne (2)</button>
+        <button onclick="setFilter('OPIRE')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="OPIRE">Opire ($525)</button>
+        <button onclick="setFilter('ZENDESK')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="ZENDESK">Escrow (2)</button>
+        <button onclick="setFilter('OMI')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="OMI">Omi</button>
+        <button onclick="setFilter('HYBRID')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="HYBRID">Go-Hybrid</button>
+        <button onclick="setFilter('TT')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="TT">TT-Metal</button>
+        <button onclick="setFilter('CAL')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="CAL">Cal.com</button>
+        <button onclick="setFilter('CLOSED')" class="filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white" data-filter="CLOSED">Closed</button>
+      </div>
+
+      <div class="relative w-full md:w-72">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+        <input type="text" id="searchInput" oninput="renderTable()" placeholder="Search target, title, PR #, ID..." class="w-full bg-slate-900/90 border border-slate-800 rounded-xl pl-9 pr-4 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-mono">
+      </div>
+    </div>
+
+    <!-- MASTER FLEET TABLE -->
+    <div class="glass rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+      <div class="overflow-x-auto max-h-[720px]">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-900/95 border-b border-slate-800 text-slate-400 font-mono uppercase text-[10px] tracking-wider sticky top-0 z-20 backdrop-blur-md">
+            <tr>
+              <th class="py-3.5 px-4">Entity ID</th>
+              <th class="py-3.5 px-4">Platform</th>
+              <th class="py-3.5 px-4">Target Scope</th>
+              <th class="py-3.5 px-4">Title &amp; Engineering Scope</th>
+              <th class="py-3.5 px-4 text-center">CI State</th>
+              <th class="py-3.5 px-4 text-center">Fleet Status</th>
+              <th class="py-3.5 px-4 text-right">Est. Valuation</th>
+              <th class="py-3.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="fleetTableBody" class="divide-y divide-slate-800/60 font-sans">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- FOOTER TELEMETRY & PORTFOLIO BREAKDOWN -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+      <div class="glass rounded-2xl p-4 border border-slate-800">
+        <div class="text-slate-400 font-bold mb-2 flex items-center gap-2">
+          <i class="fa-solid fa-layer-group text-emerald-400"></i>
+          <span>PORTFOLIO PLATFORM BREAKDOWN</span>
+        </div>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="flex justify-between py-1 border-b border-slate-800/60">
+            <span class="text-slate-300">HackerOne Bug Bounty (2 Reports)</span>
+            <span class="text-emerald-400 font-bold">$1,500 – $4,000 USD</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-800/60">
+            <span class="text-slate-300">Opire Bounties (5 Issues / PRs)</span>
+            <span class="text-amber-400 font-bold">$525.00 USD</span>
+          </div>
+          <div class="flex justify-between py-1 border-b border-slate-800/60">
+            <span class="text-slate-300">Algora / Zendesk Escrow (2 Batches)</span>
+            <span class="text-purple-400 font-bold">$550 – $900 USD</span>
+          </div>
+          <div class="flex justify-between py-1">
+            <span class="text-slate-300">GitHub Open Source Pull Requests (55 PRs)</span>
+            <span class="text-cyan-400 font-bold">$4,725 – $8,725 USD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass rounded-2xl p-4 border border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="text-slate-400 font-bold mb-2 flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+            <span>SYSTEM &amp; SETTLEMENT GOVERNANCE</span>
+          </div>
+          <div class="space-y-1 text-[11px] text-slate-300">
+            <div>• Database: <span class="text-emerald-400 font-bold">data/bounty_vault.db</span> (SQLite3 canonical)</div>
+            <div>• Settlement Account: <span class="text-emerald-400 font-bold">shruhicollections@gmail.com</span></div>
+            <div>• Policy: Zero Cryptocurrency / EVM. Strictly PayPal Settlement.</div>
+            <div>• Synchronization Daemon: Active continuous telemetry polling (120s loop)</div>
+          </div>
+        </div>
+        <div class="text-[10px] text-slate-500 font-mono mt-3" id="lastSyncDisplay">
+          Last Synced: Just now
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- MODAL DETAILS DRAWER -->
+  <div id="detailsModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="glass rounded-3xl max-w-2xl w-full border border-slate-700 shadow-2xl p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span id="modalId" class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-400 font-mono font-bold text-xs border border-emerald-500/30">ID</span>
+          <span id="modalPlatform" class="px-2 py-0.5 rounded text-[10px] font-mono border border-slate-700 text-slate-300">PLATFORM</span>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div>
+        <h3 id="modalTitle" class="text-base font-bold text-white leading-snug">Title</h3>
+        <p id="modalTarget" class="text-xs text-slate-400 font-mono mt-1">Target</p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 py-2">
+        <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+          <span class="block text-[10px] font-mono text-slate-500 uppercase">Valuation</span>
+          <span id="modalValuation" class="font-mono font-bold text-emerald-400 text-sm">$0</span>
+        </div>
+        <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+          <span class="block text-[10px] font-mono text-slate-500 uppercase">Status</span>
+          <span id="modalStatus" class="font-mono font-bold text-slate-200 text-sm">OPEN</span>
+        </div>
+        <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+          <span class="block text-[10px] font-mono text-slate-500 uppercase">CI State</span>
+          <span id="modalCI" class="font-mono font-bold text-slate-200 text-sm">PASS</span>
+        </div>
+        <div class="bg-slate-900/80 rounded-xl p-3 border border-slate-800/80">
+          <span class="block text-[10px] font-mono text-slate-500 uppercase">Settlement</span>
+          <span class="font-mono font-bold text-slate-200 text-xs truncate">PayPal</span>
+        </div>
+      </div>
+
+      <div>
+        <span class="block text-[11px] font-mono text-slate-400 uppercase font-bold mb-1">Technical Scope &amp; Notes:</span>
+        <div id="modalNotes" class="bg-slate-900/90 rounded-xl p-3.5 text-xs text-slate-300 font-sans border border-slate-800/80 leading-relaxed max-h-40 overflow-y-auto">
+          Notes
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+        <span class="text-[11px] font-mono text-slate-500">Beneficiary: hardik4love-lang</span>
+        <div class="flex items-center gap-2">
+          <button onclick="closeModal()" class="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-300">Close</button>
+          <a id="modalLink" href="#" target="_blank" class="px-4 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-bold inline-flex items-center gap-1.5">
+            <span>Open Asset</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const MASTER_DATA = {"generated_at": "2026-10-27T03:56:57.320298+00:00", "total_valuation_min": 6525.0, "total_valuation_max": 12475.0, "secured_valuation_min": 1225.0, "secured_valuation_max": 2050.0, "total_fleets": 64, "active_fleets": 37, "merged_fleets": 12, "settlement_email": "shruhicollections@gmail.com", "fleets": [{"id": "GH-OMI-23620", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23620", "pr_number": 23620, "title": "fix(cli): disambiguate same-batch collisions when overwrite=True and flatten multiline transcripts (#23485)", "url": "https://github.com/BasedHardware/omi/pull/23620", "bounty_min": 50.0, "bounty_max": 50.0, "status": "APPROVED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "APPROVED by maintainer David Zhang (@Git-on-my-level). Disambiguates same-batch collisions when overwrite=True.", "submitted_at": "2026-10-25T18:52:15Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CAL-30365", "platform": "GITHUB", "target": "calcom/cal.diy", "reference_id": "30365", "pr_number": 30365, "title": "fix(settings): honor old primary email deletion and disconnect event types when promoting secondary email (#30364)", "url": "https://github.com/calcom/cal.diy/pull/30365", "bounty_min": 50.0, "bounty_max": 100.0, "status": "APPROVED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "APPROVED. Cleans up orphaned OAuth listeners and unbinds old primary email addresses.", "submitted_at": "2026-10-19T13:01:01Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CB-5076", "platform": "OPIRE", "target": "claude-builders-bounty/claude-builders-bounty", "reference_id": "5076", "pr_number": 5076, "title": "feat(workflows): add n8n + Claude Code automated weekly dev summary workflow (closes #5)", "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5076", "bounty_min": 200.0, "bounty_max": 200.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Closes Issue #5 ($200 Opire Bounty). Automated n8n + Claude Code weekly dev summary workflow.", "submitted_at": "2026-10-26T18:11:55Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-TT-62546", "platform": "GITHUB", "target": "tenstorrent/tt-metal", "reference_id": "62546", "pr_number": 62546, "title": "[Bug fix] allocator: preserve default L1 address alignment after explicit reservations (#62539)", "url": "https://github.com/tenstorrent/tt-metal/pull/62546", "bounty_min": 100.0, "bounty_max": 300.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Preserves 16-byte default L1 address alignment after explicit reservations (#62539). 100% Green CI (15/15 checks pass).", "submitted_at": "2026-10-26T18:31:01Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CB-5054", "platform": "OPIRE", "target": "claude-builders-bounty/claude-builders-bounty", "reference_id": "5054", "pr_number": 5054, "title": "feat(agents): Claude Code PR review sub-agent CLI & GitHub Action (closes #4)", "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5054", "bounty_min": 100.0, "bounty_max": 100.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Closes Issue #4 ($100 Opire Bounty). Claude Code PR review sub-agent CLI & GitHub Action.", "submitted_at": "2026-10-25T18:37:31Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CB-5051", "platform": "OPIRE", "target": "claude-builders-bounty/claude-builders-bounty", "reference_id": "5051", "pr_number": 5051, "title": "feat(hooks): pre-tool-use hook blocking destructive bash commands (closes #3)", "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5051", "bounty_min": 100.0, "bounty_max": 100.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Closes Issue #3 ($100 Opire Bounty). Pre-tool-use hook blocking destructive bash commands.", "submitted_at": "2026-10-25T18:32:41Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1924", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1924", "pr_number": 1924, "title": "fix(hy-check): check result arity for try-unwrapped calls, 1-value builtins, and aliased receivers (fixes #1835)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1924", "bounty_min": 75.0, "bounty_max": 100.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Fixes issue #1835. Verifies return arity in Go-Hybrid type checker when using try-unwrap operators and builtins. 100% Green CI.", "submitted_at": "2026-10-26T18:19:34Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CB-5053", "platform": "OPIRE", "target": "claude-builders-bounty/claude-builders-bounty", "reference_id": "5053", "pr_number": 5053, "title": "feat(templates): add opinionated Next.js 15 App Router + SQLite CLAUDE.md template (closes #2)", "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5053", "bounty_min": 75.0, "bounty_max": 75.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Closes Issue #2 ($75 Opire Bounty). Opinionated Next.js 15 App Router + SQLite CLAUDE.md template.", "submitted_at": "2026-10-25T18:36:03Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23747", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23747", "pr_number": 23747, "title": "fix(cli): harden conversations_to_tsv against speaker 0 drops, lone surrogates, and non-atomic writes (#23720)", "url": "https://github.com/BasedHardware/omi/pull/23747", "bounty_min": 50.0, "bounty_max": 50.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Fixes issue #23720. Hardens conversations_to_tsv against speaker 0 drops, lone surrogates, atomic file replacement. 100% Green CI.", "submitted_at": "2026-10-26T18:43:13Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23624", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23624", "pr_number": 23624, "title": "fix(retrieval): harden graph, notification settings, and integration base config resilience and numeric coercion", "url": "https://github.com/BasedHardware/omi/pull/23624", "bounty_min": 50.0, "bounty_max": 100.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Hardens LangGraph retrieval tools, safely handles NoneType RunnableConfig, ensures isolated module tests. 100% Green CI.", "submitted_at": "2026-10-25T19:16:34Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CB-5052", "platform": "OPIRE", "target": "claude-builders-bounty/claude-builders-bounty", "reference_id": "5052", "pr_number": 5052, "title": "feat(skills): add structured CHANGELOG generator from git history (closes #1)", "url": "https://github.com/claude-builders-bounty/claude-builders-bounty/pull/5052", "bounty_min": 50.0, "bounty_max": 50.0, "status": "GREEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Closes Issue #1 ($50 Opire Bounty). Structured CHANGELOG generator from conventional git history.", "submitted_at": "2026-10-25T18:35:14Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "ZD-146152932", "platform": "ZENDESK", "target": "BasedHardware/omi", "reference_id": "146152932", "pr_number": null, "title": "Algora Escrow Batch: 5 Merged Omi PRs (#21811, #21768, #21671, #21524, #21521)", "url": "https://algora.io", "bounty_min": 400.0, "bounty_max": 600.0, "status": "PROCESSING", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "All 5 underlying PRs merged in BasedHardware/omi. Escrow batch linked in Zendesk Ticket #146152932 for Monday settlement.", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "ZD-145972803", "platform": "ZENDESK", "target": "BasedHardware/omi", "reference_id": "145972803", "pr_number": null, "title": "Algora Escrow Batch: Additional Settlement Ticket", "url": "https://algora.io", "bounty_min": 150.0, "bounty_max": 300.0, "status": "PROCESSING", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Active Zendesk ticket tied to shruhicollections@gmail.com.", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "H1-4149224", "platform": "HACKERONE", "target": "actions/toolkit", "reference_id": "4149224", "pr_number": null, "title": "[HIGH] Expression Injection via Untrusted Input in actions/toolkit Release Workflow", "url": "https://hackerone.com/reports/4149224", "bounty_min": 1000.0, "bounty_max": 2500.0, "status": "SUBMITTED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Verified against .github/workflows/releases.yml:50. Direct shell interpolation of untrusted input. Under review by GitHub Security.", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "H1-4115591", "platform": "HACKERONE", "target": "actions/toolkit", "reference_id": "4115591", "pr_number": null, "title": "Unquoted workflow input expression evaluation in actions/toolkit releases.yml", "url": "https://hackerone.com/reports/4115591", "bounty_min": 500.0, "bounty_max": 1500.0, "status": "IN_REVIEW", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Submitted 3 days ago, active in GitHub security triage queue.", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21811", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21811", "pr_number": 21811, "title": "fix(sync): unblock backfill queue with owner deferral and NotFound resilience (#21122)", "url": "https://github.com/BasedHardware/omi/pull/21811", "bounty_min": 100.0, "bounty_max": 200.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in BasedHardware/omi. Underlying PR for Zendesk Escrow Batch #146152932 (fix(sync): unblock backfill queue with o...).", "submitted_at": "2026-10-16T06:26:05Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21671", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21671", "pr_number": 21671, "title": "fix(deploy): specify --cpu=2 for backend-sync to support 6Gi/8Gi memory (#21668)", "url": "https://github.com/BasedHardware/omi/pull/21671", "bounty_min": 100.0, "bounty_max": 200.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in BasedHardware/omi. Underlying PR for Zendesk Escrow Batch #146152932 (fix(deploy): specify --cpu=2 for backend...).", "submitted_at": "2026-10-15T07:29:09Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-587", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "587", "pr_number": 587, "title": "fix(hy-check): reject constant overflow and float truncation in binary comparisons, binary arithmetic, and map indexing (fixes #576)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/587", "bounty_min": 75.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in limitlessprojects/Go-Hybrid (fix(hy-check): reject constant overflow ...).", "submitted_at": "2026-10-18T07:21:20Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-497", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "497", "pr_number": 497, "title": "fix(tools): decode checker JSON as UTF-8 independently of host locale (fixes #492)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/497", "bounty_min": 75.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in limitlessprojects/Go-Hybrid (fix(tools): decode checker JSON as UTF-8...).", "submitted_at": "2026-10-17T19:25:08Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-430", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "430", "pr_number": 430, "title": "fix(check): type-check operand types for conditions, index, slice, call, and builtins (fixes #425)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/430", "bounty_min": 75.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in limitlessprojects/Go-Hybrid (fix(check): type-check operand types for...).", "submitted_at": "2026-10-17T11:38:06Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21768", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21768", "pr_number": 21768, "title": "fix(bee): support 3-byte millivolts battery format and clamp legacy percentage (#21749)", "url": "https://github.com/BasedHardware/omi/pull/21768", "bounty_min": 50.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in BasedHardware/omi. Underlying PR for Zendesk Escrow Batch #146152932 (fix(bee): support 3-byte millivolts batt...).", "submitted_at": "2026-10-15T19:49:22Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21524", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21524", "pr_number": 21524, "title": "fix(ble): retry failed codec reads and prevent defaulting to PCM8 (#20779)", "url": "https://github.com/BasedHardware/omi/pull/21524", "bounty_min": 50.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in BasedHardware/omi. Underlying PR for Zendesk Escrow Batch #146152932 (fix(ble): retry failed codec reads and p...).", "submitted_at": "2026-10-14T16:48:09Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21521", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21521", "pr_number": 21521, "title": "fix(watch): stop Apple Watch recording when disconnecting or forgetting device (#20780)", "url": "https://github.com/BasedHardware/omi/pull/21521", "bounty_min": 50.0, "bounty_max": 100.0, "status": "MERGED", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "MERGED in BasedHardware/omi. Underlying PR for Zendesk Escrow Batch #146152932 (fix(watch): stop Apple Watch recording w...).", "submitted_at": "2026-10-14T16:42:02Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-569", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "569", "pr_number": 569, "title": "W-008 spike: checked settlement for own-handle task regions (finite child model, race-verified, preregistered)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/569", "bounty_min": 250.0, "bounty_max": 500.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "W-008 spike: checked settlement for own-handle task regions (finishes #560).", "submitted_at": "2026-10-18T05:11:05Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1524", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1524", "pr_number": 1524, "title": "feat(spike): add W-016 hy-mir explicit desugared verification spike (#695)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1524", "bounty_min": 200.0, "bounty_max": 400.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "W-016 spike: hy-mir explicit desugared verification spike.", "submitted_at": "2026-10-24T15:06:45Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-TT-61086", "platform": "GITHUB", "target": "tenstorrent/tt-metal", "reference_id": "61086", "pr_number": 61086, "title": "[Bug fix] quasar matmul: configure unpack_modes for fp32 partials and operands in 2D/1D/Reuse factories (#61018)", "url": "https://github.com/tenstorrent/tt-metal/pull/61086", "bounty_min": 100.0, "bounty_max": 300.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Tenstorrent TT-Metal Wormhole/Blackhole kernel & allocator fix: [Bug fix] quasar matmul: configure unpac...", "submitted_at": "2026-10-17T07:33:03Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21999", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21999", "pr_number": 21999, "title": "fix(sync): recover stale sequenced sync jobs and unblock account queues (#21943)", "url": "https://github.com/BasedHardware/omi/pull/21999", "bounty_min": 100.0, "bounty_max": 200.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Auto-recovers stalled sync state machines when network disconnects mid-transaction.", "submitted_at": "2026-10-17T06:06:01Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-TT-60791", "platform": "GITHUB", "target": "tenstorrent/tt-metal", "reference_id": "60791", "pr_number": 60791, "title": "[Bug fix] layernorm_welford: reconfigure unpacker SrcA to dfb_x_welford in compact_fp32_finalizer (#60764)", "url": "https://github.com/tenstorrent/tt-metal/pull/60791", "bounty_min": 100.0, "bounty_max": 300.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Tenstorrent TT-Metal Wormhole/Blackhole kernel & allocator fix: [Bug fix] layernorm_welford: reconfigure...", "submitted_at": "2026-10-15T17:24:54Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-TT-60777", "platform": "GITHUB", "target": "tenstorrent/tt-metal", "reference_id": "60777", "pr_number": 60777, "title": "[Bug fix] ttnn.sort: pad float32 with max-magnitude NaN to eliminate out-of-range index leak (#60613)", "url": "https://github.com/tenstorrent/tt-metal/pull/60777", "bounty_min": 100.0, "bounty_max": 300.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Tenstorrent TT-Metal Wormhole/Blackhole kernel & allocator fix: [Bug fix] ttnn.sort: pad float32 with ma...", "submitted_at": "2026-10-15T16:15:25Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1925", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1925", "pr_number": 1925, "title": "fix(hy-check): reject indirect send-only channels, compound non-int consts, and typed bounds (fixes #1829)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1925", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Fixes issue #1829. Rejects indirect send-only channels, compound non-int consts, and typed bounds. Compiler & quick suites pass.", "submitted_at": "2026-10-26T18:23:38Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1741", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1741", "pr_number": 1741, "title": "fix(hy-check): reject invalid non-bool constant conversions to bool (fixes #1682)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1741", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject invalid non-bool consta...", "submitted_at": "2026-10-25T18:44:12Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1522", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1522", "pr_number": 1522, "title": "fix(hy-check): enforce borrow roots on sub-slice elements and classify unrooted pointer shapes (fixes #679)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1522", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): enforce borrow roots on sub-sl...", "submitted_at": "2026-10-24T15:02:14Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1506", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1506", "pr_number": 1506, "title": "fix(hy-check): reject out-of-bounds constant string index and slice bounds (fixes #708)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1506", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject out-of-bounds constant ...", "submitted_at": "2026-10-24T14:35:33Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1505", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "1505", "pr_number": 1505, "title": "fix(hy-check): reject duplicate constant keys in map literals (fixes #687)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/1505", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject duplicate constant keys...", "submitted_at": "2026-10-24T14:34:25Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-825", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "825", "pr_number": 825, "title": "fix(hy-check): reject user declarations colliding with prelude names (fixes #777)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/825", "bounty_min": 75.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject user declarations colli...", "submitted_at": "2026-10-19T07:55:46Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23711", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23711", "pr_number": 23711, "title": "fix(plugins): require auth on hume-ai routes writing memories and pushing notifications (#15089)", "url": "https://github.com/BasedHardware/omi/pull/23711", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on hume-ai ro...).", "submitted_at": "2026-10-26T10:11:40Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23706", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23706", "pr_number": 23706, "title": "fix(plugins): require auth on twitter-chat-tools routes acting on uid-keyed tokens (#14451)", "url": "https://github.com/BasedHardware/omi/pull/23706", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on twitter-ch...).", "submitted_at": "2026-10-26T09:45:43Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23689", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23689", "pr_number": 23689, "title": "fix(plugins): require auth on whoop-app tool routes reading uid-keyed health data (#14453)", "url": "https://github.com/BasedHardware/omi/pull/23689", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on whoop-app ...).", "submitted_at": "2026-10-26T07:13:16Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23688", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23688", "pr_number": 23688, "title": "fix(capture): handle failed Ray-Ban Meta audio start and include in wedge monitor (#20782)", "url": "https://github.com/BasedHardware/omi/pull/23688", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #23688 in BasedHardware/omi.", "submitted_at": "2026-10-26T07:07:58Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23659", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23659", "pr_number": 23659, "title": "fix(plugins): require auth on zapier data-plane routes keyed only by uid (#14428)", "url": "https://github.com/BasedHardware/omi/pull/23659", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on zapier dat...).", "submitted_at": "2026-10-26T03:27:33Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23658", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23658", "pr_number": 23658, "title": "fix(plugins): require auth on iq-rating routes and render valid non-executing JSON islands (#14430)", "url": "https://github.com/BasedHardware/omi/pull/23658", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PASS", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on iq-rating ...).", "submitted_at": "2026-10-26T03:22:52Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-22218", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "22218", "pr_number": 22218, "title": "fix(action-items): coerce naive and ISO string timestamps in sort keys to prevent HTTP 500 (#22181)", "url": "https://github.com/BasedHardware/omi/pull/22218", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Coerces mixed naive and timezone-aware ISO string timestamps in action-item sorting.", "submitted_at": "2026-10-18T19:19:24Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CAL-30355", "platform": "GITHUB", "target": "calcom/cal.diy", "reference_id": "30355", "pr_number": 30355, "title": "fix(docker): bind redis and prisma studio ports to localhost (#30351)", "url": "https://github.com/calcom/cal.diy/pull/30355", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Binds internal redis and prisma studio ports exclusively to localhost (#30351).", "submitted_at": "2026-10-17T08:50:01Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-CAL-30353", "platform": "GITHUB", "target": "calcom/cal.diy", "reference_id": "30353", "pr_number": 30353, "title": "fix(oauth2): support space-separated scopes per RFC 6749 (#30348)", "url": "https://github.com/calcom/cal.diy/pull/30353", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Complies with RFC 6749 by supporting whitespace-separated OAuth2 scopes (#30348).", "submitted_at": "2026-10-16T17:19:07Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21876", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21876", "pr_number": 21876, "title": "fix(staged_tasks): filter completed entities in creation dedup and default relevance_score (#21875)", "url": "https://github.com/BasedHardware/omi/pull/21876", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #21876 in BasedHardware/omi.", "submitted_at": "2026-10-16T15:44:47Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21855", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21855", "pr_number": 21855, "title": "fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency (#21854)", "url": "https://github.com/BasedHardware/omi/pull/21855", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #21855 in BasedHardware/omi.", "submitted_at": "2026-10-16T12:57:19Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-VTUBER-446", "platform": "GITHUB", "target": "Open-LLM-VTuber/Open-LLM-VTuber", "reference_id": "446", "pr_number": 446, "title": "feat: infrastructure improvements - caching, telemetry, DB, security, evaluation, PWA, agents", "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/pull/446", "bounty_min": 50.0, "bounty_max": 100.0, "status": "OPEN", "ci_status": "PENDING", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #446 in Open-LLM-VTuber/Open-LLM-VTuber.", "submitted_at": "2026-09-23T17:22:17Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-804", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "804", "pr_number": 804, "title": "fix(hy-check): reject make on directional channels (fixes #793)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/804", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject make on directional cha...", "submitted_at": "2026-10-19T06:37:27Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-796", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "796", "pr_number": 796, "title": "fix(hy-check): reject type names used in value positions (fixes #778)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/796", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject type names used in valu...", "submitted_at": "2026-10-19T05:49:45Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-715", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "715", "pr_number": 715, "title": "feat(spike): add W-016 hy-mir explicit desugared verification spike (#695)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/715", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: feat(spike): add W-016 hy-mir explicit desuga...", "submitted_at": "2026-10-18T19:03:59Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-714", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "714", "pr_number": 714, "title": "fix(hy-check): enforce borrow roots on sub-slice elements and classify unrooted pointer shapes (fixes #679)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/714", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): enforce borrow roots on sub-sl...", "submitted_at": "2026-10-18T19:03:35Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-713", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "713", "pr_number": 713, "title": "fix(hy-check): reject out-of-bounds constant string index and slice bounds (fixes #708)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/713", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject out-of-bounds constant ...", "submitted_at": "2026-10-18T19:02:52Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-712", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "712", "pr_number": 712, "title": "fix(hy-check): reject duplicate constant keys in map literals (fixes #687)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/712", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(hy-check): reject duplicate constant keys...", "submitted_at": "2026-10-18T19:02:26Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-600", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "600", "pr_number": 600, "title": "fix(tools): test-registration guard parses explicit Python command execution (fixes #596)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/600", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(tools): test-registration guard parses ex...", "submitted_at": "2026-10-18T08:28:42Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-427", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "427", "pr_number": 427, "title": "fix(check): type-check for-in iterable operands and reject non-iterables (fixes #411)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/427", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(check): type-check for-in iterable operan...", "submitted_at": "2026-10-17T11:23:37Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-1", "platform": "GITHUB", "target": "hardik4love-lang/Go-Hybrid", "reference_id": "1", "pr_number": 1, "title": "CI Test: receive operand type check", "url": "https://github.com/hardik4love-lang/Go-Hybrid/pull/1", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: CI Test: receive operand type check...", "submitted_at": "2026-10-17T10:35:28Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-HYB-413", "platform": "GITHUB", "target": "limitlessprojects/Go-Hybrid", "reference_id": "413", "pr_number": 413, "title": "fix(check): type-check receive operands and reject non-channel values (fixes #409)", "url": "https://github.com/limitlessprojects/Go-Hybrid/pull/413", "bounty_min": 75.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Go-Hybrid type system check / AST pass: fix(check): type-check receive operands and r...", "submitted_at": "2026-10-17T10:32:58Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "ISSUE-OMI-21897", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21897", "pr_number": 21897, "title": "[Bounty Proposal] fix(tests): preload calendar_render in calendar unit stubs and adapt to model_text event format", "url": "https://github.com/BasedHardware/omi/issues/21897", "bounty_min": 50.0, "bounty_max": 50.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Bounty issue proposal for calendar test stub preloading.", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "ISSUE-OMI-21875", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21875", "pr_number": 21875, "title": "[Bounty Proposal] fix(staged_tasks): filter completed entities in creation dedup and default relevance_score ($50 proposed)", "url": "https://github.com/BasedHardware/omi/issues/21875", "bounty_min": 50.0, "bounty_max": 50.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Bounty issue proposal for staged tasks deduplication ($50).", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "ISSUE-OMI-21854", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21854", "pr_number": 21854, "title": "[Bounty Proposal] fix(backend): filter soft-deleted entities in recommendations and ensure goal deletion idempotency ($50 proposed)", "url": "https://github.com/BasedHardware/omi/issues/21854", "bounty_min": 50.0, "bounty_max": 50.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Bounty issue proposal for soft-deleted entity filtering ($50).", "submitted_at": "2026-10-27T03:56:57.320298+00:00", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-23713", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "23713", "pr_number": 23713, "title": "fix(plugins): require auth on iq-rating data-plane routes scraping user memories (#14430)", "url": "https://github.com/BasedHardware/omi/pull/23713", "bounty_min": 50.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Security hardening: requires authentication on data-plane routes (fix(plugins): require auth on iq-rating ...).", "submitted_at": "2026-10-26T10:24:54Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-XCM-2330", "platform": "GITHUB", "target": "paraspell/xcm-tools", "reference_id": "2330", "pr_number": 2330, "title": "fix(sdk-core): temporarily disable transfers involving Centrifuge parathread (#2293)", "url": "https://github.com/paraspell/xcm-tools/pull/2330", "bounty_min": 50.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #2330 in paraspell/xcm-tools.", "submitted_at": "2026-10-26T07:03:27Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-XCM-2329", "platform": "GITHUB", "target": "paraspell/xcm-tools", "reference_id": "2329", "pr_number": 2329, "title": "fix(builder): preserve bigint amounts and normalize swap options on AMOUNT_ALL (#2304)", "url": "https://github.com/paraspell/xcm-tools/pull/2329", "bounty_min": 50.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #2329 in paraspell/xcm-tools.", "submitted_at": "2026-10-26T07:00:53Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}, {"id": "GH-OMI-21898", "platform": "GITHUB", "target": "BasedHardware/omi", "reference_id": "21898", "pr_number": 21898, "title": "fix(tests): preload calendar_render in calendar unit stubs and adapt to model_text event format (#21897)", "url": "https://github.com/BasedHardware/omi/pull/21898", "bounty_min": 50.0, "bounty_max": 100.0, "status": "CLOSED", "ci_status": "N/A", "payout_destination": "shruhicollections@gmail.com", "notes": "Pull Request #21898 in BasedHardware/omi.", "submitted_at": "2026-10-16T16:48:48Z", "last_checked_at": "2026-10-27T03:56:57.320298+00:00"}]};
+    let currentFilter = 'ALL';
+
+    function init() {
+      const d = MASTER_DATA;
+      document.getElementById('statValuation').innerText = '$' + d.total_valuation_min.toLocaleString() + ' – $' + d.total_valuation_max.toLocaleString();
+      document.getElementById('statSecured').innerText = '$' + d.secured_valuation_min.toLocaleString() + ' – $' + d.secured_valuation_max.toLocaleString();
+      document.getElementById('statMergedCount').innerText = d.merged_fleets + ' Fleets Merged/Queued';
+      document.getElementById('statOpenCount').innerText = d.active_fleets + ' Fleets Active';
+      document.getElementById('lastSyncDisplay').innerText = 'Last Synced: ' + new Date(d.generated_at).toLocaleTimeString() + ' (ARIA Surveillance Active)';
+      renderTable();
+    }
+
+    function setFilter(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === filter) {
+          btn.className = 'filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-emerald-500 text-slate-950';
+        } else {
+          btn.className = 'filter-btn px-3 py-1.5 rounded-xl font-bold transition-all bg-slate-900 text-slate-400 hover:text-white';
+        }
+      });
+      renderTable();
+    }
+
+    function renderTable() {
+      const search = (document.getElementById('searchInput').value || '').toLowerCase();
+      const tbody = document.getElementById('fleetTableBody');
+      tbody.innerHTML = '';
+
+      const fleets = MASTER_DATA.fleets.filter(f => {
+        if (currentFilter === 'ACTIVE' && !['OPEN', 'GREEN', 'APPROVED', 'SUBMITTED', 'IN_REVIEW'].includes(f.status)) return false;
+        if (currentFilter === 'MERGED' && !['MERGED', 'PROCESSING'].includes(f.status)) return false;
+        if (currentFilter === 'CLOSED' && f.status !== 'CLOSED') return false;
+        if (['HACKERONE', 'OPIRE', 'ZENDESK'].includes(currentFilter) && f.platform !== currentFilter) return false;
+        if (currentFilter === 'OMI' && !f.target.toLowerCase().includes('omi')) return false;
+        if (currentFilter === 'HYBRID' && !f.target.toLowerCase().includes('go-hybrid')) return false;
+        if (currentFilter === 'TT' && !f.target.toLowerCase().includes('tt-metal')) return false;
+        if (currentFilter === 'CAL' && !f.target.toLowerCase().includes('cal')) return false;
+
+        if (search) {
+          const txt = (f.id + ' ' + f.target + ' ' + f.title + ' ' + (f.notes || '') + ' ' + f.platform + ' ' + f.status).toLowerCase();
+          if (!txt.includes(search)) return false;
+        }
+        return true;
+      });
+
+      fleets.forEach(f => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-900/70 transition-colors cursor-pointer group';
+        tr.onclick = (e) => {
+          if (e.target.closest('a')) return;
+          openModal(f);
+        };
+
+        const platformBadges = {
+          'HACKERONE': 'bg-rose-500/15 text-rose-300 border-rose-500/30',
+          'GITHUB': 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30',
+          'OPIRE': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+          'ZENDESK': 'bg-purple-500/15 text-purple-300 border-purple-500/30'
+        };
+
+        const statusBadges = {
+          'MERGED': 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+          'APPROVED': 'bg-emerald-500/25 text-emerald-300 border-emerald-500/50 font-bold',
+          'GREEN': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/35',
+          'OPEN': 'bg-teal-500/15 text-teal-300 border-teal-500/30',
+          'SUBMITTED': 'bg-blue-500/15 text-blue-300 border-blue-500/30',
+          'IN_REVIEW': 'bg-amber-500/15 text-amber-300 border-amber-500/30',
+          'PROCESSING': 'bg-violet-500/20 text-violet-300 border-violet-500/40 font-bold',
+          'CLOSED': 'bg-slate-800 text-slate-500 border-slate-700'
+        };
+
+        const ciBadges = {
+          'PASS': 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+          'FAIL': 'text-rose-400 bg-rose-500/10 border-rose-500/20',
+          'PENDING': 'text-amber-400 bg-amber-500/10 border-amber-500/20',
+          'N/A': 'text-slate-500 bg-slate-900 border-slate-800'
+        };
+
+        const valStr = f.bounty_min === f.bounty_max ? '$' + f.bounty_min.toLocaleString() : '$' + f.bounty_min.toLocaleString() + ' – $' + f.bounty_max.toLocaleString();
+
+        tr.innerHTML = `
+          <td class="py-3 px-4 font-mono">
+            <div class="font-bold text-white group-hover:text-emerald-400 transition-colors">${f.id}</div>
+            <div class="text-[10px] text-slate-500 font-sans">Ref #${f.reference_id}</div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono border ${platformBadges[f.platform] || 'border-slate-700 text-slate-300'}">${f.platform}</span>
+          </td>
+          <td class="py-3 px-4 font-mono text-[11px] text-slate-300 truncate max-w-[130px]">
+            ${f.target}
+          </td>
+          <td class="py-3 px-4 max-w-md">
+            <div class="font-semibold text-slate-200 line-clamp-1 group-hover:text-white transition-colors">${f.title}</div>
+            <div class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${f.notes || ''}</div>
+          </td>
+          <td class="py-3 px-4 text-center font-mono">
+            <span class="px-2 py-0.5 rounded text-[10px] border ${ciBadges[f.ci_status] || ciBadges['N/A']}">${f.ci_status || 'N/A'}</span>
+          </td>
+          <td class="py-3 px-4 text-center font-mono">
+            <span class="px-2 py-0.5 rounded text-[10px] border ${statusBadges[f.status] || 'border-slate-700 text-slate-300'}">${f.status}</span>
+          </td>
+          <td class="py-3 px-4 text-right font-mono font-bold text-emerald-400">
+            ${valStr}
+          </td>
+          <td class="py-3 px-4 text-right">
+            <a href="${f.url || '#'}" target="_blank" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-[11px] font-mono transition-all">
+              <span>View</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+            </a>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openModal(f) {
+      document.getElementById('modalId').innerText = f.id;
+      document.getElementById('modalPlatform').innerText = f.platform;
+      document.getElementById('modalTitle').innerText = f.title;
+      document.getElementById('modalTarget').innerText = 'Target: ' + f.target + ' (Ref #' + f.reference_id + ')';
+      document.getElementById('modalValuation').innerText = f.bounty_min === f.bounty_max ? '$' + f.bounty_min : '$' + f.bounty_min + ' – $' + f.bounty_max;
+      document.getElementById('modalStatus').innerText = f.status;
+      document.getElementById('modalCI').innerText = f.ci_status || 'N/A';
+      document.getElementById('modalNotes').innerText = f.notes || 'No extra scope notes recorded.';
+      document.getElementById('modalLink').href = f.url || '#';
+      document.getElementById('detailsModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('detailsModal').classList.add('hidden');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    window.addEventListener('DOMContentLoaded', init);
+    // Auto-refresh every 60s
+    setInterval(() => { window.location.reload(); }, 60000);
+  </script>
+</body>
+</html>
