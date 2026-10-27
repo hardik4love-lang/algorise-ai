@@ -4,7 +4,7 @@
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
-  "total_evaluated": 230,
+  "total_evaluated": 240,
   "opportunities": [
     {
       "task_id": "gh-5021",
@@ -4835,6 +4835,216 @@
       ],
       "status": "APPROVED_FOR_TRIAGE",
       "created_at": "2026-10-27T11:30:59.148156+00:00"
+    },
+    {
+      "task_id": "gh-28",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$100): \ud83d\udcb0 Bounty Seguro ($$100): [Bounty] \ud83d\udcb0 Bounty Seguro ",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/28",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470746+00:00"
+    },
+    {
+      "task_id": "gh-4110",
+      "title": "[Bounty] \ud83d\udcb0 Bounty Seguro ($$100): \ud83d\udcb0 Bounty Seguro ($$100): [Bounty] \ud83d\udcb0 Bounty Seguro ",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4110",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470772+00:00"
+    },
+    {
+      "task_id": "gh-27",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$100): [Bounty] \ud83d\udcb0 Bounty Seguro ($$100): [Bounty] USDC-qu",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/27",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470778+00:00"
+    },
+    {
+      "task_id": "gh-116",
+      "title": "Bounty",
+      "repository": "ShulkMaster/mk-deception",
+      "url": "https://github.com/ShulkMaster/mk-deception/issues/116",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470782+00:00"
+    },
+    {
+      "task_id": "gh-10007",
+      "title": "[Candidate] doomsday-network/bounty-guard/skills/bounty-guard - bounty-guard",
+      "repository": "ProSkillsMD/proskills",
+      "url": "https://github.com/ProSkillsMD/proskills/issues/10007",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470788+00:00"
+    },
+    {
+      "task_id": "gh-51",
+      "title": "\ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/51",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470791+00:00"
+    },
+    {
+      "task_id": "gh-50",
+      "title": "\ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/50",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470795+00:00"
+    },
+    {
+      "task_id": "gh-46",
+      "title": "[BOUNTY #XX] Claiming Bounty #30 - Restaurant POS Interface",
+      "repository": "bujiproject-art/agentmidasopendevteam",
+      "url": "https://github.com/bujiproject-art/agentmidasopendevteam/issues/46",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470807+00:00"
+    },
+    {
+      "task_id": "gh-45",
+      "title": "\ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/45",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470812+00:00"
+    },
+    {
+      "task_id": "gh-44",
+      "title": "\ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver enlace): \ud83d\udcb0 Bounty Seguro (Ver",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/44",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-10-27T17:21:23.470817+00:00"
     }
   ]
 }
