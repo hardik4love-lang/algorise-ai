@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Algorise PeopleOS — Hardware-Free CCTV AI Attendance & Unhackable Indian Payroll System</title>
+  <meta name="title" content="Algorise PeopleOS — Hardware-Free CCTV AI Attendance & Unhackable Indian Payroll System" />
+  <meta name="description" content="Direct replacement for legacy biometric hardware & Bharat Payroll. Connect existing CCTV cameras for 99.4% AI face recognition, eliminate 4.2% payroll leakage with Geofence Sentinel, and run full 2026 Indian statutory payroll with 1-click EPFO, ESIC & Tally filing." />
+  <meta name="theme-color" content="#03050C" />
+  <link rel="canonical" href="https://algorise-ai.com/algorise-payroll/" />
+
+  <!-- Modern Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2303050C'/><path d='M16 6L26 24H6L16 6Z' stroke='%2300F2FE' stroke-width='2.5' fill='none'/><circle cx='16' cy='18' r='3.5' fill='%2310B981'/></svg>" />
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://algorise-ai.com/algorise-payroll/" />
+  <meta property="og:title" content="Algorise PeopleOS — Hardware-Free CCTV AI Attendance & Unhackable Indian Payroll" />
+  <meta property="og:description" content="Eliminate 4.2% time-theft payroll leakage with Geofence Sentinel & multi-camera AI face-recognition. 100% compliant FY 2025-26 Indian statutory engine." />
+  <meta property="og:image" content="https://algorise-ai.com/assets/logo.jpg" />
+  <meta property="og:site_name" content="Algorise AI" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Algorise PeopleOS — Hardware-Free CCTV AI Attendance & Indian Payroll" />
+  <meta name="twitter:description" content="97.4/100 Benchmark score vs Bharat Payroll 27.0. Zero hardware costs, Merkle audit ledger, and 1-click EPFO ECR & Tally exports." />
+  <meta name="twitter:image" content="https://algorise-ai.com/assets/logo.jpg" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#03050C',
+            cyan: { 400: '#38EDFF', 500: '#00F2FE' },
+            violet: { 500: '#9B5CFF' },
+            emerald: { 400: '#34D399', 500: '#10B981' }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Cosmic Design System Stylesheet -->
+  <style>
+    :root {
+      --cyan: #00F2FE;
+      --violet: #9B5CFF;
+      --emerald: #10B981;
+      --void: #03050C;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #03050C;
+      color: #EAF2FF;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #03050C; }
+    ::-webkit-scrollbar-thumb { background: #16243A; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #00F2FE; }
+
+    /* Cosmic Background & Infinite Perspective Grid */
+    .sf-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .sf-grid {
+      position: absolute;
+      inset: -50%;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      transform: perspective(600px) rotateX(58deg);
+      transform-origin: center;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%);
+      mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 75%);
+      animation: sf-gridmove 18s linear infinite;
+    }
+    @keyframes sf-gridmove {
+      0% { background-position: 0 0; }
+      to { background-position: 0 60px; }
+    }
+    .sf-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(110px);
+      opacity: 0.38;
+      pointer-events: none;
+      animation: sf-orb-pulse 10s ease-in-out infinite alternate;
+    }
+    .sf-orb-1 { width: 560px; height: 560px; background: #00F2FE; top: -140px; left: -100px; }
+    .sf-orb-2 { width: 520px; height: 520px; background: #9B5CFF; top: 35%; right: -140px; animation-delay: -3s; }
+    .sf-orb-3 { width: 500px; height: 500px; background: #10B981; bottom: 5%; left: 20%; animation-delay: -6s; }
+    @keyframes sf-orb-pulse {
+      0% { transform: scale(1) translateY(0); opacity: 0.3; }
+      100% { transform: scale(1.15) translateY(20px); opacity: 0.45; }
+    }
+
+    /* Cosmic Glass Panels */
+    .cosmic-panel {
+      background: rgba(10, 15, 29, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 242, 254, 0.14);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .cosmic-panel:hover {
+      border-color: rgba(0, 242, 254, 0.35);
+    }
+    .glow-cyan {
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.25);
+    }
+    .glow-violet {
+      box-shadow: 0 0 25px rgba(155, 92, 255, 0.25);
+    }
+    .glow-emerald {
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+    }
+
+    /* Cosmic Header */
+    .sf-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px max(5vw, 24px);
+      background: rgba(3, 5, 12, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+    }
+    .sf-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      font-weight: 800;
+    }
+    .sf-brand-glyph {
+      color: #00F2FE;
+      font-size: 22px;
+      text-shadow: 0 0 16px rgba(0, 242, 254, 0.8);
+      animation: sf-pulse 2.5s infinite;
+    }
+    .sf-brand-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: 0.05em;
+    }
+    .sf-brand-text span {
+      color: #00F2FE;
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+    }
+    .sf-nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9FB6CC;
+    }
+    .sf-nav a {
+      text-decoration: none;
+      color: #9FB6CC;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .sf-nav a:hover {
+      color: #00F2FE;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+    .sf-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #00F2FE, #9B5CFF);
+      color: #03050C;
+      padding: 9px 18px;
+      font-size: 12px;
+      font-weight: 800;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .sf-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0, 242, 254, 0.55);
+      color: #000;
+    }
+
+    /* Radar sweep animation */
+    @keyframes radar-sweep {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .radar-line {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(0, 242, 254, 0.85));
+      transform-origin: 0 0;
+      animation: radar-sweep 4s linear infinite;
+    }
+
+    /* Text Gradients */
+    .grad-cyan-violet {
+      background: linear-gradient(135deg, #00F2FE 0%, #9B5CFF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .grad-emerald-cyan {
+      background: linear-gradient(135deg, #10B981 0%, #00F2FE 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cosmic Background with Animated 3D Perspective Grid & Ambient Orbs -->
+  <div class="sf-bg">
+    <div class="sf-grid"></div>
+    <div class="sf-orb sf-orb-1"></div>
+    <div class="sf-orb sf-orb-2"></div>
+    <div class="sf-orb sf-orb-3"></div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 01. NAVIGATION HEADER                      -->
+  <!-- ========================================== -->
+  <header class="sf-header">
+    <div class="flex items-center gap-4">
+      <a class="sf-brand" href="https://algorise-ai.com/">
+        <span class="sf-brand-glyph">◈</span>
+        <span class="sf-brand-text">ALGORISE <span>AI</span></span>
+      </a>
+      <span class="text-slate-600 font-mono text-sm hidden md:inline">/</span>
+      <div class="hidden md:flex items-center gap-2">
+        <span class="text-xs font-extrabold text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-2.5 py-1 rounded-full uppercase tracking-wider">
+          <i class="fa-solid fa-users-gear mr-1"></i> PeopleOS
+        </span>
+        <span class="text-[11px] font-mono text-slate-400">v1.0-PROD</span>
+      </div>
+    </div>
+    
+    <nav class="sf-nav hidden xl:flex" aria-label="Primary">
+      <a href="#viral-leakage-auditor">CFO Leakage Auditor</a>
+      <a href="#sentinel-radar">CCTV Radar &amp; Sentinel</a>
+      <a href="#payslip-simulator">2026 Payslip Simulator</a>
+      <a href="#compliance-generator">1-Click Challans</a>
+      <a href="#modules">17 Enterprise Modules</a>
+      <a href="#benchmark-showdown">Top 3 Benchmark</a>
+      <a href="#unhackable-ledger">Merkle Audit</a>
+      <a href="https://github.com/hardik4love-lang/algorise-payroll" target="_blank" class="text-cyan-400 flex items-center gap-1.5 hover:underline">
+        <i class="fa-brands fa-github"></i> Verified Repo
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="https://algorise-ai.com/" class="text-xs text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 hidden sm:inline-block">
+        ← Back to Algorise AI
+      </a>
+      <a class="sf-cta" href="#viral-leakage-auditor">
+        Run Free Audit <i class="fa-solid fa-bolt ml-1 text-xs"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- 02. HERO SECTION                           -->
+  <!-- ========================================== -->
+  <section class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-12 text-center">
+    <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-8 shadow-lg shadow-cyan-500/10">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+      <span>DIRECT 1:1 REPLACEMENT FOR BHARAT PAYROLL &amp; BIOMETRIC HARDWARE</span>
+    </div>
+
+    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight max-w-5xl mx-auto mb-6 text-white">
+      From Punch to Payslip, <br />
+      <span class="grad-cyan-violet">Autonomous, CCTV AI &amp; Zero-Leakage</span>
+    </h1>
+
+    <p class="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+      Turn your <strong>existing CCTV cameras</strong> into multi-point facial recognition terminals with zero new hardware. Eliminate the <strong>4.2% company payroll leakage</strong> via the Geofence Sentinel departure cut-off, and run 100% compliant FY 2025–26 Indian payroll with 1-click EPFO, ESIC, and Tally exports.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+      <a href="#viral-leakage-auditor" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-400 hover:opacity-95 text-slate-950 font-extrabold shadow-xl shadow-cyan-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+        <i class="fa-solid fa-calculator"></i> Calculate Company Cash Bleed
+      </a>
+      <a href="#sentinel-radar" class="w-full sm:w-auto px-8 py-4 rounded-xl cosmic-panel hover:bg-slate-800/80 text-white font-bold transition text-center flex items-center justify-center gap-2">
+        <i class="fa-solid fa-satellite-dish text-cyan-400"></i> Test CCTV Sentinel Radar
+      </a>
+      <a href="https://github.com/hardik4love-lang/algorise-payroll" target="_blank" class="w-full sm:w-auto px-6 py-4 rounded-xl cosmic-panel hover:bg-slate-800/80 text-slate-300 font-semibold transition text-center flex items-center justify-center gap-2">
+        <i class="fa-brands fa-github text-white"></i> View 29/29 Tests Passing
+      </a>
+    </div>
+
+    <!-- 4 HERO PROOF METRICS -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      <div class="cosmic-panel p-6 text-center border-emerald-500/30">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 mb-1">97.4 / 100</div>
+        <div class="text-xs sm:text-sm font-bold text-white">Technical Lead Score</div>
+        <p class="text-[11px] text-slate-400 mt-1">Vs. Bharat Payroll's 27.0/100</p>
+      </div>
+
+      <div class="cosmic-panel p-6 text-center border-cyan-500/30">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-cyan-400 mb-1">₹0.00</div>
+        <div class="text-xs sm:text-sm font-bold text-white">Hardware Lock-in</div>
+        <p class="text-[11px] text-slate-400 mt-1">Works with any RTSP CCTV Camera</p>
+      </div>
+
+      <div class="cosmic-panel p-6 text-center border-violet-500/30">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-violet-400 mb-1">476%</div>
+        <div class="text-xs sm:text-sm font-bold text-white">Year 1 Net ROI</div>
+        <p class="text-[11px] text-slate-400 mt-1">₹27.14 Lakhs saved per 500 staff</p>
+      </div>
+
+      <div class="cosmic-panel p-6 text-center border-amber-500/30">
+        <div class="text-3xl sm:text-4xl font-extrabold font-mono text-amber-400 mb-1">29 / 29</div>
+        <div class="text-xs sm:text-sm font-bold text-white">Pytest Suite Verified</div>
+        <p class="text-[11px] text-slate-400 mt-1">EPF, ESIC, PT, TDS, Merkle &amp; Dihadi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- VIRAL TOOL 1: TIME-THEFT LEAKAGE AUDITOR   -->
+  <!-- ========================================== -->
+  <section id="viral-leakage-auditor" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="cosmic-panel p-8 sm:p-12 border-cyan-500/40 glow-cyan">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+          VIRAL CFO LEAKAGE AUDITOR · ZERO BULLSHIT
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+          How Much Cash Is Your Company <span class="grad-cyan-violet">Bleeding Every Month?</span>
+        </h2>
+        <p class="text-slate-300 text-sm mt-3">
+          Traditional biometrics and manual muster rolls allow buddy punching, proxy attendance, and unmonitored mid-day factory exits. In India, the average undetected workforce leakage is <strong>4.2% of total payroll</strong>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Sliders Controls -->
+        <div class="lg:col-span-6 space-y-6 bg-slate-950/60 p-6 sm:p-8 rounded-2xl border border-slate-800">
+          <!-- Slider 1: Headcount -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Total Workforce Size</label>
+              <span id="sliderHeadcountVal" class="text-lg font-mono font-extrabold text-cyan-400">250 Employees</span>
+            </div>
+            <input type="range" id="sliderHeadcount" min="10" max="2500" step="10" value="250" class="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-800 rounded-lg" oninput="updateLeakageAudit()">
+            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+              <span>10 staff</span>
+              <span>500</span>
+              <span>1,200</span>
+              <span>2,500+</span>
+            </div>
+          </div>
+
+          <!-- Slider 2: Average Monthly CTC -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Average Monthly Gross / CTC</label>
+              <span id="sliderSalaryVal" class="text-lg font-mono font-extrabold text-violet-400">₹35,000 / mo</span>
+            </div>
+            <input type="range" id="sliderSalary" min="12000" max="200000" step="1000" value="35000" class="w-full accent-violet-400 cursor-pointer h-2 bg-slate-800 rounded-lg" oninput="updateLeakageAudit()">
+            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+              <span>₹12,000</span>
+              <span>₹50,000</span>
+              <span>₹1,00,000</span>
+              <span>₹2,00,000</span>
+            </div>
+          </div>
+
+          <!-- Slider 3: Leakage % -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-300">Estimated Buddy-Punching &amp; Ghost Hours</label>
+              <span id="sliderLeakageVal" class="text-lg font-mono font-extrabold text-rose-400">4.2% (National Avg)</span>
+            </div>
+            <input type="range" id="sliderLeakage" min="1" max="15" step="0.1" value="4.2" class="w-full accent-rose-400 cursor-pointer h-2 bg-slate-800 rounded-lg" oninput="updateLeakageAudit()">
+            <div class="flex justify-between text-[10px] text-slate-500 font-mono mt-1">
+              <span>1% (Strict)</span>
+              <span>4.2% (Benchmark)</span>
+              <span>10% (Factory)</span>
+              <span>15% (Severe)</span>
+            </div>
+          </div>
+
+          <div class="p-3 bg-cyan-950/40 border border-cyan-800/40 rounded-xl flex items-center gap-3 text-xs text-cyan-200">
+            <i class="fa-solid fa-circle-info text-cyan-400 text-base"></i>
+            <span>Calculated using India Labour Bureau time-theft metrics and statutory wage ceilings.</span>
+          </div>
+        </div>
+
+        <!-- Audit Real-Time Financial Readout -->
+        <div class="lg:col-span-6 bg-slate-900/90 border border-slate-700/60 p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 px-4 py-1.5 bg-rose-500/20 text-rose-400 font-mono text-[10px] font-bold border-b border-l border-rose-500/30 rounded-bl-xl">
+            EXECUTIVE AUDIT FINDING
+          </div>
+
+          <div class="mb-6">
+            <span class="text-xs font-mono uppercase text-slate-400 tracking-wider">Estimated Monthly Cash Bleed</span>
+            <div id="bleedMonthly" class="text-4xl sm:text-5xl font-mono font-extrabold text-rose-400 mt-1">₹3,67,500</div>
+            <p class="text-xs text-slate-400 mt-1">Direct cash paid for unworked buddy-punched and perimeter-breached hours.</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4 pb-6 border-b border-slate-800">
+            <div>
+              <span class="text-[11px] font-mono uppercase text-slate-400">Annual Payroll Bleed</span>
+              <div id="bleedAnnual" class="text-2xl font-mono font-bold text-rose-300 mt-0.5">₹44,10,000</div>
+            </div>
+            <div>
+              <span class="text-[11px] font-mono uppercase text-slate-400">Algorise Net Savings</span>
+              <div id="annualSavings" class="text-2xl font-mono font-bold text-emerald-400 mt-0.5">₹39,60,000</div>
+            </div>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <button onclick="copyCfoAuditReport()" class="flex-1 px-4 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fa-solid fa-copy"></i> <span id="copyReportBtnText">Copy CFO Summary</span>
+            </button>
+            <button onclick="shareAuditWhatsapp()" class="flex-1 px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-sm"></i> Share to WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- VIRAL TOOL 2: CCTV RADAR & SENTINEL DEMO   -->
+  <!-- ========================================== -->
+  <section id="sentinel-radar" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-mono font-extrabold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+        PERIMETER SENTINEL &amp; MULTI-CAMERA HUD
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+        Multi-Camera AI Face Rec <br />&amp; <span class="grad-emerald-cyan">Perimeter Departure Cut-Off</span>
+      </h2>
+      <p class="text-slate-300 text-sm mt-3">
+        See how Algorise tracks staff across your existing CCTV cameras without fingerprint scanners, and immediately triggers an unhackable 180s grace timer if an employee walks past the 50m geofence perimeter.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Radar & CCTV HUD Simulation -->
+      <div class="lg:col-span-7 cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+            <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">CCTV STREAM 01 · MAIN ENTRY (RTSP)</span>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="switchCamera('01')" id="camBtn01" class="px-2.5 py-1 text-[10px] font-mono rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/40">CAM-01</button>
+            <button onclick="switchCamera('02')" id="camBtn02" class="px-2.5 py-1 text-[10px] font-mono rounded bg-slate-800 text-slate-400">CAM-02 (Floor 2)</button>
+            <button onclick="switchCamera('03')" id="camBtn03" class="px-2.5 py-1 text-[10px] font-mono rounded bg-slate-800 text-slate-400">CAM-03 (Gate 2)</button>
+          </div>
+        </div>
+
+        <!-- Video Simulation Screen with Bounding Boxes -->
+        <div class="relative bg-slate-950 rounded-xl overflow-hidden aspect-video border border-slate-800 flex items-center justify-center p-4">
+          <!-- Animated Radar Canvas Grid in Background -->
+          <div class="absolute inset-0 opacity-20 pointer-events-none">
+            <div class="w-full h-full border border-cyan-500/30 rounded-full scale-75"></div>
+            <div class="w-full h-full border border-cyan-500/20 rounded-full scale-50"></div>
+            <div class="w-full h-full border border-cyan-500/10 rounded-full scale-25"></div>
+            <div class="radar-line"></div>
+          </div>
+
+          <!-- Simulated Employee Face Box -->
+          <div id="faceBox" class="relative z-10 border-2 border-emerald-400 rounded-lg p-3 bg-emerald-500/10 w-64 shadow-lg shadow-emerald-500/20 transition-all duration-500">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-[10px] font-mono font-extrabold bg-emerald-500 text-slate-950 px-1.5 py-0.5 rounded">99.4% MATCH</span>
+              <span class="text-[10px] font-mono text-emerald-300">LIVENESS: PASS</span>
+            </div>
+            <div class="text-xs font-bold text-white">Rajan Sharma (EMP-042)</div>
+            <div class="text-[11px] font-mono text-slate-300">Sr. Production Engineer</div>
+            <div class="mt-2 pt-2 border-t border-emerald-500/30 flex justify-between text-[10px] font-mono text-slate-400">
+              <span>PUNCH: 09:02:14 AM</span>
+              <span class="text-cyan-400">GEO: 12.9716, 77.5946</span>
+            </div>
+          </div>
+
+          <!-- HUD Watermark -->
+          <div class="absolute bottom-3 left-3 text-[10px] font-mono text-slate-500">
+            FPS: 29.97 · RES: 1920x1080 · INFERENCE: 14ms (GPU-EDGE)
+          </div>
+        </div>
+
+        <!-- Sentinel Distance Controls -->
+        <div class="mt-6 space-y-4">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold uppercase text-slate-300">Perimeter Distance from Office Mesh</span>
+            <span id="sentinelDistanceDisplay" class="text-sm font-mono font-extrabold text-cyan-400">24 meters (SAFE)</span>
+          </div>
+          <input type="range" id="sentinelDistanceSlider" min="5" max="500" step="5" value="24" class="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-800 rounded-lg" oninput="updateSentinelRadar(this.value)">
+          <div class="flex justify-between text-[10px] text-slate-500 font-mono">
+            <span>5m (Desk)</span>
+            <span class="text-emerald-400 font-bold">50m Perimeter Boundary</span>
+            <span>200m (Chai Tapri)</span>
+            <span>500m (Out of Bounds)</span>
+          </div>
+        </div>
+
+        <div class="mt-4 flex gap-3">
+          <button onclick="triggerSimulatedBreach()" class="flex-1 px-4 py-2.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30 font-bold text-xs transition">
+            <i class="fa-solid fa-person-walking-arrow-right mr-1.5"></i> Simulate Employee Leaving Office (>50m)
+          </button>
+          <button onclick="resetSentinelDemo()" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-semibold text-xs transition">
+            Reset Safe State
+          </button>
+        </div>
+      </div>
+
+      <!-- Real-time Terminal Log & Cut-Off Action HUD -->
+      <div class="lg:col-span-5 cosmic-panel p-6 border-slate-800 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-terminal text-cyan-400 text-xs"></i>
+              <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">SENTINEL DAEMON CONSOLE</span>
+            </div>
+            <span id="sentinelStateBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+              INSIDE_GEOFENCE
+            </span>
+          </div>
+
+          <!-- Countdown Progress Bar -->
+          <div id="graceTimerContainer" class="hidden mb-4 p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl">
+            <div class="flex justify-between text-xs font-mono font-bold text-amber-300 mb-1">
+              <span>PERIMETER BREACH DETECTED</span>
+              <span id="graceSecondsLeft">180s GRACE REMAINING</span>
+            </div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+              <div id="graceProgressBar" class="bg-amber-400 h-full w-full transition-all duration-1000"></div>
+            </div>
+          </div>
+
+          <!-- Live Log Feed -->
+          <div id="sentinelConsoleLog" class="bg-slate-950 p-4 rounded-xl font-mono text-[11px] space-y-1.5 h-64 overflow-y-auto border border-slate-900 text-slate-400">
+            <div class="text-cyan-400">[SYSTEM] CCTV RTSP Edge Ingest Daemon online. 3 cameras mapped.</div>
+            <div class="text-slate-400">[09:02:14] EMP-042 Rajan Sharma matched at CAM-01 (Confidence: 0.9942).</div>
+            <div class="text-emerald-400">[09:02:14] Biometric punch verified &amp; written to SQLite Merkle Block #1042.</div>
+            <div class="text-slate-400">[09:14:32] Perimeter GPS Beacon: 24m from Mesh Gateway (Safe Zone).</div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400">
+          <div class="flex items-center justify-between">
+            <span>Corporate Mesh Wi-Fi:</span>
+            <span class="font-mono text-cyan-400 font-bold">ALGORISE-CORP-5G (BSSID MATCH)</span>
+          </div>
+          <div class="flex items-center justify-between mt-1">
+            <span>Anti-Spoofing Mock GPS:</span>
+            <span class="font-mono text-emerald-400 font-bold">REJECTED 0 FAKES</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- VIRAL TOOL 3: 2026 PAYSLIP & DIHADI SIM    -->
+  <!-- ========================================== -->
+  <section id="payslip-simulator" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="cosmic-panel p-8 sm:p-12 border-violet-500/30 glow-violet">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="text-xs font-mono font-extrabold text-violet-400 uppercase tracking-widest bg-violet-500/10 px-3 py-1 rounded-full border border-violet-500/20">
+          FY 2025–26 STATUTORY ENGINE · NEW TAX REGIME
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+          Live Indian Gross-to-Net <br />&amp; <span class="grad-cyan-violet">Daily Wage (Dihadi) Simulator</span>
+        </h2>
+        <p class="text-slate-300 text-sm mt-3">
+          Calculate instant net salaries under the New Tax Regime (with <strong>₹75,000 standard deduction</strong>, Section 87A rebate up to ₹7.75L zero tax), EPF ₹15,000 wage ceiling, ESIC, State PT, and daily wage Kharchi advances.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Input Form -->
+        <div class="lg:col-span-5 bg-slate-950/70 p-6 rounded-2xl border border-slate-800 space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-white border-b border-slate-800 pb-3 flex items-center gap-2">
+            <i class="fa-solid fa-sliders text-cyan-400"></i> Salary Configuration
+          </h3>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">Monthly Basic (₹)</label>
+              <input type="number" id="calcBasic" value="25000" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" oninput="runLivePayslip()">
+            </div>
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">Monthly HRA (₹)</label>
+              <input type="number" id="calcHra" value="10000" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" oninput="runLivePayslip()">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">Special Allowance (₹)</label>
+              <input type="number" id="calcSpecial" value="15000" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" oninput="runLivePayslip()">
+            </div>
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">State PT Rules</label>
+              <select id="calcState" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" onchange="runLivePayslip()">
+                <option value="Maharashtra">Maharashtra (₹200)</option>
+                <option value="Karnataka">Karnataka (₹200)</option>
+                <option value="Telangana">Telangana (₹200)</option>
+                <option value="Tamil Nadu">Tamil Nadu (₹208)</option>
+                <option value="Delhi">Delhi (₹0 Exempt)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">Unapproved LOP (Days)</label>
+              <input type="number" id="calcLop" value="1" min="0" max="30" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" oninput="runLivePayslip()">
+            </div>
+            <div>
+              <label class="text-[11px] font-mono text-slate-400">Overtime Hours (2x)</label>
+              <input type="number" id="calcOt" value="8" min="0" max="60" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm font-mono text-white focus:outline-none focus:border-cyan-400" oninput="runLivePayslip()">
+            </div>
+          </div>
+
+          <!-- Dihadi Kharchi Mode Toggle -->
+          <div class="pt-3 border-t border-slate-800">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-white">Daily Wage (Dihadi) Mode</span>
+                <p class="text-[10px] text-slate-400">Apply Kharchi advance &amp; 1% BOCW Cess</p>
+              </div>
+              <input type="checkbox" id="calcDihadiToggle" class="w-4 h-4 accent-cyan-400 cursor-pointer" onchange="runLivePayslip()">
+            </div>
+            <div id="dihadiFields" class="hidden mt-3 grid grid-cols-2 gap-3">
+              <div>
+                <label class="text-[10px] font-mono text-slate-400">Kharchi Advance (₹)</label>
+                <input type="number" id="calcKharchi" value="1500" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white" oninput="runLivePayslip()">
+              </div>
+              <div>
+                <label class="text-[10px] font-mono text-slate-400">1% BOCW Cess (₹)</label>
+                <input type="text" id="calcBocw" value="₹0" readonly class="w-full mt-1 bg-slate-900/60 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs font-mono text-amber-400">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payslip Output Card -->
+        <div class="lg:col-span-7 bg-slate-900/90 border border-slate-700 p-6 sm:p-8 rounded-2xl">
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800 mb-6">
+            <div>
+              <span class="text-xs font-mono text-slate-400 uppercase">MONTHLY PAYSLIP BREAKDOWN</span>
+              <h4 class="text-lg font-bold text-white">Rajan Sharma · EMP-042</h4>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-mono text-slate-400 uppercase">IN-HAND NET PAY</span>
+              <div id="dispNetSalary" class="text-2xl sm:text-3xl font-mono font-extrabold text-emerald-400">₹44,533.00</div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-6 text-xs font-mono">
+            <!-- Earnings -->
+            <div class="space-y-2.5">
+              <div class="text-[11px] font-bold text-cyan-400 uppercase tracking-wider pb-1 border-b border-slate-800">Earnings</div>
+              <div class="flex justify-between text-slate-300"><span>Earned Basic:</span> <span id="dispBasic" class="text-white">₹24,167</span></div>
+              <div class="flex justify-between text-slate-300"><span>Earned HRA:</span> <span id="dispHra" class="text-white">₹9,667</span></div>
+              <div class="flex justify-between text-slate-300"><span>Special Allowance:</span> <span id="dispSpecial" class="text-white">₹14,500</span></div>
+              <div class="flex justify-between text-slate-300"><span>Overtime (2x rate):</span> <span id="dispOt" class="text-emerald-400">+₹1,859</span></div>
+              <div class="pt-2 border-t border-slate-800 flex justify-between font-bold text-white"><span>Gross Earnings:</span> <span id="dispGross" class="text-cyan-400">₹50,193</span></div>
+            </div>
+
+            <!-- Deductions -->
+            <div class="space-y-2.5">
+              <div class="text-[11px] font-bold text-rose-400 uppercase tracking-wider pb-1 border-b border-slate-800">Statutory Deductions</div>
+              <div class="flex justify-between text-slate-300"><span>EPF (12% capped):</span> <span id="dispEpf" class="text-rose-400">-₹1,800</span></div>
+              <div class="flex justify-between text-slate-300"><span>ESIC (Gross &gt; 21k):</span> <span id="dispEsic" class="text-slate-500">₹0 (Exempt)</span></div>
+              <div class="flex justify-between text-slate-300"><span>Professional Tax:</span> <span id="dispPt" class="text-rose-400">-₹200</span></div>
+              <div class="flex justify-between text-slate-300"><span>TDS (New 2026):</span> <span id="dispTds" class="text-rose-400">-₹3,660</span></div>
+              <div id="dispDihadiKharchiRow" class="hidden flex justify-between text-amber-300"><span>Kharchi + BOCW:</span> <span id="dispDihadiKharchiVal" class="text-rose-400">-₹0</span></div>
+              <div class="pt-2 border-t border-slate-800 flex justify-between font-bold text-white"><span>Total Deductions:</span> <span id="dispTotalDed" class="text-rose-400">-₹5,660</span></div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-400 gap-2">
+            <div>Total Employer CTC: <span id="dispCtc" class="font-mono text-white font-bold">₹54,013.00</span></div>
+            <span class="text-emerald-400 font-mono flex items-center gap-1">
+              <i class="fa-solid fa-check-double"></i> 100% Tax Compliant (CBDT Circular 2026)
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- VIRAL TOOL 4: 1-CLICK COMPLIANCE GENERATOR -->
+  <!-- ========================================== -->
+  <section id="compliance-generator" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="cosmic-panel p-8 sm:p-12 border-slate-800">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+          GOVERNMENT CHALLANS IN 1 CLICK
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+          Instant Official File Downloads <br />&amp; <span class="grad-cyan-violet">Tally XML Automation</span>
+        </h2>
+        <p class="text-slate-300 text-sm mt-3">
+          No manual copy-pasting into spreadsheets. Test-generate and download actual compliance files formatted to exact Indian regulatory specifications right in your browser.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- EPFO ECR -->
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-cyan-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-lg mb-4">
+              <i class="fa-solid fa-file-invoice"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Official EPFO ECR</h4>
+            <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">#~# TEXT SPEC</span>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              Official EPFO Unified Portal bulk file with UAN, Gross, EPF, EPS wages, and ₹1,250 cap.
+            </p>
+          </div>
+          <button onclick="downloadSampleEcr()" class="mt-6 w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-download"></i> Download EPFO ECR
+          </button>
+        </div>
+
+        <!-- ESIC Return -->
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-emerald-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
+              <i class="fa-solid fa-hospital-user"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">ESIC Monthly CSV</h4>
+            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">PORTAL COMPLIANT</span>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              Pre-formatted IP Number, Total Working Days, and Employee/Employer contributions.
+            </p>
+          </div>
+          <button onclick="downloadSampleEsic()" class="mt-6 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-download"></i> Download ESIC CSV
+          </button>
+        </div>
+
+        <!-- Tally XML -->
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-violet-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-lg mb-4">
+              <i class="fa-solid fa-book-journal-whills"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Tally XML Voucher</h4>
+            <span class="text-[10px] font-mono text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded border border-violet-500/20">ERP 9 / PRIME</span>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              Ready for immediate 1-click import into Tally. Auto-dr/cr ledgers for PF, PT, and Bank.
+            </p>
+          </div>
+          <button onclick="downloadSampleTally()" class="mt-6 w-full py-2.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-download"></i> Download Tally XML
+          </button>
+        </div>
+
+        <!-- HDFC / ICICI Bulk Payout -->
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-amber-500/50 transition">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <h4 class="font-bold text-white text-base mb-1">Bank Payout CSV</h4>
+            <span class="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">HDFC / ICICI / SBI</span>
+            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+              Direct corporate banking format with beneficiary account, IFSC code, and payment reference.
+            </p>
+          </div>
+          <button onclick="downloadSampleBank()" class="mt-6 w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition flex items-center justify-center gap-2">
+            <i class="fa-solid fa-download"></i> Download Payout CSV
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 05. 17 CORE ENTERPRISE MODULES             -->
+  <!-- ========================================== -->
+  <section id="modules" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-10">
+      <span class="text-xs font-mono font-extrabold text-violet-400 uppercase tracking-widest bg-violet-500/10 px-3 py-1 rounded-full border border-violet-500/20">
+        ALL 17 ENTERPRISE MODULES INCLUDED
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+        Zero Per-Module Nickel &amp; Diming
+      </h2>
+      <p class="text-slate-300 text-sm mt-3">
+        Unlike Darwinbox or Keka where every feature requires an expensive enterprise tier upgrade, Algorise PeopleOS includes the complete suite out of the box.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mt-6">
+        <button onclick="filterModules('all')" id="tabAll" class="px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition">All 17 Modules</button>
+        <button onclick="filterModules('attendance')" id="tabAtt" class="px-4 py-2 rounded-xl text-xs font-bold cosmic-panel text-slate-300 hover:text-white transition">CCTV &amp; Attendance</button>
+        <button onclick="filterModules('payroll')" id="tabPay" class="px-4 py-2 rounded-xl text-xs font-bold cosmic-panel text-slate-300 hover:text-white transition">Payroll &amp; Dihadi</button>
+        <button onclick="filterModules('hr')" id="tabHr" class="px-4 py-2 rounded-xl text-xs font-bold cosmic-panel text-slate-300 hover:text-white transition">Core HR &amp; Talent</button>
+        <button onclick="filterModules('security')" id="tabSec" class="px-4 py-2 rounded-xl text-xs font-bold cosmic-panel text-slate-300 hover:text-white transition">Unhackable Security</button>
+      </div>
+    </div>
+
+    <div id="moduleGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Module 1 -->
+      <div class="mod-card mod-attendance cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-cyan-400">01 · ATTENDANCE</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">AI FACE REC</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Hardware-Free CCTV Ingest</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Ingests multi-camera RTSP video streams. 3D liveness detection prevents photo and video playback spoofing with sub-50ms latency.
+        </p>
+      </div>
+
+      <!-- Module 2 -->
+      <div class="mod-card mod-attendance cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-rose-400">02 · SECURITY</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/30">PATENTED DEFENSE</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Perimeter Sentinel Cut-Off</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          50m office boundary monitoring with 180s grace countdown. Automatically executes punch-out and triggers instant admin WhatsApp alerts on departure.
+        </p>
+      </div>
+
+      <!-- Module 3 -->
+      <div class="mod-card mod-payroll cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-violet-400">03 · STATUTORY</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-violet-500/10 text-violet-400 border border-violet-500/30">2026 TAX REGIME</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">2026 Indian Payroll Engine</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Full compliance with ₹75k standard deduction, EPF ₹15,000 ceiling, ESIC ₹21,000 threshold, state-specific PT (MH, KA, TS, TN, DL), and Gratuity.
+        </p>
+      </div>
+
+      <!-- Module 4 -->
+      <div class="mod-card mod-payroll cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-amber-400">04 · BLUE COLLAR</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/30">FACTORY READY</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Daily Wage (Dihadi) Engine</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Contract labour management, piece-rate wages, Kharchi advance ledger, 2x overtime multiplier, and 1% state BOCW welfare cess calculation.
+        </p>
+      </div>
+
+      <!-- Module 5 -->
+      <div class="mod-card mod-security cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-emerald-400">05 · SOVEREIGNTY</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">ZERO KNOWLEDGE</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">AES-256 Gmail &amp; R2 Backups</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Nightly encrypted database dumps dispatched to your Google Mail inbox and free Cloudflare R2 (10GB free forever) with zero cloud vendor lock-in.
+        </p>
+      </div>
+
+      <!-- Module 6 -->
+      <div class="mod-card mod-security cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-cyan-400">06 · CRYPTOGRAPHY</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">BLOCKCHAIN-GRADE</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Merkle Block Audit Ledger</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Every punch, salary adjustment, and deduction is cryptographically chained using SHA-256 blocks. Database tampering immediately breaks ledger validation.
+        </p>
+      </div>
+
+      <!-- Module 7 -->
+      <div class="mod-card mod-payroll cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-cyan-400">07 · ACCOUNTING</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">ERP INTEGRATION</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Native Tally &amp; Zoho Sync</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          One-click XML journal voucher generation for Tally ERP 9 and TallyPrime. Direct balance-sheet ledger mapping with zero manual bookkeeping.
+        </p>
+      </div>
+
+      <!-- Module 8 -->
+      <div class="mod-card mod-hr cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-violet-400">08 · RECRUITMENT</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-violet-500/10 text-violet-400 border border-violet-500/30">AI ATS</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Talent Acquisition &amp; ATS</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Resume parsing with semantic matching, auto-scheduling interviews, automated offer letters, and paperless digital Aadhaar/PAN onboarding.
+        </p>
+      </div>
+
+      <!-- Module 9 -->
+      <div class="mod-card mod-hr cosmic-panel p-6 border-slate-800">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-mono font-bold text-emerald-400">09 · EXPENSES</span>
+          <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">OCR ENGINE</span>
+        </div>
+        <h4 class="text-base font-bold text-white mb-2">Travel &amp; Expense Claims</h4>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          WhatsApp receipt photo upload with OCR auto-extraction for GSTIN, vendor name, and total. Automated manager approval hierarchy and instant reimbursement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 06. TOP-3 BENCHMARK SHOWDOWN               -->
+  <!-- ========================================== -->
+  <section id="benchmark-showdown" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="text-xs font-mono font-extrabold text-cyan-400 uppercase tracking-widest bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
+        EXHAUSTIVE TECHNICAL SHOWDOWN
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+        Algorise PeopleOS vs. <span class="grad-cyan-violet">The Indian Market</span>
+      </h2>
+      <p class="text-slate-300 text-sm mt-3">
+        See how Algorise compares directly against market incumbents (Darwinbox, Keka HR, RazorpayX) and Bharat Payroll across 10 critical operational dimensions.
+      </p>
+    </div>
+
+    <div class="cosmic-panel overflow-hidden border-slate-800">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-950/90 text-slate-300 border-b border-slate-800 font-mono text-[11px] uppercase">
+            <tr>
+              <th class="py-4 px-6">Evaluation Dimension</th>
+              <th class="py-4 px-4 text-center">Bharat Payroll</th>
+              <th class="py-4 px-4 text-center">Keka HR</th>
+              <th class="py-4 px-4 text-center">Darwinbox</th>
+              <th class="py-4 px-6 text-center text-cyan-400 bg-cyan-500/10 border-x border-cyan-500/20">Algorise PeopleOS</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-medium">
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">1. CCTV AI Face Recognition</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ None (Hardware Locked)</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Third-party add-on</td>
+              <td class="py-4 px-4 text-center text-amber-400">⚠️ Enterprise Custom</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ Built-in Native RTSP</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">2. Perimeter Departure Sentinel</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ None</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Manual geo-fencing only</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ None</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ 180s Grace Auto-Cutoff</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">3. 2026 Statutory Core (New Regime)</td>
+              <td class="py-4 px-4 text-center text-amber-400">⚠️ Partial / Outdated</td>
+              <td class="py-4 px-4 text-center text-emerald-400">✅ Compliant</td>
+              <td class="py-4 px-4 text-center text-emerald-400">✅ Compliant</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ ₹75k Std Ded &amp; 87A</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">4. Daily Wage (Dihadi) &amp; Kharchi</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ None</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ White-collar only</td>
+              <td class="py-4 px-4 text-center text-amber-400">⚠️ Complex customization</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ Native 1% BOCW Engine</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">5. Merkle Cryptographic Audit Trail</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Editable SQLite/SQL</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Standard DB Logs</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Standard DB Logs</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ Immutable SHA-256 Blocks</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">6. Disaster Recovery Backups</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Manual Export</td>
+              <td class="py-4 px-4 text-center text-amber-400">⚠️ SaaS Cloud Only</td>
+              <td class="py-4 px-4 text-center text-amber-400">⚠️ SaaS Cloud Only</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ AES-256 Gmail &amp; R2 (Free)</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">7. 1-Click Tally &amp; EPFO ECR Generation</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Generic CSV</td>
+              <td class="py-4 px-4 text-center text-emerald-400">✅ Supported</td>
+              <td class="py-4 px-4 text-center text-emerald-400">✅ Supported</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ Native #~# Text &amp; XML</td>
+            </tr>
+            <tr class="hover:bg-slate-900/40">
+              <td class="py-4 px-6 font-bold text-white">8. Source Code Ownership &amp; Hosting</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Proprietary Lock-in</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Closed Cloud</td>
+              <td class="py-4 px-4 text-center text-rose-400">❌ Closed Cloud</td>
+              <td class="py-4 px-6 text-center text-emerald-400 font-bold bg-cyan-500/5 border-x border-cyan-500/20">✅ Full Code Sovereignty</td>
+            </tr>
+            <tr class="bg-slate-950 font-bold font-mono text-sm">
+              <td class="py-5 px-6 text-white">COMPOSITE BENCHMARK SCORE</td>
+              <td class="py-5 px-4 text-center text-rose-400">27.0 / 100</td>
+              <td class="py-5 px-4 text-center text-amber-400">78.2 / 100</td>
+              <td class="py-5 px-4 text-center text-cyan-400">81.0 / 100</td>
+              <td class="py-5 px-6 text-center text-emerald-400 text-base bg-cyan-500/15 border-x border-cyan-500/30">97.4 / 100</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 07. MERKLE UNHACKABLE AUDIT SECTION        -->
+  <!-- ========================================== -->
+  <section id="unhackable-ledger" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="cosmic-panel p-8 sm:p-12 border-slate-800">
+      <div class="max-w-3xl mx-auto text-center mb-10">
+        <span class="text-xs font-mono font-extrabold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+          MATHEMATICALLY UNHACKABLE AUDIT TRAIL
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mt-4">
+          SHA-256 Merkle Block <span class="grad-emerald-cyan">Chained Ledger</span>
+        </h2>
+        <p class="text-slate-300 text-sm mt-3">
+          Every punch, overtime record, and salary calculation is chained cryptographically into the next block. If a disgruntled insider or rogue system administrator attempts to change attendance records in the database, the entire cryptographic chain breaks instantly.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Block 1041 -->
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 font-mono text-xs">
+          <div class="flex justify-between text-slate-500 mb-2">
+            <span>BLOCK #1041</span>
+            <span class="text-emerald-400">VERIFIED</span>
+          </div>
+          <div class="text-[11px] text-slate-400 space-y-1">
+            <div>PREV: <span class="text-slate-500">0000a4b7...912f</span></div>
+            <div>PAYLOAD: <span class="text-cyan-300">PUNCH_IN:EMP-041</span></div>
+            <div>HASH: <span class="text-emerald-400">3f88c912e...110b</span></div>
+          </div>
+        </div>
+
+        <!-- Block 1042 (Live Block) -->
+        <div id="merkleActiveBlock" class="bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/40 font-mono text-xs transition duration-500">
+          <div class="flex justify-between text-slate-500 mb-2">
+            <span class="text-white font-bold">BLOCK #1042 (ACTIVE)</span>
+            <span id="merkleStatusText" class="text-cyan-400 font-bold">CHAINED &amp; VALID</span>
+          </div>
+          <div class="text-[11px] text-slate-400 space-y-1">
+            <div>PREV: <span class="text-emerald-400">3f88c912e...110b</span></div>
+            <div>PAYLOAD: <span id="merklePayloadVal" class="text-cyan-300">SALARY_RUN:EMP-042 [₹50,193]</span></div>
+            <div>HASH: <span id="merkleHashVal" class="text-cyan-400">8d92a0194...77bc</span></div>
+          </div>
+        </div>
+
+        <!-- Block 1043 -->
+        <div class="bg-slate-950/80 p-5 rounded-2xl border border-slate-800 font-mono text-xs">
+          <div class="flex justify-between text-slate-500 mb-2">
+            <span>BLOCK #1043</span>
+            <span class="text-slate-600">PENDING INGEST</span>
+          </div>
+          <div class="text-[11px] text-slate-500 space-y-1">
+            <div>PREV: <span class="text-slate-600">8d92a0194...77bc</span></div>
+            <div>PAYLOAD: <span>Awaiting next event...</span></div>
+            <div>HASH: <span>0x0000000000000000</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <button onclick="testDatabaseTampering()" class="px-6 py-3 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30 font-bold text-xs font-mono transition">
+          <i class="fa-solid fa-bug mr-2"></i> Simulate Rogue Admin Tampering with Block #1042
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 08. ZERO-KNOWLEDGE BACKUPS                 -->
+  <!-- ========================================== -->
+  <section class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+    <div class="cosmic-panel p-8 sm:p-12 border-emerald-500/20">
+      <div class="max-w-3xl mb-8">
+        <span class="text-xs font-mono font-extrabold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+          DISASTER-PROOF DATA SOVEREIGNTY
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4">
+          Free Automated Backups: <span class="grad-emerald-cyan">Gmail + Cloudflare R2</span>
+        </h2>
+        <p class="text-slate-300 text-sm mt-3">
+          Daily database snapshots are compressed, encrypted locally using <strong>AES-256-GCM</strong>, and dispatched to your Google Mail inbox and free offsite cloud storage. Zero third-party access to employee PAN, bank accounts, or salary ledgers.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800">
+          <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fa-brands fa-google"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-2">Automated Gmail Dispatch</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Connects via TLS 587 and delivers encrypted <code>.sql.gz.enc</code> archives directly to your company inbox with SHA-256 verification seals.
+          </p>
+        </div>
+
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fa-solid fa-cloud"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-2">Cloudflare R2 (10GB Free)</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Zero-cost S3-compatible cloud storage. 10 GB free forever every single month with zero egress or download bandwidth fees.
+          </p>
+        </div>
+
+        <div class="bg-slate-950/80 p-6 rounded-2xl border border-slate-800">
+          <div class="w-10 h-10 rounded-xl bg-violet-500/20 text-violet-400 flex items-center justify-center font-bold text-lg mb-4">
+            <i class="fa-brands fa-github"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-2">GitHub Actions Nightly Cron</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Pre-configured <code>.github/workflows/daily_backup.yml</code> runs at 00:00 UTC, testing restore integrity and preserving release archives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 09. FOOTER                                 -->
+  <!-- ========================================== -->
+  <footer class="relative z-10 border-t border-slate-800/80 py-12 px-6 bg-slate-950/90 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <a class="sf-brand" href="https://algorise-ai.com/">
+          <span class="sf-brand-glyph">◈</span>
+          <span class="sf-brand-text">ALGORISE <span>AI</span></span>
+        </a>
+        <span class="text-slate-600 font-mono text-sm">/</span>
+        <span class="text-white font-bold font-mono">PeopleOS</span>
+      </div>
+
+      <div class="flex flex-wrap gap-6 text-xs text-slate-400">
+        <a href="https://algorise-ai.com/" class="hover:text-cyan-400 transition">Main Platform</a>
+        <a href="https://algorise-ai.com/security.html" class="hover:text-cyan-400 transition">Trust &amp; Security</a>
+        <a href="https://algorise-ai.com/api-docs.html" class="hover:text-cyan-400 transition">API Docs</a>
+        <a href="https://github.com/hardik4love-lang/algorise-payroll" target="_blank" class="hover:text-cyan-400 transition">GitHub (29/29 Tests Passing)</a>
+      </div>
+
+      <div class="text-slate-500 font-mono text-[11px]">
+        © 2026 Algorise AI Solutions · Engineered for CFOs &amp; Enterprise Boards
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- INTERACTIVE SCRIPTS                        -->
+  <!-- ========================================== -->
+  <script>
+    // 1. CFO TIME-THEFT LEAKAGE AUDIT CALCULATOR
+    function updateLeakageAudit() {
+      const headcount = parseInt(document.getElementById('sliderHeadcount').value);
+      const salary = parseInt(document.getElementById('sliderSalary').value);
+      const leakagePct = parseFloat(document.getElementById('sliderLeakage').value);
+
+      document.getElementById('sliderHeadcountVal').innerText = headcount.toLocaleString('en-IN') + ' Employees';
+      document.getElementById('sliderSalaryVal').innerText = '₹' + salary.toLocaleString('en-IN') + ' / mo';
+      document.getElementById('sliderLeakageVal').innerText = leakagePct.toFixed(1) + '%';
+
+      const totalMonthlyPayroll = headcount * salary;
+      const monthlyBleed = Math.round(totalMonthlyPayroll * (leakagePct / 100));
+      const annualBleed = monthlyBleed * 12;
+      const annualSavings = Math.round(annualBleed * 0.90); // 90% recovery via Sentinel & CCTV
+
+      document.getElementById('bleedMonthly').innerText = '₹' + monthlyBleed.toLocaleString('en-IN');
+      document.getElementById('bleedAnnual').innerText = '₹' + annualBleed.toLocaleString('en-IN');
+      document.getElementById('annualSavings').innerText = '₹' + annualSavings.toLocaleString('en-IN');
+    }
+
+    function copyCfoAuditReport() {
+      const headcount = document.getElementById('sliderHeadcountVal').innerText;
+      const salary = document.getElementById('sliderSalaryVal').innerText;
+      const leakage = document.getElementById('sliderLeakageVal').innerText;
+      const monthly = document.getElementById('bleedMonthly').innerText;
+      const annual = document.getElementById('bleedAnnual').innerText;
+      const savings = document.getElementById('annualSavings').innerText;
+
+      const report = `EXECUTIVE WORKFORCE & TIME-THEFT AUDIT REPORT
+Generated via Algorise PeopleOS (https://algorise-ai.com/algorise-payroll/)
+--------------------------------------------------------------
+Workforce Size: ${headcount}
+Average Monthly Salary: ${salary}
+Undetected Time-Theft Leakage: ${leakage}
+Monthly Cash Bleed: ${monthly}
+Annual Cash Bleed: ${annual}
+Projected Net Savings with Algorise PeopleOS: ${savings}/year
+Payback Period: Under 2.4 Weeks
+--------------------------------------------------------------
+Features: CCTV AI Face Recognition, 50m Perimeter Sentinel, 1-Click EPFO/ESIC/Tally`;
+
+      navigator.clipboard.writeText(report).then(() => {
+        const btn = document.getElementById('copyReportBtnText');
+        btn.innerText = 'Copied to Clipboard!';
+        setTimeout(() => { btn.innerText = 'Copy CFO Summary'; }, 2500);
+      });
+    }
+
+    function shareAuditWhatsapp() {
+      const headcount = document.getElementById('sliderHeadcountVal').innerText;
+      const monthly = document.getElementById('bleedMonthly').innerText;
+      const annual = document.getElementById('bleedAnnual').innerText;
+      const text = encodeURIComponent(`🚨 CFO Alert: Our company of ${headcount} is losing ~${monthly}/month (${annual}/year) to unmonitored buddy-punching & early exits.\n\nAlgorise PeopleOS eliminates this leakage using existing CCTV cameras + 50m Perimeter Sentinel.\n\nCheck live audit here: https://algorise-ai.com/algorise-payroll/`);
+      window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    }
+
+    // 2. CCTV RADAR & SENTINEL SIMULATION
+    let breachTimer = null;
+    let graceSeconds = 180;
+
+    function switchCamera(camId) {
+      document.getElementById('camBtn01').className = 'px-2.5 py-1 text-[10px] font-mono rounded bg-slate-800 text-slate-400';
+      document.getElementById('camBtn02').className = 'px-2.5 py-1 text-[10px] font-mono rounded bg-slate-800 text-slate-400';
+      document.getElementById('camBtn03').className = 'px-2.5 py-1 text-[10px] font-mono rounded bg-slate-800 text-slate-400';
+      document.getElementById('camBtn' + camId).className = 'px-2.5 py-1 text-[10px] font-mono rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/40';
+
+      const log = document.getElementById('sentinelConsoleLog');
+      log.innerHTML += `<div class="text-cyan-400">[CAM SWITCH] Ingest switched to RTSP Stream CAM-${camId}. Sub-50ms sync verified.</div>`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function updateSentinelRadar(val) {
+      document.getElementById('sentinelDistanceDisplay').innerText = val + ' meters ' + (val <= 50 ? '(SAFE)' : '(BREACH)');
+      const badge = document.getElementById('sentinelStateBadge');
+      const log = document.getElementById('sentinelConsoleLog');
+
+      if (val <= 50) {
+        badge.innerText = 'INSIDE_GEOFENCE';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+        document.getElementById('graceTimerContainer').classList.add('hidden');
+        if (breachTimer) clearInterval(breachTimer);
+      } else {
+        badge.innerText = 'PERIMETER_BREACH';
+        badge.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30';
+        startGraceCountdown();
+      }
+    }
+
+    function triggerSimulatedBreach() {
+      document.getElementById('sentinelDistanceSlider').value = 145;
+      updateSentinelRadar(145);
+      const log = document.getElementById('sentinelConsoleLog');
+      log.innerHTML += `<div class="text-rose-400 font-bold">[BREACH DETECTED] EMP-042 Rajan Sharma 145m from office boundary. Grace timer started.</div>`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    function startGraceCountdown() {
+      document.getElementById('graceTimerContainer').classList.remove('hidden');
+      graceSeconds = 180;
+      if (breachTimer) clearInterval(breachTimer);
+
+      breachTimer = setInterval(() => {
+        graceSeconds -= 15; // fast forward for demo
+        if (graceSeconds <= 0) {
+          clearInterval(breachTimer);
+          document.getElementById('graceSecondsLeft').innerText = '0s (CUT-OFF EXECUTED)';
+          document.getElementById('sentinelStateBadge').innerText = 'AUTO_PUNCHOUT';
+          document.getElementById('sentinelStateBadge').className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-rose-600 text-white';
+          
+          const log = document.getElementById('sentinelConsoleLog');
+          log.innerHTML += `<div class="text-rose-400 font-bold">[ACTION] 180s Grace Expired. Auto Punch-Out registered. LOP recorded.</div>`;
+          log.innerHTML += `<div class="text-emerald-400">[DISPATCH] HMAC-signed breach alert sent to Admin WhatsApp & Telegram.</div>`;
+          log.scrollTop = log.scrollHeight;
+        } else {
+          document.getElementById('graceSecondsLeft').innerText = graceSeconds + 's GRACE REMAINING';
+          const pct = (graceSeconds / 180) * 100;
+          document.getElementById('graceProgressBar').style.width = pct + '%';
+        }
+      }, 1000);
+    }
+
+    function resetSentinelDemo() {
+      if (breachTimer) clearInterval(breachTimer);
+      document.getElementById('sentinelDistanceSlider').value = 24;
+      updateSentinelRadar(24);
+      document.getElementById('graceTimerContainer').classList.add('hidden');
+      const log = document.getElementById('sentinelConsoleLog');
+      log.innerHTML += `<div class="text-emerald-400">[RESTORE] EMP-042 returned to office zone. Sentinel radar normal.</div>`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // 3. 2026 PAYSLIP & DIHADI CALCULATOR
+    function runLivePayslip() {
+      const basic = parseFloat(document.getElementById('calcBasic').value) || 0;
+      const hra = parseFloat(document.getElementById('calcHra').value) || 0;
+      const special = parseFloat(document.getElementById('calcSpecial').value) || 0;
+      const state = document.getElementById('calcState').value;
+      const lop = parseFloat(document.getElementById('calcLop').value) || 0;
+      const ot = parseFloat(document.getElementById('calcOt').value) || 0;
+      const isDihadi = document.getElementById('calcDihadiToggle').checked;
+
+      // Handle Dihadi container visibility
+      if (isDihadi) {
+        document.getElementById('dihadiFields').classList.remove('hidden');
+        document.getElementById('dispDihadiKharchiRow').classList.remove('hidden');
+      } else {
+        document.getElementById('dihadiFields').classList.add('hidden');
+        document.getElementById('dispDihadiKharchiRow').classList.add('hidden');
+      }
+
+      const payableDays = Math.max(0, 30 - lop);
+      const ratio = payableDays / 30.0;
+
+      const earnedBasic = Math.round(basic * ratio);
+      const earnedHra = Math.round(hra * ratio);
+      const earnedSpecial = Math.round(special * ratio);
+      const hourlyRate = (basic / (26 * 8));
+      const otPay = Math.round(hourlyRate * 2 * ot);
+      const gross = earnedBasic + earnedHra + earnedSpecial + otPay;
+
+      // EPF 12% capped at 15000 wage ceiling
+      const epfBase = Math.min(earnedBasic, 15000);
+      const epf = Math.round(epfBase * 0.12);
+
+      // ESIC 0.75% if gross <= 21000
+      const esic = gross <= 21000 ? Math.round(gross * 0.0075) : 0;
+
+      // State PT
+      let pt = 200;
+      if (state === 'Delhi') pt = 0;
+      else if (state === 'Maharashtra') pt = gross > 10000 ? 200 : 0;
+      else if (state === 'Karnataka') pt = gross >= 15000 ? 200 : 0;
+      else if (state === 'Tamil Nadu') pt = 208;
+
+      // TDS FY 2025-26 New Regime with 75k standard deduction
+      const annualGross = gross * 12;
+      const taxable = Math.max(0, annualGross - 75000);
+      let annualTax = 0;
+      if (taxable > 775000) { // Section 87A rebate covers up to 7.75L
+        if (taxable > 300000) annualTax += (Math.min(taxable, 700000) - 300000) * 0.05;
+        if (taxable > 700000) annualTax += (Math.min(taxable, 1000000) - 700000) * 0.10;
+        if (taxable > 1000000) annualTax += (Math.min(taxable, 1200000) - 1000000) * 0.15;
+        if (taxable > 1200000) annualTax += (Math.min(taxable, 1500000) - 1200000) * 0.20;
+        if (taxable > 1500000) annualTax += (taxable - 1500000) * 0.30;
+        annualTax = Math.round(annualTax * 1.04); // 4% Health & Education Cess
+      }
+      const monthlyTds = Math.round(annualTax / 12);
+
+      // Dihadi Kharchi and BOCW
+      let kharchi = 0;
+      let bocw = 0;
+      if (isDihadi) {
+        kharchi = parseFloat(document.getElementById('calcKharchi').value) || 0;
+        bocw = Math.round(gross * 0.01);
+        document.getElementById('calcBocw').value = '₹' + bocw;
+        document.getElementById('dispDihadiKharchiVal').innerText = '-₹' + (kharchi + bocw);
+      }
+
+      const totalDed = epf + esic + pt + monthlyTds + kharchi + bocw;
+      const netSalary = gross - totalDed;
+      const ctc = gross + epf + Math.round((earnedBasic * 15) / (26 * 12));
+
+      document.getElementById('dispBasic').innerText = '₹' + earnedBasic.toLocaleString('en-IN');
+      document.getElementById('dispHra').innerText = '₹' + earnedHra.toLocaleString('en-IN');
+      document.getElementById('dispSpecial').innerText = '₹' + earnedSpecial.toLocaleString('en-IN');
+      document.getElementById('dispOt').innerText = '+₹' + otPay.toLocaleString('en-IN');
+      document.getElementById('dispGross').innerText = '₹' + gross.toLocaleString('en-IN');
+
+      document.getElementById('dispEpf').innerText = '-₹' + epf.toLocaleString('en-IN');
+      document.getElementById('dispEsic').innerText = esic > 0 ? '-₹' + esic.toLocaleString('en-IN') : '₹0 (Exempt)';
+      document.getElementById('dispPt').innerText = '-₹' + pt.toLocaleString('en-IN');
+      document.getElementById('dispTds').innerText = monthlyTds > 0 ? '-₹' + monthlyTds.toLocaleString('en-IN') : '₹0 (Rebate 87A)';
+      document.getElementById('dispTotalDed').innerText = '-₹' + totalDed.toLocaleString('en-IN');
+      document.getElementById('dispNetSalary').innerText = '₹' + netSalary.toLocaleString('en-IN') + '.00';
+      document.getElementById('dispCtc').innerText = '₹' + ctc.toLocaleString('en-IN') + '.00';
+    }
+
+    // 4. 1-CLICK COMPLIANCE FILE GENERATORS & DOWNLOADS
+    function triggerDownload(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadSampleEcr() {
+      const ecrContent = `101458920145#~#RAJAN SHARMA#~#50193#~#15000#~#15000#~#15000#~#1800#~#1250#~#550#~#0#~#0#~#29#~#0
+101458920146#~#PRIYA DESHMUKH#~#42000#~#15000#~#15000#~#15000#~#1800#~#1250#~#550#~#0#~#0#~#30#~#0
+101458920147#~#ANIL VERMA#~#18500#~#12000#~#12000#~#12000#~#1440#~#1000#~#440#~#0#~#0#~#30#~#0`;
+      triggerDownload(ecrContent, 'EPFO_ECR_CHALLAN_OCT2026.txt', 'text/plain');
+    }
+
+    function downloadSampleEsic() {
+      const esicContent = `IP_Number,IP_Name,Total_Days,Total_Wages,Reason_Code,Last_Working_Day
+3100054812,SURESH PATEL,28,18500,0,
+3100054813,KAVITA KUMARI,30,19200,0,
+3100054814,MANISH TIWARI,26,17000,0,`;
+      triggerDownload(esicContent, 'ESIC_MONTHLY_RETURN_OCT2026.csv', 'text/csv');
+    }
+
+    function downloadSampleTally() {
+      const tallyContent = `<?xml version="1.0" encoding="utf-8"?>
+<ENVELOPE>
+  <HEADER>
+    <TALLYREQUEST>Import Data</TALLYREQUEST>
+  </HEADER>
+  <BODY>
+    <IMPORTDATA>
+      <REQUESTDESC>
+        <REPORTNAME>Vouchers</REPORTNAME>
+      </REQUESTDESC>
+      <REQUESTDATA>
+        <TALLYMESSAGE xmlns:UDF="TallyUDF">
+          <VOUCHER VCHTYPE="Journal" ACTION="Create">
+            <DATE>20261031</DATE>
+            <NARRATION>Payroll Salary Entry for October 2026 via Algorise PeopleOS</NARRATION>
+            <ALLLEDGERENTRIES.LIST>
+              <LEDGERNAME>Salaries &amp; Wages Expense</LEDGERNAME>
+              <ISDEEMEDPOSITIVE>Yes</ISDEEMEDPOSITIVE>
+              <AMOUNT>-50193.00</AMOUNT>
+            </ALLLEDGERENTRIES.LIST>
+            <ALLLEDGERENTRIES.LIST>
+              <LEDGERNAME>Provident Fund Payable</LEDGERNAME>
+              <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+              <AMOUNT>1800.00</AMOUNT>
+            </ALLLEDGERENTRIES.LIST>
+            <ALLLEDGERENTRIES.LIST>
+              <LEDGERNAME>Professional Tax Payable</LEDGERNAME>
+              <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+              <AMOUNT>200.00</AMOUNT>
+            </ALLLEDGERENTRIES.LIST>
+            <ALLLEDGERENTRIES.LIST>
+              <LEDGERNAME>TDS on Salaries Payable</LEDGERNAME>
+              <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+              <AMOUNT>3660.00</AMOUNT>
+            </ALLLEDGERENTRIES.LIST>
+            <ALLLEDGERENTRIES.LIST>
+              <LEDGERNAME>HDFC Bank Salary Disbursement A/c</LEDGERNAME>
+              <ISDEEMEDPOSITIVE>No</ISDEEMEDPOSITIVE>
+              <AMOUNT>44533.00</AMOUNT>
+            </ALLLEDGERENTRIES.LIST>
+          </VOUCHER>
+        </TALLYMESSAGE>
+      </REQUESTDATA>
+    </IMPORTDATA>
+  </BODY>
+</ENVELOPE>`;
+      triggerDownload(tallyContent, 'TALLY_PAYROLL_JOURNAL_OCT2026.xml', 'application/xml');
+    }
+
+    function downloadSampleBank() {
+      const bankContent = `Payment_Type,Beneficiary_Name,Account_Number,IFSC_Code,Amount,Narration
+NEFT,RAJAN SHARMA,50100294819201,HDFC0000240,44533.00,SALARY OCT 2026 ALGORISE
+NEFT,PRIYA DESHMUKH,91802004819283,UTIB0000045,38900.00,SALARY OCT 2026 ALGORISE
+NEFT,ANIL VERMA,00291040001928,SBIN0001240,16860.00,SALARY OCT 2026 ALGORISE`;
+      triggerDownload(bankContent, 'HDFC_CORPORATE_BULK_PAYOUT_OCT2026.csv', 'text/csv');
+    }
+
+    // 5. 17-MODULE FILTER
+    function filterModules(category) {
+      const cards = document.querySelectorAll('.mod-card');
+      const tabs = ['tabAll', 'tabAtt', 'tabPay', 'tabHr', 'tabSec'];
+      tabs.forEach(t => {
+        document.getElementById(t).className = 'px-4 py-2 rounded-xl text-xs font-bold cosmic-panel text-slate-300 hover:text-white transition';
+      });
+
+      if (category === 'all') {
+        document.getElementById('tabAll').className = 'px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition';
+        cards.forEach(c => c.style.display = 'block');
+      } else {
+        const catMap = {
+          'attendance': 'tabAtt',
+          'payroll': 'tabPay',
+          'hr': 'tabHr',
+          'security': 'tabSec'
+        };
+        document.getElementById(catMap[category]).className = 'px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-slate-950 transition';
+        cards.forEach(c => {
+          if (c.classList.contains('mod-' + category)) {
+            c.style.display = 'block';
+          } else {
+            c.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    // 6. MERKLE TAMPER DEMO
+    let isTampered = false;
+    function testDatabaseTampering() {
+      const activeBlock = document.getElementById('merkleActiveBlock');
+      const statusText = document.getElementById('merkleStatusText');
+      const payloadVal = document.getElementById('merklePayloadVal');
+      const hashVal = document.getElementById('merkleHashVal');
+
+      if (!isTampered) {
+        isTampered = true;
+        activeBlock.className = 'bg-rose-950/40 p-5 rounded-2xl border-2 border-rose-500 font-mono text-xs transition duration-500';
+        statusText.innerText = 'CRITICAL: TAMPER DETECTED!';
+        statusText.className = 'text-rose-400 font-bold animate-pulse';
+        payloadVal.innerText = 'FORGED_SALARY: [₹99,999] (UNAUTHORIZED EDIT)';
+        payloadVal.className = 'text-rose-400 font-bold';
+        hashVal.innerText = 'HASH_MISMATCH: EXPECTED 8d92a..., GOT f991e...';
+        hashVal.className = 'text-rose-500 font-bold';
+      } else {
+        isTampered = false;
+        activeBlock.className = 'bg-slate-950/80 p-5 rounded-2xl border border-cyan-500/40 font-mono text-xs transition duration-500';
+        statusText.innerText = 'CHAINED & VALID';
+        statusText.className = 'text-cyan-400 font-bold';
+        payloadVal.innerText = 'SALARY_RUN:EMP-042 [₹50,193]';
+        payloadVal.className = 'text-cyan-300';
+        hashVal.innerText = '8d92a0194...77bc';
+        hashVal.className = 'text-cyan-400';
+      }
+    }
+
+    // Initialize default states on load
+    updateLeakageAudit();
+    runLivePayslip();
+  </script>
+</body>
+</html>
