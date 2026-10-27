@@ -33,6 +33,7 @@ SURFACES = [
     "index.html", "dashboard.html", "creator_studio.html",
     "realtor_sales_console.html", "admin.html", "cocopeat.html",
     "field_pitch.html", "security.html", "api-docs.html",
+    "algorise-payroll/index.html",
     "compare/manychat-alternative.html", "compare/wati-alternative.html",
     "industry/diamond-cvd-sales-agent.html",
     "industry/textile-saree-wholesale-ai-agent.html",
