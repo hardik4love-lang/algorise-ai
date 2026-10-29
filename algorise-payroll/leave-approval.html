@@ -493,14 +493,14 @@
   <td class="py-3 px-4 font-bold text-slate-900">Anil Thakker (Super Admin)</td>
   <td class="py-3 px-4 text-slate-700">All Factory Departments &bull; JMFU2</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active Approver</span></td>
-  <td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Settings</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="approverSettings('Anil Thakker (Super Admin)')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-user-gear mr-1"></i> Settings</button></td>
 </tr>
 <tr class="hover:bg-slate-50 transition">
   <td class="py-3 px-4 text-center font-bold">2</td>
   <td class="py-3 px-4 font-bold text-slate-900">DHEERAJ KUMAR SINGH (Supervisor)</td>
   <td class="py-3 px-4 text-slate-700">RO PLANT Operators</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active Approver</span></td>
-  <td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Settings</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="approverSettings('DHEERAJ KUMAR SINGH (Supervisor)')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-user-gear mr-1"></i> Settings</button></td>
 </tr>
             </tbody>
           </table>
@@ -512,6 +512,9 @@
   
 
   <script>
+    function approverSettings(name) {
+      showToast('Configuring leave approval thresholds for ' + name, 'info');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

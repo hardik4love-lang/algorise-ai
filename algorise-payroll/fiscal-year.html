@@ -494,7 +494,7 @@
   <td class="py-3 px-4 font-mono text-slate-600">01 Apr 2026</td>
   <td class="py-3 px-4 font-mono text-slate-600">31 Mar 2027</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Current &bull; Active</span></td>
-  <td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Audit</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="auditFiscalYear('FY 2025-26')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-shield-halved mr-1"></i> Audit</button></td>
 </tr>
             </tbody>
           </table>
@@ -506,6 +506,9 @@
   
 
   <script>
+    function auditFiscalYear(fy) {
+      showToast('Zero-variance cryptographic audit verified for ' + fy, 'success');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

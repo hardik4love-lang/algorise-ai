@@ -58,6 +58,7 @@ SURFACES = [
     "algorise-payroll/complaint.html",
     "algorise-payroll/daily-credit.html",
     "algorise-payroll/departments.html",
+    "algorise-payroll/docs/index.html",
     "algorise-payroll/employee-loans.html",
     "algorise-payroll/employee-management.html",
     "algorise-payroll/employee-master.html",

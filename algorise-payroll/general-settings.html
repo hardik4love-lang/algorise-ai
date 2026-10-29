@@ -488,8 +488,8 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Set Number Of Days for local Push Notification</td><td class="py-3 px-4 font-mono font-bold text-blue-700">12 Days</td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Update</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Primary Company Name</td><td class="py-3 px-4 font-bold text-slate-800">Process House HRMS</td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Update</button></td></tr>
+              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Set Number Of Days for local Push Notification</td><td class="py-3 px-4 font-mono font-bold text-blue-700">12 Days</td><td class="py-3 px-4 text-center"><button onclick="updateGenSetting('Local Push Notification Days', '12 Days')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-pen-to-square mr-1"></i> Update</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Primary Company Name</td><td class="py-3 px-4 font-bold text-slate-800">Process House HRMS</td><td class="py-3 px-4 text-center"><button onclick="updateGenSetting('Primary Company Name', 'Process House HRMS')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-pen-to-square mr-1"></i> Update</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -500,6 +500,9 @@
   
 
   <script>
+    function updateGenSetting(param, val) {
+      showToast(param + ' updated: ' + val, 'success');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

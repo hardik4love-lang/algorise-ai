@@ -498,7 +498,7 @@
   <td class="py-3 px-4 font-mono font-bold text-rose-600">&#8377; 2,000.00</td>
   <td class="py-3 px-4 font-mono font-bold text-slate-700">&#8377; 14,000.00</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td>
-  <td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Ledger</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="viewLoanLedger('RAMESH PATEL', '20,000.00', '2,000.00', '14,000.00')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-book-open mr-1"></i> Ledger</button></td>
 </tr>
             </tbody>
           </table>
@@ -509,7 +509,46 @@
 
   
 
+  <!-- Loan Ledger Modal -->
+  <div id="loanModal" class="app-modal fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-calculator"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Employee Loan & EMI Ledger</h3>
+            <span id="loanEmpName" class="text-[10px] font-mono text-slate-500">RAMESH PATEL</span>
+          </div>
+        </div>
+        <button onclick="closeModal('loanModal')" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="mt-4 space-y-3 text-xs">
+        <div class="p-3 bg-slate-50 rounded-xl space-y-1.5 border border-slate-200 font-mono text-[11px]">
+          <div class="flex justify-between"><span class="text-slate-500">Sanctioned Loan:</span> <strong id="loanSanctioned" class="text-slate-900">&#8377; 20,000.00</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Monthly EMI Deduction:</span> <strong id="loanEMI" class="text-rose-600">&#8377; 2,000.00 / mo</strong></div>
+          <div class="flex justify-between"><span class="text-slate-500">Repaid to Date (3 EMIs):</span> <span class="text-emerald-700 font-bold">&#8377; 6,000.00</span></div>
+          <div class="flex justify-between border-t border-slate-200 pt-1.5"><span class="text-slate-500">Remaining Balance:</span> <strong id="loanBalance" class="text-blue-700 font-bold text-sm">&#8377; 14,000.00</strong></div>
+        </div>
+      </div>
+      <div class="mt-5 flex justify-end gap-2">
+        <button onclick="closeModal('loanModal')" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-50">Close</button>
+        <button onclick="showToast('Loan statement exported to PDF', 'success'); closeModal('loanModal');" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700"><i class="fa-solid fa-download mr-1"></i> Export Statement</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    function viewLoanLedger(emp, sanc, emi, bal) {
+      document.getElementById('loanEmpName').textContent = emp;
+      document.getElementById('loanSanctioned').innerHTML = '&#8377; ' + sanc;
+      document.getElementById('loanEMI').innerHTML = '&#8377; ' + emi + ' / mo';
+      document.getElementById('loanBalance').innerHTML = '&#8377; ' + bal;
+      openModal('loanModal');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

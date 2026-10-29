@@ -615,10 +615,10 @@
         <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
           <div>Showing 1 to 10 of 10 entries</div>
           <div class="flex items-center gap-1 font-semibold">
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-400">&lt;</button>
-            <button class="w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold">1</button>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">2</button>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">&gt;</button>
+            <button onclick="changePage(1)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">&lt;</button>
+            <button id="pbtn-1" onclick="changePage(1)" class="w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer">1</button>
+            <button id="pbtn-2" onclick="changePage(2)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">2</button>
+            <button onclick="changePage(2)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">&gt;</button>
           </div>
         </div>
       </div>
@@ -646,6 +646,19 @@
         r.style.display = (!emp || r.getAttribute('data-name').includes(emp)) ? '' : 'none';
       });
       showToast('Log filter applied', 'info');
+    }
+
+    function changePage(p) {
+      const b1 = document.getElementById('pbtn-1');
+      const b2 = document.getElementById('pbtn-2');
+      if (p === 1) {
+        if (b1) b1.className = 'w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer';
+        if (b2) b2.className = 'w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer';
+      } else {
+        if (b2) b2.className = 'w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer';
+        if (b1) b1.className = 'w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer';
+      }
+      showToast('Attendance Logs: Showing page ' + p + ' entries', 'info');
     }
 
     function resetLogs() {

@@ -488,9 +488,9 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Employee Management</td><td class="py-3 px-4 text-slate-600">People</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Configure</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Custom Supervisor Attendance</td><td class="py-3 px-4 text-slate-600">Attendance</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Configure</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-bold text-slate-900">Machine Master</td><td class="py-3 px-4 text-slate-600">Production</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Configure</button></td></tr>
+              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Employee Management</td><td class="py-3 px-4 text-slate-600">People</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button onclick="configureFeature('Employee Management')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-sliders mr-1"></i> Configure</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Custom Supervisor Attendance</td><td class="py-3 px-4 text-slate-600">Attendance</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button onclick="configureFeature('Custom Supervisor Attendance')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-sliders mr-1"></i> Configure</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-bold text-slate-900">Machine Master</td><td class="py-3 px-4 text-slate-600">Production</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Enabled</span></td><td class="py-3 px-4 text-center"><button onclick="configureFeature('Machine Master')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-sliders mr-1"></i> Configure</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -501,6 +501,9 @@
   
 
   <script>
+    function configureFeature(name) {
+      showToast('Configuring permissions for ' + name, 'info');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

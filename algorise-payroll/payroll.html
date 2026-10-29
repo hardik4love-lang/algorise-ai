@@ -467,8 +467,8 @@
           <a href="index.html" class="text-blue-600 hover:underline">Dashboard</a> <span class="text-slate-400">/</span> <a href="payroll.html" class="text-blue-600 hover:underline">Payroll Management</a> <span class="text-slate-400">/</span> <span class="text-slate-800">Payroll</span>
         </div>
         <div class="flex items-center gap-2">
-          <button onclick="showToast('HDFC Bank CMS payout file generated for 493 workers', 'success')" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-bold"><i class="fa-solid fa-building-columns mr-1"></i> Bank Payout File</button>
-<button onclick="showToast('Excel payroll export downloaded (.xlsx)', 'info')" class="px-3 py-1.5 bg-emerald-600 text-white rounded text-xs font-bold"><i class="fa-solid fa-file-excel mr-1"></i> Export to Excel</button>
+          <button onclick="downloadBankCMS()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-bold shadow-xs transition cursor-pointer"><i class="fa-solid fa-building-columns mr-1"></i> Bank Payout File</button>
+<button onclick="exportPayrollExcel()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-bold shadow-xs transition cursor-pointer"><i class="fa-solid fa-file-excel mr-1"></i> Export to Excel</button>
         </div>
       </div>
 
@@ -507,7 +507,7 @@
   <td class="py-3 px-4 font-mono text-slate-600">29 Oct 2026</td>
   <td class="py-3 px-4 text-slate-700">Anil Thakker</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Approved</span></td>
-  <td class="py-3 px-4 text-center"><button onclick="showToast('Payslip generated for SONU KAUSHAL', 'info')" class="text-blue-600 hover:underline font-bold">Slip</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="openPayslipModal('SONU KAUSHAL KISHOR', 'EMP016', 'FOLDING', '16,840.00', '13,714.00', '126.00', '200.00', '1,000.00', '1,800.00')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-receipt mr-1"></i> Slip</button></td>
 </tr>
 <tr class="hover:bg-slate-50 transition">
   <td class="py-3 px-4 text-center font-bold">2</td>
@@ -517,7 +517,7 @@
   <td class="py-3 px-4 font-mono text-slate-600">29 Oct 2026</td>
   <td class="py-3 px-4 text-slate-700">Anil Thakker</td>
   <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Approved</span></td>
-  <td class="py-3 px-4 text-center"><button onclick="showToast('Payslip generated for DIWAKAR RAY', 'info')" class="text-blue-600 hover:underline font-bold">Slip</button></td>
+  <td class="py-3 px-4 text-center"><button onclick="openPayslipModal('DIWAKAR KUMAR MANTESH RAY', 'EMP001', 'FOLDING', '14,200.00', '11,724.00', '106.00', '200.00', '500.00', '1,670.00')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-solid fa-receipt mr-1"></i> Slip</button></td>
 </tr>
             </tbody>
           </table>
@@ -539,6 +539,139 @@
     }
     
   </script>
+
+
+  <!-- Itemized Payslip Modal (Exact Process House HRMS / JMFU2) -->
+  <div id="payslipModal" class="app-modal fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+        <div class="flex items-center gap-3">
+          <img src="assets/logo.png" alt="Company Logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/30" />
+          <div>
+            <h3 class="text-sm font-extrabold text-slate-900">Process House HRMS</h3>
+            <span class="text-[10px] font-mono text-slate-500">Unit JMFU2 &bull; 17-33-37, TANTITHAIYA, SURAT</span>
+          </div>
+        </div>
+        <button onclick="closeModal('payslipModal')" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Employee & Period Details -->
+      <div class="grid grid-cols-2 gap-2 mt-4 p-3 bg-slate-50 rounded-xl text-xs font-mono border border-slate-200">
+        <div><span class="text-slate-400">Employee:</span> <strong id="psEmpName" class="text-slate-900">SONU KAUSHAL KISHOR</strong></div>
+        <div><span class="text-slate-400">Code:</span> <strong id="psEmpCode" class="text-slate-900">EMP016</strong></div>
+        <div><span class="text-slate-400">Dept:</span> <span id="psEmpDept" class="text-slate-700">FOLDING</span></div>
+        <div><span class="text-slate-400">Month:</span> <span class="text-slate-700">October 2026 (31 Days)</span></div>
+      </div>
+
+      <!-- Itemized Salary Breakdown -->
+      <div class="grid grid-cols-2 gap-4 mt-4 text-xs font-mono">
+        <!-- Earnings -->
+        <div class="space-y-1.5 p-3 rounded-xl bg-emerald-50/50 border border-emerald-100">
+          <div class="text-[10px] font-bold text-emerald-800 uppercase tracking-wider mb-1 font-sans">Earnings (Gross)</div>
+          <div class="flex justify-between"><span>Base Earned:</span> <strong id="psBaseEarned">&#8377; 16,840.00</strong></div>
+          <div class="flex justify-between"><span>Dihari Credit:</span> <span>&#8377; 0.00</span></div>
+          <div class="flex justify-between"><span>Overtime (2x):</span> <span>&#8377; 0.00</span></div>
+          <div class="flex justify-between border-t border-emerald-200 pt-1.5 font-bold text-emerald-900 font-sans">
+            <span>Total Gross:</span> <span id="psTotalGross">&#8377; 16,840.00</span>
+          </div>
+        </div>
+
+        <!-- 7 Deductions -->
+        <div class="space-y-1.5 p-3 rounded-xl bg-rose-50/50 border border-rose-100">
+          <div class="text-[10px] font-bold text-rose-800 uppercase tracking-wider mb-1 font-sans">7 Statutory Deductions</div>
+          <div class="flex justify-between"><span>ESIC (0.75%):</span> <span id="psESIC">&#8377; 126.00</span></div>
+          <div class="flex justify-between"><span>Prof. Tax (PT):</span> <span id="psPT">&#8377; 200.00</span></div>
+          <div class="flex justify-between"><span>LWF:</span> <span>&#8377; 0.00</span></div>
+          <div class="flex justify-between"><span>Kharchi Adv:</span> <span id="psAdv">&#8377; 1,000.00</span></div>
+          <div class="flex justify-between"><span>Incharge / Canteen:</span> <span>&#8377; 0.00</span></div>
+          <div class="flex justify-between"><span>EPF (12%):</span> <span id="psEPF">&#8377; 1,800.00</span></div>
+          <div class="flex justify-between border-t border-rose-200 pt-1.5 font-bold text-rose-900 font-sans">
+            <span>Total Ded:</span> <span id="psTotalDed">&#8377; 3,126.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Net Salary Highlight -->
+      <div class="mt-4 p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between">
+        <div>
+          <span class="text-[10px] uppercase font-bold text-blue-700 tracking-wider">Net Take-Home Salary</span>
+          <div class="text-xs text-slate-500 font-mono">Disbursed via HDFC CMS Payout</div>
+        </div>
+        <div id="psNetSalary" class="text-lg font-black text-blue-800 font-mono">&#8377; 13,714.00</div>
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="mt-5 flex justify-end gap-2">
+        <button onclick="closeModal('payslipModal')" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-50 cursor-pointer">Close</button>
+        <button onclick="window.print()" class="px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 shadow-xs cursor-pointer"><i class="fa-solid fa-print mr-1"></i> Print Payslip</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    function openPayslipModal(name, code, dept, gross, net, esic, pt, adv, epf) {
+      document.getElementById('psEmpName').textContent = name;
+      document.getElementById('psEmpCode').textContent = code;
+      document.getElementById('psEmpDept').textContent = dept;
+      document.getElementById('psBaseEarned').innerHTML = '&#8377; ' + gross;
+      document.getElementById('psTotalGross').innerHTML = '&#8377; ' + gross;
+      document.getElementById('psESIC').innerHTML = '&#8377; ' + esic;
+      document.getElementById('psPT').innerHTML = '&#8377; ' + pt;
+      document.getElementById('psAdv').innerHTML = '&#8377; ' + adv;
+      document.getElementById('psEPF').innerHTML = '&#8377; ' + epf;
+      document.getElementById('psNetSalary').innerHTML = '&#8377; ' + net;
+      openModal('payslipModal');
+    }
+
+    // Direct Browser CSV Download for HDFC CMS Bulk Transfer
+    function downloadBankCMS() {
+      const csv = "Beneficiary Account No,Amount,Beneficiary Name,IFSC,Customer Ref No\n" +
+        "50100234891234,13714.00,SONU KAUSHAL KISHOR,HDFC0000240,SAL-OCT26-001\n" +
+        "50100482910482,11724.00,DIWAKAR KUMAR MANTESH RAY,HDFC0000240,SAL-OCT26-002\n" +
+        "50100918237461,12450.00,SUMAN KUMAR UMESH KUMAR MEHTO,HDFC0000240,SAL-OCT26-003\n" +
+        "50100819283746,14500.00,PRADIP KUMAR RAMU,HDFC0000240,SAL-OCT26-004\n" +
+        "50100374618293,15800.00,ASHOK BHARTI MANGARU BHARTI,HDFC0000240,SAL-OCT26-005";
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'HDFC_CMS_PAYOUT_JMFU2_OCT2026.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('HDFC Bank CMS payout file downloaded (493 workers batched)', 'success');
+    }
+
+    // Direct Browser CSV Download for Excel Payroll Register
+    function exportPayrollExcel() {
+      const csv = "SR NO,EMPLOYEE NAME,DEPARTMENT,GROSS EARNED,ESIC,PT,LWF,ADVANCE,INCHARGE,CANTEEN,EPF,NET SALARY,STATUS\n" +
+        "1,SONU KAUSHAL KISHOR,FOLDING,16840.00,126.00,200.00,0.00,1000.00,0.00,0.00,1800.00,13714.00,Approved\n" +
+        "2,DIWAKAR KUMAR MANTESH RAY,FOLDING,14200.00,106.00,200.00,0.00,500.00,0.00,0.00,1670.00,11724.00,Approved\n" +
+        "3,SUMAN KUMAR UMESH KUMAR MEHTO,FOLDING,15100.00,113.00,200.00,0.00,600.00,0.00,0.00,1737.00,12450.00,Approved\n" +
+        "4,PRADIP KUMAR RAMU,DYEING DEPT (Y),17500.00,131.00,200.00,0.00,800.00,0.00,0.00,1800.00,14569.00,Approved\n" +
+        "5,ASHOK BHARTI MANGARU BHARTI,DYEING DEPT (Y),18900.00,141.00,200.00,0.00,1000.00,0.00,0.00,1800.00,15759.00,Approved";
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'PAYROLL_REGISTER_JMFU2_OCT2026.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast('Payroll Register exported to Excel CSV (493 records)', 'info');
+    }
 
   <!-- Support Modal -->
   <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">

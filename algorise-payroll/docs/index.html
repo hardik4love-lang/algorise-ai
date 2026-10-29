@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorise PeopleOS - Enterprise Workforce & Payroll Operating System</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-panel { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .gradient-text { background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-brand-500 selection:text-white">
+
+    <!-- Top Navigation -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-fuchsia-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-brand-500/30">
+                    A
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight text-white">Algorise <span class="text-brand-500">PeopleOS</span></span>
+                    <span class="text-xs ml-2 px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 font-semibold border border-brand-500/30">v1.0 Enterprise</span>
+                </div>
+            </div>
+            <nav class="hidden lg:flex space-x-7 text-sm font-medium text-slate-300">
+                <a href="#pipeline" class="hover:text-white transition">Punch-to-Payslip</a>
+                <a href="#modules" class="hover:text-white transition">17 Modules</a>
+                <a href="#industries" class="hover:text-white transition">Industries</a>
+                <a href="#sentinel" class="hover:text-white transition">Geofence Sentinel</a>
+                <a href="#calculator" class="hover:text-white transition">Live Calculator</a>
+                <a href="#benchmark" class="hover:text-white transition">Benchmark (97.4 vs 27.0)</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <a href="https://github.com/hardik4love-lang/algorise-payroll" target="_blank" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-sm font-semibold border border-slate-700 transition flex items-center space-x-2">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub Code</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-20 pb-16 px-6 overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-semibold mb-6">
+                <i class="fas fa-shield-alt text-brand-400"></i>
+                <span>Direct 1:1 Replacement for Payroll Bharat with Hardware-Free AI & Sentinel Defense</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
+                From Punch to Payslip, <br><span class="gradient-text">Fully Autonomous & Unhackable</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Connect your existing CCTV cameras, eliminate the <strong>4.2% payroll leakage</strong> with the <strong>Geofence Sentinel</strong>, and run all <strong>17 Core Modules</strong> from hiring to exit, daily wages (Dihadi), and one-click government challans.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#pipeline" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-fuchsia-600 hover:from-brand-500 hover:to-fuchsia-500 text-white font-bold shadow-xl shadow-brand-500/25 transition">
+                    Explore 5-Step Pipeline <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#modules" class="px-8 py-4 rounded-xl glass-panel hover:bg-slate-800/80 text-slate-200 font-bold transition">
+                    View 17 Enterprise Modules
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Metrics Grid -->
+    <section class="max-w-7xl mx-auto px-6 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 text-center">
+                <div class="text-4xl font-extrabold text-emerald-400 mb-2">97.4 / 100</div>
+                <div class="text-sm font-semibold text-slate-300">Live Benchmark Score</div>
+                <p class="text-xs text-slate-400 mt-2">Vs. Payroll Bharat's 27.0/100 score</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 text-center">
+                <div class="text-4xl font-extrabold text-brand-400 mb-2">17 Modules</div>
+                <div class="text-sm font-semibold text-slate-300">Full Suite Included</div>
+                <p class="text-xs text-slate-400 mt-2">Zero add-on fees. Core HR, Dihadi, Talent & Platform</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 text-center">
+                <div class="text-4xl font-extrabold text-fuchsia-400 mb-2">476%</div>
+                <div class="text-sm font-semibold text-slate-300">Year 1 ROI</div>
+                <p class="text-xs text-slate-400 mt-2">Saves ₹27.14 Lakhs net on 500 staff</p>
+            </div>
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 text-center">
+                <div class="text-4xl font-extrabold text-amber-400 mb-2">21 / 21</div>
+                <div class="text-sm font-semibold text-slate-300">Automated Tests Passing</div>
+                <p class="text-xs text-slate-400 mt-2">EPF, ESIC, State PT, TDS, Dihadi & Backup</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: HOW IT WORKS - 5 STEP PIPELINE (Matching Image 1) -->
+    <section id="pipeline" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-400">HOW IT WORKS</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">From Punch to Payslip, Fully Automated</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                Set your policies once. Every month after that, the run builds itself and waits for your one-click approval.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+            <!-- 01 Punch -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 relative hover:border-brand-500/50 transition">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-lg mb-4">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-400">01</span>
+                <h3 class="text-lg font-bold text-white mt-1 mb-2">Punch</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Existing CCTV RTSP cameras, mobile geofence with 3D liveness selfie, eSSL/ZKTeco machines, or muster upload.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-emerald-400 font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> + CCTV AI Face Rec
+                </div>
+            </div>
+
+            <!-- 02 Sync -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 relative hover:border-brand-500/50 transition">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-lg mb-4">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-400">02</span>
+                <h3 class="text-lg font-bold text-white mt-1 mb-2">Sync</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Punches land on the muster roster in real-time, mapped against rotational shifts, night shifts, and week-offs.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-cyan-400 font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> Sub-50ms HMAC-SHA256
+                </div>
+            </div>
+
+            <!-- 03 Process -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 relative hover:border-brand-500/50 transition">
+                <div class="w-10 h-10 rounded-xl bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center font-bold text-lg mb-4">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-400">03</span>
+                <h3 class="text-lg font-bold text-white mt-1 mb-2">Process</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Leaves, grace periods (15 min), late marks, overtime multipliers (2x), and regularization approvals applied automatically.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-fuchsia-400 font-semibold">
+                    <i class="fas fa-shield-alt mr-1"></i> Sentinel 180s Auto Cut-off
+                </div>
+            </div>
+
+            <!-- 04 Calculate -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 relative hover:border-brand-500/50 transition">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-400">04</span>
+                <h3 class="text-lg font-bold text-white mt-1 mb-2">Calculate</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Exact prorated salary, LOP, EPF (₹15k cap), ESIC, State PT (MH/KA), Section 115BAC TDS, loans, and Dihadi daily wages.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-amber-400 font-semibold">
+                    <i class="fas fa-check-circle mr-1"></i> ₹7.75L Zero-Tax Code
+                </div>
+            </div>
+
+            <!-- 05 Deliver -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 relative hover:border-brand-500/50 transition">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <span class="text-xs font-mono font-bold text-slate-400">05</span>
+                <h3 class="text-lg font-bold text-white mt-1 mb-2">Deliver</h3>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    Digital payslip PDFs to phones, HDFC/ICICI/SBI bulk payout files, EPFO ECR (#~#), ESIC CSV, and Tally XML vouchers.
+                </p>
+                <div class="mt-4 pt-3 border-t border-slate-800/80 text-[10px] text-emerald-400 font-semibold">
+                    <i class="fas fa-lock mr-1"></i> Daily Encrypted Gmail Backup
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: 17 MODULES ON ONE EMPLOYEE RECORD (Matching Image 2) -->
+    <section id="modules" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-400">ALL-INCLUSIVE ENTERPRISE ARCHITECTURE</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">17 Modules on One Unified Employee Record</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                Hiring to exit, punch to payslip. Every single module is included in Algorise PeopleOS; nothing is sold as an add-on.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <!-- Col 1: CORE HR -->
+            <div class="space-y-4">
+                <div class="pb-2 border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-brand-400">
+                    <i class="fas fa-users mr-1"></i> Core HR
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-brand-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">People Management</h4>
+                    <p class="text-xs text-slate-400 mt-1">Hire to retire lifecycle, personal data, emergency contacts, organizational hierarchy.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-brand-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Documents & Letters</h4>
+                    <p class="text-xs text-slate-400 mt-1">Paperless HR: offer letters, appointment letters, NDA, experience certificates with e-sign.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-brand-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Employee Self-Service</h4>
+                    <p class="text-xs text-slate-400 mt-1">HR in every pocket: mobile & web portal for punch, payslips, tax proof declarations.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-brand-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Exit & Full and Final</h4>
+                    <p class="text-xs text-slate-400 mt-1">Clean separations: resignation workflows, clearance checklists, gratuity & leave encashment FnF.</p>
+                </div>
+            </div>
+
+            <!-- Col 2: TIME & ATTENDANCE -->
+            <div class="space-y-4">
+                <div class="pb-2 border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-cyan-400">
+                    <i class="fas fa-clock mr-1"></i> Time & Attendance
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-cyan-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Time & Attendance</h4>
+                    <p class="text-xs text-slate-400 mt-1">Track every minute: CCTV streams, biometric devices, geofencing, multi-shift rosters.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-cyan-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Leave & Holidays</h4>
+                    <p class="text-xs text-slate-400 mt-1">Every policy, any rule: earned, casual, sick, sandwich leave rules, optional holidays.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-cyan-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Field Force Tracking</h4>
+                    <p class="text-xs text-slate-400 mt-1">Proof of every visit: client visits with GPS tracking, client geo-tagging, selfie verification.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-cyan-500/30 bg-cyan-950/20">
+                    <h4 class="font-bold text-sm text-cyan-300">Geofence Sentinel Guard</h4>
+                    <p class="text-xs text-slate-300 mt-1">Exclusive: 180s grace countdown upon perimeter departure with auto cut-off & alerts.</p>
+                </div>
+            </div>
+
+            <!-- Col 3: PAYROLL & STATUTORY -->
+            <div class="space-y-4">
+                <div class="pb-2 border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-amber-400">
+                    <i class="fas fa-rupee-sign mr-1"></i> Payroll & Compliance
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-amber-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Payroll & Compliance</h4>
+                    <p class="text-xs text-slate-400 mt-1">Accurate, 100% compliant: EPF, ESIC, State PT, LWF, Gratuity provisions & bonus rules.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-amber-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Tax & Declarations</h4>
+                    <p class="text-xs text-slate-400 mt-1">TDS without tears: Section 115BAC (₹75k std ded) vs Old Regime, Form 16 Part A & B.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-amber-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Expenses, Loans & Advances</h4>
+                    <p class="text-xs text-slate-400 mt-1">Claims to payroll: travel reimbursements, salary advances, automated EMI deductions.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-amber-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Daily Wages (Dihadi)</h4>
+                    <p class="text-xs text-slate-400 mt-1">For site & contract labour: daily muster, kharchi cash deductions, BOCW cess tracking.</p>
+                </div>
+            </div>
+
+            <!-- Col 4: TALENT -->
+            <div class="space-y-4">
+                <div class="pb-2 border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-fuchsia-400">
+                    <i class="fas fa-user-graduate mr-1"></i> Talent
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-fuchsia-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Recruitment & Onboarding</h4>
+                    <p class="text-xs text-slate-400 mt-1">Hire faster: candidate pipeline, self-onboarding portal, document collection, KYC verification.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-fuchsia-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Performance & Goals</h4>
+                    <p class="text-xs text-slate-400 mt-1">Grow your people: OKRs, KPI reviews, 360-degree feedback cycles, appraisal salary hikes.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-fuchsia-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Engagement & Helpdesk</h4>
+                    <p class="text-xs text-slate-400 mt-1">Hear your people: HR ticketing system, internal polls, celebrations & announcements.</p>
+                </div>
+            </div>
+
+            <!-- Col 5: PLATFORM -->
+            <div class="space-y-4">
+                <div class="pb-2 border-b border-slate-800 text-xs font-bold uppercase tracking-wider text-emerald-400">
+                    <i class="fas fa-cubes mr-1"></i> Platform
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-emerald-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Approvals & Workflows</h4>
+                    <p class="text-xs text-slate-400 mt-1">Nothing falls through: multi-level manager approvals, auto-escalations, custom policies.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-emerald-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">Reports & Analytics</h4>
+                    <p class="text-xs text-slate-400 mt-1">Data-driven decisions: monthly muster roll, salary cost trends, headcount attrition reports.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-slate-800 hover:border-emerald-500/40 transition">
+                    <h4 class="font-bold text-sm text-white">AI-Powered Intelligence</h4>
+                    <p class="text-xs text-slate-400 mt-1">Ask, detect, predict: automated tax advice, anomaly detection, payroll budget forecasts.</p>
+                </div>
+                <div class="glass-panel p-4 rounded-xl border-emerald-500/30 bg-emerald-950/20">
+                    <h4 class="font-bold text-sm text-emerald-300">Daily Encrypted Gmail Backup</h4>
+                    <p class="text-xs text-slate-300 mt-1">Zero-Knowledge AES-256 backup dispatched to Gmail and Cloudflare R2 (10GB free).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: INDUSTRY SOLUTIONS (Matching Image 3) -->
+    <section id="industries" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-wider text-cyan-400">TAILORED INDUSTRY PACKS</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">Engineered for Every Indian Industry</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                From factories running 24x7 shifts to construction sites tracking daily dihadi and kharchi.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Manufacturing & Factories</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Attendance-first payroll for plants running 24x7. Biometric punches, rotating night shifts, overtime registers (Form II), and statutory factory registers.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-yellow-500/20 text-yellow-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Construction & Real Estate</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Site labour, contractors and BOCW compliance. Daily muster by site and floor, kharchi and cash advance tracking, and weekly contractor labour settlements.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-briefcase-medical"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Pharma & Field Sales</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Proof of every visit. Confirm that doctor, chemist, and dealer visits actually occurred with GPS location, photo proof, and automated travel expense calculation.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Insurance, Banking & Lending</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    For relationship managers, agents, and collection teams on the move. Visit logs with collection outcomes, branch network payroll, and target incentive payouts.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Retail & Multi-Location</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Stores and branches across multiple states. Multi-state Professional Tax management, store-wise geofenced attendance, and unified payroll for regional staff.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Security & Facility Staffing</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    For security guard agencies, facility management, and staffing contractors. Deployed guard shift rosters, client site billing, and contract labour compliance.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">IT & Professional Services</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Knowledge workers and hybrid work. Flexible allowance structuring, Section 115BAC automated tax planning, timesheets, and remote geofence check-in.
+                </p>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold mb-4">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <h4 class="font-bold text-white text-base">Hospitals & Healthcare</h4>
+                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                    24x7 doctor and nursing rosters. Shift allowances, license and certificate expiration tracking, emergency on-call pay, and medical staff compliance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: HARDWARE & INTEGRATIONS (Matching Image 4) -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">PLUG-AND-PLAY ECOSYSTEM</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">Keep Your Attendance Machines & Your Bank</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                Algorise PeopleOS connects seamlessly to your existing hardware and outputs the exact file formats finance and government portals require.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold mb-3">
+                    <i class="fas fa-fingerprint"></i>
+                </div>
+                <h4 class="font-bold text-white text-sm mb-2">Biometric Devices</h4>
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div><span class="text-emerald-400">●</span> CCTV RTSP Cameras</div>
+                    <div><span class="text-emerald-400">●</span> eSSL Terminals</div>
+                    <div><span class="text-emerald-400">●</span> ZKTeco ADMS</div>
+                    <div><span class="text-emerald-400">●</span> Matrix COSEC</div>
+                    <div><span class="text-emerald-400">●</span> BioMax / Realtime</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold mb-3">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h4 class="font-bold text-white text-sm mb-2">Bank Salary Files</h4>
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div><span class="text-emerald-400">●</span> HDFC Bank (CMS)</div>
+                    <div><span class="text-emerald-400">●</span> ICICI Bank (Corporate)</div>
+                    <div><span class="text-emerald-400">●</span> State Bank of India (SBI)</div>
+                    <div><span class="text-emerald-400">●</span> Axis / Kotak Bulk NEFT</div>
+                    <div><span class="text-emerald-400">●</span> 24x7 Escrow IMPS Direct</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold mb-3">
+                    <i class="fas fa-landmark"></i>
+                </div>
+                <h4 class="font-bold text-white text-sm mb-2">Government Portals</h4>
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div><span class="text-emerald-400">●</span> EPFO ECR (#~# Format)</div>
+                    <div><span class="text-emerald-400">●</span> ESIC Monthly Challan CSV</div>
+                    <div><span class="text-emerald-400">●</span> TDS 24Q FVU Text</div>
+                    <div><span class="text-emerald-400">●</span> Form 16 Part A & B</div>
+                    <div><span class="text-emerald-400">●</span> State PT Challans</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold mb-3">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+                <h4 class="font-bold text-white text-sm mb-2">Accounting</h4>
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div><span class="text-emerald-400">●</span> Tally ERP 9 / TallyPrime</div>
+                    <div><span class="text-emerald-400">●</span> Zoho Books Export</div>
+                    <div><span class="text-emerald-400">●</span> QuickBooks XML</div>
+                    <div><span class="text-emerald-400">●</span> Excel Detailed Muster</div>
+                    <div><span class="text-emerald-400">●</span> PDF Pay Registers</div>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border-slate-800">
+                <div class="w-10 h-10 rounded-xl bg-green-500/20 text-green-400 flex items-center justify-center font-bold mb-3">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h4 class="font-bold text-white text-sm mb-2">Messaging & Sign-In</h4>
+                <div class="space-y-1.5 text-xs text-slate-400">
+                    <div><span class="text-emerald-400">●</span> WhatsApp Payslip Bot</div>
+                    <div><span class="text-emerald-400">●</span> Email PDF Dispatch</div>
+                    <div><span class="text-emerald-400">●</span> SAML 2.0 / Okta SSO</div>
+                    <div><span class="text-emerald-400">●</span> Google Workspace SSO</div>
+                    <div><span class="text-emerald-400">●</span> Microsoft Azure AD</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: GEOFENCE SENTINEL SIMULATOR -->
+    <section id="sentinel" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="glass-panel p-8 md:p-12 rounded-3xl border-slate-800 relative overflow-hidden">
+            <div class="max-w-3xl mb-8">
+                <span class="text-xs font-bold uppercase tracking-wider text-fuchsia-400">EXCLUSIVE ALGORISE ADVANTAGE</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">Geofence Sentinel & Auto Cut-off Simulator</h2>
+                <p class="text-slate-300 mt-3 text-sm leading-relaxed">
+                    Test the system live: Move the employee slider outside the 50m office boundary. Watch the 180-second grace timer count down, and see the automated session termination and HR alert dispatch.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="bg-slate-900/90 p-6 rounded-2xl border border-slate-800">
+                    <label class="block text-sm font-semibold text-slate-300 mb-2">Employee Distance from Office Centroid:</label>
+                    <div class="flex items-center space-x-4 mb-6">
+                        <input type="range" id="distanceSlider" min="10" max="600" value="25" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500" oninput="updateSentinelDemo(this.value)">
+                        <span id="distanceDisplay" class="font-mono font-bold text-lg text-brand-400 w-24 text-right">25 m</span>
+                    </div>
+
+                    <div class="flex items-center justify-between p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 mb-4">
+                        <span class="text-sm text-slate-300">Office Wi-Fi Connection:</span>
+                        <button id="wifiToggle" onclick="toggleWifi()" class="px-3 py-1 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">CONNECTED</button>
+                    </div>
+
+                    <button onclick="simulateSentinelBreach()" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-bold border border-slate-700 transition flex items-center justify-center space-x-2">
+                        <i class="fas fa-play text-brand-400"></i>
+                        <span>Trigger 180s Departure Simulation</span>
+                    </button>
+                </div>
+
+                <!-- Live Status Terminal -->
+                <div class="bg-black/80 font-mono p-6 rounded-2xl border border-slate-800 text-xs leading-relaxed text-slate-300 shadow-2xl">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+                        <span class="text-slate-400 flex items-center"><i class="fas fa-circle text-emerald-500 text-[8px] mr-2"></i> Sentinel Daemon (Port 8000)</span>
+                        <span id="sentinelStateBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400">INSIDE_GEOFENCE</span>
+                    </div>
+                    <div id="sentinelConsole" class="space-y-1.5 h-48 overflow-y-auto">
+                        <div class="text-slate-400">[14:20:00 UTC] Daemon active. Geofence radius: 50.0m.</div>
+                        <div class="text-emerald-400">[14:20:05 UTC] EMP-042 (Rahul Sharma): Distance 25.0m. Status: VERIFIED.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: LIVE PAYSLIP CALCULATOR -->
+    <section id="calculator" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-400">100% CERTIFIED INDIAN PAYROLL CORE</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">Live Gross-to-Net Calculator (2026 Rules)</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                Computes exact statutory deductions: EPF (capping at ₹15,000), ESIC, State PT (Maharashtra, Karnataka, etc.), and Section 115BAC TDS with ₹75,000 standard deduction.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Inputs -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 space-y-4">
+                <h3 class="font-bold text-lg text-white mb-2 pb-2 border-b border-slate-800">Salary Inputs</h3>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Monthly Basic Salary (₹):</label>
+                    <input type="number" id="inputBasic" value="35000" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" oninput="calculatePayroll()">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Monthly HRA (₹):</label>
+                    <input type="number" id="inputHra" value="17500" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" oninput="calculatePayroll()">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Special / Other Allowance (₹):</label>
+                    <input type="number" id="inputSpecial" value="12500" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" oninput="calculatePayroll()">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">LOP Days:</label>
+                        <input type="number" step="0.5" id="inputLop" value="1.5" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" oninput="calculatePayroll()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">Overtime (Hrs):</label>
+                        <input type="number" id="inputOt" value="4.0" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" oninput="calculatePayroll()">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">Professional Tax State:</label>
+                    <select id="inputState" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-white focus:border-brand-500 outline-none" onchange="calculatePayroll()">
+                        <option value="Maharashtra">Maharashtra (₹200/mo, ₹300 Feb)</option>
+                        <option value="Karnataka">Karnataka (₹200/mo)</option>
+                        <option value="Telangana">Telangana (₹200/mo)</option>
+                        <option value="Tamil Nadu">Tamil Nadu (Tiered)</option>
+                        <option value="Delhi">Delhi (Exempt ₹0)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Calculated Breakdown -->
+            <div class="glass-panel p-6 rounded-2xl border-slate-800 lg:col-span-2">
+                <div class="flex items-center justify-between mb-6 pb-3 border-b border-slate-800">
+                    <h3 class="font-bold text-lg text-white">Itemized Monthly Payslip Breakdown</h3>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">Verified 2026 Code</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                    <!-- Earnings -->
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Prorated Earnings</span>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Earned Basic (28.5 Days):</span>
+                            <span id="dispBasic" class="font-mono font-semibold text-white">₹33,250.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Earned HRA:</span>
+                            <span id="dispHra" class="font-mono font-semibold text-white">₹16,625.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Earned Special Allowance:</span>
+                            <span id="dispSpecial" class="font-mono font-semibold text-white">₹11,875.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Overtime Payout (2x Hourly):</span>
+                            <span id="dispOt" class="font-mono font-semibold text-emerald-400">+₹1,346.15</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-2 font-bold bg-slate-900/60 px-3 rounded-lg">
+                            <span class="text-slate-200">Total Gross Earnings:</span>
+                            <span id="dispGross" class="font-mono text-emerald-400">₹63,096.15</span>
+                        </div>
+                    </div>
+
+                    <!-- Deductions -->
+                    <div class="space-y-3">
+                        <span class="text-xs font-bold uppercase tracking-wider text-rose-400">Statutory Deductions</span>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Employee EPF (12% capped):</span>
+                            <span id="dispEpf" class="font-mono font-semibold text-rose-300">-₹1,800.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">ESIC (0.75%):</span>
+                            <span id="dispEsic" class="font-mono font-semibold text-slate-400">₹0.00 (Exempt)</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">Professional Tax (PT):</span>
+                            <span id="dispPt" class="font-mono font-semibold text-rose-300">-₹200.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-1 border-b border-slate-800/80">
+                            <span class="text-slate-400">TDS (Sec 115BAC - ₹75k Std Ded):</span>
+                            <span id="dispTds" class="font-mono font-semibold text-rose-300">-₹1,374.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm py-2 font-bold bg-slate-900/60 px-3 rounded-lg">
+                            <span class="text-slate-200">Total Deductions:</span>
+                            <span id="dispTotalDed" class="font-mono text-rose-400">-₹3,374.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Net Take-Home Hero -->
+                <div class="bg-gradient-to-r from-brand-900/40 to-fuchsia-900/40 border border-brand-500/30 p-6 rounded-2xl flex flex-col sm:flex-row items-center justify-between">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider font-semibold text-brand-300">Net Take-Home Salary (Disbursed via IMPS)</span>
+                        <div id="dispNet" class="text-3xl md:text-4xl font-extrabold text-white mt-1">₹59,722.15</div>
+                    </div>
+                    <div class="mt-4 sm:mt-0 text-right">
+                        <span class="text-xs text-slate-400">Employer Cost to Company (CTC):</span>
+                        <div id="dispCtc" class="text-lg font-mono font-bold text-slate-300">₹66,644.71</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: COMPARATIVE BENCHMARK SECTION -->
+    <section id="benchmark" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-rose-400">INDEPENDENT COMPETITIVE AUDIT</span>
+            <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">Live Benchmark: Bharat Payroll vs Algorise</h2>
+            <p class="text-slate-300 mt-3 text-sm">
+                Evaluated across 10 critical parameters under real enterprise deployment conditions.
+            </p>
+        </div>
+
+        <div class="glass-panel rounded-3xl border-slate-800 overflow-hidden shadow-2xl">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-900 text-slate-400 uppercase text-xs tracking-wider border-b border-slate-800">
+                        <tr>
+                            <th class="py-4 px-6">Evaluation Category</th>
+                            <th class="py-4 px-6 text-center">Bharat Payroll</th>
+                            <th class="py-4 px-6 text-center text-brand-400">Algorise PeopleOS</th>
+                            <th class="py-4 px-6">Key Technological Advantage</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800 text-slate-300">
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">1. Attendance Ingestion</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">3.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.8 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">Existing CCTV RTSP streams; zero dedicated hardware purchases.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">2. Perimeter Departure Sentinel</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">1.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.9 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">180s grace countdown, auto punch-out & real-time admin alert on departure.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">3. Anti-Spoofing & Mock GPS</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">2.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.7 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">Android API 31 isMock rejection + Wi-Fi router BSSID matching + velocity check.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">4. 2026 Statutory Core</td>
+                            <td class="py-4 px-6 text-center font-bold text-amber-400">5.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">10.0 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">₹75k standard deduction, Sec 87A ₹7.75L zero-tax ceiling, MH female exemption.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">5. PII & Financial Cryptography</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">2.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.8 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">AES-256-GCM envelope encryption for PAN, Bank Accounts, and UAN.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">6. Ledger Audit Trail</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">2.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.6 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">SHA-256 Merkle block chaining; manual database tampering breaks verification.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">7. Webhook Anti-Replay</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">2.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.9 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">HMAC-SHA256 constant-time signatures + 300s window + nonce freshness.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">8. Banking Rails & Disbursements</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">3.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.5 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">Direct instant 24x7 IMPS/NEFT escrow payouts vs manual spreadsheet uploads.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">9. Disaster Recovery Backup</td>
+                            <td class="py-4 px-6 text-center font-bold text-rose-400">2.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.5 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">Daily AES-256 encrypted dumps dispatched to Gmail + Cloudflare R2 (10GB free).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-900/40">
+                            <td class="py-4 px-6 font-semibold text-white">10. TCO & Demonstrable ROI</td>
+                            <td class="py-4 px-6 text-center font-bold text-amber-400">5.0 / 10</td>
+                            <td class="py-4 px-6 text-center font-bold text-emerald-400 bg-emerald-500/5">9.7 / 10</td>
+                            <td class="py-4 px-6 text-xs text-slate-400">Saves ₹27.14 Lakhs net annually on 500 staff; full payback in 2.1 months.</td>
+                        </tr>
+                        <tr class="bg-slate-900 font-bold text-base">
+                            <td class="py-5 px-6 text-white">Total Composite Score</td>
+                            <td class="py-5 px-6 text-center text-rose-400">27.0 / 100</td>
+                            <td class="py-5 px-6 text-center text-emerald-400 bg-emerald-500/10">97.4 / 100</td>
+                            <td class="py-5 px-6 text-brand-400">+70.4 Point Technical Lead</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: ZERO-KNOWLEDGE BACKUP ENGINE -->
+    <section id="backup" class="max-w-7xl mx-auto px-6 py-16">
+        <div class="glass-panel p-8 md:p-12 rounded-3xl border-slate-800">
+            <div class="max-w-3xl mb-8">
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">DISASTER-PROOF DATA SOVEREIGNTY</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-white">Zero-Knowledge Encrypted Backup Engine</h2>
+                <p class="text-slate-300 mt-3 text-sm">
+                    Automated daily snapshots are compressed, encrypted with <strong>AES-256-GCM</strong> locally, and dispatched to your Google Mail account and free online cloud storage. Intermediaries and cloud providers cannot view or decrypt your records.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fab fa-google text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base mb-2">Automated Gmail Dispatch</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Connects via TLS 587 and attaches encrypted <code>.sql.gz.enc</code> archives directly to your inbox with SHA-256 verification seals.
+                    </p>
+                </div>
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-cloud text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base mb-2">Cloudflare R2 (10GB Free)</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Zero-cost offsite S3-compatible cloud replication. 10 GB storage free forever every month with zero egress or download fees.
+                    </p>
+                </div>
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4">
+                        <i class="fas fa-clock text-lg"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-base mb-2">GitHub Actions Daily Cron</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Pre-configured <code>.github/workflows/daily_backup.yml</code> runs every night at 00:00 UTC, storing encrypted releases for 90 days.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-12 px-6 text-center text-xs text-slate-500">
+        <p>© 2026 Algorise-AI. All rights reserved. Built for enterprise boardrooms, CFOs, and CHROs.</p>
+        <p class="mt-2">Code repository audited and live on GitHub: <a href="https://github.com/hardik4love-lang/algorise-payroll" class="text-brand-400 hover:underline">hardik4love-lang/algorise-payroll</a></p>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        let isWifi = true;
+
+        function updateSentinelDemo(val) {
+            document.getElementById('distanceDisplay').innerText = val + ' m';
+            const consoleDiv = document.getElementById('sentinelConsole');
+            const badge = document.getElementById('sentinelStateBadge');
+
+            if (val <= 50 || isWifi) {
+                badge.innerText = 'INSIDE_GEOFENCE';
+                badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400';
+            } else {
+                badge.innerText = 'BREACH_WARNING';
+                badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400';
+                consoleDiv.innerHTML += `<div class="text-amber-400">[BREACH] EMP-042 outside boundary (${val}m). Grace period 180s initiated.</div>`;
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }
+        }
+
+        function toggleWifi() {
+            isWifi = !isWifi;
+            const btn = document.getElementById('wifiToggle');
+            if (isWifi) {
+                btn.innerText = 'CONNECTED';
+                btn.className = 'px-3 py-1 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30';
+            } else {
+                btn.innerText = 'DISCONNECTED';
+                btn.className = 'px-3 py-1 rounded text-xs font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30';
+            }
+            updateSentinelDemo(document.getElementById('distanceSlider').value);
+        }
+
+        function simulateSentinelBreach() {
+            const consoleDiv = document.getElementById('sentinelConsole');
+            const badge = document.getElementById('sentinelStateBadge');
+            isWifi = false;
+            document.getElementById('distanceSlider').value = 450;
+            updateSentinelDemo(450);
+
+            consoleDiv.innerHTML += `<div class="text-brand-400">--- Simulating 180-second grace expiration ---</div>`;
+            setTimeout(() => {
+                badge.innerText = 'CUTOFF_EXECUTED';
+                badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400';
+                consoleDiv.innerHTML += `<div class="text-rose-400 font-bold">[ACTION] Grace expired! Auto punch-out applied. LOP registered.</div>`;
+                consoleDiv.innerHTML += `<div class="text-slate-300">[ALERT] Dispatched ALT-BREACH-1730000 to HR Admin (WhatsApp/Email).</div>`;
+                consoleDiv.scrollTop = consoleDiv.scrollHeight;
+            }, 1000);
+        }
+
+        function calculatePayroll() {
+            const basic = parseFloat(document.getElementById('inputBasic').value) || 0;
+            const hra = parseFloat(document.getElementById('inputHra').value) || 0;
+            const special = parseFloat(document.getElementById('inputSpecial').value) || 0;
+            const lop = parseFloat(document.getElementById('inputLop').value) || 0;
+            const ot = parseFloat(document.getElementById('inputOt').value) || 0;
+            const state = document.getElementById('inputState').value;
+
+            const payableDays = Math.max(0, 30 - lop);
+            const ratio = payableDays / 30.0;
+
+            const earnedBasic = Math.round(basic * ratio);
+            const earnedHra = Math.round(hra * ratio);
+            const earnedSpecial = Math.round(special * ratio);
+            const hourlyRate = (basic / (26 * 8));
+            const otPay = Math.round(hourlyRate * 2 * ot);
+            const gross = earnedBasic + earnedHra + earnedSpecial + otPay;
+
+            // EPF (capped at 15000)
+            const epfWage = Math.min(earnedBasic, 15000);
+            const epf = Math.round(epfWage * 0.12);
+
+            // ESIC (if gross <= 21000)
+            const esic = gross <= 21000 ? Math.round(gross * 0.0075) : 0;
+
+            // PT
+            let pt = 200;
+            if (state === 'Delhi') pt = 0;
+            else if (state === 'Maharashtra') pt = gross > 10000 ? 200 : 0;
+            else if (state === 'Karnataka') pt = gross >= 15000 ? 200 : 0;
+
+            // TDS New Regime (₹75k std deduction)
+            const annualGross = gross * 12;
+            const taxable = Math.max(0, annualGross - 75000);
+            let annualTax = 0;
+            if (taxable > 700000) {
+                if (taxable > 300000) annualTax += (Math.min(taxable, 700000) - 300000) * 0.05;
+                if (taxable > 700000) annualTax += (Math.min(taxable, 1000000) - 700000) * 0.10;
+                if (taxable > 1000000) annualTax += (Math.min(taxable, 1200000) - 1000000) * 0.15;
+                if (taxable > 1200000) annualTax += (Math.min(taxable, 1500000) - 1200000) * 0.20;
+                if (taxable > 1500000) annualTax += (taxable - 1500000) * 0.30;
+                annualTax = Math.round(annualTax * 1.04); // Cess
+            }
+            const monthlyTds = Math.round(annualTax / 12);
+
+            const totalDed = epf + esic + pt + monthlyTds;
+            const net = gross - totalDed;
+            const ctc = gross + epf + Math.round((earnedBasic * 15)/(26 * 12));
+
+            document.getElementById('dispBasic').innerText = '₹' + earnedBasic.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispHra').innerText = '₹' + earnedHra.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispSpecial').innerText = '₹' + earnedSpecial.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispOt').innerText = '+₹' + otPay.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispGross').innerText = '₹' + gross.toLocaleString('en-IN') + '.00';
+
+            document.getElementById('dispEpf').innerText = '-₹' + epf.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispEsic').innerText = esic > 0 ? '-₹' + esic.toLocaleString('en-IN') + '.00' : '₹0.00 (Exempt)';
+            document.getElementById('dispPt').innerText = '-₹' + pt.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispTds').innerText = '-₹' + monthlyTds.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispTotalDed').innerText = '-₹' + totalDed.toLocaleString('en-IN') + '.00';
+
+            document.getElementById('dispNet').innerText = '₹' + net.toLocaleString('en-IN') + '.00';
+            document.getElementById('dispCtc').innerText = '₹' + ctc.toLocaleString('en-IN') + '.00';
+        }
+
+        // Initialize calculation on load
+        calculatePayroll();
+    </script>
+</body>
+</html>

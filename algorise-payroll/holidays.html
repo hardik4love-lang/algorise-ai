@@ -488,9 +488,9 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Diwali Festival</td><td class="py-3 px-4 font-mono font-bold text-blue-700">31 Oct 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Notice</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Vikram Samvat New Year (Bestu Varas)</td><td class="py-3 px-4 font-mono font-bold text-blue-700">01 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Notice</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-bold text-slate-900">Bhai Dooj</td><td class="py-3 px-4 font-mono font-bold text-blue-700">03 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Notice</button></td></tr>
+              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Diwali Festival</td><td class="py-3 px-4 font-mono font-bold text-blue-700">31 Oct 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Diwali Festival', '31 Oct 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Vikram Samvat New Year (Bestu Varas)</td><td class="py-3 px-4 font-mono font-bold text-blue-700">01 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Vikram Samvat New Year (Bestu Varas)', '01 Nov 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-bold text-slate-900">Bhai Dooj</td><td class="py-3 px-4 font-mono font-bold text-blue-700">03 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Bhai Dooj', '03 Nov 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
             </tbody>
           </table>
         </div>
@@ -501,6 +501,9 @@
   
 
   <script>
+    function viewHolidayNotice(ev, dt) {
+      showToast('Official Holiday Circular dispatched for ' + ev + ' (' + dt + ')', 'info');
+    }
     function openModal(id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('hidden');

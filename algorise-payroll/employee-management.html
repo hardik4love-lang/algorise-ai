@@ -879,13 +879,13 @@
         <div class="px-5 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
           <div>Showing 1 to 10 of 493 entries</div>
           <div class="flex items-center gap-1 font-semibold">
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-400">&lt;</button>
-            <button class="w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold">1</button>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">2</button>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">3</button>
+            <button onclick="goToEmpPage(1)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">&lt;</button>
+            <button id="epbtn-1" onclick="goToEmpPage(1)" class="w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer">1</button>
+            <button id="epbtn-2" onclick="goToEmpPage(2)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">2</button>
+            <button id="epbtn-3" onclick="goToEmpPage(3)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">3</button>
             <span class="px-1 text-slate-400">...</span>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">50</button>
-            <button class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50">&gt;</button>
+            <button id="epbtn-50" onclick="goToEmpPage(50)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">50</button>
+            <button onclick="goToEmpPage(2)" class="w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer">&gt;</button>
           </div>
         </div>
       </div>
@@ -976,6 +976,18 @@
       document.getElementById('deptSelectFilter').value = '';
       document.querySelectorAll('.worker-row').forEach(r => r.style.display = '');
       showToast('Filters reset', 'info');
+    }
+
+    function goToEmpPage(p) {
+      [1, 2, 3, 50].forEach(n => {
+        const btn = document.getElementById('epbtn-' + n);
+        if (btn) {
+          btn.className = (n === p) 
+            ? 'w-7 h-7 rounded bg-blue-600 text-white flex items-center justify-center font-bold cursor-pointer'
+            : 'w-7 h-7 rounded border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-50 cursor-pointer';
+        }
+      });
+      showToast('Employee Directory: Showing page ' + p + ' of 493 active workers', 'info');
     }
   </script>
 
