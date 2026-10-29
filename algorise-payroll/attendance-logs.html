@@ -6,7 +6,7 @@
   <title>Attendance Logs — Algorise PeopleOS HRM</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F172A'/><path d='M16 6L26 24H6L16 6Z' stroke='%2300F2FE' stroke-width='2.5' fill='none'/><circle cx='16' cy='18' r='3.5' fill='%2310B981'/></svg>" />
   
-  <!-- Fonts & Font Awesome Icons (Exact HisabMittra stack) -->
+  <!-- Fonts & Font Awesome Icons (HisabMittra stack) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -47,7 +47,6 @@
   </script>
 
   <style>
-    /* Clean Enterprise Styles matching HisabMittra */
     body {
       font-family: "Plus Jakarta Sans", sans-serif;
       -webkit-font-smoothing: antialiased;
@@ -59,7 +58,6 @@
       background-color: rgba(156, 163, 175, 0.4);
       border-radius: 4px;
     }
-    /* Toolbar Button style matching Payroll Vision */
     .pv-btn {
       display: inline-flex;
       flex-direction: column;
@@ -76,9 +74,18 @@
     .pv-btn:hover {
       transform: translateY(-1px);
     }
+    @keyframes toastSlide {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .toast-anim {
+      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col transition-colors duration-200">
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
 
   <!-- ========================================== -->
   <!-- TOP HEADER (Exact HisabMittra HRM replica) -->
@@ -86,12 +93,11 @@
   <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
     <!-- Left: Brand Logo & Hamburger Toggle -->
     <div class="flex items-center gap-3">
-      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer">
+      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer" title="Toggle Navigation">
         <i class="fa-solid fa-bars text-lg"></i>
       </button>
 
       <a href="index.html" class="flex items-center gap-2.5 text-decoration-none">
-        <!-- Algorise PeopleOS Mark -->
         <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-teal-500 to-emerald-500 flex items-center justify-center text-slate-950 font-black shadow-md shadow-cyan-500/20">
           <i class="fa-solid fa-people-roof text-white text-base"></i>
         </div>
@@ -112,21 +118,21 @@
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
           <i class="fa-solid fa-magnifying-glass text-xs"></i>
         </span>
-        <input type="text" id="globalMenuSearch" placeholder="Search Menu (ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition" />
+        <input type="text" id="globalMenuSearch" placeholder="Search Menu (ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition" onkeyup="handleMenuSearch(this.value)" />
       </div>
     </div>
 
     <!-- Right: Language, Theme, Notifications, Headset, Profile -->
     <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Active Firm Selector (Payroll Vision Metadata) -->
-      <div class="hidden lg:flex items-center gap-1 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs font-mono">
+      <!-- Active Firm Selector -->
+      <div class="hidden lg:flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs font-mono">
         <span class="text-slate-500 dark:text-slate-400 text-[10px] font-semibold uppercase">Firm:</span>
         <select class="bg-transparent font-bold text-cyan-600 dark:text-cyan-400 focus:outline-none cursor-pointer" onchange="switchFirm(this.value)">
           <option value="UNIT-2" selected>PAYROLL UNIT - 2</option>
           <option value="UNIT-1">PAYROLL UNIT - 1</option>
         </select>
         <span class="text-slate-400">|</span>
-        <span class="text-[11px] text-slate-600 dark:text-slate-300">2026-2027</span>
+        <span class="text-[11px] text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap">2026-2027</span>
       </div>
 
       <!-- Language Selector (English / Gujarati / Hindi) -->
@@ -136,14 +142,14 @@
           <span id="currentLangLabel">English</span>
           <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
         </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-36 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
+        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
           <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
             English <i class="fa-solid fa-check text-cyan-500"></i>
           </button>
-          <button onclick="setLanguage('gu', 'ગુજરાતી')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
             ગુજરાતી (Gujarati)
           </button>
-          <button onclick="setLanguage('hi', 'हिंदी')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
             हिंदी (Hindi)
           </button>
         </div>
@@ -155,18 +161,18 @@
       </button>
 
       <!-- Notification Bell -->
-      <button class="relative p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer">
+      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Notice Board &amp; Alerts">
         <i class="fa-regular fa-bell text-sm"></i>
         <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500"></span>
-      </button>
+      </a>
 
-      <!-- Headset Support Icon -->
-      <button onclick="alert('Algorise Priority 24/7 Support: Connected to dedicated engineer for PAYROLL UNIT - 2.')" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Direct Enterprise Support">
+      <!-- Support Icon -->
+      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Enterprise Support Desk">
         <i class="fa-solid fa-headset text-sm"></i>
       </button>
 
       <!-- UltraViewer User Profile (anil) -->
-      <div class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800 hover:opacity-90">
         <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
           A
         </div>
@@ -176,14 +182,14 @@
           </div>
           <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400">ID: 213046213</span>
         </div>
-      </div>
+      </a>
     </div>
   </header>
 
   <div class="flex-1 flex overflow-hidden">
     
     <!-- ============================================== -->
-    <!-- LEFT SIDEBAR (Exact HisabMittra Menu Hierarchy)-->
+    <!-- LEFT SIDEBAR (Exact HisabMittra Hierarchy)     -->
     <!-- ============================================== -->
     <aside id="mainSidebar" class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
       <!-- Session Bar -->
@@ -194,9 +200,9 @@
             ONLINE
           </span>
         </div>
-        <div class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 truncate">
+        <a href="company-management.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block hover:text-cyan-500 truncate" title="View Company Settings">
           PAYROLL UNIT - 2
-        </div>
+        </a>
       </div>
 
       <!-- Navigation Links -->
@@ -209,7 +215,7 @@
         </a>
 
         <!-- 2. Company Management -->
-        <a href="javascript:void(0)" onclick="alert('Company Management: PAYROLL UNIT - 2 (Active), PAYROLL UNIT - 1. License valid upto 30-Apr-2027.')" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+        <a href="company-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-building w-4 text-center"></i> Company Management
           </span>
@@ -217,7 +223,7 @@
         </a>
 
         <!-- 3. User Management -->
-        <a href="javascript:void(0)" onclick="alert('User Management: Current Active Admin - anil (UltraViewer Session 213046213).')" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+        <a href="user-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-user-gear w-4 text-center"></i> User Management
           </span>
@@ -242,7 +248,6 @@
           </div>
 
           <div class="pl-4 pr-1 py-1 space-y-0.5 border-l-2 border-cyan-200 dark:border-cyan-900 ml-3 mt-1">
-            <!-- Attendance Logs -->
             <a href="attendance-logs.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border-l-4 border-cyan-500 font-bold">
               <span class="flex items-center gap-2">
                 <i class="fa-solid fa-circle text-[6px] text-cyan-500"></i> Attendance Logs
@@ -250,7 +255,6 @@
               <span class="text-[9px] font-mono bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 px-1 rounded">WiFi/BSSID</span>
             </a>
 
-            <!-- Launch Face Kiosk -->
             <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
               <span class="flex items-center gap-2">
                 <i class="fa-solid fa-camera text-[10px] text-emerald-500"></i> Launch Face Kiosk
@@ -258,15 +262,13 @@
               <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">AI Cam</span>
             </a>
 
-            <!-- Daily Credit Summary -->
             <a href="daily-credit.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
               <span class="flex items-center gap-2">
                 <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Daily Credit Summary
               </span>
             </a>
 
-            <!-- Monthly Status Report -->
-            <a href="payroll-management.html#muster" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
+            <a href="monthly-report.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
               <span class="flex items-center gap-2">
                 <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Monthly Status Report
               </span>
@@ -282,7 +284,22 @@
           <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">Cam Core</span>
         </a>
 
-        <!-- 7. Payroll Management -->
+        <!-- 7. Supervisor -->
+        <a href="supervisor.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-user-tie w-4 text-center"></i> Supervisor Directory
+          </span>
+          <span class="text-[9px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-1.5 py-0.2 rounded">4 Active</span>
+        </a>
+
+        <!-- 8. Notice Board -->
+        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-bullhorn w-4 text-center text-amber-500"></i> Notice Board
+          </span>
+        </a>
+
+        <!-- 9. Payroll Management -->
         <a href="payroll-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-file-invoice-dollar w-4 text-center"></i> Payroll Management
@@ -290,24 +307,17 @@
           <span class="text-[9px] font-mono bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 px-1.5 py-0.2 rounded font-bold">1-Click</span>
         </a>
 
-        <!-- 8. Shift Management -->
+        <!-- 10. Leave Management -->
+        <a href="leave-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-calendar-xmark w-4 text-center"></i> Leave Management
+          </span>
+        </a>
+
+        <!-- 11. Shift Management -->
         <a href="shift-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
-          </span>
-        </a>
-
-        <!-- 9. Notice -->
-        <a href="javascript:void(0)" onclick="alert('Notice Board: Shift 2 Weaving maintenance scheduled at 23:00 tonight.')" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-bullhorn w-4 text-center"></i> Notice Board
-          </span>
-        </a>
-
-        <!-- 10. Supervisor -->
-        <a href="javascript:void(0)" onclick="alert('Supervisor Console: 4 Shift Supervisors Active (Rajan Sharma, Vipul Desai, Dinesh Solanki, Manoj Verma).')" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-user-tie w-4 text-center"></i> Supervisor
           </span>
         </a>
       </nav>
@@ -329,9 +339,7 @@
     </aside>
 
 
-    <!-- Main Content Area (Exact Replica of HisabMittra Screenshot 4) -->
     <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50 dark:bg-slate-950">
-      <!-- Breadcrumb (Exact from HisabMittra screenshot) -->
       <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-4">
         <a href="index.html" class="hover:underline">Dashboard</a>
         <span>/</span>
@@ -347,7 +355,6 @@
         </h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
-          <!-- Select Branch -->
           <div>
             <select id="logBranchSelect" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500">
               <option value="ALL">Select Branch</option>
@@ -356,7 +363,6 @@
             </select>
           </div>
 
-          <!-- Select Department -->
           <div>
             <select id="logDeptSelect" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500">
               <option value="ALL" selected>Select Department</option>
@@ -367,7 +373,6 @@
             </select>
           </div>
 
-          <!-- Select Employee -->
           <div>
             <select id="logEmpSelect" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500">
               <option value="ALL" selected>Select Employee</option>
@@ -379,7 +384,7 @@
             </select>
           </div>
 
-          <!-- Filter & Reset Buttons (Exact HisabMittra styling: Emerald & Royal Blue) -->
+          <!-- Filter & Reset Buttons (Exact HisabMittra colors) -->
           <div class="flex items-center gap-2">
             <button onclick="applyFilters()" class="flex-1 py-2 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition cursor-pointer text-center">
               Filter
@@ -398,7 +403,6 @@
             ATTENDANCE LOGS
           </h2>
 
-          <!-- Source Tabs (HisabMittra Manual / Biometric + CCTV / WiFi AI) -->
           <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg text-xs font-mono">
             <button onclick="switchTab('manual')" id="tab-btn-manual" class="px-3 py-1 rounded-md text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white cursor-pointer">
               Manual Logs
@@ -431,7 +435,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300" id="logsTbody">
-              <!-- Row 1: Real client log from screenshot 4 -->
+              <!-- Real client records from screenshot 4 -->
               <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">1</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">SONU KAUSHAL KISHOR</td>
@@ -441,7 +445,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">Verified</span></td>
               </tr>
 
-              <!-- Row 2: Real client log from screenshot 4 -->
               <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">2</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">SONU KAUSHAL KISHOR</td>
@@ -451,7 +454,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">Verified</span></td>
               </tr>
 
-              <!-- Row 3: Real client log from screenshot 4 -->
               <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">3</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">SONU KAUSHAL KISHOR</td>
@@ -461,7 +463,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">Verified</span></td>
               </tr>
 
-              <!-- Row 4: Real client log from screenshot 4 -->
               <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">4</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">SONU KAUSHAL KISHOR</td>
@@ -471,7 +472,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">Verified</span></td>
               </tr>
 
-              <!-- Row 5: Real client log from screenshot 4 -->
               <tr data-dept="Maintenance" data-type="wifi" data-emp="ANAND PAKASH CHANDRA" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">5</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">ANAND PAKASH CHANDRA</td>
@@ -481,7 +481,7 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-400 font-bold">Off-Site</span></td>
               </tr>
 
-              <!-- Row 6: CCTV AI Edge Cam Log -->
+              <!-- CCTV AI logs -->
               <tr data-dept="Weaving" data-type="cctv" data-emp="RAMESH PATEL" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">6</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">RAMESH PATEL (EMP1001)</td>
@@ -491,7 +491,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">99.6% Match</span></td>
               </tr>
 
-              <!-- Row 7: CCTV AI Edge Cam Log -->
               <tr data-dept="Production" data-type="cctv" data-emp="RAJAN SHARMA" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">7</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">RAJAN SHARMA (EMP1004)</td>
@@ -501,7 +500,6 @@
                 <td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">99.4% Match</span></td>
               </tr>
 
-              <!-- Row 8: CCTV AI Edge Cam Log -->
               <tr data-dept="Weaving" data-type="cctv" data-emp="VIPUL DESAI" class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
                 <td class="py-3 px-4 text-slate-400">8</td>
                 <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">VIPUL DESAI (EMP1005)</td>
@@ -514,14 +512,12 @@
           </table>
         </div>
 
-        <!-- Pagination strip matching HisabMittra -->
-        <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500">
           <span>Showing 1 to 8 of 17,326 entries</span>
           <div class="flex items-center gap-1 font-mono">
             <button class="px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Previous</button>
             <span class="px-2.5 py-1 rounded bg-cyan-600 text-white font-bold">1</span>
             <button class="px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">2</button>
-            <button class="px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">3</button>
             <button class="px-2.5 py-1 rounded border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800">Next</button>
           </div>
         </div>
@@ -535,12 +531,15 @@
       const emp = document.getElementById('logEmpSelect').value;
       const rows = document.querySelectorAll('#logsTbody tr');
 
+      let count = 0;
       rows.forEach(r => {
         let match = true;
         if (dept !== 'ALL' && r.getAttribute('data-dept') !== dept) match = false;
         if (emp !== 'ALL' && r.getAttribute('data-emp') !== emp) match = false;
         r.style.display = match ? '' : 'none';
+        if (match) count++;
       });
+      showToast('Filters Applied', `Displaying ${count} matching log entries.`, 'info');
     }
 
     function resetFilters() {
@@ -548,6 +547,7 @@
       document.getElementById('logEmpSelect').value = 'ALL';
       document.getElementById('logBranchSelect').value = 'UNIT-2';
       applyFilters();
+      showToast('Filters Reset', 'Showing all log records.', 'info');
     }
 
     function switchTab(type) {
@@ -570,7 +570,6 @@
       });
     }
 
-    // Check URL parameters for direct deep-filtering
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       const deptParam = urlParams.get('dept');
@@ -581,13 +580,83 @@
     });
   </script>
 
+  <!-- Support Modal -->
+  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Algorise Enterprise Support</h3>
+            <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">Dedicated SLA for PAYROLL UNIT - 2</span>
+          </div>
+        </div>
+        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs font-mono mb-4 text-slate-600 dark:text-slate-300">
+        <p>UltraViewer Client ID: <strong class="text-slate-900 dark:text-white">213046213 (anil)</strong></p>
+        <p>Active Camera Feeds: <strong class="text-emerald-600 dark:text-emerald-400">3 Streams Synced</strong></p>
+        <p>Assigned Support Engineer: <strong class="text-cyan-600 dark:text-cyan-400">Hardik (AI &amp; Payroll Lead)</strong></p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="showToast('Support Ticket Created', 'Engineer notified on WhatsApp.', 'success'); closeSupportModal();" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer text-center">
+          Ping on WhatsApp
+        </button>
+        <button onclick="closeSupportModal()" class="py-2 px-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs cursor-pointer">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Shared App JS Functions -->
   <script>
+    // Modern In-App Toast System (Zero alert() popups!)
+    function showToast(title, message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-anim pointer-events-auto bg-white dark:bg-slate-900 border rounded-xl p-3.5 shadow-2xl flex items-start gap-3 text-xs transition-all duration-300 ' + 
+        (type === 'success' ? 'border-emerald-500/50 text-slate-800 dark:text-slate-100' :
+         type === 'error' ? 'border-rose-500/50 text-slate-800 dark:text-slate-100' :
+         type === 'warning' ? 'border-amber-500/50 text-slate-800 dark:text-slate-100' :
+         'border-cyan-500/50 text-slate-800 dark:text-slate-100');
+
+      const iconCls = type === 'success' ? 'fa-solid fa-circle-check text-emerald-500 text-base' :
+                      type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-500 text-base' :
+                      type === 'warning' ? 'fa-solid fa-triangle-exclamation text-amber-500 text-base' :
+                      'fa-solid fa-circle-info text-cyan-500 text-base';
+
+      toast.innerHTML = `
+        <i class="${iconCls} mt-0.5"></i>
+        <div class="flex-1">
+          <strong class="font-bold block text-slate-900 dark:text-white">${title}</strong>
+          <span class="text-slate-600 dark:text-slate-400 text-[11px] font-medium leading-tight">${message}</span>
+        </div>
+        <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
     // Theme toggle
     function toggleTheme() {
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       updateThemeIcon(isDark);
+      showToast('Theme Changed', isDark ? 'Switched to Dark Mode.' : 'Switched to Light Mode.', 'info');
     }
     function updateThemeIcon(isDark) {
       const icon = document.getElementById('themeIcon');
@@ -595,7 +664,6 @@
         icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-sm' : 'fa-solid fa-moon text-slate-600 text-sm';
       }
     }
-    // Initialize saved theme (default to dark for Algorise, or light)
     if (localStorage.getItem('theme') === 'light') {
       document.documentElement.classList.remove('dark');
       updateThemeIcon(false);
@@ -604,12 +672,10 @@
       updateThemeIcon(true);
     }
 
-    // Sidebar toggle for mobile & compact view
+    // Sidebar toggle
     function toggleSidebar() {
       const sb = document.getElementById('mainSidebar');
-      if (sb) {
-        sb.classList.toggle('hidden');
-      }
+      if (sb) sb.classList.toggle('hidden');
     }
 
     // Language switcher
@@ -620,7 +686,12 @@
     function setLanguage(langCode, label) {
       document.getElementById('currentLangLabel').innerText = label;
       document.getElementById('langDropdown').classList.add('hidden');
-      if (langCode === 'gu') playGujaratiPrompt();
+      if (langCode === 'gu') {
+        playGujaratiPrompt();
+        showToast('ભાષા બદલાઈ', 'ઓડિયો ભાષા ગુજરાતી સેટ થઈ છે.', 'success');
+      } else {
+        showToast('Language Changed', `Interface set to ${label}.`, 'info');
+      }
     }
 
     // Native Gujarati Audio Prompt
@@ -655,8 +726,35 @@
 
     // Firm switch
     function switchFirm(firm) {
-      alert(`Switched active environment to: ${firm === 'UNIT-2' ? 'PAYROLL UNIT - 2 (Main Facility)' : 'PAYROLL UNIT - 1 (Weaving Branch)'}. All sub-ledgers, CCTV feeds, and records reloaded.`);
-      window.location.reload();
+      const firmName = firm === 'UNIT-2' ? 'PAYROLL UNIT - 2 (Main Facility)' : 'PAYROLL UNIT - 1 (Weaving Branch)';
+      showToast('Operating Firm Switched', `Active environment: ${firmName}. All sub-ledgers and camera streams reloaded.`, 'success');
+    }
+
+    // Support Modal
+    function openSupportModal() {
+      document.getElementById('supportModal').classList.remove('hidden');
+    }
+    function closeSupportModal() {
+      document.getElementById('supportModal').classList.add('hidden');
+    }
+
+    // Global Menu Search (ctrl+q)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
+        e.preventDefault();
+        const s = document.getElementById('globalMenuSearch');
+        if (s) { s.focus(); s.select(); }
+      }
+    });
+
+    function handleMenuSearch(q) {
+      if (!q) return;
+      const term = q.toLowerCase();
+      const links = document.querySelectorAll('#mainSidebar nav a');
+      links.forEach(l => {
+        const txt = l.innerText.toLowerCase();
+        l.style.opacity = txt.includes(term) ? '1' : '0.35';
+      });
     }
 
     // Download file utility
@@ -670,6 +768,7 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      showToast('File Generated', `${filename} downloaded successfully.`, 'success');
     }
   </script>
 </body>

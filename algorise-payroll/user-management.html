@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Management — Algorise PeopleOS HRM</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F172A'/><path d='M16 6L26 24H6L16 6Z' stroke='%2300F2FE' stroke-width='2.5' fill='none'/><circle cx='16' cy='18' r='3.5' fill='%2310B981'/></svg>" />
+  
+  <!-- Fonts & Font Awesome Icons (HisabMittra stack) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490'
+            },
+            emerald: {
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            },
+            slate: {
+              850: '#151e2e',
+              900: '#0f172a',
+              950: '#090d16'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hm-sidebar-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .hm-sidebar-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(156, 163, 175, 0.4);
+      border-radius: 4px;
+    }
+    .pv-btn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      min-width: 52px;
+      cursor: pointer;
+    }
+    .pv-btn:hover {
+      transform: translateY(-1px);
+    }
+    @keyframes toastSlide {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .toast-anim {
+      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col transition-colors duration-200">
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
+
+  <!-- ========================================== -->
+  <!-- TOP HEADER (Exact HisabMittra HRM replica) -->
+  <!-- ========================================== -->
+  <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+    <!-- Left: Brand Logo & Hamburger Toggle -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer" title="Toggle Navigation">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+
+      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-teal-500 to-emerald-500 flex items-center justify-center text-slate-950 font-black shadow-md shadow-cyan-500/20">
+          <i class="fa-solid fa-people-roof text-white text-base"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">Algorise</span>
+            <span class="font-extrabold text-base tracking-tight text-cyan-600 dark:text-cyan-400">PeopleOS</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-100 dark:bg-cyan-900/50 text-cyan-800 dark:text-cyan-300 font-bold border border-cyan-300 dark:border-cyan-700">v2.4</span>
+          </div>
+          <span class="text-[10px] text-slate-500 dark:text-slate-400 tracking-wide font-medium">Enterprise HRM &amp; Attendance</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Center: Search Menu (Exact Ctrl+Q from HisabMittra) -->
+    <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
+      <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+        </span>
+        <input type="text" id="globalMenuSearch" placeholder="Search Menu (ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition" onkeyup="handleMenuSearch(this.value)" />
+      </div>
+    </div>
+
+    <!-- Right: Language, Theme, Notifications, Headset, Profile -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Active Firm Selector -->
+      <div class="hidden lg:flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs font-mono">
+        <span class="text-slate-500 dark:text-slate-400 text-[10px] font-semibold uppercase">Firm:</span>
+        <select class="bg-transparent font-bold text-cyan-600 dark:text-cyan-400 focus:outline-none cursor-pointer" onchange="switchFirm(this.value)">
+          <option value="UNIT-2" selected>PAYROLL UNIT - 2</option>
+          <option value="UNIT-1">PAYROLL UNIT - 1</option>
+        </select>
+        <span class="text-slate-400">|</span>
+        <span class="text-[11px] text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap">2026-2027</span>
+      </div>
+
+      <!-- Language Selector (English / Gujarati / Hindi) -->
+      <div class="relative">
+        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition cursor-pointer">
+          <i class="fa-solid fa-language text-cyan-600 dark:text-cyan-400"></i>
+          <span id="currentLangLabel">English</span>
+          <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+        </button>
+        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
+          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+            English <i class="fa-solid fa-check text-cyan-500"></i>
+          </button>
+          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+            ગુજરાતી (Gujarati)
+          </button>
+          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
+            हिंदी (Hindi)
+          </button>
+        </div>
+      </div>
+
+      <!-- Dark / Light Mode Toggle -->
+      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Toggle Dark/Light Mode">
+        <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+      </button>
+
+      <!-- Notification Bell -->
+      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Notice Board &amp; Alerts">
+        <i class="fa-regular fa-bell text-sm"></i>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500"></span>
+      </a>
+
+      <!-- Support Icon -->
+      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Enterprise Support Desk">
+        <i class="fa-solid fa-headset text-sm"></i>
+      </button>
+
+      <!-- UltraViewer User Profile (anil) -->
+      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800 hover:opacity-90">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
+          A
+        </div>
+        <div class="hidden sm:block text-left leading-tight">
+          <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
+            anil <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400">ID: 213046213</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR (Exact HisabMittra Hierarchy)     -->
+    <!-- ============================================== -->
+    <aside id="mainSidebar" class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
+      <!-- Session Bar -->
+      <div class="p-3 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/50">
+        <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+          <span>A/C: 2026-2027</span>
+          <span class="px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 font-bold text-[10px]">
+            ONLINE
+          </span>
+        </div>
+        <a href="company-management.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block hover:text-cyan-500 truncate" title="View Company Settings">
+          PAYROLL UNIT - 2
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
+        <!-- 1. Dashboard -->
+        <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
+          </span>
+        </a>
+
+        <!-- 2. Company Management -->
+        <a href="company-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-building w-4 text-center"></i> Company Management
+          </span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+        </a>
+
+        <!-- 3. User Management -->
+        <a href="user-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border-l-4 border-cyan-500 font-bold">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-user-gear w-4 text-center"></i> User Management
+          </span>
+          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+        </a>
+
+        <!-- 4. Employee Management (Master) -->
+        <a href="employee-master.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-users w-4 text-center"></i> Employee Master (16 Ledgers)
+          </span>
+          <span class="text-[10px] font-mono bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 px-1.5 py-0.2 rounded font-bold">16 Sub</span>
+        </a>
+
+        <!-- 5. Attendance Section (Expanded Accordion) -->
+        <div class="pt-2">
+          <div class="px-3 py-1 flex items-center justify-between text-[11px] font-bold text-cyan-700 dark:text-cyan-400 uppercase tracking-wider">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-clock-rotate-left"></i> Attendance Section
+            </span>
+            <i class="fa-solid fa-chevron-down text-[10px]"></i>
+          </div>
+
+          <div class="pl-4 pr-1 py-1 space-y-0.5 border-l-2 border-cyan-200 dark:border-cyan-900 ml-3 mt-1">
+            <a href="attendance-logs.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle text-[6px] text-cyan-500"></i> Attendance Logs
+              </span>
+              <span class="text-[9px] font-mono bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 px-1 rounded">WiFi/BSSID</span>
+            </a>
+
+            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-camera text-[10px] text-emerald-500"></i> Launch Face Kiosk
+              </span>
+              <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">AI Cam</span>
+            </a>
+
+            <a href="daily-credit.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Daily Credit Summary
+              </span>
+            </a>
+
+            <a href="monthly-report.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Monthly Status Report
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. CCTV Sentinel (Camera Ingest Upgrade) -->
+        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-video w-4 text-center text-emerald-600 dark:text-emerald-400"></i> CCTV &amp; Sentinel AI
+          </span>
+          <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">Cam Core</span>
+        </a>
+
+        <!-- 7. Supervisor -->
+        <a href="supervisor.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-user-tie w-4 text-center"></i> Supervisor Directory
+          </span>
+          <span class="text-[9px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-1.5 py-0.2 rounded">4 Active</span>
+        </a>
+
+        <!-- 8. Notice Board -->
+        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-bullhorn w-4 text-center text-amber-500"></i> Notice Board
+          </span>
+        </a>
+
+        <!-- 9. Payroll Management -->
+        <a href="payroll-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-file-invoice-dollar w-4 text-center"></i> Payroll Management
+          </span>
+          <span class="text-[9px] font-mono bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 px-1.5 py-0.2 rounded font-bold">1-Click</span>
+        </a>
+
+        <!-- 10. Leave Management -->
+        <a href="leave-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-calendar-xmark w-4 text-center"></i> Leave Management
+          </span>
+        </a>
+
+        <!-- 11. Shift Management -->
+        <a href="shift-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
+          </span>
+        </a>
+      </nav>
+
+      <!-- Bottom Audio Language Indicator (Payroll Vision replica) -->
+      <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-amber-50/70 dark:bg-amber-950/20 text-[11px]">
+        <div class="flex items-center justify-between text-amber-800 dark:text-amber-300 font-bold mb-1">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-volume-high"></i> Audio Prompt
+          </span>
+          <button onclick="playGujaratiPrompt()" class="text-cyan-700 dark:text-cyan-400 hover:underline cursor-pointer text-[10px]">
+            Test <i class="fa-solid fa-play ml-0.5"></i>
+          </button>
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 text-[10px] leading-tight font-medium">
+          "Current Audio language is Gujarati". Actively assists factory workers and operators.
+        </p>
+      </div>
+    </aside>
+
+
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50 dark:bg-slate-950">
+      <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-4">
+        <a href="index.html" class="hover:underline">Dashboard</a>
+        <span>/</span>
+        <span class="text-cyan-600 dark:text-cyan-400 font-bold">User Management</span>
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+        <div>
+          <h1 class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
+            User Accounts &amp; Access Permissions
+          </h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+            Manage authenticated administrators, shift supervisors, and payroll clerks.
+          </p>
+        </div>
+
+        <button onclick="showToast('Add User', 'User creation form opened.', 'info')" class="px-4 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-700 text-white font-bold text-xs shadow-sm cursor-pointer">
+          + Add New User
+        </button>
+      </div>
+
+      <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead>
+              <tr class="bg-slate-50 dark:bg-slate-850/60 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-[11px]">
+                <th class="py-3 px-4 font-bold">Username</th>
+                <th class="py-3 px-4 font-bold">Full Name</th>
+                <th class="py-3 px-4 font-bold">Role / Permission</th>
+                <th class="py-3 px-4 font-bold">Department</th>
+                <th class="py-3 px-4 font-bold">UltraViewer / Session ID</th>
+                <th class="py-3 px-4 text-center font-bold">Status</th>
+                <th class="py-3 px-4 text-center font-bold">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-bold text-cyan-600 dark:text-cyan-400">anil</td>
+                <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">Anil Kumar Patel</td>
+                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-violet-100 dark:bg-violet-950 text-violet-700 dark:text-violet-300 font-bold">Super Administrator</span></td>
+                <td class="py-3.5 px-4">Plant Management</td>
+                <td class="py-3.5 px-4 text-emerald-600 dark:text-emerald-400 font-bold">213046213 (Active)</td>
+                <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">ONLINE</span></td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="showToast('Edit User', 'Editing admin profile for anil.', 'info')" class="text-cyan-600 hover:underline">Edit</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-bold text-cyan-600 dark:text-cyan-400">rajan.supervisor</td>
+                <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">Rajan Sharma</td>
+                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold">Shift Supervisor</span></td>
+                <td class="py-3.5 px-4">Production Division</td>
+                <td class="py-3.5 px-4 text-slate-500">Shopfloor Terminal #1</td>
+                <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">ACTIVE</span></td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="showToast('Edit User', 'Editing profile for rajan.supervisor.', 'info')" class="text-cyan-600 hover:underline">Edit</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-bold text-cyan-600 dark:text-cyan-400">vipul.desai</td>
+                <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">Vipul Desai</td>
+                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 font-bold">Weaving Master</span></td>
+                <td class="py-3.5 px-4">Weaving (Looms)</td>
+                <td class="py-3.5 px-4 text-slate-500">Shopfloor Terminal #2</td>
+                <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">ACTIVE</span></td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="showToast('Edit User', 'Editing profile for vipul.desai.', 'info')" class="text-cyan-600 hover:underline">Edit</button>
+                </td>
+              </tr>
+
+              <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                <td class="py-3.5 px-4 font-bold text-cyan-600 dark:text-cyan-400">dinesh.acct</td>
+                <td class="py-3.5 px-4 font-bold text-slate-900 dark:text-white">Dinesh Solanki</td>
+                <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-bold">Payroll Clerk</span></td>
+                <td class="py-3.5 px-4">Accounts Dept</td>
+                <td class="py-3.5 px-4 text-slate-500">Office Desktop</td>
+                <td class="py-3.5 px-4 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 font-bold">ACTIVE</span></td>
+                <td class="py-3.5 px-4 text-center">
+                  <button onclick="showToast('Edit User', 'Editing profile for dinesh.acct.', 'info')" class="text-cyan-600 hover:underline">Edit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Support Modal -->
+  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Algorise Enterprise Support</h3>
+            <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">Dedicated SLA for PAYROLL UNIT - 2</span>
+          </div>
+        </div>
+        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs font-mono mb-4 text-slate-600 dark:text-slate-300">
+        <p>UltraViewer Client ID: <strong class="text-slate-900 dark:text-white">213046213 (anil)</strong></p>
+        <p>Active Camera Feeds: <strong class="text-emerald-600 dark:text-emerald-400">3 Streams Synced</strong></p>
+        <p>Assigned Support Engineer: <strong class="text-cyan-600 dark:text-cyan-400">Hardik (AI &amp; Payroll Lead)</strong></p>
+      </div>
+      <div class="flex gap-2">
+        <button onclick="showToast('Support Ticket Created', 'Engineer notified on WhatsApp.', 'success'); closeSupportModal();" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer text-center">
+          Ping on WhatsApp
+        </button>
+        <button onclick="closeSupportModal()" class="py-2 px-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs cursor-pointer">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared App JS Functions -->
+  <script>
+    // Modern In-App Toast System (Zero alert() popups!)
+    function showToast(title, message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'toast-anim pointer-events-auto bg-white dark:bg-slate-900 border rounded-xl p-3.5 shadow-2xl flex items-start gap-3 text-xs transition-all duration-300 ' + 
+        (type === 'success' ? 'border-emerald-500/50 text-slate-800 dark:text-slate-100' :
+         type === 'error' ? 'border-rose-500/50 text-slate-800 dark:text-slate-100' :
+         type === 'warning' ? 'border-amber-500/50 text-slate-800 dark:text-slate-100' :
+         'border-cyan-500/50 text-slate-800 dark:text-slate-100');
+
+      const iconCls = type === 'success' ? 'fa-solid fa-circle-check text-emerald-500 text-base' :
+                      type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-500 text-base' :
+                      type === 'warning' ? 'fa-solid fa-triangle-exclamation text-amber-500 text-base' :
+                      'fa-solid fa-circle-info text-cyan-500 text-base';
+
+      toast.innerHTML = `
+        <i class="${iconCls} mt-0.5"></i>
+        <div class="flex-1">
+          <strong class="font-bold block text-slate-900 dark:text-white">${title}</strong>
+          <span class="text-slate-600 dark:text-slate-400 text-[11px] font-medium leading-tight">${message}</span>
+        </div>
+        <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      `;
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      updateThemeIcon(isDark);
+      showToast('Theme Changed', isDark ? 'Switched to Dark Mode.' : 'Switched to Light Mode.', 'info');
+    }
+    function updateThemeIcon(isDark) {
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-sm' : 'fa-solid fa-moon text-slate-600 text-sm';
+      }
+    }
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.remove('dark');
+      updateThemeIcon(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      updateThemeIcon(true);
+    }
+
+    // Sidebar toggle
+    function toggleSidebar() {
+      const sb = document.getElementById('mainSidebar');
+      if (sb) sb.classList.toggle('hidden');
+    }
+
+    // Language switcher
+    function toggleLangMenu() {
+      const d = document.getElementById('langDropdown');
+      if (d) d.classList.toggle('hidden');
+    }
+    function setLanguage(langCode, label) {
+      document.getElementById('currentLangLabel').innerText = label;
+      document.getElementById('langDropdown').classList.add('hidden');
+      if (langCode === 'gu') {
+        playGujaratiPrompt();
+        showToast('ભાષા બદલાઈ', 'ઓડિયો ભાષા ગુજરાતી સેટ થઈ છે.', 'success');
+      } else {
+        showToast('Language Changed', `Interface set to ${label}.`, 'info');
+      }
+    }
+
+    // Native Gujarati Audio Prompt
+    function playGujaratiPrompt() {
+      const gujaratiText = "હાજરી સફળતાપૂર્વક નોંધાઈ ગઈ છે. તમારો દિવસ સારો રહે!";
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+      } catch (e) {}
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(gujaratiText);
+        utterance.lang = 'gu-IN';
+        utterance.rate = 0.95;
+        const voices = window.speechSynthesis.getVoices();
+        const guVoice = voices.find(v => v.lang.includes('gu') || v.lang.includes('hi'));
+        if (guVoice) utterance.voice = guVoice;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // Firm switch
+    function switchFirm(firm) {
+      const firmName = firm === 'UNIT-2' ? 'PAYROLL UNIT - 2 (Main Facility)' : 'PAYROLL UNIT - 1 (Weaving Branch)';
+      showToast('Operating Firm Switched', `Active environment: ${firmName}. All sub-ledgers and camera streams reloaded.`, 'success');
+    }
+
+    // Support Modal
+    function openSupportModal() {
+      document.getElementById('supportModal').classList.remove('hidden');
+    }
+    function closeSupportModal() {
+      document.getElementById('supportModal').classList.add('hidden');
+    }
+
+    // Global Menu Search (ctrl+q)
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
+        e.preventDefault();
+        const s = document.getElementById('globalMenuSearch');
+        if (s) { s.focus(); s.select(); }
+      }
+    });
+
+    function handleMenuSearch(q) {
+      if (!q) return;
+      const term = q.toLowerCase();
+      const links = document.querySelectorAll('#mainSidebar nav a');
+      links.forEach(l => {
+        const txt = l.innerText.toLowerCase();
+        l.style.opacity = txt.includes(term) ? '1' : '0.35';
+      });
+    }
+
+    // Download file utility
+    function triggerDownload(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('File Generated', `${filename} downloaded successfully.`, 'success');
+    }
+  </script>
+</body>
+</html>
