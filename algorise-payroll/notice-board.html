@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notice Board — Algorise PeopleOS HRM</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><path d='M8 22L16 10L24 22H8Z' fill='%2310B981'/><circle cx='16' cy='18' r='3' fill='white'/></svg>" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
   
   <!-- Fonts & Font Awesome 6 Icons (HisabMittra exact stack) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,11 +87,8 @@
       </button>
 
       <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group">
-        <!-- Exact HisabMittra styled brand mark -->
-        <div class="flex items-center">
-          <span class="text-2xl font-black text-emerald-600 tracking-tight">i</span>
-          <span class="text-2xl font-black text-blue-600 tracking-tight -ml-0.5">M</span>
-        </div>
+        <!-- Official Algorise AI Glowing Badge Logo -->
+        <img src="assets/logo.png" alt="Algorise AI Logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/40 shadow-md transition group-hover:scale-105" onerror="this.onerror=null; this.src='../assets/logo.png';" />
         <div class="border-l border-slate-300 pl-2.5">
           <div class="flex items-center gap-1.5 leading-none">
             <span class="font-extrabold text-base tracking-tight text-slate-900">Algorise</span>
@@ -192,6 +190,19 @@
     <!-- LEFT SIDEBAR (Exact HisabMittra HRM Hierarchy) -->
     <!-- ============================================== -->
     <aside id="mainSidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
+      <!-- Session Bar with Official Logo -->
+      <div class="p-3 border-b border-slate-100 flex items-center gap-2.5 bg-slate-50/60">
+        <img src="assets/logo.png" alt="Logo" class="w-8 h-8 rounded-full object-cover ring-1 ring-blue-500/40 shadow-xs" onerror="this.onerror=null; this.src='../assets/logo.png';" />
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <span>A/C: 2026-2027</span>
+            <span class="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-700 font-bold text-[9px]">ONLINE</span>
+          </div>
+          <a href="companies.html" class="text-xs font-bold text-slate-800 mt-0.5 block hover:text-blue-600 truncate" title="Process House HRMS">
+            PAYROLL UNIT - 2
+          </a>
+        </div>
+      </div>
       <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
         
         <!-- 1. Dashboard -->
