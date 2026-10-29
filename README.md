@@ -238,5 +238,17 @@ ender.yaml):**
 
 ---
 
+## 👥 Algorise PeopleOS — Enterprise Factory HRMS & Payroll Engine
+
+Integrated into the Algorise ecosystem under [/algorise-payroll/](https://algorise-ai.com/algorise-payroll/):
+- **Live Cloud HRMS & Payroll Portal:** [https://algorise-ai.com/algorise-payroll/](https://algorise-ai.com/algorise-payroll/)
+- **PWA Mobile App (Trial Login):** [https://algorise-ai.com/algorise-payroll/mobile/](https://algorise-ai.com/algorise-payroll/mobile/)
+- **Chrome Extension (v2.4 Manifest V3):** [https://algorise-ai.com/algorise-payroll/browser-extension.html](https://algorise-ai.com/algorise-payroll/browser-extension.html)
+- **CCTV Sentinel & WebRTC Face Kiosk:** [https://algorise-ai.com/algorise-payroll/cctv-sentinel.html](https://algorise-ai.com/algorise-payroll/cctv-sentinel.html)
+- **38 Detached Standalone Submodules:** Full coverage of Payroll, Leaves, Shifts, HR Admin Setup, Attendance Methods (WiFi BSSID, Biometrics, NFC, QR), and System Settings calibrated with real factory workforce data (Unit JMFU2, 493 workers).
+- **Standalone Engine Repository:** [hardik4love-lang/algorise-payroll](https://github.com/hardik4love-lang/algorise-payroll)
+
+---
+
 ## License
 MIT © 2026 Algorise AI Solutions. All rights reserved.
