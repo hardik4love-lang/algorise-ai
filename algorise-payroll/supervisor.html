@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Supervisor Directory — Algorise PeopleOS HRM</title>
+  <title>Supervisor Panel — Algorise PeopleOS HRM</title>
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="apple-touch-icon" href="assets/logo.png" />
   
@@ -416,57 +416,210 @@
       </div>
     </aside>
 
-    <main class="flex-1 overflow-y-auto bg-slate-50 p-4 sm:p-6 space-y-4">
-      <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
-        <a href="index.html" class="text-blue-600 hover:underline">Dashboard</a>
-        <span>/</span>
-        <span class="text-slate-800">Supervisor Directory</span>
+    <main class="flex-1 overflow-y-auto bg-slate-50 p-4 sm:p-6 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+          <a href="index.html" class="text-blue-600 hover:underline">Dashboard</a>
+          <span>/</span>
+          <span class="text-slate-800">Supervisor Section</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="showToast('Credit rules synchronized with attendance engine', 'success')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow-xs transition">
+            <i class="fa-solid fa-arrows-rotate mr-1"></i> Sync Credit Engine
+          </button>
+        </div>
       </div>
 
-      <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">ON-FLOOR SUPERVISORS &bull; JMFU2</h2>
-          <span class="text-[11px] font-mono text-slate-500">5 Line Supervisors</span>
+      <!-- Tab Navigation matching HisabMittra Supervisor Submodules -->
+      <div class="flex border-b border-slate-200 gap-4 text-xs font-bold text-slate-600">
+        <button onclick="switchSupTab('tab-daily')" id="btn-tab-daily" class="pb-3 border-b-2 border-blue-600 text-blue-600">Supervisor Daily Attendance</button>
+        <button onclick="switchSupTab('tab-payroll')" id="btn-tab-payroll" class="pb-3 border-b-2 border-transparent hover:text-slate-900">Monthly Payroll Sheet (7 Deductions)</button>
+        <button onclick="switchSupTab('tab-credits')" id="btn-tab-credits" class="pb-3 border-b-2 border-transparent hover:text-slate-900">Supervisor Credit Rules (Days)</button>
+      </div>
+
+      <!-- Section 1: Supervisor Daily Attendance -->
+      <div id="tab-daily" class="space-y-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">SHIFT-1 (Day)</span>
+            <div class="text-xl font-black text-slate-900 mt-1">248 Enrolled</div>
+            <span class="text-[11px] text-emerald-600 font-bold">08:00 AM - 08:00 PM</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">SHIFT-2 (Night)</span>
+            <div class="text-xl font-black text-slate-900 mt-1">245 Enrolled</div>
+            <span class="text-[11px] text-blue-600 font-bold">08:00 PM - 08:00 AM</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Total Workforce</span>
+            <div class="text-xl font-black text-slate-900 mt-1">493 Workers</div>
+            <span class="text-[11px] text-slate-500 font-mono">JMFU2 Tantithaiya</span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600">Active Supervisors</span>
+            <div class="text-xl font-black text-emerald-600 mt-1">3 On-Duty</div>
+            <span class="text-[11px] text-slate-500">Dheeraj, Nurzan, Aman</span>
+          </div>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
-                <th class="py-3 px-4">SUPERVISOR</th>
-                <th class="py-3 px-4">DEPARTMENT</th>
-                <th class="py-3 px-4">ALLOCATED WORKERS</th>
-                <th class="py-3 px-4">ACTIVE SHIFT</th>
-                <th class="py-3 px-4 text-center">ACTION</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-4 font-bold text-slate-900">DHEERAJ KUMAR SINGH</td>
-                <td class="py-3 px-4">RO PLANT</td>
-                <td class="py-3 px-4 font-bold">2 Operators</td>
-                <td class="py-3 px-4 font-mono text-emerald-700 font-bold">Shift A (07:00 - 15:30)</td>
-                <td class="py-3 px-4 text-center"><button onclick="showToast('Roster updated', 'success')" class="text-blue-600 font-bold">Assign Gang</button></td>
-              </tr>
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-4 font-bold text-slate-900">NURZAN KUMARI JMALUDIN</td>
-                <td class="py-3 px-4">MAINTANANCE</td>
-                <td class="py-3 px-4 font-bold">37 Operators</td>
-                <td class="py-3 px-4 font-mono text-emerald-700 font-bold">Shift A (07:00 - 15:30)</td>
-                <td class="py-3 px-4 text-center"><button onclick="showToast('Roster updated', 'success')" class="text-blue-600 font-bold">Assign Gang</button></td>
-              </tr>
-              <tr class="hover:bg-slate-50/80 transition">
-                <td class="py-3 px-4 font-bold text-slate-900">MUKESH BHAI CHAUHAN</td>
-                <td class="py-3 px-4">FOLDING</td>
-                <td class="py-3 px-4 font-bold">64 Operators</td>
-                <td class="py-3 px-4 font-mono text-emerald-700 font-bold">Shift A (07:00 - 15:30)</td>
-                <td class="py-3 px-4 text-center"><button onclick="showToast('Roster updated', 'success')" class="text-blue-600 font-bold">Assign Gang</button></td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
+            <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">SUPERVISOR SHIFT SUMMARY TABLE</h2>
+            <span class="text-[11px] font-mono text-slate-500">Live Ingest</span>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
+                  <th class="py-3 px-4">Shift Name</th>
+                  <th class="py-3 px-4 text-center">Total</th>
+                  <th class="py-3 px-4 text-center text-emerald-600">Present</th>
+                  <th class="py-3 px-4 text-center text-rose-600">Absent</th>
+                  <th class="py-3 px-4 text-center text-amber-600">Leave</th>
+                  <th class="py-3 px-4 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="py-3 px-4 font-bold text-slate-900">SHIFT-1 (Day &bull; 08:00 AM - 08:00 PM)</td>
+                  <td class="py-3 px-4 text-center font-bold">248</td>
+                  <td class="py-3 px-4 text-center font-bold text-emerald-700">236</td>
+                  <td class="py-3 px-4 text-center font-bold text-rose-600">8</td>
+                  <td class="py-3 px-4 text-center font-bold text-amber-600">4</td>
+                  <td class="py-3 px-4 text-center"><button onclick="showToast('Opening SHIFT-1 live muster', 'info')" class="text-blue-600 font-bold hover:underline">View Muster</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="py-3 px-4 font-bold text-slate-900">SHIFT-2 (Night &bull; 08:00 PM - 08:00 AM)</td>
+                  <td class="py-3 px-4 text-center font-bold">245</td>
+                  <td class="py-3 px-4 text-center font-bold text-emerald-700">229</td>
+                  <td class="py-3 px-4 text-center font-bold text-rose-600">11</td>
+                  <td class="py-3 px-4 text-center font-bold text-amber-600">5</td>
+                  <td class="py-3 px-4 text-center"><button onclick="showToast('Opening SHIFT-2 live muster', 'info')" class="text-blue-600 font-bold hover:underline">View Muster</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Supervisor Monthly Payroll Sheet with 7 exact deductions -->
+      <div id="tab-payroll" class="space-y-4 hidden">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
+            <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">SUPERVISOR PAYROLL SHEET &bull; 7 FACTORY DEDUCTIONS</h2>
+            <button onclick="showToast('Exported exact HisabMittra payroll CSV', 'success')" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-bold">Export Excel</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[10px] tracking-wider">
+                  <th class="py-3 px-3">#</th>
+                  <th class="py-3 px-3">Employee name</th>
+                  <th class="py-3 px-3 font-mono">Code</th>
+                  <th class="py-3 px-3">Department</th>
+                  <th class="py-3 px-3 text-right">Base Earned</th>
+                  <th class="py-3 px-3 text-right text-rose-600">ESIC(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">Prof.Tax(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">LWF(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">Advance(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">Incharge(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">Canteen(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-600">EPF(-)</th>
+                  <th class="py-3 px-3 text-right text-rose-700 font-bold">Total Ded</th>
+                  <th class="py-3 px-3 text-right text-emerald-700 font-bold">Net Salary</th>
+                  <th class="py-3 px-3 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="py-3 px-3 text-center font-bold">1</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">SONU KAUSHAL KISHOR</td>
+                  <td class="py-3 px-3 font-mono font-bold text-blue-700">EMP016</td>
+                  <td class="py-3 px-3">FOLDING</td>
+                  <td class="py-3 px-3 text-right font-mono font-bold">&#8377; 16,840</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 126</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 200</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 20</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 1,000</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 0</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 350</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 1,800</td>
+                  <td class="py-3 px-3 text-right font-mono font-bold text-rose-700">&#8377; 3,496</td>
+                  <td class="py-3 px-3 text-right font-mono font-black text-emerald-700">&#8377; 13,344</td>
+                  <td class="py-3 px-3 text-center"><button onclick="showToast('Opening Ledger #EMP016', 'info')" class="text-blue-600 font-bold">Slip</button></td>
+                </tr>
+                <tr class="hover:bg-slate-50/80 transition">
+                  <td class="py-3 px-3 text-center font-bold">2</td>
+                  <td class="py-3 px-3 font-bold text-slate-900">DIWAKAR KUMAR MANTESH RAY</td>
+                  <td class="py-3 px-3 font-mono font-bold text-blue-700">EMP001</td>
+                  <td class="py-3 px-3">FOLDING</td>
+                  <td class="py-3 px-3 text-right font-mono font-bold">&#8377; 14,200</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 106</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 150</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 20</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 500</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 0</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 200</td>
+                  <td class="py-3 px-3 text-right font-mono text-rose-600">&#8377; 1,500</td>
+                  <td class="py-3 px-3 text-right font-mono font-bold text-rose-700">&#8377; 2,476</td>
+                  <td class="py-3 px-3 text-right font-mono font-black text-emerald-700">&#8377; 11,724</td>
+                  <td class="py-3 px-3 text-center"><button onclick="showToast('Opening Ledger #EMP001', 'info')" class="text-blue-600 font-bold">Slip</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Exact 8 Supervisor Credit Rules (Days) -->
+      <div id="tab-credits" class="space-y-4 hidden">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
+            <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">SUPERVISOR CREDIT RULES &bull; EXACT DAYS VALUATION</h2>
+            <button onclick="showToast('Credit multiplier policy updated', 'success')" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-bold">Save Rules</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
+                  <th class="py-3 px-4 w-12 text-center">#</th>
+                  <th class="py-3 px-4 font-bold">CREDIT VALUE (DAYS)</th>
+                  <th class="py-3 px-4">DESCRIPTION</th>
+                  <th class="py-3 px-4 text-center">STATUS</th>
+                  <th class="py-3 px-4 text-center">ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-mono font-bold text-blue-700">0.25</td><td class="py-3 px-4">Quarter Shift (2 Hours)</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-mono font-bold text-blue-700">0.50</td><td class="py-3 px-4">Half Shift (4 Hours)</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-mono font-bold text-blue-700">1.00</td><td class="py-3 px-4">Standard Shift (8 Hours)</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">4</td><td class="py-3 px-4 font-mono font-bold text-blue-700">1.25</td><td class="py-3 px-4 font-bold text-indigo-700">+3 Hours Overtime</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">5</td><td class="py-3 px-4 font-mono font-bold text-blue-700">1.50</td><td class="py-3 px-4">Overtime Shift (12 Hours)</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">6</td><td class="py-3 px-4 font-mono font-bold text-blue-700">2.00</td><td class="py-3 px-4 font-bold text-purple-700">Double Shift (16 Hours)</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">7</td><td class="py-3 px-4 font-mono font-bold text-blue-700">2.50</td><td class="py-3 px-4">Extended Production Overtime</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+                <tr class="hover:bg-slate-50/80 transition"><td class="py-3 px-4 text-center font-bold">8</td><td class="py-3 px-4 font-mono font-bold text-blue-700">3.00</td><td class="py-3 px-4 font-bold text-rose-700">Triple Shift Continuous</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Active</span></td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Edit</button></td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </main>
   </div>
+
+  <script>
+    function switchSupTab(tabId) {
+      document.getElementById('tab-daily').classList.add('hidden');
+      document.getElementById('tab-payroll').classList.add('hidden');
+      document.getElementById('tab-credits').classList.add('hidden');
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.getElementById('btn-tab-daily').className = 'pb-3 border-b-2 border-transparent hover:text-slate-900';
+      document.getElementById('btn-tab-payroll').className = 'pb-3 border-b-2 border-transparent hover:text-slate-900';
+      document.getElementById('btn-tab-credits').className = 'pb-3 border-b-2 border-transparent hover:text-slate-900';
+
+      document.getElementById('btn-' + tabId).className = 'pb-3 border-b-2 border-blue-600 text-blue-600 font-bold';
+    }
+  </script>
 
   <!-- Support Modal -->
   <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">

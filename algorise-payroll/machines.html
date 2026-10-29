@@ -431,273 +431,562 @@
       </div>
 
       <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs">
-        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">MACHINE MASTER FILTERS</h2>
+        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">MACHINE MASTER FILTERS &bull; JMFU2</h2>
         <div class="flex flex-wrap items-center gap-3">
+          <div class="w-40">
+            <select id="machineShiftFilter" onchange="filterMachines()" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-md text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
+              <option value="">All Shifts</option>
+              <option value="SHIFT-1">SHIFT-1 (Day)</option>
+              <option value="SHIFT-2">SHIFT-2 (Night)</option>
+            </select>
+          </div>
           <div class="flex-1 min-w-[200px] max-w-sm">
-            <input type="text" id="machineSearchInput" placeholder="Search by Machine name or code" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" onkeyup="filterMachines()" />
+            <input type="text" id="machineSearchInput" placeholder="Search by Machine name, dept, or post" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" onkeyup="filterMachines()" />
           </div>
           <button onclick="filterMachines()" class="px-5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-md shadow-xs transition cursor-pointer">Filter</button>
-          <button onclick="document.getElementById('machineSearchInput').value=''; filterMachines();" class="px-5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow-xs transition cursor-pointer">Reset</button>
+          <button onclick="document.getElementById('machineSearchInput').value=''; document.getElementById('machineShiftFilter').value=''; filterMachines();" class="px-5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow-xs transition cursor-pointer">Reset</button>
         </div>
       </div>
 
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">REGISTERED TEXTILE MACHINERY &bull; JMFU2</h2>
-          <span class="text-[11px] font-mono text-slate-500">10 Active Units</span>
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">MACHINE MASTER &bull; EXACT HISABMITTRA SCHEDULE</h2>
+          <span class="text-[11px] font-mono text-slate-500">Showing 20 of 20 units</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
               <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
-                <th class="py-3 px-4 w-12 text-center">#</th>
-                <th class="py-3 px-4">CODE</th>
-                <th class="py-3 px-4">MACHINE NAME</th>
-                <th class="py-3 px-4">DEPARTMENT</th>
-                <th class="py-3 px-4">SPECS / CAPACITY</th>
+                <th class="py-3 px-4 w-12 text-center">SR NO.</th>
                 <th class="py-3 px-4">BRANCH</th>
+                <th class="py-3 px-4">SHIFT</th>
+                <th class="py-3 px-4">DEPARTMENT</th>
+                <th class="py-3 px-4">MACHINE NAME</th>
+                <th class="py-3 px-4">POST</th>
+                <th class="py-3 px-4 text-center">NO OF EMP</th>
+                <th class="py-3 px-4 font-mono">RATE PER DAY</th>
                 <th class="py-3 px-4 text-center">STATUS</th>
                 <th class="py-3 px-4 text-center">ACTION</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
 
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jet dyeing vessel #1 jet-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="incharge dyeing dept (bm) incharge">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">1</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">JET-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Jet Dyeing Vessel #1</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">500 KG High Temp</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (BM)</td>
+                <td class="py-3 px-4 font-black text-slate-800">INCHARGE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">INCHARGE</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">2</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 1,000.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('JET-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('INCHARGE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing JET-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing INCHARGE (INCHARGE)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('JET-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('INCHARGE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jet dyeing vessel #2 jet-02">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="incharge dyeing dept (bm) incharge">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">2</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">JET-02</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Jet Dyeing Vessel #2</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">500 KG High Temp</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-1</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (BM)</td>
+                <td class="py-3 px-4 font-black text-slate-800">INCHARGE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">INCHARGE</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 1,000.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('JET-02 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('INCHARGE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing JET-02', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing INCHARGE (INCHARGE)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('JET-02 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('INCHARGE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jet dyeing vessel #3 jet-03">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="incharge dyeing dept (y) incharge">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">3</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">JET-03</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Jet Dyeing Vessel #3</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">250 KG Medium Temp</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">INCHARGE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">INCHARGE</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 1,000.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('JET-03 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('INCHARGE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing JET-03', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing INCHARGE (INCHARGE)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('JET-03 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('INCHARGE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="stenter frame line 1 stn-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="incharge dyeing dept (y) incharge">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">4</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">STN-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Stenter Frame Line 1</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">FOLDING</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">8 Chamber Gas Heated</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-1</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">INCHARGE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">INCHARGE</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">3</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 1,000.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('STN-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('INCHARGE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing STN-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing INCHARGE (INCHARGE)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('STN-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('INCHARGE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="stenter frame line 2 stn-02">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="zero-zero (2) dyeing dept (y) helper">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">5</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">STN-02</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Stenter Frame Line 2</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">FOLDING</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">6 Chamber Gas Heated</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">ZERO-ZERO (2)</td>
+                <td class="py-3 px-4 font-medium text-slate-700">HELPER</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">2</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 440.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('STN-02 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ZERO-ZERO (2) active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing STN-02', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing ZERO-ZERO (2) (HELPER)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('STN-02 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('ZERO-ZERO (2) rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="high speed folding m/c #1 fld-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="zero-zero (2) dyeing dept (y) operator">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">6</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">FLD-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">High Speed Folding M/C #1</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">FOLDING</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">120 RPM Auto Plaiter</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">ZERO-ZERO (2)</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 470.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('FLD-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ZERO-ZERO (2) active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing FLD-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing ZERO-ZERO (2) (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('FLD-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('ZERO-ZERO (2) rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="grey fabric inspection table #1 gry-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="zero-zero (1) dyeing dept (y) helper">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">7</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">GRY-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Grey Fabric Inspection Table #1</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">GREY LOADING</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">72 Inch Light Box</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">ZERO-ZERO (1)</td>
+                <td class="py-3 px-4 font-medium text-slate-700">HELPER</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">2</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 440.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('GRY-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ZERO-ZERO (1) active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing GRY-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing ZERO-ZERO (1) (HELPER)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('GRY-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('ZERO-ZERO (1) rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="industrial steam boiler 5tph blr-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="zero-zero (1) dyeing dept (y) operator">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">8</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">BLR-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Industrial Steam Boiler 5TPH</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">MAINTANANCE</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">5 Ton/Hr Briquette</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">ZERO-ZERO (1)</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 470.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('BLR-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ZERO-ZERO (1) active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing BLR-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing ZERO-ZERO (1) (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('BLR-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('ZERO-ZERO (1) rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="ro effluent treatment plant rop-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jigger machine dyeing dept (y) jt opt">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">9</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">ROP-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">RO Effluent Treatment Plant</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">RO PLANT</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">50 KL/Day Recycling</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">JIGGER MACHINE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">JT OPT</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 575.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('ROP-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('JIGGER MACHINE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing ROP-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing JIGGER MACHINE (JT OPT)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('ROP-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('JIGGER MACHINE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="automatic sikka stamping m/c skk-01">
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jigger machine dyeing dept (y) helper">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">10</td>
-                <td class="py-3 px-4 font-mono font-bold text-blue-700">SKK-01</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Automatic Sikka Stamping M/C</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">GREY SIKKA (S)</td>
-                <td class="py-3 px-4 text-slate-600 font-mono">250 Pcs/Hr Pneumatic</td>
-                <td class="py-3 px-4 font-bold text-slate-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">JIGGER MACHINE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">HELPER</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">10</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 440.00</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('SKK-01 status updated', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('JIGGER MACHINE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing SKK-01', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing JIGGER MACHINE (HELPER)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('SKK-01 maintenance log retrieved', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
-                      <i class="fa-solid fa-screwdriver-wrench text-xs"></i>
+                    <button onclick="showToast('JIGGER MACHINE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jigger machine dyeing dept (y) selai man">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">11</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">JIGGER MACHINE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">SELAI MAN</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 540.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JIGGER MACHINE active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing JIGGER MACHINE (SELAI MAN)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JIGGER MACHINE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jigger machine dyeing dept (y) operator">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">12</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">JIGGER MACHINE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">6</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 516.66</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JIGGER MACHINE active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing JIGGER MACHINE (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JIGGER MACHINE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="jigger machine dyeing dept (y) jobber">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">13</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">JIGGER MACHINE</td>
+                <td class="py-3 px-4 font-medium text-slate-700">JOBBER</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 780.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JIGGER MACHINE active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing JIGGER MACHINE (JOBBER)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JIGGER MACHINE rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="37 jet dyeing dept (y) flater man">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">14</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">37 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">Flater Man</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 480.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('37 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 37 JET (Flater Man)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('37 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="37 jet dyeing dept (y) operator">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">15</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">37 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 670.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('37 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 37 JET (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('37 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="35-36 jet dyeing dept (y) asst. opt">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">16</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">35-36 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">ASST. Opt</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 480.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('35-36 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 35-36 JET (ASST. Opt)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('35-36 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="35-36 jet dyeing dept (y) operator">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">17</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">35-36 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 670.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('35-36 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 35-36 JET (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('35-36 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="29-30 jet dyeing dept (y) asst. opt">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">18</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">29-30 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">ASST. Opt</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 480.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('29-30 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 29-30 JET (ASST. Opt)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('29-30 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="29-30 jet dyeing dept (y) operator">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">19</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">29-30 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">OPERATOR</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 670.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('29-30 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 29-30 JET (OPERATOR)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('29-30 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition machine-row" data-name="25-26 jet dyeing dept (y) asst. opt">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">20</td>
+                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-mono font-bold text-slate-700">SHIFT-2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 font-black text-slate-800">25-26 JET</td>
+                <td class="py-3 px-4 font-medium text-slate-700">ASST. Opt</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
+                <td class="py-3 px-4 font-mono font-bold text-emerald-700">&#8377; 480.00</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('25-26 JET active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing 25-26 JET (ASST. Opt)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('25-26 JET rate card updated', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
@@ -713,29 +1002,47 @@
   <div id="addMachineModal" class="app-modal fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <h3 class="text-sm font-bold text-slate-900">Add New Machine Master</h3>
+        <h3 class="text-sm font-bold text-slate-900">Add Machine Master</h3>
         <button onclick="closeModal('addMachineModal')" class="text-slate-400 hover:text-slate-600 p-1">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <form onsubmit="event.preventDefault(); showToast('New machine registered in maintenance ledger', 'success'); closeModal('addMachineModal');" class="mt-4 space-y-3 text-xs">
         <div>
-          <label class="block font-bold text-slate-700 mb-1">Machine Code *</label>
-          <input type="text" required placeholder="e.g. JET-04" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-mono font-bold" />
+          <label class="block font-bold text-slate-700 mb-1">Branch *</label>
+          <input type="text" value="JMFU2" readonly class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg font-bold" />
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Shift *</label>
+          <select class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium">
+            <option>SHIFT-1 (08:00 AM - 08:00 PM)</option>
+            <option>SHIFT-2 (08:00 PM - 08:00 AM)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Department *</label>
+          <select class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium">
+            <option>DYEING DEPT (Y)</option>
+            <option>DYEING DEPT (BM)</option>
+            <option>DYEING DEPT (RBC)</option>
+            <option>FOLDING</option>
+            <option>RO PLANT</option>
+            <option>MAINTANANCE</option>
+          </select>
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Machine Name *</label>
-          <input type="text" required placeholder="e.g. Jet Dyeing Vessel #4" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-bold" />
+          <input type="text" required placeholder="e.g. STENTER (3)" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-bold uppercase" />
         </div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Department</label>
-          <select class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium">
-            <option>DYEING DEPT (RBC)</option>
-            <option>FOLDING</option>
-            <option>GREY LOADING</option>
-            <option>MAINTANANCE</option>
-            <option>RO PLANT</option>
-          </select>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Post / Role</label>
+            <input type="text" placeholder="e.g. OPERATOR" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium uppercase" />
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Rate Per Day (₹)</label>
+            <input type="text" placeholder="e.g. 670.00" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-mono font-bold" />
+          </div>
         </div>
         <div class="flex justify-end gap-2 pt-3 border-t border-slate-100">
           <button type="button" onclick="closeModal('addMachineModal')" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg font-bold">Cancel</button>
@@ -755,9 +1062,14 @@
       if (el) el.classList.add('hidden');
     }
     function filterMachines() {
-      const q = document.getElementById('machineSearchInput').value.toLowerCase().trim();
+      const q = (document.getElementById('machineSearchInput').value || '').toLowerCase().trim();
+      const s = (document.getElementById('machineShiftFilter').value || '').trim();
       document.querySelectorAll('.machine-row').forEach(r => {
-        r.style.display = (!q || r.getAttribute('data-name').includes(q)) ? '' : 'none';
+        const text = r.getAttribute('data-name');
+        const shift = r.querySelector('td:nth-child(3)').textContent.trim();
+        const matchesQ = !q || text.includes(q);
+        const matchesS = !s || shift.includes(s);
+        r.style.display = (matchesQ && matchesS) ? '' : 'none';
       });
     }
   </script>

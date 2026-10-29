@@ -431,7 +431,7 @@
       </div>
 
       <div class="bg-white rounded-xl border border-slate-200 p-4 shadow-xs">
-        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">POST / DESIGNATION FILTERS</h2>
+        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">POST / DESIGNATION FILTERS &bull; JMFU2</h2>
         <div class="flex flex-wrap items-center gap-3">
           <div class="flex-1 min-w-[200px] max-w-sm">
             <input type="text" id="postSearchInput" placeholder="Search by Post or Designation" class="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-md text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" onkeyup="filterPosts()" />
@@ -443,260 +443,348 @@
 
       <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
         <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">DESIGNATION MASTER &bull; JMFU2</h2>
-          <span class="text-[11px] font-mono text-slate-500">10 Designations Active</span>
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">POST LISTS &bull; EXACT HISABMITTRA POSTS</h2>
+          <span class="text-[11px] font-mono text-slate-500">Showing 15 of 15 designations</span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs">
             <thead>
               <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
                 <th class="py-3 px-4 w-12 text-center">#</th>
-                <th class="py-3 px-4">DESIGNATION / POST</th>
+                <th class="py-3 px-4">POST NAME</th>
                 <th class="py-3 px-4">DEPARTMENT</th>
-                <th class="py-3 px-4 text-center">TOTAL EMPLOYEES</th>
-                <th class="py-3 px-4">WAGE TYPE</th>
-                <th class="py-3 px-4">BRANCH</th>
+                <th class="py-3 px-4 text-center">TOTAL EMPLOYEE</th>
                 <th class="py-3 px-4 text-center">STATUS</th>
                 <th class="py-3 px-4 text-center">ACTION</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
 
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="master dyer dyeing dept (rbc)">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="admin dyeing dept (y)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">1</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Master Dyer</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">8</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">ADMIN</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">0</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Master Dyer active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ADMIN active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Master Dyer', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation ADMIN', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Master Dyer salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('ADMIN linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="dyeing helper dyeing dept (rbc)">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="admin dyeing dept (bm)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">2</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Dyeing Helper</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">47</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Daily (Dihadi)</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">ADMIN</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (BM)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Dyeing Helper active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('ADMIN active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Dyeing Helper', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation ADMIN', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Dyeing Helper salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('ADMIN linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="folding master folding">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="spoting spoting">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">3</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Folding Master</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">FOLDING</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">12</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">SPOTING</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">SPOTING</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">0</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Folding Master active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('SPOTING active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Folding Master', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation SPOTING', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Folding Master salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('SPOTING linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="machine operator folding">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="operator ro plant">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">4</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Machine Operator</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">FOLDING</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">52</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Piece-Rate / Daily</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">OPERATOR</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">RO PLANT</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">3</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Machine Operator active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('OPERATOR active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Machine Operator', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation OPERATOR', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Machine Operator salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('OPERATOR linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="grey loading helper grey loading">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="loading grey loading">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">5</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Grey Loading Helper</td>
+                <td class="py-3 px-4 font-bold text-slate-900">LOADING</td>
                 <td class="py-3 px-4 text-slate-800 font-medium">GREY LOADING</td>
                 <td class="py-3 px-4 text-center font-bold text-slate-900">14</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Daily (Dihadi)</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Grey Loading Helper active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('LOADING active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Grey Loading Helper', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation LOADING', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Grey Loading Helper salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('LOADING linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="maintenance electrician maintanance">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="operator dyeing dept (rbc)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">6</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Maintenance Electrician</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">MAINTANANCE</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">18</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">OPERATOR</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Maintenance Electrician active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('OPERATOR active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Maintenance Electrician', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation OPERATOR', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Maintenance Electrician salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('OPERATOR linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="boiler attendant maintanance">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="helper (f) dyeing dept (rbc)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">7</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Boiler Attendant</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">MAINTANANCE</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">19</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">HELPER (F)</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">5</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Boiler Attendant active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('HELPER (F) active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Boiler Attendant', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation HELPER (F)', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Boiler Attendant salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('HELPER (F) linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="security guard security">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="checker man dyeing dept (rbc)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">8</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Security Guard</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">SECURITY</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">10</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">CHECKER MAN</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">0</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Security Guard active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('CHECKER MAN active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Security Guard', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation CHECKER MAN', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Security Guard salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('CHECKER MAN linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="sikka stamping operator grey sikka (s)">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="silai dyeing dept (rbc)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">9</td>
-                <td class="py-3 px-4 font-bold text-slate-900">Sikka Stamping Operator</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">GREY SIKKA (S)</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">16</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Piece-Rate</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">SILAI</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">7</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('Sikka Stamping Operator active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('SILAI active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation Sikka Stamping Operator', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation SILAI', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('Sikka Stamping Operator salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('SILAI linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
                 </td>
               </tr>
-              <tr class="hover:bg-slate-50/80 transition post-row" data-name="ro plant technician ro plant">
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="incharge dyeing dept (rbc)">
                 <td class="py-3 px-4 text-center font-bold text-slate-500">10</td>
-                <td class="py-3 px-4 font-bold text-slate-900">RO Plant Technician</td>
-                <td class="py-3 px-4 text-slate-800 font-medium">RO PLANT</td>
-                <td class="py-3 px-4 text-center font-bold text-slate-900">2</td>
-                <td class="py-3 px-4 font-mono text-slate-600">Monthly</td>
-                <td class="py-3 px-4 font-bold text-blue-700">JMFU2</td>
+                <td class="py-3 px-4 font-bold text-slate-900">INCHARGE</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">1</td>
                 <td class="py-3 px-4 text-center">
                   <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" checked onchange="showToast('RO Plant Technician active', 'success')" class="sr-only peer">
+                    <input type="checkbox" checked onchange="showToast('INCHARGE active', 'success')" class="sr-only peer">
                     <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
                   </label>
                 </td>
                 <td class="py-3 px-4 text-center">
                   <div class="flex items-center justify-center gap-1.5">
-                    <button onclick="showToast('Editing designation RO Plant Technician', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                    <button onclick="showToast('Editing designation INCHARGE', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
                       <i class="fa-regular fa-pen-to-square text-xs"></i>
                     </button>
-                    <button onclick="showToast('RO Plant Technician salary structure linked', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                    <button onclick="showToast('INCHARGE linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="selaiman dyeing dept (rbc)">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">11</td>
+                <td class="py-3 px-4 font-bold text-slate-900">SELAIMAN</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">4</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('SELAIMAN active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing designation SELAIMAN', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('SELAIMAN linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="helper dyeing dept (rbc)">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">12</td>
+                <td class="py-3 px-4 font-bold text-slate-900">HELPER</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">27</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('HELPER active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing designation HELPER', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('HELPER linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="jobber dyeing dept (rbc)">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">13</td>
+                <td class="py-3 px-4 font-bold text-slate-900">JOBBER</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (RBC)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">7</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JOBBER active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing designation JOBBER', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JOBBER linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="jt opt dyeing dept (y)">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">14</td>
+                <td class="py-3 px-4 font-bold text-slate-900">JT OPT</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">0</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JT OPT active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing designation JT OPT', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JT OPT linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
+                      <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-slate-50/80 transition post-row" data-name="jobber dyeing dept (y)">
+                <td class="py-3 px-4 text-center font-bold text-slate-500">15</td>
+                <td class="py-3 px-4 font-bold text-slate-900">JOBBER</td>
+                <td class="py-3 px-4 text-slate-800 font-medium">DYEING DEPT (Y)</td>
+                <td class="py-3 px-4 text-center font-bold text-slate-900">3</td>
+                <td class="py-3 px-4 text-center">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" checked onchange="showToast('JOBBER active', 'success')" class="sr-only peer">
+                    <div class="w-10 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-500"></div>
+                  </label>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <div class="flex items-center justify-center gap-1.5">
+                    <button onclick="showToast('Editing designation JOBBER', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-blue-50 flex items-center justify-center transition">
+                      <i class="fa-regular fa-pen-to-square text-xs"></i>
+                    </button>
+                    <button onclick="showToast('JOBBER linked to payroll', 'info')" class="w-7 h-7 rounded border border-blue-600 text-blue-600 hover:bg-slate-50 flex items-center justify-center transition">
                       <i class="fa-solid fa-indian-rupee-sign text-xs"></i>
                     </button>
                   </div>
@@ -707,46 +795,6 @@
         </div>
       </div>
     </main>
-  </div>
-
-  <!-- Add Post Modal -->
-  <div id="addPostModal" class="app-modal fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <h3 class="text-sm font-bold text-slate-900">Add New Designation / Post</h3>
-        <button onclick="closeModal('addPostModal')" class="text-slate-400 hover:text-slate-600 p-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <form onsubmit="event.preventDefault(); showToast('Designation registered', 'success'); closeModal('addPostModal');" class="mt-4 space-y-3 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Post / Designation Name *</label>
-          <input type="text" required placeholder="e.g. Chemical Lab Technician" class="w-full px-3 py-2 border border-slate-200 rounded-lg font-bold" />
-        </div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Department</label>
-          <select class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium">
-            <option>DYEING DEPT (RBC)</option>
-            <option>FOLDING</option>
-            <option>GREY LOADING</option>
-            <option>MAINTANANCE</option>
-            <option>RO PLANT</option>
-          </select>
-        </div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Wage Basis</label>
-          <select class="w-full px-3 py-2 border border-slate-200 rounded-lg font-medium">
-            <option>Monthly Salaried</option>
-            <option>Daily Rate (Dihadi)</option>
-            <option>Piece-Rate (Meter / Sikka)</option>
-          </select>
-        </div>
-        <div class="flex justify-end gap-2 pt-3 border-t border-slate-100">
-          <button type="button" onclick="closeModal('addPostModal')" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg font-bold">Cancel</button>
-          <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">Save Designation</button>
-        </div>
-      </form>
-    </div>
   </div>
 
   <script>
