@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algorise PeopleOS</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="brand">
+      <div class="logo">
+        <span class="logo-i">i</span><span class="logo-m">M</span>
+      </div>
+      <div>
+        <div class="title">Algorise <span class="highlight">PeopleOS</span></div>
+        <div class="subtitle">JMFU2 &bull; Tantithaiya</div>
+      </div>
+    </div>
+    <span class="badge online">ONLINE</span>
+  </div>
+
+  <!-- Metric Card -->
+  <div class="metric-card">
+    <div class="metric-header">
+      <span>TODAY'S MUSTER</span>
+      <span class="pct">97.5%</span>
+    </div>
+    <div class="metric-val">481 <span class="total">/ 493 Present</span></div>
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: 97.5%"></div>
+    </div>
+  </div>
+
+  <!-- CCTV Node Status -->
+  <div class="cctv-card">
+    <div class="cctv-header">
+      <span class="dot pulse"></span>
+      <span class="cctv-title">4 CCTV AI CAMERAS ACTIVE</span>
+    </div>
+    <div class="cctv-nodes">
+      <div class="node"><span>Gate 1:</span> <strong class="green">30 FPS</strong></div>
+      <div class="node"><span>Grey Ingest:</span> <strong class="green">30 FPS</strong></div>
+      <div class="node"><span>Dyeing RBC:</span> <strong class="green">30 FPS</strong></div>
+      <div class="node"><span>Folding Floor:</span> <strong class="green">30 FPS</strong></div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-grid">
+    <button id="btnQuickPunch" class="btn btn-emerald">
+      <i class="fa-solid fa-camera"></i> Quick Punch Test
+    </button>
+    <button id="btnOpenPortal" class="btn btn-blue">
+      <i class="fa-solid fa-table-columns"></i> Master Portal
+    </button>
+    <button id="btnOpenMaster" class="btn btn-indigo">
+      <i class="fa-solid fa-address-card"></i> 16 Sub-Ledgers
+    </button>
+    <button id="btnOpenSentinel" class="btn btn-slate">
+      <i class="fa-solid fa-video"></i> CCTV Sentinel
+    </button>
+  </div>
+
+  <!-- Toast Message -->
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>Process House HRMS &bull; Surat</span>
+    <span id="audioStatus"><i class="fa-solid fa-volume-high"></i> ગુજરાતી</span>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

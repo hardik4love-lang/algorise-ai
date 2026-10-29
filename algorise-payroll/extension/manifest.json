@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Algorise PeopleOS — HRM & CCTV Companion",
+  "version": "2.4.0",
+  "description": "Enterprise Chrome extension for HisabMittra & Algorise PeopleOS. Real-time factory muster, CCTV AI telemetry, and 1-click biometric punch.",
+  "permissions": ["storage", "alarms", "notifications"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.hisabmittra.com/*", "*://*.algorise-ai.com/*", "*://localhost/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

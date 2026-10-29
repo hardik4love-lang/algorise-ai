@@ -153,6 +153,17 @@
         <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
       </a>
 
+      <!-- Browser Extension & Mobile App Quick Action Buttons -->
+      <a href="browser-extension.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition" title="Chrome Browser Extension">
+        <i class="fa-solid fa-puzzle-piece text-blue-600"></i>
+        <span>Extension</span>
+      </a>
+
+      <a href="mobile/index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-emerald-200 bg-emerald-50 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition" title="Mobile App Trial Login">
+        <i class="fa-solid fa-mobile-screen text-emerald-600"></i>
+        <span>Mobile App</span>
+      </a>
+
       <!-- Support Hotline -->
       <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Helpline & Support">
         <i class="fa-solid fa-phone-volume text-sm text-slate-600"></i>
@@ -351,6 +362,29 @@
             <i class="fa-solid fa-video w-4 text-center text-blue-600"></i> CCTV &amp; Sentinel AI
           </span>
           <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">Cam Core</span>
+        </a>
+
+        <!-- Section: Apps & Extensions -->
+        <div class="pt-2 pb-1">
+          <div class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Apps &amp; Extensions
+          </div>
+        </div>
+
+        <!-- 13. Browser Extension -->
+        <a href="browser-extension.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-puzzle-piece w-4 text-center text-blue-600"></i> Chrome Extension
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-blue-100 text-blue-700 font-bold">v2.4</span>
+        </a>
+
+        <!-- 14. Mobile Trial App -->
+        <a href="mobile/index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-emerald-50 font-medium group">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-mobile-screen w-4 text-center text-emerald-600"></i> Mobile App Trial
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">PWA</span>
         </a>
 
       </nav>

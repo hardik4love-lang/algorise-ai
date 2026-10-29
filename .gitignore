@@ -81,3 +81,6 @@ config/aria_telegram_config.json
 scripts/aria_executor.py
 scripts/notify_complete.py
 
+
+!algorise-payroll/extension.zip
+!algorise-payroll/**/*.png
