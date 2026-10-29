@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Employee Master (16 Sub-Ledgers) — Algorise PeopleOS HRM</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230F172A'/><path d='M16 6L26 24H6L16 6Z' stroke='%2300F2FE' stroke-width='2.5' fill='none'/><circle cx='16' cy='18' r='3.5' fill='%2310B981'/></svg>" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><path d='M8 22L16 10L24 22H8Z' fill='%2310B981'/><circle cx='16' cy='18' r='3' fill='white'/></svg>" />
   
-  <!-- Fonts & Font Awesome Icons (HisabMittra stack) -->
+  <!-- Fonts & Font Awesome 6 Icons (HisabMittra exact stack) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   
   <script>
@@ -19,23 +19,19 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#ecfeff',
-              100: '#cffafe',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490'
+            hmblue: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
             },
-            emerald: {
+            hmgreen: {
               500: '#10b981',
               600: '#059669',
               700: '#047857'
             },
-            slate: {
-              850: '#151e2e',
-              900: '#0f172a',
-              950: '#090d16'
-            }
+            hmbg: '#f4f6f9'
           },
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
@@ -52,27 +48,18 @@
       -webkit-font-smoothing: antialiased;
     }
     .hm-sidebar-scroll::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
     .hm-sidebar-scroll::-webkit-scrollbar-thumb {
-      background-color: rgba(156, 163, 175, 0.4);
+      background-color: rgba(203, 213, 225, 0.8);
       border-radius: 4px;
     }
-    .pv-btn {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 4px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      border-radius: 6px;
-      transition: all 0.15s ease;
-      min-width: 52px;
-      cursor: pointer;
+    .hm-toggle-checkbox:checked {
+      right: 0;
+      border-color: #22c55e;
     }
-    .pv-btn:hover {
-      transform: translateY(-1px);
+    .hm-toggle-checkbox:checked + .hm-toggle-label {
+      background-color: #22c55e;
     }
     @keyframes toastSlide {
       from { transform: translateX(100%); opacity: 0; }
@@ -83,31 +70,34 @@
     }
   </style>
 </head>
-<body class="h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col transition-colors duration-200">
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col transition-colors duration-200">
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
 
+
   <!-- ========================================== -->
-  <!-- TOP HEADER (Exact HisabMittra HRM replica) -->
+  <!-- TOP NAVBAR (Exact HisabMittra HRM replica) -->
   <!-- ========================================== -->
-  <header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+  <header class="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
     <!-- Left: Brand Logo & Hamburger Toggle -->
     <div class="flex items-center gap-3">
-      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none cursor-pointer" title="Toggle Navigation">
+      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none cursor-pointer" title="Toggle Sidebar">
         <i class="fa-solid fa-bars text-lg"></i>
       </button>
 
-      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 via-teal-500 to-emerald-500 flex items-center justify-center text-slate-950 font-black shadow-md shadow-cyan-500/20">
-          <i class="fa-solid fa-people-roof text-white text-base"></i>
+      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group">
+        <!-- Exact HisabMittra styled brand mark -->
+        <div class="flex items-center">
+          <span class="text-2xl font-black text-emerald-600 tracking-tight">i</span>
+          <span class="text-2xl font-black text-blue-600 tracking-tight -ml-0.5">M</span>
         </div>
-        <div>
+        <div class="border-l border-slate-300 pl-2.5">
           <div class="flex items-center gap-1.5 leading-none">
-            <span class="font-extrabold text-base tracking-tight text-slate-900 dark:text-white">Algorise</span>
-            <span class="font-extrabold text-base tracking-tight text-cyan-600 dark:text-cyan-400">PeopleOS</span>
-            <span class="text-[10px] font-mono px-1.5 py-0.2 rounded bg-cyan-100 dark:bg-cyan-900/50 text-cyan-800 dark:text-cyan-300 font-bold border border-cyan-300 dark:border-cyan-700">v2.4</span>
+            <span class="font-extrabold text-base tracking-tight text-slate-900">Algorise</span>
+            <span class="font-extrabold text-base tracking-tight text-blue-600">PeopleOS</span>
+            <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">v2.4</span>
           </div>
-          <span class="text-[10px] text-slate-500 dark:text-slate-400 tracking-wide font-medium">Enterprise HRM &amp; Attendance</span>
+          <span class="text-[10px] text-slate-500 tracking-wide font-medium">Smart Solutions. Stronger Workforce.</span>
         </div>
       </a>
     </div>
@@ -118,715 +108,992 @@
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
           <i class="fa-solid fa-magnifying-glass text-xs"></i>
         </span>
-        <input type="text" id="globalMenuSearch" placeholder="Search Menu (ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium text-slate-800 dark:text-slate-200 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition" onkeyup="handleMenuSearch(this.value)" />
+        <input type="text" id="globalMenuSearch" placeholder="Search Menu(ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition" onkeyup="handleMenuSearch(this.value)" />
       </div>
     </div>
 
-    <!-- Right: Language, Theme, Notifications, Headset, Profile -->
+    <!-- Right Controls: English, Theme, Bell, Headset, User Profile -->
     <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Active Firm Selector -->
-      <div class="hidden lg:flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-2.5 py-1 text-xs font-mono">
-        <span class="text-slate-500 dark:text-slate-400 text-[10px] font-semibold uppercase">Firm:</span>
-        <select class="bg-transparent font-bold text-cyan-600 dark:text-cyan-400 focus:outline-none cursor-pointer" onchange="switchFirm(this.value)">
-          <option value="UNIT-2" selected>PAYROLL UNIT - 2</option>
-          <option value="UNIT-1">PAYROLL UNIT - 1</option>
-        </select>
-        <span class="text-slate-400">|</span>
-        <span class="text-[11px] text-slate-600 dark:text-slate-300 font-bold whitespace-nowrap">2026-2027</span>
+      <!-- Active Branch Tag -->
+      <div class="hidden lg:flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-lg px-2.5 py-1 text-xs">
+        <span class="text-slate-500 text-[10px] font-semibold uppercase">Branch:</span>
+        <span class="font-bold text-blue-700 font-mono">JMFU2</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-[11px] text-slate-600 font-medium">17-33-37, TANTITHAIYA</span>
       </div>
 
-      <!-- Language Selector (English / Gujarati / Hindi) -->
+      <!-- Language Selector -->
       <div class="relative">
-        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition cursor-pointer">
-          <i class="fa-solid fa-language text-cyan-600 dark:text-cyan-400"></i>
+        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
+          <span class="text-sm leading-none">🇺🇸</span>
           <span id="currentLangLabel">English</span>
           <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
         </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-40 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
-          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
-            English <i class="fa-solid fa-check text-cyan-500"></i>
+        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
+          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇺🇸 English</span> <i class="fa-solid fa-check text-blue-600"></i>
           </button>
-          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
-            ગુજરાતી (Gujarati)
+          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇮🇳 ગુજરાતી (Gujarati)</span>
           </button>
-          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-100 dark:hover:bg-slate-700 flex items-center justify-between">
-            हिंदी (Hindi)
+          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇮🇳 हिंदी (Hindi)</span>
           </button>
         </div>
       </div>
 
-      <!-- Dark / Light Mode Toggle -->
-      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Toggle Dark/Light Mode">
-        <i id="themeIcon" class="fa-solid fa-moon text-sm"></i>
+      <!-- Theme Switch (Moon Icon) -->
+      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Toggle Theme">
+        <i id="themeIcon" class="fa-regular fa-moon text-sm"></i>
       </button>
 
       <!-- Notification Bell -->
-      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Notice Board &amp; Alerts">
+      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition" title="Notices & Alerts">
         <i class="fa-regular fa-bell text-sm"></i>
-        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500"></span>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
       </a>
 
-      <!-- Support Icon -->
-      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition cursor-pointer" title="Enterprise Support Desk">
-        <i class="fa-solid fa-headset text-sm"></i>
+      <!-- Support Hotline -->
+      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Helpline & Support">
+        <i class="fa-solid fa-phone-volume text-sm text-slate-600"></i>
       </button>
 
-      <!-- UltraViewer User Profile (anil) -->
-      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800 hover:opacity-90">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold text-xs shadow-sm">
-          A
+      <!-- Client User Avatar (Anil Thakker) -->
+      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 p-0.5 shadow-xs">
+          <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-xs text-slate-800">
+            <i class="fa-solid fa-user-tie text-blue-600 text-sm"></i>
+          </div>
         </div>
         <div class="hidden sm:block text-left leading-tight">
-          <div class="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1">
-            anil <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <div class="text-xs font-bold text-slate-900 flex items-center gap-1">
+            Anil Thakker <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           </div>
-          <span class="text-[10px] font-mono text-slate-500 dark:text-slate-400">ID: 213046213</span>
+          <span class="text-[10px] font-mono text-slate-500">Owner &bull; Process House</span>
         </div>
       </a>
     </div>
   </header>
 
-  <div class="flex-1 flex overflow-hidden">
-    
-    <!-- ============================================== -->
-    <!-- LEFT SIDEBAR (Exact HisabMittra Hierarchy)     -->
-    <!-- ============================================== -->
-    <aside id="mainSidebar" class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
-      <!-- Session Bar -->
-      <div class="p-3 border-b border-slate-100 dark:border-slate-800/80 bg-slate-50/50 dark:bg-slate-900/50">
-        <div class="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
-          <span>A/C: 2026-2027</span>
-          <span class="px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/50 text-emerald-700 dark:text-emerald-400 font-bold text-[10px]">
-            ONLINE
-          </span>
-        </div>
-        <a href="company-management.html" class="text-xs font-bold text-slate-800 dark:text-slate-200 mt-1 block hover:text-cyan-500 truncate" title="View Company Settings">
-          PAYROLL UNIT - 2
-        </a>
-      </div>
+  <div class="flex flex-1 overflow-hidden">
 
-      <!-- Navigation Links -->
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR (Exact HisabMittra HRM Hierarchy) -->
+    <!-- ============================================== -->
+    <aside id="mainSidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
       <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
+        
         <!-- 1. Dashboard -->
-        <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+        <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
           <span class="flex items-center gap-3">
-            <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard
+            <i class="fa-solid fa-table-columns w-4 text-center"></i> Dashboard
           </span>
         </a>
 
-        <!-- 2. Company Management -->
-        <a href="company-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-building w-4 text-center"></i> Company Management
-          </span>
-          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-        </a>
-
-        <!-- 3. User Management -->
-        <a href="user-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-user-gear w-4 text-center"></i> User Management
-          </span>
-          <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-        </a>
-
-        <!-- 4. Employee Management (Master) -->
-        <a href="employee-master.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition bg-cyan-50 dark:bg-cyan-950/60 text-cyan-700 dark:text-cyan-300 border-l-4 border-cyan-500 font-bold">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-users w-4 text-center"></i> Employee Master (16 Ledgers)
-          </span>
-          <span class="text-[10px] font-mono bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300 px-1.5 py-0.2 rounded font-bold">16 Sub</span>
-        </a>
-
-        <!-- 5. Attendance Section (Expanded Accordion) -->
-        <div class="pt-2">
-          <div class="px-3 py-1 flex items-center justify-between text-[11px] font-bold text-cyan-700 dark:text-cyan-400 uppercase tracking-wider">
-            <span class="flex items-center gap-2">
-              <i class="fa-solid fa-clock-rotate-left"></i> Attendance Section
+        <!-- 2. Company Management (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-company')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-building w-4 text-center"></i> Company Management
             </span>
-            <i class="fa-solid fa-chevron-down text-[10px]"></i>
-          </div>
-
-          <div class="pl-4 pr-1 py-1 space-y-0.5 border-l-2 border-cyan-200 dark:border-cyan-900 ml-3 mt-1">
-            <a href="attendance-logs.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-              <span class="flex items-center gap-2">
-                <i class="fa-solid fa-circle text-[6px] text-cyan-500"></i> Attendance Logs
-              </span>
-              <span class="text-[9px] font-mono bg-cyan-100 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-400 px-1 rounded">WiFi/BSSID</span>
+            <i id="sec-company-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          
+          <div id="sec-company" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="companies.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company
             </a>
-
-            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-              <span class="flex items-center gap-2">
-                <i class="fa-solid fa-camera text-[10px] text-emerald-500"></i> Launch Face Kiosk
-              </span>
-              <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">AI Cam</span>
+            <a href="branches.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Branch
             </a>
-
-            <a href="daily-credit.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-              <span class="flex items-center gap-2">
-                <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Daily Credit Summary
-              </span>
+            <a href="departments.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Department
             </a>
-
-            <a href="monthly-report.html" class="flex items-center justify-between px-2.5 py-2 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-              <span class="flex items-center gap-2">
-                <i class="fa-solid fa-circle text-[6px] text-slate-400"></i> Monthly Status Report
-              </span>
+            <a href="machines.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Machine Master
+            </a>
+            <a href="posts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Post
             </a>
           </div>
         </div>
 
-        <!-- 6. CCTV Sentinel (Camera Ingest Upgrade) -->
-        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+        <!-- 3. User Management (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-user')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-user w-4 text-center"></i> User Management
+            </span>
+            <i id="sec-user-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-user" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="user-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Users
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Employee Management (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-emp')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 text-blue-600 font-bold">
+              <i class="fa-solid fa-users w-4 text-center"></i> Employee Management
+            </span>
+            <i id="sec-emp-arrow" class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-emp" class=" pl-7 pr-2 py-1 space-y-1">
+            <a href="employee-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee List
+            </a>
+            <a href="employee-master.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-blue-600 bg-blue-50 font-bold">
+              <span class="flex items-center gap-2">
+                <i class="fa-regular fa-circle-dot text-blue-600 text-[10px]"></i> Employee Master
+              </span>
+              <span class="text-[9px] font-mono px-1 rounded bg-violet-100 text-violet-700 font-bold">16 Sub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Attendance Section (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-att')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-clock w-4 text-center"></i> Attendance Section
+            </span>
+            <i id="sec-att-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-att" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="attendance.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance
+            </a>
+            <a href="attendance-logs.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Logs
+            </a>
+            <a href="attendance-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Report
+            </a>
+            <a href="monthly-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Monthly Status Report
+            </a>
+            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <span class="flex items-center gap-2">
+                <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Launch Face Kiosk
+              </span>
+              <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">AI Cam</span>
+            </a>
+            <a href="daily-credit.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Daily Credit Summary
+            </a>
+          </div>
+        </div>
+
+        <!-- 6. Supervisor (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-sup')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-user-shield w-4 text-center"></i> Supervisor
+            </span>
+            <i id="sec-sup-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-sup" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="supervisor.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Supervisor Directory
+            </a>
+          </div>
+        </div>
+
+        <!-- 7. Notice -->
+        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
           <span class="flex items-center gap-3">
-            <i class="fa-solid fa-video w-4 text-center text-emerald-600 dark:text-emerald-400"></i> CCTV &amp; Sentinel AI
+            <i class="fa-regular fa-clipboard w-4 text-center"></i> Notice
           </span>
-          <span class="text-[9px] font-mono bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 px-1.5 py-0.2 rounded font-bold">Cam Core</span>
         </a>
 
-        <!-- 7. Supervisor -->
-        <a href="supervisor.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-user-tie w-4 text-center"></i> Supervisor Directory
-          </span>
-          <span class="text-[9px] font-mono bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-1.5 py-0.2 rounded">4 Active</span>
-        </a>
+        <!-- 8. Payroll Management (Accordion) -->
+        <div>
+          <button onclick="toggleAccordion('sec-pay')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-money-bill-wave w-4 text-center"></i> Payroll Management
+            </span>
+            <i id="sec-pay-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-pay" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="payroll-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Process Payroll
+            </a>
+          </div>
+        </div>
 
-        <!-- 8. Notice Board -->
-        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+        <!-- 9. Leave -->
+        <a href="leave-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
           <span class="flex items-center gap-3">
-            <i class="fa-solid fa-bullhorn w-4 text-center text-amber-500"></i> Notice Board
-          </span>
-        </a>
-
-        <!-- 9. Payroll Management -->
-        <a href="payroll-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-file-invoice-dollar w-4 text-center"></i> Payroll Management
-          </span>
-          <span class="text-[9px] font-mono bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-400 px-1.5 py-0.2 rounded font-bold">1-Click</span>
-        </a>
-
-        <!-- 10. Leave Management -->
-        <a href="leave-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-calendar-xmark w-4 text-center"></i> Leave Management
+            <i class="fa-regular fa-calendar-xmark w-4 text-center"></i> Leave
           </span>
         </a>
 
-        <!-- 11. Shift Management -->
-        <a href="shift-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-slate-100 font-medium">
+        <!-- 10. Shift Management -->
+        <a href="shift-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
           </span>
         </a>
+
+        <!-- 11. HR Admin Setup -->
+        <a href="hr-setup.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-gear w-4 text-center"></i> HR Admin Setup
+          </span>
+        </a>
+
+        <!-- 12. CCTV AI & Sentinel (Camera Upgrade for 500-600 workers) -->
+        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-video w-4 text-center text-blue-600"></i> CCTV &amp; Sentinel AI
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">Cam Core</span>
+        </a>
+
       </nav>
 
       <!-- Bottom Audio Language Indicator (Payroll Vision replica) -->
-      <div class="p-3 border-t border-slate-200 dark:border-slate-800 bg-amber-50/70 dark:bg-amber-950/20 text-[11px]">
-        <div class="flex items-center justify-between text-amber-800 dark:text-amber-300 font-bold mb-1">
+      <div class="p-3 border-t border-slate-200 bg-amber-50/70 text-[11px]">
+        <div class="flex items-center justify-between text-amber-900 font-bold mb-1">
           <span class="flex items-center gap-1.5">
-            <i class="fa-solid fa-volume-high"></i> Audio Prompt
+            <i class="fa-solid fa-volume-high text-amber-700"></i> Audio Prompt
           </span>
-          <button onclick="playGujaratiPrompt()" class="text-cyan-700 dark:text-cyan-400 hover:underline cursor-pointer text-[10px]">
+          <button onclick="playGujaratiPrompt()" class="text-blue-600 hover:underline cursor-pointer text-[10px] font-bold">
             Test <i class="fa-solid fa-play ml-0.5"></i>
           </button>
         </div>
-        <p class="text-slate-600 dark:text-slate-400 text-[10px] leading-tight font-medium">
-          "Current Audio language is Gujarati". Actively assists factory workers and operators.
+        <p class="text-slate-600 text-[10px] leading-tight font-medium">
+          "Current Audio language is Gujarati". Actively assists factory operators at Tantithaiya.
         </p>
       </div>
     </aside>
 
+    <main class="flex-1 overflow-y-auto bg-slate-100 p-3 sm:p-4 space-y-3 font-sans">
+      
+      <!-- Top Window Header (Exact Payroll Vision screenshot replica) -->
+      <div class="bg-blue-900 text-white px-4 py-2 rounded-t-xl flex items-center justify-between shadow-xs">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-window-maximize text-blue-300 text-xs"></i>
+          <span class="font-bold text-xs tracking-wide">Payroll Vision - "PAYROLL UNIT - 2" (2026-2027) - [Employee Master]</span>
+        </div>
+        <div class="flex items-center gap-3 text-xs text-blue-200">
+          <span class="bg-blue-800 px-2 py-0.5 rounded font-mono text-[11px]">USER: anil</span>
+          <span>License valid upto Fri 30 of April, 2027</span>
+        </div>
+      </div>
 
-    <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-slate-50 dark:bg-slate-950">
-      <!-- Toolbar (Exact Payroll Vision Screenshot 3) -->
-      <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-2 mb-4 overflow-x-auto flex items-center justify-between gap-1 text-slate-700 dark:text-slate-200">
+      <!-- Action Toolbar (New, Open, Save, Cancel, Delete, First, Prev, Next, Last, Close, Print, Excel) -->
+      <div class="bg-white border-x border-b border-slate-200 px-3 py-2 flex flex-wrap items-center justify-between gap-2 shadow-xs">
         <div class="flex items-center gap-1">
-          <button onclick="newRecord()" class="pv-btn text-cyan-600 hover:bg-cyan-50 dark:hover:bg-cyan-950/60">
-            <i class="fa-solid fa-plus text-base mb-1"></i> New
+          <button onclick="newRecord()" class="pv-btn text-blue-700 hover:bg-blue-50" title="Create New">
+            <i class="fa-solid fa-file-circle-plus text-base mb-0.5"></i> New
           </button>
-          <button onclick="openRecordModal()" class="pv-btn text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/60">
-            <i class="fa-solid fa-folder-open text-base mb-1"></i> Open
+          <button onclick="openRecord()" class="pv-btn text-amber-600 hover:bg-amber-50" title="Open Record">
+            <i class="fa-solid fa-folder-open text-base mb-0.5"></i> Open
           </button>
-          <button onclick="saveRecord()" class="pv-btn text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/60">
-            <i class="fa-solid fa-floppy-disk text-base mb-1"></i> Save
+          <button onclick="saveRecord()" class="pv-btn text-emerald-700 hover:bg-emerald-50" title="Save Changes">
+            <i class="fa-solid fa-floppy-disk text-base mb-0.5"></i> Save
           </button>
-          <button onclick="cancelRecord()" class="pv-btn text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/60">
-            <i class="fa-solid fa-rotate-left text-base mb-1"></i> Cancel
+          <button onclick="cancelRecord()" class="pv-btn text-slate-600 hover:bg-slate-100" title="Cancel">
+            <i class="fa-solid fa-ban text-base mb-0.5"></i> Cancel
           </button>
-          <button onclick="deleteRecord()" class="pv-btn text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/60">
-            <i class="fa-solid fa-trash text-base mb-1"></i> Delete
+          <button onclick="deleteRecord()" class="pv-btn text-rose-600 hover:bg-rose-50" title="Delete">
+            <i class="fa-solid fa-trash-can text-base mb-0.5"></i> Delete
           </button>
-          <span class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1"></span>
-          <button onclick="loadEmployee('EMP1001')" class="pv-btn text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <i class="fa-solid fa-backward-step text-base mb-1"></i> First
+          <div class="h-6 w-px bg-slate-200 mx-1"></div>
+          <button onclick="navRecord('first')" class="pv-btn text-slate-700 hover:bg-slate-100" title="First Record">
+            <i class="fa-solid fa-angles-left text-base mb-0.5"></i> First
           </button>
-          <button onclick="prevEmployee()" class="pv-btn text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <i class="fa-solid fa-caret-left text-base mb-1"></i> Previous
+          <button onclick="navRecord('prev')" class="pv-btn text-slate-700 hover:bg-slate-100" title="Previous Record">
+            <i class="fa-solid fa-angle-left text-base mb-0.5"></i> Previous
           </button>
-          <button onclick="nextEmployee()" class="pv-btn text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <i class="fa-solid fa-caret-right text-base mb-1"></i> Next
+          <button onclick="navRecord('next')" class="pv-btn text-slate-700 hover:bg-slate-100" title="Next Record">
+            <i class="fa-solid fa-angle-right text-base mb-0.5"></i> Next
           </button>
-          <button onclick="loadEmployee('EMP1006')" class="pv-btn text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <i class="fa-solid fa-forward-step text-base mb-1"></i> Last
+          <button onclick="navRecord('last')" class="pv-btn text-slate-700 hover:bg-slate-100" title="Last Record">
+            <i class="fa-solid fa-angles-right text-base mb-0.5"></i> Last
           </button>
         </div>
-
         <div class="flex items-center gap-1">
-          <button onclick="window.print()" class="pv-btn text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">
-            <i class="fa-solid fa-print text-base mb-1"></i> Print
+          <button onclick="window.print()" class="pv-btn text-slate-700 hover:bg-slate-100" title="Print Master">
+            <i class="fa-solid fa-print text-base mb-0.5"></i> Print
           </button>
-          <button onclick="showToast('Excel Exported', 'Employee dossier exported to Excel.', 'success')" class="pv-btn text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/60">
-            <i class="fa-solid fa-file-excel text-base mb-1"></i> Excel
+          <button onclick="showToast('Employee ledger exported to Excel (Payroll Vision .xlsx format)', 'success')" class="pv-btn text-emerald-700 hover:bg-emerald-50" title="Export Excel">
+            <i class="fa-solid fa-file-excel text-base mb-0.5 text-emerald-600"></i> Excel Transfer
           </button>
-          <a href="index.html" class="pv-btn text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/60">
-            <i class="fa-solid fa-power-off text-base mb-1"></i> Close
+          <a href="employee-management.html" class="pv-btn text-rose-700 hover:bg-rose-50" title="Close Window">
+            <i class="fa-solid fa-power-off text-base mb-0.5 text-rose-600"></i> Close
           </a>
         </div>
       </div>
 
-      <!-- Record Status & Gujarati Audio Banner (Exact Payroll Vision Screenshot 3) -->
-      <div class="bg-blue-600 text-white px-4 py-2 rounded-t-xl flex items-center justify-between text-xs font-mono font-bold">
-        <span id="recordStatusLabel">Record Status : Browse / Edit (EMP1001)</span>
-        <div class="flex items-center gap-2">
-          <span class="bg-amber-400 text-slate-950 px-2 py-0.5 rounded text-[10px] font-extrabold uppercase">
-            Current Audio language is Gujarati
-          </span>
-          <span class="text-white text-[11px]">* this indicates input is compulsory</span>
+      <!-- Status Sub-Bar -->
+      <div class="bg-blue-50 border border-blue-200 px-3 py-1.5 rounded-lg flex flex-wrap items-center justify-between text-xs text-blue-900 font-semibold">
+        <div class="flex items-center gap-3">
+          <span class="font-bold text-blue-700">Record Status : <span id="recStatus" class="font-bold text-emerald-700">Browse (Viewing 1 of 493)</span></span>
+          <span class="text-slate-400">|</span>
+          <span class="text-amber-800">Current Audio language is Gujarati</span>
         </div>
+        <div class="text-[11px] text-rose-600 font-bold">* this indicates input is compulsory</div>
       </div>
 
-      <!-- Main Form & 16 Sub-Ledgers Container -->
-      <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-b-xl shadow-sm p-4 sm:p-6 mb-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
-          <div class="lg:col-span-8 space-y-4 text-xs font-mono">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">Firm *</label>
-                <select class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-slate-800 dark:text-slate-100 font-bold">
-                  <option selected>PAYROLL UNIT - 2</option>
-                  <option>PAYROLL UNIT - 1</option>
-                </select>
-              </div>
-
-              <div class="sm:col-span-2">
-                <label class="text-slate-500 block mb-1 font-bold">Full Name (F/M/L) *</label>
-                <input type="text" id="empNameInput" value="Ramesh Bhikhubhai Patel" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-slate-900 dark:text-white font-bold" />
-              </div>
+      <!-- Main Master Form Grid (Left: Profile Fields, Center: Photo & Webcam, Right: 16 Sub-Ledgers) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+        
+        <!-- Left & Middle: Core Fields (8 cols) -->
+        <div class="lg:col-span-8 space-y-3">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div class="md:col-span-2">
+              <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Firm *</label>
+              <select id="fieldFirm" class="w-full px-2.5 py-1.5 border border-slate-300 rounded text-xs font-bold text-slate-800 bg-amber-50/50">
+                <option value="PAYROLL UNIT - 2" selected>PAYROLL UNIT - 2 (TANTITHAIYA)</option>
+                <option value="PAYROLL UNIT - 1">PAYROLL UNIT - 1</option>
+              </select>
             </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">Emp ID *</label>
-                <input type="text" id="empIdInput" value="1001" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-cyan-600 dark:text-cyan-400 font-bold" />
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Emp ID / Code *</label>
+              <div class="flex gap-1.5">
+                <input type="text" id="fieldEmpId" value="EMP001" class="w-1/2 px-2 py-1.5 border border-slate-300 rounded text-xs font-mono font-bold text-blue-700" />
+                <input type="text" id="fieldEmpCode" value="JMF001" class="w-1/2 px-2 py-1.5 border border-slate-300 rounded text-xs font-mono font-bold" />
               </div>
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">Emp Code *</label>
-                <input type="text" id="empCodeInput" value="EMP1001" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-cyan-600 dark:text-cyan-400 font-bold" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">Mother Tongue</label>
-                <input type="text" value="Gujarati (ગુજરાતી)" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">Gender / Marital</label>
-                <select class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5">
-                  <option>Male / Married</option>
-                  <option>Female / Married</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="text-slate-500 block mb-1">Address (Communication)</label>
-                <textarea class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 h-16">Plot 42, GIDC Housing Colony, Pandesara, Surat - 394221</textarea>
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">Address (Permanent)</label>
-                <textarea class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 h-16">At &amp; Po. Vyara, Dist. Tapi, Gujarat - 394650</textarea>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div>
-                <label class="text-slate-500 block mb-1">Mobile No *</label>
-                <input type="text" value="+91 98251 44021" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 font-bold" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">Blood Group</label>
-                <input type="text" value="B +ve" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">PAN Card No</label>
-                <input type="text" value="ABCDE1234F" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-emerald-600 dark:text-emerald-400 font-bold" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">Aadhaar Card No</label>
-                <input type="text" value="XXXX-XXXX-8921" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5 text-emerald-600 dark:text-emerald-400 font-bold" />
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <div>
-                <label class="text-slate-500 block mb-1 font-bold">Date of Joining *</label>
-                <input type="date" value="2021-05-14" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">UAN Number</label>
-                <input type="text" value="100904812345" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">PF Number</label>
-                <input type="text" value="GJ/SRT/45231/1001" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-              <div>
-                <label class="text-slate-500 block mb-1">E.S.I. Number</label>
-                <input type="text" value="3100459821" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded px-2.5 py-1.5" />
-              </div>
-            </div>
-
-            <!-- Active Sub-Ledger Content Area -->
-            <div id="subLedgerContentBox" class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-850 mt-4 space-y-2">
-              <span id="subLedgerHeading" class="font-bold text-cyan-600 dark:text-cyan-400 block text-xs uppercase">
-                1. Communication Address Details
-              </span>
-              <p id="subLedgerBody" class="text-slate-600 dark:text-slate-300 text-xs">
-                Permanent Residence: At &amp; Po. Vyara, Dist. Tapi. Active mobile number +91 98251 44021 verified. Local emergency contact: +91 98251 11042 (Supervisor Rajan Sharma).
-              </p>
             </div>
           </div>
 
-          <!-- Right 4 Columns: Photo Box + 16 Sub-Ledgers Navigation -->
-          <div class="lg:col-span-4 space-y-4">
-            <div class="bg-slate-50 dark:bg-slate-800/80 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-center">
-              <div class="w-32 h-36 mx-auto bg-slate-200 dark:bg-slate-900 border-2 border-dashed border-slate-400 dark:border-slate-600 rounded-lg flex items-center justify-center relative overflow-hidden mb-3">
-                <i class="fa-solid fa-user text-4xl text-slate-400"></i>
-                <div class="absolute bottom-1 right-1 px-1.5 py-0.5 rounded bg-emerald-500 text-white font-mono text-[9px] font-bold">
-                  VECTOR ENROLLED
+          <div>
+            <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Full Name (F / M / L) *</label>
+            <div class="grid grid-cols-3 gap-2">
+              <input type="text" id="nameFirst" value="SONU" placeholder="First Name" class="px-2.5 py-1.5 border border-slate-300 rounded text-xs font-bold uppercase" />
+              <input type="text" id="nameMiddle" value="KAUSHAL" placeholder="Middle Name" class="px-2.5 py-1.5 border border-slate-300 rounded text-xs uppercase" />
+              <input type="text" id="nameLast" value="KISHOR" placeholder="Last Name" class="px-2.5 py-1.5 border border-slate-300 rounded text-xs uppercase" />
+            </div>
+          </div>
+
+          <!-- Address Fields -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Address (Communication)</label>
+              <textarea id="addrComm" rows="2" class="w-full px-2.5 py-1 border border-slate-300 rounded text-xs font-sans">Plot 17-33-37, Tantithaiya, Kadodara Road</textarea>
+              <div class="mt-1 flex items-center gap-1.5">
+                <span class="text-[10px] text-slate-500 font-bold">City:</span>
+                <input type="text" value="SURAT" class="px-2 py-0.5 border border-slate-300 rounded text-xs font-semibold uppercase flex-1" />
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-700 mb-0.5">Address (Permanent)</label>
+              <textarea id="addrPerm" rows="2" class="w-full px-2.5 py-1 border border-slate-300 rounded text-xs font-sans">Gram-Post Pipra, District Ballia, Uttar Pradesh</textarea>
+              <div class="mt-1 flex items-center gap-1.5">
+                <span class="text-[10px] text-slate-500 font-bold">City:</span>
+                <input type="text" value="BALLIA" class="px-2 py-0.5 border border-slate-300 rounded text-xs font-semibold uppercase flex-1" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Attributes Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Mother Tongue</label>
+              <select class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-semibold">
+                <option selected>Gujarati</option>
+                <option>Hindi</option>
+                <option>Bhojpuri</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Gender</label>
+              <select class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-semibold">
+                <option selected>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Blood Group</label>
+              <select class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-semibold">
+                <option selected>B+</option>
+                <option>O+</option>
+                <option>A+</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Marital Status</label>
+              <select class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-semibold">
+                <option selected>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Dates & Statutory -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Date Of Joining *</label>
+              <input type="date" value="2024-01-12" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono font-bold" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Date Of Birth *</label>
+              <input type="date" value="1992-06-15" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Weekly Off</label>
+              <select class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-semibold">
+                <option selected>Sunday</option>
+                <option>Rotational</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Mobile No *</label>
+              <input type="text" value="9825100001" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono font-bold" />
+            </div>
+          </div>
+
+          <!-- Statutory IDs -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">UAN No.</label>
+              <input type="text" value="101928374650" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">P.F. No.</label>
+              <input type="text" value="GJ/SUR/1029384/001" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">E.S.I. No.</label>
+              <input type="text" value="3920192837" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600">Aadhaar Card No.</label>
+              <input type="text" value="8920 1829 3847" class="w-full px-2 py-1 border border-slate-300 rounded text-xs font-mono" />
+            </div>
+          </div>
+
+          <!-- Center: Photo Frame & Live Webcam AI Ingest -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <!-- Photo Box -->
+            <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 flex items-center gap-3">
+              <div class="w-20 h-24 bg-white border border-slate-300 rounded flex flex-col items-center justify-center text-slate-400 overflow-hidden relative" id="photoContainer">
+                <i class="fa-solid fa-user text-3xl"></i>
+                <span class="text-[9px] mt-1 font-bold">Photo</span>
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <button onclick="document.getElementById('photoInput').click()" class="w-full py-1 px-2.5 bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold rounded shadow-xs cursor-pointer">
+                  Upload Photo
+                </button>
+                <input type="file" id="photoInput" class="hidden" accept="image/*" onchange="previewUploadedPhoto(event)" />
+                <button onclick="removePhoto()" class="w-full py-1 px-2.5 border border-slate-300 text-slate-700 hover:bg-slate-100 text-[11px] font-semibold rounded cursor-pointer">
+                  Remove Photo
+                </button>
+              </div>
+            </div>
+
+            <!-- Webcam Capture Box (With WebRTC camera stream) -->
+            <div class="border border-slate-200 rounded-lg p-3 bg-slate-50 flex items-center gap-3">
+              <div class="w-20 h-24 bg-slate-900 border border-slate-800 rounded flex items-center justify-center text-emerald-400 overflow-hidden relative">
+                <video id="webcamVideo" class="w-full h-full object-cover hidden" autoplay playsinline muted></video>
+                <div id="camPlaceholder" class="text-center text-slate-400 text-[9px] p-1 font-medium">
+                  <i class="fa-solid fa-camera text-xl text-slate-400 mb-1"></i><br/>Capture
                 </div>
               </div>
-
-              <div class="flex justify-center gap-2 mb-2">
-                <button onclick="showToast('Webcam Active', 'Webcam started for face enrollment.', 'info')" class="px-2.5 py-1 rounded bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-bold">
+              <div class="space-y-1.5 flex-1">
+                <button onclick="startWebcam()" class="w-full py-1 px-2.5 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold rounded shadow-xs cursor-pointer">
                   Start Webcam
                 </button>
-                <button onclick="showToast('Photo Captured', 'Face vector extracted & enrolled.', 'success')" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold">
+                <button onclick="captureFromWebcam()" class="w-full py-1 px-2.5 bg-slate-800 hover:bg-slate-900 text-white text-[11px] font-bold rounded shadow-xs cursor-pointer">
                   Capture Photo
                 </button>
               </div>
-              <span class="text-[10px] font-mono text-slate-500 block">Edge CCTV Vector Linked (ArcFace)</span>
-            </div>
-
-            <!-- The 16 Sub-Ledgers List (Exact links from Payroll Vision Screenshot 3) -->
-            <div class="bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 p-3">
-              <span class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block mb-2 font-mono">
-                16 Industrial Sub-Ledgers
-              </span>
-              <div class="grid grid-cols-1 gap-1 text-xs font-medium">
-                <button onclick="showSub(1, 'Communication Address', 'Surat GIDC Housing Colony Plot 42, Vyara permanent residence.')" class="text-left px-2.5 py-1.5 rounded hover:bg-cyan-50 dark:hover:bg-slate-700 text-cyan-700 dark:text-cyan-300 font-semibold flex items-center justify-between">
-                  1. Communication Address <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(2, 'Enclosures Detail(s)', 'Aadhaar copy, PAN card copy, Bank Passbook, Fitness Certificate verified.')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  2. Enclosures Detail(s) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(3, 'Languages Known', 'Gujarati (Native Mother Tongue - Speak/Read/Write), Hindi (Fluent), English (Working).')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  3. Languages Known (Gujarati) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(4, 'Qualification Detail(s)', 'ITI Certified Textile Loom Operator (Surat Industrial Training Institute), SSC Gujarat Board.')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  4. Qualification Detail(s) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(5, 'Family & Nominee Detail(s)', 'Spouse: Meenaben Patel (100% Nominee share for PF & Gratuity), 2 Children.')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  5. Family &amp; Nominee Detail(s) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(8, 'Fuel Allowance Ledger', 'Petrol Conveyance: Fixed ₹1,200/mo allowance verified against Pandesara plant attendance.')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  8. Fuel Allowance Ledger <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(9, 'Loan & Kharchi Advances', 'Weekly cash advance: ₹1,500 disbursed 08-Oct-2026. Applied for salary deduction in Oct 2026 run.')" class="text-left px-2.5 py-1.5 rounded hover:bg-amber-50 dark:hover:bg-amber-950 text-amber-700 dark:text-amber-300 font-bold flex items-center justify-between">
-                  9. Loan &amp; Kharchi Advances <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(11, 'Working Detail(s) (Looms #12-18)', 'Assigned Waterjet Looms: #12, #13, #14, #15. Target: 480 meters/shift. Piece-rate incentive: ₹1.85/meter.')" class="text-left px-2.5 py-1.5 rounded hover:bg-cyan-50 dark:hover:bg-slate-700 text-cyan-700 dark:text-cyan-300 font-semibold flex items-center justify-between">
-                  11. Working Detail(s) (Looms #12-18) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(13, 'P.F. Detail(s)', 'UAN: 100904812345 | Member ID: GJSRT00452310001001. Voluntary PF: Standard 12% capped at ₹15,000 ceiling.')" class="text-left px-2.5 py-1.5 rounded hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 flex items-center justify-between">
-                  13. P.F. Detail(s) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-                <button onclick="showSub(16, 'Salary Detail(s) (Gross ₹52,000)', 'Basic: ₹25,000, HRA: ₹10,000, DA: ₹5,000, Special: ₹10,141, OT: +₹1,859. Total Gross: ₹52,000 | Net: ₹44,725.')" class="text-left px-2.5 py-1.5 rounded hover:bg-emerald-50 dark:hover:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold flex items-center justify-between">
-                  16. Salary Detail(s) (Gross ₹52k) <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                </button>
-              </div>
             </div>
           </div>
         </div>
+
+        <!-- Right: 16 SUB-LEDGER BUTTONS (4 cols) -->
+        <div class="lg:col-span-4 bg-slate-50 p-3 rounded-xl border border-slate-200 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-slate-200">
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-blue-900">16 SUB-LEDGERS</h3>
+              <span class="text-[10px] font-mono bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">Payroll Vision</span>
+            </div>
+            <div class="space-y-1 overflow-y-auto max-h-[500px] pr-1 hm-sidebar-scroll">
+
+          <button onclick="openLedgerModal('Communication Address')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">1</span>
+              <span class="truncate">Communication Address</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Enclosures Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">2</span>
+              <span class="truncate">Enclosures Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Languages Known')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">3</span>
+              <span class="truncate">Languages Known</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Qualification Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">4</span>
+              <span class="truncate">Qualification Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Family Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">5</span>
+              <span class="truncate">Family Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Reference Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">6</span>
+              <span class="truncate">Reference Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Experience Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">7</span>
+              <span class="truncate">Experience Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Fuel Allowance')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">8</span>
+              <span class="truncate">Fuel Allowance</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Loan Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">9</span>
+              <span class="truncate">Loan Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Agreement Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">10</span>
+              <span class="truncate">Agreement Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Working Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">11</span>
+              <span class="truncate">Working Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Office Use Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">12</span>
+              <span class="truncate">Office Use Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('P.F. Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">13</span>
+              <span class="truncate">P.F. Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Joining & Full&Final Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">14</span>
+              <span class="truncate">Joining & Full&Final Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Insurance Policy Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">15</span>
+              <span class="truncate">Insurance Policy Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+          <button onclick="openLedgerModal('Salary Detail(s)')" class="w-full text-left px-3 py-2 rounded-lg bg-blue-50/70 hover:bg-blue-100/90 text-blue-900 border border-blue-200 text-xs font-semibold flex items-center justify-between transition cursor-pointer group">
+            <span class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-md bg-blue-600 text-white flex items-center justify-center text-[10px] font-bold">16</span>
+              <span class="truncate">Salary Detail(s)</span>
+            </span>
+            <i class="fa-solid fa-chevron-right text-[10px] text-blue-400 group-hover:translate-x-0.5 transition"></i>
+          </button>
+            </div>
+          </div>
+          <div class="mt-3 pt-2 border-t border-slate-200 text-center">
+            <span class="text-[10px] text-slate-400">All 16 ledgers persist to JMFU2 Cloud Master</span>
+          </div>
+        </div>
+
       </div>
     </main>
   </div>
 
+  <!-- Dynamic Sub-Ledger Modal -->
+  <div id="ledgerModal" class="app-modal fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="text-sm font-bold text-slate-900" id="ledgerModalTitle">Sub-Ledger Details</h3>
+        <button onclick="closeModal('ledgerModal')" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div id="ledgerModalContent" class="mt-4 space-y-3 text-xs">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="mt-5 flex justify-end gap-2 pt-3 border-t border-slate-100">
+        <button onclick="closeModal('ledgerModal')" class="px-4 py-2 border border-slate-200 text-slate-600 rounded-lg font-bold text-xs">Close</button>
+        <button onclick="showToast('Sub-ledger changes saved to employee file', 'success'); closeModal('ledgerModal');" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-bold text-xs hover:bg-blue-700">Save Ledger</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const employees = {
-      'EMP1001': { name: 'Ramesh Bhikhubhai Patel', id: '1001', code: 'EMP1001', dept: 'Weaving' },
-      'EMP1002': { name: 'Sonu Kaushal Kishor', id: '1002', code: 'EMP1002', dept: 'Production' },
-      'EMP1003': { name: 'Anand Prakash Chandra', id: '1003', code: 'EMP1003', dept: 'Maintenance' },
-      'EMP1004': { name: 'Rajan Sharma', id: '1004', code: 'EMP1004', dept: 'Production' },
-      'EMP1005': { name: 'Vipul Desai', id: '1005', code: 'EMP1005', dept: 'Weaving' },
-      'EMP1006': { name: 'Dinesh Solanki', id: '1006', code: 'EMP1006', dept: 'Maintenance' }
-    };
-    let currentCode = 'EMP1001';
+    let webcamStream = null;
 
-    function loadEmployee(code) {
-      if (employees[code]) {
-        currentCode = code;
-        document.getElementById('empNameInput').value = employees[code].name;
-        document.getElementById('empIdInput').value = employees[code].id;
-        document.getElementById('empCodeInput').value = employees[code].code;
-        document.getElementById('recordStatusLabel').innerText = `Record Status : Browse / Edit (${code})`;
-        showToast('Record Loaded', `Viewing dossier for ${employees[code].name} (${code}).`, 'info');
-      }
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
     }
-
-    function nextEmployee() {
-      const keys = Object.keys(employees);
-      const idx = keys.indexOf(currentCode);
-      const nextKey = keys[(idx + 1) % keys.length];
-      loadEmployee(nextKey);
-    }
-
-    function prevEmployee() {
-      const keys = Object.keys(employees);
-      const idx = keys.indexOf(currentCode);
-      const prevKey = keys[(idx - 1 + keys.length) % keys.length];
-      loadEmployee(prevKey);
-    }
-
-    function saveRecord() {
-      showToast('Record Saved', 'Employee master & sub-ledgers cryptographically signed to Merkle Block #1086.', 'success');
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
     }
 
     function newRecord() {
-      document.getElementById('empNameInput').value = '';
-      document.getElementById('empIdInput').value = '1007';
-      document.getElementById('empCodeInput').value = 'EMP1007';
-      document.getElementById('recordStatusLabel').innerText = 'Record Status : Add New Employee';
-      showToast('New Entry Mode', 'Fields cleared for new employee registration.', 'info');
+      document.getElementById('recStatus').textContent = 'Add (New Employee Entry)';
+      document.getElementById('recStatus').className = 'font-bold text-blue-700';
+      document.getElementById('fieldEmpId').value = 'EMP494';
+      document.getElementById('fieldEmpCode').value = 'JMF494';
+      document.getElementById('nameFirst').value = '';
+      document.getElementById('nameMiddle').value = '';
+      document.getElementById('nameLast').value = '';
+      showToast('Initialized new employee form. Fill details and click Save.', 'info');
+    }
+
+    function saveRecord() {
+      const name = `${document.getElementById('nameFirst').value} ${document.getElementById('nameLast').value}`.trim();
+      document.getElementById('recStatus').textContent = `Browse (Viewing ${name || 'EMP001'} - Saved)`;
+      document.getElementById('recStatus').className = 'font-bold text-emerald-700';
+      showToast(`Employee record for ${name || 'worker'} saved successfully to JMFU2 master!`, 'success');
     }
 
     function cancelRecord() {
-      loadEmployee(currentCode);
-      showToast('Cancelled', 'Form reset to saved record.', 'warning');
+      document.getElementById('recStatus').textContent = 'Browse (Viewing 1 of 493)';
+      document.getElementById('recStatus').className = 'font-bold text-emerald-700';
+      showToast('Operation cancelled', 'info');
     }
 
     function deleteRecord() {
-      showToast('Action Restrict', 'Delete protected: Employee has active historical attendance records.', 'error');
+      showToast('Protected: To delete this employee record, clear active muster attendance first.', 'warning');
     }
 
-    function openRecordModal() {
-      const code = prompt('Enter Employee Code to Open (e.g. EMP1001, EMP1002, EMP1004):', currentCode);
-      if (code && employees[code.toUpperCase()]) {
-        loadEmployee(code.toUpperCase());
-      } else if (code) {
-        showToast('Not Found', `Employee ${code} not found in active master.`, 'error');
+    function navRecord(dir) {
+      showToast(`Navigating to ${dir} record in Payroll Unit - 2`, 'info');
+    }
+
+    // Webcam integration
+    async function startWebcam() {
+      try {
+        const video = document.getElementById('webcamVideo');
+        const placeholder = document.getElementById('camPlaceholder');
+        webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = webcamStream;
+        video.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        showToast('Webcam active. Ready for employee face enrollment.', 'success');
+      } catch (err) {
+        showToast('Webcam initialized in simulated kiosk mode (camera permission needed)', 'info');
       }
     }
 
-    function showSub(num, title, body) {
-      document.getElementById('subLedgerHeading').innerText = `${num}. ${title}`;
-      document.getElementById('subLedgerBody').innerText = body;
-      showToast('Sub-Ledger Loaded', `Viewing ${title}.`, 'info');
+    function captureFromWebcam() {
+      const container = document.getElementById('photoContainer');
+      container.innerHTML = '<div class="w-full h-full bg-emerald-100 text-emerald-800 flex flex-col items-center justify-center font-bold text-[10px]"><i class="fa-solid fa-face-smile text-2xl text-emerald-600 mb-1"></i>Enrolled</div>';
+      showToast('Worker face captured and enrolled in Edge Camera AI database!', 'success');
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        document.getElementById('webcamVideo').classList.add('hidden');
+        document.getElementById('camPlaceholder').classList.remove('hidden');
+      }
+    }
+
+    function previewUploadedPhoto(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const r = new FileReader();
+        r.onload = function(evt) {
+          document.getElementById('photoContainer').innerHTML = `<img src="${evt.target.result}" class="w-full h-full object-cover" />`;
+          showToast('Photo uploaded successfully', 'success');
+        };
+        r.readAsDataURL(file);
+      }
+    }
+
+    function removePhoto() {
+      document.getElementById('photoContainer').innerHTML = '<i class="fa-solid fa-user text-3xl"></i><span class="text-[9px] mt-1 font-bold">Photo</span>';
+      showToast('Photo removed', 'info');
+    }
+
+    // Sub-ledger modal content handler
+    function openLedgerModal(name) {
+      document.getElementById('ledgerModalTitle').textContent = `Sub-Ledger: ${name} &bull; EMP001`;
+      const c = document.getElementById('ledgerModalContent');
+      
+      if (name.includes('Salary')) {
+        c.innerHTML = `
+          <div class="grid grid-cols-2 gap-3">
+            <div><label class="block font-bold text-slate-700 mb-1">Basic Rate (Daily / Monthly)</label><input type="number" value="12500" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono font-bold" /></div>
+            <div><label class="block font-bold text-slate-700 mb-1">HRA Allowance</label><input type="number" value="2500" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono" /></div>
+            <div><label class="block font-bold text-slate-700 mb-1">Overtime Hourly Multiplier</label><input type="text" value="2.0x Standard" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono font-bold text-blue-700" /></div>
+            <div><label class="block font-bold text-slate-700 mb-1">Dihadi Unit Rate</label><input type="number" value="450" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono font-bold text-emerald-700" /></div>
+          </div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-[11px] text-slate-600">
+            Linked to Gujarat Factory Minimum Wage Act &amp; Tantithaiya Process House Agreement.
+          </div>
+        `;
+      } else if (name.includes('Loan')) {
+        c.innerHTML = `
+          <div class="space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div><label class="block font-bold text-slate-700 mb-1">Sanctioned Advance / Loan</label><input type="number" value="5000" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono font-bold" /></div>
+              <div><label class="block font-bold text-slate-700 mb-1">Monthly Kharchi Deduction</label><input type="number" value="1000" class="w-full px-3 py-1.5 border border-slate-300 rounded font-mono text-rose-600 font-bold" /></div>
+            </div>
+            <div><label class="block font-bold text-slate-700 mb-1">Outstanding Balance</label><input type="number" value="2000" readonly class="w-full px-3 py-1.5 border border-slate-200 bg-slate-100 rounded font-mono font-bold" /></div>
+          </div>
+        `;
+      } else {
+        c.innerHTML = `
+          <div class="space-y-3">
+            <div><label class="block font-bold text-slate-700 mb-1">Specification &bull; ${name}</label><textarea rows="3" class="w-full px-3 py-2 border border-slate-300 rounded text-xs">Standard ledger records active for Process House HRMS &bull; JMFU2 unit.</textarea></div>
+            <div class="flex justify-between items-center p-2.5 bg-slate-50 border border-slate-200 rounded text-[11px]">
+              <span>Verification Status:</span>
+              <span class="font-bold text-emerald-600">Verified &bull; HR Desk</span>
+            </div>
+          </div>
+        `;
+      }
+      openModal('ledgerModal');
     }
   </script>
 
   <!-- Support Modal -->
-  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
-    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 flex items-center justify-center font-bold">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
             <i class="fa-solid fa-headset"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Algorise Enterprise Support</h3>
-            <span class="text-[10px] font-mono text-emerald-600 dark:text-emerald-400">Dedicated SLA for PAYROLL UNIT - 2</span>
+            <h3 class="text-sm font-bold text-slate-900">Algorise Enterprise Support</h3>
+            <span class="text-[10px] font-mono text-emerald-600 font-semibold">Priority SLA for JMFU2 &bull; Process House</span>
           </div>
         </div>
-        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white p-1">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+          <i class="fa-solid fa-xmark text-sm"></i>
         </button>
       </div>
-      <div class="space-y-3 text-xs font-mono mb-4 text-slate-600 dark:text-slate-300">
-        <p>UltraViewer Client ID: <strong class="text-slate-900 dark:text-white">213046213 (anil)</strong></p>
-        <p>Active Camera Feeds: <strong class="text-emerald-600 dark:text-emerald-400">3 Streams Synced</strong></p>
-        <p>Assigned Support Engineer: <strong class="text-cyan-600 dark:text-cyan-400">Hardik (AI &amp; Payroll Lead)</strong></p>
+      <div class="space-y-3 text-xs text-slate-600">
+        <p>Your dedicated factory support engineer is available for camera RTSP calibrations, biometric sync, and payroll audits.</p>
+        <div class="p-3 bg-slate-50 rounded-xl space-y-1.5 border border-slate-200 font-mono text-[11px]">
+          <div><strong>Support Desk:</strong> 1800-ALGORISE / 9376068009</div>
+          <div><strong>Branch Code:</strong> JMFU2 (Tantithaiya)</div>
+          <div><strong>Active Camera Nodes:</strong> 4 Online (Gate 1, Grey Ingest, Dyeing RBC, Folding)</div>
+        </div>
       </div>
-      <div class="flex gap-2">
-        <button onclick="showToast('Support Ticket Created', 'Engineer notified on WhatsApp.', 'success'); closeSupportModal();" class="flex-1 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs cursor-pointer text-center">
-          Ping on WhatsApp
-        </button>
-        <button onclick="closeSupportModal()" class="py-2 px-4 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs cursor-pointer">
-          Close
+      <div class="mt-5 flex justify-end">
+        <button onclick="closeSupportModal()" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition">
+          Close Desk
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Shared App JS Functions -->
+  <!-- Footer (Exact HisabMittra copyright + floating chat avatar) -->
+  <footer class="bg-white border-t border-slate-200 py-3 px-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <div>
+      Copyright &copy; 2026 <a href="https://hisabmittra.com" target="_blank" class="text-blue-600 hover:underline font-semibold">hisabmittra.com</a>. Powered by Algorise PeopleOS.
+    </div>
+    <div class="text-[11px] text-slate-400">
+      Enterprise Textile HRM &bull; Process House HRMS &bull; Tantithaiya, Surat
+    </div>
+  </footer>
+
+  <!-- Floating Assistant Widget (Matches HisabMittra bottom-right assistant avatar) -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="showToast('Aria AI Assistant is monitoring real-time camera ingestion for 493 workers.', 'info')" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer relative" title="AI Factory Assistant">
+      <i class="fa-solid fa-headset text-lg"></i>
+      <span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
+    </button>
+  </div>
+
+  <!-- Shared JavaScript Utilities -->
   <script>
-    // Modern In-App Toast System (Zero alert() popups!)
-    function showToast(title, message, type = 'success') {
+    // In-App Toast System (100% replaces alert popups)
+    function showToast(message, type = 'info') {
       const container = document.getElementById('toastContainer');
       if (!container) return;
-
       const toast = document.createElement('div');
-      toast.className = 'toast-anim pointer-events-auto bg-white dark:bg-slate-900 border rounded-xl p-3.5 shadow-2xl flex items-start gap-3 text-xs transition-all duration-300 ' + 
-        (type === 'success' ? 'border-emerald-500/50 text-slate-800 dark:text-slate-100' :
-         type === 'error' ? 'border-rose-500/50 text-slate-800 dark:text-slate-100' :
-         type === 'warning' ? 'border-amber-500/50 text-slate-800 dark:text-slate-100' :
-         'border-cyan-500/50 text-slate-800 dark:text-slate-100');
-
-      const iconCls = type === 'success' ? 'fa-solid fa-circle-check text-emerald-500 text-base' :
-                      type === 'error' ? 'fa-solid fa-circle-exclamation text-rose-500 text-base' :
-                      type === 'warning' ? 'fa-solid fa-triangle-exclamation text-amber-500 text-base' :
-                      'fa-solid fa-circle-info text-cyan-500 text-base';
-
+      const colors = {
+        success: 'bg-emerald-600 text-white',
+        error: 'bg-rose-600 text-white',
+        warning: 'bg-amber-500 text-white',
+        info: 'bg-blue-600 text-white'
+      };
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-circle-exclamation',
+        warning: 'fa-triangle-exclamation',
+        info: 'fa-info-circle'
+      };
+      toast.className = `${colors[type] || colors.info} p-3.5 rounded-xl shadow-xl flex items-center gap-3 text-xs font-semibold toast-anim pointer-events-auto border border-white/20`;
       toast.innerHTML = `
-        <i class="${iconCls} mt-0.5"></i>
-        <div class="flex-1">
-          <strong class="font-bold block text-slate-900 dark:text-white">${title}</strong>
-          <span class="text-slate-600 dark:text-slate-400 text-[11px] font-medium leading-tight">${message}</span>
-        </div>
-        <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-0.5">
-          <i class="fa-solid fa-xmark text-xs"></i>
+        <i class="fa-solid ${icons[type] || icons.info} text-base flex-shrink-0"></i>
+        <div class="flex-1">${message}</div>
+        <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white text-xs p-1">
+          <i class="fa-solid fa-xmark"></i>
         </button>
       `;
-
       container.appendChild(toast);
       setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.3s ease';
         setTimeout(() => toast.remove(), 300);
-      }, 3500);
+      }, 4000);
+    }
+
+    // Accordion Toggle
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      const arrow = document.getElementById(id + '-arrow');
+      if (!el) return;
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (arrow) {
+          arrow.classList.remove('fa-chevron-right');
+          arrow.classList.add('fa-chevron-down');
+        }
+      } else {
+        el.classList.add('hidden');
+        if (arrow) {
+          arrow.classList.remove('fa-chevron-down');
+          arrow.classList.add('fa-chevron-right');
+        }
+      }
+    }
+
+    // Sidebar Hamburger Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('mainSidebar');
+      if (sidebar) {
+        sidebar.classList.toggle('hidden');
+      }
+    }
+
+    // Keyboard Hotkey (Ctrl+Q) for menu search
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
+        e.preventDefault();
+        const searchInput = document.getElementById('globalMenuSearch');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
+    });
+
+    // Menu search filtering
+    function handleMenuSearch(q) {
+      const term = q.trim().toLowerCase();
+      const sidebar = document.getElementById('mainSidebar');
+      if (!sidebar) return;
+      const links = sidebar.querySelectorAll('a, button');
+      links.forEach(item => {
+        if (!term) {
+          item.parentElement.style.display = '';
+          return;
+        }
+        const txt = item.textContent.toLowerCase();
+        if (txt.includes(term)) {
+          item.parentElement.style.display = '';
+          // If in an accordion, open it
+          const parentAccordion = item.closest('[id^="sec-"]');
+          if (parentAccordion && parentAccordion.classList.contains('hidden')) {
+            parentAccordion.classList.remove('hidden');
+          }
+        }
+      });
     }
 
     // Theme toggle
     function toggleTheme() {
       const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      updateThemeIcon(isDark);
-      showToast('Theme Changed', isDark ? 'Switched to Dark Mode.' : 'Switched to Light Mode.', 'info');
-    }
-    function updateThemeIcon(isDark) {
       const icon = document.getElementById('themeIcon');
       if (icon) {
-        icon.className = isDark ? 'fa-solid fa-sun text-amber-400 text-sm' : 'fa-solid fa-moon text-slate-600 text-sm';
+        icon.className = isDark ? 'fa-regular fa-sun text-sm' : 'fa-regular fa-moon text-sm';
       }
-    }
-    if (localStorage.getItem('theme') === 'light') {
-      document.documentElement.classList.remove('dark');
-      updateThemeIcon(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      updateThemeIcon(true);
+      showToast(`Switched to ${isDark ? 'Dark' : 'Light'} theme`, 'info');
     }
 
-    // Sidebar toggle
-    function toggleSidebar() {
-      const sb = document.getElementById('mainSidebar');
-      if (sb) sb.classList.toggle('hidden');
-    }
-
-    // Language switcher
+    // Language selector
     function toggleLangMenu() {
-      const d = document.getElementById('langDropdown');
-      if (d) d.classList.toggle('hidden');
+      const menu = document.getElementById('langDropdown');
+      if (menu) menu.classList.toggle('hidden');
     }
-    function setLanguage(langCode, label) {
-      document.getElementById('currentLangLabel').innerText = label;
-      document.getElementById('langDropdown').classList.add('hidden');
-      if (langCode === 'gu') {
+
+    function setLanguage(lang, label) {
+      const lbl = document.getElementById('currentLangLabel');
+      if (lbl) lbl.textContent = label;
+      toggleLangMenu();
+      showToast(`Language set to ${label}`, 'success');
+      if (lang === 'gu') {
         playGujaratiPrompt();
-        showToast('ભાષા બદલાઈ', 'ઓડિયો ભાષા ગુજરાતી સેટ થઈ છે.', 'success');
-      } else {
-        showToast('Language Changed', `Interface set to ${label}.`, 'info');
       }
     }
 
-    // Native Gujarati Audio Prompt
+    // Gujarati Speech Synthesis (Payroll Vision Replica)
     function playGujaratiPrompt() {
-      const gujaratiText = "હાજરી સફળતાપૂર્વક નોંધાઈ ગઈ છે. તમારો દિવસ સારો રહે!";
-      try {
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
-        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.5);
-      } catch (e) {}
-
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(gujaratiText);
+        const utterance = new SpeechSynthesisUtterance('હાલમાં ઑડિયો ભાષા ગુજરાતી છે. પ્રોસેસ હાઉસ એચઆરએમ માં આપનું સ્વાગત છે.');
         utterance.lang = 'gu-IN';
         utterance.rate = 0.95;
-        const voices = window.speechSynthesis.getVoices();
-        const guVoice = voices.find(v => v.lang.includes('gu') || v.lang.includes('hi'));
-        if (guVoice) utterance.voice = guVoice;
         window.speechSynthesis.speak(utterance);
+        showToast('Playing: "હાલમાં ઑડિયો ભાષા ગુજરાતી છે" (Gujarati Audio Active)', 'success');
+      } else {
+        showToast('Speech audio synthesizer initialized: Gujarati active', 'info');
       }
-    }
-
-    // Firm switch
-    function switchFirm(firm) {
-      const firmName = firm === 'UNIT-2' ? 'PAYROLL UNIT - 2 (Main Facility)' : 'PAYROLL UNIT - 1 (Weaving Branch)';
-      showToast('Operating Firm Switched', `Active environment: ${firmName}. All sub-ledgers and camera streams reloaded.`, 'success');
     }
 
     // Support Modal
     function openSupportModal() {
-      document.getElementById('supportModal').classList.remove('hidden');
+      const m = document.getElementById('supportModal');
+      if (m) m.classList.remove('hidden');
     }
     function closeSupportModal() {
-      document.getElementById('supportModal').classList.add('hidden');
+      const m = document.getElementById('supportModal');
+      if (m) m.classList.add('hidden');
     }
 
-    // Global Menu Search (ctrl+q)
+    // Generic Modal Close on Escape
     window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
-        e.preventDefault();
-        const s = document.getElementById('globalMenuSearch');
-        if (s) { s.focus(); s.select(); }
+      if (e.key === 'Escape') {
+        closeSupportModal();
+        document.querySelectorAll('.app-modal').forEach(m => m.classList.add('hidden'));
       }
     });
-
-    function handleMenuSearch(q) {
-      if (!q) return;
-      const term = q.toLowerCase();
-      const links = document.querySelectorAll('#mainSidebar nav a');
-      links.forEach(l => {
-        const txt = l.innerText.toLowerCase();
-        l.style.opacity = txt.includes(term) ? '1' : '0.35';
-      });
-    }
-
-    // Download file utility
-    function triggerDownload(content, filename, mimeType) {
-      const blob = new Blob([content], { type: mimeType });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('File Generated', `${filename} downloaded successfully.`, 'success');
-    }
   </script>
 </body>
 </html>
