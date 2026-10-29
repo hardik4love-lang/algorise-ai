@@ -288,6 +288,9 @@
     </nav>
 
     <div class="flex items-center gap-3">
+      <a href="#client-operations-console" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold hover:bg-emerald-500/30 transition hidden md:flex items-center gap-1.5">
+        <i class="fa-solid fa-desktop"></i> PeopleOS v2 Console <span class="px-1.5 py-0.2 bg-emerald-500 text-slate-950 rounded text-[9px] font-extrabold uppercase">Client Data</span>
+      </a>
       <a href="https://algorise-ai.com/" class="text-xs text-slate-300 hover:text-white transition px-3 py-1.5 rounded-lg border border-slate-800 bg-slate-900/60 hidden sm:inline-block">
         ← Back to Algorise AI
       </a>
@@ -318,6 +321,9 @@
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-16">
+      <a href="#client-operations-console" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500 hover:opacity-95 text-slate-950 font-extrabold shadow-xl shadow-emerald-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
+        <i class="fa-solid fa-desktop text-slate-950"></i> Launch PeopleOS v2 (Client Real Data)
+      </a>
       <a href="#viral-leakage-auditor" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-violet-500 to-emerald-400 hover:opacity-95 text-slate-950 font-extrabold shadow-xl shadow-cyan-500/25 transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-2">
         <i class="fa-solid fa-calculator"></i> Calculate Company Cash Bleed
       </a>
@@ -361,7 +367,1323 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- VIRAL TOOL 1: TIME-THEFT LEAKAGE AUDITOR   -->
+
+  <!-- ======================================================= -->
+  <!-- 02B. ALGORISE PeopleOS v2 — CLIENT ENTERPRISE CONSOLE    -->
+  <!-- ======================================================= -->
+  <section id="client-operations-console" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <!-- Section Header & UltraViewer Context -->
+    <div class="mb-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-cyan-500/20 pb-6">
+      <div>
+        <div class="flex items-center gap-3 mb-2 flex-wrap">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            PEOPLEOS v2.4 ENTERPRISE CLOUD
+          </span>
+          <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-violet-500/20 text-violet-300 border border-violet-500/30">
+            <i class="fa-solid fa-satellite mr-1"></i> UltraViewer Session #213046213 (anil)
+          </span>
+          <span class="px-2.5 py-0.5 rounded text-[11px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+            <i class="fa-solid fa-shield-halved mr-1"></i> DPDP Act 2023 Encrypted
+          </span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Client Operations Console &amp; Workforce Control Center
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-1">
+          Unified Industrial Engine: <strong class="text-cyan-300">HisabMittra Web Navigation</strong> + <strong class="text-violet-300">Payroll Vision 16-Sub-Ledgers</strong> + <strong class="text-emerald-300">Algorise 25 FPS CCTV AI</strong>
+        </p>
+      </div>
+
+      <!-- Action Quick-Pills -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <button onclick="launchFaceKioskModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:opacity-95 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 flex items-center gap-2 transition cursor-pointer">
+          <i class="fa-solid fa-camera"></i> Launch Face Kiosk (Gujarati Audio)
+        </button>
+        <button onclick="openSubLedgerModal('EMP1001')" class="px-4 py-2.5 rounded-xl cosmic-panel hover:bg-slate-800 text-white font-bold text-xs border border-slate-700 flex items-center gap-2 transition cursor-pointer">
+          <i class="fa-solid fa-book-bookmark text-violet-400"></i> Open 16 Sub-Ledgers
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Industrial Session & Status Strip (Payroll Vision Metadata) -->
+    <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 mb-6 shadow-xl backdrop-blur-md">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-xs font-mono">
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">Active Operating Firm</span>
+          <select id="activeFirmSelect" class="bg-slate-950 border border-slate-700 rounded px-2 py-1 text-cyan-300 font-bold text-xs w-full mt-1 focus:outline-none focus:border-cyan-400" onchange="switchOperatingFirm(this.value)">
+            <option value="UNIT-2" selected>PAYROLL UNIT - 2 (Main Facility)</option>
+            <option value="UNIT-1">PAYROLL UNIT - 1 (Weaving Branch)</option>
+          </select>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">Accounting Period</span>
+          <span class="text-white font-bold block mt-1.5">01/04/2026 - 31/03/2027</span>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">Current User / Admin</span>
+          <span class="text-emerald-400 font-bold block mt-1.5 flex items-center gap-1.5">
+            <i class="fa-solid fa-user-check text-[10px]"></i> anil (UltraViewer ID: 213046213)
+          </span>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">License Validity</span>
+          <span class="text-slate-300 font-bold block mt-1.5">Valid upto 30/04/2027</span>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">Native Audio Guidance</span>
+          <div class="flex items-center gap-1 mt-1">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center gap-1">
+              <i class="fa-solid fa-volume-high text-[10px]"></i> Gujarati (ગુજરાતી)
+            </span>
+            <button onclick="playGujaratiPrompt()" title="Test Gujarati Audio" class="text-cyan-400 hover:text-white px-1.5 py-0.5 rounded bg-slate-800 text-[10px]">
+              <i class="fa-solid fa-play"></i>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-slate-500 block text-[10px] uppercase">CCTV &amp; Sentinel Ingest</span>
+          <span class="text-emerald-400 font-bold block mt-1.5 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 3 Feeds Live (25 FPS)
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Workspace: HisabMittra Modern Nav + Integrated Workspaces -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- Left Sidebar (HisabMittra Structure Enhanced) -->
+      <div class="lg:col-span-3">
+        <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-3 shadow-lg">
+          <div class="px-3 py-2 border-b border-slate-800/80 mb-2 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-slate-950 font-black text-xs">P</div>
+              <span class="text-xs font-bold text-white tracking-wide">HisabMittra+ Core</span>
+            </div>
+            <span class="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-1.5 py-0.5 rounded">v2.4</span>
+          </div>
+
+          <nav class="space-y-1 text-xs font-medium">
+            <button onclick="switchConsoleTab('dashboard')" id="nav-btn-dashboard" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-chart-pie w-4 text-center"></i> Dashboard (Client Real)
+              </span>
+              <span class="text-[10px] font-mono bg-cyan-500/30 text-cyan-200 px-1.5 py-0.2 rounded">250</span>
+            </button>
+
+            <button onclick="switchConsoleTab('employees')" id="nav-btn-employees" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-users-viewfinder w-4 text-center"></i> Employee Master (16 Ledgers)
+              </span>
+              <span class="text-[10px] font-mono bg-slate-800 text-slate-400 px-1.5 py-0.2 rounded">16 Sub</span>
+            </button>
+
+            <div class="pt-2 pb-1">
+              <span class="px-3 text-[10px] font-mono uppercase text-slate-500 tracking-wider">Attendance Section</span>
+            </div>
+
+            <button onclick="switchConsoleTab('attendance-logs')" id="nav-btn-attendance-logs" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-list-check w-4 text-center"></i> Attendance Logs (WiFi BSSID)
+              </span>
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            </button>
+
+            <button onclick="launchFaceKioskModal()" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-emerald-400 hover:bg-emerald-500/10 border border-transparent hover:border-emerald-500/30 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-expand w-4 text-center"></i> Launch Face Kiosk Mode
+              </span>
+              <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded">Live AI</span>
+            </button>
+
+            <button onclick="switchConsoleTab('daily-credit')" id="nav-btn-daily-credit" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-wallet w-4 text-center"></i> Daily Credit &amp; Kharchi Summary
+              </span>
+            </button>
+
+            <button onclick="switchConsoleTab('monthly-muster')" id="nav-btn-monthly-muster" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-calendar-days w-4 text-center"></i> Form XVI Monthly Muster
+              </span>
+            </button>
+
+            <div class="pt-2 pb-1">
+              <span class="px-3 text-[10px] font-mono uppercase text-slate-500 tracking-wider">Defense &amp; Statutory</span>
+            </div>
+
+            <button onclick="switchConsoleTab('sentinel')" id="nav-btn-sentinel" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-satellite-dish w-4 text-center text-rose-400"></i> 50m Perimeter Sentinel
+              </span>
+              <span class="text-[10px] font-mono bg-rose-500/20 text-rose-300 px-1.5 py-0.2 rounded">180s Grace</span>
+            </button>
+
+            <button onclick="switchConsoleTab('payroll-engine')" id="nav-btn-payroll-engine" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-file-invoice-dollar w-4 text-center text-emerald-400"></i> Payroll &amp; Statutory 2026
+              </span>
+              <span class="text-[10px] font-mono bg-emerald-500/20 text-emerald-300 px-1.5 py-0.2 rounded">1-Click</span>
+            </button>
+
+            <button onclick="switchConsoleTab('shift-manager')" id="nav-btn-shift-manager" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Auto-Rotation (Night OT)
+              </span>
+            </button>
+
+            <button onclick="switchConsoleTab('merkle-audit')" id="nav-btn-merkle-audit" class="w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <i class="fa-solid fa-link-slash w-4 text-center text-cyan-400"></i> Merkle Audit &amp; Cloud Backup
+              </span>
+              <span class="text-[10px] font-mono bg-cyan-500/20 text-cyan-300 px-1.5 py-0.2 rounded">SHA-256</span>
+            </button>
+          </nav>
+
+          <!-- Native Audio Language Box (Payroll Vision replica) -->
+          <div class="mt-4 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-[11px]">
+            <div class="flex items-center gap-2 text-amber-300 font-bold mb-1">
+              <i class="fa-solid fa-language"></i> Local Language Engine
+            </div>
+            <p class="text-slate-300 leading-snug">
+              "Current Audio language is Gujarati". Interactive voice guidance actively assists factory staff and kiosk operators.
+            </p>
+            <button onclick="playGujaratiPrompt()" class="mt-2 w-full py-1 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[10px] transition cursor-pointer flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Play Sample Voice Prompt
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Main Workspace Content Panes -->
+      <div class="lg:col-span-9 space-y-6">
+
+        <!-- ============================================== -->
+        <!-- PANE 1: DASHBOARD (Client Real Data)          -->
+        <!-- ============================================== -->
+        <div id="pane-dashboard" class="space-y-6">
+          <!-- Top Metric Cards from Real Screenshot 2 -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="cosmic-panel p-4 border-cyan-500/30">
+              <span class="text-[11px] font-mono text-slate-400 uppercase">Total Headcount</span>
+              <div class="text-2xl sm:text-3xl font-extrabold font-mono text-cyan-400 mt-1">250 Workers</div>
+              <p class="text-[10px] text-slate-500 mt-1">Peak shift capacity: 600 staff</p>
+            </div>
+
+            <div class="cosmic-panel p-4 border-violet-500/30">
+              <span class="text-[11px] font-mono text-slate-400 uppercase">Gross Monthly Payroll</span>
+              <div class="text-2xl sm:text-3xl font-extrabold font-mono text-violet-400 mt-1">₹ 2,45,80,000</div>
+              <p class="text-[10px] text-slate-500 mt-1">FY 2026-27 Active Period</p>
+            </div>
+
+            <div class="cosmic-panel p-4 border-emerald-500/30">
+              <span class="text-[11px] font-mono text-slate-400 uppercase">Net Disbursed Pay</span>
+              <div class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400 mt-1">₹ 1,95,90,000</div>
+              <p class="text-[10px] text-slate-500 mt-1">100% Verified Bank CMS Payout</p>
+            </div>
+
+            <div class="cosmic-panel p-4 border-amber-500/30">
+              <span class="text-[11px] font-mono text-slate-400 uppercase">Total Statutory Deductions</span>
+              <div class="text-2xl sm:text-3xl font-extrabold font-mono text-amber-400 mt-1">₹ 24,45,000</div>
+              <p class="text-[10px] text-slate-500 mt-1">EPFO, ESIC, PT, Kharchi</p>
+            </div>
+          </div>
+
+          <!-- Real Department Breakdown (Exact figures from UltraViewer Screenshot 2) -->
+          <div class="cosmic-panel p-5">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-industry text-cyan-400"></i> Department Breakdown — PAYROLL UNIT - 2
+                </h3>
+                <p class="text-xs text-slate-400">Live operational ledger records from UltraViewer session 213046213</p>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30">
+                100% Reconciled
+              </span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 text-[11px]">
+                    <th class="py-2.5 px-3">Department</th>
+                    <th class="py-2.5 px-3 text-center">Employees</th>
+                    <th class="py-2.5 px-3 text-right">Gross Pay</th>
+                    <th class="py-2.5 px-3 text-right">Deductions</th>
+                    <th class="py-2.5 px-3 text-right">Net Pay</th>
+                    <th class="py-2.5 px-3 text-center">Attendance Verification</th>
+                    <th class="py-2.5 px-3 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-white flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-cyan-400"></span> Production Division
+                    </td>
+                    <td class="py-3 px-3 text-center font-bold text-cyan-300">120</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 1,20,00,000</td>
+                    <td class="py-3 px-3 text-right text-rose-400">₹ 12,00,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 1,08,00,000</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        CCTV AI (99.4%)
+                      </span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="filterLogsByDepartment('Production')" class="text-cyan-400 hover:text-white underline text-[11px]">View Logs</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-white flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-violet-400"></span> Weaving Section (Looms)
+                    </td>
+                    <td class="py-3 px-3 text-center font-bold text-violet-300">80</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 70,00,000</td>
+                    <td class="py-3 px-3 text-right text-rose-400">₹ 7,00,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 63,00,000</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        CCTV AI (99.6%)
+                      </span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="filterLogsByDepartment('Weaving')" class="text-cyan-400 hover:text-white underline text-[11px]">View Logs</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-white flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-amber-400"></span> Maintenance &amp; Electrical
+                    </td>
+                    <td class="py-3 px-3 text-center font-bold text-amber-300">30</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 22,00,000</td>
+                    <td class="py-3 px-3 text-right text-rose-400">₹ 2,20,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 19,80,000</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                        WiFi BSSID + Biometric
+                      </span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="filterLogsByDepartment('Maintenance')" class="text-cyan-400 hover:text-white underline text-[11px]">View Logs</button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-white flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Administration &amp; Plant Office
+                    </td>
+                    <td class="py-3 px-3 text-center font-bold text-emerald-300">20</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 25,80,000</td>
+                    <td class="py-3 px-3 text-right text-rose-400">₹ 3,25,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 22,55,000</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        Geofence Sentinel
+                      </span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="filterLogsByDepartment('Administration')" class="text-cyan-400 hover:text-white underline text-[11px]">View Logs</button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr class="border-t-2 border-slate-700 bg-slate-950/60 font-bold text-white">
+                    <td class="py-3 px-3">TOTAL / PLANT MASTER</td>
+                    <td class="py-3 px-3 text-center text-cyan-400">250</td>
+                    <td class="py-3 px-3 text-right">₹ 2,45,80,000</td>
+                    <td class="py-3 px-3 text-right text-rose-400">₹ 24,45,000</td>
+                    <td class="py-3 px-3 text-right text-emerald-400">₹ 1,95,90,000</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-400">Multi-Modal Ingest</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="text-[10px] text-cyan-400">OK</span>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- Walk-Through CCTV Shift Clearance Speedometer (Hardware Option 1) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="cosmic-panel p-5 border-emerald-500/30">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-person-walking-dashed-line-arrow-right text-emerald-400"></i>
+                  600-Worker Shift Clearance Meter
+                </span>
+                <span class="text-[11px] font-mono text-emerald-400">8.2 Minutes Total</span>
+              </div>
+              <div class="w-full bg-slate-950 rounded-full h-3 p-0.5 border border-slate-800 mb-2">
+                <div class="bg-gradient-to-r from-emerald-500 via-cyan-400 to-violet-500 h-2 rounded-full w-[96%] animate-pulse"></div>
+              </div>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                3 Existing CCTV Cameras clearing workers simultaneously at normal walking speed (1.2 m/s). <strong>Zero bottleneck queues, zero smartphone touch required.</strong>
+              </p>
+            </div>
+
+            <!-- Client's UltraViewer Payslip Sample (Ramesh Patel EMP1001) -->
+            <div class="cosmic-panel p-5 border-cyan-500/30">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                  <i class="fa-solid fa-receipt text-cyan-400"></i> Live Verified Payslip on Record
+                </span>
+                <button onclick="openSubLedgerModal('EMP1001')" class="text-cyan-400 hover:text-white text-xs underline font-mono">
+                  EMP1001 Dossier →
+                </button>
+              </div>
+              <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs font-mono space-y-1">
+                <div class="flex justify-between text-slate-300">
+                  <span>Name: <strong class="text-white">Ramesh Patel</strong></span>
+                  <span>Dept: <strong class="text-violet-300">Weaving Operator</strong></span>
+                </div>
+                <div class="flex justify-between text-slate-300">
+                  <span>Gross Earnings: <strong class="text-cyan-300">₹ 52,000</strong></span>
+                  <span>Deductions: <strong class="text-rose-400">₹ 7,275</strong></span>
+                </div>
+                <div class="pt-1 border-t border-slate-800 flex justify-between font-bold text-emerald-400">
+                  <span>Net Salary Credited:</span>
+                  <span>₹ 44,725.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 2: EMPLOYEE MASTER & 16 SUB-LEDGERS      -->
+        <!-- ============================================== -->
+        <div id="pane-employees" class="hidden space-y-4">
+          <div class="cosmic-panel p-5">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-users text-cyan-400"></i> Employee Master &amp; Industrial Ledger Repository
+                </h3>
+                <p class="text-xs text-slate-400">Direct replica of Payroll Vision's 16 sub-ledger system with CCTV AI enrollment</p>
+              </div>
+              <div class="flex items-center gap-2 w-full sm:w-auto">
+                <input type="text" id="empSearchInput" placeholder="Search by Name or Emp Code..." class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white font-mono w-full sm:w-56 focus:outline-none focus:border-cyan-400" onkeyup="filterEmployeeMasterTable()">
+                <button onclick="openSubLedgerModal('EMP1001')" class="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs whitespace-nowrap cursor-pointer">
+                  + Add Employee
+                </button>
+              </div>
+            </div>
+
+            <!-- Employee List Table -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono" id="employeeMasterTable">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 text-[11px]">
+                    <th class="py-2.5 px-3">Emp Code</th>
+                    <th class="py-2.5 px-3">Full Employee Name</th>
+                    <th class="py-2.5 px-3">Department</th>
+                    <th class="py-2.5 px-3">Designation</th>
+                    <th class="py-2.5 px-3 text-right">Gross Pay</th>
+                    <th class="py-2.5 px-3 text-right">Net Pay</th>
+                    <th class="py-2.5 px-3 text-center">Attendance Mode</th>
+                    <th class="py-2.5 px-3 text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1001</td>
+                    <td class="py-3 px-3 font-bold text-white">Ramesh Patel</td>
+                    <td class="py-3 px-3 text-violet-300">Weaving</td>
+                    <td class="py-3 px-3 text-slate-300">Operator</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 52,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 44,725</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CCTV AI</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1001')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1002</td>
+                    <td class="py-3 px-3 font-bold text-white">Sonu Kaushal Kishor</td>
+                    <td class="py-3 px-3 text-cyan-300">Production</td>
+                    <td class="py-3 px-3 text-slate-300">Helper</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 18,500</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 16,840</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">WiFi BSSID</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1002')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1003</td>
+                    <td class="py-3 px-3 font-bold text-white">Anand Prakash Chandra</td>
+                    <td class="py-3 px-3 text-amber-300">Maintenance</td>
+                    <td class="py-3 px-3 text-slate-300">Electrician</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 24,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 21,680</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30">Remote / N/A</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1003')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1004</td>
+                    <td class="py-3 px-3 font-bold text-white">Rajan Sharma</td>
+                    <td class="py-3 px-3 text-cyan-300">Production</td>
+                    <td class="py-3 px-3 text-slate-300">Shift Supervisor</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 50,193</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 44,533</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CCTV AI</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1004')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1005</td>
+                    <td class="py-3 px-3 font-bold text-white">Vipul Desai</td>
+                    <td class="py-3 px-3 text-violet-300">Weaving</td>
+                    <td class="py-3 px-3 text-slate-300">Master Weaver</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 42,500</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 38,120</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">CCTV AI</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1005')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1006</td>
+                    <td class="py-3 px-3 font-bold text-white">Dinesh Solanki</td>
+                    <td class="py-3 px-3 text-amber-300">Maintenance</td>
+                    <td class="py-3 px-3 text-slate-300">Loom Mechanic</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 22,000</td>
+                    <td class="py-3 px-3 text-right font-bold text-emerald-400">₹ 19,850</td>
+                    <td class="py-3 px-3 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Biometric</span>
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                      <button onclick="openSubLedgerModal('EMP1006')" class="px-2.5 py-1 rounded bg-violet-500/20 hover:bg-violet-500/30 text-violet-300 border border-violet-500/40 text-[11px] font-bold cursor-pointer">
+                        View 16 Sub-Ledgers
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 3: ATTENDANCE LOGS (Exact HisabMittra Data)-->
+        <!-- ============================================== -->
+        <div id="pane-attendance-logs" class="hidden space-y-4">
+          <div class="cosmic-panel p-5">
+            <!-- Breadcrumbs -->
+            <div class="text-xs font-mono text-slate-400 mb-3 flex items-center gap-1.5">
+              <span>Dashboard</span>
+              <span>/</span>
+              <span>Attendance Section</span>
+              <span>/</span>
+              <span class="text-cyan-400 font-bold">Attendance Log</span>
+            </div>
+
+            <!-- Filter Card (Exact replica of HisabMittra screenshot 4) -->
+            <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 mb-5">
+              <span class="text-[11px] font-mono uppercase text-slate-400 font-bold block mb-3">Attendance Log Filter</span>
+              <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                <div>
+                  <label class="text-[10px] font-mono text-slate-500 block mb-1">Select Branch</label>
+                  <select id="logBranchSelect" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-cyan-400">
+                    <option value="ALL">All Branches</option>
+                    <option value="UNIT-2" selected>PAYROLL UNIT - 2</option>
+                    <option value="UNIT-1">PAYROLL UNIT - 1</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-[10px] font-mono text-slate-500 block mb-1">Select Department</label>
+                  <select id="logDeptSelect" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-cyan-400">
+                    <option value="ALL" selected>All Departments</option>
+                    <option value="Production">Production (120)</option>
+                    <option value="Weaving">Weaving (80)</option>
+                    <option value="Maintenance">Maintenance (30)</option>
+                    <option value="Administration">Administration (20)</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="text-[10px] font-mono text-slate-500 block mb-1">Select Employee</label>
+                  <select id="logEmpSelect" class="w-full bg-slate-900 border border-slate-700 rounded px-2.5 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-cyan-400">
+                    <option value="ALL" selected>All Employees</option>
+                    <option value="SONU KAUSHAL KISHOR">SONU KAUSHAL KISHOR</option>
+                    <option value="ANAND PAKASH CHANDRA">ANAND PAKASH CHANDRA</option>
+                    <option value="RAMESH PATEL">RAMESH PATEL</option>
+                    <option value="RAJAN SHARMA">RAJAN SHARMA</option>
+                  </select>
+                </div>
+
+                <div class="flex items-end gap-2">
+                  <button onclick="applyAttendanceLogFilters()" class="w-full py-1.5 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition cursor-pointer">
+                    Filter
+                  </button>
+                  <button onclick="resetAttendanceLogFilters()" class="w-full py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition cursor-pointer">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Attendance Logs Section with Source Tabs -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 flex-wrap gap-2">
+              <h3 class="text-sm font-bold text-white uppercase tracking-wider">Attendance Logs</h3>
+              
+              <div class="flex items-center gap-2">
+                <button onclick="switchLogSourceTab('manual')" id="tab-log-manual" class="px-3 py-1 rounded text-xs font-mono bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+                  Manual Logs
+                </button>
+                <button onclick="switchLogSourceTab('biometric')" id="tab-log-biometric" class="px-3 py-1 rounded text-xs font-mono bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+                  Biometric Logs
+                </button>
+                <button onclick="switchLogSourceTab('cctv')" id="tab-log-cctv" class="px-3 py-1 rounded text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold cursor-pointer">
+                  CCTV AI Ingest Logs
+                </button>
+                <button onclick="switchLogSourceTab('wifi')" id="tab-log-wifi" class="px-3 py-1 rounded text-xs font-mono bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+                  WiFi BSSID Logs
+                </button>
+                <button onclick="switchLogSourceTab('all')" id="tab-log-all" class="px-3 py-1 rounded text-xs font-mono bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
+                  All Records
+                </button>
+              </div>
+            </div>
+
+            <!-- The Real Records Table (Direct from HisabMittra Screenshot 4) -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono" id="realAttendanceLogsTable">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 text-[11px]">
+                    <th class="py-2.5 px-3">SN</th>
+                    <th class="py-2.5 px-3">EMPLOYEE NAME</th>
+                    <th class="py-2.5 px-3">ATTENDANCE TYPE</th>
+                    <th class="py-2.5 px-3">IDENTIFIER</th>
+                    <th class="py-2.5 px-3">DATE &amp; TIME</th>
+                    <th class="py-2.5 px-3 text-center">INTEGRITY HASH</th>
+                    <th class="py-2.5 px-3 text-center">STATUS</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300" id="attendanceLogsTbody">
+                  <!-- Row 1: Real from screenshot -->
+                  <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">1</td>
+                    <td class="py-3 px-3 font-bold text-white">SONU KAUSHAL KISHOR</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">wifi</span></td>
+                    <td class="py-3 px-3 text-cyan-400 font-bold">b4:a7:c6:01:70:0a</td>
+                    <td class="py-3 px-3 text-slate-300">18 Aug 2026 10:01:19</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x4a9b...c1e7</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Verified</span></td>
+                  </tr>
+
+                  <!-- Row 2: Real from screenshot -->
+                  <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">2</td>
+                    <td class="py-3 px-3 font-bold text-white">SONU KAUSHAL KISHOR</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">wifi</span></td>
+                    <td class="py-3 px-3 text-cyan-400 font-bold">b4:a7:c6:01:70:0a</td>
+                    <td class="py-3 px-3 text-slate-300">17 Aug 2026 10:05:08</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x3f88...a210</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Verified</span></td>
+                  </tr>
+
+                  <!-- Row 3: Real from screenshot -->
+                  <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">3</td>
+                    <td class="py-3 px-3 font-bold text-white">SONU KAUSHAL KISHOR</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">wifi</span></td>
+                    <td class="py-3 px-3 text-cyan-400 font-bold">b4:a7:c6:01:70:0a</td>
+                    <td class="py-3 px-3 text-slate-300">17 Aug 2026 10:05:03</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x88ea...12f4</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Verified</span></td>
+                  </tr>
+
+                  <!-- Row 4: Real from screenshot -->
+                  <tr data-dept="Production" data-type="wifi" data-emp="SONU KAUSHAL KISHOR" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">4</td>
+                    <td class="py-3 px-3 font-bold text-white">SONU KAUSHAL KISHOR</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">wifi</span></td>
+                    <td class="py-3 px-3 text-cyan-400 font-bold">b4:a7:c6:01:70:0a</td>
+                    <td class="py-3 px-3 text-slate-300">17 Aug 2026 10:04:53</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x992b...d881</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">Verified</span></td>
+                  </tr>
+
+                  <!-- Row 5: Real from screenshot -->
+                  <tr data-dept="Maintenance" data-type="wifi" data-emp="ANAND PAKASH CHANDRA" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">5</td>
+                    <td class="py-3 px-3 font-bold text-white">ANAND PAKASH CHANDRA</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30">wifi</span></td>
+                    <td class="py-3 px-3 text-slate-500">N/A (Remote GPS)</td>
+                    <td class="py-3 px-3 text-slate-300">09 Jun 2026 11:31:16</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x10b7...aa22</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 font-bold">Unverified BSSID</span></td>
+                  </tr>
+
+                  <!-- Row 6: CCTV Edge AI Log -->
+                  <tr data-dept="Weaving" data-type="cctv" data-emp="RAMESH PATEL" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">6</td>
+                    <td class="py-3 px-3 font-bold text-white">RAMESH PATEL (EMP1001)</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">cctv_ai</span></td>
+                    <td class="py-3 px-3 text-emerald-400 font-bold">CAM-01 (Gate 1 Corridor)</td>
+                    <td class="py-3 px-3 text-slate-300">29 Oct 2026 08:52:14</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x7c99...e431</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">99.6% Match</span></td>
+                  </tr>
+
+                  <!-- Row 7: CCTV Edge AI Log -->
+                  <tr data-dept="Production" data-type="cctv" data-emp="RAJAN SHARMA" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">7</td>
+                    <td class="py-3 px-3 font-bold text-white">RAJAN SHARMA (EMP1004)</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">cctv_ai</span></td>
+                    <td class="py-3 px-3 text-emerald-400 font-bold">CAM-01 (Gate 1 Corridor)</td>
+                    <td class="py-3 px-3 text-slate-300">29 Oct 2026 08:54:02</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x44dd...0192</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">99.4% Match</span></td>
+                  </tr>
+
+                  <!-- Row 8: CCTV Edge AI Log -->
+                  <tr data-dept="Weaving" data-type="cctv" data-emp="VIPUL DESAI" class="hover:bg-slate-800/40 transition">
+                    <td class="py-3 px-3 text-slate-500">8</td>
+                    <td class="py-3 px-3 font-bold text-white">VIPUL DESAI (EMP1005)</td>
+                    <td class="py-3 px-3"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">cctv_ai</span></td>
+                    <td class="py-3 px-3 text-emerald-400 font-bold">CAM-03 (Weaving Entrance)</td>
+                    <td class="py-3 px-3 text-slate-300">29 Oct 2026 08:58:33</td>
+                    <td class="py-3 px-3 text-center text-[10px] text-slate-500 font-mono">0x91bb...ff50</td>
+                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold">99.2% Match</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 4: DAILY CREDIT & KHARCHI SUMMARY        -->
+        <!-- ============================================== -->
+        <div id="pane-daily-credit" class="hidden space-y-4">
+          <div class="cosmic-panel p-5">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-wallet text-amber-400"></i> Daily Credit, Loom Production &amp; Kharchi Debits
+                </h3>
+                <p class="text-xs text-slate-400">Real-time daily wage accrual &amp; mid-week cash advance deductions</p>
+              </div>
+              <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/30">
+                Payment Period: Oct 2026
+              </span>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs font-mono">
+                <thead>
+                  <tr class="border-b border-slate-800 text-slate-400 text-[11px]">
+                    <th class="py-2.5 px-3">Emp Code</th>
+                    <th class="py-2.5 px-3">Employee Name</th>
+                    <th class="py-2.5 px-3">Dept</th>
+                    <th class="py-2.5 px-3 text-right">Daily Rate</th>
+                    <th class="py-2.5 px-3 text-center">Days Worked</th>
+                    <th class="py-2.5 px-3 text-right">OT Pay (2.0x)</th>
+                    <th class="py-2.5 px-3 text-right">Kharchi Debit</th>
+                    <th class="py-2.5 px-3 text-right">Net Accrued Balance</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/60 text-slate-300">
+                  <tr class="hover:bg-slate-800/40">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1001</td>
+                    <td class="py-3 px-3 font-bold text-white">Ramesh Patel</td>
+                    <td class="py-3 px-3 text-violet-300">Weaving</td>
+                    <td class="py-3 px-3 text-right">₹ 1,733 / day</td>
+                    <td class="py-3 px-3 text-center font-bold text-emerald-400">29.0</td>
+                    <td class="py-3 px-3 text-right text-emerald-400">+₹ 1,859</td>
+                    <td class="py-3 px-3 text-right text-rose-400 font-bold">-₹ 1,500</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 44,725</td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1002</td>
+                    <td class="py-3 px-3 font-bold text-white">Sonu Kaushal Kishor</td>
+                    <td class="py-3 px-3 text-cyan-300">Production</td>
+                    <td class="py-3 px-3 text-right">₹ 616 / day</td>
+                    <td class="py-3 px-3 text-center font-bold text-emerald-400">28.0</td>
+                    <td class="py-3 px-3 text-right text-emerald-400">+₹ 924</td>
+                    <td class="py-3 px-3 text-right text-rose-400 font-bold">-₹ 800</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 16,840</td>
+                  </tr>
+
+                  <tr class="hover:bg-slate-800/40">
+                    <td class="py-3 px-3 font-bold text-cyan-400">EMP1004</td>
+                    <td class="py-3 px-3 font-bold text-white">Rajan Sharma</td>
+                    <td class="py-3 px-3 text-cyan-300">Production</td>
+                    <td class="py-3 px-3 text-right">₹ 1,673 / day</td>
+                    <td class="py-3 px-3 text-center font-bold text-emerald-400">29.0</td>
+                    <td class="py-3 px-3 text-right text-emerald-400">+₹ 1,859</td>
+                    <td class="py-3 px-3 text-right text-rose-400 font-bold">-₹ 0</td>
+                    <td class="py-3 px-3 text-right font-bold text-white">₹ 44,533</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 5: FORM XVI MONTHLY MUSTER ROLL          -->
+        <!-- ============================================== -->
+        <div id="pane-monthly-muster" class="hidden space-y-4">
+          <div class="cosmic-panel p-5">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-calendar-check text-emerald-400"></i> Form XVI Monthly Muster Roll (Factories Act Compliance)
+                </h3>
+                <p class="text-xs text-slate-400">Auto-compiled from CCTV Edge AI &amp; WiFi BSSID punches</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="downloadSampleEcr()" class="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs cursor-pointer">
+                  <i class="fa-solid fa-download mr-1"></i> Export Muster PDF
+                </button>
+              </div>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs font-mono overflow-x-auto">
+              <div class="flex justify-between border-b border-slate-800 pb-2 mb-2 text-slate-400">
+                <span>Month: <strong>October 2026</strong></span>
+                <span>Facility: <strong>PAYROLL UNIT - 2 (Surat GIDC)</strong></span>
+                <span>Working Days: <strong>26 (4 Sundays)</strong></span>
+              </div>
+              <p class="text-slate-300 text-[11px] leading-relaxed">
+                Muster roll entries for all 250 employees are cryptographically chained to Merkle audit Block #1085. Zero discrepancies between gate camera walk-through and payslip payable days.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 6: 50M PERIMETER SENTINEL                 -->
+        <!-- ============================================== -->
+        <div id="pane-sentinel" class="hidden space-y-4">
+          <div class="cosmic-panel p-5 border-rose-500/30">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-satellite-dish text-rose-400"></i> 50m Perimeter Sentinel Departure Defense
+                </h3>
+                <p class="text-xs text-slate-400">Stops the 4.2% mid-day departure payroll leakage via 180s auto grace cut-off</p>
+              </div>
+              <span class="text-xs font-mono bg-rose-500/20 text-rose-300 px-2.5 py-1 rounded border border-rose-500/30">
+                Armed (0 Active Breaches)
+              </span>
+            </div>
+
+            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 mb-4">
+              <div class="flex justify-between text-xs font-mono mb-2">
+                <span class="text-slate-400">Simulate Employee Distance from Factory Gate:</span>
+                <span id="consoleSentinelDist" class="text-cyan-400 font-bold">24 meters (SAFE)</span>
+              </div>
+              <input type="range" min="5" max="300" step="5" value="24" class="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-800 rounded-lg" oninput="updateConsoleSentinel(this.value)">
+              
+              <div class="mt-4 flex gap-3">
+                <button onclick="simulateConsoleBreach()" class="px-3 py-1.5 rounded bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs cursor-pointer">
+                  Simulate Departure Past 50m (Rajan Sharma)
+                </button>
+                <button onclick="resetConsoleSentinel()" class="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs cursor-pointer">
+                  Reset to Safe Zone
+                </button>
+              </div>
+            </div>
+
+            <!-- Console Log -->
+            <div id="consoleSentinelLogs" class="bg-slate-950 p-4 rounded-xl font-mono text-[11px] h-36 overflow-y-auto border border-slate-900 text-slate-400 space-y-1">
+              <div class="text-emerald-400">[SENTINEL ARMED] 50m Radius active across Gate 1, Gate 2 and Weaving Perimeter.</div>
+              <div class="text-slate-500">[MONITORING] 250 on-roll workers tracked. 0 perimeter violations detected.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 7: 2026 STATUTORY PAYROLL & 1-CLICK EXPORT-->
+        <!-- ============================================== -->
+        <div id="pane-payroll-engine" class="hidden space-y-4">
+          <div class="cosmic-panel p-5 border-emerald-500/30">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-file-invoice-dollar text-emerald-400"></i> FY 2026-27 Indian Statutory Core &amp; Portal Exporters
+                </h3>
+                <p class="text-xs text-slate-400">Section 115BAC (₹75k standard deduction) + EPFO ECR, ESIC &amp; Tally XML downloads</p>
+              </div>
+              <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/30">
+                100% Tax Compliant
+              </span>
+            </div>
+
+            <!-- 1-Click Government Portal Download Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+              <button onclick="downloadSampleEcr()" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-400 transition text-left cursor-pointer group">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-white group-hover:text-cyan-300">EPFO ECR Challan</span>
+                  <i class="fa-solid fa-file-arrow-down text-cyan-400"></i>
+                </div>
+                <p class="text-[10px] text-slate-400">Official #~# text file ready for instant unified portal upload</p>
+              </button>
+
+              <button onclick="downloadSampleEsic()" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-violet-400 transition text-left cursor-pointer group">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-white group-hover:text-violet-300">ESIC Monthly Return</span>
+                  <i class="fa-solid fa-file-csv text-violet-400"></i>
+                </div>
+                <p class="text-[10px] text-slate-400">Valid CSV schema for ESIC portal bulk wage submission</p>
+              </button>
+
+              <button onclick="downloadSampleTally()" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-400 transition text-left cursor-pointer group">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-white group-hover:text-amber-300">Tally Prime XML</span>
+                  <i class="fa-solid fa-file-code text-amber-400"></i>
+                </div>
+                <p class="text-[10px] text-slate-400">Payroll vouchers with 16 sub-ledger debits and credits</p>
+              </button>
+
+              <button onclick="downloadSampleBank()" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-400 transition text-left cursor-pointer group">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-xs font-bold text-white group-hover:text-emerald-300">Bank CMS Disbursement</span>
+                  <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                </div>
+                <p class="text-[10px] text-slate-400">HDFC, ICICI &amp; SBI corporate net-banking salary file</p>
+              </button>
+            </div>
+
+            <!-- Interactive Payslip Live Card (Ramesh Patel EMP1001) -->
+            <div class="bg-slate-950 p-5 rounded-xl border border-slate-800 text-xs font-mono">
+              <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-3">
+                <div>
+                  <span class="text-cyan-400 font-bold block text-sm">EMP1001 — RAMESH PATEL</span>
+                  <span class="text-slate-400">Weaving Department | Operator | Period: 01/10/2026 - 31/10/2026</span>
+                </div>
+                <div class="text-right">
+                  <span class="text-slate-500 block text-[10px]">PAYROLL UNIT - 2</span>
+                  <span class="text-emerald-400 font-bold text-base">Net: ₹ 44,725.00</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-1.5">
+                  <div class="text-[11px] font-bold text-white uppercase border-b border-slate-800/80 pb-1">Earnings</div>
+                  <div class="flex justify-between text-slate-300"><span>Basic Salary:</span> <span class="text-white">₹ 25,000</span></div>
+                  <div class="flex justify-between text-slate-300"><span>House Rent Allowance (HRA):</span> <span class="text-white">₹ 10,000</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Dearness Allowance (DA):</span> <span class="text-white">₹ 5,000</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Special Allowance:</span> <span class="text-white">₹ 10,141</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Overtime (8 hrs @ 2.0x):</span> <span class="text-emerald-400">+₹ 1,859</span></div>
+                  <div class="pt-1 border-t border-slate-800 flex justify-between font-bold text-cyan-300">
+                    <span>Total Gross Earnings:</span>
+                    <span>₹ 52,000.00</span>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <div class="text-[11px] font-bold text-white uppercase border-b border-slate-800/80 pb-1">Statutory &amp; Kharchi Deductions</div>
+                  <div class="flex justify-between text-slate-300"><span>EPF (12% capped @ ₹15k):</span> <span class="text-rose-400">-₹ 1,800</span></div>
+                  <div class="flex justify-between text-slate-300"><span>ESIC (Exempt > ₹21k gross):</span> <span class="text-slate-500">₹0 (Exempt)</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Professional Tax (Gujarat):</span> <span class="text-rose-400">-₹ 200</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Section 115BAC TDS:</span> <span class="text-slate-500">₹0 (Rebate 87A)</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Kharchi Mid-Week Cash Advance:</span> <span class="text-rose-400 font-bold">-₹ 1,500</span></div>
+                  <div class="flex justify-between text-slate-300"><span>Welfare &amp; Tool Amortization:</span> <span class="text-rose-400">-₹ 3,775</span></div>
+                  <div class="pt-1 border-t border-slate-800 flex justify-between font-bold text-rose-400">
+                    <span>Total Deductions:</span>
+                    <span>-₹ 7,275.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 8: SHIFT AUTO-ROTATION                    -->
+        <!-- ============================================== -->
+        <div id="pane-shift-manager" class="hidden space-y-4">
+          <div class="cosmic-panel p-5">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-arrows-spin text-cyan-400"></i> Cross-Midnight Rotational Shift Architecture
+                </h3>
+                <p class="text-xs text-slate-400">Automatic midnight punch bridging without manual supervisor intervention</p>
+              </div>
+              <span class="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/30">
+                4 Active Rotations
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <span class="text-cyan-400 font-bold block mb-1">Shift A: General Day Shift</span>
+                <span class="text-slate-400 block mb-2">08:30 AM to 05:30 PM (60 min lunch)</span>
+                <p class="text-[11px] text-slate-500">Assigned: Production (60), Administration (20)</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <span class="text-violet-400 font-bold block mb-1">Shift B: Weaving Morning Shift</span>
+                <span class="text-slate-400 block mb-2">06:00 AM to 02:30 PM (Continuous Looms)</span>
+                <p class="text-[11px] text-slate-500">Assigned: Weaving (40), Maintenance (15)</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <span class="text-amber-400 font-bold block mb-1">Shift C: Weaving Evening Shift</span>
+                <span class="text-slate-400 block mb-2">02:30 PM to 11:00 PM (Continuous Looms)</span>
+                <p class="text-[11px] text-slate-500">Assigned: Weaving (40), Production (40)</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 border-l-4 border-l-emerald-400">
+                <span class="text-emerald-400 font-bold block mb-1">Shift D: Cross-Midnight Night Shift</span>
+                <span class="text-slate-400 block mb-2">10:00 PM to 06:30 AM (+1 Day)</span>
+                <p class="text-[11px] text-slate-500">Automatic calendar bridge: 0 false absences on Day 1</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- PANE 9: MERKLE AUDIT & DISASTER RECOVERY      -->
+        <!-- ============================================== -->
+        <div id="pane-merkle-audit" class="hidden space-y-4">
+          <div class="cosmic-panel p-5 border-cyan-500/30">
+            <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
+              <div>
+                <h3 class="text-base font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-link text-cyan-400"></i> SHA-256 Merkle Chained Ledger &amp; Disaster Recovery
+                </h3>
+                <p class="text-xs text-slate-400">Cryptographically verifiable, non-repudiable audit logs and zero-knowledge cloud backup</p>
+              </div>
+              <button onclick="triggerCloudBackupSnapshot()" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-cyan-500 to-emerald-400 text-slate-950 font-bold text-xs cursor-pointer">
+                <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Trigger Backup to Gmail &amp; R2
+              </button>
+            </div>
+
+            <!-- Merkle Blocks Visualizer -->
+            <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 mb-4 font-mono text-xs space-y-2">
+              <div class="flex items-center justify-between p-2 rounded bg-slate-900 border border-slate-800">
+                <span class="text-cyan-400 font-bold">Block #1084</span>
+                <span class="text-slate-400 text-[11px]">Prev: 0x8a92... | Hash: <strong>0x4f8a9e7b1c3d</strong></span>
+                <span class="text-emerald-400 text-[10px] font-bold">VERIFIED</span>
+              </div>
+              <div class="flex items-center justify-between p-2 rounded bg-slate-900 border border-cyan-500/40 shadow-sm shadow-cyan-500/20">
+                <span class="text-cyan-400 font-bold">Block #1085 (Current)</span>
+                <span class="text-slate-400 text-[11px]">Prev: 0x4f8a... | Hash: <strong>0xa91c38d2f004</strong></span>
+                <span class="text-emerald-400 text-[10px] font-bold">CHAIN UNBROKEN</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <span class="text-emerald-400 font-bold block mb-1">Encrypted Gmail Backup Dispatch</span>
+                <p class="text-[11px] text-slate-400">Daily midnight AES-256-GCM snapshot dispatched via TLS 587 to <strong class="text-white">anil.payroll@gmail.com</strong>.</p>
+              </div>
+
+              <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+                <span class="text-violet-400 font-bold block mb-1">Cloudflare R2 Object Storage</span>
+                <p class="text-[11px] text-slate-400">Encrypted master archive mirrored to private bucket with 30-day immutable object lock.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= -->
+  <!-- 02C. THE 16 INDUSTRIAL SUB-LEDGERS INTERACTIVE DOSSIER  -->
+  <!-- ======================================================= -->
+  <div id="subLedgerModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md hidden">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between bg-slate-950">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-violet-500/20 text-violet-300 border border-violet-500/30">
+              PAYROLL VISION DUAL-LEDGER
+            </span>
+            <span class="text-xs font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/30">
+              Current Audio language is Gujarati
+            </span>
+          </div>
+          <h3 id="dossierEmpTitle" class="text-lg font-bold text-white mt-1">
+            Employee Master Dossier — Ramesh Patel (EMP1001)
+          </h3>
+          <p class="text-xs text-slate-400">PAYROLL UNIT - 2 | Accounting Period: 01/04/2026 - 31/03/2027</p>
+        </div>
+        <button onclick="closeSubLedgerModal()" class="text-slate-400 hover:text-white text-xl p-2 cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 16-Sub-Ledger Tab Switcher -->
+      <div class="px-6 py-2.5 bg-slate-950/60 border-b border-slate-800 overflow-x-auto flex gap-2 text-xs font-mono whitespace-nowrap">
+        <button onclick="switchSubLedgerTab(1)" id="sub-tab-1" class="px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold cursor-pointer">1. Address</button>
+        <button onclick="switchSubLedgerTab(2)" id="sub-tab-2" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">2. Enclosures</button>
+        <button onclick="switchSubLedgerTab(3)" id="sub-tab-3" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">3. Languages</button>
+        <button onclick="switchSubLedgerTab(4)" id="sub-tab-4" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">4. Qualifications</button>
+        <button onclick="switchSubLedgerTab(5)" id="sub-tab-5" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">5. Family &amp; Nominees</button>
+        <button onclick="switchSubLedgerTab(6)" id="sub-tab-6" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">6. References</button>
+        <button onclick="switchSubLedgerTab(7)" id="sub-tab-7" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">7. Experience</button>
+        <button onclick="switchSubLedgerTab(8)" id="sub-tab-8" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">8. Fuel Allowance</button>
+        <button onclick="switchSubLedgerTab(9)" id="sub-tab-9" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">9. Loan &amp; Kharchi</button>
+        <button onclick="switchSubLedgerTab(10)" id="sub-tab-10" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">10. Agreement</button>
+        <button onclick="switchSubLedgerTab(11)" id="sub-tab-11" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">11. Working &amp; Looms</button>
+        <button onclick="switchSubLedgerTab(12)" id="sub-tab-12" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">12. Office Use</button>
+        <button onclick="switchSubLedgerTab(13)" id="sub-tab-13" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">13. P.F. Details</button>
+        <button onclick="switchSubLedgerTab(14)" id="sub-tab-14" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">14. Full &amp; Final</button>
+        <button onclick="switchSubLedgerTab(15)" id="sub-tab-15" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">15. Insurance</button>
+        <button onclick="switchSubLedgerTab(16)" id="sub-tab-16" class="px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer">16. Salary Structure</button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="p-6 overflow-y-auto space-y-6 flex-1 text-xs font-mono">
+        <!-- Sub-Ledger 1: Address & Core Identification -->
+        <div id="sub-pane-1" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="text-slate-400 block mb-1">Full Name (F/M/L) *</label>
+              <input type="text" value="Ramesh Bhikhubhai Patel" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white font-bold">
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Emp ID / Code *</label>
+              <input type="text" value="EMP1001" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-cyan-400 font-bold">
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Mother Tongue</label>
+              <input type="text" value="Gujarati (ગુજરાતી)" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="text-slate-400 block mb-1">Address (Communication)</label>
+              <textarea class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white h-20">Plot 42, GIDC Housing Colony, Pandesara, Surat, Gujarat - 394221</textarea>
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Address (Permanent)</label>
+              <textarea class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white h-20">At &amp; Po. Vyara, Dist. Tapi, Gujarat - 394650</textarea>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div>
+              <label class="text-slate-400 block mb-1">Mobile No *</label>
+              <input type="text" value="+91 98251 44021" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white">
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Blood Group</label>
+              <input type="text" value="B +ve" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-white">
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">PAN Card No</label>
+              <input type="text" value="ABCDE1234F" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-emerald-400">
+            </div>
+            <div>
+              <label class="text-slate-400 block mb-1">Adhar Card No</label>
+              <input type="text" value="XXXX-XXXX-8921" class="w-full bg-slate-950 border border-slate-700 rounded px-3 py-2 text-emerald-400">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-Ledger 9: Loan & Kharchi Advances -->
+        <div id="sub-pane-9" class="hidden space-y-4">
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+            <span class="text-amber-400 font-bold text-sm block mb-2">Weekly Kharchi Advance Ledger</span>
+            <table class="w-full text-left">
+              <thead>
+                <tr class="border-b border-slate-800 text-slate-500">
+                  <th class="py-2">Date</th>
+                  <th class="py-2">Advance Type</th>
+                  <th class="py-2">Amount Disbursed</th>
+                  <th class="py-2">Supervisor Signature</th>
+                  <th class="py-2">Deduction Month</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-800 text-slate-300">
+                <tr>
+                  <td class="py-2">08/10/2026</td>
+                  <td>Cash Kharchi (Mid-Week)</td>
+                  <td class="text-rose-400 font-bold">₹ 1,500.00</td>
+                  <td class="text-slate-400">Rajan Sharma (EMP1004)</td>
+                  <td class="text-emerald-400">Oct-2026 (Applied)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Sub-Ledger 11: Working & Looms Details -->
+        <div id="sub-pane-11" class="hidden space-y-4">
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2">
+            <span class="text-cyan-400 font-bold text-sm block">Weaving Loom Allocation</span>
+            <p class="text-slate-300">Assigned Waterjet Looms: <strong>Loom #12, #13, #14, #15</strong></p>
+            <p class="text-slate-300">Target Shift Output: <strong>480 Meters / Shift</strong></p>
+            <p class="text-slate-300">Piece-Rate Incentive Rate: <strong>₹ 1.85 / meter above threshold</strong></p>
+          </div>
+        </div>
+
+        <!-- Sub-Ledger 16: Salary Structure -->
+        <div id="sub-pane-16" class="hidden space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5">
+              <span class="text-emerald-400 font-bold block mb-2">Earnings Breakdown</span>
+              <div class="flex justify-between"><span>Basic Pay:</span> <span class="text-white">₹ 25,000</span></div>
+              <div class="flex justify-between"><span>HRA:</span> <span class="text-white">₹ 10,000</span></div>
+              <div class="flex justify-between"><span>Dearness Allowance:</span> <span class="text-white">₹ 5,000</span></div>
+              <div class="flex justify-between"><span>Special Allowance:</span> <span class="text-white">₹ 12,000</span></div>
+              <div class="border-t border-slate-800 pt-1 flex justify-between font-bold text-cyan-300">
+                <span>Gross CTC:</span> <span>₹ 52,000</span>
+              </div>
+            </div>
+
+            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1.5">
+              <span class="text-rose-400 font-bold block mb-2">Standard Deductions</span>
+              <div class="flex justify-between"><span>PF Employee:</span> <span class="text-rose-400">-₹ 1,800</span></div>
+              <div class="flex justify-between"><span>Professional Tax:</span> <span class="text-rose-400">-₹ 200</span></div>
+              <div class="flex justify-between"><span>Kharchi Deduction:</span> <span class="text-rose-400">-₹ 1,500</span></div>
+              <div class="border-t border-slate-800 pt-1 flex justify-between font-bold text-emerald-400">
+                <span>Take-Home Pay:</span> <span>₹ 48,500</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 border-t border-slate-800 flex justify-between items-center bg-slate-950">
+        <button onclick="playGujaratiPrompt()" class="text-xs text-amber-300 font-bold flex items-center gap-1.5 hover:text-white cursor-pointer">
+          <i class="fa-solid fa-volume-high"></i> Play Gujarati Instruction
+        </button>
+        <div class="flex items-center gap-3">
+      <a href="#client-operations-console" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold hover:bg-emerald-500/30 transition hidden md:flex items-center gap-1.5">
+        <i class="fa-solid fa-desktop"></i> PeopleOS v2 Console <span class="px-1.5 py-0.2 bg-emerald-500 text-slate-950 rounded text-[9px] font-extrabold uppercase">Client Data</span>
+      </a>
+          <button onclick="closeSubLedgerModal()" class="px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs cursor-pointer">
+            Close
+          </button>
+          <button onclick="saveSubLedgerChanges()" class="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs cursor-pointer">
+            Save Sub-Ledger
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================= -->
+  <!-- 02D. INTERACTIVE FACE KIOSK MODAL (WITH GUJARATI AUDIO) -->
+  <!-- ======================================================= -->
+  <div id="faceKioskModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/90 backdrop-blur-lg hidden">
+    <div class="bg-slate-900 border border-emerald-500/40 rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl relative">
+      <!-- Kiosk Header -->
+      <div class="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-xs font-mono font-bold text-white uppercase tracking-wider">Algorise Face Kiosk Terminal — PAYROLL UNIT - 2</span>
+        </div>
+        <button onclick="closeFaceKioskModal()" class="text-slate-400 hover:text-white text-lg p-1 cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Kiosk Camera Viewport -->
+      <div class="p-6 text-center space-y-4">
+        <div class="relative w-full aspect-video bg-slate-950 rounded-2xl overflow-hidden border-2 border-emerald-500/50 flex items-center justify-center">
+          <!-- WebRTC Video Element or Synthetic HUD -->
+          <video id="kioskWebcamVideo" autoplay playsinline muted class="absolute inset-0 w-full h-full object-cover hidden"></video>
+
+          <div id="kioskSyntheticFeed" class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+            <!-- Simulated CCTV HUD -->
+            <div class="w-52 h-52 border-2 border-dashed border-emerald-400/80 rounded-2xl flex flex-col items-center justify-center relative shadow-lg shadow-emerald-500/20">
+              <div class="absolute -top-3 px-2 py-0.5 rounded bg-emerald-500 text-slate-950 font-mono font-extrabold text-[10px]">
+                FACE DETECTED (99.4%)
+              </div>
+              <i class="fa-regular fa-face-smile text-6xl text-emerald-400 animate-pulse"></i>
+              <div class="w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent absolute top-1/2 animate-bounce"></div>
+            </div>
+            <span class="text-xs font-mono text-cyan-300 mt-3">RTSP Stream: CAM-01 (Factory Gate 1)</span>
+          </div>
+
+          <!-- Bottom Recognition Banner -->
+          <div class="absolute bottom-3 inset-x-3 bg-slate-950/90 border border-emerald-500/40 rounded-xl p-3 flex items-center justify-between text-left">
+            <div>
+              <span class="text-xs font-bold text-white block">RAMESH PATEL (EMP1001)</span>
+              <span class="text-[11px] font-mono text-emerald-400">Weaving Operator • PAYROLL UNIT - 2</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[10px] font-mono text-slate-400 block" id="kioskClock">08:52:14 AM</span>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                PUNCH IN RECORDED
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gujarati Audio Prompt Status & Waveform -->
+        <div class="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-center justify-between text-xs">
+          <div class="flex items-center gap-2">
+            <i class="fa-solid fa-volume-high text-amber-400 text-base"></i>
+            <div class="text-left">
+              <span class="font-bold text-amber-300 block">Gujarati Audio Feedback:</span>
+              <span class="text-slate-300 text-[11px]" id="audioFeedbackText">"હાજરી સફળતાપૂર્વક નોંધાઈ ગઈ છે. તમારો દિવસ સારો રહે!"</span>
+            </div>
+          </div>
+          <button onclick="playGujaratiPrompt()" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] cursor-pointer">
+            Replay Audio
+          </button>
+        </div>
+
+        <!-- Action Controls -->
+        <div class="flex gap-3 justify-center">
+          <button onclick="simulateKioskRecognition('Sonu Kaushal Kishor', 'EMP1002', 'Production Helper')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs cursor-pointer">
+            Test Next Worker (Sonu Kaushal)
+          </button>
+          <button onclick="closeFaceKioskModal()" class="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs cursor-pointer">
+            Close Kiosk
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- VIRAL TOOL 1: TIME-THEFT LEAKAGE AUDITOR   -->
   <!-- ========================================== -->
   <section id="viral-leakage-auditor" class="relative z-10 max-w-7xl mx-auto px-6 py-16">
     <div class="cosmic-panel p-8 sm:p-12 border-cyan-500/40 glow-cyan">
@@ -1178,6 +2500,9 @@
   <footer class="relative z-10 border-t border-slate-800/80 py-12 px-6 bg-slate-950/90 text-xs text-slate-400">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
       <div class="flex items-center gap-3">
+      <a href="#client-operations-console" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold hover:bg-emerald-500/30 transition hidden md:flex items-center gap-1.5">
+        <i class="fa-solid fa-desktop"></i> PeopleOS v2 Console <span class="px-1.5 py-0.2 bg-emerald-500 text-slate-950 rounded text-[9px] font-extrabold uppercase">Client Data</span>
+      </a>
         <a class="sf-brand" href="https://algorise-ai.com/">
           <span class="sf-brand-glyph">◈</span>
           <span class="sf-brand-text">ALGORISE <span>AI</span></span>
@@ -1735,7 +3060,208 @@ NEFT,ANIL VERMA,00291040001928,SBIN0001240,16860.00,SALARY OCT 2026 ALGORISE`;
       btn.disabled = false;
       btn.innerHTML = '<i class="fa-solid fa-paper-plane mr-1"></i> Confirm 48-Hour Trial Request';
     }
-  </script>
+  
+    // =======================================================
+    // 5. ALGORISE PeopleOS v2 CLIENT OPERATIONS SCRIPTS
+    // =======================================================
+    function switchConsoleTab(tabName) {
+      const tabs = ['dashboard', 'employees', 'attendance-logs', 'daily-credit', 'monthly-muster', 'sentinel', 'payroll-engine', 'shift-manager', 'merkle-audit'];
+      
+      tabs.forEach(t => {
+        const pane = document.getElementById('pane-' + t);
+        const btn = document.getElementById('nav-btn-' + t);
+        if (pane) pane.classList.add('hidden');
+        if (btn) {
+          btn.className = 'w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between text-slate-400 hover:text-white hover:bg-slate-800/60 cursor-pointer';
+        }
+      });
+
+      const targetPane = document.getElementById('pane-' + tabName);
+      const targetBtn = document.getElementById('nav-btn-' + tabName);
+      if (targetPane) targetPane.classList.remove('hidden');
+      if (targetBtn) {
+        targetBtn.className = 'w-full text-left px-3 py-2.5 rounded-xl transition flex items-center justify-between bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold cursor-pointer';
+      }
+    }
+
+    function switchOperatingFirm(firm) {
+      alert(`Switched active factory environment to: ${firm === 'UNIT-2' ? 'PAYROLL UNIT - 2 (Main Facility)' : 'PAYROLL UNIT - 1 (Weaving Branch)'}. All sub-ledgers and CCTV camera endpoints loaded.`);
+    }
+
+    // Gujarati Audio Synthesis
+    function playGujaratiPrompt() {
+      const gujaratiText = "હાજરી સફળતાપૂર્વક નોંધાઈ ગઈ છે. તમારો દિવસ સારો રહે!";
+      
+      // Web Audio Synth Chime
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.5);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.5);
+      } catch (e) {
+        console.log("Web Audio not supported", e);
+      }
+
+      // Speech Synthesis
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(gujaratiText);
+        utterance.lang = 'gu-IN';
+        utterance.rate = 0.95;
+        // Fallback voice selection
+        const voices = window.speechSynthesis.getVoices();
+        const guVoice = voices.find(v => v.lang.includes('gu') || v.lang.includes('hi'));
+        if (guVoice) utterance.voice = guVoice;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    // Face Kiosk Modal
+    function launchFaceKioskModal() {
+      document.getElementById('faceKioskModal').classList.remove('hidden');
+      playGujaratiPrompt();
+      
+      // Update real clock
+      setInterval(() => {
+        const now = new Date();
+        const clockEl = document.getElementById('kioskClock');
+        if (clockEl) clockEl.innerText = now.toLocaleTimeString();
+      }, 1000);
+    }
+
+    function closeFaceKioskModal() {
+      document.getElementById('faceKioskModal').classList.add('hidden');
+    }
+
+    function simulateKioskRecognition(name, code, dept) {
+      const title = document.querySelector('#faceKioskModal .font-bold.text-white');
+      const sub = document.querySelector('#faceKioskModal .font-mono.text-emerald-400');
+      if (title) title.innerText = `${name.toUpperCase()} (${code})`;
+      if (sub) sub.innerText = `${dept} • PAYROLL UNIT - 2`;
+      playGujaratiPrompt();
+    }
+
+    // 16 Sub-Ledgers Modal
+    function openSubLedgerModal(empCode) {
+      document.getElementById('subLedgerModal').classList.remove('hidden');
+      switchSubLedgerTab(1);
+    }
+
+    function closeSubLedgerModal() {
+      document.getElementById('subLedgerModal').classList.add('hidden');
+    }
+
+    function switchSubLedgerTab(tabIndex) {
+      for (let i = 1; i <= 16; i++) {
+        const pane = document.getElementById('sub-pane-' + i);
+        const btn = document.getElementById('sub-tab-' + i);
+        if (pane) pane.classList.add('hidden');
+        if (btn) {
+          btn.className = 'px-3 py-1 rounded bg-slate-800 text-slate-400 hover:text-white cursor-pointer';
+        }
+      }
+      const activePane = document.getElementById('sub-pane-' + tabIndex);
+      const activeBtn = document.getElementById('sub-tab-' + tabIndex);
+      if (activePane) activePane.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.className = 'px-3 py-1 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold cursor-pointer';
+      }
+    }
+
+    function saveSubLedgerChanges() {
+      alert("Sub-Ledger entries updated successfully and cryptographically signed to Merkle Block #1086!");
+      closeSubLedgerModal();
+    }
+
+    // Attendance Log Filtering
+    function applyAttendanceLogFilters() {
+      const branch = document.getElementById('logBranchSelect').value;
+      const dept = document.getElementById('logDeptSelect').value;
+      const emp = document.getElementById('logEmpSelect').value;
+      const rows = document.querySelectorAll('#attendanceLogsTbody tr');
+
+      rows.forEach(r => {
+        let match = true;
+        if (dept !== 'ALL' && r.getAttribute('data-dept') !== dept) match = false;
+        if (emp !== 'ALL' && r.getAttribute('data-emp') !== emp) match = false;
+        r.style.display = match ? '' : 'none';
+      });
+    }
+
+    function resetAttendanceLogFilters() {
+      document.getElementById('logDeptSelect').value = 'ALL';
+      document.getElementById('logEmpSelect').value = 'ALL';
+      document.getElementById('logBranchSelect').value = 'UNIT-2';
+      applyAttendanceLogFilters();
+    }
+
+    function filterLogsByDepartment(deptName) {
+      switchConsoleTab('attendance-logs');
+      document.getElementById('logDeptSelect').value = deptName;
+      applyAttendanceLogFilters();
+    }
+
+    function switchLogSourceTab(source) {
+      const rows = document.querySelectorAll('#attendanceLogsTbody tr');
+      rows.forEach(r => {
+        if (source === 'all') r.style.display = '';
+        else if (r.getAttribute('data-type') === source) r.style.display = '';
+        else r.style.display = 'none';
+      });
+
+      ['manual', 'biometric', 'cctv', 'wifi', 'all'].forEach(s => {
+        const btn = document.getElementById('tab-log-' + s);
+        if (btn) {
+          btn.className = (s === source) ? 'px-3 py-1 rounded text-xs font-mono bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold cursor-pointer' : 'px-3 py-1 rounded text-xs font-mono bg-slate-800 text-slate-400 hover:text-white cursor-pointer';
+        }
+      });
+    }
+
+    function filterEmployeeMasterTable() {
+      const q = document.getElementById('empSearchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('#employeeMasterTable tbody tr');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+
+    // Sentinel Console Interactive
+    function updateConsoleSentinel(val) {
+      const distEl = document.getElementById('consoleSentinelDist');
+      const log = document.getElementById('consoleSentinelLogs');
+      distEl.innerText = `${val} meters ${val <= 50 ? '(SAFE)' : '(BREACH)'}`;
+      if (val > 50) {
+        log.innerHTML += `<div class="text-rose-400">[BREACH] Employee distance ${val}m > 50m geofence. Grace period 180s triggered.</div>`;
+        log.scrollTop = log.scrollHeight;
+      }
+    }
+
+    function simulateConsoleBreach() {
+      updateConsoleSentinel(160);
+    }
+
+    function resetConsoleSentinel() {
+      updateConsoleSentinel(24);
+      const log = document.getElementById('consoleSentinelLogs');
+      log.innerHTML += `<div class="text-emerald-400">[NORMAL] Employee returned to factory floor zone.</div>`;
+      log.scrollTop = log.scrollHeight;
+    }
+
+    // Cloud Backup Trigger
+    function triggerCloudBackupSnapshot() {
+      alert("AES-256-GCM zero-knowledge encrypted database snapshot generated and dispatched to anil.payroll@gmail.com (TLS 587) and Cloudflare R2 bucket!");
+    }
+
+</script>
 
 </body>
 </html>
