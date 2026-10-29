@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Setting — Algorise PeopleOS HRM</title>
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+  <link rel="apple-touch-icon" href="assets/logo.png" />
+  
+  <!-- Fonts & Font Awesome 6 Icons (HisabMittra exact stack) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            hmblue: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8'
+            },
+            hmgreen: {
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            },
+            hmbg: '#f4f6f9'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hm-sidebar-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .hm-sidebar-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(203, 213, 225, 0.8);
+      border-radius: 4px;
+    }
+    .hm-toggle-checkbox:checked {
+      right: 0;
+      border-color: #22c55e;
+    }
+    .hm-toggle-checkbox:checked + .hm-toggle-label {
+      background-color: #22c55e;
+    }
+    @keyframes toastSlide {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .toast-anim {
+      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 flex flex-col transition-colors duration-200">
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
+
+
+  <!-- ========================================== -->
+  <!-- TOP NAVBAR (Exact HisabMittra HRM replica) -->
+  <!-- ========================================== -->
+  <header class="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+    <!-- Left: Brand Logo & Hamburger Toggle -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none cursor-pointer" title="Toggle Sidebar">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+
+      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group">
+        <!-- Official Algorise AI Glowing Badge Logo -->
+        <img src="assets/logo.png" alt="Algorise AI Logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/40 shadow-md transition group-hover:scale-105" onerror="this.onerror=null; this.src='../assets/logo.png';" />
+        <div class="border-l border-slate-300 pl-2.5">
+          <div class="flex items-center gap-1.5 leading-none">
+            <span class="font-extrabold text-base tracking-tight text-slate-900">Algorise</span>
+            <span class="font-extrabold text-base tracking-tight text-blue-600">PeopleOS</span>
+            <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">v2.4</span>
+          </div>
+          <span class="text-[10px] text-slate-500 tracking-wide font-medium">Smart Solutions. Stronger Workforce.</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Center: Search Menu (Exact Ctrl+Q from HisabMittra) -->
+    <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
+      <div class="relative w-full">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <i class="fa-solid fa-magnifying-glass text-xs"></i>
+        </span>
+        <input type="text" id="globalMenuSearch" placeholder="Search Menu(ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition" onkeyup="handleMenuSearch(this.value)" />
+      </div>
+    </div>
+
+    <!-- Right Controls: English, Theme, Bell, Headset, User Profile -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Active Branch Tag -->
+      <div class="hidden lg:flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-lg px-2.5 py-1 text-xs">
+        <span class="text-slate-500 text-[10px] font-semibold uppercase">Branch:</span>
+        <span class="font-bold text-blue-700 font-mono">JMFU2</span>
+        <span class="text-slate-300">|</span>
+        <span class="text-[11px] text-slate-600 font-medium">17-33-37, TANTITHAIYA</span>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="relative">
+        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
+          <span class="text-sm leading-none">🇺🇸</span>
+          <span id="currentLangLabel">English</span>
+          <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+        </button>
+        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
+          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇺🇸 English</span> <i class="fa-solid fa-check text-blue-600"></i>
+          </button>
+          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇮🇳 ગુજરાતી (Gujarati)</span>
+          </button>
+          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
+            <span>🇮🇳 हिंदी (Hindi)</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Theme Switch (Moon Icon) -->
+      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Toggle Theme">
+        <i id="themeIcon" class="fa-regular fa-moon text-sm"></i>
+      </button>
+
+      <!-- Notification Bell -->
+      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition" title="Notices & Alerts">
+        <i class="fa-regular fa-bell text-sm"></i>
+        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
+      </a>
+
+      <!-- Browser Extension & Mobile App Quick Action Buttons -->
+      <a href="browser-extension.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition" title="Chrome Browser Extension">
+        <i class="fa-solid fa-puzzle-piece text-blue-600"></i>
+        <span>Extension</span>
+      </a>
+
+      <a href="mobile/index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-emerald-200 bg-emerald-50 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition" title="Mobile App Trial Login">
+        <i class="fa-solid fa-mobile-screen text-emerald-600"></i>
+        <span>Mobile App</span>
+      </a>
+
+      <!-- Support Hotline -->
+      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Helpline & Support">
+        <i class="fa-solid fa-phone-volume text-sm text-slate-600"></i>
+      </button>
+
+      <!-- Client User Avatar (Anil Thakker) -->
+      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 p-0.5 shadow-xs">
+          <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-xs text-slate-800">
+            <i class="fa-solid fa-user-tie text-blue-600 text-sm"></i>
+          </div>
+        </div>
+        <div class="hidden sm:block text-left leading-tight">
+          <div class="text-xs font-bold text-slate-900 flex items-center gap-1">
+            Anil Thakker <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500">Owner &bull; Process House</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- ============================================== -->
+    <!-- LEFT SIDEBAR (Complete 15-Section HRM Tree)   -->
+    <!-- ============================================== -->
+    <aside id="mainSidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
+      <!-- Session Bar with Official Logo -->
+      <div class="p-3 border-b border-slate-100 flex items-center gap-2.5 bg-slate-50/60">
+        <img src="assets/logo.png" alt="Logo" class="w-8 h-8 rounded-full object-cover ring-1 ring-blue-500/40 shadow-xs" onerror="this.onerror=null; this.src='../assets/logo.png';" />
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center justify-between text-[11px] font-mono text-slate-500">
+            <span>A/C: 2026-2027</span>
+            <span class="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-700 font-bold text-[9px]">ONLINE</span>
+          </div>
+          <a href="companies.html" class="text-xs font-bold text-slate-800 mt-0.5 block hover:text-blue-600 truncate" title="Process House HRMS">
+            PAYROLL UNIT - 2
+          </a>
+        </div>
+      </div>
+      <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
+        
+        <!-- 1. Dashboard -->
+        <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-table-columns w-4 text-center"></i> Dashboard
+          </span>
+        </a>
+
+        <!-- 2. Company Management -->
+        <div>
+          <button onclick="toggleAccordion('sec-company')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-building w-4 text-center"></i> Company Management
+            </span>
+            <i id="sec-company-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-company" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="companies.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company</a>
+            <a href="branches.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Branch</a>
+            <a href="departments.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Department</a>
+            <a href="machines.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Machine Master</a>
+            <a href="posts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Post</a>
+          </div>
+        </div>
+
+        <!-- 3. User Management -->
+        <div>
+          <button onclick="toggleAccordion('sec-user')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-user w-4 text-center"></i> User Management
+            </span>
+            <i id="sec-user-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-user" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="user-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Users</a>
+          </div>
+        </div>
+
+        <!-- 4. Employee Management -->
+        <div>
+          <button onclick="toggleAccordion('sec-emp')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-users w-4 text-center"></i> Employee Management
+            </span>
+            <i id="sec-emp-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-emp" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="employee-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee List</a>
+            <a href="employee-master.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <span class="flex items-center gap-2"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Master</span>
+              <span class="text-[9px] font-mono px-1 rounded bg-violet-100 text-violet-700 font-bold">16 Sub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 5. Attendance Section -->
+        <div>
+          <button onclick="toggleAccordion('sec-att')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-clock w-4 text-center"></i> Attendance Section
+            </span>
+            <i id="sec-att-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-att" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="attendance.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance</a>
+            <a href="attendance-logs.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Logs</a>
+            <a href="attendance-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Report</a>
+            <a href="monthly-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Monthly Status Report</a>
+            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
+              <span class="flex items-center gap-2"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Launch Face Kiosk</span>
+              <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">AI Cam</span>
+            </a>
+            <a href="daily-credit.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Daily Credit Summary</a>
+          </div>
+        </div>
+
+        <!-- 6. Supervisor -->
+        <div>
+          <button onclick="toggleAccordion('sec-sup')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-user-shield w-4 text-center"></i> Supervisor
+            </span>
+            <i id="sec-sup-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-sup" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="supervisor.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Supervisor Dashboard</a>
+          </div>
+        </div>
+
+        <!-- 7. Notice -->
+        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-regular fa-clipboard w-4 text-center"></i> Notice
+          </span>
+        </a>
+
+        <!-- 8. Payroll Management -->
+        <div>
+          <button onclick="toggleAccordion('sec-pay')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-money-bill-wave w-4 text-center"></i> Payroll Management
+            </span>
+            <i id="sec-pay-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-pay" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="payroll.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payroll</a>
+            <a href="salary-components.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payroll Setting</a>
+            <a href="advance-salaries.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Advance Salary</a>
+            <a href="employee-salaries.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Salary</a>
+            <a href="tax-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Tax report</a>
+            <a href="tadas.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Tada</a>
+            <a href="employee-loans.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Loans &amp; EMI</a>
+            <a href="reimbursements.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Expense Reimbursements</a>
+          </div>
+        </div>
+
+        <!-- 9. Leave -->
+        <div>
+          <button onclick="toggleAccordion('sec-leave')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-regular fa-calendar-xmark w-4 text-center"></i> Leave
+            </span>
+            <i id="sec-leave-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-leave" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="leaves.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Types</a>
+            <a href="leave-request.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Request</a>
+            <a href="time-leave-request.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Time Leave Request</a>
+            <a href="leave-approval.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Approval</a>
+          </div>
+        </div>
+
+        <!-- 10. Shift Management -->
+        <div>
+          <button onclick="toggleAccordion('sec-shift')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
+            </span>
+            <i id="sec-shift-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-shift" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="office-times.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Office Time</a>
+          </div>
+        </div>
+
+        <!-- 11. HR Admin Setup -->
+        <div>
+          <button onclick="toggleAccordion('sec-hr-setup')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-user-gear w-4 text-center"></i> HR Admin Setup
+            </span>
+            <i id="sec-hr-setup-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-hr-setup" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="awards.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Awards</a>
+            <a href="termination.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Termination</a>
+            <a href="resignation.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Resignation</a>
+            <a href="warning.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Warning</a>
+            <a href="complaint.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Complaint</a>
+            <a href="promotion.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Promotion</a>
+            <a href="transfer.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Transfer</a>
+            <a href="holidays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Holidays</a>
+            <a href="recruitment.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Recruitment</a>
+            <a href="static-pages.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Content Management</a>
+            <a href="support.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Support</a>
+          </div>
+        </div>
+
+        <!-- 12. Attendance Methods -->
+        <div>
+          <button onclick="toggleAccordion('sec-att-methods')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 ">
+              <i class="fa-solid fa-fingerprint w-4 text-center"></i> Attendance Methods
+            </span>
+            <i id="sec-att-methods-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-att-methods" class="hidden pl-7 pr-2 py-1 space-y-1">
+            <a href="biometric-devices.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Biometric Device</a>
+            <a href="routers.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Routers</a>
+            <a href="nfc.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> NFC</a>
+            <a href="qr.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> QR</a>
+            <a href="attendance-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Setting</a>
+          </div>
+        </div>
+
+        <!-- 13. Settings -->
+        <div>
+          <button onclick="toggleAccordion('sec-settings')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
+            <span class="flex items-center gap-3 text-blue-600 font-bold">
+              <i class="fa-solid fa-gear w-4 text-center"></i> Settings
+            </span>
+            <i id="sec-settings-arrow" class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
+          </button>
+          <div id="sec-settings" class=" pl-7 pr-2 py-1 space-y-1">
+            <a href="roles.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Roles &amp; Permissions</a>
+            <a href="general-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-blue-600 bg-blue-50 font-bold"><i class="fa-regular fa-circle-dot text-blue-600 text-[10px]"></i> General Settings</a>
+            <a href="app-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> App Settings</a>
+            <a href="notifications.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Notifications</a>
+            <a href="payment-currency.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payment Currency</a>
+            <a href="feature-control.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Feature Control</a>
+            <a href="company-features.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company Plan Features</a>
+            <a href="fiscal-year.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Fiscal Year</a>
+            <a href="theme-color.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Theme Color</a>
+          </div>
+        </div>
+
+        <!-- 14. CCTV AI & Sentinel -->
+        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-video w-4 text-center text-blue-600"></i> CCTV &amp; Sentinel AI
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">Cam Core</span>
+        </a>
+
+        <!-- Section: Apps & Extensions -->
+        <div class="pt-2 pb-1">
+          <div class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+            Apps &amp; Extensions
+          </div>
+        </div>
+
+        <!-- 15. Browser Extension -->
+        <a href="browser-extension.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-puzzle-piece w-4 text-center text-blue-600"></i> Chrome Extension
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-blue-100 text-blue-700 font-bold">v2.4</span>
+        </a>
+
+        <!-- 16. Mobile Trial App -->
+        <a href="mobile/index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-emerald-50 font-medium group">
+          <span class="flex items-center gap-3">
+            <i class="fa-solid fa-mobile-screen w-4 text-center text-emerald-600"></i> Mobile App Trial
+          </span>
+          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">PWA</span>
+        </a>
+
+      </nav>
+
+      <!-- Bottom Audio Language Indicator (Payroll Vision replica) -->
+      <div class="p-3 border-t border-slate-200 bg-amber-50/70 text-[11px]">
+        <div class="flex items-center justify-between text-amber-900 font-bold mb-1">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-volume-high text-amber-700"></i> Audio Prompt
+          </span>
+          <button onclick="playGujaratiPrompt()" class="text-blue-600 hover:underline cursor-pointer text-[10px] font-bold">
+            Test <i class="fa-solid fa-play ml-0.5"></i>
+          </button>
+        </div>
+        <p class="text-slate-600 text-[10px] leading-tight font-medium">
+          "Current Audio language is Gujarati". Actively assists factory operators at Tantithaiya.
+        </p>
+      </div>
+    </aside>
+    
+    <main class="flex-1 overflow-y-auto bg-slate-50 p-4 sm:p-6 space-y-4">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
+          <a href="index.html" class="text-blue-600 hover:underline">Dashboard</a> <span class="text-slate-400">/</span> <a href="roles.html" class="text-blue-600 hover:underline">Settings</a> <span class="text-slate-400">/</span> <span class="text-slate-800">General Settings</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="showToast('General settings synchronized', 'success')" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-bold">Save All</button>
+        </div>
+      </div>
+
+      <!-- Filter Card -->
+      
+
+      <!-- Main Data Table Card -->
+      <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">GENERAL CONFIGURATION & ENTERPRISE PREFERENCES</h2>
+          <span class="text-[11px] font-mono text-slate-500">JMFU2 &bull; Process House HRMS</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
+                <th class="py-3 px-4 font-bold">#</th><th class="py-3 px-4 font-bold">Setting Parameter</th><th class="py-3 px-4 font-bold">Current Value</th><th class="py-3 px-4 font-bold">Action</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
+              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Set Number Of Days for local Push Notification</td><td class="py-3 px-4 font-mono font-bold text-blue-700">12 Days</td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Update</button></td></tr>
+<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Primary Company Name</td><td class="py-3 px-4 font-bold text-slate-800">Process House HRMS</td><td class="py-3 px-4 text-center"><button class="text-blue-600 font-bold">Update</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  
+
+  <script>
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
+    }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+    
+  </script>
+
+  <!-- Support Modal -->
+  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Algorise Enterprise Support</h3>
+            <span class="text-[10px] font-mono text-emerald-600 font-semibold">Priority SLA for JMFU2 &bull; Process House</span>
+          </div>
+        </div>
+        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-600">
+        <p>Your dedicated factory support engineer is available for camera RTSP calibrations, biometric sync, and payroll audits.</p>
+        <div class="p-3 bg-slate-50 rounded-xl space-y-1.5 border border-slate-200 font-mono text-[11px]">
+          <div><strong>Support Desk:</strong> 1800-ALGORISE / 9376068009</div>
+          <div><strong>Branch Code:</strong> JMFU2 (Tantithaiya)</div>
+          <div><strong>Active Camera Nodes:</strong> 4 Online (Gate 1, Grey Ingest, Dyeing RBC, Folding)</div>
+        </div>
+      </div>
+      <div class="mt-5 flex justify-end">
+        <button onclick="closeSupportModal()" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition">
+          Close Desk
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (Exact HisabMittra copyright + floating chat avatar) -->
+  <footer class="bg-white border-t border-slate-200 py-3 px-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+    <div>
+      Copyright &copy; 2026 <a href="https://hisabmittra.com" target="_blank" class="text-blue-600 hover:underline font-semibold">hisabmittra.com</a>. Powered by Algorise PeopleOS.
+    </div>
+    <div class="text-[11px] text-slate-400">
+      Enterprise Textile HRM &bull; Process House HRMS &bull; Tantithaiya, Surat
+    </div>
+  </footer>
+
+  <!-- Floating Assistant Widget (Matches HisabMittra bottom-right assistant avatar) -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="showToast('Aria AI Assistant is monitoring real-time camera ingestion for 493 workers.', 'info')" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer relative" title="AI Factory Assistant">
+      <i class="fa-solid fa-headset text-lg"></i>
+      <span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
+    </button>
+  </div>
+
+  <!-- Shared JavaScript Utilities -->
+  <script>
+    // In-App Toast System (100% replaces alert popups)
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      const colors = {
+        success: 'bg-emerald-600 text-white',
+        error: 'bg-rose-600 text-white',
+        warning: 'bg-amber-500 text-white',
+        info: 'bg-blue-600 text-white'
+      };
+      const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-circle-exclamation',
+        warning: 'fa-triangle-exclamation',
+        info: 'fa-info-circle'
+      };
+      toast.className = `${colors[type] || colors.info} p-3.5 rounded-xl shadow-xl flex items-center gap-3 text-xs font-semibold toast-anim pointer-events-auto border border-white/20`;
+      toast.innerHTML = `
+        <i class="fa-solid ${icons[type] || icons.info} text-base flex-shrink-0"></i>
+        <div class="flex-1">${message}</div>
+        <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white text-xs p-1">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    // Accordion Toggle
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      const arrow = document.getElementById(id + '-arrow');
+      if (!el) return;
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        if (arrow) {
+          arrow.classList.remove('fa-chevron-right');
+          arrow.classList.add('fa-chevron-down');
+        }
+      } else {
+        el.classList.add('hidden');
+        if (arrow) {
+          arrow.classList.remove('fa-chevron-down');
+          arrow.classList.add('fa-chevron-right');
+        }
+      }
+    }
+
+    // Sidebar Hamburger Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('mainSidebar');
+      if (sidebar) {
+        sidebar.classList.toggle('hidden');
+      }
+    }
+
+    // Keyboard Hotkey (Ctrl+Q) for menu search
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
+        e.preventDefault();
+        const searchInput = document.getElementById('globalMenuSearch');
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.select();
+        }
+      }
+    });
+
+    // Menu search filtering
+    function handleMenuSearch(q) {
+      const term = q.trim().toLowerCase();
+      const sidebar = document.getElementById('mainSidebar');
+      if (!sidebar) return;
+      const links = sidebar.querySelectorAll('a, button');
+      links.forEach(item => {
+        if (!term) {
+          item.parentElement.style.display = '';
+          return;
+        }
+        const txt = item.textContent.toLowerCase();
+        if (txt.includes(term)) {
+          item.parentElement.style.display = '';
+          // If in an accordion, open it
+          const parentAccordion = item.closest('[id^="sec-"]');
+          if (parentAccordion && parentAccordion.classList.contains('hidden')) {
+            parentAccordion.classList.remove('hidden');
+          }
+        }
+      });
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.className = isDark ? 'fa-regular fa-sun text-sm' : 'fa-regular fa-moon text-sm';
+      }
+      showToast(`Switched to ${isDark ? 'Dark' : 'Light'} theme`, 'info');
+    }
+
+    // Language selector
+    function toggleLangMenu() {
+      const menu = document.getElementById('langDropdown');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function setLanguage(lang, label) {
+      const lbl = document.getElementById('currentLangLabel');
+      if (lbl) lbl.textContent = label;
+      toggleLangMenu();
+      showToast(`Language set to ${label}`, 'success');
+      if (lang === 'gu') {
+        playGujaratiPrompt();
+      }
+    }
+
+    // Gujarati Speech Synthesis (Payroll Vision Replica)
+    function playGujaratiPrompt() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance('હાલમાં ઑડિયો ભાષા ગુજરાતી છે. પ્રોસેસ હાઉસ એચઆરએમ માં આપનું સ્વાગત છે.');
+        utterance.lang = 'gu-IN';
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+        showToast('Playing: "હાલમાં ઑડિયો ભાષા ગુજરાતી છે" (Gujarati Audio Active)', 'success');
+      } else {
+        showToast('Speech audio synthesizer initialized: Gujarati active', 'info');
+      }
+    }
+
+    // Support Modal
+    function openSupportModal() {
+      const m = document.getElementById('supportModal');
+      if (m) m.classList.remove('hidden');
+    }
+    function closeSupportModal() {
+      const m = document.getElementById('supportModal');
+      if (m) m.classList.add('hidden');
+    }
+
+    // Generic Modal Close on Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSupportModal();
+        document.querySelectorAll('.app-modal').forEach(m => m.classList.add('hidden'));
+      }
+    });
+  </script>
+</body>
+</html>
