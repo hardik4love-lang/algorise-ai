@@ -104,6 +104,7 @@ SURFACES = [
     "algorise-payroll/leave-request.html",
     "algorise-payroll/leaves.html",
     "algorise-payroll/location-logs.html",
+    "algorise-payroll/login.html",
     "algorise-payroll/machines.html",
     "algorise-payroll/mobile.html",
     "algorise-payroll/mobile/icons/icon-192.png",

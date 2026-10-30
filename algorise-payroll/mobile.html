@@ -271,6 +271,24 @@
     }
 
     function quickLogin(role) {
+      try {
+        const sessData = {
+          authenticated: true,
+          user: {
+            name: (role === 'owner') ? 'Anil Thakker' : (role === 'supervisor' ? 'Dheeraj Kumar Singh' : 'Sonu Kaushal Kishor'),
+            email: (role === 'owner') ? 'Anilraymanga@gmail.com' : 'supervisor@processhouse.hrms',
+            role: (role === 'owner') ? 'Owner / Super Admin' : (role === 'supervisor' ? 'Floor Supervisor' : 'Operator'),
+            company: 'Process House HRMS',
+            branch: 'JMFU2 (17-33-37, TANTITHAIYA)',
+            phone: '9376068009'
+          },
+          token: 'alg_mobile_sec_' + btoa(Date.now() + ':' + role),
+          expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
+        };
+        localStorage.setItem('algorise_session', JSON.stringify(sessData));
+        sessionStorage.setItem('algorise_session', JSON.stringify(sessData));
+      } catch(e) {}
+
       document.getElementById('viewLogin').classList.add('hidden');
       document.getElementById('viewApp').classList.remove('hidden');
 

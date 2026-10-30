@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script id="algorise-auth-guard">
+(function() {
+  try {
+    var raw = localStorage.getItem('algorise_session') || sessionStorage.getItem('algorise_session');
+    if (!raw) {
+      var current = window.location.pathname.split('/').pop() || 'index.html';
+      if (current && !current.includes('login') && !current.includes('mobile')) {
+        window.location.replace('login.html?redirect=' + encodeURIComponent(current));
+      }
+      return;
+    }
+    var sess = JSON.parse(raw);
+    if (!sess || !sess.authenticated) {
+      window.location.replace('login.html');
+      return;
+    }
+  } catch(e) {
+    window.location.replace('login.html');
+  }
+})();
+</script>
+
 <style id="preloader-override">
 #preloader, #preloader main.status, .status {
     display: none !important;

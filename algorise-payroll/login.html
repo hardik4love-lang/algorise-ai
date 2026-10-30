@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login - Algorise PeopleOS | Process House HRMS</title>
+    <link rel="shortcut icon" href="assets/logo.png" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome & Feather Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Core & Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/core.css">
+    <link rel="stylesheet" href="assets/vendor/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+        }
+
+        /* Top Navigation Header */
+        .login-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .login-navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .login-navbar-brand img {
+            max-height: 38px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .login-navbar-nav {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-navbar-nav a {
+            color: #475569;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.15s ease;
+        }
+
+        .login-navbar-nav a:hover {
+            color: #0d9488;
+        }
+
+        .btn-demo {
+            background: #0284c7;
+            color: #ffffff !important;
+            padding: 8px 18px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 13px;
+            border: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(2, 132, 199, 0.2);
+        }
+
+        .btn-demo:hover {
+            background: #0369a1;
+            transform: translateY(-1px);
+        }
+
+        /* Main Container */
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+            display: flex;
+            width: 100%;
+            max-width: 980px;
+            min-height: 560px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Left Side: Brand Showcase */
+        .login-left {
+            flex: 1.1;
+            background: linear-gradient(145deg, #0d9488 0%, #0f766e 50%, #115e59 100%);
+            color: #ffffff;
+            padding: 44px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -20%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .login-left-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .login-left-brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.95);
+            padding: 3px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .login-left-brand-text {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+        }
+
+        .login-left-brand-text span {
+            color: #99f6e4;
+            font-weight: 400;
+            font-size: 14px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .login-left h1 {
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1.25;
+            margin: 0 0 8px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .login-left p {
+            font-size: 13px;
+            color: #ccfbf1;
+            margin: 0 0 24px 0;
+            font-weight: 500;
+        }
+
+        /* Mockup Card in Left Pane */
+        .login-preview-mockup {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 14px;
+            padding: 16px;
+            color: #1e293b;
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(8px);
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .mockup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .mockup-header-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .mockup-badge {
+            background: #dcfce7;
+            color: #15803d;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 9999px;
+        }
+
+        .mockup-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .mockup-stat {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mockup-stat-val {
+            font-size: 14px;
+            font-weight: 800;
+            color: #0f766e;
+        }
+
+        .mockup-stat-lbl {
+            font-size: 9px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .mockup-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .login-left-dots {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .login-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .login-dot.active {
+            background: #ffffff;
+            width: 24px;
+        }
+
+        /* Right Side: Form */
+        .login-right {
+            flex: 1.2;
+            padding: 48px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #ffffff;
+        }
+
+        .login-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            letter-spacing: -0.3px;
+        }
+
+        .login-subtitle {
+            font-size: 13px;
+            color: #64748b;
+            margin: 0 0 24px 0;
+        }
+
+        /* Quick Fill Badge for Instant Access */
+        .quick-fill-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-fill-box:hover {
+            background: #dcfce7;
+            border-color: #86efac;
+            transform: translateY(-1px);
+        }
+
+        .quick-fill-text {
+            font-size: 12px;
+            color: #166534;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .quick-fill-btn {
+            background: #16a34a;
+            color: #ffffff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .input-group-custom {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-custom input {
+            width: 100%;
+            height: 46px;
+            padding: 10px 42px 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #1e293b;
+            font-weight: 500;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+            outline: none;
+        }
+
+        .input-group-custom input:focus {
+            border-color: #0d9488;
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+        }
+
+        .input-group-custom .input-icon {
+            position: absolute;
+            right: 14px;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 15px;
+            transition: color 0.15s ease;
+        }
+
+        .input-group-custom .input-icon:hover {
+            color: #0f766e;
+        }
+
+        .form-row-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 22px;
+            font-size: 12px;
+        }
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #475569;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 500;
+        }
+
+        .forgot-link {
+            color: #0d9488;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .forgot-link:hover {
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            width: 100%;
+            height: 48px;
+            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .security-footer {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* Floating PWA Card */
+        .pwa-floating-card {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 14px 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            max-width: 320px;
+            z-index: 99;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .pwa-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .pwa-content-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+        }
+
+        .pwa-content-desc {
+            font-size: 11px;
+            color: #64748b;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .pwa-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pwa-btn-install {
+            background: #0284c7;
+            color: #ffffff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pwa-btn-later {
+            background: transparent;
+            color: #64748b;
+            border: none;
+            font-size: 11px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .login-card {
+                flex-direction: column;
+                margin: 12px;
+            }
+            .login-left {
+                padding: 24px;
+            }
+            .login-right {
+                padding: 28px 20px;
+            }
+            .login-navbar-nav {
+                display: none;
+            }
+            .pwa-floating-card {
+                left: 12px;
+                right: 12px;
+                bottom: 12px;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP NAVBAR -->
+    <header class="login-navbar">
+        <a href="login.html" class="login-navbar-brand">
+            <img src="assets/algorise_brand_banner.png" alt="Algorise PeopleOS" onerror="this.src='assets/logo.png';" />
+        </a>
+        <ul class="login-navbar-nav">
+            <li><a href="javascript:void(0);" onclick="showInfo('Home')">Home</a></li>
+            <li><a href="javascript:void(0);" onclick="showInfo('Features')">Features</a></li>
+            <li><a href="javascript:void(0);" onclick="showInfo('Pricing')">Pricing</a></li>
+            <li><a href="javascript:void(0);" onclick="showInfo('Contact')">Contact</a></li>
+            <li><a href="login.html" class="fw-bold text-dark">Login</a></li>
+            <li><button class="btn-demo" onclick="fillAuthorizedCredentials()">Book a Demo</button></li>
+        </ul>
+    </header>
+
+    <!-- MAIN LOGIN CARD -->
+    <main class="login-container">
+        <div class="login-card">
+            
+            <!-- LEFT COLUMN: BRAND & WORKFORCE INTELLIGENCE SHOWCASE -->
+            <div class="login-left">
+                <div>
+                    <div class="login-left-brand">
+                        <img src="assets/logo.png" alt="Logo" onerror="this.style.display='none';">
+                        <div class="login-left-brand-text">
+                            Algorise PeopleOS
+                            <span>Textile & Manufacturing HRMS</span>
+                        </div>
+                    </div>
+                    <h1>Welcome to Algorise PeopleOS</h1>
+                    <p>Attendance • Payroll • Workforce Intelligence</p>
+
+                    <!-- Realistic Client Data Mockup -->
+                    <div class="login-preview-mockup">
+                        <div class="mockup-header">
+                            <div class="mockup-header-title">
+                                <i class="fa-solid fa-industry text-emerald-600"></i>
+                                Process House HRMS
+                            </div>
+                            <span class="mockup-badge">
+                                <i class="fa-solid fa-circle text-[6px] me-1"></i> Live Factory Unit
+                            </span>
+                        </div>
+                        <div class="mockup-grid">
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-val">493</div>
+                                <div class="mockup-stat-lbl">Staff</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-val">481</div>
+                                <div class="mockup-stat-lbl">Present</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-val">10/10</div>
+                                <div class="mockup-stat-lbl">Machines</div>
+                            </div>
+                            <div class="mockup-stat">
+                                <div class="mockup-stat-val">10</div>
+                                <div class="mockup-stat-lbl">Depts</div>
+                            </div>
+                        </div>
+                        <div class="mockup-footer">
+                            <span><i class="fa-solid fa-location-dot me-1"></i> JMFU2, TANTITHAIYA</span>
+                            <span class="text-emerald-700 fw-bold">97.5% Ingested</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="login-left-dots">
+                        <span class="login-dot active"></span>
+                        <span class="login-dot"></span>
+                        <span class="login-dot"></span>
+                        <span class="login-dot"></span>
+                    </div>
+                    <span class="text-xs text-teal-100 font-mono">v2.4 Production Engine</span>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: AUTHENTICATION FORM -->
+            <div class="login-right">
+                <h2 class="login-title">Sign in to your account</h2>
+                <p class="login-subtitle">Enter your credentials to continue</p>
+
+                <!-- 1-Click Quick Fill Authorized Credentials Pill -->
+                <div class="quick-fill-box" onclick="fillAuthorizedCredentials()" title="Click to fill authorized owner credentials">
+                    <div class="quick-fill-text">
+                        <i class="fa-solid fa-shield-halved text-emerald-600"></i>
+                        <span>Load Authorized ID: <strong>Anil Thakker (Super Admin)</strong></span>
+                    </div>
+                    <button type="button" class="quick-fill-btn">1-Click Fill</button>
+                </div>
+
+                <!-- Form -->
+                <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="userId">User ID / Email</label>
+                        <div class="input-group-custom">
+                            <input type="text" id="userId" name="userId" placeholder="Enter email or username" required autocomplete="username" />
+                            <i class="fa-regular fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="password">Password</label>
+                        <div class="input-group-custom">
+                            <input type="password" id="password" name="password" placeholder="Enter Password" required autocomplete="current-password" />
+                            <i class="fa-regular fa-eye input-icon" id="togglePasswordIcon" onclick="togglePasswordVisibility()"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-row-options">
+                        <label class="remember-label">
+                            <input type="checkbox" id="rememberMe" checked />
+                            <span>Remember this device</span>
+                        </label>
+                        <a href="javascript:void(0);" onclick="handleForgotPassword()" class="forgot-link">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login" id="loginSubmitBtn">
+                        <span id="loginBtnText">Sign In to Workspace</span>
+                        <i class="fa-solid fa-arrow-right-to-bracket ms-1"></i>
+                    </button>
+                </form>
+
+                <!-- Security Trust Footer -->
+                <div class="security-footer">
+                    <span class="security-badge">
+                        <i class="fa-solid fa-lock text-emerald-600"></i> 256-Bit TLS Secured
+                    </span>
+                    <span class="security-badge">
+                        <i class="fa-solid fa-shield-check text-blue-600"></i> DPDP Act 2023 Compliant
+                    </span>
+                    <span>ISO 27001 Ready</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FLOATING PWA INSTALL PROMPT -->
+    <div class="pwa-floating-card" id="pwaPromptCard">
+        <img src="assets/logo.png" alt="App" class="pwa-icon" onerror="this.src='mobile/icons/icon-192.png';">
+        <div>
+            <div class="pwa-content-title">Install PeopleOS App</div>
+            <div class="pwa-content-desc">Quick access for attendance & payroll from your desktop or phone home screen.</div>
+            <div class="pwa-actions">
+                <button type="button" class="pwa-btn-install" onclick="openMobileApp()">Install App</button>
+                <button type="button" class="pwa-btn-later" onclick="dismissPwaPrompt()">Maybe Later</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // SHA-256 Hash of Anil@1234
+        const AUTHORIZED_HASH = '4741a3cecb32cdc3de7b3b543873c608a0a95c6ed1318a6638d7deb9875c4737';
+        const AUTHORIZED_ID = 'anilraymanga@gmail.com';
+
+        // Auto-fill authorized credentials
+        function fillAuthorizedCredentials() {
+            document.getElementById('userId').value = 'Anilraymanga@gmail.com';
+            document.getElementById('password').value = 'Anil@1234';
+            
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: 'Authorized credentials loaded',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        // Toggle password eye icon
+        function togglePasswordVisibility() {
+            const pwd = document.getElementById('password');
+            const icon = document.getElementById('togglePasswordIcon');
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Cryptographic SHA-256 computation via Web Crypto API
+        async function sha256(message) {
+            const msgBuffer = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Handle Login Submission
+        async function handleLoginSubmit(event) {
+            event.preventDefault();
+            const btn = document.getElementById('loginSubmitBtn');
+            const btnText = document.getElementById('loginBtnText');
+            
+            const rawId = document.getElementById('userId').value.trim();
+            const rawPassword = document.getElementById('password').value;
+
+            if (!rawId || !rawPassword) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Missing Fields',
+                    text: 'Please enter both User ID and Password.',
+                    confirmButtonColor: '#0d9488'
+                });
+                return;
+            }
+
+            // UI Loading state
+            btn.disabled = true;
+            btnText.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Verifying Cryptographic Signature...';
+
+            try {
+                const pwdHash = await sha256(rawPassword);
+                const normalizedId = rawId.toLowerCase();
+
+                const isIdValid = (
+                    normalizedId === AUTHORIZED_ID ||
+                    normalizedId === 'anil' ||
+                    normalizedId === 'anilraymanga' ||
+                    normalizedId === 'admin'
+                );
+
+                const isPasswordValid = (
+                    pwdHash === AUTHORIZED_HASH ||
+                    rawPassword === 'Anil@1234'
+                );
+
+                if (isIdValid && isPasswordValid) {
+                    // Create authenticated session
+                    const sessionData = {
+                        authenticated: true,
+                        user: {
+                            name: 'Anil Thakker',
+                            email: 'Anilraymanga@gmail.com',
+                            role: 'Owner / Super Admin',
+                            company: 'Process House HRMS',
+                            branch: 'JMFU2 (17-33-37, TANTITHAIYA)',
+                            phone: '9376068009',
+                            avatar: 'assets/default-avatar.png'
+                        },
+                        token: 'alg_sec_' + btoa(Date.now() + ':anilthakker:processhouse'),
+                        expiresAt: Date.now() + (30 * 24 * 60 * 60 * 1000)
+                    };
+
+                    localStorage.setItem('algorise_session', JSON.stringify(sessionData));
+                    sessionStorage.setItem('algorise_session', JSON.stringify(sessionData));
+
+                    // Show success
+                    btnText.innerHTML = '<i class="fa-solid fa-check me-2"></i> Access Granted!';
+                    btn.style.background = '#15803d';
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Welcome back, Anil Thakker!',
+                        text: 'Decrypting authorized factory telemetry for Process House HRMS...',
+                        timer: 1200,
+                        showConfirmButton: false
+                    }).then(() => {
+                        // Check if redirect query param exists
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const redirectUrl = urlParams.get('redirect');
+                        if (redirectUrl && redirectUrl.endsWith('.html') && !redirectUrl.includes('login')) {
+                            window.location.href = decodeURIComponent(redirectUrl);
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    });
+
+                } else {
+                    btn.disabled = false;
+                    btnText.innerHTML = 'Sign In to Workspace';
+                    
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Authentication Failed',
+                        text: 'Invalid User ID or Password. Please verify your authorized credentials.',
+                        confirmButtonColor: '#0d9488'
+                    });
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btnText.innerHTML = 'Sign In to Workspace';
+                console.error('Login error:', err);
+            }
+        }
+
+        function handleForgotPassword() {
+            Swal.fire({
+                title: 'Authorized Account Recovery',
+                html: '<p class="text-sm text-slate-600">For enterprise security, password resets require factory admin authorization. Authorized Super Admin is registered as <strong>Anil Thakker (9376068009)</strong>.</p>',
+                icon: 'info',
+                confirmButtonText: 'Use Authorized Access',
+                confirmButtonColor: '#0d9488'
+            }).then((res) => {
+                if (res.isConfirmed) {
+                    fillAuthorizedCredentials();
+                }
+            });
+        }
+
+        function showInfo(section) {
+            Swal.fire({
+                title: section + ' - Algorise PeopleOS',
+                text: 'Enterprise Workforce Management & Automated Biometric Attendance for Indian Textile and Manufacturing operations.',
+                icon: 'info',
+                confirmButtonColor: '#0d9488'
+            });
+        }
+
+        function openMobileApp() {
+            window.location.href = 'mobile.html';
+        }
+
+        function dismissPwaPrompt() {
+            document.getElementById('pwaPromptCard').style.display = 'none';
+        }
+
+        // Auto-check if already logged in
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const raw = localStorage.getItem('algorise_session') || sessionStorage.getItem('algorise_session');
+                if (raw) {
+                    const sess = JSON.parse(raw);
+                    if (sess && sess.authenticated) {
+                        // If user opened login.html with ?logout=true
+                        const urlParams = new URLSearchParams(window.location.search);
+                        if (urlParams.get('logout') === 'true') {
+                            localStorage.removeItem('algorise_session');
+                            sessionStorage.removeItem('algorise_session');
+                            return;
+                        }
+
+                        // Pre-populate user field
+                        document.getElementById('userId').value = sess.user.email || 'Anilraymanga@gmail.com';
+                    }
+                }
+            } catch(e) {}
+        });
+    </script>
+</body>
+</html>

@@ -3,6 +3,28 @@
 <html lang="en">
 
 <head>
+<script id="algorise-auth-guard">
+(function() {
+  try {
+    var raw = localStorage.getItem('algorise_session') || sessionStorage.getItem('algorise_session');
+    if (!raw) {
+      var current = window.location.pathname.split('/').pop() || 'index.html';
+      if (current && !current.includes('login') && !current.includes('mobile')) {
+        window.location.replace('login.html?redirect=' + encodeURIComponent(current));
+      }
+      return;
+    }
+    var sess = JSON.parse(raw);
+    if (!sess || !sess.authenticated) {
+      window.location.replace('login.html');
+      return;
+    }
+  } catch(e) {
+    window.location.replace('login.html');
+  }
+})();
+</script>
+
 <style id="preloader-override">
 #preloader, #preloader main.status, .status {
     display: none !important;
@@ -1513,9 +1535,7 @@
 
                                 </a>
 
-                                  <form id="logout-form" action="javascript:void(0);" onsubmit="localStorage.clear(); window.location.href='index.html'; return false;" method="POST" style="display: none;">
-
-                                        <input type="hidden" name="_token" value="SiDWs5DOcg8aCoPfmfKEQeAPJFeWlBZHD1YtHHch" autocomplete="off">                                  </form>
+                                  <form id="logout-form" action="javascript:void(0);" onsubmit="localStorage.removeItem('algorise_session'); sessionStorage.removeItem('algorise_session'); localStorage.clear(); sessionStorage.clear(); window.location.href='login.html?logout=true'; return false;" method="POST" style="display: none;"></form>
 
                             </li>
 
