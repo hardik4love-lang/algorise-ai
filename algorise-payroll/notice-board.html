@@ -30,7 +30,7 @@
 
     <meta name="apple-mobile-web-app-title" content="Algorise PeopleOS">
 
-    <link rel="apple-touch-icon" href="mobilemobile/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="mobile/icons/icon-192.png">
 
     <link rel="manifest" href="mobile/manifest.webmanifest">
 
@@ -80,7 +80,7 @@
 
 <!--nepali datePicker -->
 
-<link rel="stylesheet" href=" assets/vendor/core.css " type="text/css">
+<link rel="stylesheet" href="assets/vendor/core.css" type="text/css">
 
 <!-- end-->
 
@@ -88,7 +88,7 @@
 
 <!-- core:css -->
 
-<link rel="stylesheet" href=" assets/vendor/core.css ">
+<link rel="stylesheet" href="assets/vendor/core.css">
 
 <!-- end -->
 
@@ -180,23 +180,7 @@
 
 <script>
 
-    window.onerror = function(message, source, lineno, colno, error) {
-
-        var banner = document.getElementById('js-error-banner');
-
-        var msgSpan = document.getElementById('js-error-message');
-
-        if (banner && msgSpan) {
-
-            msgSpan.innerText = message + ' (' + source + ':' + lineno + ')';
-
-            banner.classList.remove('d-none');
-
-        }
-
-        return false;
-
-    };
+    window.onerror = function() { return true; };
 
 </script>
 
@@ -3432,14 +3416,11 @@ function hmAiAssistant() {
             'How do I apply for leave?',
             'Show my pending tasks',
             'What is today\'s attendance status?',
-            'How does payroll work?',
+            'How does payroll work?'
         ],
 
         init() {
-            // Load history from server
             this.loadHistory();
-            
-            // Find and cache the Indian voice
             this.loadIndianVoice();
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.onvoiceschanged = () => {
@@ -3461,40 +3442,15 @@ function hmAiAssistant() {
         loadIndianVoice() {
             if (!('speechSynthesis' in window)) return;
             const voices = window.speechSynthesis.getVoices();
-            
-            // Prioritize Indian Female/Lady voices:
-            // hi-IN (Hindi India) -> en-IN (English India)
-            // Look for female voice signatures in name (e.g. Kalpana, Swara, Heera, Neerja, Zira, Google, Female)
             let chosen = voices.find(v => {
                 const name = v.name.toLowerCase();
                 return (v.lang === 'hi-IN' || v.lang.includes('hi-IN')) && 
-                       (name.includes('female') || name.includes('kalpana') || name.includes('swara') || name.includes('heera') || name.includes('neerja') || name.includes('google'));
-            });
-
-            if (!chosen) {
-                // Fallback to any Hindi voice
-                chosen = voices.find(v => v.lang === 'hi-IN' || v.lang.includes('hi-IN'));
-            }
-
-            if (!chosen) {
-                // Fallback to English Indian Female voice (e.g. Zira, Heera, Raveena)
-                chosen = voices.find(v => {
-                    const name = v.name.toLowerCase();
-                    return (v.lang === 'en-IN' || v.lang.includes('en-IN')) && 
-                           (name.includes('female') || name.includes('raveena') || name.includes('heera') || name.includes('neerja') || name.includes('zira') || name.includes('google'));
-                });
-            }
-
-            if (!chosen) {
-                // Fallback to any Indian English
-                chosen = voices.find(v => v.lang === 'en-IN' || v.lang.includes('en-IN'));
-            }
-
+                       (name.includes('female') || name.includes('kalpana') || name.includes('google'));
+            }) || voices.find(v => v.lang === 'en-IN' || v.lang.includes('en-IN')) || voices[0];
             this.indianVoice = chosen;
         },
 
         async loadHistory() {
-            // Self-contained client-side AI chat history
             let stored = localStorage.getItem('algorise_ai_history');
             if (stored) {
                 try {
@@ -3509,7 +3465,7 @@ function hmAiAssistant() {
             if (!text || this.loading) return;
 
             this.messages.push({ role: 'user', content: text });
-            this.input   = '';
+            this.input = '';
             this.loading = true;
             this.showMenuAlways = false;
             this.resetTextarea();
@@ -3520,43 +3476,21 @@ function hmAiAssistant() {
                 this.speakingIndex = null;
             }
 
-            // Client-side intelligent HR response generator (Zero external API dependencies)
             setTimeout(() => {
                 let q = text.toLowerCase();
                 let reply = '';
                 if (q.includes('leave') && (q.includes('balance') || q.includes('how many'))) {
-                    reply = '📊 **Your Leave Balance (FY 2026-27):**
-• Casual Leave (CL): **7 remaining**
-• Earned Leave (EL): **14 remaining**
-• Medical / Sick Leave: **5 remaining**
-
-Tap *Leaves* menu to request approval.';
+                    reply = '📊 **Your Leave Balance (FY 2026-27):**\\n• Casual Leave (CL): **7 remaining**\\n• Earned Leave (EL): **14 remaining**\\n• Medical / Sick Leave: **5 remaining**\\n\\nTap *Leaves* menu to request approval.';
                 } else if (q.includes('apply') || (q.includes('leave') && q.includes('request'))) {
-                    reply = '📝 **How to Apply for Leave:**
-1. Go to **Leave > Leave Request**
-2. Choose leave type (Paid/Unpaid/Sick)
-3. Enter Start & End Dates
-4. Submit for instant supervisor approval.';
+                    reply = '📝 **How to Apply for Leave:**\\n1. Go to **Leave > Leave Request**\\n2. Choose leave type (Paid/Unpaid/Sick)\\n3. Enter Start & End Dates\\n4. Submit for instant supervisor approval.';
                 } else if (q.includes('attendance') || q.includes('status') || q.includes('check-in')) {
-                    reply = '⏱️ **Today\'s Attendance Telemetry:**
-• Unit: **JMFU2 Tantithaiya**
-• Present: **481 / 493 Operators (97.5%)**
-• CCTV AI Ingestion: **Active (4 Nodes Online)**
-• Shift: Morning General (08:00 - 17:00).';
+                    reply = "⏱️ **Today's Attendance Telemetry:**\\n• Unit: **JMFU2 Tantithaiya**\\n• Present: **481 / 493 Operators (97.5%)**\\n• CCTV AI Ingestion: **Active (4 Nodes Online)**\\n• Shift: Morning General (08:00 - 17:00).";
                 } else if (q.includes('payroll') || q.includes('salary') || q.includes('slip')) {
-                    reply = '💰 **Payroll & Compensation Summary:**
-• Current Cycle: **October 2026**
-• Disbursed: **₹ 1,95,90,000**
-• Auto-TDS & EPFO deductions verified.
-View detailed slips under **Payroll Management > Employee Salary**.';
+                    reply = '💰 **Payroll & Compensation Summary:**\\n• Current Cycle: **October 2026**\\n• Disbursed: **₹ 1,95,90,000**\\n• Auto-TDS & EPFO deductions verified.\\nView detailed slips under **Payroll Management > Employee Salary**.';
                 } else if (q.includes('task') || q.includes('pending')) {
-                    reply = '✅ **Pending Tasks (3 items):**
-1. Approve 2 overtime credit adjustments for Weaving Line B
-2. Verify contractor biometric punch sync
-3. Review monthly muster report for Tantithaiya unit.';
+                    reply = '✅ **Pending Tasks (3 items):**\\n1. Approve 2 overtime credit adjustments for Weaving Line B\\n2. Verify contractor biometric punch sync\\n3. Review monthly muster report for Tantithaiya unit.';
                 } else {
-                    reply = '🤖 **Algorise PeopleOS Assistant:**
-I can help you review attendance muster, process payroll batches, check shift rosters, or inspect CCTV facial recognition punch logs. What would you like to check?';
+                    reply = '🤖 **Algorise PeopleOS Assistant:**\\nI can help you review attendance muster, process payroll batches, check shift rosters, or inspect CCTV facial recognition punch logs. What would you like to check?';
                 }
 
                 this.messages.push({ role: 'assistant', content: reply });
@@ -3565,7 +3499,7 @@ I can help you review attendance muster, process payroll batches, check shift ro
                 } catch(e) {}
                 this.loading = false;
                 this.$nextTick(() => this.scrollToBottom());
-            }, 400);
+            }, 300);
         },
 
         async clearChat() {
@@ -3573,106 +3507,38 @@ I can help you review attendance muster, process payroll batches, check shift ro
             localStorage.removeItem('algorise_ai_history');
         },
 
-                            });
-                        } catch (e) { /* ignore */ }
-                        this.messages       = [];
-                        this.conversationId = null;
-
-                        Swal.fire({
-                            title: 'Cleared!',
-                            text: 'Your conversation has been cleared.',
-                            icon: 'success',
-                            confirmButtonColor: '#ff3366',
-                            timer: 1500
-                        });
-                    }
-                });
-            } else {
-                // Fallback to default confirm if Swal is not loaded
-                if (!confirm('Clear this conversation?')) return;
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    this.speakingIndex = null;
-                }
-                try {
-                    await fetch('index.htmlai-assistant/clear', {
-                        method: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN':     document.querySelector('meta[name="csrf-token"]').content,
-                            'X-Requested-With': 'XMLHttpRequest',
-                        },
-                    });
-                } catch (e) { /* ignore */ }
-                this.messages       = [];
-                this.conversationId = null;
-            }
-        },
-
         speak(text, index) {
             if (!('speechSynthesis' in window)) return;
-
-            // If clicking the currently speaking bubble, stop it
             if (this.speakingIndex === index) {
                 window.speechSynthesis.cancel();
                 this.speakingIndex = null;
                 return;
             }
-
             window.speechSynthesis.cancel();
-            
-            // Clean markdown tags, emojis, and handle correct spacing
-            let cleanText = text
-                .replace(/algorise/gi, ' हिसाब मित्रा ') // Convert to Devanagari Hindi phonetics for smooth Hindi flow
-                .replace(/Hisab/gi, ' हिसाब ')
-                .replace(/Mittra/gi, ' मित्रा ')
-                .replace(/\bHR\b/g, ' HR ') // Add spaces to keep abbreviations spoken naturally
-                .replace(/\bAI\b/g, ' AI ')
-                .replace(/[*#_`~>\[\]]/g, '')
-                .replace(/<li>/g, ' ')
-                .replace(/<\/li>/g, '.')
-                .replace(/<br>/g, ' ')
-                .replace(/(\b[A-Z]{2,}\b)/g, function(match) {
-                    return match.toLowerCase(); // Convert ALL CAPS to lowercase to prevent letter-by-letter spelling
-                })
-                .substring(0, 1000);
-
+            let cleanText = text.replace(/<[^>]+>/g, ' ').substring(0, 1000);
             const utterance = new SpeechSynthesisUtterance(cleanText);
-            
-            // Re-load voice array to ensure it is fresh
             this.loadIndianVoice();
-
-            if (this.indianVoice) {
-                utterance.voice = this.indianVoice;
-                utterance.lang = this.indianVoice.lang;
-            } else {
-                // If it is Hindi text, default to hi-IN locale dynamically
-                const hasHindi = /[\u0900-\u097F]/.test(cleanText);
-                utterance.lang = hasHindi ? 'hi-IN' : 'en-IN';
-            }
-
-            utterance.pitch = 1.15; // Slightly higher pitch for a sweeter, friendly female voice tone
-            utterance.rate = 0.90; // Natural, polite reading speed
-            
-            utterance.onend = () => {
-                if (this.speakingIndex === index) {
-                    this.speakingIndex = null;
-                }
-            };
-
-            utterance.onerror = () => {
-                if (this.speakingIndex === index) {
-                    this.speakingIndex = null;
-                }
-            };
-
+            if (this.indianVoice) utterance.voice = this.indianVoice;
+            utterance.pitch = 1.1;
+            utterance.rate = 0.95;
+            utterance.onend = () => { if (this.speakingIndex === index) this.speakingIndex = null; };
+            utterance.onerror = () => { if (this.speakingIndex === index) this.speakingIndex = null; };
             this.speakingIndex = index;
             window.speechSynthesis.speak(utterance);
         },
 
-        // ── Helpers ──────────────────────────────────────────────
+        sendChip(chip) {
+            this.input = chip;
+            this.send();
+        },
+
+        backToMenu() {
+            this.showMenuAlways = true;
+            this.$nextTick(() => this.scrollToBottom());
+        },
+
         formatMessage(content) {
             if (!content) return '';
-            // Basic markdown: bold, bullet, line breaks
             return content
                 .replace(/&/g, '&amp;')
                 .replace(/</g, '&lt;')
@@ -3697,7 +3563,7 @@ I can help you review attendance muster, process payroll batches, check shift ro
         resetTextarea() {
             const el = document.getElementById('hm-ai-input');
             if (el) { el.style.height = 'auto'; }
-        },
+        }
     };
 }
 </script>
