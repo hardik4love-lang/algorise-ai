@@ -1,727 +1,3560 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Holiday — Algorise PeopleOS HRM</title>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/logo.png" />
-  
-  <!-- Fonts & Font Awesome 6 Icons (HisabMittra exact stack) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            hmblue: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8'
-            },
-            hmgreen: {
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857'
-            },
-            hmbg: '#f4f6f9'
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace']
-          }
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+
+    <meta name="csrf-token" content="SiDWs5DOcg8aCoPfmfKEQeAPJFeWlBZHD1YtHHch">
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Digital HR Complete HR Attendance System">
+
+    <meta name="author" content="Digital HR">
+
+    <meta name="keywords" content="Digital HR">
+
+
+
+    <!-- PWA Settings -->
+
+    <meta name="theme-color" content="#1565C0">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="apple-mobile-web-app-title" content="hisabMittra">
+
+    <link rel="apple-touch-icon" href="https://www.hisabmittra.com/icons/icon-192.png?v=3">
+
+    <link rel="manifest" href="https://www.hisabmittra.com/manifest.json?v=3">
+
+
+
+    <title>Holiday</title>
+
+    <style>
+
+        :root {
+
+            --primary-color: #0011ff;
+
+            --hover-color: #000000;
+
+            --dark-primary-color: #c22424;
+
+            --dark-hover-color: #e29292;
+
         }
-      }
-    }
-  </script>
 
-  <style>
-    body {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    .hm-sidebar-scroll::-webkit-scrollbar {
-      width: 4px;
-    }
-    .hm-sidebar-scroll::-webkit-scrollbar-thumb {
-      background-color: rgba(203, 213, 225, 0.8);
-      border-radius: 4px;
-    }
-    .hm-toggle-checkbox:checked {
-      right: 0;
-      border-color: #22c55e;
-    }
-    .hm-toggle-checkbox:checked + .hm-toggle-label {
-      background-color: #22c55e;
-    }
-    @keyframes toastSlide {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    .toast-anim {
-      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  </style>
-</head>
-<body class="h-full bg-slate-50 text-slate-800 flex flex-col transition-colors duration-200">
-  <!-- Toast Notification Container -->
-  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
+    </style>
+
+    <!-- Fonts -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 
-  <!-- ========================================== -->
-  <!-- TOP NAVBAR (Exact HisabMittra HRM replica) -->
-  <!-- ========================================== -->
-  <header class="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
-    <!-- Left: Brand Logo & Hamburger Toggle -->
-    <div class="flex items-center gap-3">
-      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none cursor-pointer" title="Toggle Sidebar">
-        <i class="fa-solid fa-bars text-lg"></i>
-      </button>
 
-      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group">
-        <!-- Official Algorise AI Glowing Badge Logo -->
-        <img src="assets/logo.png" alt="Algorise AI Logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/40 shadow-md transition group-hover:scale-105" onerror="this.onerror=null; this.src='../assets/logo.png';" />
-        <div class="border-l border-slate-300 pl-2.5">
-          <div class="flex items-center gap-1.5 leading-none">
-            <span class="font-extrabold text-base tracking-tight text-slate-900">Algorise</span>
-            <span class="font-extrabold text-base tracking-tight text-blue-600">PeopleOS</span>
-            <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">v2.4</span>
-          </div>
-          <span class="text-[10px] text-slate-500 tracking-wide font-medium">Smart Solutions. Stronger Workforce.</span>
-        </div>
-      </a>
-    </div>
+<!-- End fonts -->
 
-    <!-- Center: Search Menu (Exact Ctrl+Q from HisabMittra) -->
-    <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
-      <div class="relative w-full">
-        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-          <i class="fa-solid fa-magnifying-glass text-xs"></i>
-        </span>
-        <input type="text" id="globalMenuSearch" placeholder="Search Menu(ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition" onkeyup="handleMenuSearch(this.value)" />
-      </div>
-    </div>
 
-    <!-- Right Controls: English, Theme, Bell, Headset, User Profile -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Active Branch Tag -->
-      <div class="hidden lg:flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-lg px-2.5 py-1 text-xs">
-        <span class="text-slate-500 text-[10px] font-semibold uppercase">Branch:</span>
-        <span class="font-bold text-blue-700 font-mono">JMFU2</span>
-        <span class="text-slate-300">|</span>
-        <span class="text-[11px] text-slate-600 font-medium">17-33-37, TANTITHAIYA</span>
-      </div>
 
-      <!-- Language Selector -->
-      <div class="relative">
-        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
-          <span class="text-sm leading-none">🇺🇸</span>
-          <span id="currentLangLabel">English</span>
-          <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-        </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
-          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇺🇸 English</span> <i class="fa-solid fa-check text-blue-600"></i>
-          </button>
-          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇮🇳 ગુજરાતી (Gujarati)</span>
-          </button>
-          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇮🇳 हिंदी (Hindi)</span>
-          </button>
-        </div>
-      </div>
 
-      <!-- Theme Switch (Moon Icon) -->
-      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Toggle Theme">
-        <i id="themeIcon" class="fa-regular fa-moon text-sm"></i>
-      </button>
 
-      <!-- Notification Bell -->
-      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition" title="Notices & Alerts">
-        <i class="fa-regular fa-bell text-sm"></i>
-        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
-      </a>
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/vendors/select2/select2.min.css">
 
-      <!-- Browser Extension & Mobile App Quick Action Buttons -->
-      <a href="browser-extension.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition" title="Chrome Browser Extension">
-        <i class="fa-solid fa-puzzle-piece text-blue-600"></i>
-        <span>Extension</span>
-      </a>
 
-      <a href="mobile/index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-emerald-200 bg-emerald-50 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition" title="Mobile App Trial Login">
-        <i class="fa-solid fa-mobile-screen text-emerald-600"></i>
-        <span>Mobile App</span>
-      </a>
 
-      <!-- Support Hotline -->
-      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Helpline & Support">
-        <i class="fa-solid fa-phone-volume text-sm text-slate-600"></i>
-      </button>
+<!--nepali datePicker -->
 
-      <!-- Client User Avatar (Anil Thakker) -->
-      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 p-0.5 shadow-xs">
-          <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-xs text-slate-800">
-            <i class="fa-solid fa-user-tie text-blue-600 text-sm"></i>
-          </div>
-        </div>
-        <div class="hidden sm:block text-left leading-tight">
-          <div class="text-xs font-bold text-slate-900 flex items-center gap-1">
-            Anil Thakker <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-500">Owner &bull; Process House</span>
-        </div>
-      </a>
-    </div>
-  </header>
+<link rel="stylesheet" href=" https://www.hisabmittra.com/assets/css/nepaliDatepicker.min.css " type="text/css">
 
-  <div class="flex flex-1 overflow-hidden">
+<!-- end-->
 
-    <!-- ============================================== -->
-    <!-- LEFT SIDEBAR (Complete 15-Section HRM Tree)   -->
-    <!-- ============================================== -->
-    <aside id="mainSidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
-      <!-- Session Bar with Official Logo -->
-      <div class="p-3 border-b border-slate-100 flex items-center gap-2.5 bg-slate-50/60">
-        <img src="assets/logo.png" alt="Logo" class="w-8 h-8 rounded-full object-cover ring-1 ring-blue-500/40 shadow-xs" onerror="this.onerror=null; this.src='../assets/logo.png';" />
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center justify-between text-[11px] font-mono text-slate-500">
-            <span>A/C: 2026-2027</span>
-            <span class="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-700 font-bold text-[9px]">ONLINE</span>
-          </div>
-          <a href="companies.html" class="text-xs font-bold text-slate-800 mt-0.5 block hover:text-blue-600 truncate" title="Process House HRMS">
-            PAYROLL UNIT - 2
-          </a>
-        </div>
-      </div>
-      <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
-        
-        <!-- 1. Dashboard -->
-        <a href="index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-table-columns w-4 text-center"></i> Dashboard
-          </span>
-        </a>
 
-        <!-- 2. Company Management -->
-        <div>
-          <button onclick="toggleAccordion('sec-company')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-building w-4 text-center"></i> Company Management
-            </span>
-            <i id="sec-company-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-company" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="companies.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company</a>
-            <a href="branches.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Branch</a>
-            <a href="departments.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Department</a>
-            <a href="machines.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Machine Master</a>
-            <a href="posts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Post</a>
-          </div>
-        </div>
 
-        <!-- 3. User Management -->
-        <div>
-          <button onclick="toggleAccordion('sec-user')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-user w-4 text-center"></i> User Management
-            </span>
-            <i id="sec-user-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-user" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="user-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Users</a>
-          </div>
-        </div>
+<!-- core:css -->
 
-        <!-- 4. Employee Management -->
-        <div>
-          <button onclick="toggleAccordion('sec-emp')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-users w-4 text-center"></i> Employee Management
-            </span>
-            <i id="sec-emp-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-emp" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="employee-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee List</a>
-            <a href="employee-master.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <span class="flex items-center gap-2"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Master</span>
-              <span class="text-[9px] font-mono px-1 rounded bg-violet-100 text-violet-700 font-bold">16 Sub</span>
+<link rel="stylesheet" href=" https://www.hisabmittra.com/assets/vendors/core/core.css ">
+
+<!-- end -->
+
+
+
+<!-- Plugin css for this page -->
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
+
+<!-- End plugin css for this page -->
+
+
+
+<!-- inject:css -->
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/fonts/feather-font/css/iconfont.css">
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/vendors/flag-icon-css/css/flag-icon.min.css">
+
+<!-- endinject -->
+
+
+
+<!-- Layout styles -->
+
+
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/css/style.css" id="themeColor">
+
+
+
+<!-- End layout styles -->
+
+<!-- RTL -->
+
+
+
+
+
+<link rel="shortcut icon" href="https://www.hisabmittra.com/assets/images/favicon.png?v=1793288108" />
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/assets/vendors/sweetalert2/sweetalert2.min.css"/>
+
+
+
+
+
+<!-- Mobile Responsive CSS - Global Fix for All Forms -->
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/css/mobile-responsive.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+<body>
+
+<div id="js-error-banner" class="alert alert-danger m-3 d-none" style="z-index: 999999; position: relative;">
+
+    <strong>JavaScript Error:</strong> <span id="js-error-message"></span>
+
+</div>
+
+<script>
+
+    window.onerror = function(message, source, lineno, colno, error) {
+
+        var banner = document.getElementById('js-error-banner');
+
+        var msgSpan = document.getElementById('js-error-message');
+
+        if (banner && msgSpan) {
+
+            msgSpan.innerText = message + ' (' + source + ':' + lineno + ')';
+
+            banner.classList.remove('d-none');
+
+        }
+
+        return false;
+
+    };
+
+</script>
+
+<div id="preloader" >
+
+    <main class="status">
+
+    <svg class="ip" viewBox="0 0 256 128" width="256px" height="128px" xmlns="http://www.w3.org/2000/svg">
+
+        <defs>
+
+            <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0">
+
+                <stop offset="0%" stop-color="#5ebd3e" />
+
+                <stop offset="33%" stop-color="#ffb900" />
+
+                <stop offset="67%" stop-color="#f78200" />
+
+                <stop offset="100%" stop-color="#e23838" />
+
+            </linearGradient>
+
+            <linearGradient id="grad2" x1="1" y1="0" x2="0" y2="0">
+
+                <stop offset="0%" stop-color="#e23838" />
+
+                <stop offset="33%" stop-color="#973999" />
+
+                <stop offset="67%" stop-color="#009cdf" />
+
+                <stop offset="100%" stop-color="#5ebd3e" />
+
+            </linearGradient>
+
+        </defs>
+
+        <g fill="none" stroke-linecap="round" stroke-width="16">
+
+            <g class="ip__track" stroke="#ddd">
+
+                <path d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+
+                <path d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+
+            </g>
+
+            <g stroke-dasharray="180 656">
+
+                <path class="ip__worm1" stroke="url(#grad1)" stroke-dashoffset="0" d="M8,64s0-56,60-56,60,112,120,112,60-56,60-56"/>
+
+                <path class="ip__worm2" stroke="url(#grad2)" stroke-dashoffset="358" d="M248,64s0-56-60-56-60,112-120,112S8,64,8,64"/>
+
+            </g>
+
+        </g>
+
+    </svg>
+
+</main>
+
+</div>
+
+
+
+<div class="main-wrapper">
+
+    <!-- sidebar -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-brand">
+               <img src="assets/algorise_brand_banner.png"  />
             </a>
-          </div>
+            <div class="sidebar-toggler not-active">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
 
-        <!-- 5. Attendance Section -->
-        <div>
-          <button onclick="toggleAccordion('sec-att')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-clock w-4 text-center"></i> Attendance Section
-            </span>
-            <i id="sec-att-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-att" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="attendance.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance</a>
-            <a href="attendance-logs.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Logs</a>
-            <a href="attendance-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Report</a>
-            <a href="monthly-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Monthly Status Report</a>
-            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <span class="flex items-center gap-2"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Launch Face Kiosk</span>
-              <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">AI Cam</span>
+        <div class="sidebar-body">
+                        <ul class="nav sidebar-menu">
+                                    <li class="nav-item  " >
+
+    <a href="index.html"
+
+       data-href="index.html"
+
+       class="nav-link">
+
+        <i class="link-icon" data-feather="box"></i>
+
+        <span class="link-title">Dashboard</span>
+
+    </a>
+
+</li>
+
+                    <li class="nav-item ">
+        <a class="nav-link" data-bs-toggle="collapse"
+           href="#company_management"
+           data-href="#"
+           role="button" aria-expanded="false" aria-controls="company">
+            <i class="link-icon" data-feather="briefcase"></i>
+            <span class="link-title">Company Management</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="company_management">
+            <ul class="nav sub-menu">
+                <li class="nav-item">
+                    <a href="companies.html"
+                       data-href="companies.html"
+                       class="nav-link ">
+                        Company
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="branches.html"
+                       data-href="branches.html"
+                       class="nav-link ">
+                        Branch
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="departments.html"
+                       data-href="departments.html"
+                       class="nav-link ">
+                        Department
+                    </a>
+                </li>
+                                    <li class="nav-item">
+                        <a href="machines.html"
+                           data-href="machines.html"
+                           class="nav-link ">
+                            Machine Master
+                        </a>
+                    </li>
+                                <li class="nav-item">
+                    <a href="posts.html"
+                       data-href="posts.html"
+                       class="nav-link ">
+                        Post
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+                    <li class="nav-item  ">
+
+        <a class="nav-link" data-bs-toggle="collapse"
+
+           href="#user-management"
+
+           data-href="#"
+
+           role="button" aria-expanded="false" aria-controls="settings">
+
+            <i class="link-icon" data-feather="user"></i>
+
+            <span class="link-title"> User Management </span>
+
+            <i class="link-arrow" data-feather="chevron-down"></i>
+
+        </a>
+
+        <div class="collapse " id="user-management">
+
+
+
+            <ul class="nav sub-menu">
+
+                <li class="nav-item">
+
+                    <a
+
+                        href="users.html"
+
+                        data-href="users.html"
+
+                        class="nav-link ">Users</a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </li>
+
+                                            <li class="nav-item     ">
+
+        <a data-href="#"
+
+           class="nav-link"
+
+           data-bs-toggle="collapse"
+
+           href="#employee_management"
+
+           role="button"
+
+           aria-expanded="false"
+
+           aria-controls="company">
+
+            <i class="link-icon" data-feather="users"></i>
+
+            <span class="link-title">Employee Management</span>
+
+            <i class="link-arrow" data-feather="chevron-down"></i>
+
+        </a>
+
+
+
+        <div class="collapse"  id="employee_management">
+
+            <ul class="nav sub-menu">
+
+                                    <li class="nav-item">
+
+                        <a href="employee-master.html"
+
+                           data-href="employee-master.html"
+
+                           class="nav-link ">Employees</a>
+
+                    </li>
+
+                                        <li class="nav-item">
+
+                        <a href="face-profiles.html"
+
+                           data-href="face-profiles.html"
+
+                           class="nav-link ">Face Profiles</a>
+
+                    </li>
+
+                                        <li class="nav-item">
+
+                        <a href="location-logs.html"
+
+                           data-href="location-logs.html"
+
+                           class="nav-link "> Location Logs</a>
+
+                    </li>
+
+                
+
+                                    <li class="nav-item">
+
+                        <a href="logout-requests.html"
+
+                           data-href="logout-requests.html"
+
+                           class="nav-link ">Logout Requests</a>
+
+                    </li>
+
+                
+
+            </ul>
+
+        </div>
+
+    </li>
+
+
+
+
+
+
+
+                                        <li class="nav-item ">
+        <a data-href="#"
+           class="nav-link"
+           data-bs-toggle="collapse"
+           href="#attendance_management"
+           role="button"
+           aria-expanded="false"
+           aria-controls="company">
+            <i class="link-icon" data-feather="user-check"></i>
+            <span class="link-title">Attendance Section</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+
+        <div class="collapse" id="attendance_management">
+            <ul class="nav sub-menu">
+
+                <li class="nav-item">
+                    <a href="attendance.html"
+                       data-href="attendance.html"
+                       class="nav-link ">Attendance</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="attendance-logs.html"
+                       data-href="attendance-logs.html"
+                       class="nav-link ">Attendance Logs</a>
+                </li>
+                <li class="nav-item">
+                    <a href="attendance-report.html"
+                       data-href="attendance-report.html"
+                       class="nav-link ">Attendance Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="monthly-report.html"
+                       data-href="monthly-report.html"
+                       class="nav-link ">Monthly Status Report</a>
+                </li>
+
+                                <li class="nav-item">
+                    <a href="javascript:void(0);"
+                       onclick="event.preventDefault(); event.stopPropagation(); window.location.href = 'https://www.hisabmittra.com/admin/face-kiosk?t=' + new Date().getTime();"
+                       class="nav-link">Launch Face Kiosk</a>
+                </li>
+                
+                                    <li class="nav-item">
+                        <a href="daily-credit.html"
+                           data-href="daily-credit.html"
+                           class="nav-link ">Daily Credit Summary</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </li>
+                    <li class="nav-item ">
+            <a class="nav-link" data-bs-toggle="collapse" href="#supervisor_panel" role="button" aria-expanded="false" aria-controls="supervisor_panel">
+                <i class="link-icon" data-feather="users"></i>
+                <span class="link-title">Supervisor</span>
+                <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
-            <a href="daily-credit.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Daily Credit Summary</a>
-          </div>
-        </div>
+            <div class="collapse" id="supervisor_panel">
+                <ul class="nav sub-menu">
+                                        <li class="nav-item">
+                        <a href="supervisor.html" class="nav-link ">
+                            Supervisor Daily
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="supervisor-monthly.html" class="nav-link ">
+                            Supervisor Monthly
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="supervisor-payroll-sheet.html" class="nav-link ">
+                            Supervisor Payroll Sheet
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="supervisor-payroll-columns.html" class="nav-link ">
+                            Supervisor Payroll Columns
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="supervisor-credits.html" class="nav-link ">
+                            Supervisor Credit Rules
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+                        
+                                        
+                    
+                                            <li class="nav-item ">
 
-        <!-- 6. Supervisor -->
-        <div>
-          <button onclick="toggleAccordion('sec-sup')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-user-shield w-4 text-center"></i> Supervisor
-            </span>
-            <i id="sec-sup-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-sup" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="supervisor.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Supervisor Dashboard</a>
-          </div>
-        </div>
+        <a
 
-        <!-- 7. Notice -->
-        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-regular fa-clipboard w-4 text-center"></i> Notice
-          </span>
+            href="notice-board.html"
+
+            data-href="notice-board.html"
+
+            class="nav-link">
+
+            <i class="link-icon" data-feather="calendar"></i>
+
+            <span class="link-title">Notice</span>
+
         </a>
 
-        <!-- 8. Payroll Management -->
-        <div>
-          <button onclick="toggleAccordion('sec-pay')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-money-bill-wave w-4 text-center"></i> Payroll Management
-            </span>
-            <i id="sec-pay-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-pay" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="payroll.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payroll</a>
-            <a href="salary-components.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payroll Setting</a>
-            <a href="advance-salaries.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Advance Salary</a>
-            <a href="employee-salaries.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Salary</a>
-            <a href="tax-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Tax report</a>
-            <a href="tadas.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Tada</a>
-            <a href="employee-loans.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Loans &amp; EMI</a>
-            <a href="reimbursements.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Expense Reimbursements</a>
-          </div>
-        </div>
+    </li>
 
-        <!-- 9. Leave -->
-        <div>
-          <button onclick="toggleAccordion('sec-leave')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-calendar-xmark w-4 text-center"></i> Leave
-            </span>
-            <i id="sec-leave-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-leave" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="leaves.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Types</a>
-            <a href="leave-request.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Request</a>
-            <a href="time-leave-request.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Time Leave Request</a>
-            <a href="leave-approval.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Leave Approval</a>
-          </div>
-        </div>
+                                                                <li class="nav-item ">
+        <a class="nav-link" data-bs-toggle="collapse"
+           href="#payroll"
+           data-href="#"
+           role="button" aria-expanded="false" aria-controls="settings">
+            <i class="link-icon" data-feather="gift"></i>
+            <span class="link-title"> Payroll Management </span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="payroll">
 
-        <!-- 10. Shift Management -->
-        <div>
-          <button onclick="toggleAccordion('sec-shift')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
-            </span>
-            <i id="sec-shift-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-shift" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="office-times.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Office Time</a>
-          </div>
+            <ul class="nav sub-menu">
+                                                                            <li class="nav-item">
+                            <a href="payroll.html"
+                               data-href="payroll.html"
+                               class="nav-link  ">Payroll</a>
+                        </li>
+                                                                <li class="nav-item">
+                            <a href="salary-components.html"
+                               data-href="salary-components.html"
+                               class="nav-link ">Payroll Setting
+                            </a>
+                        </li>
+                                                                <li class="nav-item">
+                            <a href="advance-salaries.html"
+                               data-href="advance-salaries.html"
+                               class="nav-link  ">Advance Salary</a>
+                        </li>
+                                                                <li class="nav-item">
+                            <a href="employee-salaries.html"
+                               data-href="employee-salaries.html"
+                               class="nav-link  ">Employee Salary</a>
+                        </li>
+                                                                <li class="nav-item">
+                            <a href="tax-report.html"
+                               data-href="tax-report.html"
+                               class="nav-link  ">Tax report</a>
+                        </li>
+                                                                                    <li class="nav-item">
+                            <a href="tadas.html"
+                               data-href="tadas.html"
+                               class="nav-link  ">Tada</a>
+                        </li>
+                                        <li class="nav-item">
+                        <a href="employee-loans.html"
+                           class="nav-link ">Employee Loans & EMI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reimbursements.html"
+                           class="nav-link ">Expense Reimbursements</a>
+                    </li>
+                            </ul>
         </div>
+    </li>
+                                                                <li class="nav-item  ">
 
-        <!-- 11. HR Admin Setup -->
-        <div>
-          <button onclick="toggleAccordion('sec-hr-setup')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 text-blue-600 font-bold">
-              <i class="fa-solid fa-user-gear w-4 text-center"></i> HR Admin Setup
-            </span>
-            <i id="sec-hr-setup-arrow" class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-hr-setup" class=" pl-7 pr-2 py-1 space-y-1">
-            <a href="awards.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Awards</a>
-            <a href="termination.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Termination</a>
-            <a href="resignation.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Resignation</a>
-            <a href="warning.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Warning</a>
-            <a href="complaint.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Complaint</a>
-            <a href="promotion.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Promotion</a>
-            <a href="transfer.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Transfer</a>
-            <a href="holidays.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-blue-600 bg-blue-50 font-bold"><i class="fa-regular fa-circle-dot text-blue-600 text-[10px]"></i> Holidays</a>
-            <a href="recruitment.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Recruitment</a>
-            <a href="static-pages.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Content Management</a>
-            <a href="support.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Support</a>
-          </div>
-        </div>
+        <a class="nav-link" data-bs-toggle="collapse" href="#leaveMenu" data-href="#" role="button" aria-expanded="false"
 
-        <!-- 12. Attendance Methods -->
-        <div>
-          <button onclick="toggleAccordion('sec-att-methods')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-fingerprint w-4 text-center"></i> Attendance Methods
-            </span>
-            <i id="sec-att-methods-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-att-methods" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="biometric-devices.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Biometric Device</a>
-            <a href="routers.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Routers</a>
-            <a href="nfc.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> NFC</a>
-            <a href="qr.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> QR</a>
-            <a href="attendance-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Setting</a>
-          </div>
-        </div>
+           aria-controls="leaveMenu">
 
-        <!-- 13. Settings -->
-        <div>
-          <button onclick="toggleAccordion('sec-settings')" class="w-full flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-gear w-4 text-center"></i> Settings
-            </span>
-            <i id="sec-settings-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-settings" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="roles.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Roles &amp; Permissions</a>
-            <a href="general-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> General Settings</a>
-            <a href="app-settings.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> App Settings</a>
-            <a href="notifications.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Notifications</a>
-            <a href="payment-currency.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Payment Currency</a>
-            <a href="feature-control.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Feature Control</a>
-            <a href="company-features.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company Plan Features</a>
-            <a href="fiscal-year.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Fiscal Year</a>
-            <a href="theme-color.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium"><i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Theme Color</a>
-          </div>
-        </div>
+            <i class="link-icon" data-feather="pause-circle"></i>
 
-        <!-- 14. CCTV AI & Sentinel -->
-        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-video w-4 text-center text-blue-600"></i> CCTV &amp; Sentinel AI
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">Cam Core</span>
+            <span class="link-title">Leave</span>
+
+            <i class="link-arrow" data-feather="chevron-down"></i>
+
         </a>
 
-        <!-- Section: Apps & Extensions -->
-        <div class="pt-2 pb-1">
-          <div class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-            Apps &amp; Extensions
-          </div>
+        <div class="collapse" id="leaveMenu">
+
+            <ul class="nav sub-menu">
+
+
+
+                                    <li class="nav-item ">
+
+                        <a href="leaves.html"
+
+                           data-href="leaves.html"
+
+                           class="nav-link ">Leave Types</a>
+
+                    </li>
+
+                                                    <li class="nav-item ">
+
+                        <a href="leave-request.html"
+
+                           data-href="leave-request.html"
+
+                           class="nav-link ">Leave Request</a>
+
+                    </li>
+
+                                                            <li class="nav-item ">
+
+                        <a href="time-leave-request.html"
+
+                           data-href="time-leave-request.html"
+
+                           class="nav-link ">Time Leave Request</a>
+
+                    </li>
+
+                                                        <li class="nav-item ">
+
+                        <a href="leave-approval.html"
+
+                           data-href="leave-approval.html"
+
+                           class="nav-link ">Leave Approval</a>
+
+                    </li>
+
+                
+
+            </ul>
+
         </div>
 
-        <!-- 15. Browser Extension -->
-        <a href="browser-extension.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-puzzle-piece w-4 text-center text-blue-600"></i> Chrome Extension
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-blue-100 text-blue-700 font-bold">v2.4</span>
+    </li>
+
+
+
+                                                                                
+                                            <li class="nav-item      ">
+
+        <a class="nav-link"   data-href="#" data-bs-toggle="collapse" href="#shiftManagement" role="button" aria-expanded="false" aria-controls="shiftManagment">
+
+            <i class="link-icon" data-feather="watch"></i>
+
+            <span class="link-title"> Shift Management </span>
+
+            <i class="link-arrow" data-feather="chevron-down"></i>
+
         </a>
 
-        <!-- 16. Mobile Trial App -->
-        <a href="mobile/index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-emerald-50 font-medium group">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-mobile-screen w-4 text-center text-emerald-600"></i> Mobile App Trial
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">PWA</span>
-        </a>
+        <div class="collapse " id="shiftManagement">
 
-      </nav>
+             <ul class="nav sub-menu">
 
-      <!-- Bottom Audio Language Indicator (Payroll Vision replica) -->
-      <div class="p-3 border-t border-slate-200 bg-amber-50/70 text-[11px]">
-        <div class="flex items-center justify-between text-amber-900 font-bold mb-1">
-          <span class="flex items-center gap-1.5">
-            <i class="fa-solid fa-volume-high text-amber-700"></i> Audio Prompt
-          </span>
-          <button onclick="playGujaratiPrompt()" class="text-blue-600 hover:underline cursor-pointer text-[10px] font-bold">
-            Test <i class="fa-solid fa-play ml-0.5"></i>
-          </button>
+
+
+                                     <li class="nav-item">
+
+                        <a href="office-times.html"
+
+                           data-href="office-times.html"
+
+                           class="nav-link ">Office Time </a>
+
+                    </li>
+
+                 
+
+            </ul>
+
         </div>
-        <p class="text-slate-600 text-[10px] leading-tight font-medium">
-          "Current Audio language is Gujarati". Actively assists factory operators at Tantithaiya.
-        </p>
-      </div>
-    </aside>
+
+    </li>
+
+                                                                                    <li class="nav-item active ">
+
+        <a class="nav-link" data-bs-toggle="collapse" href="#awards" data-href="#" role="button" aria-expanded="false"
+
+           aria-controls="awards">
+
+            <i class="link-icon" data-feather="user-plus"></i>
+
+            <span class="link-title">HR Admin Setup</span>
+
+            <i class="link-arrow" data-feather="chevron-down"></i>
+
+        </a>
+
+        <div class="" id="awards">
+
+            <ul class="nav sub-menu">
+
+                                    <li class="nav-item ">
+
+                        <a href="awards.html"
+
+                           data-href="awards.html"
+
+                           class="nav-link ">Awards</a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a href="termination.html"
+
+                           data-href="termination.html"
+
+                           class="nav-link ">Termination</a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a class="nav-link "
+
+                           href="resignation.html"
+
+                           data-href="resignation.html">
+
+                            Resignation
+
+                        </a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a class="nav-link "
+
+                           href="warning.html"
+
+                           data-href="warning.html">
+
+                            Warning
+
+                        </a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a class="nav-link "
+
+                           href="complaint.html"
+
+                           data-href="complaint.html">
+
+                            Complaint
+
+                        </a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a class="nav-link "
+
+                           data-href="promotion.html"
+
+                           href="promotion.html">
+
+                            Promotion
+
+                        </a>
+
+                    </li>
+
+                                                    <li class="nav-item  ">
+
+                        <a class="nav-link "
+
+                           data-href="transfer.html"
+
+                           href="transfer.html"
+
+                        >
+
+                            Transfer
+
+                        </a>
+
+                    </li>
+
+                                                    <li class="nav-item active">
+
+                        <a
+
+                            href="holidays.html"
+
+                            data-href="holidays.html"
+
+                            class="nav-link active">
+
+                            Holidays
+
+                        </a>
+
+                    </li>
+
+                
+
+                <li class="nav-item ">
+
+                    <a href="recruitment.html"
+
+                       data-href="recruitment.html"
+
+                       class="nav-link ">
+
+                       Recruitment
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </li>
+
+                                                                                                                        
+                    
+                    
+                    <li class="nav-item">
+
+        <a href="static-pages.html"
+
+           data-href="static-pages.html" class="nav-link">
+
+            <i class="link-icon" data-feather="book"></i>
+
+            <span class="link-title">Content Management</span>
+
+        </a>
+
+    </li>
+
+                    <li class="nav-item ">
+
+        <a
+
+            href="support.html"
+
+            data-href="support.html"
+
+            class="nav-link">
+
+            <i class="link-icon" data-feather="help-circle"></i>
+
+            <span class="link-title">Support</span>
+
+        </a>
+
+    </li>
+
+                    <li class="nav-item  "
+    >
+        <a class="nav-link" data-bs-toggle="collapse"
+           href="#attendance_method"
+           data-href="#"
+           role="button" aria-expanded="false" aria-controls="settings">
+            <i class="link-icon" data-feather="tool"></i>
+            <span class="link-title"> Attendance Methods </span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse " id="attendance_method">
+
+            <ul class="nav sub-menu">
+
+                                    <li class="nav-item">
+                        <a
+                            href="biometric-devices.html"
+                            data-href="biometric-devices.html"
+                            class="nav-link ">Biometric Device
+                        </a>
+                    </li>
+                                                    <li class="nav-item">
+                        <a
+                            href="routers.html"
+                            data-href="routers.html"
+                            class="nav-link ">Routers
+                        </a>
+                    </li>
+                
+                                    <li class="nav-item">
+                        <a
+                            href="nfc.html"
+                            data-href="nfc.html"
+                            class="nav-link ">NFC</a>
+                    </li>
+                
+                                    <li class="nav-item">
+                        <a
+                            href="qr.html"
+                            data-href="qr.html"
+                            class="nav-link ">QR</a>
+                    </li>
+
+                                                    <li class="nav-item">
+                        <a
+                            href="attendance-settings.html"
+                            data-href="attendance-settings.html"
+                            class="nav-link ">Attendance Setting</a>
+                    </li>
+
+                
+
+            </ul>
+        </div>
+    </li>
     
-    <main class="flex-1 overflow-y-auto bg-slate-50 p-4 sm:p-6 space-y-4">
-      
-      <!-- Top Action Bar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div class="flex items-center gap-2 text-xs font-semibold text-slate-500">
-          <a href="index.html" class="text-blue-600 hover:underline">Dashboard</a> <span class="text-slate-400">/</span> <a href="awards.html" class="text-blue-600 hover:underline">HR Admin Setup</a> <span class="text-slate-400">/</span> <span class="text-slate-800">Holidays</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="showToast('Add Holiday opened', 'info')" class="px-3 py-1.5 bg-blue-600 text-white rounded text-xs font-bold"><i class="fa-solid fa-plus mr-1"></i> Add Holiday</button>
-        </div>
-      </div>
 
-      <!-- Filter Card -->
-      
+    <li class="nav-item  "
+    >
+        <a class="nav-link" data-bs-toggle="collapse"
+           href="#setting"
+           data-href="#"
+           role="button" aria-expanded="false" aria-controls="settings">
+            <i class="link-icon" data-feather="settings"></i>
+            <span class="link-title"> Settings </span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse " id="setting">
 
-      <!-- Main Data Table Card -->
-      <div class="bg-white rounded-xl border border-slate-200 shadow-xs overflow-hidden">
-        <div class="px-5 py-3.5 border-b border-slate-100 flex items-center justify-between">
-          <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">OFFICIAL FACTORY HOLIDAYS & FESTIVAL SCHEDULE</h2>
-          <span class="text-[11px] font-mono text-slate-500">JMFU2 &bull; Process House HRMS</span>
+            <ul class="nav sub-menu">
+                                    <li class="nav-item">
+                        <a
+                            href="roles.html"
+                            data-href="roles.html"
+                            class="nav-link ">Roles &amp; Permissions</a>
+                    </li>
+                
+                                    <li class="nav-item">
+                        <a
+                            href="general-settings.html"
+                            data-href="general-settings.html"
+                            class="nav-link ">General Settings</a>
+                    </li>
+                
+                                    <li class="nav-item">
+                        <a
+                            href="app-settings.html"
+                            data-href="app-settings.html"
+                            class="nav-link ">App Settings</a>
+                    </li>
+                
+                                    <li class="nav-item">
+                        <a
+                            href="notifications.html"
+                            data-href="notifications.html"
+                            class="nav-link ">Notifications</a>
+                    </li>
+                
+                                    <li class="nav-item ">
+                        <a
+                            href="payment-currency.html"
+                            data-href="payment-currency.html"
+                            class="nav-link "> Payment Currency</a>
+                    </li>
+
+                                                    <li class="nav-item ">
+                        <a
+                            href="feature-control.html"
+                            data-href="feature-control.html"
+                            class="nav-link "> Feature Control</a>
+                    </li>
+                                                    <li class="nav-item ">
+                        <a
+                            href="company-features.html"
+                            data-href="company-features.html"
+                            class="nav-link "> Company Plan Features</a>
+                    </li>
+                
+                                    <li class="nav-item ">
+                        <a
+                            href="fiscal-year.html"
+                            data-href="fiscal-year.html"
+                            class="nav-link "> Fiscal Year</a>
+                    </li>
+                                                    <li class="nav-item ">
+                        <a
+                            href="theme-color.html"
+                            data-href="theme-color.html"
+                            class="nav-link "> Theme Color</a>
+                    </li>
+                
+
+            </ul>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead>
-              <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-bold uppercase text-[11px] tracking-wider">
-                <th class="py-3 px-4 font-bold">#</th><th class="py-3 px-4 font-bold">Event</th><th class="py-3 px-4 font-bold">Event Date</th><th class="py-3 px-4 font-bold">Status</th><th class="py-3 px-4 font-bold">Action</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-100 font-medium text-slate-700">
-              <tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">1</td><td class="py-3 px-4 font-bold text-slate-900">Diwali Festival</td><td class="py-3 px-4 font-mono font-bold text-blue-700">31 Oct 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Diwali Festival', '31 Oct 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">2</td><td class="py-3 px-4 font-bold text-slate-900">Vikram Samvat New Year (Bestu Varas)</td><td class="py-3 px-4 font-mono font-bold text-blue-700">01 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Vikram Samvat New Year (Bestu Varas)', '01 Nov 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
-<tr class="hover:bg-slate-50 transition"><td class="py-3 px-4 text-center font-bold">3</td><td class="py-3 px-4 font-bold text-slate-900">Bhai Dooj</td><td class="py-3 px-4 font-mono font-bold text-blue-700">03 Nov 2026</td><td class="py-3 px-4 text-center"><span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">Public Holiday</span></td><td class="py-3 px-4 text-center"><button onclick="viewHolidayNotice('Bhai Dooj', '03 Nov 2026')" class="px-2.5 py-1 rounded bg-blue-50 text-blue-600 hover:bg-blue-100 font-bold text-xs transition cursor-pointer"><i class="fa-regular fa-clipboard mr-1"></i> Notice</button></td></tr>
-            </tbody>
-          </table>
+    </li>
+                    
+                    <!-- PWA Install Sidebar Item -->
+                    <li class="nav-item d-none" id="sidebar-pwa-install-item">
+                        <a href="javascript:void(0);" id="sidebar-pwa-install-btn" class="nav-link text-primary fw-bold">
+                            <i class="link-icon" data-feather="download"></i>
+                            <span class="link-title">Install App</span>
+                        </a>
+                    </li>
+                            </ul>
         </div>
-      </div>
-    </main>
-  </div>
+    </nav>
+    <!-- partial -->
 
-  
 
-  <script>
-    function viewHolidayNotice(ev, dt) {
-      showToast('Official Holiday Circular dispatched for ' + ev + ' (' + dt + ')', 'info');
+    <div class="page-wrapper">
+
+        <style>
+
+    #nav-search-listing > li.highlight {
+
+        background-color:#e82e5f;
+
     }
-    function openModal(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.remove('hidden');
-    }
-    function closeModal(id) {
-      const el = document.getElementById(id);
-      if (el) el.classList.add('hidden');
-    }
-    
-  </script>
 
-  <!-- Support Modal -->
-  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-          <div>
-            <h3 class="text-sm font-bold text-slate-900">Algorise Enterprise Support</h3>
-            <span class="text-[10px] font-mono text-emerald-600 font-semibold">Priority SLA for JMFU2 &bull; Process House</span>
-          </div>
-        </div>
-        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-      </div>
-      <div class="space-y-3 text-xs text-slate-600">
-        <p>Your dedicated factory support engineer is available for camera RTSP calibrations, biometric sync, and payroll audits.</p>
-        <div class="p-3 bg-slate-50 rounded-xl space-y-1.5 border border-slate-200 font-mono text-[11px]">
-          <div><strong>Support Desk:</strong> 1800-ALGORISE / 9376068009</div>
-          <div><strong>Branch Code:</strong> JMFU2 (Tantithaiya)</div>
-          <div><strong>Active Camera Nodes:</strong> 4 Online (Gate 1, Grey Ingest, Dyeing RBC, Folding)</div>
-        </div>
-      </div>
-      <div class="mt-5 flex justify-end">
-        <button onclick="closeSupportModal()" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition">
-          Close Desk
-        </button>
-      </div>
+    #nav-search-listing > li:hover{
+
+        background-color: #e82e5f;
+
+    }
+
+
+
+    #nav-search-listing > li {
+
+        border-bottom: 1px dashed #f1f1f1;
+
+    }
+
+
+
+    #nav-search-listing > li.highlight a,#nav-search-listing > li:hover a  {
+
+        color: white;
+
+    }
+
+
+
+    #nav-search-listing > li a {
+
+        text-transform: capitalize;
+
+        color: #232323;
+
+    }
+
+</style>
+
+
+
+<!-- partial:partials/_navbar.html -->
+
+<nav class="navbar">
+
+    <a href="#" class="sidebar-toggler">
+
+        <i data-feather="menu"></i>
+
+    </a>
+
+    <div class="navbar-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <form class="search-form mb-0">
+
+            <div class="input-group">
+
+                <div class="input-group-text">
+
+                    <i data-feather="search"></i>
+
+                </div>
+
+                <div id="admin-search-menu">
+
+                        <input class="form-control mt-0"
+
+                               id="nav-search"
+
+                               name="nav-search"
+
+                               type="text"
+
+                               autocomplete="off"
+
+                               placeholder="Search Menu(ctrl+q)"
+
+                               aria-label="Search">
+
+
+
+                        <div class="card card-admin-search" data-toggle="" style="position: absolute !important;">
+
+                            <ul id="nav-search-listing" class="list-group list-group-flush" >
+
+
+
+                            </ul>
+
+                        </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+
+        <ul class="navbar-nav">
+        <li class="nav-item d-none d-lg-flex align-items-center me-2">
+            <span class="badge bg-light text-dark border py-1 px-2" style="font-size:11px; font-weight:700;">
+                <i class="fa-solid fa-industry text-primary me-1"></i> Unit: JMFU2 (Tantithaiya)
+            </span>
+        </li>
+        <li class="nav-item d-none d-md-flex align-items-center me-2">
+            <a href="cctv-sentinel.html" class="btn btn-xs btn-outline-info py-1 px-2" style="font-size:11px; font-weight:700;">
+                <i class="fa-solid fa-video me-1"></i> CCTV Live
+            </a>
+        </li>
+        <li class="nav-item d-none d-md-flex align-items-center me-2">
+            <a href="browser-extension.html" class="btn btn-xs btn-outline-primary py-1 px-2" style="font-size:11px; font-weight:700;">
+                <i class="fa-brands fa-chrome me-1"></i> Extension
+            </a>
+        </li>
+        <li class="nav-item d-none d-md-flex align-items-center me-3">
+            <a href="mobile/" class="btn btn-xs btn-outline-success py-1 px-2" style="font-size:11px; font-weight:700;">
+                <i class="fa-solid fa-mobile-screen me-1"></i> Mobile PWA
+            </a>
+        </li>
+
+
+
+
+            <li class="nav-item dropdown">
+
+
+
+                <a class="nav-link dropdown-toggle" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                            <i class="flag-icon flag-icon-us" title="us" id="us"></i> <span class="ml-1"> English </span>
+
+                                    </a>
+
+                <div class="dropdown-menu p-0" aria-labelledby="langDropdown">
+
+
+
+                    <ul class="list-unstyled p-1">
+
+
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang  active text-white " data-lang="en">
+
+                                <i class="flag-icon flag-icon-us" title="us" id="us"></i> <span class="ml-1"> English </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="fr">
+
+                                <i class="flag-icon flag-icon-fr" title="fr" id="fr"></i> <span class="ml-1"> Français </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="de">
+
+                           <i class="flag-icon flag-icon-de" title="de" id="de"></i> <span class="ml-1"> Deutsch </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="pt">
+
+                           <i class="flag-icon flag-icon-pt" title="pt" id="pt"></i> <span class="ml-1"> Português </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="es">
+
+                            <i class="flag-icon flag-icon-es" title="es" id="es"></i> <span class="ml-1"> Española </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="hi">
+
+                           <i class="flag-icon flag-icon-in" title="hi" id="hi"></i> <span class="ml-1"> हिंदी </span>
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="ru">
+
+                           <i class="flag-icon flag-icon-ru" title="ru" id="ru"></i> <span class="ml-1"> русский </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="ne">
+
+                           <i class="flag-icon flag-icon-np" title="ne" id="ne"></i> <span class="ml-1"> नेपाली" </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="ar">
+
+                                <i class="flag-icon flag-icon-sa" title="ar" id="ar"></i> <span class="ml-1"> عربي </span>
+
+                            </a>
+
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:void(0);" class="dropdown-item changeLang " data-lang="fa">
+
+                                <i class="flag-icon flag-icon-ir" title="fa" id="fa"></i> <span class="ml-1"> فارسی </span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </li>
+
+
+
+            <li class="nav-item">
+
+                <button type="button" class="navbar-toggler align-self-center">
+
+                    <span title="Light mode" id="sun">
+
+                        <i class="link-icon" data-feather="sun"></i>
+
+                    </span>
+
+
+
+                    <span title="Dark mode" id="moon">
+
+                        <i class="link-icon" data-feather="moon"></i>
+
+                    </span>
+
+                </button>
+
+            </li>
+
+
+
+                            <li class="nav-item dropdown" id="notificationsNavBar" data-href="https://www.hisabmittra.com/admin/notifications/get-nav-notification">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i data-feather="bell"></i>
+
+                        <div class="indicator">
+
+                            <div class="circle"></div>
+
+                        </div>
+
+                    </a>
+
+                    <div class="dropdown-menu p-0" aria-labelledby="notificationDropdown">
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="p-1 mt-2" id="notifications-detail">
+
+                            <a class="text-muted p-0 px-3 py-2 " style="font-size: 12px;">Latest Notifications </a>
+
+                        </div>
+
+
+
+                        <div class="p-1" id="notifications-detail">
+
+
+
+
+
+                        </div>
+
+
+
+                        <div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
+
+                            <a href="" id="navAdminNotificationList" data-href="notifications.html">View all</a>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+                                        <li class="nav-item dropdown me-2">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="supportDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <i data-feather="phone-call" style="width: 20px; height: 20px;"></i>
+
+                    </a>
+
+                    <div class="dropdown-menu p-3" aria-labelledby="supportDropdown" style="width: 280px; position: absolute; right: 0;">
+
+                        <h6 class="mb-2 text-primary border-bottom pb-2 font-weight-bold" style="font-size: 14px;">Contact Support</h6>
+
+                                                <ul class="list-unstyled mb-0" style="font-size: 13px;">
+
+                                                            <li class="mb-2">
+
+                                    <div class="text-muted small">Support Phone</div>
+
+                                    <a href="tel:9783055170" class="text-body fw-bold d-flex align-items-center mt-1">
+
+                                        <i class="me-1" data-feather="phone" style="width: 14px; height: 14px;"></i> 9783055170
+
+                                    </a>
+
+                                </li>
+
+                                                                                        <li class="mb-2">
+
+                                    <div class="text-muted small">Support Email</div>
+
+                                    <a href="mailto:support@algorise.ai" class="text-body fw-bold d-flex align-items-center mt-1">
+
+                                        <i class="me-1" data-feather="mail" style="width: 14px; height: 14px;"></i> support@algorise.ai
+
+                                    </a>
+
+                                </li>
+
+                                                                                        <li>
+
+                                    <div class="text-muted small">WhatsApp Support</div>
+
+                                    <a href="https://wa.me/9783055170" target="_blank" class="text-body fw-bold d-flex align-items-center mt-1">
+
+                                        <i class="me-1" data-feather="message-square" style="width: 14px; height: 14px;"></i> 9783055170
+
+                                    </a>
+
+                                </li>
+
+                                                                                </ul>
+
+                    </div>
+
+                </li>
+
+                            <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                        <img class="wd-30 ht-30 rounded-circle" style="object-fit: cover"
+
+                             src="https://www.hisabmittra.com/uploads/admin/avatar/Thumb-69e5d0ed59648_ChatGPT Image Apr 20, 2026, 12_37_23 PM.png"     alt="profile">
+
+
+
+                    </a>
+
+                    <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
+
+                        <div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
+
+                            <div class="mb-3">
+
+                                <img class="wd-80 ht-80 rounded-circle" style="object-fit: cover" src="https://www.hisabmittra.com/uploads/admin/avatar/Thumb-69e5d0ed59648_ChatGPT Image Apr 20, 2026, 12_37_23 PM.png" alt="">
+
+                            </div>
+
+                            <div class="text-center">
+
+                                <p class="tx-16 fw-bolder">Anil Thakker</p>
+
+                                <p class="tx-12 text-muted">Anilraymanga@gmail.com</p>
+
+                            </div>
+
+                        </div>
+
+                        <ul class="list-unstyled p-1">
+
+
+
+                            <li class="dropdown-item py-2">
+
+                                <a href="users.html" class="text-body ms-0">
+
+                                    <i class="me-2 icon-md" data-feather="user"></i>
+
+                                    <span>Profile</span>
+
+                                </a>
+
+                            </li>
+
+
+
+                                                                                                <li class="dropdown-item py-2">
+
+                                        <a href="leave-request-create.html" class="text-body ms-0">
+
+                                            <i class="me-2 icon-md" data-feather="info"></i>
+
+                                            <span>Request Leave</span>
+
+                                        </a>
+
+                                    </li>
+
+                                                                                                                    <li class="dropdown-item py-2">
+
+                                <a class="text-body ms-0 qr-modal" title="App QR " target="_blank" href='https://www.hisabmittra.com/admin/showQR'>
+
+                                    <i class="me-2 icon-md" data-feather="image"></i>
+
+                                    <span>App QR</span>
+
+                                </a>
+
+                            </li>
+
+                                                        <li class="dropdown-item py-2">
+
+                                <a href="javascript:void(0);"
+
+                                   onclick="event.preventDefault();
+
+                                                       document.getElementById('logout-form').submit();" class="text-body ms-0">
+
+                                        <i class="me-2 icon-md" data-feather="log-out"> </i>Log out
+
+                                </a>
+
+                                  <form id="logout-form" action="https://www.hisabmittra.com/admin/logout" method="POST" style="display: none;">
+
+                                        <input type="hidden" name="_token" value="SiDWs5DOcg8aCoPfmfKEQeAPJFeWlBZHD1YtHHch" autocomplete="off">                                  </form>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </li>
+
+
+
+        </ul>
+
+
+
     </div>
-  </div>
 
-  <!-- Footer (Exact HisabMittra copyright + floating chat avatar) -->
-  <footer class="bg-white border-t border-slate-200 py-3 px-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+</nav>
+
+<!-- partial -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="page-content">
+
+            <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+
     <div>
-      Copyright &copy; 2026 <a href="https://hisabmittra.com" target="_blank" class="text-blue-600 hover:underline font-semibold">hisabmittra.com</a>. Powered by Algorise PeopleOS.
+
+        <h4 class="mb-3 mb-md-0">
+
+                    </h4>
+
     </div>
-    <div class="text-[11px] text-slate-400">
-      Enterprise Textile HRM &bull; Process House HRMS &bull; Tantithaiya, Surat
+
+</div>
+
+                    
+
+    <section class="content">
+
+        <script>
+
+    setTimeout(function() {
+
+        let elementToHide = document.getElementById('message');
+
+        if (elementToHide) {
+
+            elementToHide.style.display = 'none';
+
+        }
+
+    }, 2000);
+
+</script>
+
+
+
+        <nav class="page-breadcrumb d-flex align-items-center justify-content-between">
+
+    <ol class="breadcrumb mb-0">
+
+        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+
+        <li class="breadcrumb-item"><a href="holidays.html">Holiday section</a></li>
+
+        <li class="breadcrumb-item active" aria-current="page">Lists</li>
+
+    </ol>
+
+
+
+        <div class="float-md-end">
+
+                    <a href="https://www.hisabmittra.com/admin/holidays/create">
+
+                <button class="btn btn-primary">
+
+                    <i class="link-icon" data-feather="plus"></i>Add Holiday                </button>
+
+            </a>
+
+        
+
+                    <a href="https://www.hisabmittra.com/admin/holidays/import-csv">
+
+                <button class="btn btn-success">
+
+                    <i class="link-icon"></i>Import Holiday CSV                </button>
+
+            </a>
+
+            </div>
+
+
+
+</nav>
+
+
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+
+                <h6 class="card-title mb-0">Holiday Filter</h6>
+
+            </div>
+
+            <div class="card-body pb-0">
+
+                <form class="forms-sample" action="https://www.hisabmittra.com/admin/holidays" method="get">
+
+                    <div class="row align-items-center">
+
+                        <div class="col-lg col-md-6 mb-4">
+
+                            <input type="text" placeholder="Event name" id="event" name="event" value="" class="form-control">
+
+                        </div>
+
+
+
+                        <div class="col-lg col-md-6 mb-4">
+
+                            <input type="number" min="2020" max="2033" step="1"
+
+                                placeholder="Leave Requested year e.g : 2020"
+
+                                id="year" name="event_year" value="2026" class="form-control">
+
+                        </div>
+
+
+
+                        <div class="col-lg col-md-6 mb-4">
+
+                            <select class="form-select form-select-lg" name="month" id="month">
+
+                                <option value="" selected>All Month</option>
+
+                                                                    <option value="1" >
+
+                                        Jan
+
+                                    </option>
+
+                                                                    <option value="2" >
+
+                                        Feb
+
+                                    </option>
+
+                                                                    <option value="3" >
+
+                                        Mar
+
+                                    </option>
+
+                                                                    <option value="4" >
+
+                                        Apr
+
+                                    </option>
+
+                                                                    <option value="5" >
+
+                                        May
+
+                                    </option>
+
+                                                                    <option value="6" >
+
+                                        Jun
+
+                                    </option>
+
+                                                                    <option value="7" >
+
+                                        Jul
+
+                                    </option>
+
+                                                                    <option value="8" >
+
+                                        Aug
+
+                                    </option>
+
+                                                                    <option value="9" >
+
+                                        Sept
+
+                                    </option>
+
+                                                                    <option value="10" >
+
+                                        Oct
+
+                                    </option>
+
+                                                                    <option value="11" >
+
+                                        Nov
+
+                                    </option>
+
+                                                                    <option value="12" >
+
+                                        Dec
+
+                                    </option>
+
+                                                            </select>
+
+                        </div>
+
+
+
+                        <div class="col-lg-2 col-md-6 mb-4">
+
+                            <div class="d-flex float-md-end">
+
+                                <button type="submit" class="btn btn-block btn-success me-2">Filter</button>
+
+                                <a class="btn btn-block btn-primary" href="holidays.html">Reset</a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h6 class="card-title mb-0">Holiday Lists</h6>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table id="dataTableExample" class="table">
+
+                        <thead>
+
+                        <tr>
+
+                            <th>#</th>
+
+                            <th>Event</th>
+
+                            <th>Event Date</th>
+
+                            <th class="text-center">Status</th>
+
+                                                            <th class="text-center">Action</th>
+
+                                                    </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                                                    <tr>
+
+                                <td colspan="100%">
+
+                                    <p class="text-center"><b>No records found!</b></p>
+
+                                </td>
+
+                            </tr>
+
+                                                </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="dataTables_paginate mt-3">
+
+            
+
+        </div>
+
+    </section>
+
+        <div class="modal fade" id="addslider" tabindex="-1" aria-labelledby="addslider" aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header text-center">
+
+                <h5 class="modal-title" id="exampleModalLabel">Holiday Detail</h5>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="modal_desc border-bottom pb-2 mb-2 d-flex align-items-center gap-2">
+
+                    <h6>Event:</h6>
+
+                    <p class="occasion"></p>
+
+                </div>
+
+                <div class="modal_desc border-bottom pb-2 mb-2 d-flex align-items-center gap-2">
+
+                    <h6>Event Date:</h6>
+
+                    <p class="occasion_date"></p>
+
+                </div>
+
+
+
+                <div class="modal_desc">
+
+                    <h6>Description:</h6>
+
+                    <p class="note"></p>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-  </footer>
 
-  <!-- Floating Assistant Widget (Matches HisabMittra bottom-right assistant avatar) -->
-  <div class="fixed bottom-6 right-6 z-40">
-    <button onclick="showToast('Aria AI Assistant is monitoring real-time camera ingestion for 493 workers.', 'info')" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer relative" title="AI Factory Assistant">
-      <i class="fa-solid fa-headset text-lg"></i>
-      <span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
-    </button>
-  </div>
+</div>
 
-  <!-- Shared JavaScript Utilities -->
-  <script>
-    // In-App Toast System (100% replaces alert popups)
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      if (!container) return;
-      const toast = document.createElement('div');
-      const colors = {
-        success: 'bg-emerald-600 text-white',
-        error: 'bg-rose-600 text-white',
-        warning: 'bg-amber-500 text-white',
-        info: 'bg-blue-600 text-white'
-      };
-      const icons = {
-        success: 'fa-check-circle',
-        error: 'fa-circle-exclamation',
-        warning: 'fa-triangle-exclamation',
-        info: 'fa-info-circle'
-      };
-      toast.className = `${colors[type] || colors.info} p-3.5 rounded-xl shadow-xl flex items-center gap-3 text-xs font-semibold toast-anim pointer-events-auto border border-white/20`;
-      toast.innerHTML = `
-        <i class="fa-solid ${icons[type] || icons.info} text-base flex-shrink-0"></i>
-        <div class="flex-1">${message}</div>
-        <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white text-xs p-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      `;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      }, 4000);
+        </div>
+
+
+
+        <!-- partial -->
+
+        <!-- partial:partials/_footer.html -->
+
+<footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
+
+    <p class="text-muted mb-1 mb-md-0">Copyright © 2026 <a href="https://hisabmittra.com/" target="_blank">hisabmittracom</a>.</p>
+
+</footer>
+
+<!-- partial -->
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- core:js -->
+
+<script src="https://www.hisabmittra.com/assets/vendors/core/core.js"></script>
+
+<!-- endinject -->
+
+
+
+<!-- Plugin js for this page -->
+
+<script src="https://www.hisabmittra.com/assets/vendors/chartjs/Chart.min.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/vendors/jquery.flot/jquery.flot.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/vendors/jquery.flot/jquery.flot.resize.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/vendors/apexcharts/apexcharts.min.js"></script>
+
+<!-- End plugin js for this page -->
+
+
+
+<!-- inject:js -->
+
+<script src="https://www.hisabmittra.com/assets/vendors/feather-icons/feather.min.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/js/template.js"></script>
+
+<!-- endinject -->
+
+
+
+<!-- Custom js for this page -->
+
+<script src="https://www.hisabmittra.com/assets/js/dashboard-light.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/js/datepicker.js"></script>
+
+
+
+
+
+<!-- End custom js for this page -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+<!-- sweet alert -->
+
+
+
+<script src="https://www.hisabmittra.com/assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+
+
+
+
+
+
+
+
+
+<script src="https://www.hisabmittra.com/assets/js/nepaliDatepicker.min.js" type="text/javascript"></script>
+
+<script>
+
+    // Global safety wrapper for nepaliDatePicker to prevent crashes on empty selections or when feature is disabled
+
+    if (typeof jQuery !== 'undefined' && jQuery.fn.nepaliDatePicker) {
+
+        const originalNepaliDatePicker = jQuery.fn.nepaliDatePicker;
+
+        jQuery.fn.nepaliDatePicker = function(options) {
+
+            if (this.length === 0 || !false) {
+
+                return this;
+
+            }
+
+            try {
+
+                return originalNepaliDatePicker.apply(this, arguments);
+
+            } catch (e) {
+
+                console.warn('nepaliDatePicker failed to initialize:', e);
+
+                return this;
+
+            }
+
+        };
+
     }
 
-    // Accordion Toggle
-    function toggleAccordion(id) {
-      const el = document.getElementById(id);
-      const arrow = document.getElementById(id + '-arrow');
-      if (!el) return;
-      if (el.classList.contains('hidden')) {
-        el.classList.remove('hidden');
-        if (arrow) {
-          arrow.classList.remove('fa-chevron-right');
-          arrow.classList.add('fa-chevron-down');
+</script>
+
+
+
+<!-- Mobile Responsive JS - Global Fix for All Forms -->
+
+<script src="https://www.hisabmittra.com/js/mobile-responsive.js"></script>
+
+
+
+
+
+<script>
+
+    $('div.alert.alert-danger').not('.alert-important').delay(10000).slideUp(900);
+
+    $('div.alert.alert-success').not('.alert-important').delay(5000).slideUp(900);
+
+</script>
+
+
+
+
+
+
+
+<script>
+
+    $('document').ready(function (){
+
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+
+        });
+
+
+
+
+
+
+
+        $('#notificationsNavBar').click(function(event){
+
+            event.preventDefault();
+
+            let url = $(this).data('href');
+
+            $.get(url, function (data) {
+
+                let len = 0;
+
+                if(data.data != null){
+
+                    len = data.data.length;
+
+                }
+
+                if(len > 0) {
+
+                    $(".check").remove();
+
+                    for (let i = 0; i < len; i++) {
+
+                        let title = data.data[i].title
+
+                        let publishDate = data.data[i].publish_date;
+
+                        let notification =
+
+                            "<span class='dropdown-item d-flex align-items-center py-2 check'>"+
+
+                            "<div class='wd-30 ht-30 d-flex align-items-center justify-content-center bg-primary rounded-circle me-3'>"+
+
+                            "<i class='icon-bell text-white' data-feather='bell'>"+"</i>"+
+
+                            "</div>"+
+
+
+
+                            "<div class='text-muted  me-2'>"+
+
+                            "<p>" +title+ "</p>"+
+
+                            "<p class='tx-12 text-muted publish_date'>" +publishDate+ "</p>"+
+
+                            "</div>"+
+
+                            "</span>";
+
+                        $("#notifications-detail").append(notification);
+
+                    }
+
+                }
+
+
+
+            });
+
+        })
+
+
+
+        $('#navAdminNotificationCreate').on('click',function(event){
+
+            let href = $(this).data('href');
+
+            window.location.href = href;
+
+        });
+
+
+
+        $('#navAdminNotificationList').on('click',function(event){
+
+            let url = $(this).data('href');
+
+            window.location.href = url;
+
+        });
+
+
+
+
+
+
+
+
+
+    });
+
+</script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#nav-search').val('');
+
+        let currentLI = 0;
+
+        const keydown = 38;
+
+        const keyup = 40;
+
+        const keyEnter = 13;
+
+
+
+        $("#nav-search").on("keyup", function (e) {
+
+            e.preventDefault();
+
+            let keycode = e.keyCode;
+
+
+
+            if(keycode !== keydown && keycode !== keyup){
+
+                let linksArr = {};
+
+                $('.sidebar-menu li a').each(function (i) {
+
+                    let href = $(this).data('href');
+
+                    if(href !=='#'){
+
+                        let name = $(this).text().toLowerCase();
+
+                        linksArr[name] = $(this).data('href');
+
+                    }
+
+                });
+
+
+
+                let linkKeys = Object.keys(linksArr)
+
+                let searchQuery = $('#nav-search').val();
+
+                if (searchQuery.length >= 0) {
+
+                    $('#nav-search-listing li').remove();
+
+                    if (searchQuery) {
+
+                        for (i = 0; i < linkKeys.length; i++) {
+
+                            let hreflocation = linksArr[linkKeys[i]];
+
+
+
+                            if (linkKeys[i].toLowerCase().indexOf(searchQuery) > -1) {
+
+                                $('#nav-search-listing').
+
+                                append( '<li id="nav-menu" class="nav-listing list-group-item">' +
+
+                                    '<a href=" '+hreflocation+' ">'+linkKeys[i]+'</a></li>');
+
+
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+            //for up down with arrow key highlight/select
+
+
+
+            let listItems = document.querySelectorAll("#nav-search-listing li");
+
+            listItems[currentLI].classList.add("highlight");
+
+            if(keycode == keydown) {
+
+                listItems[currentLI].classList.remove("highlight");
+
+                currentLI = currentLI > 0 ? --currentLI : 0;
+
+                console.log(currentLI);
+
+                listItems[currentLI].classList.add("highlight");
+
+            }
+
+
+
+            if(keycode == keyup){
+
+                listItems[currentLI].classList.remove("highlight");
+
+                currentLI = currentLI < listItems.length - 1 ? ++currentLI : listItems.length - 1;
+
+                listItems[currentLI].classList.add("highlight");
+
+            }
+
+
+
+            //redirect to highlighted url on enter key press
+
+            if(keycode == keyEnter){
+
+                let url = $('.highlight').find('a').attr('href');
+
+                window.location.href = url;
+
+            }
+
+
+
+        });
+
+
+
+        // ctrl + Q command for focusing in admin search field
+
+        window.addEventListener("keydown",function (e) {
+
+            if (e.ctrlKey && e.keyCode === 81){
+
+                if($('#nav-search').is(":focus")) {
+
+                    return true;
+
+                } else {
+
+                    e.preventDefault();
+
+                    $('#nav-search').focus();
+
+                }
+
+            }
+
+        });
+
+
+
+        // toggle hide and show based on input field focus
+
+        $(document).click(function(evt) {
+
+            if ($(evt.target).closest('#admin-search-menu').length === 0) {
+
+                $('.card-admin-search').hide();
+
+            }
+
+        });
+
+
+
+        $('#admin-search-menu').focusin(function(e){
+
+            e.preventDefault();
+
+            $('.card-admin-search').show();
+
+        });
+
+
+
+    });
+
+
+
+
+
+</script>
+
+<script>
+
+    
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+
+
+    $(document).ready(function () {
+
+        let theme = 'light';
+
+        loadTheme(theme);
+
+
+
+        $('#moon').click(function() {
+
+            changeTheme();
+
+        });
+
+
+
+        $('#sun').click(function() {
+
+            changeTheme();
+
+        });
+
+
+
+        function changeTheme() {
+
+            $.ajax({
+
+                type: "GET",
+
+                url: "https://www.hisabmittra.com/admin/change-theme",
+
+                success: function(data) {
+
+                    $("#themeColor").remove();
+
+                    loadTheme(data.theme);
+
+                    location.reload();
+
+                }
+
+            });
+
         }
-      } else {
-        el.classList.add('hidden');
-        if (arrow) {
-          arrow.classList.remove('fa-chevron-down');
-          arrow.classList.add('fa-chevron-right');
+
+
+
+        function loadTheme(theme) {
+
+            if (theme === 'light') {
+
+                $('head').append('<link rel="stylesheet" href="https://www.hisabmittra.com/assets/css/style.css" id="themeColor" />');
+
+                $('#moon').show();
+
+                $('#sun').hide();
+
+            } else {
+
+                $('head').append('<link rel="stylesheet" href="https://www.hisabmittra.com/assets/css/style_dark.css" id="themeColor" />');
+
+                $('#sun').show();
+
+                $('#moon').hide();
+
+            }
+
         }
-      }
+
+    });
+
+
+
+</script>
+
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js" crossorigin="anonymous"></script>
+
+<script src="https://www.hisabmittra.com/assets/vendors/select2/select2.min.js"></script>
+
+
+
+
+
+    <script src="https://www.hisabmittra.com/assets/vendors/tinymce/tinymce.min.js"></script>
+
+<script src="https://www.hisabmittra.com/assets/js/tinymce.js?v=2"></script>
+
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $.ajaxSetup({
+
+            headers: {
+
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+
+            }
+
+        });
+
+
+
+        $('.toggleStatus').change(function (event) {
+
+            event.preventDefault();
+
+            let status = $(this).prop('checked') === true ? 1 : 0;
+
+            let href = $(this).attr('href');
+
+            Swal.fire({
+
+                title: 'Are you sure you want to change status?',
+
+                showDenyButton: true,
+
+                confirmButtonText: `Yes`,
+
+                denyButtonText: `No`,
+
+                padding:'10px 50px 10px 50px',
+
+                allowOutsideClick: false
+
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    window.location.href = href;
+
+                } else if (result.isDenied) {
+
+                    (status === 0) ? $(this).prop('checked', true) : $(this).prop('checked', false)
+
+                }
+
+            })
+
+        });
+
+
+
+        $('.deleteHoliday').click(function (event) {
+
+            event.preventDefault();
+
+            let href = $(this).data('href');
+
+            Swal.fire({
+
+                title: 'Are you sure you want to Delete Holiday Detail?',
+
+                showDenyButton: true,
+
+                confirmButtonText: `Yes`,
+
+                denyButtonText: `No`,
+
+                padding:'10px 50px 10px 50px',
+
+                allowOutsideClick: false
+
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    window.location.href = href;
+
+                }
+
+            })
+
+        });
+
+
+
+        $('body').on('click', '#showHolidayDetail', function (e) {
+
+            e.preventDefault();
+
+            let url = $(this).data('href');
+
+            $.get(url, function (data) {
+
+                $('.modal-title').html('Holiday Detail');
+
+                $('.occasion').text(data.data.event);
+
+                $('.occasion_date').text((data.data.event_date));
+
+                $('.note').text(data.data.note);
+
+                $('#addslider').modal('show');
+
+            });
+
+        }).trigger("change");
+
+
+
+        $('.reset').click(function(event){
+
+            event.preventDefault();
+
+            $('#event').val('');
+
+            $('#month').val('');
+
+            $('#year').val('');
+
+        });
+
+
+
+        $('#eventDate').nepaliDatePicker({
+
+            language: "english",
+
+            dateFormat: "MM/DD/YYYY",
+
+            ndpYear: true,
+
+            ndpMonth: true,
+
+            ndpYearCount: 20,
+
+            disableAfter: "2089-12-30",
+
+        });
+
+    });
+
+
+
+</script>
+
+
+
+<script type="text/javascript">
+
+    let url = "https://www.hisabmittra.com/admin/language/change";
+
+
+
+    $(".changeLang").click(function() {
+
+        let lang = $(this).data('lang');
+
+        window.location.href = url + "?lang=" + lang;
+
+    });
+
+</script>
+
+
+
+<!-- PWA Install Banner (Bootstrap 5) -->
+
+<div id="pwa-install-banner" class="card shadow-lg border-0 position-fixed bottom-0 start-50 translate-middle-x m-3" style="display: none; max-width: 400px; width: 90%; border-radius: 16px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important; z-index: 9999;">
+
+    <div class="card-body d-flex align-items-center p-3">
+
+        <img src="/icons/icon-192.png" alt="hisabMittra Logo" class="rounded-3 me-3" style="width: 48px; height: 48px; object-fit: cover;">
+
+        <div class="flex-grow-1">
+
+            <h6 class="mb-0 fw-bold text-dark" style="font-family: 'Poppins', sans-serif;">Install hisabMittra App</h6>
+
+            <small class="text-muted d-block" style="font-size: 11px; font-family: 'Poppins', sans-serif;">Access attendance & payroll instantly from your home screen.</small>
+
+        </div>
+
+        <div class="d-flex flex-column gap-1 ms-2">
+
+            <button id="pwa-install-btn" class="btn btn-sm btn-primary fw-semibold px-3" style="border-radius: 8px; background-color: #1565C0; border-color: #1565C0; font-family: 'Poppins', sans-serif; font-size: 12px;">Install</button>
+
+            <button id="pwa-close-btn" class="btn btn-sm btn-link text-muted text-decoration-none fw-medium py-0" style="font-size: 11px; font-family: 'Poppins', sans-serif;">Maybe Later</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    let deferredPrompt;
+
+    const installBanner = document.getElementById('pwa-install-banner');
+
+    const installBtn = document.getElementById('pwa-install-btn');
+
+    const closeBtn = document.getElementById('pwa-close-btn');
+
+    const sidebarInstallItem = document.getElementById('sidebar-pwa-install-item');
+
+    const sidebarInstallBtn = document.getElementById('sidebar-pwa-install-btn');
+
+
+
+    // Service Worker Registration
+
+    if ('serviceWorker' in navigator) {
+
+        window.addEventListener('load', () => {
+
+            navigator.serviceWorker.register('/sw.js')
+
+                .then(reg => console.log('PWA Service Worker registered successfully: ', reg.scope))
+
+                .catch(err => console.error('PWA Service Worker registration failed: ', err));
+
+        });
+
     }
 
-    // Sidebar Hamburger Toggle
-    function toggleSidebar() {
-      const sidebar = document.getElementById('mainSidebar');
-      if (sidebar) {
-        sidebar.classList.toggle('hidden');
-      }
-    }
 
-    // Keyboard Hotkey (Ctrl+Q) for menu search
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
+
+    // Capture beforeinstallprompt event
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+
         e.preventDefault();
-        const searchInput = document.getElementById('globalMenuSearch');
-        if (searchInput) {
-          searchInput.focus();
-          searchInput.select();
+
+        deferredPrompt = e;
+
+        
+
+        // Show sidebar install button
+
+        if (sidebarInstallItem) {
+
+            sidebarInstallItem.classList.remove('d-none');
+
         }
-      }
+
+
+
+        // Don't show banner if the user dismissed it during this session or recently
+
+        if (localStorage.getItem('pwa-install-dismissed') === 'true') {
+
+            return;
+
+        }
+
+
+
+        if (installBanner) {
+
+            installBanner.style.display = 'block';
+
+        }
+
     });
 
-    // Menu search filtering
-    function handleMenuSearch(q) {
-      const term = q.trim().toLowerCase();
-      const sidebar = document.getElementById('mainSidebar');
-      if (!sidebar) return;
-      const links = sidebar.querySelectorAll('a, button');
-      links.forEach(item => {
-        if (!term) {
-          item.parentElement.style.display = '';
-          return;
+
+
+    // Handle Sidebar Install Button Click
+
+    if (sidebarInstallBtn) {
+
+        sidebarInstallBtn.addEventListener('click', async () => {
+
+            if (deferredPrompt) {
+
+                deferredPrompt.prompt();
+
+                const { outcome } = await deferredPrompt.userChoice;
+
+                console.log(`Sidebar Install prompt choice: ${outcome}`);
+
+                deferredPrompt = null;
+
+                hideInstallUI();
+
+            } else if (isIos() || isSafari()) {
+
+                alert('To install on iPhone/Safari: Tap the Share button at the bottom of Safari, then select "Add to Home Screen".');
+
+            } else {
+
+                alert('App is already installed or your browser is ready!');
+
+            }
+
+        });
+
+    }
+
+
+
+    // iOS and Apple Safari detection (handles desktop mode on iPads/iPhones)
+
+    const isIos = () => {
+
+        const userAgent = window.navigator.userAgent.toLowerCase();
+
+        return /iphone|ipad|ipod/.test(userAgent) || (userAgent.includes('macintosh') && navigator.maxTouchPoints > 1);
+
+    };
+
+    const isSafari = () => {
+
+        const userAgent = window.navigator.userAgent.toLowerCase();
+
+        return userAgent.includes('safari') && !userAgent.includes('crios') && !userAgent.includes('fxios') && !userAgent.includes('chrome') && !userAgent.includes('android') && !userAgent.includes('instagram') && !userAgent.includes('fbios') && !userAgent.includes('whatsapp');
+
+    };
+
+    const isInStandaloneMode = () => ('standalone' in window.navigator) && (window.navigator.standalone);
+
+
+
+    if ((isIos() || isSafari()) && !isInStandaloneMode()) {
+
+        if (sidebarInstallItem) {
+
+            sidebarInstallItem.classList.remove('d-none');
+
         }
-        const txt = item.textContent.toLowerCase();
-        if (txt.includes(term)) {
-          item.parentElement.style.display = '';
-          // If in an accordion, open it
-          const parentAccordion = item.closest('[id^="sec-"]');
-          if (parentAccordion && parentAccordion.classList.contains('hidden')) {
-            parentAccordion.classList.remove('hidden');
-          }
+
+        if (localStorage.getItem('pwa-install-dismissed') !== 'true') {
+
+            if (installBanner) {
+
+                const titleElement = installBanner.querySelector('h6');
+
+                const descElement = installBanner.querySelector('small');
+
+                if (titleElement) titleElement.innerText = 'Install on iPhone';
+
+                
+
+                if (isSafari()) {
+
+                    if (descElement) descElement.innerHTML = 'Tap the browser\'s <b>Share button 📤 at the bottom of your screen</b>, then select <b>Add to Home Screen</b>.';
+
+                } else {
+
+                    if (descElement) descElement.innerHTML = '⚠️ PWA installation is only supported in Safari. Please <b>open this page in Safari browser</b> to install.';
+
+                }
+
+                
+
+                if (installBtn) installBtn.style.display = 'none';
+
+                installBanner.style.display = 'block';
+
+            }
+
         }
-      });
+
     }
 
-    // Theme toggle
-    function toggleTheme() {
-      const isDark = document.documentElement.classList.toggle('dark');
-      const icon = document.getElementById('themeIcon');
-      if (icon) {
-        icon.className = isDark ? 'fa-regular fa-sun text-sm' : 'fa-regular fa-moon text-sm';
-      }
-      showToast(`Switched to ${isDark ? 'Dark' : 'Light'} theme`, 'info');
+
+
+    if (installBtn) {
+
+        const handleInstall = async () => {
+
+            if (!deferredPrompt) return;
+
+            deferredPrompt.prompt();
+
+            const { outcome } = await deferredPrompt.userChoice;
+
+            console.log(`User prompt choice: ${outcome}`);
+
+            deferredPrompt = null;
+
+            hideInstallUI();
+
+        };
+
+        installBtn.addEventListener('click', handleInstall);
+
+        installBtn.addEventListener('touchstart', handleInstall);
+
     }
 
-    // Language selector
-    function toggleLangMenu() {
-      const menu = document.getElementById('langDropdown');
-      if (menu) menu.classList.toggle('hidden');
+
+
+    if (closeBtn) {
+
+        const handleClose = () => {
+
+            localStorage.setItem('pwa-install-dismissed', 'true');
+
+            hideInstallBanner();
+
+        };
+
+        closeBtn.addEventListener('click', handleClose);
+
+        closeBtn.addEventListener('touchstart', handleClose);
+
     }
 
-    function setLanguage(lang, label) {
-      const lbl = document.getElementById('currentLangLabel');
-      if (lbl) lbl.textContent = label;
-      toggleLangMenu();
-      showToast(`Language set to ${label}`, 'success');
-      if (lang === 'gu') {
-        playGujaratiPrompt();
-      }
+
+
+    function hideInstallBanner() {
+
+        if (installBanner) {
+
+            installBanner.style.display = 'none';
+
+        }
+
     }
 
-    // Gujarati Speech Synthesis (Payroll Vision Replica)
-    function playGujaratiPrompt() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance('હાલમાં ઑડિયો ભાષા ગુજરાતી છે. પ્રોસેસ હાઉસ એચઆરએમ માં આપનું સ્વાગત છે.');
-        utterance.lang = 'gu-IN';
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
-        showToast('Playing: "હાલમાં ઑડિયો ભાષા ગુજરાતી છે" (Gujarati Audio Active)', 'success');
-      } else {
-        showToast('Speech audio synthesizer initialized: Gujarati active', 'info');
-      }
+
+
+    function hideInstallUI() {
+
+        hideInstallBanner();
+
+        if (sidebarInstallItem) {
+
+            sidebarInstallItem.classList.add('d-none');
+
+        }
+
     }
 
-    // Support Modal
-    function openSupportModal() {
-      const m = document.getElementById('supportModal');
-      if (m) m.classList.remove('hidden');
-    }
-    function closeSupportModal() {
-      const m = document.getElementById('supportModal');
-      if (m) m.classList.add('hidden');
-    }
 
-    // Generic Modal Close on Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeSupportModal();
-        document.querySelectorAll('.app-modal').forEach(m => m.classList.add('hidden'));
-      }
+
+    window.addEventListener('appinstalled', () => {
+
+        console.log('hisabMittra app installed successfully!');
+
+        hideInstallUI();
+
     });
-  </script>
+
+</script>
+
+
+
+
+
+<script>
+
+    window.IS_EMPLOYEE_PUNCHED_IN = false;
+
+    window.LOCATION_STORE_URL = "https://www.hisabmittra.com/admin/employee/location/store";
+
+    window.LOCATION_ERROR_URL = "https://www.hisabmittra.com/admin/employee/location/error";
+
+</script>
+
+<script src="https://www.hisabmittra.com/assets/js/location_tracking.js?v=1793288108"></script>
+
+
+
+
+
+<link rel="stylesheet" href="https://www.hisabmittra.com/css/ai-assistant.css">
+<style>
+    /* Premium style improvements */
+    #hm-ai-fab {
+        background: linear-gradient(135deg, var(--primary-color, #ff3366), var(--dark-primary-color, #d81b60));
+        box-shadow: 0 4px 15px rgba(216, 27, 96, 0.4);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #hm-ai-fab img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+    .hm-ai-avatar-header {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.8);
+        object-fit: cover;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .hm-ai-bubble-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 80%;
+    }
+    .hm-ai-speak-bubble-btn {
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        margin-top: 4px;
+        padding: 2px 8px;
+        color: #475569;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: all 0.2s ease;
+        font-weight: 500;
+    }
+    .hm-ai-speak-bubble-btn:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+        transform: translateY(-1px);
+    }
+    .hm-ai-speak-bubble-btn.speaking {
+        background: #dbeafe;
+        border-color: #bfdbfe;
+        color: #1d4ed8;
+        animation: pulse-border 1.5s infinite;
+    }
+    @keyframes pulse-border {
+        0% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0.4); }
+        70% { box-shadow: 0 0 0 4px rgba(29, 78, 216, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(29, 78, 216, 0); }
+    }
+</style>
+
+<div
+    id="hm-ai-root"
+    x-data="hmAiAssistant()"
+    x-init="init()"
+>
+    
+    <button
+        id="hm-ai-fab"
+        @click="toggleDrawer()"
+        :aria-label="open ? 'Close AI Assistant' : 'Open AI Assistant'"
+        title="HisabMittra AI Assistant"
+    >
+        <span x-show="!open" style="width: 100%; height: 100%; display: block; overflow: hidden; border-radius: 50%;">
+            <img src="https://www.hisabmittra.com/assets/images/ai-avatar.png" alt="AI">
+        </span>
+        <span x-show="open" style="font-size: 1.5rem; line-height: 1; color: white;">✕</span>
+        <span class="hm-ai-badge" x-show="!open"></span>
+    </button>
+
+    
+    <div
+        id="hm-ai-drawer"
+        x-show="open"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-4"
+        style="display: none;"
+    >
+        
+        <div id="hm-ai-header">
+            <img class="hm-ai-avatar-header" src="https://www.hisabmittra.com/assets/images/ai-avatar.png" alt="AI Avatar">
+            <div class="hm-ai-title" style="margin-left: 10px;">
+                HisabMittra AI
+                <div class="hm-ai-subtitle">Your HR assistant</div>
+            </div>
+            <div class="hm-ai-actions">
+                
+                <button @click="clearChat()" title="Clear conversation" style="background:none; border:none; font-size:1.1rem; cursor:pointer;">🗑️</button>
+                
+                <button @click="open = false" title="Close" style="background:none; border:none; font-size:1.1rem; cursor:pointer; color:white; margin-left: 5px;">✕</button>
+            </div>
+        </div>
+
+        
+        <div id="hm-ai-messages" x-ref="messagesBox">
+
+            
+            <div id="hm-ai-welcome" x-show="messages.length === 0">
+                <div class="hm-ai-welcome-icon">✨</div>
+                <p>Hi! I'm your HisabMittra AI assistant.<br>Ask me anything about attendance, leave, payroll, or tasks.</p>
+            </div>
+
+            
+            <template x-for="(msg, idx) in messages" :key="idx">
+                <div class="hm-ai-msg" :class="msg.role === 'user' ? 'hm-user' : ''">
+                    <div class="hm-ai-msg-icon" style="flex-shrink:0;">
+                        <template x-if="msg.role === 'user'">
+                            <span style="font-size: 1.25rem;">👤</span>
+                        </template>
+                        <template x-if="msg.role !== 'user'">
+                            <img src="https://www.hisabmittra.com/assets/images/ai-avatar.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #e2e8f0;">
+                        </template>
+                    </div>
+                    <div class="hm-ai-bubble-container">
+                        <div class="hm-ai-bubble" x-html="formatMessage(msg.content)"></div>
+                        <template x-if="msg.role !== 'user'">
+                            <div style="display: flex; gap: 6px; align-items: center;">
+                                <button 
+                                    @click="speak(msg.content, idx)" 
+                                    class="hm-ai-speak-bubble-btn"
+                                    :class="speakingIndex === idx ? 'speaking' : ''"
+                                    :title="speakingIndex === idx ? 'Mute' : 'Listen with Indian Accent'"
+                                >
+                                    <span x-text="speakingIndex === idx ? '⏹' : '🔊'"></span>
+                                    <span x-text="speakingIndex === idx ? 'Speaking...' : 'Listen'"></span>
+                                </button>
+                                <button 
+                                    @click="backToMenu()" 
+                                    class="hm-ai-speak-bubble-btn"
+                                    title="Back to Suggestion Menu"
+                                >
+                                    <span>🔙</span>
+                                    <span>Menu</span>
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            
+            <div class="hm-ai-msg" x-show="loading">
+                <div class="hm-ai-msg-icon">
+                    <img src="https://www.hisabmittra.com/assets/images/ai-avatar.png" style="width:28px;height:28px;border-radius:50%;object-fit:cover;border:1px solid #e2e8f0;">
+                </div>
+                <div class="hm-typing">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="hm-ai-suggestions" x-show="messages.length === 0 || showMenuAlways">
+            <template x-for="chip in suggestions" :key="chip">
+                <button class="hm-chip" @click="sendChip(chip)" x-text="chip"></button>
+            </template>
+        </div>
+
+        
+        <div id="hm-ai-input-area">
+            <textarea
+                id="hm-ai-input"
+                x-model="input"
+                @keydown.enter.prevent="!$event.shiftKey && send()"
+                :disabled="loading"
+                placeholder="Ask me anything… (Enter to send)"
+                rows="1"
+                @input="autoResize($event.target)"
+            ></textarea>
+
+            <button
+                id="hm-ai-send-btn"
+                @click="send()"
+                :disabled="loading || !input.trim()"
+                title="Send"
+            >
+                <span x-show="!loading">➤</span>
+                <span x-show="loading" class="spinner-border spinner-border-sm" role="status"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function hmAiAssistant() {
+    return {
+        open:           false,
+        loading:        false,
+        input:          '',
+        messages:       [],
+        conversationId: null,
+        speakingIndex:  null,
+        indianVoice:    null,
+        showMenuAlways: false,
+        suggestions: [
+            'What is my leave balance?',
+            'How do I apply for leave?',
+            'Show my pending tasks',
+            'What is today\'s attendance status?',
+            'How does payroll work?',
+        ],
+
+        init() {
+            // Load history from server
+            this.loadHistory();
+            
+            // Find and cache the Indian voice
+            this.loadIndianVoice();
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.onvoiceschanged = () => {
+                    this.loadIndianVoice();
+                };
+            }
+        },
+
+        toggleDrawer() {
+            this.open = !this.open;
+            if (this.open) {
+                this.$nextTick(() => {
+                    this.scrollToBottom();
+                    document.getElementById('hm-ai-input')?.focus();
+                });
+            }
+        },
+
+        loadIndianVoice() {
+            if (!('speechSynthesis' in window)) return;
+            const voices = window.speechSynthesis.getVoices();
+            
+            // Prioritize Indian Female/Lady voices:
+            // hi-IN (Hindi India) -> en-IN (English India)
+            // Look for female voice signatures in name (e.g. Kalpana, Swara, Heera, Neerja, Zira, Google, Female)
+            let chosen = voices.find(v => {
+                const name = v.name.toLowerCase();
+                return (v.lang === 'hi-IN' || v.lang.includes('hi-IN')) && 
+                       (name.includes('female') || name.includes('kalpana') || name.includes('swara') || name.includes('heera') || name.includes('neerja') || name.includes('google'));
+            });
+
+            if (!chosen) {
+                // Fallback to any Hindi voice
+                chosen = voices.find(v => v.lang === 'hi-IN' || v.lang.includes('hi-IN'));
+            }
+
+            if (!chosen) {
+                // Fallback to English Indian Female voice (e.g. Zira, Heera, Raveena)
+                chosen = voices.find(v => {
+                    const name = v.name.toLowerCase();
+                    return (v.lang === 'en-IN' || v.lang.includes('en-IN')) && 
+                           (name.includes('female') || name.includes('raveena') || name.includes('heera') || name.includes('neerja') || name.includes('zira') || name.includes('google'));
+                });
+            }
+
+            if (!chosen) {
+                // Fallback to any Indian English
+                chosen = voices.find(v => v.lang === 'en-IN' || v.lang.includes('en-IN'));
+            }
+
+            this.indianVoice = chosen;
+        },
+
+        async loadHistory() {
+            try {
+                const res  = await fetch('https://www.hisabmittra.com/admin/ai-assistant/history', {
+                    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                });
+                const data = await res.json();
+                if (data.success && data.messages.length) {
+                    this.messages       = data.messages;
+                    this.conversationId = data.conversation_id;
+                    this.$nextTick(() => this.scrollToBottom());
+                }
+            } catch (e) {
+                // Silently ignore — fresh chat is fine
+            }
+        },
+
+        async send() {
+            const text = this.input.trim();
+            if (!text || this.loading) return;
+
+            this.messages.push({ role: 'user', content: text });
+            this.input   = '';
+            this.loading = true;
+            this.showMenuAlways = false;
+            this.resetTextarea();
+            this.$nextTick(() => this.scrollToBottom());
+
+            // Stop any ongoing speech
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                this.speakingIndex = null;
+            }
+
+            try {
+                const res  = await fetch('https://www.hisabmittra.com/admin/ai-assistant/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type':     'application/json',
+                        'X-CSRF-TOKEN':     document.querySelector('meta[name="csrf-token"]').content,
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                    body: JSON.stringify({ message: text }),
+                });
+
+                const data = await res.json();
+
+                if (res.status === 429) {
+                    this.messages.push({ role: 'assistant', content: '⚠️ Too many requests. Please wait a moment before asking again.' });
+                } else if (data.success) {
+                    this.messages.push({ role: 'assistant', content: data.reply });
+                    this.conversationId = data.conversation_id;
+                } else {
+                    this.messages.push({ role: 'assistant', content: data.reply || 'Something went wrong. Please try again.' });
+                }
+            } catch (e) {
+                this.messages.push({ role: 'assistant', content: '❌ Network error. Please check your connection and try again.' });
+            }
+
+            this.loading = false;
+            this.$nextTick(() => this.scrollToBottom());
+        },
+
+        sendChip(text) {
+            this.showMenuAlways = false;
+            this.input = text;
+            this.send();
+        },
+
+        backToMenu() {
+            this.showMenuAlways = true;
+            this.$nextTick(() => {
+                this.scrollToBottom();
+            });
+        },
+
+        async clearChat() {
+            // Check if SweetAlert2 (Swal) is loaded on the page
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: 'Clear Conversation?',
+                    text: "You won't be able to recover this chat history!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ff3366',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Yes, clear it!',
+                    cancelButtonText: 'Cancel',
+                    customClass: {
+                        popup: 'animated fadeInDown'
+                    }
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        if ('speechSynthesis' in window) {
+                            window.speechSynthesis.cancel();
+                            this.speakingIndex = null;
+                        }
+                        try {
+                            await fetch('https://www.hisabmittra.com/admin/ai-assistant/clear', {
+                                method: 'DELETE',
+                                headers: {
+                                    'X-CSRF-TOKEN':     document.querySelector('meta[name="csrf-token"]').content,
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                },
+                            });
+                        } catch (e) { /* ignore */ }
+                        this.messages       = [];
+                        this.conversationId = null;
+
+                        Swal.fire({
+                            title: 'Cleared!',
+                            text: 'Your conversation has been cleared.',
+                            icon: 'success',
+                            confirmButtonColor: '#ff3366',
+                            timer: 1500
+                        });
+                    }
+                });
+            } else {
+                // Fallback to default confirm if Swal is not loaded
+                if (!confirm('Clear this conversation?')) return;
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    this.speakingIndex = null;
+                }
+                try {
+                    await fetch('https://www.hisabmittra.com/admin/ai-assistant/clear', {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN':     document.querySelector('meta[name="csrf-token"]').content,
+                            'X-Requested-With': 'XMLHttpRequest',
+                        },
+                    });
+                } catch (e) { /* ignore */ }
+                this.messages       = [];
+                this.conversationId = null;
+            }
+        },
+
+        speak(text, index) {
+            if (!('speechSynthesis' in window)) return;
+
+            // If clicking the currently speaking bubble, stop it
+            if (this.speakingIndex === index) {
+                window.speechSynthesis.cancel();
+                this.speakingIndex = null;
+                return;
+            }
+
+            window.speechSynthesis.cancel();
+            
+            // Clean markdown tags, emojis, and handle correct spacing
+            let cleanText = text
+                .replace(/HisabMittra/gi, ' हिसाब मित्रा ') // Convert to Devanagari Hindi phonetics for smooth Hindi flow
+                .replace(/Hisab/gi, ' हिसाब ')
+                .replace(/Mittra/gi, ' मित्रा ')
+                .replace(/\bHR\b/g, ' HR ') // Add spaces to keep abbreviations spoken naturally
+                .replace(/\bAI\b/g, ' AI ')
+                .replace(/[*#_`~>\[\]]/g, '')
+                .replace(/<li>/g, ' ')
+                .replace(/<\/li>/g, '.')
+                .replace(/<br>/g, ' ')
+                .replace(/(\b[A-Z]{2,}\b)/g, function(match) {
+                    return match.toLowerCase(); // Convert ALL CAPS to lowercase to prevent letter-by-letter spelling
+                })
+                .substring(0, 1000);
+
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            
+            // Re-load voice array to ensure it is fresh
+            this.loadIndianVoice();
+
+            if (this.indianVoice) {
+                utterance.voice = this.indianVoice;
+                utterance.lang = this.indianVoice.lang;
+            } else {
+                // If it is Hindi text, default to hi-IN locale dynamically
+                const hasHindi = /[\u0900-\u097F]/.test(cleanText);
+                utterance.lang = hasHindi ? 'hi-IN' : 'en-IN';
+            }
+
+            utterance.pitch = 1.15; // Slightly higher pitch for a sweeter, friendly female voice tone
+            utterance.rate = 0.90; // Natural, polite reading speed
+            
+            utterance.onend = () => {
+                if (this.speakingIndex === index) {
+                    this.speakingIndex = null;
+                }
+            };
+
+            utterance.onerror = () => {
+                if (this.speakingIndex === index) {
+                    this.speakingIndex = null;
+                }
+            };
+
+            this.speakingIndex = index;
+            window.speechSynthesis.speak(utterance);
+        },
+
+        // ── Helpers ──────────────────────────────────────────────
+        formatMessage(content) {
+            if (!content) return '';
+            // Basic markdown: bold, bullet, line breaks
+            return content
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^[•\-] (.+)/gm, '<li>$1</li>')
+                .replace(/(<li>.*<\/li>)/s, '<ul style="margin:4px 0 0 14px;padding:0">$1</ul>')
+                .replace(/\n/g, '<br>');
+        },
+
+        scrollToBottom() {
+            const box = this.$refs.messagesBox;
+            if (box) box.scrollTop = box.scrollHeight;
+        },
+
+        autoResize(el) {
+            el.style.height = 'auto';
+            el.style.height = Math.min(el.scrollHeight, 90) + 'px';
+        },
+
+        resetTextarea() {
+            const el = document.getElementById('hm-ai-input');
+            if (el) { el.style.height = 'auto'; }
+        },
+    };
+}
+</script>
+
+
 </body>
+
+
+
 </html>
+
+
+
+
+

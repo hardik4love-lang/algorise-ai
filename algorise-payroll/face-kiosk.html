@@ -1,747 +1,745 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Launch Face Kiosk — Algorise PeopleOS HRM</title>
-  <link rel="icon" type="image/png" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/logo.png" />
-  
-  <!-- Fonts & Font Awesome 6 Icons (HisabMittra exact stack) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            hmblue: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8'
-            },
-            hmgreen: {
-              500: '#10b981',
-              600: '#059669',
-              700: '#047857'
-            },
-            hmbg: '#f4f6f9'
-          },
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace']
-          }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" name="viewport"/>
+<meta content="SiDWs5DOcg8aCoPfmfKEQeAPJFeWlBZHD1YtHHch" name="csrf-token"/>
+<meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+<meta content="Digital HR Complete HR Attendance System" name="description"/>
+<meta content="Digital HR" name="author"/>
+<meta content="Digital HR" name="keywords"/>
+<!-- PWA Settings -->
+<meta content="#1565C0" name="theme-color"/>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+<meta content="hisabMittra" name="apple-mobile-web-app-title"/>
+<link href="https://www.hisabmittra.com/icons/icon-192.png?v=3" rel="apple-touch-icon"/>
+<link href="https://www.hisabmittra.com/manifest.json?v=3" rel="manifest"/>
+<title>Companies</title>
+<style>
+
+        :root {
+
+            --primary-color: #0011ff;
+
+            --hover-color: #000000;
+
+            --dark-primary-color: #c22424;
+
+            --dark-hover-color: #e29292;
+
         }
-      }
-    }
-  </script>
 
-  <style>
-    body {
-      font-family: "Plus Jakarta Sans", sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-    .hm-sidebar-scroll::-webkit-scrollbar {
-      width: 4px;
-    }
-    .hm-sidebar-scroll::-webkit-scrollbar-thumb {
-      background-color: rgba(203, 213, 225, 0.8);
-      border-radius: 4px;
-    }
-    .hm-toggle-checkbox:checked {
-      right: 0;
-      border-color: #22c55e;
-    }
-    .hm-toggle-checkbox:checked + .hm-toggle-label {
-      background-color: #22c55e;
-    }
-    @keyframes toastSlide {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    .toast-anim {
-      animation: toastSlide 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  </style>
-</head>
-<body class="h-full bg-slate-50 text-slate-800 flex flex-col transition-colors duration-200">
-  <!-- Toast Notification Container -->
-  <div id="toastContainer" class="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none max-w-sm w-full"></div>
+    </style>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<!-- End fonts -->
+<link href="https://www.hisabmittra.com/assets/vendors/select2/select2.min.css" rel="stylesheet"/>
+<!--nepali datePicker -->
+<link href=" https://www.hisabmittra.com/assets/css/nepaliDatepicker.min.css " rel="stylesheet" type="text/css"/>
+<!-- end-->
+<!-- core:css -->
+<link href=" https://www.hisabmittra.com/assets/vendors/core/core.css " rel="stylesheet"/>
+<!-- end -->
+<!-- Plugin css for this page -->
+<link href="https://www.hisabmittra.com/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet"/>
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link href="https://www.hisabmittra.com/assets/fonts/feather-font/css/iconfont.css" rel="stylesheet"/>
+<link href="https://www.hisabmittra.com/assets/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet"/>
+<!-- endinject -->
+<!-- Layout styles -->
+<link href="https://www.hisabmittra.com/assets/css/style.css" id="themeColor" rel="stylesheet"/>
+<!-- End layout styles -->
+<!-- RTL -->
+<link href="https://www.hisabmittra.com/assets/images/favicon.png?v=1793288078" rel="shortcut icon">
+<link href="https://www.hisabmittra.com/assets/vendors/sweetalert2/sweetalert2.min.css" rel="stylesheet">
+<!-- Mobile Responsive CSS - Global Fix for All Forms -->
+<link href="https://www.hisabmittra.com/css/mobile-responsive.css" rel="stylesheet"/>
+</link></link></head>
+<body>
+    <div class="main-wrapper">
+        <nav class="sidebar">
+<div class="sidebar-header">
+<a class="sidebar-brand" href="index.html">
+<img src="assets/algorise_brand_banner.png"/>
+</a>
+<div class="sidebar-toggler not-active">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+<div class="sidebar-body">
+<ul class="nav sidebar-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="index.html" href="index.html">
+<i class="link-icon" data-feather="box"></i>
+<span class="link-title">Dashboard</span>
+</a>
+</li>
+<li class="nav-item active">
+<a aria-controls="company" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#company_management" role="button">
+<i class="link-icon" data-feather="briefcase"></i>
+<span class="link-title">Company Management</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="" id="company_management">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link active" data-href="companies.html" href="companies.html">
+                        Company
+                    </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="branches.html" href="branches.html">
+                        Branch
+                    </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="departments.html" href="departments.html">
+                        Department
+                    </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="machines.html" href="machines.html">
+                            Machine Master
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="posts.html" href="posts.html">
+                        Post
+                    </a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="settings" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#user-management" role="button">
+<i class="link-icon" data-feather="user"></i>
+<span class="link-title"> User Management </span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="user-management">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="users.html" href="users.html">Users</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="company" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#employee_management" role="button">
+<i class="link-icon" data-feather="users"></i>
+<span class="link-title">Employee Management</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="employee_management">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="employee-master.html" href="employee-master.html">Employees</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="face-profiles.html" href="face-profiles.html">Face Profiles</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="location-logs.html" href="location-logs.html"> Location Logs</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="logout-requests.html" href="logout-requests.html">Logout Requests</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="company" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#attendance_management" role="button">
+<i class="link-icon" data-feather="user-check"></i>
+<span class="link-title">Attendance Section</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="attendance_management">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="attendance.html" href="attendance.html">Attendance</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="attendance-logs.html" href="attendance-logs.html">Attendance Logs</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="attendance-report.html" href="attendance-report.html">Attendance Report</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="monthly-report.html" href="monthly-report.html">Monthly Status Report</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="javascript:void(0);" onclick="event.preventDefault(); event.stopPropagation(); window.location.href = 'https://www.hisabmittra.com/admin/face-kiosk?t=' + new Date().getTime();">Launch Face Kiosk</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="daily-credit.html" href="daily-credit.html">Daily Credit Summary</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="supervisor_panel" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" href="#supervisor_panel" role="button">
+<i class="link-icon" data-feather="users"></i>
+<span class="link-title">Supervisor</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="supervisor_panel">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" href="supervisor.html">
+                            Supervisor Daily
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="supervisor-monthly.html">
+                            Supervisor Monthly
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="supervisor-payroll-sheet.html">
+                            Supervisor Payroll Sheet
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="supervisor-payroll-columns.html">
+                            Supervisor Payroll Columns
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="supervisor-credits.html">
+                            Supervisor Credit Rules
+                        </a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="notice-board.html" href="notice-board.html">
+<i class="link-icon" data-feather="calendar"></i>
+<span class="link-title">Notice</span>
+</a>
+</li>
+<li class="nav-item">
+<a aria-controls="settings" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#payroll" role="button">
+<i class="link-icon" data-feather="gift"></i>
+<span class="link-title"> Payroll Management </span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="payroll">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="payroll.html" href="payroll.html">Payroll</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="salary-components.html" href="salary-components.html">Payroll Setting
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="advance-salaries.html" href="advance-salaries.html">Advance Salary</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="employee-salaries.html" href="employee-salaries.html">Employee Salary</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="tax-report.html" href="tax-report.html">Tax report</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="tadas.html" href="tadas.html">Tada</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="employee-loans.html">Employee Loans &amp; EMI</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="reimbursements.html">Expense Reimbursements</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="leaveMenu" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#leaveMenu" role="button">
+<i class="link-icon" data-feather="pause-circle"></i>
+<span class="link-title">Leave</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="leaveMenu">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="leaves.html" href="leaves.html">Leave Types</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="leave-request.html" href="leave-request.html">Leave Request</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="time-leave-request.html" href="time-leave-request.html">Time Leave Request</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="leave-approval.html" href="leave-approval.html">Leave Approval</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="shiftManagment" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#shiftManagement" role="button">
+<i class="link-icon" data-feather="watch"></i>
+<span class="link-title"> Shift Management </span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="shiftManagement">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="office-times.html" href="office-times.html">Office Time </a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="awards" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#awards" role="button">
+<i class="link-icon" data-feather="user-plus"></i>
+<span class="link-title">HR Admin Setup</span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="awards">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="awards.html" href="awards.html">Awards</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="termination.html" href="termination.html">Termination</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="resignation.html" href="resignation.html">
 
+                            Resignation
 
-  <!-- ========================================== -->
-  <!-- TOP NAVBAR (Exact HisabMittra HRM replica) -->
-  <!-- ========================================== -->
-  <header class="h-16 bg-white border-b border-slate-200 px-4 flex items-center justify-between sticky top-0 z-30 shadow-xs">
-    <!-- Left: Brand Logo & Hamburger Toggle -->
-    <div class="flex items-center gap-3">
-      <button onclick="toggleSidebar()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none cursor-pointer" title="Toggle Sidebar">
-        <i class="fa-solid fa-bars text-lg"></i>
-      </button>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="warning.html" href="warning.html">
 
-      <a href="index.html" class="flex items-center gap-2.5 text-decoration-none group">
-        <!-- Official Algorise AI Glowing Badge Logo -->
-        <img src="assets/logo.png" alt="Algorise AI Logo" class="w-10 h-10 rounded-full object-cover ring-2 ring-blue-500/40 shadow-md transition group-hover:scale-105" onerror="this.onerror=null; this.src='../assets/logo.png';" />
-        <div class="border-l border-slate-300 pl-2.5">
-          <div class="flex items-center gap-1.5 leading-none">
-            <span class="font-extrabold text-base tracking-tight text-slate-900">Algorise</span>
-            <span class="font-extrabold text-base tracking-tight text-blue-600">PeopleOS</span>
-            <span class="text-[9px] font-mono px-1 py-0.2 rounded bg-blue-50 text-blue-700 font-bold border border-blue-200">v2.4</span>
-          </div>
-          <span class="text-[10px] text-slate-500 tracking-wide font-medium">Smart Solutions. Stronger Workforce.</span>
-        </div>
-      </a>
-    </div>
+                            Warning
 
-    <!-- Center: Search Menu (Exact Ctrl+Q from HisabMittra) -->
-    <div class="hidden md:flex items-center flex-1 max-w-md mx-6">
-      <div class="relative w-full">
-        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-          <i class="fa-solid fa-magnifying-glass text-xs"></i>
-        </span>
-        <input type="text" id="globalMenuSearch" placeholder="Search Menu(ctrl+q)" class="w-full pl-9 pr-4 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition" onkeyup="handleMenuSearch(this.value)" />
-      </div>
-    </div>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="complaint.html" href="complaint.html">
 
-    <!-- Right Controls: English, Theme, Bell, Headset, User Profile -->
-    <div class="flex items-center gap-2 sm:gap-3">
-      <!-- Active Branch Tag -->
-      <div class="hidden lg:flex items-center gap-1.5 bg-blue-50 border border-blue-100 rounded-lg px-2.5 py-1 text-xs">
-        <span class="text-slate-500 text-[10px] font-semibold uppercase">Branch:</span>
-        <span class="font-bold text-blue-700 font-mono">JMFU2</span>
-        <span class="text-slate-300">|</span>
-        <span class="text-[11px] text-slate-600 font-medium">17-33-37, TANTITHAIYA</span>
-      </div>
+                            Complaint
 
-      <!-- Language Selector -->
-      <div class="relative">
-        <button onclick="toggleLangMenu()" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-50 transition cursor-pointer">
-          <span class="text-sm leading-none">🇺🇸</span>
-          <span id="currentLangLabel">English</span>
-          <i class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-        </button>
-        <div id="langDropdown" class="hidden absolute right-0 mt-1 w-44 bg-white border border-slate-200 rounded-xl shadow-xl py-1 text-xs font-medium z-50">
-          <button onclick="setLanguage('en', 'English')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇺🇸 English</span> <i class="fa-solid fa-check text-blue-600"></i>
-          </button>
-          <button onclick="setLanguage('gu', 'ગુજરાતી (Gujarati)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇮🇳 ગુજરાતી (Gujarati)</span>
-          </button>
-          <button onclick="setLanguage('hi', 'हिंदी (Hindi)')" class="w-full text-left px-3 py-1.5 hover:bg-slate-50 flex items-center justify-between">
-            <span>🇮🇳 हिंदी (Hindi)</span>
-          </button>
-        </div>
-      </div>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="promotion.html" href="promotion.html">
 
-      <!-- Theme Switch (Moon Icon) -->
-      <button onclick="toggleTheme()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Toggle Theme">
-        <i id="themeIcon" class="fa-regular fa-moon text-sm"></i>
-      </button>
+                            Promotion
 
-      <!-- Notification Bell -->
-      <a href="notice-board.html" class="relative p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition" title="Notices & Alerts">
-        <i class="fa-regular fa-bell text-sm"></i>
-        <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-blue-600"></span>
-      </a>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="transfer.html" href="transfer.html">
 
-      <!-- Browser Extension & Mobile App Quick Action Buttons -->
-      <a href="browser-extension.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition" title="Chrome Browser Extension">
-        <i class="fa-solid fa-puzzle-piece text-blue-600"></i>
-        <span>Extension</span>
-      </a>
+                            Transfer
 
-      <a href="mobile/index.html" class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-emerald-200 bg-emerald-50 text-xs font-semibold text-emerald-800 hover:bg-emerald-100 transition" title="Mobile App Trial Login">
-        <i class="fa-solid fa-mobile-screen text-emerald-600"></i>
-        <span>Mobile App</span>
-      </a>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="holidays.html" href="holidays.html">
 
-      <!-- Support Hotline -->
-      <button onclick="openSupportModal()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 transition cursor-pointer" title="Helpline & Support">
-        <i class="fa-solid fa-phone-volume text-sm text-slate-600"></i>
-      </button>
+                            Holidays
 
-      <!-- Client User Avatar (Anil Thakker) -->
-      <a href="user-management.html" class="flex items-center gap-2 pl-2 border-l border-slate-200 hover:opacity-90">
-        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-rose-400 p-0.5 shadow-xs">
-          <div class="w-full h-full rounded-full bg-white flex items-center justify-center font-bold text-xs text-slate-800">
-            <i class="fa-solid fa-user-tie text-blue-600 text-sm"></i>
-          </div>
-        </div>
-        <div class="hidden sm:block text-left leading-tight">
-          <div class="text-xs font-bold text-slate-900 flex items-center gap-1">
-            Anil Thakker <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-500">Owner &bull; Process House</span>
-        </div>
-      </a>
-    </div>
-  </header>
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="recruitment.html" href="recruitment.html">
 
-  <div class="flex flex-1 overflow-hidden">
+                       Recruitment
 
-    <!-- ============================================== -->
-    <!-- LEFT SIDEBAR (Exact HisabMittra HRM Hierarchy) -->
-    <!-- ============================================== -->
-    <aside id="mainSidebar" class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-all duration-200 z-20">
-      <!-- Session Bar with Official Logo -->
-      <div class="p-3 border-b border-slate-100 flex items-center gap-2.5 bg-slate-50/60">
-        <img src="assets/logo.png" alt="Logo" class="w-8 h-8 rounded-full object-cover ring-1 ring-blue-500/40 shadow-xs" onerror="this.onerror=null; this.src='../assets/logo.png';" />
-        <div class="flex-1 min-w-0">
-          <div class="flex items-center justify-between text-[11px] font-mono text-slate-500">
-            <span>A/C: 2026-2027</span>
-            <span class="px-1.5 py-0.2 rounded bg-emerald-100 text-emerald-700 font-bold text-[9px]">ONLINE</span>
-          </div>
-          <a href="companies.html" class="text-xs font-bold text-slate-800 mt-0.5 block hover:text-blue-600 truncate" title="Process House HRMS">
-            PAYROLL UNIT - 2
-          </a>
-        </div>
-      </div>
-      <nav class="flex-1 overflow-y-auto hm-sidebar-scroll p-3 space-y-1 text-xs">
-        
-        <!-- 1. Dashboard -->
-        <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-table-columns w-4 text-center"></i> Dashboard
-          </span>
-        </a>
-
-        <!-- 2. Company Management (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-company')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-building w-4 text-center"></i> Company Management
+                    </a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="static-pages.html" href="static-pages.html">
+<i class="link-icon" data-feather="book"></i>
+<span class="link-title">Content Management</span>
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="support.html" href="support.html">
+<i class="link-icon" data-feather="help-circle"></i>
+<span class="link-title">Support</span>
+</a>
+</li>
+<li class="nav-item">
+<a aria-controls="settings" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#attendance_method" role="button">
+<i class="link-icon" data-feather="tool"></i>
+<span class="link-title"> Attendance Methods </span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="attendance_method">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="biometric-devices.html" href="biometric-devices.html">Biometric Device
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="routers.html" href="routers.html">Routers
+                        </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="nfc.html" href="nfc.html">NFC</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="qr.html" href="qr.html">QR</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="attendance-settings.html" href="attendance-settings.html">Attendance Setting</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<a aria-controls="settings" aria-expanded="false" class="nav-link" data-bs-toggle="collapse" data-href="#" href="#setting" role="button">
+<i class="link-icon" data-feather="settings"></i>
+<span class="link-title"> Settings </span>
+<i class="link-arrow" data-feather="chevron-down"></i>
+</a>
+<div class="collapse" id="setting">
+<ul class="nav sub-menu">
+<li class="nav-item">
+<a class="nav-link" data-href="roles.html" href="roles.html">Roles &amp; Permissions</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="general-settings.html" href="general-settings.html">General Settings</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="app-settings.html" href="app-settings.html">App Settings</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="notifications.html" href="notifications.html">Notifications</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="payment-currency.html" href="payment-currency.html"> Payment Currency</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="feature-control.html" href="feature-control.html"> Feature Control</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="company-features.html" href="company-features.html"> Company Plan Features</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="fiscal-year.html" href="fiscal-year.html"> Fiscal Year</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-href="theme-color.html" href="theme-color.html"> Theme Color</a>
+</li>
+</ul>
+</div>
+</li>
+<!-- PWA Install Sidebar Item -->
+<li class="nav-item d-none" id="sidebar-pwa-install-item">
+<a class="nav-link text-primary fw-bold" href="javascript:void(0);" id="sidebar-pwa-install-btn">
+<i class="link-icon" data-feather="download"></i>
+<span class="link-title">Install App</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+        <div class="page-wrapper">
+            <nav class="navbar">
+<a class="sidebar-toggler" href="#">
+<i data-feather="menu"></i>
+</a>
+<div class="navbar-content">
+<form class="search-form mb-0">
+<div class="input-group">
+<div class="input-group-text">
+<i data-feather="search"></i>
+</div>
+<div id="admin-search-menu">
+<input aria-label="Search" autocomplete="off" class="form-control mt-0" id="nav-search" name="nav-search" placeholder="Search Menu(ctrl+q)" type="text"/>
+<div class="card card-admin-search" data-toggle="" style="position: absolute !important;">
+<ul class="list-group list-group-flush" id="nav-search-listing">
+</ul>
+</div>
+</div>
+</div>
+</form>
+<ul class="navbar-nav">
+<li class="nav-item d-none d-lg-flex align-items-center me-2">
+<span class="badge bg-light text-dark border py-1 px-2" style="font-size:11px; font-weight:700;">
+<i class="fa-solid fa-industry text-primary me-1"></i> Unit: JMFU2 (Tantithaiya)
             </span>
-            <i id="sec-company-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          
-          <div id="sec-company" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="companies.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Company
+</li>
+<li class="nav-item d-none d-md-flex align-items-center me-2">
+<a class="btn btn-xs btn-outline-info py-1 px-2" href="cctv-sentinel.html" style="font-size:11px; font-weight:700;">
+<i class="fa-solid fa-video me-1"></i> CCTV Live
             </a>
-            <a href="branches.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Branch
+</li>
+<li class="nav-item d-none d-md-flex align-items-center me-2">
+<a class="btn btn-xs btn-outline-primary py-1 px-2" href="browser-extension.html" style="font-size:11px; font-weight:700;">
+<i class="fa-brands fa-chrome me-1"></i> Extension
             </a>
-            <a href="departments.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Department
+</li>
+<li class="nav-item d-none d-md-flex align-items-center me-3">
+<a class="btn btn-xs btn-outline-success py-1 px-2" href="mobile/" style="font-size:11px; font-weight:700;">
+<i class="fa-solid fa-mobile-screen me-1"></i> Mobile PWA
             </a>
-            <a href="machines.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Machine Master
-            </a>
-            <a href="posts.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Post
-            </a>
-          </div>
-        </div>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="langDropdown" role="button">
+<i class="flag-icon flag-icon-us" id="us" title="us"></i> <span class="ml-1"> English </span>
+</a>
+<div aria-labelledby="langDropdown" class="dropdown-menu p-0">
+<ul class="list-unstyled p-1">
+<li>
+<a class="dropdown-item changeLang active text-white" data-lang="en" href="javascript:void(0);">
+<i class="flag-icon flag-icon-us" id="us" title="us"></i> <span class="ml-1"> English </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="fr" href="javascript:void(0);">
+<i class="flag-icon flag-icon-fr" id="fr" title="fr"></i> <span class="ml-1"> Français </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="de" href="javascript:void(0);">
+<i class="flag-icon flag-icon-de" id="de" title="de"></i> <span class="ml-1"> Deutsch </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="pt" href="javascript:void(0);">
+<i class="flag-icon flag-icon-pt" id="pt" title="pt"></i> <span class="ml-1"> Português </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="es" href="javascript:void(0);">
+<i class="flag-icon flag-icon-es" id="es" title="es"></i> <span class="ml-1"> Española </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="hi" href="javascript:void(0);">
+<i class="flag-icon flag-icon-in" id="hi" title="hi"></i> <span class="ml-1"> हिंदी </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="ru" href="javascript:void(0);">
+<i class="flag-icon flag-icon-ru" id="ru" title="ru"></i> <span class="ml-1"> русский </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="ne" href="javascript:void(0);">
+<i class="flag-icon flag-icon-np" id="ne" title="ne"></i> <span class="ml-1"> नेपाली" </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="ar" href="javascript:void(0);">
+<i class="flag-icon flag-icon-sa" id="ar" title="ar"></i> <span class="ml-1"> عربي </span>
+</a>
+</li>
+<li>
+<a class="dropdown-item changeLang" data-lang="fa" href="javascript:void(0);">
+<i class="flag-icon flag-icon-ir" id="fa" title="fa"></i> <span class="ml-1"> فارسی </span>
+</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item">
+<button class="navbar-toggler align-self-center" type="button">
+<span id="sun" title="Light mode">
+<i class="link-icon" data-feather="sun"></i>
+</span>
+<span id="moon" title="Dark mode">
+<i class="link-icon" data-feather="moon"></i>
+</span>
+</button>
+</li>
+<li class="nav-item dropdown" data-href="https://www.hisabmittra.com/admin/notifications/get-nav-notification" id="notificationsNavBar">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="notificationDropdown" role="button">
+<i data-feather="bell"></i>
+<div class="indicator">
+<div class="circle"></div>
+</div>
+</a>
+<div aria-labelledby="notificationDropdown" class="dropdown-menu p-0">
+<div class="p-1 mt-2" id="notifications-detail">
+<a class="text-muted p-0 px-3 py-2" style="font-size: 12px;">Latest Notifications </a>
+</div>
+<div class="p-1" id="notifications-detail">
+</div>
+<div class="px-3 py-2 d-flex align-items-center justify-content-center border-top">
+<a data-href="notifications.html" href="" id="navAdminNotificationList">View all</a>
+</div>
+</div>
+</li>
+<li class="nav-item dropdown me-2">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="supportDropdown" role="button">
+<i data-feather="phone-call" style="width: 20px; height: 20px;"></i>
+</a>
+<div aria-labelledby="supportDropdown" class="dropdown-menu p-3" style="width: 280px; position: absolute; right: 0;">
+<h6 class="mb-2 text-primary border-bottom pb-2 font-weight-bold" style="font-size: 14px;">Contact Support</h6>
+<ul class="list-unstyled mb-0" style="font-size: 13px;">
+<li class="mb-2">
+<div class="text-muted small">Support Phone</div>
+<a class="text-body fw-bold d-flex align-items-center mt-1" href="tel:9783055170">
+<i class="me-1" data-feather="phone" style="width: 14px; height: 14px;"></i> 9783055170
 
-        <!-- 3. User Management (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-user')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-regular fa-user w-4 text-center"></i> User Management
-            </span>
-            <i id="sec-user-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-user" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="user-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Users
-            </a>
-          </div>
-        </div>
+                                    </a>
+</li>
+<li class="mb-2">
+<div class="text-muted small">Support Email</div>
+<a class="text-body fw-bold d-flex align-items-center mt-1" href="mailto:support@algorise.ai">
+<i class="me-1" data-feather="mail" style="width: 14px; height: 14px;"></i> support@algorise.ai
 
-        <!-- 4. Employee Management (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-emp')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-users w-4 text-center"></i> Employee Management
-            </span>
-            <i id="sec-emp-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-emp" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="employee-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee List
-            </a>
-            <a href="employee-master.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <span class="flex items-center gap-2">
-                <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Employee Master
-              </span>
-              <span class="text-[9px] font-mono px-1 rounded bg-violet-100 text-violet-700 font-bold">16 Sub</span>
-            </a>
-          </div>
-        </div>
+                                    </a>
+</li>
+<li>
+<div class="text-muted small">WhatsApp Support</div>
+<a class="text-body fw-bold d-flex align-items-center mt-1" href="https://wa.me/9783055170" target="_blank">
+<i class="me-1" data-feather="message-square" style="width: 14px; height: 14px;"></i> 9783055170
 
-        <!-- 5. Attendance Section (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-att')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 text-blue-600 font-bold">
-              <i class="fa-regular fa-clock w-4 text-center"></i> Attendance Section
-            </span>
-            <i id="sec-att-arrow" class="fa-solid fa-chevron-down text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-att" class=" pl-7 pr-2 py-1 space-y-1">
-            <a href="attendance.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance
-            </a>
-            <a href="attendance-logs.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Logs
-            </a>
-            <a href="attendance-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Attendance Report
-            </a>
-            <a href="monthly-report.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Monthly Status Report
-            </a>
-            <a href="face-kiosk.html" class="flex items-center justify-between px-2.5 py-1.5 rounded-md transition text-blue-600 bg-blue-50 font-bold">
-              <span class="flex items-center gap-2">
-                <i class="fa-regular fa-circle-dot text-blue-600 text-[10px]"></i> Launch Face Kiosk
-              </span>
-              <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">AI Cam</span>
-            </a>
-            <a href="daily-credit.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Daily Credit Summary
-            </a>
-          </div>
-        </div>
+                                    </a>
+</li>
+</ul>
+</div>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" id="profileDropdown" role="button">
+<img alt="profile" class="wd-30 ht-30 rounded-circle" src="https://www.hisabmittra.com/uploads/admin/avatar/Thumb-69e5d0ed59648_ChatGPT Image Apr 20, 2026, 12_37_23 PM.png" style="object-fit: cover"/>
+</a>
+<div aria-labelledby="profileDropdown" class="dropdown-menu p-0">
+<div class="d-flex flex-column align-items-center border-bottom px-5 py-3">
+<div class="mb-3">
+<img alt="" class="wd-80 ht-80 rounded-circle" src="https://www.hisabmittra.com/uploads/admin/avatar/Thumb-69e5d0ed59648_ChatGPT Image Apr 20, 2026, 12_37_23 PM.png" style="object-fit: cover"/>
+</div>
+<div class="text-center">
+<p class="tx-16 fw-bolder">Anil Thakker</p>
+<p class="tx-12 text-muted">Anilraymanga@gmail.com</p>
+</div>
+</div>
+<ul class="list-unstyled p-1">
+<li class="dropdown-item py-2">
+<a class="text-body ms-0" href="users.html">
+<i class="me-2 icon-md" data-feather="user"></i>
+<span>Profile</span>
+</a>
+</li>
+<li class="dropdown-item py-2">
+<a class="text-body ms-0" href="leave-request-create.html">
+<i class="me-2 icon-md" data-feather="info"></i>
+<span>Request Leave</span>
+</a>
+</li>
+<li class="dropdown-item py-2">
+<a class="text-body ms-0 qr-modal" href="https://www.hisabmittra.com/admin/showQR" target="_blank" title="App QR ">
+<i class="me-2 icon-md" data-feather="image"></i>
+<span>App QR</span>
+</a>
+</li>
+<li class="dropdown-item py-2">
+<a class="text-body ms-0" href="javascript:void(0);" onclick="event.preventDefault();
 
-        <!-- 6. Supervisor (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-sup')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-user-shield w-4 text-center"></i> Supervisor
-            </span>
-            <i id="sec-sup-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-sup" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="supervisor.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Supervisor Directory
-            </a>
-          </div>
-        </div>
+                                                       document.getElementById('logout-form').submit();">
+<i class="me-2 icon-md" data-feather="log-out"> </i>Log out
 
-        <!-- 7. Notice -->
-        <a href="notice-board.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-regular fa-clipboard w-4 text-center"></i> Notice
-          </span>
-        </a>
+                                </a>
+<form action="https://www.hisabmittra.com/admin/logout" id="logout-form" method="POST" style="display: none;">
+<input autocomplete="off" name="_token" type="hidden" value="SiDWs5DOcg8aCoPfmfKEQeAPJFeWlBZHD1YtHHch"/> </form>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</nav>
+            
+<div class="page-content">
+    <nav class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="attendance.html">Attendance Section</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Face Recognition Kiosk</li>
+        </ol>
+    </nav>
 
-        <!-- 8. Payroll Management (Accordion) -->
-        <div>
-          <button onclick="toggleAccordion('sec-pay')" class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium cursor-pointer">
-            <span class="flex items-center gap-3 ">
-              <i class="fa-solid fa-money-bill-wave w-4 text-center"></i> Payroll Management
-            </span>
-            <i id="sec-pay-arrow" class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
-          </button>
-          <div id="sec-pay" class="hidden pl-7 pr-2 py-1 space-y-1">
-            <a href="payroll-management.html" class="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition text-slate-600 hover:text-blue-600 hover:bg-slate-50 font-medium">
-              <i class="fa-regular fa-circle text-slate-400 text-[9px]"></i> Process Payroll
-            </a>
-          </div>
-        </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 grid-margin stretch-card">
+            <div class="card text-center shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 text-white font-weight-bold"><i class="fa-solid fa-camera me-2"></i>Attendance Kiosk &bull; Unit JMFU2</h5>
+                    <span class="badge bg-light text-primary font-weight-bold">Live AI Active</span>
+                </div>
+                <div class="card-body p-4">
+                    <p class="text-muted small mb-3">Please align your face within the frame to record automatic attendance.</p>
+                    
+                    <div class="position-relative mx-auto rounded overflow-hidden bg-black" style="max-width: 420px; height: 320px; display:flex; align-items:center; justify-content:center; border: 3px solid #1565C0;">
+                        <video id="webcam" autoplay playsinline muted style="width:100%; height:100%; object-fit:cover;"></video>
+                        <div id="faceOverlay" style="position:absolute; width:180px; height:240px; border:2px dashed #00F3FF; border-radius:50%; pointer-events:none; box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);"></div>
+                        <div id="kioskFallback" style="display:none; color:white; text-align:center;">
+                            <i class="fa-solid fa-user fa-4x text-secondary mb-2"></i>
+                            <h6>Simulated Kiosk Feed</h6>
+                            <small class="text-muted">Webcam inactive or permission required</small>
+                        </div>
+                    </div>
 
-        <!-- 9. Leave -->
-        <a href="leave-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-regular fa-calendar-xmark w-4 text-center"></i> Leave
-          </span>
-        </a>
+                    <div class="mt-3" id="punchStatus">
+                        <span class="badge bg-success p-2" style="font-size:13px;">
+                            <i class="fa-solid fa-check-circle me-1"></i> Ready &bull; Waiting for operator face
+                        </span>
+                    </div>
 
-        <!-- 10. Shift Management -->
-        <a href="shift-management.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-arrows-spin w-4 text-center"></i> Shift Management
-          </span>
-        </a>
-
-        <!-- 11. HR Admin Setup -->
-        <a href="hr-setup.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-gear w-4 text-center"></i> HR Admin Setup
-          </span>
-        </a>
-
-        <!-- 12. CCTV AI & Sentinel (Camera Upgrade for 500-600 workers) -->
-        <a href="cctv-sentinel.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-video w-4 text-center text-blue-600"></i> CCTV &amp; Sentinel AI
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">Cam Core</span>
-        </a>
-
-        <!-- Section: Apps & Extensions -->
-        <div class="pt-2 pb-1">
-          <div class="px-3 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-            Apps &amp; Extensions
-          </div>
-        </div>
-
-        <!-- 13. Browser Extension -->
-        <a href="browser-extension.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-slate-50 font-medium">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-puzzle-piece w-4 text-center text-blue-600"></i> Chrome Extension
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-blue-100 text-blue-700 font-bold">v2.4</span>
-        </a>
-
-        <!-- 14. Mobile Trial App -->
-        <a href="mobile/index.html" class="flex items-center justify-between px-3 py-2 rounded-lg transition text-slate-700 hover:bg-emerald-50 font-medium group">
-          <span class="flex items-center gap-3">
-            <i class="fa-solid fa-mobile-screen w-4 text-center text-emerald-600"></i> Mobile App Trial
-          </span>
-          <span class="text-[9px] font-mono px-1 rounded bg-emerald-100 text-emerald-700 font-bold">PWA</span>
-        </a>
-
-      </nav>
-
-      <!-- Bottom Audio Language Indicator (Payroll Vision replica) -->
-      <div class="p-3 border-t border-slate-200 bg-amber-50/70 text-[11px]">
-        <div class="flex items-center justify-between text-amber-900 font-bold mb-1">
-          <span class="flex items-center gap-1.5">
-            <i class="fa-solid fa-volume-high text-amber-700"></i> Audio Prompt
-          </span>
-          <button onclick="playGujaratiPrompt()" class="text-blue-600 hover:underline cursor-pointer text-[10px] font-bold">
-            Test <i class="fa-solid fa-play ml-0.5"></i>
-          </button>
-        </div>
-        <p class="text-slate-600 text-[10px] leading-tight font-medium">
-          "Current Audio language is Gujarati". Actively assists factory operators at Tantithaiya.
-        </p>
-      </div>
-    </aside>
-
-    <main class="flex-1 overflow-y-auto bg-slate-950 text-white p-4 sm:p-6 space-y-4">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800 pb-4">
-        <div>
-          <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800 font-mono text-[10px] font-bold uppercase tracking-wider">
-            Industrial Gate Terminal &bull; 0 Mobile Required
-          </span>
-          <h1 class="text-lg font-black text-white mt-1 tracking-tight">AI CCTV Edge Face Kiosk &bull; Tantithaiya Gate 1</h1>
-          <p class="text-xs text-slate-400">High-speed contactless muster enrollment for 500-600 textile operators.</p>
-        </div>
-        <div class="flex items-center gap-2">
-          <button onclick="playGujaratiPrompt()" class="px-3.5 py-1.5 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-bold hover:bg-amber-500/30 transition cursor-pointer">
-            <i class="fa-solid fa-volume-high mr-1"></i> Audio Test (ગુજરાતી)
-          </button>
-          <button onclick="simulatePunch()" class="px-4 py-1.5 rounded-lg bg-emerald-600 text-white text-xs font-bold hover:bg-emerald-500 transition shadow-lg shadow-emerald-600/30 cursor-pointer">
-            Simulate Punch
-          </button>
-        </div>
-      </div>
-
-      <!-- Kiosk Canvas & Stats -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <!-- Live Camera Viewport (8 cols) -->
-        <div class="lg:col-span-8 bg-slate-900 rounded-2xl border border-slate-800 p-4 relative overflow-hidden flex flex-col items-center justify-center min-h-[420px]">
-          <video id="kioskVideo" class="w-full h-full object-cover rounded-xl" autoplay playsinline muted></video>
-          
-          <!-- Face Target Bounding Box -->
-          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div class="w-64 h-72 border-2 border-emerald-500/80 rounded-2xl relative flex flex-col justify-between p-2 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
-              <div class="flex justify-between items-center text-[10px] font-mono text-emerald-400 bg-slate-900/80 px-2 py-0.5 rounded">
-                <span>[AI DETECT: ON]</span>
-                <span>CONF: 99.4%</span>
-              </div>
-              <div class="text-center bg-slate-900/90 text-emerald-300 text-[11px] font-bold py-1 rounded">
-                PLEASE LOOK AT CAMERA
-              </div>
+                    <div class="d-flex justify-content-center gap-2 mt-4">
+                        <button class="btn btn-outline-primary btn-sm" onclick="simulatePunch('SONU KAUSHAL KISHOR', 'FOLDING')">
+                            <i class="fa-solid fa-user-check me-1"></i> Test Punch (Sonu Kaushal)
+                        </button>
+                        <button class="btn btn-outline-success btn-sm" onclick="simulatePunch('RAMESH PATEL', 'GREY LOADING')">
+                            <i class="fa-solid fa-user-check me-1"></i> Test Punch (Ramesh Patel)
+                        </button>
+                        <a href="attendance-logs.html" class="btn btn-secondary btn-sm">
+                            <i class="fa-solid fa-list me-1"></i> View Logs
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <!-- Bottom HUD overlay -->
-          <div class="absolute bottom-4 left-4 right-4 bg-slate-950/80 backdrop-blur-md rounded-xl p-3 border border-slate-800 flex items-center justify-between text-xs font-mono">
-            <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-              <span class="text-emerald-400 font-bold">RTSP_CAM_01 LIVE (30 FPS)</span>
-            </div>
-            <div class="text-slate-400">
-              Latency: <strong>14ms</strong> &bull; Edge TPU: <strong>18% Load</strong>
-            </div>
-          </div>
         </div>
-
-        <!-- Right Side: Recent Punches & Worker Card (4 cols) -->
-        <div class="lg:col-span-4 space-y-4">
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-4">
-            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-3">LAST VERIFIED WORKER</h3>
-            <div id="verifiedWorkerCard" class="bg-slate-950 rounded-xl p-4 border border-emerald-500/30 text-center space-y-2">
-              <div class="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500 mx-auto flex items-center justify-center text-2xl font-bold">
-                <i class="fa-solid fa-user-check"></i>
-              </div>
-              <div class="text-sm font-black text-white" id="verifiedName">SONU KAUSHAL KISHOR</div>
-              <div class="text-xs text-slate-400 font-mono">EMP001 &bull; FOLDING DEPT</div>
-              <div class="text-[11px] font-bold text-emerald-400 bg-emerald-950/60 py-1 rounded border border-emerald-900">
-                PUNCH REGISTERED &bull; 07:00:14 AM
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-slate-900 rounded-2xl border border-slate-800 p-4">
-            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2">LIVE STREAM PUNCH FEED</h3>
-            <div class="space-y-2 text-xs font-mono max-h-56 overflow-y-auto hm-sidebar-scroll pr-1" id="livePunchLog">
-              <div class="p-2 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
-                <span class="text-slate-200">ANAND PAKASH</span>
-                <span class="text-emerald-400">07:05 AM</span>
-              </div>
-              <div class="p-2 bg-slate-950 rounded border border-slate-800 flex justify-between items-center">
-                <span class="text-slate-200">DHEERAJ SINGH</span>
-                <span class="text-emerald-400">06:58 AM</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
-
-  <script>
-    async function initKioskCamera() {
-      try {
-        const v = document.getElementById('kioskVideo');
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        v.srcObject = stream;
-      } catch (e) {
-        console.log('Kiosk running in simulated RTSP stream mode');
-      }
-    }
-    initKioskCamera();
-
-    function simulatePunch() {
-      const names = [
-        'SONU KAUSHAL KISHOR (FOLDING)',
-        'DHEERAJ KUMAR SINGH (RO PLANT)',
-        'AMAN SANJAY PANDEY (SPOTING)',
-        'NURZAN KUMARI JMALUDIN (MAINTANANCE)',
-        'RAMESH PATEL (GREY LOADING)'
-      ];
-      const picked = names[Math.floor(Math.random() * names.length)];
-      document.getElementById('verifiedName').textContent = picked;
-      
-      const log = document.getElementById('livePunchLog');
-      const item = document.createElement('div');
-      item.className = 'p-2 bg-slate-950 rounded border border-emerald-500/40 flex justify-between items-center text-xs font-mono text-emerald-300';
-      const timeStr = new Date().toLocaleTimeString();
-      item.innerHTML = `<span>${picked.split(' ')[0]}</span><span class="text-emerald-400">${timeStr}</span>`;
-      log.prepend(item);
-
-      showToast(`PUNCH VERIFIED: ${picked} registered via Camera AI!`, 'success');
-      playGujaratiPrompt();
-    }
-  </script>
-
-  <!-- Support Modal -->
-  <div id="supportModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl">
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-2">
-          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-          <div>
-            <h3 class="text-sm font-bold text-slate-900">Algorise Enterprise Support</h3>
-            <span class="text-[10px] font-mono text-emerald-600 font-semibold">Priority SLA for JMFU2 &bull; Process House</span>
-          </div>
-        </div>
-        <button onclick="closeSupportModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
-      </div>
-      <div class="space-y-3 text-xs text-slate-600">
-        <p>Your dedicated factory support engineer is available for camera RTSP calibrations, biometric sync, and payroll audits.</p>
-        <div class="p-3 bg-slate-50 rounded-xl space-y-1.5 border border-slate-200 font-mono text-[11px]">
-          <div><strong>Support Desk:</strong> 1800-ALGORISE / 9376068009</div>
-          <div><strong>Branch Code:</strong> JMFU2 (Tantithaiya)</div>
-          <div><strong>Active Camera Nodes:</strong> 4 Online (Gate 1, Grey Ingest, Dyeing RBC, Folding)</div>
-        </div>
-      </div>
-      <div class="mt-5 flex justify-end">
-        <button onclick="closeSupportModal()" class="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg hover:bg-blue-700 transition">
-          Close Desk
-        </button>
-      </div>
     </div>
-  </div>
+</div>
+<script>
+    navigator.mediaDevices && navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            var v = document.getElementById('webcam');
+            if (v) v.srcObject = stream;
+        })
+        .catch(function(err) {
+            var f = document.getElementById('kioskFallback');
+            if (f) f.style.display = 'block';
+        });
 
-  <!-- Footer (Exact HisabMittra copyright + floating chat avatar) -->
-  <footer class="bg-white border-t border-slate-200 py-3 px-6 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-    <div>
-      Copyright &copy; 2026 <a href="https://hisabmittra.com" target="_blank" class="text-blue-600 hover:underline font-semibold">hisabmittra.com</a>. Powered by Algorise PeopleOS.
+    function simulatePunch(name, dept) {
+        var status = document.getElementById('punchStatus');
+        if (status) {
+            status.innerHTML = '<span class="badge bg-success p-2" style="font-size:13px;"><i class="fa-solid fa-circle-check me-1"></i> VERIFIED: ' + name + ' (' + dept + ') &bull; PUNCH_IN RECORDED</span>';
+        }
+    }
+</script>
+
+            <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between px-4 py-3 border-top small">
+<p class="text-muted mb-1 mb-md-0">Copyright © 2026 <a href="https://hisabmittra.com/" target="_blank">hisabmittracom</a>.</p>
+</footer>
+        </div>
     </div>
-    <div class="text-[11px] text-slate-400">
-      Enterprise Textile HRM &bull; Process House HRMS &bull; Tantithaiya, Surat
-    </div>
-  </footer>
-
-  <!-- Floating Assistant Widget (Matches HisabMittra bottom-right assistant avatar) -->
-  <div class="fixed bottom-6 right-6 z-40">
-    <button onclick="showToast('Aria AI Assistant is monitoring real-time camera ingestion for 493 workers.', 'info')" class="w-12 h-12 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer relative" title="AI Factory Assistant">
-      <i class="fa-solid fa-headset text-lg"></i>
-      <span class="absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white"></span>
-    </button>
-  </div>
-
-  <!-- Shared JavaScript Utilities -->
-  <script>
-    // In-App Toast System (100% replaces alert popups)
-    function showToast(message, type = 'info') {
-      const container = document.getElementById('toastContainer');
-      if (!container) return;
-      const toast = document.createElement('div');
-      const colors = {
-        success: 'bg-emerald-600 text-white',
-        error: 'bg-rose-600 text-white',
-        warning: 'bg-amber-500 text-white',
-        info: 'bg-blue-600 text-white'
-      };
-      const icons = {
-        success: 'fa-check-circle',
-        error: 'fa-circle-exclamation',
-        warning: 'fa-triangle-exclamation',
-        info: 'fa-info-circle'
-      };
-      toast.className = `${colors[type] || colors.info} p-3.5 rounded-xl shadow-xl flex items-center gap-3 text-xs font-semibold toast-anim pointer-events-auto border border-white/20`;
-      toast.innerHTML = `
-        <i class="fa-solid ${icons[type] || icons.info} text-base flex-shrink-0"></i>
-        <div class="flex-1">${message}</div>
-        <button onclick="this.parentElement.remove()" class="text-white/80 hover:text-white text-xs p-1">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      `;
-      container.appendChild(toast);
-      setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateX(100%)';
-        toast.style.transition = 'all 0.3s ease';
-        setTimeout(() => toast.remove(), 300);
-      }, 4000);
-    }
-
-    // Accordion Toggle
-    function toggleAccordion(id) {
-      const el = document.getElementById(id);
-      const arrow = document.getElementById(id + '-arrow');
-      if (!el) return;
-      if (el.classList.contains('hidden')) {
-        el.classList.remove('hidden');
-        if (arrow) {
-          arrow.classList.remove('fa-chevron-right');
-          arrow.classList.add('fa-chevron-down');
-        }
-      } else {
-        el.classList.add('hidden');
-        if (arrow) {
-          arrow.classList.remove('fa-chevron-down');
-          arrow.classList.add('fa-chevron-right');
-        }
-      }
-    }
-
-    // Sidebar Hamburger Toggle
-    function toggleSidebar() {
-      const sidebar = document.getElementById('mainSidebar');
-      if (sidebar) {
-        sidebar.classList.toggle('hidden');
-      }
-    }
-
-    // Keyboard Hotkey (Ctrl+Q) for menu search
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'q') {
-        e.preventDefault();
-        const searchInput = document.getElementById('globalMenuSearch');
-        if (searchInput) {
-          searchInput.focus();
-          searchInput.select();
-        }
-      }
-    });
-
-    // Menu search filtering
-    function handleMenuSearch(q) {
-      const term = q.trim().toLowerCase();
-      const sidebar = document.getElementById('mainSidebar');
-      if (!sidebar) return;
-      const links = sidebar.querySelectorAll('a, button');
-      links.forEach(item => {
-        if (!term) {
-          item.parentElement.style.display = '';
-          return;
-        }
-        const txt = item.textContent.toLowerCase();
-        if (txt.includes(term)) {
-          item.parentElement.style.display = '';
-          // If in an accordion, open it
-          const parentAccordion = item.closest('[id^="sec-"]');
-          if (parentAccordion && parentAccordion.classList.contains('hidden')) {
-            parentAccordion.classList.remove('hidden');
-          }
-        }
-      });
-    }
-
-    // Theme toggle
-    function toggleTheme() {
-      const isDark = document.documentElement.classList.toggle('dark');
-      const icon = document.getElementById('themeIcon');
-      if (icon) {
-        icon.className = isDark ? 'fa-regular fa-sun text-sm' : 'fa-regular fa-moon text-sm';
-      }
-      showToast(`Switched to ${isDark ? 'Dark' : 'Light'} theme`, 'info');
-    }
-
-    // Language selector
-    function toggleLangMenu() {
-      const menu = document.getElementById('langDropdown');
-      if (menu) menu.classList.toggle('hidden');
-    }
-
-    function setLanguage(lang, label) {
-      const lbl = document.getElementById('currentLangLabel');
-      if (lbl) lbl.textContent = label;
-      toggleLangMenu();
-      showToast(`Language set to ${label}`, 'success');
-      if (lang === 'gu') {
-        playGujaratiPrompt();
-      }
-    }
-
-    // Gujarati Speech Synthesis (Payroll Vision Replica)
-    function playGujaratiPrompt() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance('હાલમાં ઑડિયો ભાષા ગુજરાતી છે. પ્રોસેસ હાઉસ એચઆરએમ માં આપનું સ્વાગત છે.');
-        utterance.lang = 'gu-IN';
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
-        showToast('Playing: "હાલમાં ઑડિયો ભાષા ગુજરાતી છે" (Gujarati Audio Active)', 'success');
-      } else {
-        showToast('Speech audio synthesizer initialized: Gujarati active', 'info');
-      }
-    }
-
-    // Support Modal
-    function openSupportModal() {
-      const m = document.getElementById('supportModal');
-      if (m) m.classList.remove('hidden');
-    }
-    function closeSupportModal() {
-      const m = document.getElementById('supportModal');
-      if (m) m.classList.add('hidden');
-    }
-
-    // Generic Modal Close on Escape
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeSupportModal();
-        document.querySelectorAll('.app-modal').forEach(m => m.classList.add('hidden'));
-      }
-    });
-  </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.hisabmittra.com/assets/vendors/core/core.js"></script>
+    <script src="https://www.hisabmittra.com/assets/vendors/feather-icons/feather.min.js"></script>
+    <script src="https://www.hisabmittra.com/assets/js/template.js"></script>
 </body>
 </html>

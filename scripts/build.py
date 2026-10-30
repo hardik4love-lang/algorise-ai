@@ -41,6 +41,7 @@ SURFACES = [
     "api-docs.html",
     "algorise-payroll/advance-salaries.html",
     "algorise-payroll/app-settings.html",
+    "algorise-payroll/assets/algorise_brand_banner.png",
     "algorise-payroll/assets/logo.jpg",
     "algorise-payroll/assets/logo.png",
     "algorise-payroll/attendance-logs.html",
@@ -55,14 +56,17 @@ SURFACES = [
     "algorise-payroll/companies.html",
     "algorise-payroll/company-features.html",
     "algorise-payroll/company-management.html",
+    "algorise-payroll/company.html",
     "algorise-payroll/complaint.html",
     "algorise-payroll/daily-credit.html",
     "algorise-payroll/departments.html",
     "algorise-payroll/docs/index.html",
+    "algorise-payroll/employee-create.html",
     "algorise-payroll/employee-loans.html",
     "algorise-payroll/employee-management.html",
     "algorise-payroll/employee-master.html",
     "algorise-payroll/employee-salaries.html",
+    "algorise-payroll/employees.html",
     "algorise-payroll/extension.zip",
     "algorise-payroll/extension/background.js",
     "algorise-payroll/extension/content.js",
@@ -74,6 +78,7 @@ SURFACES = [
     "algorise-payroll/extension/popup.html",
     "algorise-payroll/extension/popup.js",
     "algorise-payroll/face-kiosk.html",
+    "algorise-payroll/face-profiles.html",
     "algorise-payroll/feature-control.html",
     "algorise-payroll/fiscal-year.html",
     "algorise-payroll/general-settings.html",
@@ -84,6 +89,7 @@ SURFACES = [
     "algorise-payroll/leave-management.html",
     "algorise-payroll/leave-request.html",
     "algorise-payroll/leaves.html",
+    "algorise-payroll/location-logs.html",
     "algorise-payroll/machines.html",
     "algorise-payroll/mobile.html",
     "algorise-payroll/mobile/icons/icon-192.png",
@@ -100,6 +106,8 @@ SURFACES = [
     "algorise-payroll/payroll-management.html",
     "algorise-payroll/payroll.html",
     "algorise-payroll/posts.html",
+    "algorise-payroll/projects-create.html",
+    "algorise-payroll/projects.html",
     "algorise-payroll/promotion.html",
     "algorise-payroll/qr.html",
     "algorise-payroll/recruitment.html",
@@ -110,6 +118,10 @@ SURFACES = [
     "algorise-payroll/salary-components.html",
     "algorise-payroll/shift-management.html",
     "algorise-payroll/static-pages.html",
+    "algorise-payroll/supervisor-credits.html",
+    "algorise-payroll/supervisor-monthly.html",
+    "algorise-payroll/supervisor-payroll-columns.html",
+    "algorise-payroll/supervisor-payroll-sheet.html",
     "algorise-payroll/supervisor.html",
     "algorise-payroll/support.html",
     "algorise-payroll/tadas.html",
@@ -119,6 +131,7 @@ SURFACES = [
     "algorise-payroll/time-leave-request.html",
     "algorise-payroll/transfer.html",
     "algorise-payroll/user-management.html",
+    "algorise-payroll/users.html",
     "algorise-payroll/warning.html",
     "compare/manychat-alternative.html",
     "compare/wati-alternative.html",
@@ -173,11 +186,18 @@ def sync(verbose: bool = True) -> list[str]:
         copied.append(f"{dest_rel} (from {source_rel})")
 
     # Compile Tailwind at build time.
-    r = subprocess.run(
-        [_NPX, 'tailwindcss', '-i', 'app.css', '-o', str(DIST / 'app.css'),
-         '--minify'],
-        cwd=ROOT, capture_output=True, text=True,
-    )
+    try:
+        r = subprocess.run(
+            [_NPX, 'tailwindcss', '-i', 'app.css', '-o', str(DIST / 'app.css'),
+             '--minify'],
+            cwd=ROOT, capture_output=True, text=True, timeout=8,
+        )
+    except Exception as e:
+        class _FakeR:
+            returncode = 1
+            stdout = ''
+            stderr = str(e)
+        r = _FakeR()
     if r.returncode != 0:
         print(f'  WARNING: tailwind build failed:\n{(r.stdout + r.stderr)[-500:]}')
         fallback = ROOT / 'assets' / 'app.compiled.css'
