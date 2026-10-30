@@ -26570,27 +26570,26 @@ a.replyicon{
 
 
 #preloader {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: #f4f4f4;
-    z-index: 999999;
+    background: transparent !important;
+    z-index: -99999 !important;
 }
 
 #preloader main.status {
-    position: fixed;
-    content: '';
-    display: block;
-    top: 50%;
-    left: 50%;
-    margin: 0 auto;
-    opacity: 1;
-    transform: translate(-50%, -50%);
-    visibility: visible;
-    transition: all ease-in-out 0.5s;
-    z-index: 9999999999; }
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    z-index: -99999 !important;
+}
 
 .ip {
     width: 4em;

@@ -8,15 +8,19 @@
     let sidebar = $('.sidebar');
     let navbar = $('.navbar').not('.top-navbar');
 
-    $(window).ready(function() {
-      $('#preloader').fadeOut();
-      $(window).on('load', function() {
-          $('#preloader').fadeOut(2000);
-      });
-    });
+    // Immediate preloader dismissal
+    $('#preloader').remove();
+    var p = document.getElementById('preloader');
+    if (p && p.parentNode) p.parentNode.removeChild(p);
 
     // Enable feather-icons with SVG markup
-    feather.replace();
+    try {
+      if (typeof feather !== 'undefined') {
+        feather.replace();
+      }
+    } catch (e) {
+      console.warn('feather.replace', e);
+    }
 
 
     // initialize clipboard plugin
