@@ -1,0 +1,372 @@
+/* ========================================
+   Global Fixes - Disable Select2, Use Native Dropdowns
+   ======================================== */
+
+/* Hide select2 containers on mobile touch devices - use native dropdowns */
+@media (max-width: 768px) and (pointer: coarse) {
+    .select2-container {
+        display: none !important;
+    }
+
+    /* Hide select2 arrow spans */
+    .select2-selection__arrow {
+        display: none !important;
+    }
+
+    /* Show native select on mobile */
+    select.form-select,
+    select.form-control {
+        display: block !important;
+        width: 100% !important;
+        height: 42px !important;
+        padding: 8px 12px !important;
+        padding-right: 30px !important; /* Space for native arrow */
+        font-size: 14px !important;
+        border: 1px solid #d9dee3 !important;
+        border-radius: 4px !important;
+        background-color: #fff !important;
+        background-image: none !important;
+        appearance: auto !important;
+        -webkit-appearance: menulist !important;
+        -moz-appearance: menulist !important;
+    }
+
+    /* Style for disabled options */
+    select option:disabled {
+        color: #999 !important;
+        background-color: #f5f5f5 !important;
+    }
+
+    /* Style for regular options */
+    select option {
+        background-color: #fff !important;
+        color: #333 !important;
+        padding: 10px !important;
+    }
+
+    /* Style for selected/hover options */
+    select option:checked,
+    select option:hover {
+        background-color: #e3f2fd !important;
+        color: #1976d2 !important;
+    }
+
+    /* Remove any pseudo-elements that might show arrows */
+    select.form-select::after,
+    select.form-control::after,
+    .select2-container::after {
+        display: none !important;
+        content: none !important;
+    }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 768px) and (pointer: coarse) {
+    select.form-select,
+    select.form-control {
+        font-size: 16px !important; /* Prevents iOS zoom */
+    }
+
+    /* Select2 dropdown full width */
+    .select2-container .select2-selection--single {
+        height: 38px !important;
+        padding: 6px 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* Select2 dropdown arrow positioning */
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 36px !important;
+        right: 8px !important;
+    }
+
+    /* Select2 rendered text alignment */
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 26px !important;
+        padding-left: 8px !important;
+    }
+
+    /* Select2 dropdown menu full width */
+    .select2-dropdown {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Select2 search input in dropdown */
+    .select2-search--dropdown .select2-search__field {
+        width: 100% !important;
+        padding: 8px !important;
+        font-size: 14px !important;
+    }
+
+    /* Select2 results container */
+    .select2-results {
+        max-height: 250px !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* Ensure results list is visible */
+    .select2-results__options {
+        display: block !important;
+        max-height: 250px !important;
+        overflow-y: auto !important;
+    }
+
+    /* Select2 options */
+    .select2-results__option {
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+    }
+
+    /* Form select elements */
+    .form-select {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+    }
+
+    /* Form control inputs */
+    .form-control {
+        width: 100% !important;
+        font-size: 14px !important;
+        padding: 8px 12px !important;
+    }
+
+    /* Form labels */
+    .form-label {
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+        font-weight: 500 !important;
+    }
+
+    /* Card body padding adjustment */
+    .card-body {
+        padding: 15px !important;
+    }
+
+    /* Button adjustments */
+    .btn {
+        font-size: 14px !important;
+        padding: 8px 16px !important;
+    }
+
+    /* Row spacing */
+    .row {
+        margin-left: -8px !important;
+        margin-right: -8px !important;
+    }
+
+    /* Column padding */
+    [class*="col-"] {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    /* Margin bottom for form groups */
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* Small mobile devices (phones in portrait) */
+@media (max-width: 576px) {
+    /* Force all columns to full width on small screens */
+    .col-xxl-4, .col-xl-4, .col-lg-4, .col-md-6, .col-sm-12 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Select2 adjustments for very small screens */
+    .select2-container .select2-selection--single {
+        height: 42px !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 30px !important;
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 40px !important;
+    }
+
+    /* Form inputs - prevent iOS zoom */
+    .form-control, .form-select {
+        font-size: 16px !important;
+        height: 42px !important;
+    }
+
+    /* Textarea */
+    textarea.form-control {
+        height: auto !important;
+        min-height: 80px !important;
+    }
+
+    /* Card adjustments */
+    .card {
+        margin-bottom: 15px !important;
+    }
+
+    .card-body {
+        padding: 12px !important;
+    }
+
+    /* Button full width option */
+    .btn-block-mobile {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* Table responsive */
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+
+/* Tablet devices */
+@media (min-width: 577px) and (max-width: 768px) {
+    /* Two columns on tablets */
+    .col-xxl-4, .col-xl-4, .col-lg-4, .col-md-6 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+/* Select2 touch improvements for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    .select2-selection__choice__remove {
+        padding: 8px !important;
+        font-size: 18px !important;
+    }
+
+    /* Better spacing for touch */
+    .select2-results__option {
+        padding: 12px 15px !important;
+        min-height: 44px !important; /* iOS recommended touch target */
+    }
+
+    /* Prevent text selection on touch */
+    .select2-container {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+    }
+}
+
+/* Fix for select2 dropdown positioning on mobile */
+@media (max-width: 768px) and (pointer: coarse) {
+    .select2-container--open .select2-dropdown {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    /* Ensure dropdown doesn't overflow viewport */
+    .select2-dropdown {
+        max-width: calc(100vw - 30px) !important;
+    }
+
+    /* Force dropdown to appear below the select box */
+    .select2-container--default.select2-container--open.select2-container--below .select2-selection--single,
+    .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    /* Ensure dropdown is visible and positioned correctly */
+    .select2-dropdown {
+        position: absolute !important;
+        z-index: 9999 !important;
+        display: block !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Fix dropdown results visibility */
+    .select2-results__options {
+        max-height: 200px !important;
+        overflow-y: auto !important;
+        display: block !important;
+    }
+
+    /* Ensure options are visible */
+    .select2-results__option {
+        display: block !important;
+        visibility: visible !important;
+    }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+    .select2-container--default .select2-selection--single {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+        color: #fff !important;
+    }
+
+    .select2-dropdown {
+        background-color: #1a1a1a !important;
+        border-color: #333 !important;
+    }
+
+    .select2-results__option {
+        color: #fff !important;
+    }
+
+    .select2-results__option--highlighted {
+        background-color: #333 !important;
+    }
+}
+
+/* Portrait mode specific fixes */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* Keep dropdown within card boundaries */
+    .select2-dropdown {
+        position: absolute !important;
+        max-height: 40vh !important;
+        overflow: visible !important;
+    }
+
+    .select2-results {
+        max-height: 35vh !important;
+        overflow-y: auto !important;
+    }
+
+    .select2-results__options {
+        max-height: 35vh !important;
+        overflow-y: auto !important;
+    }
+
+    /* Ensure dropdown appears on top but within container */
+    .select2-container--open {
+        z-index: 9999 !important;
+    }
+
+    /* Make sure options are clickable */
+    .select2-results__option {
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        padding: 12px 15px !important;
+    }
+}
+
+/* Fallback/responsive styles for native select multiple elements when Select2 is not active */
+select[multiple],
+select.form-control[multiple],
+select.form-select[multiple] {
+    height: auto !important;
+    min-height: 42px !important;
+    max-height: 150px !important;
+    padding: 8px 12px !important;
+    border: 1px solid #d9dee3 !important;
+    border-radius: 6px !important;
+    background-color: #fff !important;
+    appearance: listbox !important;
+    -webkit-appearance: listbox !important;
+    -moz-appearance: listbox !important;
+}

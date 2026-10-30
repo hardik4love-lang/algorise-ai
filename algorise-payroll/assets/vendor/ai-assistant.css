@@ -1,0 +1,393 @@
+/* =========================================================
+   Algorise PeopleOS AI Assistant Widget
+   Uses Bootstrap 5 variables + CSS custom properties
+   Scoped to #hm-ai-* to avoid conflicts with global styles
+   ========================================================= */
+
+/* ── Floating Button ──────────────────────────────────────── */
+#hm-ai-fab {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 10000;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color, #1565C0), #7c3aed);
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: #fff;
+    font-size: 22px;
+}
+
+#hm-ai-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.3);
+}
+
+#hm-ai-fab .hm-ai-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #fff;
+    animation: hm-pulse 2s infinite;
+}
+
+@keyframes hm-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.6; transform: scale(1.3); }
+}
+
+/* ── Chat Drawer ──────────────────────────────────────────── */
+#hm-ai-drawer {
+    position: fixed;
+    bottom: 96px;
+    right: 28px;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    max-height: 520px;
+    z-index: 9999;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+/* Dark mode support (reuses existing .dark-mode class if present) */
+body.dark-mode #hm-ai-drawer {
+    background: #1e2130;
+    color: #e2e8f0;
+}
+
+/* ── Drawer Header ────────────────────────────────────────── */
+#hm-ai-header {
+    background: linear-gradient(135deg, var(--primary-color, #1565C0), #7c3aed);
+    color: #fff;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#hm-ai-header .hm-ai-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+#hm-ai-header .hm-ai-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+#hm-ai-header .hm-ai-subtitle {
+    font-size: 11px;
+    opacity: 0.85;
+}
+
+#hm-ai-header .hm-ai-actions {
+    display: flex;
+    gap: 6px;
+}
+
+#hm-ai-header .hm-ai-actions button {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+}
+
+#hm-ai-header .hm-ai-actions button:hover {
+    background: rgba(255,255,255,0.28);
+}
+
+/* ── Messages Area ────────────────────────────────────────── */
+#hm-ai-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+#hm-ai-messages::-webkit-scrollbar        { width: 4px; }
+#hm-ai-messages::-webkit-scrollbar-track  { background: transparent; }
+#hm-ai-messages::-webkit-scrollbar-thumb  { background: #cbd5e1; border-radius: 4px; }
+
+/* ── Message Bubbles ─────────────────────────────────────── */
+.hm-ai-msg {
+    display: flex;
+    gap: 8px;
+    max-width: 100%;
+    animation: hm-msg-in 0.18s ease;
+}
+
+@keyframes hm-msg-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hm-ai-msg.hm-user {
+    flex-direction: row-reverse;
+}
+
+.hm-ai-msg-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+.hm-ai-msg .hm-ai-msg-icon {
+    background: linear-gradient(135deg, var(--primary-color, #1565C0), #7c3aed);
+    color: #fff;
+}
+
+.hm-user .hm-ai-msg-icon {
+    background: #e2e8f0;
+    color: #64748b;
+}
+
+.hm-ai-bubble-container {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 44px);
+    width: auto;
+}
+
+.hm-ai-msg.hm-user .hm-ai-bubble-container {
+    align-items: flex-end;
+}
+
+.hm-ai-msg .hm-ai-bubble-container {
+    align-items: flex-start;
+}
+
+.hm-ai-bubble {
+    padding: 9px 13px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.55;
+    width: fit-content;
+    max-width: 100%;
+    word-break: break-word;
+}
+
+.hm-ai-msg .hm-ai-bubble {
+    background: #f1f5f9;
+    color: #1e293b;
+    border-bottom-left-radius: 4px;
+}
+
+body.dark-mode .hm-ai-msg .hm-ai-bubble {
+    background: #2d3348;
+    color: #e2e8f0;
+}
+
+.hm-user .hm-ai-bubble {
+    background: linear-gradient(135deg, var(--primary-color, #1565C0), #7c3aed);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+/* ── Typing Indicator ─────────────────────────────────────── */
+.hm-typing {
+    display: flex;
+    gap: 4px;
+    padding: 10px 14px;
+    background: #f1f5f9;
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+}
+
+.hm-typing span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #94a3b8;
+    animation: hm-bounce 1.2s infinite;
+}
+
+.hm-typing span:nth-child(2) { animation-delay: 0.2s; }
+.hm-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes hm-bounce {
+    0%, 80%, 100% { transform: translateY(0); }
+    40%           { transform: translateY(-6px); }
+}
+
+/* ── Input Area ──────────────────────────────────────────── */
+#hm-ai-input-area {
+    border-top: 1px solid #e2e8f0;
+    padding: 10px 12px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-shrink: 0;
+}
+
+body.dark-mode #hm-ai-input-area {
+    border-top-color: #2d3348;
+}
+
+#hm-ai-input {
+    flex: 1;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    outline: none;
+    resize: none;
+    max-height: 90px;
+    overflow-y: auto;
+    transition: border-color 0.15s;
+    background: #f8fafc;
+    color: #1e293b;
+    font-family: inherit;
+    line-height: 1.4;
+}
+
+#hm-ai-input:focus {
+    border-color: var(--primary-color, #1565C0);
+    background: #fff;
+}
+
+body.dark-mode #hm-ai-input {
+    background: #2d3348;
+    color: #e2e8f0;
+    border-color: #3d4460;
+}
+
+#hm-ai-send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary-color, #1565C0), #7c3aed);
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: opacity 0.15s, transform 0.15s;
+}
+
+#hm-ai-send-btn:hover   { opacity: 0.88; transform: scale(1.05); }
+#hm-ai-send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+#hm-ai-voice-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    border: 1.5px solid #e2e8f0;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+}
+
+#hm-ai-voice-btn:hover         { background: #e2e8f0; }
+#hm-ai-voice-btn.hm-recording  { background: #fee2e2; color: #ef4444; border-color: #ef4444; animation: hm-pulse 1s infinite; }
+
+/* ── Suggestion Chips ─────────────────────────────────────── */
+#hm-ai-suggestions {
+    padding: 0 12px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.hm-chip {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11.5px;
+    color: #475569;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.hm-chip:hover {
+    background: var(--primary-color, #1565C0);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* ── Empty / welcome state ────────────────────────────────── */
+#hm-ai-welcome {
+    text-align: center;
+    padding: 24px 16px;
+    color: #94a3b8;
+}
+
+#hm-ai-welcome .hm-ai-welcome-icon {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+#hm-ai-welcome p {
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 480px) {
+    #hm-ai-drawer {
+        right: 10px;
+        bottom: 80px;
+        width: calc(100vw - 20px);
+        max-height: 70vh;
+    }
+    #hm-ai-fab {
+        bottom: 18px;
+        right: 18px;
+    }
+}

@@ -1,2 +1,2 @@
-// Content Script injected into hisabmittra.com & algorise-ai.com
+// Content Script injected into algorise-ai.com
 console.log('[Algorise PeopleOS] Extension content script active');
