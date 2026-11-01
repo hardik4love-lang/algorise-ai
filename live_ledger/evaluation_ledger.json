@@ -4,7 +4,7 @@
   "agent": "RevenueOrchestratorAgent",
   "version": "1.0.0",
   "policy": "zero_cost_enforced",
-  "total_evaluated": 380,
+  "total_evaluated": 390,
   "opportunities": [
     {
       "task_id": "gh-5021",
@@ -7985,6 +7985,216 @@
       ],
       "status": "APPROVED_FOR_TRIAGE",
       "created_at": "2026-10-31T20:55:07.231549+00:00"
+    },
+    {
+      "task_id": "gh-69",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ($$750): [Bounty] [Bounty",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/69",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692821+00:00"
+    },
+    {
+      "task_id": "gh-72",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bount",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/72",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692847+00:00"
+    },
+    {
+      "task_id": "gh-71",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ($$750): \ud83d\udcb0 Bounty Seguro ",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/71",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692858+00:00"
+    },
+    {
+      "task_id": "gh-70",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$750): \ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/70",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692864+00:00"
+    },
+    {
+      "task_id": "gh-4191",
+      "title": "[Bounty] \ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ($$750): \ud83d\udcb0 Bounty Seguro ",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4191",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692871+00:00"
+    },
+    {
+      "task_id": "gh-54",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$250): [Bounty] \ud83d\udcb0 Bounty Seguro ($$250): [Bounty] Preserv",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/54",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692877+00:00"
+    },
+    {
+      "task_id": "gh-4190",
+      "title": "[Bounty] \ud83d\udcb0 Bounty Seguro ($$750): \ud83d\udcb0 Bounty Seguro ($$750): [Bounty] \ud83d\udcb0 Bounty Seguro ",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4190",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692882+00:00"
+    },
+    {
+      "task_id": "gh-60",
+      "title": "\ud83d\udcb0 Bounty Seguro ($$250): [Bounty] \ud83d\udcb0 Bounty Seguro ($$250): [Bounty] \ud83d\udcb0 Bount",
+      "repository": "alfrexo95/bounty-bot",
+      "url": "https://github.com/alfrexo95/bounty-bot/issues/60",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692897+00:00"
+    },
+    {
+      "task_id": "gh-4171",
+      "title": "[Bounty] \ud83d\udcb0 Bounty Seguro ($$250): [Bounty] \ud83d\udcb0 Bounty Seguro ($$250): \ud83d\udcb0 Bounty Seguro ",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4171",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692905+00:00"
+    },
+    {
+      "task_id": "gh-4168",
+      "title": "[Bounty] \ud83d\udcb0 Bounty Seguro ($$250): \ud83d\udcb0 Bounty Seguro ($$250): [Bounty] \ud83d\udcb0 Bounty Seguro ",
+      "repository": "zhangjiayang6835-cyber/bounty-plaza",
+      "url": "https://github.com/zhangjiayang6835-cyber/bounty-plaza/issues/4168",
+      "gross_payout_usd": 50.0,
+      "expected_net_revenue": 47.5,
+      "prioritization_score": 19.11,
+      "confidence_score": 0.95,
+      "gates_passed": [
+        "thought_validated",
+        "enr_positive",
+        "within_budget",
+        "within_quotas",
+        "risk_acceptable",
+        "tools_authorized",
+        "idempotent_safe"
+      ],
+      "status": "APPROVED_FOR_TRIAGE",
+      "created_at": "2026-11-01T04:00:01.692911+00:00"
     }
   ]
 }
