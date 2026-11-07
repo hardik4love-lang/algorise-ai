@@ -63,7 +63,7 @@
       "catalog_items": [
         {"item": "AnyDesk 24/7 Remote Software Triage", "moq": "Single Session", "ex_factory_rate": "₹250 flat"},
         {"item": "Surat Doorstep Onsite Diagnostic Visit", "moq": "Per Visit", "ex_factory_rate": "₹500 deposit"},
-        {"item": "Laptop Thermal Paste & Deep Dust Cleanout", "moq": "Per Unit", "ex_factory_rate": "₹600 + visit"},
+        {"item": "Laser Printer Cartridge Refill (HP, Canon, Brother)", "moq": "Per Cartridge", "ex_factory_rate": "₹300 flat"},
         {"item": "High-Speed NVMe SSD + Clean OS Migration", "moq": "Per System", "ex_factory_rate": "Hardware + ₹500"},
         {"item": "Office Gigabit Router & Wi-Fi Mesh Setup", "moq": "Per Premise", "ex_factory_rate": "₹1,200 + visit"},
         {"item": "Textile Thermal Barcode Printer Setup", "moq": "Per Unit", "ex_factory_rate": "₹450 + visit"},
