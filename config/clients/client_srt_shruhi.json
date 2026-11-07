@@ -1,66 +1,60 @@
 {
   "client_id": "client_srt_shruhi",
   "name": "Shruhi Collections — Official Boutique (shruhicollections.in)",
-  "tier": "Surat Business Pro",
+  "tier": "Tier 3: Omnichannel Pro",
   "phone": "+91 63552 85433",
   "email": "orders@shruhicollections.in",
   "city": "100% Online Store • www.shruhicollections.in",
   "fb_page_id": "990429957485979",
   "fb_page_name": "Shruhi Collections (ID: 990429957485979)",
+  "ig_account": "@shruhicollections_official",
   "settings": {
     "area": "100% Online Store • www.shruhicollections.in",
     "domain": "https://shruhicollections.in",
+    "storefront_url": "https://algorise-ai.com/shruhi.html",
     "fb_page_url": "https://www.facebook.com/990429957485979",
     "fb_page_2_url": "https://www.facebook.com/930668420130927",
     "connected_pages_limit": 3,
-    "marketing_groups_joined": 100,
     "viral_sales_reel": "assets/shruhi-viral-sales-reel-2026.mp4",
-    "sub_005s_shield": true,
+    "sub_0018s_shield": true,
     "languages": ["Surati Gujarati", "Hindi", "English"],
-    "telegram_proxy": "@Aassqqee_bot",
-    "hero_bots_included": 100,
+    "omnichannel_channels": ["facebook_feed", "facebook_messenger", "instagram_reels", "whatsapp_catalog"],
+    "post_diwali_launch": {
+      "mode": "weekly_sequenced_drops",
+      "pre_booking_active": true,
+      "schedule": [
+        {"drop": 1, "sku": "TEJAL", "item": "TEJAL — 3-Piece Ochre Sharara Suit", "price": "₹2,850", "sizes": "M to 6XL"},
+        {"drop": 2, "sku": "GALAXY", "item": "GALAXY — Royal Banarasi Silk Co-ord Set", "price": "₹2,450", "sizes": "S to 5XL"},
+        {"drop": 3, "sku": "KAVYA", "item": "KAVYA — Mauve Scalloped Royal Bandhani Couture", "price": "₹3,250", "sizes": "M to 6XL"},
+        {"drop": 4, "sku": "B-2876", "item": "B-2876 — Curvy Plus-Size Burgundy Kashmiri Suit", "price": "₹2,650", "sizes": "3XL to 6XL"},
+        {"drop": 5, "sku": "D1042", "item": "D.NO 1042 — Everyday Chic Cotton Tunic & Set", "price": "₹850 – ₹1,550", "sizes": "S to 4XL"},
+        {"drop": 6, "sku": "D1038", "item": "D.NO 1038 — Crimson Ajrakh Plus-Size Ensemble", "price": "₹2,650", "sizes": "3XL to 6XL"}
+      ]
+    },
     "agent_rules": {
-      "sensitivity_score": 94.0,
+      "sensitivity_score": 96.0,
       "broker_shield_enabled": true,
-      "telegram_alerts_enabled": true,
+      "private_messenger_dm_enabled": true,
       "whatsapp_auto_dispatch": true,
+      "instagram_auto_reply_enabled": true,
+      "whatsapp_catalog_embedding": true,
       "sector": "textile",
-      "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: +91 63552 85433.",
+      "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 14+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) પ્રી-બુકિંગ માટે હાજર છે. VIP ઓર્ડર માટે WhatsApp: +91 63552 85433.",
       "catalog_items": [
-        {
-          "item": "TEJAL — 3-Piece Heavy Designer Suit",
-          "moq": "Sizes M to 6XL",
-          "ex_factory_rate": "₹2,850"
-        },
-        {
-          "item": "GALAXY — Festive Silk Co-ord & Suit Set",
-          "moq": "Sizes S to 5XL",
-          "ex_factory_rate": "₹2,450"
-        },
-        {
-          "item": "KAVYA — Royal Bandhani & Zari Couture",
-          "moq": "Sizes M to 6XL",
-          "ex_factory_rate": "₹3,250"
-        },
-        {
-          "item": "B-2876 — Curvy Plus-Size Festive Edition",
-          "moq": "Sizes 3XL to 6XL",
-          "ex_factory_rate": "₹2,650"
-        },
-        {
-          "item": "1042 — Everyday Chic Cotton Tunic & Set",
-          "moq": "Sizes S to 4XL",
-          "ex_factory_rate": "₹850 – ₹1,550"
-        }
+        {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
+        {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
+        {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
+        {"item": "B-2876 — Curvy Plus-Size Festive Edition", "moq": "Sizes 3XL to 6XL", "ex_factory_rate": "₹2,650"},
+        {"item": "1042 — Everyday Chic Cotton Tunic & Set", "moq": "Sizes S to 4XL", "ex_factory_rate": "₹850 – ₹1,550"}
       ]
     }
   },
   "subscription": {
-    "plan_tier": "pro",
-    "plan_name": "SURAT PRO TIER (₹29,999 / MONTH)",
-    "monthly_price": 29999.0,
-    "setup_fee": 29999.0,
-    "advance_amount": 5999.0
+    "plan_tier": "omnichannel_pro",
+    "plan_name": "TIER 3: OMNICHANNEL LEADSHIELD PRO (₹30,000 / MONTH)",
+    "monthly_price": 30000.0,
+    "setup_fee": 30000.0,
+    "advance_amount": 6000.0
   },
-  "notes": "SURAT PRO TIER: Connect & Keep Updated 3 Facebook Pages (61586357894191, 61586323275145 + Hub), Join 100 Relevant Marketing Groups, Post 1 Viral 4K Product Sales Reel, 24/7 Customer Reply & Guide to Client (+91 63552 85433)."
+  "notes": "TIER 3 OMNICHANNEL PRO: Full Facebook Ad Comment Auto-Hide (0.018s), Instant Private Messenger DM with 4K Catalog, Instagram Reels Comment Protection, and Direct WhatsApp Business Catalog Handoff (+91 63552 85433). Ready for Post-Diwali Pre-Launch."
 }
