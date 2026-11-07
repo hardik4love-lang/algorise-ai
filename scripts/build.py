@@ -32,6 +32,7 @@ DIST = ROOT / "dist"
 SURFACES = [
     "index.html",
     "dashboard.html",
+    "shruhi.html",
     "creator_studio.html",
     "realtor_sales_console.html",
     "admin.html",

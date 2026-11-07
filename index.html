@@ -889,7 +889,7 @@
     <nav class="sf-nav" aria-label="Primary">
       <a href="#simulation">Live Shield Demo</a>
       <a href="#how-it-works">How It Works</a>
-      <a href="#roi-simulator">ROI Calculator</a>
+      <a href="#pricing">Plans & Pricing</a>
       <a href="#pricing">Pricing</a>
       <a href="dashboard.html" class="text-brand-cyan hover:underline font-bold">Live Console</a>
     </nav>
@@ -1281,79 +1281,9 @@
     </div>
   </section>
 
-  <!-- ========================================== -->
-  <!-- 05. DUAL JOURNEY SPLIT                     -->
-  <!-- ========================================== -->
-  <section class="sf-section" id="sf-journey">
-    <div class="sf-section-head">
-      <span class="sf-eyebrow">03 — DUAL ARCHITECTURE</span>
-      <h2>One unified platform. Two specialized journeys.</h2>
-      <p>Whether you run a high-volume manufacturing mill in Surat or export high-ticket parcels globally, Algorise AI tunes its neural pathways to your exact commercial model.</p>
-    </div>
-
-    <div class="sf-journey-grid">
-      <!-- Journey 1: Regional Manufacturers -->
-      <article class="sf-journey">
-        <span class="sf-journey-tag">
-          <i class="fa-solid fa-industry text-brand-cyan"></i> FOR SURAT &amp; REGIONAL MANUFACTURERS
-        </span>
-        <h3>Protect your local margin from aggressive brokers.</h3>
-        <ul>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Zero Broker Leakages:</strong> Phone numbers left on ad comments hidden within 0.05 seconds.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Native Gujarati &amp; Hindi Dialogue:</strong> Understands trade jargon, ex-factory rates, and minimum order queries.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Telegram Instant Push:</strong> Alerts the business owner directly on phone with 1-click dial links.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Turnkey Onboarding:</strong> Connect your Meta page in 3 minutes without technical overhead.</span>
-          </li>
-        </ul>
-        <button onclick="openBookingModal('Surat Pro Tier', 29999, 5999)" class="sf-btn-primary sm">
-          Claim Surat Founder Slot <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
-        </button>
-      </article>
-
-      <!-- Journey 2: Global Exporters -->
-      <article class="sf-journey alt">
-        <span class="sf-journey-tag">
-          <i class="fa-solid fa-globe text-brand-violet"></i> FOR GLOBAL EXPORTERS &amp; COMMERCE
-        </span>
-        <h3>Scale international pipeline with algorithmic precision.</h3>
-        <ul>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Multi-Currency Qualification:</strong> Auto-qualifies buyers in USD, EUR, AED with live conversion logic.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Multi-Page Synchronization:</strong> Defend dozens of ad accounts across Instagram, Facebook, and Messenger.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>Enterprise CRM &amp; Webhook Routing:</strong> Push verified leads into Salesforce, Zoho, HubSpot, or custom ERPs.</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-chevron-right text-xs"></i>
-            <span><strong>High-Capacity Cluster:</strong> Dedicated cloud worker queue with 99.9% uptime SLA.</span>
-          </li>
-        </ul>
-        <button onclick="openBookingModal('Enterprise Scale Tier', 69999, 14999)" class="sf-btn-primary sm">
-          Schedule Enterprise Setup <i class="fa-solid fa-arrow-up-right-from-square text-xs ml-1"></i>
-        </button>
-      </article>
-    </div>
-  </section>
-
-  <!-- ========================================== -->
-  <!-- 06. 100 HERO BOTS SUITE PREVIEW            -->
+  <!-- ==========================================
+  03. HOW IT WORKS
+  ========================================== -->
   <!-- ========================================== -->
   <section class="sf-section" id="how-it-works">
     <div class="sf-section-head">
@@ -1442,169 +1372,136 @@
   <!-- ========================================== -->
     <!-- ========================================== -->
   <!-- 07.5 AUTONOMOUS AD DEFENSE & B2B ROI ENGINE -->
-  <!-- ========================================== -->
-  <section class="sf-section" id="roi-simulator" style="background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.08) 0%, transparent 70%);">
-    <div class="sf-section-head text-center mx-auto mb-12">
-      <span class="sf-eyebrow">04.5 — LIVE B2B ROI SIMULATOR</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Calculate Your Monthly Revenue Defense &amp; Reclaimed ROI</h2>
-      <p class="text-sm text-slate-400 max-w-2xl mx-auto mt-3">
-        Every public ad comment saying <span class="text-brand-cyan font-mono">"Price?"</span> or <span class="text-brand-cyan font-mono">"Wholesale MOQ?"</span> is targeted by rival vendors within 4 minutes. See how much money Algorise protects and reclaims for your business each month.
-      </p>
-    </div>
-
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      <!-- Sliders Column (7 cols) -->
-      <div class="lg:col-span-7 bg-slate-900/80 border border-slate-800 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
-        <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2.5">
-          <i class="fa-solid fa-sliders text-brand-cyan"></i> Brand Operational Parameters
-        </h3>
-
-        <!-- Slider 1: Monthly Meta Ad Spend -->
-        <div class="mb-6">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Monthly Meta Ad Spend</label>
-            <span id="displayAdSpend" class="text-base font-bold font-mono text-brand-cyan">₹1,50,000</span>
-          </div>
-          <input type="range" id="sliderAdSpend" min="20000" max="1500000" step="10000" value="150000" class="w-full accent-brand-cyan cursor-pointer bg-slate-800 h-2 rounded-lg">
-          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
-            <span>₹20,000</span>
-            <span>₹15,00,000</span>
-          </div>
-        </div>
-
-        <!-- Slider 2: Monthly Inbound Comments & Inquiries -->
-        <div class="mb-6">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Monthly Inbound Ad Comments</label>
-            <span id="displayComments" class="text-base font-bold font-mono text-brand-violet">2,500 inquiries</span>
-          </div>
-          <input type="range" id="sliderComments" min="200" max="25000" step="100" value="2500" class="w-full accent-brand-violet cursor-pointer bg-slate-800 h-2 rounded-lg">
-          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
-            <span>200</span>
-            <span>25,000</span>
-          </div>
-        </div>
-
-        <!-- Slider 3: Average Wholesale Order Value -->
-        <div class="mb-6">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-mono uppercase text-slate-400 font-semibold tracking-wider">Average B2B / Wholesale Order Value</label>
-            <span id="displayOrderValue" class="text-base font-bold font-mono text-emerald-400">₹45,000</span>
-          </div>
-          <input type="range" id="sliderOrderValue" min="5000" max="300000" step="5000" value="45000" class="w-full accent-emerald-400 cursor-pointer bg-slate-800 h-2 rounded-lg">
-          <div class="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
-            <span>₹5,000</span>
-            <span>₹3,00,000</span>
-          </div>
-        </div>
-
-        <!-- Live SOC Feed Telemetry Simulator -->
-        <div class="mt-8 border-t border-slate-800 pt-6">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono uppercase text-slate-400 flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Interception Stream (Sub-0.05s)
-            </span>
-            <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-2 py-0.5 rounded">Active Defense</span>
-          </div>
-          <div id="socTelemetryFeed" class="space-y-2 font-mono text-xs max-h-36 overflow-hidden">
-            <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between">
-              <span class="text-slate-300"><span class="text-brand-cyan">[0.038s]</span> Intercepted rival DM poaching on Wholesale Saree Post #4</span>
-              <span class="text-emerald-400 text-[10px] font-bold">SHIELDED</span>
-            </div>
-            <div class="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800/80 flex items-center justify-between">
-              <span class="text-slate-300"><span class="text-brand-cyan">[0.042s]</span> Inbound Gujarati inquiry "Rate su che?" -> Directed to WhatsApp</span>
-              <span class="text-brand-cyan text-[10px] font-bold">QUALIFIED</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Live ROI Output Column (5 cols) -->
-      <div class="lg:col-span-5 bg-gradient-to-b from-brand-cyan/15 via-slate-900/90 to-brand-violet/10 border-2 border-brand-cyan/50 rounded-2xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-        <div class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-extrabold mb-1">PROJECTED FINANCIAL IMPACT</div>
-        <h4 class="text-2xl font-black text-white mb-6">Net Protected Revenue</h4>
-
-        <div class="space-y-5">
-          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
-            <div class="text-[11px] font-mono text-slate-400 uppercase">Monthly Poached Inquiries Shielded</div>
-            <div id="outShieldedLeads" class="text-3xl font-extrabold font-mono text-brand-cyan mt-1">450 leads</div>
-            <div class="text-[10px] text-slate-500 mt-0.5">Based on 18% average comment section competitor poaching rate</div>
-          </div>
-
-          <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-4">
-            <div class="text-[11px] font-mono text-slate-400 uppercase">Estimated Monthly Reclaimed Sales</div>
-            <div id="outMonthlyReclaimed" class="text-3xl font-extrabold font-mono text-emerald-400 mt-1">₹28,35,000</div>
-            <div class="text-[10px] text-slate-500 mt-0.5">Assumes standard 14% qualification-to-purchase conversion</div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5">
-              <div class="text-[10px] font-mono text-slate-400 uppercase">ROI vs Surat Pro</div>
-              <div id="outRoiMultiplier" class="text-2xl font-black font-mono text-white mt-1">94.5x</div>
-            </div>
-            <div class="bg-slate-950/70 border border-slate-800 rounded-xl p-3.5">
-              <div class="text-[10px] font-mono text-slate-400 uppercase">Response Time</div>
-              <div class="text-2xl font-black font-mono text-brand-cyan mt-1">&lt; 0.05s</div>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })" class="w-full mt-6 py-3.5 px-4 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-extrabold text-xs transition-all shadow-lg hover:shadow-brand-cyan/40 hover:scale-[1.02]">
-          Deploy Autonomous Defense Now &rarr;
-        </button>
-      </div>
-    </div>
-  </section>
-
-<section class="sf-section" id="pricing">
+  <section class="sf-section" id="pricing">
     <div class="sf-section-head text-center mx-auto">
       <span class="sf-eyebrow">05 — TRANSPARENT PRICING</span>
       <h2>Lock in early founder access before public rollout.</h2>
       <p>Direct B2B investment with guaranteed ROI. Prevent a single poached wholesale order and your subscription pays for itself 10x over.</p>
     </div>
 
-    <div class="max-w-xl mx-auto">
-      <!-- Surat LeadShield Pro -->
-      <div class="bg-gradient-to-b from-brand-cyan/15 via-slate-900/90 to-brand-violet/10 border-2 border-brand-cyan/60 rounded-3xl p-8 sm:p-10 backdrop-blur-xl shadow-2xl relative">
-        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void text-[10px] font-extrabold tracking-widest uppercase px-4 py-1.5 rounded-full shadow-lg">
-          SURAT COMMERCE FOUNDER CHOICE
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto items-stretch">
+      <!-- Tier 1: Comment Shield (₹10,000/mo) -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-7 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl">
+        <div>
+          <div class="text-center mb-6">
+            <span class="text-xs font-mono text-slate-400 uppercase tracking-wider font-bold">TIER 1 · COMMENT SHIELD</span>
+            <div class="my-4 flex items-baseline justify-center gap-1.5">
+              <span class="text-4xl sm:text-5xl font-black text-white font-mono">₹10,000</span>
+              <span class="text-xs text-slate-400"> / mo</span>
+            </div>
+            <p class="text-xs text-slate-300">Public ad comment defense &amp; auto-reply. Protect your paid ads from competitor brokers.</p>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 mb-6 text-xs text-slate-300 space-y-1.5">
+            <div class="flex items-center gap-2 font-bold text-brand-cyan">
+              <i class="fa-solid fa-shield-halved"></i> Ad Comment Automation
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Auto-hides comments containing buyer phone numbers in 0.018s and posts instant public AI responses.
+            </p>
+          </div>
+
+          <ul class="space-y-3 text-xs text-slate-300 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Sub-0.018s Broker Shield</strong> (Auto-Hide Numbers)</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Instant Public AI Comment Reply</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Surati Gujarati, Hindi &amp; English NLP</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Competitor Blacklist &amp; Keyword Filter</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> 1 Connected Facebook Business Page</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Zero Per-Message Fees &amp; Zero Ad Markup</li>
+          </ul>
         </div>
 
-        <div class="text-center mb-6">
-          <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-bold">SURAT LEADSHIELD PRO</span>
-          <div class="my-4 flex items-baseline justify-center gap-2">
-            <span class="text-5xl font-black text-white font-mono">₹29,999</span>
-            <span class="text-sm text-slate-400"> / month</span>
+        <div>
+          <button type="button" onclick="openBookingModal('Tier 1: Comment Shield', 10000, 2000)" class="w-full py-3.5 px-5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-all border border-slate-700 cursor-pointer">
+            Deploy Comment Shield (₹2,000 Advance) →
+          </button>
+          <p class="text-center text-[10px] text-slate-500 mt-3 font-mono">Setup via AnyDesk · ₹2,000 Advance</p>
+        </div>
+      </div>
+
+      <!-- Tier 2: AI Messenger Sales Desk (₹20,000/mo) -->
+      <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-7 sm:p-8 backdrop-blur-xl flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl">
+        <div>
+          <div class="text-center mb-6">
+            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-bold">TIER 2 · AI CHAT SALES DESK</span>
+            <div class="my-4 flex items-baseline justify-center gap-1.5">
+              <span class="text-4xl sm:text-5xl font-black text-white font-mono">₹20,000</span>
+              <span class="text-xs text-slate-400"> / mo</span>
+            </div>
+            <p class="text-xs text-slate-300">24/7 AI chat desk on your Facebook Page. Turn organic &amp; ad inquiries into closed buyers.</p>
           </div>
-          <p class="text-xs text-slate-300">Full commercial enterprise license. Direct engineering setup via AnyDesk with ₹5,999 booking advance.</p>
+
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800/80 mb-6 text-xs text-slate-300 space-y-1.5">
+            <div class="flex items-center gap-2 font-bold text-emerald-400">
+              <i class="fa-solid fa-comments"></i> Full Facebook Page Chat Support
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              Multi-turn conversational AI directly attached to your Facebook Page inbox for continuous 24/7 customer guidance.
+            </p>
+          </div>
+
+          <ul class="space-y-3 text-xs text-slate-300 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>24/7 Facebook Messenger AI Sales Agent</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Custom Boutique Catalog &amp; Rate Knowledge</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Dialect Handling (Gujarati, Hindi, English)</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>BANT Lead Qualification</strong> (Volume, City, MOQs)</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Instant Hot Lead Telegram Alerts to Owner</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Up to 2 Connected Facebook Pages</li>
+          </ul>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-950/80 border border-slate-800 mb-6 text-xs text-slate-300 space-y-2">
-          <div class="flex items-center gap-2 font-bold text-emerald-400">
-            <i class="fa-solid fa-bolt"></i> 10-Minute Direct Engineering Handshake
+        <div>
+          <button type="button" onclick="openBookingModal('Tier 2: AI Messenger Chat Desk', 20000, 4000)" class="w-full py-3.5 px-5 rounded-2xl bg-brand-cyan/20 hover:bg-brand-cyan/30 text-brand-cyan font-bold text-xs transition-all border border-brand-cyan/40 cursor-pointer">
+            Deploy Chat Support (₹4,000 Advance) →
+          </button>
+          <p class="text-center text-[10px] text-slate-500 mt-3 font-mono">Setup via AnyDesk · ₹4,000 Advance</p>
+        </div>
+      </div>
+
+      <!-- Tier 3: Omnichannel LeadShield Pro (₹30,000/mo) -->
+      <div class="bg-gradient-to-b from-brand-cyan/15 via-slate-900/90 to-brand-violet/10 border-2 border-brand-cyan/60 rounded-3xl p-7 sm:p-8 backdrop-blur-xl flex flex-col justify-between shadow-2xl relative">
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void text-[9px] font-extrabold tracking-widest uppercase px-3.5 py-1 rounded-full shadow-lg whitespace-nowrap">
+          MOST POPULAR · COMPLETE OMNICHANNEL
+        </div>
+
+        <div>
+          <div class="text-center mb-6">
+            <span class="text-xs font-mono text-brand-cyan uppercase tracking-wider font-bold">TIER 3 · OMNICHANNEL PRO</span>
+            <div class="my-4 flex items-baseline justify-center gap-1.5">
+              <span class="text-4xl sm:text-5xl font-black text-white font-mono">₹30,000</span>
+              <span class="text-xs text-slate-400"> / mo</span>
+            </div>
+            <p class="text-xs text-slate-300">Comments + Messenger + Instagram + WhatsApp Catalog. The ultimate end-to-end closer.</p>
           </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            Our engineers connect your Meta Facebook &amp; Instagram Pages via AnyDesk within 10 minutes. Zero free trials — immediate sub-0.05s broker interception and verified WhatsApp lead delivery.
+
+          <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 mb-6 text-xs text-slate-300 space-y-1.5">
+            <div class="flex items-center gap-2 font-bold text-emerald-400">
+              <i class="fa-solid fa-crown"></i> Full LeadShield + Catalog Embedding
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              When a buyer comments on Facebook or Instagram, we auto-hide their phone number, dispatch a 4K catalog via Messenger, and hand off to WhatsApp.
+            </p>
+          </div>
+
+          <ul class="space-y-3 text-xs text-slate-200 mb-8">
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Everything in Tier 1 &amp; Tier 2 Included</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Private Messenger DM from Public Comment</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Full Instagram Direct &amp; Ad Comment Defense</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Native WhatsApp Business Catalog Embedding</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Closed-Loop #AG Attribution Tracking</strong></li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Up to 3 Connected Facebook &amp; Instagram Pages</li>
+            <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> Dedicated Engineer &amp; 10-Min Concierge Handshake</li>
+          </ul>
+        </div>
+
+        <div>
+          <button type="button" onclick="openBookingModal('Tier 3: Omnichannel LeadShield Pro', 30000, 6000)" class="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-black text-xs transition-all shadow-xl hover:shadow-brand-cyan/50 hover:scale-[1.02] cursor-pointer">
+            Deploy Full Suite (₹6,000 Advance) →
+          </button>
+          <p class="text-center text-[10px] text-slate-400 mt-3 font-mono">
+            <i class="fa-solid fa-shield text-emerald-400 mr-1"></i> 100% Commercial Protection Guarantee
           </p>
         </div>
-
-        <ul class="space-y-3.5 text-xs text-slate-200 mb-8">
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Unlimited Meta Facebook &amp; Instagram Page Protection</strong></li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Sub-0.05s Auto-Hide Shield</strong> on all public ad comments</li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Native Surati Gujarati &amp; Hindi Intent NLP</strong></li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Instant Private Messenger DM</strong> with 4K Digital Catalog</li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Direct WhatsApp Business App Handoff</strong> (Runs on your phone)</li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Closed-Loop Attribution &amp; Lead Recovery Dashboard</strong></li>
-          <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-brand-cyan"></i> <strong>Zero Per-Message Fees &amp; Zero Meta Ad Markup</strong></li>
-        </ul>
-
-        <button type="button" onclick="openBookingModal('Surat LeadShield Pro', 29999, 5999)" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-brand-cyan to-brand-violet text-brand-void font-black text-sm transition-all shadow-xl hover:shadow-brand-cyan/50 hover:scale-[1.02] cursor-pointer">
-          Deploy LeadShield Pro (₹5,999 Advance) →
-        </button>
-
-        <p class="text-center text-[11px] text-slate-400 mt-4">
-          <i class="fa-solid fa-shield text-emerald-400 mr-1"></i> 100% Commercial Protection Guarantee. Dedicated Engineer Assigned.
-        </p>
       </div>
     </div>
   </section>
@@ -1650,7 +1547,7 @@
           <a href="compare/manychat-alternative.html">vs. ManyChat</a>
           <a href="compare/wati-alternative.html">vs. WATI</a>
           <a href="field_pitch.html">Field Pitch Deck</a>
-          <a href="#roi-simulator">ROI Simulator</a>
+          <a href="#pricing">ROI Simulator</a>
         </div>
         <div>
           <span>PLATFORM &amp; GOVERNANCE</span>
