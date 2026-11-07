@@ -1,0 +1,79 @@
+{
+  "monument": "Kailasa Temple (Cave 16), Ellora Caves, Chhatrapati Sambhaji Nagar (Aurangabad), Maharashtra, India",
+  "coordinates": "20.0240° N, 75.1793° E",
+  "dynasty": "Rashtrakuta Dynasty (King Krishna I / Kannara, c. 756–773 CE)",
+  "patron_epigraph": "Baroda Copper Plate (812 CE) of Karka II",
+  "architectural_style": "Dravidian Monolithic Rock-Cut (Karnata Dravida with Chalukyan-Pallava synthesis)",
+  "dimensions": {
+    "courtyard_length_m": 84.0,
+    "courtyard_width_m": 47.0,
+    "courtyard_depth_m": 33.0,
+    "vimana_height_m": 32.6,
+    "estimated_quarried_mass_tonnes": 400000,
+    "estimated_quarried_volume_m3": 85000
+  },
+  "geology": {
+    "rock_formation": "Deccan Traps Continental Flood Basalt (Pahoehoe lava flows)",
+    "hardness_mohs": "6.0 to 6.5",
+    "tensile_strength_mpa": "15 to 25 MPa",
+    "compressive_strength_mpa": "120 to 180 MPa",
+    "excavation_method": "Top-down vertical trenching (Reverse quarrying)",
+    "tooling": "Hardened iron chisels, heavy sledgehammers, wooden water-expansion wedges"
+  },
+  "structural_components": [
+    {
+      "name": "Entrance Gopuram (Two-Story Gateway)",
+      "aspects": "South-facing monumental gateway carved out of the original cliff front, acting as an acoustic barrier isolating the inner sanctum from outer valley winds."
+    },
+    {
+      "name": "Nandi Mandapa (Pavilion of the Divine Bull)",
+      "aspects": "Two-story monolithic pavilion housing the Nandi bull, connected to the main temple by a rock-cut flying bridge overhead."
+    },
+    {
+      "name": "Dhwajasthambha Pillars (Victory Columns)",
+      "aspects": "Two 15-meter free-standing monolithic obelisks standing on either side of the courtyard, carved in place with zero joints or mortar."
+    },
+    {
+      "name": "Maha-Gaja Plinth (The Elephant Base)",
+      "aspects": "Continuous frieze of life-sized monolithic elephants and lions appearing to physically support the weight of the multi-tier temple superstructure."
+    },
+    {
+      "name": "Gudhamandapa (Main Assembly Hall)",
+      "aspects": "Hypostyle hall supported by 16 massive carved square pillars arranged in 4 groups of 4, creating multi-directional cross-ventilation."
+    },
+    {
+      "name": "Garbhagriha & 32.6m Vimana (Sanctum & Spire)",
+      "aspects": "Octagonal monolithic Shikhara carved with miniature temple spires (Kuta and Sala), housing the Svayambhu-style Shiva Lingam."
+    },
+    {
+      "name": "Five Subsidiary Shrines (Panchayatana)",
+      "aspects": "Dedicated to Ganesha, Rudra, Ganga, Yamuna, and Saraswati along the circumambulatory path (Pradakshinapatha)."
+    }
+  ],
+  "engineering_mysteries_and_prospects": [
+    {
+      "aspect": "The Missing 400,000 Tonnes of Debris",
+      "detail": "Over 400,000 tonnes of basalt were chipped away. No quarry tailings, debris hills, or waste piles have been found in the surrounding 50 km area. Hypotheses suggest pulverization for roadbeds or agricultural mineral enrichment."
+    },
+    {
+      "aspect": "Zero Room for Architectural Error",
+      "detail": "Traditional masonry allows replacing defective blocks. In monolithic top-down carving, a single misplaced chisel strike or rock fracture would cause catastrophic structural collapse. Calculations for pillar spacing and ceiling thickness were pre-determined before touching the stone."
+    },
+    {
+      "aspect": "Subterranean Gravity Drainage Corridors",
+      "detail": "Interlocking sub-surface conduits and drainage canals carved directly into the living rock prevent monsoon rainwater pooling and neutralize hydrostatic ground pressure."
+    },
+    {
+      "aspect": "Original White Plaster Coating (Mount Kailash Illusion)",
+      "detail": "The temple was originally coated in thick white shell plaster (Chuna) to gleam like the snow-covered peaks of Mount Kailash in Tibet. Relics of this ancient stucco coating remain visible on the Vimana."
+    },
+    {
+      "aspect": "The 1682 CE Demolition Failure (Aurangzeb)",
+      "detail": "Mughal Emperor Aurangzeb deployed 1,000 men with sledgehammers to destroy Cave 16. After 3 years of continuous effort, only cosmetic defacements were made, and the solid monolithic basalt structure remained completely intact."
+    }
+  ],
+  "scripture_and_epigraphs": {
+    "copper_plate_quote": "This temple of Shiva was caused to be constructed by King Krishna... when the gods saw it, they exclaimed: 'This is self-created! Such beauty could not be wrought by mortal hand!'",
+    "architect_quote": "Even the architect who built it was struck with wonder, exclaiming: 'Oh, how was it that I made it?'"
+  }
+}

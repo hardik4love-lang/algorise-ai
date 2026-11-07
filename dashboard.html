@@ -1071,9 +1071,10 @@
   <script src="/brand.js"></script>
   <script>
     // Single source of truth, injected at build time by scripts/gen_config.py.
-    const API_BASE =
+    const _rawApi =
       (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
       '/api/v1';
+    const API_BASE = _rawApi.endsWith('/api/v1') ? _rawApi : `${_rawApi.replace(/\/$/, '')}/api/v1`;
     const API_TIMEOUT_MS = 20000;
 
     async function apiFetch(path, options = {}) {

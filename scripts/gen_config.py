@@ -26,8 +26,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / "dist"
 
-DEFAULT_API = "https://algorise-ai-backend.onrender.com"
-LOCAL_API = "http://localhost:8000"
+DEFAULT_API = "https://algorise-ai-backend.onrender.com/api/v1"
+LOCAL_API = "http://localhost:8000/api/v1"
 
 
 def _sha() -> str:

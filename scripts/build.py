@@ -33,6 +33,7 @@ SURFACES = [
     "index.html",
     "dashboard.html",
     "shruhi.html",
+    "techsupport.html",
     "creator_studio.html",
     "realtor_sales_console.html",
     "admin.html",

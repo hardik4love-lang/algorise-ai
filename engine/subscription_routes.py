@@ -204,7 +204,7 @@ async def subscribe_client(
     biz_lower = (payload.business_name or "").lower()
     page_raw = (payload.page_url or "").strip()
     if "shruhi" in biz_lower or "61586357894191" in page_raw:
-        await _ensure_seeded_client(payload.client_id)
+        await _ensure_seeded_client("client_srt_shruhi")
         try:
             from engine.client_agent_ops import load_client_config
 
@@ -319,7 +319,7 @@ async def subscribe_client(
 @router.post("/auth/client-login")
 async def client_login(payload: ClientLoginRequest):
     """Verifies client_id and 4-digit PIN for dashboard access."""
-    await _ensure_seeded_client(payload.client_id)
+    await _ensure_seeded_client("client_srt_shruhi")
 
     async with db_manager.session() as session:
         query = select(Client).where(Client.id == payload.client_id)
@@ -439,7 +439,7 @@ async def connect_manual_facebook_token(payload: ManualTokenRequest):
     The token is a long-lived credential. It is encrypted before it is
     stored, the same way the scheduler expects to read it back.
     """
-    await _ensure_seeded_client(payload.client_id)
+    await _ensure_seeded_client("client_srt_shruhi")
 
     token = payload.access_token.strip()
     if not token:
@@ -486,7 +486,7 @@ async def disconnect_facebook_token(payload: ClientLoginRequest):
     expires, when the page access is revoked, or before it is replaced
     with a new one.
     """
-    await _ensure_seeded_client(payload.client_id)
+    await _ensure_seeded_client("client_srt_shruhi")
 
     async with db_manager.session() as session:
         query = select(Client).where(Client.id == payload.client_id)
@@ -711,7 +711,7 @@ async def get_client_rules(
 @router.post("/client/{client_id}/rules")
 async def update_client_rules(client_id: str, payload: ClientRulesUpdateRequest):
     """Updates client catalog, pricing matrix, and agent sensitivity."""
-    await _ensure_seeded_client(payload.client_id)
+    await _ensure_seeded_client("client_srt_shruhi")
 
     async with db_manager.session() as session:
         result = await session.execute(select(Client).where(Client.id == client_id))
@@ -968,7 +968,7 @@ async def get_client_100_groups_and_viral_reel(client_id: str):
 @router.post("/client/{client_id}/meta-pages")
 async def update_client_meta_pages(client_id: str, payload: MultiPageUpdateRequest):
     """Saves up to 3 Connected Meta Pages for a SURAT PRO TIER client."""
-    await _ensure_seeded_client(payload.client_id)
+    await _ensure_seeded_client("client_srt_shruhi")
 
     if len(payload.pages) > 3:
         raise HTTPException(status_code=400, detail="SURAT PRO TIER supports up to 3 Connected Meta Pages.")

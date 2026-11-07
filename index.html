@@ -878,6 +878,15 @@
   </div>
 
   <!-- ========================================== -->
+  <!-- TOP ANNOUNCEMENT BAR (VISIBLE ON ALL MOBILE & DESKTOP SURFACES) -->
+  <div style="background: linear-gradient(90deg, #07090e 0%, #002b3d 50%, #07090e 100%); border-bottom: 1px solid rgba(0, 242, 254, 0.35); padding: 9px 16px; text-align: center; font-size: 12px; font-weight: 600; color: #e2e8f0; z-index: 60; position: relative;">
+    <span style="color: #00f2fe; margin-right: 6px;">⚡</span>
+    <strong style="color: #00f2fe;">HYBRID TECH SUPPORT &amp; REPAIR:</strong> 24/7 Aria Remote Desk (AnyDesk flat ₹250) &bull; Surat Doorstep Onsite Repair by Founder (₹500 Deposit) &bull; 
+    <a href="techsupport.html" style="color: #00f2fe; text-decoration: underline; font-weight: 800; margin-left: 6px; padding: 2px 6px; background: rgba(0,242,254,0.12); border-radius: 4px;">🛠️ Open Tech Support Portal &rarr;</a>
+    <span style="margin: 0 10px; color: rgba(255,255,255,0.3);">|</span>
+    <a href="shruhi.html" style="color: #f5d77f; text-decoration: underline; font-weight: 800;">✨ Shruhi Storefront &rarr;</a>
+  </div>
+
   <!-- 01. NAVIGATION HEADER                      -->
   <!-- ========================================== -->
   <header class="sf-header">
@@ -891,6 +900,7 @@
       <a href="#how-it-works">How It Works</a>
       <a href="#pricing">Plans &amp; Pricing</a>
       <a href="shruhi.html" style="color: #f5d77f; font-weight: 700;"><i class="fa-solid fa-crown text-xs mr-1"></i>Shruhi Storefront</a>
+      <a href="techsupport.html" style="color: #00f2fe; font-weight: 700;"><i class="fa-solid fa-screwdriver-wrench text-xs mr-1"></i>Tech Support &amp; Repair</a>
       <a href="dashboard.html" class="text-brand-cyan hover:underline font-bold">Live Console</a>
     </nav>
 
@@ -1768,9 +1778,10 @@
   <!-- ========================================== -->
   <script src="/config.js"></script>
   <script>
-    const API_BASE =
+    const _rawApi =
       (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
       '/api/v1';
+    const API_BASE = _rawApi.endsWith('/api/v1') ? _rawApi : `${_rawApi.replace(/\/$/, '')}/api/v1`;
 
     // ==========================================
     // TASK 2: ENTERPRISE REAL-TIME DEFENSE SIMULATOR

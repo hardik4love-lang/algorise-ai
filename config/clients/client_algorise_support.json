@@ -1,0 +1,83 @@
+{
+  "client_id": "client_algorise_support",
+  "name": "AlgoRise Tech Support & Onsite Engineering (Official Service)",
+  "tier": "Tier 3: Omnichannel Pro",
+  "phone": "+91 92270 95624",
+  "email": "support@algorise-ai.com",
+  "city": "Surat, Gujarat (Onsite) • Global Remote (AnyDesk / TeamViewer)",
+  "fb_page_id": "algorise_tech_services",
+  "fb_page_name": "AlgoRise Tech Support & Hardware Engineering",
+  "ig_account": "@algorise_tech_support",
+  "settings": {
+    "area": "Surat District Onsite Coverage & 24/7 Nationwide Remote Triage",
+    "domain": "https://algorise-ai.com",
+    "storefront_url": "https://algorise-ai.com/techsupport.html",
+    "fb_page_url": "https://www.facebook.com/algorise.tech.support",
+    "connected_pages_limit": 3,
+    "viral_service_reel": "assets/algorise-tech-support-reel-2026.mp4",
+    "sub_0018s_shield": true,
+    "languages": ["Surati Gujarati", "Hindi", "English"],
+    "omnichannel_channels": ["facebook_feed", "facebook_messenger", "instagram_reels", "whatsapp_catalog"],
+    "post_diwali_launch": {
+      "mode": "live_post_diwali",
+      "pre_booking_active": true,
+      "services": [
+        {
+          "code": "REMOTE-DESK",
+          "service": "Aria 24/7 Online Remote Tech Support",
+          "provider": "Aria AI & Remote Escalation Team",
+          "delivery": "AnyDesk / TeamViewer / Quick Assist",
+          "price": "₹250 flat per session",
+          "scope": "Slow PC cleanup, malware & bloatware removal, driver fixes, network printer sharing, software crash resolution, Windows 11 / Linux triage",
+          "eta": "Instant connection (< 5 minutes)"
+        },
+        {
+          "code": "SURAT-ONSITE",
+          "service": "Founder Doorstep Onsite Repair & Engineering",
+          "provider": "Founder In-Person (Surat On-Ground)",
+          "delivery": "Doorstep visit across Surat textile markets, offices & residences",
+          "price": "₹500 base visit deposit + transparent hardware quote",
+          "scope": "Desktop & laptop motherboard diagnostics, thermal pasting & fan overhaul, NVMe SSD speed upgrade, CCTV DVR setup, textile warehouse gigabit LAN/Wi-Fi router configuration, thermal barcode printer repair",
+          "eta": "Same-day or next-day scheduled slot in Surat"
+        },
+        {
+          "code": "ENTERPRISE-AI",
+          "service": "AlgoRise LeadShield & Omnichannel Pro Setup",
+          "provider": "AlgoRise Deployment Team",
+          "delivery": "Cloud deployment + Meta Graph API webhook sync",
+          "price": "₹10,000 to ₹30,000 / month",
+          "scope": "0.018s Broker comment defense, Facebook & Instagram lead harvesting, WhatsApp Business automated sales closer, customized merchant catalog",
+          "eta": "24-48 hours turnkey launch"
+        }
+      ]
+    },
+    "agent_rules": {
+      "sensitivity_score": 98.0,
+      "broker_shield_enabled": true,
+      "private_messenger_dm_enabled": true,
+      "whatsapp_auto_dispatch": true,
+      "instagram_auto_reply_enabled": true,
+      "whatsapp_catalog_embedding": true,
+      "sector": "it_support_hardware_services",
+      "custom_greeting": "નમસ્તે જી! 🙏 AlgoRise Tech Support & Onsite Engineering માં આપનું સ્વાગત છે! Aria દ્વારા 24/7 Remote Support (AnyDesk flat ₹250) અથવા સુરતમાં Founder Doorstep Onsite Repair (₹500 Visit Advance) બુક કરવા માટે WhatsApp કરો: +91 92270 95624.",
+      "catalog_items": [
+        {"item": "AnyDesk 24/7 Remote Software Triage", "moq": "Single Session", "ex_factory_rate": "₹250 flat"},
+        {"item": "Surat Doorstep Onsite Diagnostic Visit", "moq": "Per Visit", "ex_factory_rate": "₹500 deposit"},
+        {"item": "Laptop Thermal Paste & Deep Dust Cleanout", "moq": "Per Unit", "ex_factory_rate": "₹600 + visit"},
+        {"item": "High-Speed NVMe SSD + Clean OS Migration", "moq": "Per System", "ex_factory_rate": "Hardware + ₹500"},
+        {"item": "Office Gigabit Router & Wi-Fi Mesh Setup", "moq": "Per Premise", "ex_factory_rate": "₹1,200 + visit"},
+        {"item": "Textile Thermal Barcode Printer Setup", "moq": "Per Unit", "ex_factory_rate": "₹450 + visit"},
+        {"item": "AlgoRise LeadShield Omnichannel Pro Setup", "moq": "Monthly Retainer", "ex_factory_rate": "₹30,000/mo"}
+      ]
+    }
+  },
+  "subscription": {
+    "plan_tier": "omnichannel_pro",
+    "plan_name": "TIER 3: OMNICHANNEL LEADSHIELD PRO (OWN PRODUCT INTERNAL SUITE)",
+    "monthly_price": 30000.0,
+    "setup_fee": 0.0,
+    "advance_amount": 0.0,
+    "internal_account": true
+  },
+  "notes": "OWN PRODUCT TIER 3 PRO SUITE: Automatically connected to Facebook Page 'AlgoRise Tech Support & Hardware Engineering' and Instagram '@algorise_tech_support'. 0.018s Comment Defense, automated Messenger triage, Post-Diwali onsite scheduling in Surat, and instant AnyDesk remote tickets."
+}
