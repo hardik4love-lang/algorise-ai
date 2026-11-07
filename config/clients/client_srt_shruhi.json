@@ -1,19 +1,85 @@
 {
   "client_id": "client_srt_shruhi",
-  "name": "Shruhi Collections — Official Boutique (shruhicollections.in)",
+  "name": "Shruhi Collections — Haute Ethnic & Curvy Couture (shruhicollections.in)",
   "tier": "Tier 3: Omnichannel Pro",
-  "phone": "+91 63552 85433",
-  "email": "orders@shruhicollections.in",
-  "city": "100% Online Store • www.shruhicollections.in",
-  "fb_page_id": "990429957485979",
-  "fb_page_name": "Shruhi Collections (ID: 990429957485979)",
+  "phone": "+91 90542 41725",
+  "secondary_phone": "+91 88496 01725",
+  "backup_phone": "+91 63552 85433",
+  "email": "shruhicollections@gmail.com",
+  "business_email": "orders@shruhicollections.in",
+  "city": "100% Online Boutique Storefront • www.shruhicollections.in • Surat, Gujarat",
+  "fb_page_id": "61586357894191",
+  "fb_page_name": "Shruhi Collections — Official Flagship",
+  "fb_page_url": "https://www.facebook.com/profile.php?id=61586357894191",
+  "fb_page_2_id": "61586323275145",
+  "fb_page_2_name": "Shruhi Collections — Curvy Couture & Menswear Hub",
+  "fb_page_2_url": "https://www.facebook.com/profile.php?id=61586323275145",
   "ig_account": "@shruhicollections_official",
+  "meta_account": {
+    "status": "connected",
+    "business_id": "shruhi_meta_commerce_suite",
+    "pages": [
+      {
+        "id": "61586357894191",
+        "name": "Shruhi Collections — Official Flagship",
+        "url": "https://www.facebook.com/profile.php?id=61586357894191",
+        "broker_shield": "active",
+        "auto_hide_sla": "<0.018s"
+      },
+      {
+        "id": "61586323275145",
+        "name": "Shruhi Collections — Curvy Couture & Menswear Hub",
+        "url": "https://www.facebook.com/profile.php?id=61586323275145",
+        "broker_shield": "active",
+        "auto_hide_sla": "<0.018s"
+      }
+    ],
+    "chatbots": {
+      "messenger_auto_dm": {
+        "enabled": true,
+        "template": "4k_editorial_catalog_v2"
+      },
+      "comment_auto_responder": {
+        "enabled": true,
+        "languages": ["Surati Gujarati", "Hindi", "English"]
+      }
+    }
+  },
+  "whatsapp_catalogs": {
+    "status": "upgraded_59_products",
+    "lines": [
+      {
+        "number": "9054241725",
+        "display": "+91 90542 41725",
+        "department": "Women's Haute Ethnic & Curvy Couture",
+        "catalog_file": "shruhi-whatsapp-catalog-9054241725.csv",
+        "item_count": 59
+      },
+      {
+        "number": "8849601725",
+        "display": "+91 88496 01725",
+        "department": "Men's Luxury Shirts & Resort Linen",
+        "catalog_file": "shruhi-whatsapp-catalog-8849601725.csv",
+        "item_count": 59
+      },
+      {
+        "number": "6355285433",
+        "display": "+91 63552 85433",
+        "department": "24/7 AI Secondary Auto-Responder",
+        "catalog_file": "shruhi-whatsapp-catalog-6355285433.csv",
+        "item_count": 59
+      }
+    ]
+  },
+  "gmail_integration": {
+    "email": "shruhicollections@gmail.com",
+    "status": "connected",
+    "purpose": "Order Confirmations, Razorpay Settlements & VIP Concierge Routing"
+  },
   "settings": {
     "area": "100% Online Store • www.shruhicollections.in",
     "domain": "https://shruhicollections.in",
     "storefront_url": "https://algorise-ai.com/shruhi.html",
-    "fb_page_url": "https://www.facebook.com/990429957485979",
-    "fb_page_2_url": "https://www.facebook.com/930668420130927",
     "connected_pages_limit": 3,
     "viral_sales_reel": "assets/shruhi-viral-sales-reel-2026.mp4",
     "sub_0018s_shield": true,
@@ -39,13 +105,15 @@
       "instagram_auto_reply_enabled": true,
       "whatsapp_catalog_embedding": true,
       "sector": "textile",
-      "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 14+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) પ્રી-બુકિંગ માટે હાજર છે. VIP ઓર્ડર માટે WhatsApp: +91 63552 85433.",
+      "custom_greeting": "નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 59 સિગ્નેચર 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) ઓર્ડર માટે તૈયાર છે. વુમન્સ કલેક્શન માટે WhatsApp: +91 90542 41725, મેન્સ શર્ટ્સ માટે: +91 88496 01725.",
       "catalog_items": [
-        {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
-        {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹2,450"},
-        {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,250"},
-        {"item": "B-2876 — Curvy Plus-Size Festive Edition", "moq": "Sizes 3XL to 6XL", "ex_factory_rate": "₹2,650"},
-        {"item": "1042 — Everyday Chic Cotton Tunic & Set", "moq": "Sizes S to 4XL", "ex_factory_rate": "₹850 – ₹1,550"}
+        {"item": "TEJAL — 3-Piece Heavy Designer Suit", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹3,550"},
+        {"item": "GALAXY — Festive Silk Co-ord & Suit Set", "moq": "Sizes S to 5XL", "ex_factory_rate": "₹3,550"},
+        {"item": "KAVYA — Royal Bandhani & Zari Couture", "moq": "Sizes M to 6XL", "ex_factory_rate": "₹2,850"},
+        {"item": "MEERA — Mustard Zari-Yoke 3-Piece Suit Set", "moq": "Sizes M to 2XL", "ex_factory_rate": "₹1,950"},
+        {"item": "ASTHA — Deep Maroon A-Line Tunic & Pant Set", "moq": "Size L", "ex_factory_rate": "₹1,550"},
+        {"item": "LAMEX — Bronze-Gold Scalloped Border Suit Set", "moq": "Sizes M to 2XL", "ex_factory_rate": "₹2,850"},
+        {"item": "B-2876 — Curvy Plus-Size Festive Edition", "moq": "Sizes 3XL to 6XL", "ex_factory_rate": "₹2,250"}
       ]
     }
   },
@@ -56,5 +124,5 @@
     "setup_fee": 30000.0,
     "advance_amount": 6000.0
   },
-  "notes": "TIER 3 OMNICHANNEL PRO: Full Facebook Ad Comment Auto-Hide (0.018s), Instant Private Messenger DM with 4K Catalog, Instagram Reels Comment Protection, and Direct WhatsApp Business Catalog Handoff (+91 63552 85433). Ready for Post-Diwali Pre-Launch."
+  "notes": "TIER 3 OMNICHANNEL PRO: Full Facebook Ad Comment Auto-Hide (0.018s), Instant Private Messenger DM with 4K Catalog, Connected to Page 1 (61586357894191) & Page 2 (61586323275145), 3 WhatsApp Lines (+91 90542 41725, +91 88496 01725, +91 63552 85433) with 59-product catalogs, and linked to shruhicollections@gmail.com."
 }
