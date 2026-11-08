@@ -767,12 +767,12 @@
       "url": "https://github.com/BasedHardware/omi/pull/21876",
       "bounty_min": 50.0,
       "bounty_max": 100.0,
-      "status": "OPEN",
-      "ci_status": "PENDING",
+      "status": "MERGED",
+      "ci_status": "PASS",
       "payout_destination": "shruhicollections@gmail.com",
-      "notes": "Pull Request #21876 in BasedHardware/omi.",
+      "notes": "MERGED into main by David Zhang (@Git-on-my-level) after review approval by Aryan Gupta (@aryanoxstar). Closes #21875.",
       "submitted_at": "2026-10-16T15:44:47Z",
-      "last_checked_at": "2026-10-27T03:56:57.320298+00:00"
+      "last_checked_at": "2026-11-08T06:47:43.305720+00:00"
     },
     {
       "id": "GH-OMI-21855",
