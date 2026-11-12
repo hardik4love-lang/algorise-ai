@@ -1,5 +1,5 @@
 # 🛡️ Security Research Target Priority Matrix (TPS)
-**Generated:** `2026-11-11 13:34:22 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `12`
+**Generated:** `2026-11-12 00:03:39 UTC` | **Engine Status:** `ONLINE (Cloud GitHub Actions)` | **Active Targets:** `12`
 
 ## 📊 Operational Throughput Overview
 | Metric | Value | Threshold / SLA |
@@ -30,7 +30,7 @@ Optimized non-overlapping cognitive windows to eliminate context-switching frict
 | **#5** | [Shopify Commerce Platform & Partner APIs](https://hackerone.com/shopify)<br>`(Hackerone)` | `web_api_and_graphql` | **`18.52`** | `P2 - MEDIUM YIELD` | `graphql_introspection`, `idor`, `bfla` | HTTP: `200` (ONLINE) |
 | **#6** | [Uber Mobility & Autonomous Platform](https://hackerone.com/uber)<br>`(Hackerone)` | `cloud_infrastructure_and_api` | **`17.1`** | `P2 - MEDIUM YIELD` | `oauth_flow`, `telematics_api`, `idor` | HTTP: `404` (REACHABLE) |
 | **#7** | [Cal.com Open Source Scheduling Infrastructure](https://github.com/calcom/cal.com)<br>`(Github)` | `source_code_and_web_app` | **`17.1`** | `P2 - MEDIUM YIELD` | `typescript`, `nextjs`, `oauth_delimiter` | Rel: `v6.2.0` |
-| **#8** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `pr-evidence-11` |
+| **#8** | [ElizaOS Multi-Agent Autonomous Framework](https://github.com/elizaOS/eliza)<br>`(Github)` | `agentic_ai_orchestration` | **`15.93`** | `P2 - MEDIUM YIELD` | `typescript`, `agentic_injection`, `prompt_leak` | Rel: `v2.0.5` |
 | **#9** | [ExpressVPN Core Protocols & Routing](https://bugcrowd.com/expressvpn)<br>`(Bugcrowd)` | `network_infrastructure` | **`12.7`** | `P3 - LOW / BACKLOG` | `dns_leak`, `tunnel_breakout`, `privilege_escalation` | HTTP: `200` (ONLINE) |
 | **#10** | [Upwork Enterprise Escrow & Freelance APIs](https://bugcrowd.com/upwork)<br>`(Bugcrowd)` | `web_api_and_microservices` | **`12.3`** | `P3 - LOW / BACKLOG` | `payment_gateway`, `bfla`, `idor` | HTTP: `403` (REACHABLE) |
 | **#11** | [Tesla Vehicle & Telematics API Gateway](https://bugcrowd.com/tesla)<br>`(Bugcrowd)` | `cloud_infrastructure_and_api` | **`11.58`** | `P3 - LOW / BACKLOG` | `telematics_api`, `jwt_none_alg`, `broken_auth` | HTTP: `404` (REACHABLE) |
