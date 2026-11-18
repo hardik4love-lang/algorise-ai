@@ -1,0 +1,42 @@
+name: Algorise Automated Daily Encrypted Backup
+
+on:
+  schedule:
+    # Runs everyday at midnight UTC (05:30 AM IST)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub UI anytime
+
+jobs:
+  backup:
+    name: Execute Encrypted Backup & Dispatch
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Generate & Encrypt Database Backup
+        env:
+          PII_ENCRYPTION_KEY: ${{ secrets.PII_ENCRYPTION_KEY || '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef' }}
+          BACKUP_RECIPIENT_EMAIL: ${{ secrets.BACKUP_RECIPIENT_EMAIL }}
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          python scripts/daily_backup_cron.py --output-dir ./backups
+
+      - name: Upload Encrypted Backup to GitHub Free Storage (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: algorise-encrypted-daily-backup
+          path: ./backups/*.enc
+          retention-days: 90

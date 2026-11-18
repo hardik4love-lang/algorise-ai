@@ -13,7 +13,7 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Process House HRMS — Mobile Trial</title>
+  <title>Process House HRMS — Mobile PWA &amp; Floor Operations</title>
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#2563eb">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,20 +43,20 @@
     <!-- Top Branding with Official Logo -->
     <div class="pt-4 text-center">
       <div class="flex flex-col items-center mb-2">
-        <img src="../assets/logo.png" alt="Algorise AI" class="w-16 h-16 rounded-full object-cover ring-2 ring-blue-500/40 shadow-lg mb-2" onerror="this.onerror=null; this.src='icons/icon-192.png';" />
+        <img src="assets/logo.png" alt="Algorise AI" class="w-16 h-16 rounded-full object-cover ring-2 ring-blue-500/40 shadow-lg mb-2" onerror="this.onerror=null; this.src='assets/default-avatar.png';" />
         <div class="text-base font-extrabold text-slate-900 leading-none">Process House HRMS</div>
         <span class="text-[10px] text-blue-600 font-bold uppercase tracking-wider mt-1">Algorise PeopleOS v2.4</span>
       </div>
       <div class="mt-2 inline-block px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold">
-        ⚡ Enterprise Mobile Trial Version
+        ⚡ Enterprise Mobile Suite (Attendance &bull; Stock &bull; Payroll)
       </div>
-      <p class="text-xs text-slate-500 mt-2">Operating Unit: <strong>JMFU2</strong> (17-33-37, Tantithaiya)</p>
+      <p class="text-xs text-slate-500 mt-2">Operating Unit: <strong>JMFU2</strong> (17-33-37, Tantithaiya, Surat)</p>
     </div>
 
     <!-- Quick 1-Click Role Login Selector -->
     <div class="my-6 space-y-2.5">
       <span class="block text-[11px] font-extrabold uppercase tracking-wider text-slate-500 text-center">
-        Select Trial Profile (1-Click Login):
+        Select Trial Profile (1-Click Sign-In):
       </span>
 
       <!-- Role 1: Owner -->
@@ -119,20 +119,20 @@
 
     <!-- Bottom link to desktop suite -->
     <div class="pt-4 text-center">
-      <a href="../index.html" class="text-xs font-bold text-blue-600 hover:underline">
-        &larr; Switch to Desktop 23-Surface Suite
+      <a href="index.html" class="text-xs font-bold text-blue-600 hover:underline">
+        &larr; Switch to Desktop Operations Portal
       </a>
     </div>
   </div>
 
   <!-- ============================================== -->
-  <!-- 2. MOBILE APP DASHBOARD (Hidden until login)    -->
+  <!-- 2. MOBILE APP MAIN VIEW (Hidden until login)    -->
   <!-- ============================================== -->
   <div id="viewApp" class="flex-1 flex flex-col justify-between hidden bg-slate-50 overflow-hidden">
     <!-- Top Mobile App Header -->
     <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-20 shadow-xs">
       <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm" id="userAvatar">
+        <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow" id="userAvatar">
           A
         </div>
         <div>
@@ -145,26 +145,27 @@
           <i class="fa-solid fa-volume-high"></i>
         </button>
         <button onclick="logout()" class="p-2 rounded-lg text-slate-400 hover:text-rose-600 text-xs font-bold" title="Logout">
-          <i class="fa-solid fa-right-from-bracket"></i>
+          <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
     </div>
 
-    <!-- Scrollable Content Body -->
-    <div class="flex-1 overflow-y-auto p-4 space-y-4">
-      
+    <!-- ========================================== -->
+    <!-- TAB 1: HOME DASHBOARD                      -->
+    <!-- ========================================== -->
+    <div id="tabHome" class="flex-1 overflow-y-auto p-4 space-y-4 tab-pane">
       <!-- Live Workforce Gauge Card -->
       <div class="bg-gradient-to-r from-blue-700 to-indigo-800 rounded-2xl p-4 text-white shadow-md">
         <div class="flex justify-between items-center text-xs">
           <span class="font-bold text-blue-200">LIVE WORKFORCE MUSTER</span>
-          <span class="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono text-[10px] font-bold">97.5% Present</span>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500/30 text-emerald-300 font-mono text-[10px] font-bold" id="mobileMusterPercent">97.5% Present</span>
         </div>
         <div class="flex items-baseline gap-2 mt-2">
-          <span class="text-3xl font-black">481</span>
+          <span class="text-3xl font-black" id="mobilePresentCount">481</span>
           <span class="text-xs text-blue-200 font-medium">/ 493 Active Personnel</span>
         </div>
         <div class="w-full bg-blue-950/60 rounded-full h-2 mt-3 overflow-hidden">
-          <div class="bg-emerald-400 h-2 rounded-full" style="width: 97.5%"></div>
+          <div class="bg-emerald-400 h-2 rounded-full" id="mobileProgressBar" style="width: 97.5%"></div>
         </div>
         <div class="flex justify-between text-[10px] text-blue-200 mt-2 font-mono">
           <span>Shift A Active</span>
@@ -172,7 +173,54 @@
         </div>
       </div>
 
-      <!-- Live AI Camera Punch Box (Full WebRTC camera in mobile!) -->
+      <!-- Quick Action Cards Grid -->
+      <div class="grid grid-cols-2 gap-3 text-xs">
+        <button onclick="switchTab('camera')" class="p-3 bg-white rounded-xl border border-slate-200 shadow-xs text-left hover:border-blue-500 transition">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-2 text-base">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+          <div class="font-extrabold text-slate-900">Cam Punch</div>
+          <div class="text-[10px] text-slate-500">Record Face Attendance</div>
+        </button>
+
+        <button onclick="switchTab('stock')" class="p-3 bg-white rounded-xl border border-slate-200 shadow-xs text-left hover:border-emerald-500 transition">
+          <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 text-base">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div class="font-extrabold text-slate-900">Stock &amp; WIP</div>
+          <div class="text-[10px] text-slate-500">Fabric &amp; Dyes Balances</div>
+        </button>
+      </div>
+
+      <!-- Live Factory CCTV Stream Preview -->
+      <div class="bg-slate-950 text-white p-4 rounded-2xl border border-slate-800 space-y-2">
+        <div class="flex justify-between items-center text-xs">
+          <span class="font-extrabold uppercase text-slate-300 tracking-wider">CCTV Sentinel Feeds</span>
+          <a href="cctv-sentinel.html" class="text-emerald-400 font-bold text-[11px] hover:underline">View 4 Feeds &rarr;</a>
+        </div>
+        <div class="h-28 bg-slate-900 rounded-xl flex items-center justify-center text-slate-500 text-xs relative overflow-hidden">
+          <i class="fa-solid fa-video text-2xl mr-2 text-emerald-500"></i>
+          <span class="text-slate-300 font-bold">Gate 1 Kiosk Ingest &bull; 30 FPS Live</span>
+          <span class="absolute bottom-1 right-2 text-[9px] font-mono text-emerald-400">RTSP Online</span>
+        </div>
+      </div>
+
+      <!-- Recent Punches Mini-List -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-xs font-extrabold text-slate-900 uppercase">Latest Punches Today</span>
+          <button onclick="switchTab('muster')" class="text-blue-600 text-[11px] font-bold">View All &rarr;</button>
+        </div>
+        <div id="homeRecentPunches" class="space-y-2">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 2: CAMERA PUNCH                        -->
+    <!-- ========================================== -->
+    <div id="tabCamera" class="flex-1 overflow-y-auto p-4 space-y-4 tab-pane hidden">
       <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs space-y-3">
         <div class="flex justify-between items-center">
           <div class="flex items-center gap-1.5 text-xs font-extrabold text-slate-800 uppercase">
@@ -182,102 +230,237 @@
           <span class="text-[10px] font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded">AI Active</span>
         </div>
         
-        <div class="h-44 bg-slate-950 rounded-xl relative overflow-hidden flex items-center justify-center">
+        <!-- Video Viewport -->
+        <div class="h-64 bg-slate-950 rounded-xl relative overflow-hidden flex items-center justify-center shadow-inner">
           <video id="mobileCamera" class="w-full h-full object-cover hidden" autoplay playsinline muted></video>
-          <div id="camOffPlaceholder" class="text-center text-slate-500 text-xs p-2">
-            <i class="fa-solid fa-face-viewfinder text-3xl mb-1 text-slate-400"></i>
-            <p>Tap below to start mobile facial punch</p>
+          <canvas id="mobileCanvas" class="hidden"></canvas>
+          
+          <div id="camOffPlaceholder" class="text-center text-slate-500 text-xs p-4">
+            <i class="fa-solid fa-face-viewfinder text-4xl mb-2 text-slate-400"></i>
+            <p class="font-bold text-slate-300">Mobile Facial Punch Kiosk</p>
+            <p class="text-[10px] text-slate-500 mt-1">Tap below to activate camera and align face</p>
           </div>
+
           <!-- Bounding box -->
           <div id="camOverlay" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden">
-            <div class="w-36 h-40 border-2 border-emerald-400 rounded-xl flex items-end justify-center pb-1">
-              <span class="text-[9px] font-mono bg-slate-900/90 text-emerald-300 px-1.5 py-0.5 rounded">99.4% Match</span>
+            <div class="w-44 h-52 border-2 border-emerald-400 rounded-2xl flex items-end justify-center pb-2 shadow-2xl">
+              <span class="text-[10px] font-mono bg-slate-900/90 text-emerald-300 px-2 py-0.5 rounded-full font-bold">99.4% Match</span>
             </div>
           </div>
         </div>
 
+        <!-- Punch Status Pill -->
+        <div id="mobilePunchAlert" class="hidden p-2 rounded-xl text-center text-xs font-bold"></div>
+
         <div class="grid grid-cols-2 gap-2">
-          <button onclick="startMobileCam()" class="py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
-            Start Camera
+          <button onclick="startMobileCam()" class="py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow-xs flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-video"></i> Start Camera
           </button>
-          <button onclick="punchFromMobile()" class="py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-xs">
-            Record Punch
+          <button onclick="punchFromMobile()" class="py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-xs flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-fingerprint"></i> Record Punch
           </button>
         </div>
-      </div>
 
-      <!-- Quick Operational Cards -->
-      <div class="grid grid-cols-2 gap-3 text-xs">
-        <!-- Dihadi Earnings -->
-        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
-          <span class="text-[10px] font-extrabold text-slate-500 uppercase">Today's Production</span>
-          <div class="text-base font-black text-slate-900 mt-1 font-mono">&#8377; 580</div>
-          <span class="text-[10px] text-emerald-600 font-bold">1,450 Meters Folded</span>
-        </div>
-
-        <!-- Shift Info -->
-        <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-xs">
-          <span class="text-[10px] font-extrabold text-slate-500 uppercase">Assigned Shift</span>
-          <div class="text-base font-black text-blue-700 mt-1 font-mono">Shift A</div>
-          <span class="text-[10px] text-slate-500 font-medium">07:00 AM - 03:30 PM</span>
+        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-center gap-2">
+          <i class="fa-solid fa-volume-high text-amber-600"></i>
+          <span>Gujarati Voice confirmation speaks automatically upon punch.</span>
         </div>
       </div>
 
-      <!-- Live Factory CCTV Stream Preview -->
-      <div class="bg-slate-950 text-white p-4 rounded-2xl border border-slate-800 space-y-2">
-        <div class="flex justify-between items-center text-xs">
-          <span class="font-extrabold uppercase text-slate-300 tracking-wider">CCTV Sentinel Feeds</span>
-          <a href="../cctv-sentinel.html" class="text-emerald-400 font-bold text-[11px] hover:underline">View 4 Feeds &rarr;</a>
-        </div>
-        <div class="h-28 bg-slate-900 rounded-xl flex items-center justify-center text-slate-500 text-xs relative">
-          <i class="fa-solid fa-video text-2xl mr-2"></i>
-          <span>Gate 1 Kiosk Ingest &bull; 30 FPS Live</span>
-          <span class="absolute bottom-1 right-2 text-[9px] font-mono text-emerald-400">RTSP Online</span>
+      <!-- Mobile Last Punch Preview -->
+      <div id="lastPunchBox" class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs hidden">
+        <span class="text-[10px] font-extrabold text-slate-500 uppercase block mb-2">Punch Recorded Successfully</span>
+        <div class="flex items-center gap-3">
+          <div id="lastPunchThumb" class="w-12 h-12 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold overflow-hidden border"></div>
+          <div>
+            <div class="text-xs font-extrabold text-slate-900" id="lastPunchName"></div>
+            <div class="text-[10px] text-slate-500 font-mono" id="lastPunchTime"></div>
+            <span class="inline-block mt-0.5 px-1.5 py-0.2 rounded bg-emerald-50 text-emerald-700 text-[9px] font-bold font-mono">VERIFIED 99.4%</span>
+          </div>
         </div>
       </div>
-
     </div>
 
-    <!-- Bottom Mobile Navigation Bar -->
-    <div class="bg-white border-t border-slate-200 px-4 py-2 flex items-center justify-around safe-bottom shadow-lg">
-      <button onclick="showToast('Home tab active', 'info')" class="flex flex-col items-center text-blue-600 font-bold text-[10px] cursor-pointer">
+    <!-- ========================================== -->
+    <!-- TAB 3: STOCK & FLOOR WIP                   -->
+    <!-- ========================================== -->
+    <div id="tabStock" class="flex-1 overflow-y-auto p-4 space-y-4 tab-pane hidden">
+      <!-- Stock Overview Header -->
+      <div class="bg-gradient-to-r from-emerald-700 to-teal-800 rounded-2xl p-4 text-white shadow-md">
+        <div class="flex justify-between items-center text-xs">
+          <span class="font-bold text-emerald-200">PROCESS HOUSE STOCK</span>
+          <span class="px-2 py-0.5 rounded-full bg-white/20 text-white font-mono text-[10px] font-bold">Unit JMFU2</span>
+        </div>
+        <div class="text-2xl font-black mt-1 font-mono" id="mobileStockValuation">&#8377; 1,48,24,700</div>
+        <div class="text-[11px] text-emerald-100 mt-0.5">Godown 1 &bull; Godown 2 &bull; Chemical Yard</div>
+      </div>
+
+      <!-- Stock Balances Grid -->
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-[10px] text-slate-500 font-bold uppercase">Raw Grey Fabric</span>
+          <div class="text-base font-black text-slate-900 font-mono mt-0.5" id="mobileGreyMtr">1,21,000 m</div>
+          <span class="text-[9px] text-slate-400">Sikka, Rayon, Cambric</span>
+        </div>
+        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
+          <span class="text-[10px] text-slate-500 font-bold uppercase">Finished Ready</span>
+          <div class="text-base font-black text-emerald-700 font-mono mt-0.5" id="mobileFinMtr">71,500 m</div>
+          <span class="text-[9px] text-slate-400">+ 350 Packed Rolls</span>
+        </div>
+      </div>
+
+      <!-- Low Stock Warning Pill -->
+      <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-900 text-xs flex items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg"></i>
+        <div>
+          <span class="font-bold">Reorder Alert:</span> <code>Reactive Blue Dyes</code> is at 140kg (&lt; 200kg).
+        </div>
+      </div>
+
+      <!-- On-the-floor Quick Fabric Inward GRN Entry -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded-md bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <span class="text-xs font-black text-slate-800 uppercase">Floor Inward GRN Entry</span>
+        </div>
+        
+        <form onsubmit="handleMobileInward(event)" class="space-y-2 text-xs">
+          <div>
+            <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Weaver / Supplier Party</label>
+            <input type="text" id="mInwParty" placeholder="e.g. R.K. Synthetics" value="R.K. Synthetics (Surat)" required class="w-full px-3 py-2 border rounded-lg font-bold" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Item Fabric</label>
+            <select id="mInwItem" class="w-full px-3 py-2 border rounded-lg font-bold bg-white">
+              <option value="Grey Sikka Shirting">Grey Sikka Shirting (Weaver Lot 42)</option>
+              <option value="14kg Liva Fluid Rayon Grey">14kg Liva Fluid Rayon Grey</option>
+              <option value="60x60 Cambric Pure Cotton Grey">60x60 Cambric Pure Cotton Grey</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Takas Count</label>
+              <input type="number" id="mInwTakas" value="25" min="1" required class="w-full px-3 py-2 border rounded-lg font-mono font-bold" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-600 uppercase mb-0.5">Total Meters</label>
+              <input type="number" id="mInwMeters" value="5000" min="100" required class="w-full px-3 py-2 border rounded-lg font-mono font-bold" />
+            </div>
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition shadow-xs mt-2">
+            Save Inward GRN &bull; Update Stock
+          </button>
+        </form>
+      </div>
+
+      <!-- Quick Link to Desktop Stock Portal -->
+      <div class="text-center">
+        <a href="stock-management.html" class="text-xs font-bold text-blue-600 hover:underline">
+          Open Desktop Stock Dashboard &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TAB 4: BIOMETRIC MUSTER                    -->
+    <!-- ========================================== -->
+    <div id="tabMuster" class="flex-1 overflow-y-auto p-4 space-y-3 tab-pane hidden">
+      <div class="flex justify-between items-center mb-1">
+        <span class="text-xs font-black text-slate-900 uppercase">Today's Biometric Muster</span>
+        <span class="text-[10px] font-mono font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded" id="musterListCount">6 Punches</span>
+      </div>
+
+      <div id="mobileMusterList" class="space-y-2">
+        <!-- dynamic punches rendered here -->
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BOTTOM MOBILE NAVIGATION BAR               -->
+    <!-- ========================================== -->
+    <div class="bg-white border-t border-slate-200 px-4 py-2 flex items-center justify-around safe-bottom shadow-lg z-30">
+      <button onclick="switchTab('home')" id="navHome" class="flex flex-col items-center text-blue-600 font-bold text-[10px] cursor-pointer">
         <i class="fa-solid fa-house text-base mb-0.5"></i> Home
       </button>
-      <button onclick="startMobileCam()" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px]">
+      <button onclick="switchTab('camera')" id="navCamera" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px] cursor-pointer">
         <i class="fa-solid fa-camera text-base mb-0.5"></i> Camera
       </button>
-      <a href="../attendance-logs.html" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px]">
+      <button onclick="switchTab('stock')" id="navStock" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px] cursor-pointer">
+        <i class="fa-solid fa-boxes-stacked text-base mb-0.5"></i> Stock
+      </button>
+      <button onclick="switchTab('muster')" id="navMuster" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px] cursor-pointer">
         <i class="fa-solid fa-clipboard-list text-base mb-0.5"></i> Muster
-      </a>
-      <a href="../employee-master.html" class="flex flex-col items-center text-slate-400 hover:text-slate-800 text-[10px]">
-        <i class="fa-solid fa-id-card text-base mb-0.5"></i> Master
-      </a>
-      <button onclick="logout()" class="flex flex-col items-center text-slate-400 hover:text-rose-600 text-[10px]">
+      </button>
+      <button onclick="logout()" class="flex flex-col items-center text-slate-400 hover:text-rose-600 text-[10px] cursor-pointer">
         <i class="fa-solid fa-power-off text-base mb-0.5"></i> Exit
       </button>
     </div>
   </div>
 
+  <script src="assets/vendor/attendance-core.js"></script>
+  <script src="assets/vendor/stock-core.js"></script>
   <script>
     let mobileStream = null;
+    let currentUser = {
+      name: 'Anil Thakker',
+      code: 'EMP-001',
+      dept: 'MANAGEMENT',
+      role: 'Owner / Super Admin'
+    };
 
     function showToast(msg, type = 'info') {
       const c = document.getElementById('toastContainer');
       const t = document.createElement('div');
-      t.className = 'bg-slate-900 text-white p-3 rounded-xl shadow-xl text-xs font-bold border border-slate-700 flex items-center justify-between pointer-events-auto';
+      const bg = type === 'success' ? 'bg-emerald-900 border-emerald-700' : 'bg-slate-900 border-slate-700';
+      t.className = `${bg} text-white p-3 rounded-xl shadow-xl text-xs font-bold border flex items-center justify-between pointer-events-auto`;
       t.innerHTML = `<span>${msg}</span><button onclick="this.parentElement.remove()" class="text-slate-400 ml-2">&times;</button>`;
       c.appendChild(t);
       setTimeout(() => t.remove(), 3500);
     }
 
+    function switchTab(tabId) {
+      const tabs = ['home', 'camera', 'stock', 'muster'];
+      tabs.forEach(t => {
+        const el = document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1));
+        const btn = document.getElementById('nav' + t.charAt(0).toUpperCase() + t.slice(1));
+        if (t === tabId) {
+          el?.classList.remove('hidden');
+          btn?.classList.remove('text-slate-400');
+          btn?.classList.add('text-blue-600', 'font-bold');
+        } else {
+          el?.classList.add('hidden');
+          btn?.classList.remove('text-blue-600', 'font-bold');
+          btn?.classList.add('text-slate-400');
+        }
+      });
+
+      if (tabId === 'camera') {
+        startMobileCam();
+      } else if (tabId === 'stock') {
+        renderMobileStock();
+      } else if (tabId === 'muster' || tabId === 'home') {
+        renderMobileMuster();
+      }
+    }
+
     function quickLogin(role) {
+      if (role === 'owner') {
+        currentUser = { name: 'Anil Thakker', code: 'EMP-001', dept: 'MANAGEMENT', role: 'Owner / Super Admin' };
+      } else if (role === 'supervisor') {
+        currentUser = { name: 'Dheeraj Kumar Singh', code: 'EMP-002', dept: 'RO PLANT', role: 'Supervisor &bull; RO Plant' };
+      } else {
+        currentUser = { name: 'Sonu Kaushal Kishor', code: 'EMP-012', dept: 'FOLDING', role: 'Operator &bull; Folding Dept' };
+      }
+
       try {
         const sessData = {
           authenticated: true,
           user: {
-            name: (role === 'owner') ? 'Anil Thakker' : (role === 'supervisor' ? 'Dheeraj Kumar Singh' : 'Sonu Kaushal Kishor'),
+            name: currentUser.name,
             email: (role === 'owner') ? 'Anilraymanga@gmail.com' : 'supervisor@processhouse.hrms',
-            role: (role === 'owner') ? 'Owner / Super Admin' : (role === 'supervisor' ? 'Floor Supervisor' : 'Operator'),
+            role: currentUser.role,
             company: 'Process House HRMS',
             branch: 'JMFU2 (17-33-37, TANTITHAIYA)',
             phone: '9376068009'
@@ -292,26 +475,15 @@
       document.getElementById('viewLogin').classList.add('hidden');
       document.getElementById('viewApp').classList.remove('hidden');
 
-      const nameEl = document.getElementById('userNameLabel');
-      const roleEl = document.getElementById('userRoleLabel');
-      const avatarEl = document.getElementById('userAvatar');
+      document.getElementById('userNameLabel').textContent = currentUser.name;
+      document.getElementById('userRoleLabel').innerHTML = currentUser.role;
+      document.getElementById('userAvatar').textContent = currentUser.name.charAt(0);
 
-      if (role === 'owner') {
-        nameEl.textContent = 'Anil Thakker';
-        roleEl.textContent = 'Owner / Super Admin';
-        avatarEl.textContent = 'A';
-      } else if (role === 'supervisor') {
-        nameEl.textContent = 'Dheeraj Kumar Singh';
-        roleEl.textContent = 'Supervisor &bull; RO Plant';
-        avatarEl.textContent = 'D';
-      } else {
-        nameEl.textContent = 'Sonu Kaushal Kishor';
-        roleEl.textContent = 'Operator &bull; Folding Dept';
-        avatarEl.textContent = 'S';
-      }
-
-      showToast(`Welcome ${nameEl.textContent}! Signed in to JMFU2 Trial.`, 'success');
+      showToast(`Welcome ${currentUser.name}! Signed in to JMFU2 Mobile.`, 'success');
       playGujaratiPrompt();
+
+      renderMobileMuster();
+      renderMobileStock();
     }
 
     function logout() {
@@ -320,36 +492,178 @@
       }
       document.getElementById('viewApp').classList.add('hidden');
       document.getElementById('viewLogin').classList.remove('hidden');
-      showToast('Logged out of Trial Workspace', 'info');
+      showToast('Logged out of Mobile Suite', 'info');
     }
 
     async function startMobileCam() {
       try {
         const v = document.getElementById('mobileCamera');
-        mobileStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+        if (!mobileStream) {
+          mobileStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } });
+        }
         v.srcObject = mobileStream;
         v.classList.remove('hidden');
         document.getElementById('camOffPlaceholder').classList.add('hidden');
         document.getElementById('camOverlay').classList.remove('hidden');
-        showToast('Camera active. Look at camera to punch.', 'info');
+        showToast('Camera active. Look straight into frame.', 'info');
       } catch (e) {
-        showToast('Mobile camera active in simulated biometric mode', 'info');
+        showToast('Camera active in simulated kiosk mode', 'info');
+      }
+    }
+
+    function captureMobileSnapshot() {
+      const v = document.getElementById('mobileCamera');
+      if (!v || !mobileStream || !v.videoWidth) return null;
+      try {
+        const c = document.getElementById('mobileCanvas');
+        c.width = 160;
+        c.height = 120;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(v, 0, 0, 160, 120);
+        return c.toDataURL('image/jpeg', 0.8);
+      } catch(e) {
+        return null;
       }
     }
 
     function punchFromMobile() {
-      showToast('PUNCH RECORDED: Biometric timestamp stored & verified with Edge NVR!', 'success');
+      const photo = captureMobileSnapshot();
+      const punch = AlgoriseAttendance.recordPunch({
+        employee: currentUser.name,
+        code: currentUser.code,
+        dept: currentUser.dept,
+        method: 'Mobile Cam PWA',
+        photo: photo
+      });
+
+      // Update alert
+      const alert = document.getElementById('mobilePunchAlert');
+      alert.className = 'p-2 rounded-xl text-center text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block';
+      alert.innerHTML = `<i class="fa-solid fa-circle-check me-1"></i> VERIFIED: ${punch.employee} &bull; ${punch.time}`;
+
+      // Update preview card
+      const box = document.getElementById('lastPunchBox');
+      box.classList.remove('hidden');
+      document.getElementById('lastPunchName').textContent = punch.employee;
+      document.getElementById('lastPunchTime').textContent = punch.dept + ' • ' + punch.time;
+      const thumb = document.getElementById('lastPunchThumb');
+      if (punch.photo) {
+        thumb.innerHTML = `<img src="${punch.photo}" class="w-full h-full object-cover" />`;
+      } else {
+        thumb.textContent = punch.employee.charAt(0);
+      }
+
+      showToast(`PUNCH RECORDED: ${punch.employee} verified!`, 'success');
       playGujaratiPrompt();
+      renderMobileMuster();
     }
 
     function playGujaratiPrompt() {
       if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-        const u = new SpeechSynthesisUtterance('હાજરી સફળતાપૂર્વક નોંધાઈ છે.');
-        u.lang = 'gu-IN';
-        u.rate = 0.95;
-        window.speechSynthesis.speak(u);
+        try {
+          window.speechSynthesis.cancel();
+          const u = new SpeechSynthesisUtterance('હાજરી સફળતાપૂર્વક નોંધાઈ છે.');
+          u.lang = 'gu-IN';
+          u.rate = 0.95;
+          window.speechSynthesis.speak(u);
+        } catch(e) {}
       }
+    }
+
+    function renderMobileMuster() {
+      if (typeof AlgoriseAttendance === 'undefined') return;
+      const punches = AlgoriseAttendance.getPunches();
+      const stats = AlgoriseAttendance.getStats();
+
+      // Update Home stats
+      const pc = document.getElementById('mobilePresentCount');
+      if (pc) pc.textContent = stats.presentToday;
+
+      // Home mini list
+      const homeList = document.getElementById('homeRecentPunches');
+      if (homeList) {
+        homeList.innerHTML = punches.slice(0, 3).map(p => `
+          <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100">
+            <div>
+              <div class="font-extrabold text-slate-800 text-xs">${p.employee}</div>
+              <div class="text-[10px] text-slate-500 font-mono">${p.dept} &bull; ${p.time}</div>
+            </div>
+            <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 text-[10px] font-bold font-mono">
+              ${p.status}
+            </span>
+          </div>
+        `).join('');
+      }
+
+      // Full muster list
+      const fullList = document.getElementById('mobileMusterList');
+      if (fullList) {
+        fullList.innerHTML = punches.map(p => {
+          const avatar = p.photo 
+            ? `<img src="${p.photo}" class="w-9 h-9 rounded-full object-cover border border-blue-400" />`
+            : `<div class="w-9 h-9 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center text-xs">${p.employee.charAt(0)}</div>`;
+          return `
+            <div class="p-3 bg-white rounded-xl border border-slate-200 shadow-xs flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                ${avatar}
+                <div>
+                  <div class="font-extrabold text-slate-900 text-xs">${p.employee}</div>
+                  <div class="text-[10px] text-slate-500 font-mono">${p.code} &bull; ${p.dept}</div>
+                  <div class="text-[9px] text-blue-600 font-mono">${p.method} &bull; ${p.time}</div>
+                </div>
+              </div>
+              <div class="text-end">
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold font-mono">${p.confidence}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const badge = document.getElementById('musterListCount');
+      if (badge) badge.textContent = punches.length + ' Punches';
+    }
+
+    function renderMobileStock() {
+      if (typeof AlgoriseStock === 'undefined') return;
+      const sum = AlgoriseStock.getSummary();
+      const valEl = document.getElementById('mobileStockValuation');
+      if (valEl) valEl.textContent = '₹ ' + sum.totalValuation.toLocaleString('en-IN');
+
+      const greyEl = document.getElementById('mobileGreyMtr');
+      if (greyEl) greyEl.textContent = sum.totalGreyMeters.toLocaleString('en-IN') + ' m';
+
+      const finEl = document.getElementById('mobileFinMtr');
+      if (finEl) finEl.textContent = sum.totalFinishedMeters.toLocaleString('en-IN') + ' m';
+    }
+
+    function handleMobileInward(e) {
+      e.preventDefault();
+      const party = document.getElementById('mInwParty').value.trim();
+      const item = document.getElementById('mInwItem').value;
+      const takas = Number(document.getElementById('mInwTakas').value);
+      const qty = Number(document.getElementById('mInwMeters').value);
+
+      const id = 'GRN-2026-' + Math.floor(1045 + Math.random() * 50);
+      const record = {
+        id,
+        date: '30 Oct 2026',
+        party,
+        category: 'Grey Fabric',
+        item,
+        takas,
+        qty,
+        unit: 'Meters',
+        rate: 42.00,
+        total: qty * 42.00,
+        vehicle: 'GJ-05-MOB-9901',
+        receivedBy: currentUser.name + ' (Mobile)'
+      };
+
+      AlgoriseStock.addInward(record);
+      renderMobileStock();
+      showToast(`GRN ${id} saved! +${qty}m added to stock.`, 'success');
+      e.target.reset();
     }
   </script>
 </body>

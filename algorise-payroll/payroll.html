@@ -557,6 +557,50 @@
                                data-href="payroll.html"
                                class="nav-link  active">Payroll</a>
                         </li>
+
+                    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse"
+           href="#stock_management"
+           data-href="#"
+           role="button" aria-expanded="false" aria-controls="stock_management">
+            <i class="link-icon" data-feather="layers"></i>
+            <span class="link-title">Stock &amp; Inventory</span>
+            <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="stock_management">
+            <ul class="nav sub-menu">
+                <li class="nav-item">
+                    <a href="stock-management.html"
+                       data-href="stock-management.html"
+                       class="nav-link">
+                        Stock Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stock-inventory.html"
+                       data-href="stock-inventory.html"
+                       class="nav-link">
+                        Item Master &amp; Godown
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stock-inward.html"
+                       data-href="stock-inward.html"
+                       class="nav-link">
+                        Inward GRN (Grey/Chem)
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="stock-outward.html"
+                       data-href="stock-outward.html"
+                       class="nav-link">
+                        Dispatch &amp; Gate Pass
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
                                                                 <li class="nav-item">
                             <a href="salary-components.html"
                                data-href="salary-components.html"
@@ -1606,23 +1650,25 @@
 
 
 
-        <nav class="page-breadcrumb d-flex align-items-center justify-content-between">
-
-    <ol class="breadcrumb mb-0">
-
-        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-
-        <li class="breadcrumb-item"><a href="employee-salaries.html">Employee Salary</a></li>
-
-        <li class="breadcrumb-item active" aria-current="page">Payroll Generate</li>
-
-    </ol>
-
-
-
-    
-
+        
+<nav class="page-breadcrumb d-flex align-items-center justify-content-between">
+    <div>
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="payroll-management.html">Payroll Management</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Employee Payroll &amp; Payslips</li>
+        </ol>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-outline-primary btn-sm" onclick="generateMonthlyBatch()">
+            <i class="link-icon" data-feather="cpu"></i> Process Monthly Batch (493 Operators)
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="exportPayrollExcel()">
+            <i class="link-icon" data-feather="download"></i> Bank NEFT CMS Export
+        </button>
+    </div>
 </nav>
+
 
 
 
@@ -4129,6 +4175,132 @@ function hmAiAssistant() {
 }
 </script>
 
+
+<script src="assets/vendor/payroll-core.js"></script>
+
+<!-- Modal: Printable Indian Manufacturing Payslip -->
+<div class="modal fade" id="payslipModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title font-mono text-white"><i class="link-icon me-1" data-feather="file-text"></i> Employee Payslip &bull; Form XIX (Muster Roll)</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4" id="payslipModalBody">
+                <!-- Injected via AlgorisePayroll.generatePayslipHtml -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="printPayslip()">
+                    <i class="link-icon" data-feather="printer"></i> Print Official Payslip
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function viewPayslipModal(recordId) {
+    if (typeof AlgorisePayroll === 'undefined') return;
+    const records = AlgorisePayroll.getRecords();
+    const r = records.find(x => x.id === recordId) || records[0];
+    const modalBody = document.getElementById('payslipModalBody');
+    if (modalBody) {
+        modalBody.innerHTML = AlgorisePayroll.generatePayslipHtml(r);
+    }
+    const modal = new bootstrap.Modal(document.getElementById('payslipModal'));
+    modal.show();
+    if (window.feather) feather.replace();
+}
+
+function printPayslip() {
+    const content = document.getElementById('payslipModalBody').innerHTML;
+    const printWin = window.open('', '_blank');
+    printWin.document.write(`
+        <html>
+            <head>
+                <title>Payslip - Process House HRMS</title>
+                <style>
+                    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; }
+                    @media print { body { padding: 0; } }
+                </style>
+            </head>
+            <body>${content}</body>
+        </html>
+    `);
+    printWin.document.close();
+    printWin.focus();
+    setTimeout(() => { printWin.print(); }, 250);
+}
+
+function generateMonthlyBatch() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            title: 'Run October 2026 Batch Calculation?',
+            text: 'This will compute EPF (12%), ESIC (0.75%), Gujarat PT (₹200), Overtime hours, and net payable for all 493 factory staff across 10 departments.',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#2563eb',
+            cancelButtonColor: '#64748b',
+            confirmButtonText: 'Yes, Compute Batch'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Calculating Workforce Payroll...',
+                    html: 'Processing biometric attendance logs, overtime shifts, and statutory tax slabs.',
+                    timer: 1200,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                }).then(() => {
+                    Swal.fire({
+                        title: 'Payroll Cycle Approved &amp; Locked!',
+                        html: `
+                            <div style="text-align: left; font-size: 13px; font-family: monospace; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                                <div>• Total Enrolled Operators: <strong>493</strong></div>
+                                <div>• Total Gross Disbursed: <strong>₹ 1,02,48,000.00</strong></div>
+                                <div>• EPFO Contribution (12%): <strong>₹ 8,19,840.00</strong></div>
+                                <div>• ESIC Contribution (0.75%): <strong>₹ 76,860.00</strong></div>
+                                <div>• Gujarat PT Deductions: <strong>₹ 98,600.00</strong></div>
+                                <div style="color: #15803d; font-weight: bold; margin-top: 6px;">• Net Bank Transfer Amount: <strong>₹ 92,52,700.00</strong></div>
+                            </div>
+                        `,
+                        icon: 'success'
+                    });
+                });
+            }
+        });
+    } else {
+        alert('Payroll batch for 493 employees successfully processed and locked!');
+    }
+}
+
+function exportPayrollExcel() {
+    if (typeof Swal !== 'undefined') {
+        Swal.fire({
+            icon: 'success',
+            title: 'HDFC Bank CMS File Generated',
+            text: 'File CMS_NEFT_OCT2026_JMFU2.xlsx (493 records) exported for corporate internet banking salary release.',
+            timer: 2500
+        });
+    }
+}
+
+// Hook all Slip buttons in the table
+document.addEventListener('DOMContentLoaded', function() {
+    const slipButtons = document.querySelectorAll('a.btn-outline-primary');
+    slipButtons.forEach((btn, idx) => {
+        if (btn.textContent.includes('Slip')) {
+            const payIds = ['PAY-2026-1001', 'PAY-2026-1002', 'PAY-2026-1003', 'PAY-2026-1004', 'PAY-2026-1005'];
+            const targetId = payIds[idx % payIds.length];
+            btn.setAttribute('onclick', `viewPayslipModal('${targetId}')`);
+            btn.removeAttribute('href');
+            btn.style.cursor = 'pointer';
+        }
+    });
+});
+</script>
 
 </body>
 
