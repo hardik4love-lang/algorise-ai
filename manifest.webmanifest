@@ -1,0 +1,41 @@
+{
+  "name": "Guardian Angel™ — Senior AI Scam & Fraud Shield",
+  "short_name": "Guardian Angel",
+  "description": "Omnichannel AI scam, call, and fraud defense for older adults and family caregivers in the UK & US.",
+  "start_url": "/guardian_mobile.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a13",
+  "theme_color": "#070a13",
+  "lang": "en",
+  "categories": ["utilities", "security", "lifestyle"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23070a13'/><path d='M96 24L156 48V90C156 126 129 159 96 168C63 159 36 126 36 90V48L96 24Z' stroke='%2306b6d4' stroke-width='12' fill='none'/><path d='M72 90L88 108L120 72' stroke='%2310b981' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='108' fill='%23070a13'/><path d='M256 64L416 128V240C416 336 344 424 256 448C168 424 96 336 96 240V128L256 64Z' stroke='%2306b6d4' stroke-width='32' fill='none'/><path d='M192 240L236 288L320 192' stroke='%2310b981' stroke-width='38' stroke-linecap='round' stroke-linejoin='round'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Scan Text / Link",
+      "short_name": "Scan",
+      "url": "/guardian_mobile.html?action=scan",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='40' fill='%2306b6d4'/></svg>", "sizes": "96x96" }]
+    },
+    {
+      "name": "Call Family Angel",
+      "short_name": "Family SOS",
+      "url": "/guardian_mobile.html?action=sos",
+      "icons": [{ "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><circle cx='48' cy='48' r='40' fill='%23f43f5e'/></svg>", "sizes": "96x96" }]
+    }
+  ]
+}

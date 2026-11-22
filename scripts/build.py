@@ -31,6 +31,9 @@ DIST = ROOT / "dist"
 # Copied verbatim from source.
 SURFACES = [
     "index.html",
+    "guardian.html",
+    "guardian_mobile.html",
+    "guardian_angel_app.html",
     "dashboard.html",
     "shruhi.html",
     "techsupport.html",
@@ -166,14 +169,19 @@ SURFACES = [
 ]
 
 # Copied verbatim from source (assets and static root files).
-STATIC_FILES = ["CNAME", "robots.txt", "sitemap.xml", "brand.js"]
+STATIC_FILES = ["CNAME", "robots.txt", "sitemap.xml", "brand.js", "manifest.webmanifest", "sw.js"]
 STATIC_DIRS = ["assets"]
 
 
 # Generated from source rather than maintained by hand.
 #   200.html           - SPA fallback for static hosts that use it
 #   cocopeat/index.html - clean-URL variant of cocopeat.html
-GENERATED = {"200.html": "index.html", "cocopeat/index.html": "cocopeat.html"}
+GENERATED = {
+    "200.html": "index.html",
+    "cocopeat/index.html": "cocopeat.html",
+    "guardian/index.html": "guardian.html",
+    "mobile/index.html": "guardian_mobile.html",
+}
 
 
 def sync(verbose: bool = True) -> list[str]:

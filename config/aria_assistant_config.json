@@ -1,0 +1,11 @@
+{
+  "user_name": "Hardik",
+  "email_account": "shruhicollections@gmail.com",
+  "imap_server": "imap.gmail.com",
+  "imap_port": 993,
+  "email_app_password": "",
+  "telegram_bot_token": "8585331609:AAFa_foTU82ToL7EFBiZ3EIrSbCDCfW0cPA",
+  "telegram_chat_id": "8737013099",
+  "poll_interval_seconds": 120,
+  "auto_suggest": true
+}
