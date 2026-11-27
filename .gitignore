@@ -62,6 +62,9 @@ dist/
 *.db
 *.db-shm
 *.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
 coverage.xml
 .coverage
 htmlcov/
@@ -83,4 +86,5 @@ scripts/notify_complete.py
 
 
 !algorise-payroll/extension.zip
+!assets/guardian_angel_extension_v3.2.0.zip
 !algorise-payroll/**/*.png

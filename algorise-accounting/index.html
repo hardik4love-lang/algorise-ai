@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algorise BooksOS — Compact Tally-Speed AI Accounting &amp; Zero-Knowledge Gmail Vault</title>
+  <meta name="description" content="Ultra-compact Tally-parity accounting app. Work from anywhere offline-first, migrate from Tally/Busy/Marg/Vyapar/Zoho/QuickBooks/Excel, and back up 100% AES-256-GCM encrypted books to your own Gmail &amp; Google Drive." />
+  <link rel="canonical" href="https://algorise-ai.com/algorise-accounting/" />
+  <meta name="theme-color" content="#03050C" />
+
+  <link rel="icon" type="image/jpeg" href="/assets/logo.jpg" />
+  <link rel="stylesheet" href="/app.css" />
+
+  <style>
+    :root {
+      --bg-void: #03050C;
+      --bg-panel: rgba(11, 19, 43, 0.84);
+      --bg-card: rgba(15, 23, 42, 0.9);
+      --border-subtle: rgba(0, 242, 254, 0.2);
+      --text-main: #EAF2FF;
+      --text-muted: #94A3B8;
+      --accent: #00F2FE;
+    }
+
+    body.classic-tally {
+      --bg-void: #E8F5E9;
+      --bg-panel: #F1F8E9;
+      --bg-card: #FFFFFF;
+      --border-subtle: #1B5E20;
+      --text-main: #0F172A;
+      --text-muted: #334155;
+      --accent: #004D40;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, Segoe UI, sans-serif;
+    }
+
+    .mono-nums {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .panel-glass {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(10px);
+    }
+
+    .card-surface {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+    }
+
+    body.classic-tally .tally-header-bar {
+      background: #004D40 !important;
+      color: #FFFDE7 !important;
+      border-color: #00251A !important;
+    }
+    body.classic-tally .tally-header-bar * { color: #FFFDE7 !important; }
+    body.classic-tally input,
+    body.classic-tally select,
+    body.classic-tally textarea {
+      background: #FFFDE7 !important;
+      color: #0F172A !important;
+      border-color: #1B5E20 !important;
+    }
+    body.classic-tally .text-white { color: #0F172A !important; }
+    body.classic-tally .text-slate-300,
+    body.classic-tally .text-slate-400 { color: #334155 !important; }
+    body.classic-tally .bg-slate-950,
+    body.classic-tally .bg-slate-900 { background-color: #F8FAFC !important; }
+
+    dialog.books-dialog {
+      margin: auto;
+      background: #0B132B;
+      color: #EAF2FF;
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      border-radius: 0.9rem;
+      padding: 0;
+      max-width: 34rem;
+      width: calc(100% - 2rem);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+    }
+    dialog.books-dialog::backdrop {
+      background: rgba(3, 5, 12, 0.82);
+      backdrop-filter: blur(6px);
+    }
+    body.classic-tally dialog.books-dialog {
+      background: #FFFDE7;
+      color: #0F172A;
+      border: 2px solid #004D40;
+    }
+
+    .kbd-pill {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.65rem;
+      padding: 0.1rem 0.38rem;
+      border-radius: 0.3rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(15, 23, 42, 0.65);
+      color: #00F2FE;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    body.classic-tally .kbd-pill {
+      background: #004D40;
+      color: #FFF59D;
+      border-color: #00251A;
+    }
+
+    .nav-item.active {
+      background: rgba(0, 242, 254, 0.14);
+      border-color: rgba(0, 242, 254, 0.55);
+      color: #00F2FE;
+    }
+    body.classic-tally .nav-item.active {
+      background: #FFF59D;
+      border-color: #004D40;
+      color: #004D40 !important;
+      font-weight: 800;
+    }
+
+    /* Compact viewport & fallback utilities */
+    .flex-none { flex: none; }
+    .min-h-0 { min-height: 0; }
+    .overflow-y-auto { overflow-y: auto; }
+    .whitespace-nowrap { white-space: nowrap; }
+    .bg-transparent { background-color: transparent; }
+    .max-h-64 { max-height: 16rem; }
+    .w-36 { width: 9rem; }
+    .w-1\.5 { width: 0.375rem; }
+    .h-1\.5 { height: 0.375rem; }
+    .p-2\.5 { padding: 0.625rem; }
+    .p-3\.5 { padding: 0.875rem; }
+    .px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+    .px-3\.5 { padding-left: 0.875rem; padding-right: 0.875rem; }
+    .py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+    .py-1\.5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+    .py-2\.5 { padding-top: 0.625rem; padding-bottom: 0.625rem; }
+    .pr-3 { padding-right: 0.75rem; }
+    .gap-1\.5 { gap: 0.375rem; }
+    .gap-3\.5 { gap: 0.875rem; }
+    .text-\[10px\] { font-size: 10px; line-height: 14px; }
+    .text-\[11px\] { font-size: 11px; line-height: 15px; }
+    @media (min-width: 640px) { .sm\:col-span-2 { grid-column: span 2 / span 2; } }
+    @media (min-width: 768px) { .md\:inline-flex { display: inline-flex; } }
+    @media (min-width: 1024px) {
+      .lg\:h-screen { height: 100vh; }
+      .lg\:overflow-hidden { overflow: hidden; }
+      .lg\:h-full { height: 100%; }
+      .lg\:col-span-3 { grid-column: span 3 / span 3; }
+      .lg\:col-span-9 { grid-column: span 9 / span 9; }
+    }
+    @media (min-width: 1280px) {
+      .xl\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col text-xs selection:bg-brand-cyan/25">
+
+  <!-- TOP COMPACT GATEWAY BAR -->
+  <header class="tally-header-bar flex-none border-b border-cyan-500/20 bg-slate-950/95 px-3 py-2">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <a href="index.html" class="flex items-center gap-1.5 font-extrabold text-sm tracking-tight text-white hover:opacity-90">
+          <span class="text-brand-cyan">◈</span>
+          <span>ALGORISE <span class="text-brand-cyan">BooksOS</span></span>
+        </a>
+        <span class="hidden md:inline-flex items-center gap-1.5 text-[10px] mono-nums px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-400 font-bold">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          E2EE ALGBK01 · OFFLINE-FIRST
+        </span>
+        <span id="activeCompanyLabel" class="hidden sm:inline-block text-[11px] mono-nums text-slate-300 border-l border-slate-700 pl-2.5">
+          Apex Fabrics &amp; Traders (FY 26-27)
+        </span>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-1.5">
+        <button type="button" onclick="openGoToPalette()" class="px-2 py-1 rounded border border-cyan-500/40 bg-cyan-500/10 text-brand-cyan font-bold cursor-pointer">
+          ⚡ Go To <span class="kbd-pill">Alt+G</span>
+        </button>
+        <button type="button" onclick="toggleBeginnerHints()" class="px-2 py-1 rounded border border-slate-700 bg-slate-900 text-slate-200 hover:border-emerald-400 font-bold cursor-pointer">
+          💡 <span id="guideToggleLabel">Guide: ON</span>
+        </button>
+        <button type="button" onclick="toggleClassicTallyTheme()" class="px-2 py-1 rounded border border-slate-700 bg-slate-900 text-slate-200 hover:border-brand-cyan font-bold cursor-pointer" title="Ctrl+Shift+T">
+          🖥 <span id="themeToggleLabel">Tally Skin</span>
+        </button>
+        <button type="button" onclick="lockVaultPrivacyScreen()" class="px-2 py-1 rounded border border-rose-500/40 bg-rose-500/10 text-rose-300 font-bold cursor-pointer" title="Ctrl+L Privacy Lock">
+          🔒 Lock <span class="kbd-pill">Ctrl+L</span>
+        </button>
+        <a href="algorise-accounting/ca-console.html" class="px-2 py-1 rounded border border-amber-500/40 bg-amber-500/10 text-amber-300 font-extrabold">
+          CA Console
+        </a>
+        <a href="compare/tally-alternative.html" class="px-2 py-1 rounded bg-gradient-to-r from-brand-cyan to-emerald-400 text-slate-950 font-extrabold">
+          Blueprint →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COMPACT LIVE PARITY & BACKUP STRIP -->
+  <div class="flex-none border-b border-slate-800 bg-slate-900/75 px-3 py-1 text-[11px] mono-nums">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-4">
+        <span>Trial Bal: <strong id="hdrTbStatus" class="text-emerald-400">BALANCED (₹0.00)</strong></span>
+        <span>43B(h): <strong id="hdrMsmeAlerts" class="text-amber-400">0 At Risk</strong></span>
+        <span>Merkle 11(g): <strong id="hdrAuditBlocks" class="text-brand-cyan">0 Blks</strong></span>
+        <span>Vault: <strong id="hdrVaultStatus" class="text-emerald-300">Zero-Leak Ready</strong></span>
+      </div>
+      <div class="flex items-center gap-3">
+        <span id="syncModeBadge" class="text-slate-400">Mode: Local-First + Cloud E2EE</span>
+        <button type="button" onclick="syncWithBackend()" class="text-brand-cyan hover:underline font-bold cursor-pointer">↻ Sync</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPACT 100VH SPLIT-PANE WORKSPACE -->
+  <main class="flex-1 min-h-0 max-w-7xl w-full mx-auto px-3 py-3 grid grid-cols-1 lg:grid-cols-12 gap-3">
+
+    <!-- LEFT COMPACT GATEWAY SIDEBAR (SCROLLABLE INDEPENDENTLY) -->
+    <aside class="lg:col-span-3 lg:h-full lg:overflow-y-auto space-y-2.5 pr-1">
+      <div class="panel-glass rounded-xl p-2.5 space-y-1">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 pb-0.5">Gateway of BooksOS</div>
+
+        <button type="button" data-view="dashboard" onclick="switchView('dashboard')" class="nav-item active w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>◈ Executive Gateway</span>
+          <span class="kbd-pill">Home</span>
+        </button>
+
+        <button type="button" data-view="voucher" onclick="switchView('voucher')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>✎ Voucher Entry (Enter-Flow)</span>
+          <span class="kbd-pill">V / F4–F9</span>
+        </button>
+
+        <button type="button" data-view="tally-import" onclick="switchView('tally-import')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>⇄ Universal Migrator (All Apps)</span>
+          <span class="kbd-pill">I</span>
+        </button>
+
+        <button type="button" data-view="vault" onclick="switchView('vault')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>🔐 Gmail &amp; Google E2EE Vault</span>
+          <span class="kbd-pill">B</span>
+        </button>
+
+        <button type="button" data-view="einvoice" onclick="switchView('einvoice')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>▣ GSP e-Invoice &amp; Port 9000</span>
+          <span class="kbd-pill">E</span>
+        </button>
+
+        <button type="button" data-view="gst-2b" onclick="switchView('gst-2b')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>⚖ GSTR-2B / IMS Fuzzy Match</span>
+          <span class="kbd-pill">G</span>
+        </button>
+
+        <button type="button" data-view="msme-43bh" onclick="switchView('msme-43bh')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>🛡 Sec 43B(h) 15/45d Radar</span>
+          <span class="kbd-pill">43B</span>
+        </button>
+
+        <button type="button" data-view="reports" onclick="switchView('reports')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>☰ Trial Bal, P&amp;L &amp; PDC</span>
+          <span class="kbd-pill">R</span>
+        </button>
+
+        <button type="button" data-view="whatsapp" onclick="switchView('whatsapp')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>💬 WhatsApp Recovery</span>
+          <span class="kbd-pill">W</span>
+        </button>
+
+        <button type="button" data-view="audit-trail" onclick="switchView('audit-trail')" class="nav-item w-full text-left px-2.5 py-1.5 rounded-lg border border-transparent flex items-center justify-between font-bold cursor-pointer">
+          <span>⛓ Merkle Edit Log (11g)</span>
+          <span class="kbd-pill">SHA</span>
+        </button>
+      </div>
+
+      <div class="panel-glass rounded-xl p-2.5 space-y-1.5">
+        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-1">Quick Actions</div>
+        <button type="button" onclick="openMasterModal()" class="w-full py-1.5 px-2.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-brand-cyan font-bold flex items-center justify-between cursor-pointer">
+          <span>+ Create Ledger Master</span>
+          <span class="kbd-pill">Alt+C</span>
+        </button>
+        <button type="button" onclick="switchView('vault')" class="w-full py-1.5 px-2.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold flex items-center justify-between cursor-pointer">
+          <span>⬇ Backup to Gmail / .algobook</span>
+          <span class="kbd-pill">B</span>
+        </button>
+        <button type="button" onclick="resetDemoDataset()" class="w-full py-1 px-2.5 rounded border border-slate-800 text-slate-400 hover:text-white text-[10px] font-semibold cursor-pointer">
+          Reset Sample Surat Textile Books
+        </button>
+      </div>
+    </aside>
+
+    <!-- RIGHT WORKSPACE (SCROLLABLE INDEPENDENTLY, ZERO BOTTOM OVERLAP) -->
+    <section class="lg:col-span-9 lg:h-full lg:overflow-y-auto space-y-3 pr-1">
+
+      <!-- 1-LINE NATURAL AI ENTRY COPILOT BAR (ALWAYS ACCESSIBLE ON GATEWAY & VOUCHER) -->
+      <div class="panel-glass rounded-xl p-3 border border-cyan-500/30">
+        <form onsubmit="runNaturalEntryParse(event)" class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+          <span class="text-brand-cyan font-extrabold whitespace-nowrap">✨ 1-Line AI Entry:</span>
+          <input type="text" id="naturalEntryInput" placeholder="Type e.g. 'Sold 100 mtr Dola Silk to Mahalaxmi Saree @ 450 5% GST' or 'Paid 25000 to Navkar Dyeing via HDFC ref NDM/045'" class="flex-1 min-w-0 rounded-lg px-3 py-1.5 bg-slate-950 border border-slate-700 text-white text-xs" />
+          <button type="submit" class="px-3 py-1.5 rounded-lg bg-gradient-to-r from-brand-cyan to-emerald-400 text-slate-950 font-extrabold whitespace-nowrap cursor-pointer">
+            Auto-Draft Voucher ↵
+          </button>
+        </form>
+        <div id="naturalEntryStatus" class="hidden text-[11px] mt-1.5 font-semibold"></div>
+      </div>
+
+      <!-- VIEW 1: COMPACT EXECUTIVE GATEWAY -->
+      <div id="view-dashboard" class="view-section space-y-3">
+        <div class="grid grid-cols-2 xl:grid-cols-4 gap-2.5">
+          <div class="card-surface rounded-xl p-3">
+            <div class="text-[11px] text-slate-400 font-semibold">Cash &amp; Bank Liquidity</div>
+            <div id="kpiLiquidity" class="text-xl font-extrabold mono-nums text-brand-cyan mt-0.5">₹0.00</div>
+            <div class="text-[10px] text-emerald-400 mt-0.5">Local WAL · Zero Lag</div>
+          </div>
+          <div class="card-surface rounded-xl p-3">
+            <div class="text-[11px] text-slate-400 font-semibold">Net Profit (FY 26-27)</div>
+            <div id="kpiNetProfit" class="text-xl font-extrabold mono-nums text-emerald-400 mt-0.5">₹0.00</div>
+            <div id="kpiIncomeExpense" class="text-[10px] text-slate-400 mt-0.5">Inc ₹0 · Exp ₹0</div>
+          </div>
+          <div class="card-surface rounded-xl p-3">
+            <div class="text-[11px] text-slate-400 font-semibold">Sundry Debtors</div>
+            <div id="kpiDebtors" class="text-xl font-extrabold mono-nums text-white mt-0.5">₹0.00</div>
+            <div class="text-[10px] text-cyan-300 mt-0.5">WhatsApp Recovery Ready</div>
+          </div>
+          <div class="card-surface rounded-xl p-3">
+            <div class="text-[11px] text-slate-400 font-semibold">43B(h) MSME Exposure</div>
+            <div id="kpiMsmeRisk" class="text-xl font-extrabold mono-nums text-amber-400 mt-0.5">₹0.00</div>
+            <div id="kpiMsmeCount" class="text-[10px] text-rose-400 mt-0.5">0 bills near 15/45d</div>
+          </div>
+        </div>
+
+        <div class="panel-glass rounded-xl p-3.5">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+            <h2 class="text-sm font-extrabold text-white">Recent Day Book (Press V for Voucher, I to Import Any App, B for Gmail Vault)</h2>
+            <button type="button" onclick="switchView('reports')" class="text-[11px] text-brand-cyan hover:underline font-bold cursor-pointer">Full Reports (R) →</button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
+                <tr>
+                  <th class="py-1.5 pr-3">Date</th>
+                  <th class="py-1.5 pr-3">Type</th>
+                  <th class="py-1.5 pr-3">Voucher No</th>
+                  <th class="py-1.5 pr-3">Particulars</th>
+                  <th class="py-1.5 pr-3 text-right">Amount (₹)</th>
+                  <th class="py-1.5 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody id="recentVouchersBody" class="divide-y divide-slate-800/70 mono-nums"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: COMPACT ENTER-CHAIN VOUCHER ENTRY -->
+      <div id="view-voucher" class="view-section hidden space-y-3">
+        <div id="beginnerGuideBanner" class="p-2.5 rounded-lg bg-cyan-950/40 border border-cyan-500/30 text-[11px] text-cyan-200">
+          💡 <strong>Beginner Guide:</strong> <span id="beginnerHintText">Sales (F8): Customer goes on Debit (Dr), Sales &amp; GST go on Credit (Cr). Press Enter to step through fields, or Ctrl+A anytime to save.</span>
+        </div>
+
+        <div class="panel-glass rounded-xl p-3.5 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2">
+            <div class="flex flex-wrap items-center gap-1" id="voucherTypeTabs">
+              <button type="button" data-vtype="CONTRA" onclick="setVoucherType('CONTRA')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F4 Contra</button>
+              <button type="button" data-vtype="PAYMENT" onclick="setVoucherType('PAYMENT')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F5 Payment</button>
+              <button type="button" data-vtype="RECEIPT" onclick="setVoucherType('RECEIPT')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F6 Receipt</button>
+              <button type="button" data-vtype="JOURNAL" onclick="setVoucherType('JOURNAL')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F7 Journal</button>
+              <button type="button" data-vtype="SALES" onclick="setVoucherType('SALES')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F8 Sales</button>
+              <button type="button" data-vtype="PURCHASE" onclick="setVoucherType('PURCHASE')" class="vtype-btn px-2 py-1 rounded text-[11px] font-bold border border-slate-700 cursor-pointer">F9 Purchase</button>
+            </div>
+            <label class="flex items-center gap-1.5 text-[11px] font-bold cursor-pointer px-2 py-1 rounded border border-slate-700 bg-slate-900">
+              <input type="checkbox" id="vchIsPdc" class="accent-amber-400" />
+              <span>PDC <span class="kbd-pill">Ctrl+T</span></span>
+            </label>
+          </div>
+
+          <form id="voucherForm" onsubmit="submitVoucherForm(event)" class="space-y-3">
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Voucher No</label>
+                <input type="text" id="vchNo" data-enter-next="vchDate" class="enter-chain w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Date <span class="kbd-pill">F2</span></label>
+                <input type="date" id="vchDate" data-enter-next="vchPartyLedger" required class="enter-chain w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Party Ledger <span class="kbd-pill">Alt+C</span></label>
+                <select id="vchPartyLedger" data-enter-next="quickTaxable" onchange="onVoucherPartyChanged()" class="enter-chain w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white"></select>
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">GST Rate</label>
+                <select id="vchGstRate" onchange="recalcQuickGst()" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white">
+                  <option value="0">0% Exempt</option>
+                  <option value="5" selected>5% GST</option>
+                  <option value="12">12% GST</option>
+                  <option value="18">18% GST</option>
+                  <option value="28">28% GST</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="quickGstBox" class="p-2.5 rounded-lg bg-slate-900/75 border border-cyan-500/25 grid grid-cols-1 sm:grid-cols-4 gap-2.5 items-end">
+              <div>
+                <label class="block text-[10px] font-bold text-brand-cyan mb-0.5">Taxable Value (₹)</label>
+                <input type="number" step="0.01" min="0" id="quickTaxable" data-enter-next="vchNarration" placeholder="10000.00" oninput="recalcQuickGst()" class="enter-chain w-full rounded px-2.5 py-1 bg-slate-950 border border-slate-700 mono-nums text-white" />
+              </div>
+              <div>
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Party State Code</label>
+                <input type="text" id="quickPartyState" maxlength="2" value="24" oninput="recalcQuickGst()" class="w-full rounded px-2.5 py-1 bg-slate-950 border border-slate-700 mono-nums text-white" />
+              </div>
+              <div class="text-[11px] mono-nums text-slate-300" id="quickGstPreview">CGST: ₹0 · SGST: ₹0 · Total: ₹0</div>
+              <button type="button" onclick="applyQuickGstToLines()" class="py-1 px-2.5 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-500/30 cursor-pointer">
+                Auto-Fill Lines ↓
+              </button>
+            </div>
+
+            <div class="overflow-x-auto border border-slate-800 rounded-lg">
+              <table class="w-full text-left text-xs">
+                <thead class="bg-slate-900 text-slate-400 uppercase text-[10px]">
+                  <tr>
+                    <th class="p-2 w-20">Dr / Cr</th>
+                    <th class="p-2">Ledger Account (Alt+C)</th>
+                    <th class="p-2 w-32">Bill Ref</th>
+                    <th class="p-2 w-32 text-right">Amount (₹)</th>
+                    <th class="p-2 w-10"></th>
+                  </tr>
+                </thead>
+                <tbody id="voucherLinesBody" class="divide-y divide-slate-800"></tbody>
+              </table>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <button type="button" onclick="addVoucherLine()" class="px-2.5 py-1 rounded border border-slate-700 font-bold hover:border-brand-cyan cursor-pointer">+ Add Line</button>
+              <div class="flex items-center gap-3 mono-nums">
+                <span>Dr: <strong id="sumDebitDisplay" class="text-brand-cyan">₹0.00</strong></span>
+                <span>Cr: <strong id="sumCreditDisplay" class="text-emerald-400">₹0.00</strong></span>
+                <span id="balanceCheckBadge" class="px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 font-bold">BALANCED</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 items-end">
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Narration (Press Enter to Accept Y/N)</label>
+                <input type="text" id="vchNarration" data-enter-accept="true" placeholder="Being goods sold / paid against bill..." class="enter-chain w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white" />
+              </div>
+              <button type="submit" class="py-2 px-3 rounded-lg bg-gradient-to-r from-brand-cyan to-emerald-400 text-slate-950 font-extrabold cursor-pointer">
+                Accept? (Y / Ctrl+A)
+              </button>
+            </div>
+            <div id="voucherFormFeedback" class="text-xs font-semibold hidden"></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- VIEW 3: ALGOMIGRATE UNIVERSAL SOFTWARE & FILE IMPORTER -->
+      <div id="view-tally-import" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm font-extrabold text-white">AlgoMigrate — Migrate From ANY Accounting Software or File</h2>
+              <p class="text-[11px] text-slate-400">Auto-detects <strong>Tally.ERP 9 / TallyPrime (XML/JSON)</strong>, <strong>Busy</strong>, <strong>Marg ERP</strong>, <strong>Vyapar</strong>, <strong>MyBillBook</strong>, <strong>Zoho Books</strong>, <strong>QuickBooks (.IIF)</strong>, <strong>Excel (.XLSX)</strong>, <strong>CSV</strong> &amp; <strong>Bank Statements</strong>.</p>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              <select id="migrateSourceHint" class="rounded px-2 py-1 bg-slate-950 border border-slate-700 text-[11px] text-white">
+                <option value="">Auto-Detect Source Format</option>
+                <option value="TALLY_XML">Tally.ERP 9 / TallyPrime XML</option>
+                <option value="VYAPAR_MYBILLBOOK">Vyapar / MyBillBook CSV/XLSX</option>
+                <option value="ZOHO_BOOKS">Zoho Books CSV</option>
+                <option value="BUSY_EXCEL_CSV">Busy Accounting CSV/XML</option>
+                <option value="MARG_ERP">Marg ERP CSV/XLSX</option>
+                <option value="QUICKBOOKS_IIF">QuickBooks .IIF</option>
+                <option value="BANK_STATEMENT">Bank Statement CSV/XLSX</option>
+              </select>
+              <label class="px-2.5 py-1 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 font-bold cursor-pointer">
+                Upload .XML / .XLSX / .CSV / .IIF
+                <input type="file" accept=".xml,.xlsx,.csv,.iif,.json,.txt" onchange="handleUniversalFileUpload(event)" class="hidden" />
+              </label>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-1.5 text-[11px]">
+            <button type="button" onclick="loadSampleTallyXML()" class="px-2.5 py-1 rounded border border-cyan-500/40 bg-cyan-500/10 text-brand-cyan font-bold cursor-pointer">Sample: Tally.ERP 9 XML</button>
+            <button type="button" onclick="loadSampleVyaparZohoCSV()" class="px-2.5 py-1 rounded border border-slate-700 bg-slate-900 text-slate-200 font-bold cursor-pointer">Sample: Vyapar / Zoho CSV</button>
+            <button type="button" onclick="loadSampleBankCSV()" class="px-2.5 py-1 rounded border border-slate-700 bg-slate-900 text-slate-200 font-bold cursor-pointer">Sample: Bank Statement CSV</button>
+          </div>
+
+          <textarea id="tallyXmlInput" rows="8" placeholder="Paste any Tally XML, Zoho/Vyapar/Busy/Marg CSV, QuickBooks IIF, or upload an .xlsx file above..." class="w-full rounded-lg p-2.5 text-xs mono-nums bg-slate-950 border border-slate-700 text-slate-200"></textarea>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button type="button" onclick="previewUniversalMigrationUI()" class="px-3.5 py-1.5 rounded-lg border border-cyan-500/50 bg-cyan-500/15 text-brand-cyan font-extrabold cursor-pointer">
+              1. Preview &amp; Check Conflicts
+            </button>
+            <button type="button" onclick="commitUniversalMigrationUI()" class="px-3.5 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-extrabold cursor-pointer hover:bg-emerald-400">
+              2. Commit &amp; Verify 0.00 Parity
+            </button>
+          </div>
+
+          <div id="tallyImportResult" class="hidden p-3 rounded-xl bg-slate-900/90 border border-emerald-500/40 text-xs space-y-1.5"></div>
+        </div>
+      </div>
+
+      <!-- VIEW 3C: ZERO-KNOWLEDGE GMAIL & GOOGLE FREE BACKUP VAULT -->
+      <div id="view-vault" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-2.5">
+            <div>
+              <h2 class="text-sm font-extrabold text-white">Zero-Knowledge Encrypted Vault — Own Gmail &amp; Free Google Services</h2>
+              <p class="text-[11px] text-slate-400">Encrypted locally with <strong>PBKDF2-SHA256 (600,000 iter) + AES-256-GCM (ALGBK01)</strong> before leaving your browser. Neither Algorise nor Google can read your books.</p>
+            </div>
+            <span class="px-2 py-1 rounded bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-bold mono-nums text-[10px]">ZERO-LEAK E2EE</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[10px] font-bold text-brand-cyan mb-1">Master Vault Passphrase (Never Sent to Server) *</label>
+              <input type="password" id="vaultPassphrase" placeholder="Minimum 6+ characters (stored nowhere)" class="w-full rounded px-3 py-1.5 bg-slate-950 border border-slate-700 text-white mono-nums" />
+            </div>
+            <div class="flex items-end gap-2">
+              <button type="button" onclick="downloadEncryptedAlgobook()" class="flex-1 py-1.5 px-3 rounded-lg bg-gradient-to-r from-brand-cyan to-emerald-400 text-slate-950 font-extrabold cursor-pointer">
+                ⬇ Export Encrypted .algobook
+              </button>
+              <label class="py-1.5 px-3 rounded-lg border border-amber-500/50 bg-amber-500/15 text-amber-300 font-extrabold cursor-pointer">
+                ⬆ Restore .algobook
+                <input type="file" accept=".algobook" onchange="restoreFromAlgobookFile(event)" class="hidden" />
+              </label>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            <!-- Anywhere Cloud E2EE Relay -->
+            <div class="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+              <div class="font-extrabold text-brand-cyan">1. Work From Anywhere (Opaque E2EE Cloud Sync)</div>
+              <p class="text-[11px] text-slate-400">Pushes only client-encrypted <code class="text-emerald-400">ALGBK01</code> ciphertext to Algorise Cloud so you can unlock your books on any laptop or mobile phone.</p>
+              <div class="flex gap-2">
+                <button type="button" onclick="pushVaultToCloud()" class="flex-1 py-1.5 px-2.5 rounded bg-cyan-500/20 border border-cyan-500/40 text-brand-cyan font-bold cursor-pointer">Push Encrypted Vault</button>
+                <button type="button" onclick="pullVaultFromCloud()" class="flex-1 py-1.5 px-2.5 rounded bg-slate-900 border border-slate-700 text-white font-bold cursor-pointer">Pull &amp; Decrypt</button>
+              </div>
+            </div>
+
+            <!-- User's Own Gmail SMTP / Google Drive Backup -->
+            <div class="p-3 rounded-xl bg-slate-950 border border-emerald-500/30 space-y-2">
+              <div class="font-extrabold text-emerald-400">2. Own Gmail (15GB Free) &amp; Google Drive (drive.file)</div>
+              <div class="grid grid-cols-2 gap-2">
+                <input type="email" id="vaultGmailEmail" placeholder="yourname@gmail.com" class="rounded px-2 py-1 bg-slate-900 border border-slate-700 text-white text-[11px]" />
+                <input type="password" id="vaultGmailAppPass" placeholder="Gmail App Password" class="rounded px-2 py-1 bg-slate-900 border border-slate-700 text-white text-[11px]" />
+              </div>
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <label class="flex items-center gap-1.5 text-[10px] text-slate-400">
+                  <input type="checkbox" id="optInSheetsMirror" class="accent-amber-400" />
+                  <span>Opt-in Google Sheets KPI Mirror (readable summary)</span>
+                </label>
+                <button type="button" onclick="dispatchGmailSmtpBackup()" class="py-1 px-3 rounded bg-emerald-500 text-slate-950 font-extrabold cursor-pointer">
+                  Send .algobook to My Gmail
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Google OAuth2 Least-Privilege Connector -->
+          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="font-bold text-white">3. 1-Click Google OAuth2 (Least-Privilege <code class="text-brand-cyan">gmail.insert</code> + <code class="text-emerald-400">drive.file</code>)</div>
+              <button type="button" onclick="generateGoogleOAuthLink()" class="px-2.5 py-1 rounded border border-cyan-500/40 text-brand-cyan font-bold cursor-pointer">
+                Build Google OAuth2 URL
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <input type="text" id="googleClientId" placeholder="Google Cloud OAuth Client ID (xxx.apps.googleusercontent.com)" class="rounded px-2.5 py-1 bg-slate-950 border border-slate-700 text-white mono-nums text-[11px]" />
+              <input type="password" id="googleAccessToken" placeholder="OAuth2 Access Token (for Drive / Gmail API backup)" class="rounded px-2.5 py-1 bg-slate-950 border border-slate-700 text-white mono-nums text-[11px]" />
+            </div>
+            <div class="flex gap-2">
+              <button type="button" onclick="uploadToGoogleDriveVault()" class="px-3 py-1 rounded bg-slate-800 border border-slate-600 text-white font-bold cursor-pointer">Upload Encrypted Backup to My Drive</button>
+            </div>
+          </div>
+
+          <div id="vaultStatusBanner" class="hidden p-3 rounded-lg bg-slate-950 border border-cyan-500/40 text-xs mono-nums"></div>
+        </div>
+      </div>
+
+      <!-- VIEW 3B: LIVE GSP e-INVOICE SANDBOX & ALGOBRIDGE AGENT -->
+      <div id="view-einvoice" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div>
+            <h2 class="text-sm font-extrabold text-white">Live GSP / NIC IRP e-Invoice (IRN + Signed QR) &amp; E-Way Bill Sandbox</h2>
+            <p class="text-[11px] text-slate-400">Generates deterministic 64-char SHA-256 IRN, signed QR payload, and automatic 12-digit e-Way Bill (&gt; ₹50,000) sealed into Merkle Audit Log.</p>
+          </div>
+          <form onsubmit="generateEInvoiceUI(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Seller GSTIN *</label>
+              <input type="text" id="einvSeller" maxlength="15" value="24AABCA1234F1Z5" required class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Buyer GSTIN *</label>
+              <input type="text" id="einvBuyer" maxlength="15" value="24AABCM7721Q1Z9" required class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Invoice No *</label>
+              <input type="text" id="einvDocNo" value="INV/26-27/101" required class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">HSN (4/6/8 digits) *</label>
+              <input type="text" id="einvHsn" value="5407" maxlength="8" required class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Taxable Value (₹) *</label>
+              <input type="number" step="0.01" id="einvTaxable" value="250000.00" required class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">GST % &amp; Generate</label>
+              <div class="flex gap-2">
+                <select id="einvRate" class="rounded px-2 py-1.5 bg-slate-950 border border-slate-700 text-white">
+                  <option value="5" selected>5%</option>
+                  <option value="12">12%</option>
+                  <option value="18">18%</option>
+                </select>
+                <button type="submit" class="flex-1 px-3 py-1.5 rounded bg-gradient-to-r from-brand-cyan to-emerald-400 text-slate-950 font-extrabold cursor-pointer">Generate IRN</button>
+              </div>
+            </div>
+          </form>
+          <div id="einvoiceResultBox" class="hidden p-3 rounded-lg bg-slate-950 border border-emerald-500/40 mono-nums space-y-1"></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
+                <tr><th class="py-1.5 pr-3">Doc No</th><th class="py-1.5 pr-3">Buyer GSTIN</th><th class="py-1.5 pr-3">IRN</th><th class="py-1.5 pr-3">E-Way Bill</th><th class="py-1.5 pr-3 text-right">Value</th><th class="py-1.5 text-right">Action</th></tr>
+              </thead>
+              <tbody id="einvoicesListBody" class="divide-y divide-slate-800 mono-nums"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel-glass rounded-xl p-3.5 space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="font-extrabold text-white">AlgoBridge — Tally Port 9000 Agent Probe</div>
+            <button type="button" onclick="probeLocalAlgoBridge()" class="px-2.5 py-1 rounded border border-cyan-500/40 bg-cyan-500/10 text-brand-cyan font-bold cursor-pointer">Probe (:9095)</button>
+          </div>
+          <div id="bridgeProbeResult" class="mono-nums text-[11px] text-slate-300 p-2.5 rounded bg-slate-950 border border-slate-800">
+            python algorise-accounting/algobridge/algobridge_agent.py --mock-tally --cloud-url http://127.0.0.1:8000/api/v1/accounting/bridge/sync
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 4: FUZZY GSTR-2B / IMS -->
+      <div id="view-gst-2b" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm font-extrabold text-white">Fuzzy GSTR-2B &amp; IMS Reconciliation Engine</h2>
+              <p class="text-[11px] text-slate-400">Auto-matches <code class="text-brand-cyan">INV/26-27/0045</code> against <code class="text-emerald-400">45</code> &amp; ₹2 rounding differences.</p>
+            </div>
+            <button type="button" onclick="runDemoGstr2bReconciliation()" class="px-3 py-1.5 rounded bg-brand-cyan text-slate-950 font-extrabold cursor-pointer">Run Match</button>
+          </div>
+          <div id="gstr2bSummaryGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5"></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
+                <tr><th class="py-1.5 pr-3">Status</th><th class="py-1.5 pr-3">Supplier GSTIN</th><th class="py-1.5 pr-3">Books Inv</th><th class="py-1.5 pr-3">2B Inv</th><th class="py-1.5 pr-3">IMS</th><th class="py-1.5 text-right">Notes</th></tr>
+              </thead>
+              <tbody id="gstr2bBody" class="divide-y divide-slate-800 mono-nums"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 5: SECTION 43B(h) RADAR -->
+      <div id="view-msme-43bh" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div>
+            <h2 class="text-sm font-extrabold text-white">Section 43B(h) MSME 15 / 45-Day Tax Disallowance Radar</h2>
+            <p class="text-[11px] text-slate-400">Overrides 60/90-day contracts to the legal 45-day ceiling (15 days without written agreement).</p>
+          </div>
+          <div id="msmeSummaryGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-2.5"></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
+                <tr><th class="py-1.5 pr-3">Supplier</th><th class="py-1.5 pr-3">Ref</th><th class="py-1.5 pr-3">Bill Date</th><th class="py-1.5 pr-3">Stat Due</th><th class="py-1.5 pr-3 text-right">Left</th><th class="py-1.5 pr-3 text-right">Amount</th><th class="py-1.5 text-right">Risk</th></tr>
+              </thead>
+              <tbody id="msme43bhBody" class="divide-y divide-slate-800 mono-nums"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 6: FINANCIAL REPORTS -->
+      <div id="view-reports" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <h2 class="text-sm font-extrabold text-white">Live Financial Statements (Double-Entry)</h2>
+            <div class="flex gap-1.5">
+              <button type="button" onclick="renderReports('tb')" class="px-2.5 py-1 rounded border border-cyan-500/40 text-brand-cyan font-bold cursor-pointer">Trial Balance</button>
+              <button type="button" onclick="renderReports('pnl')" class="px-2.5 py-1 rounded border border-slate-700 font-bold cursor-pointer">P&amp;L + Balance Sheet</button>
+              <button type="button" onclick="renderReports('pdc')" class="px-2.5 py-1 rounded border border-slate-700 font-bold cursor-pointer">PDC Register</button>
+            </div>
+          </div>
+          <div id="reportContainer" class="overflow-x-auto"></div>
+        </div>
+      </div>
+
+      <!-- VIEW 7: WHATSAPP RECOVERY -->
+      <div id="view-whatsapp" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <h2 class="text-sm font-extrabold text-white">WhatsApp Receivables &amp; Audit Confirmation Desk</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Debtor Party</label>
+              <select id="waPartySelect" onchange="previewWhatsAppReminder()" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white"></select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Language</label>
+              <select id="waLangSelect" onchange="previewWhatsAppReminder()" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white">
+                <option value="gu">Surati Gujarati</option>
+                <option value="hi">Hinglish / Hindi</option>
+                <option value="en">Formal English</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 mb-0.5">Your UPI ID (Optional)</label>
+              <input type="text" id="waUpiInput" placeholder="yourfirm@upi" oninput="previewWhatsAppReminder()" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white" />
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-emerald-950/30 border border-emerald-500/30 space-y-2">
+            <pre id="waMessagePreview" class="whitespace-pre-wrap text-xs text-slate-200 font-sans"></pre>
+            <button type="button" onclick="copyWhatsAppMessage()" class="px-3 py-1 rounded bg-emerald-500 text-slate-950 font-extrabold cursor-pointer">Copy Text</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 8: MCA RULE 11(g) MERKLE EDIT LOG -->
+      <div id="view-audit-trail" class="view-section hidden space-y-3">
+        <div class="panel-glass rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <h2 class="text-sm font-extrabold text-white">MCA Rule 11(g) Immutable SHA-256 Merkle Edit Log</h2>
+              <p class="text-[11px] text-slate-400">Non-disableable cryptographic audit chain on every create, alter, cancel &amp; IRN.</p>
+            </div>
+            <button type="button" onclick="verifyMerkleChainUI()" class="px-3 py-1.5 rounded bg-emerald-500 text-slate-950 font-extrabold cursor-pointer">Verify Merkle Chain</button>
+          </div>
+          <div id="merkleVerifyBanner" class="p-2.5 rounded-lg bg-slate-900 border border-slate-700 mono-nums"></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="border-b border-slate-800 text-slate-400 uppercase text-[10px]">
+                <tr><th class="py-1.5 pr-3">#</th><th class="py-1.5 pr-3">UTC Time</th><th class="py-1.5 pr-3">Action</th><th class="py-1.5 pr-3">Entity</th><th class="py-1.5 pr-3">SHA-256 Block Hash</th></tr>
+              </thead>
+              <tbody id="auditTrailBody" class="divide-y divide-slate-800 mono-nums"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- DOCKED NON-OVERLAPPING BOTTOM TALLY SHORTCUT BAR -->
+  <footer class="tally-header-bar flex-none border-t border-cyan-500/20 bg-slate-950 px-3 py-1.5 text-[10px] mono-nums">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-2">
+        <button type="button" onclick="focusDateField()" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F2</span> Date</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('CONTRA')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F4</span> Contra</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('PAYMENT')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F5</span> Pay</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('RECEIPT')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F6</span> Recpt</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('JOURNAL')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F7</span> Jrnl</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('SALES')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F8</span> Sales</button>
+        <button type="button" onclick="switchView('voucher'); setVoucherType('PURCHASE')" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">F9</span> Purch</button>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button type="button" onclick="openMasterModal()" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">Alt+C</span> Master</button>
+        <button type="button" onclick="openGoToPalette()" class="hover:text-brand-cyan cursor-pointer"><span class="kbd-pill">Alt+G</span> Go To</button>
+        <button type="button" onclick="lockVaultPrivacyScreen()" class="hover:text-rose-400 cursor-pointer"><span class="kbd-pill">Ctrl+L</span> Lock</button>
+        <button type="button" onclick="document.getElementById('voucherForm').requestSubmit()" class="hover:text-emerald-400 cursor-pointer"><span class="kbd-pill">Ctrl+A</span> Accept</button>
+        <button type="button" onclick="handleEscapeNav()" class="hover:text-amber-400 cursor-pointer"><span class="kbd-pill">Esc</span> Back</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- NATIVE DIALOG: ALT+C INLINE MASTER -->
+  <dialog id="masterDialog" class="books-dialog">
+    <form method="dialog" onsubmit="submitMasterDialog(event)" class="p-4 space-y-3">
+      <div class="flex items-center justify-between border-b border-slate-700/60 pb-2">
+        <h3 class="text-sm font-extrabold">Create Ledger Master <span class="kbd-pill ml-1">Alt+C</span></h3>
+        <button type="button" onclick="document.getElementById('masterDialog').close()" class="text-slate-400 hover:text-white cursor-pointer">✕</button>
+      </div>
+      <div class="space-y-2.5 text-xs">
+        <div>
+          <label class="block font-bold mb-0.5">Ledger Name *</label>
+          <input type="text" id="mName" required placeholder="e.g. Navkar Dyeing Mills" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white" />
+        </div>
+        <div class="grid grid-cols-2 gap-2.5">
+          <div>
+            <label class="block font-bold mb-0.5">Under Group</label>
+            <select id="mGroup" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white">
+              <option value="Sundry Debtors">Sundry Debtors</option>
+              <option value="Sundry Creditors">Sundry Creditors</option>
+              <option value="Bank Accounts">Bank Accounts</option>
+              <option value="Cash-in-Hand">Cash-in-Hand</option>
+              <option value="Sales Accounts">Sales Accounts</option>
+              <option value="Purchase Accounts">Purchase Accounts</option>
+              <option value="Direct Expenses">Direct Expenses</option>
+              <option value="Indirect Expenses">Indirect Expenses</option>
+              <option value="Duties & Taxes">Duties &amp; Taxes</option>
+              <option value="Capital Account">Capital Account</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold mb-0.5">GSTIN (Optional)</label>
+            <input type="text" id="mGstin" maxlength="15" placeholder="24AABCN1234F1Z2" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2.5">
+          <div>
+            <label class="block font-bold mb-0.5">MSME (43Bh)</label>
+            <select id="mMsme" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white">
+              <option value="NONE">None</option>
+              <option value="MICRO">Micro</option>
+              <option value="SMALL">Small</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold mb-0.5">Opening (₹)</label>
+            <input type="number" step="0.01" min="0" id="mOpening" value="0.00" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 mono-nums text-white" />
+          </div>
+          <div>
+            <label class="block font-bold mb-0.5">Dr / Cr</label>
+            <select id="mDrCr" class="w-full rounded px-2.5 py-1.5 bg-slate-950 border border-slate-700 text-white">
+              <option value="DR">Dr</option>
+              <option value="CR">Cr</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end gap-2 pt-1">
+        <button type="button" onclick="document.getElementById('masterDialog').close()" class="px-3 py-1.5 rounded border border-slate-700 font-bold cursor-pointer">Cancel</button>
+        <button type="submit" class="px-3.5 py-1.5 rounded bg-brand-cyan text-slate-950 font-extrabold cursor-pointer">Save Master</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- NATIVE DIALOG: ALT+G GO TO PALETTE -->
+  <dialog id="goToDialog" class="books-dialog">
+    <div class="p-3.5 space-y-2.5">
+      <div class="flex items-center gap-2 border-b border-slate-700/60 pb-2">
+        <span class="text-brand-cyan font-bold">⚡</span>
+        <input type="text" id="goToSearchInput" oninput="filterGoToCommands()" placeholder="Jump anywhere (Vouchers, Migrator, Gmail Vault, GSTR-2B, 43B(h))..." class="w-full bg-transparent text-xs focus:outline-none text-white" />
+        <span class="kbd-pill">Esc</span>
+      </div>
+      <div id="goToResultsList" class="max-h-64 overflow-y-auto space-y-1 text-xs"></div>
+    </div>
+  </dialog>
+
+  <!-- NATIVE DIALOG: CTRL+L ZERO-LEAK PRIVACY LOCK -->
+  <dialog id="privacyLockDialog" class="books-dialog">
+    <form method="dialog" onsubmit="unlockVaultPrivacyScreen(event)" class="p-5 space-y-3 text-center">
+      <div class="text-2xl">🔒</div>
+      <h3 class="text-sm font-extrabold">BooksOS Privacy Lock Active</h3>
+      <p class="text-[11px] text-slate-400">Screen blanked to prevent shoulder-surfing or shop-counter data leaks.</p>
+      <input type="password" id="unlockPinInput" placeholder="Press Enter or enter Vault Passphrase to resume" class="w-full rounded px-3 py-2 bg-slate-950 border border-slate-700 text-white text-center mono-nums" />
+      <button type="submit" class="w-full py-2 rounded-lg bg-brand-cyan text-slate-950 font-extrabold cursor-pointer">Unlock Workspace</button>
+    </form>
+  </dialog>
+
+  <script src="/config.js"></script>
+  <script src="/algorise-accounting/app.js"></script>
+</body>
+</html>

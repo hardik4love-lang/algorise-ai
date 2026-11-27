@@ -71,6 +71,8 @@ from engine.attribution_routes import router as attribution_router  # noqa: E402
 from engine.brand_routes import router as brand_router  # noqa: E402
 from engine.whatsapp_webhook import router as whatsapp_webhook_router  # noqa: E402
 from engine.distribution_routes import router as distribution_router  # noqa: E402
+from engine.accounting_routes import router as accounting_router  # noqa: E402
+from engine.guardian_routes import router as guardian_router  # noqa: E402
 settings = get_settings()
 
 # API Key header for dependency injection
@@ -1054,6 +1056,8 @@ app.include_router(attribution_router)
 app.include_router(brand_router)
 app.include_router(whatsapp_webhook_router)
 app.include_router(distribution_router)
+app.include_router(accounting_router)
+app.include_router(guardian_router)
 
 # Mount Full Static Web Platform (Frontend, Client Portal, SEO Pages)
 import os

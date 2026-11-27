@@ -1,19 +1,16 @@
-import os
+from pathlib import Path
 import zipfile
 
-src_dir = r"C:\Users\om\.gemini\antigravity\scratch\algorise-ai\guardian_angel_extension"
-dist_dir = r"C:\Users\om\.gemini\antigravity\scratch\algorise-ai\dist"
-os.makedirs(dist_dir, exist_ok=True)
+ROOT = Path(__file__).resolve().parent
+SRC_DIR = ROOT / "guardian_angel_extension"
+ASSETS_DIR = ROOT / "assets"
+ASSETS_DIR.mkdir(parents=True, exist_ok=True)
+ZIP_PATH = ASSETS_DIR / "guardian_angel_extension_v3.2.0.zip"
 
-zip_path = os.path.join(dist_dir, "guardian_angel_extension_v3.0.0.zip")
+with zipfile.ZipFile(ZIP_PATH, "w", zipfile.ZIP_DEFLATED) as zf:
+    for p in sorted(SRC_DIR.rglob("*")):
+        if p.is_file():
+            zf.write(p, arcname=str(p.relative_to(SRC_DIR)))
+            print(f"Added: {p.relative_to(SRC_DIR)}")
 
-with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-    for root, dirs, files in os.walk(src_dir):
-        for f in files:
-            full_path = os.path.join(root, f)
-            rel_path = os.path.relpath(full_path, src_dir)
-            z.write(full_path, arcname=rel_path)
-            print(f"Added to ZIP: {rel_path}")
-
-print(f"\nBundle created successfully at: {zip_path}")
-print(f"Size: {os.path.getsize(zip_path)} bytes")
+print(f"Created {ZIP_PATH} ({ZIP_PATH.stat().st_size} bytes)")

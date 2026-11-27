@@ -37,7 +37,8 @@ RELEASES = ROOT / ".release-state.json"
 MOBILE = ROOT / "mobile"
 
 SURFACES = [
-    "index.html", "dashboard.html", "creator_studio.html",
+    "index.html", "guardian.html", "guardian_mobile.html",
+    "guardian_angel_app.html", "dashboard.html", "creator_studio.html",
     "realtor_sales_console.html", "admin.html", "cocopeat.html",
     "field_pitch.html",
     "compare/manychat-alternative.html", "compare/wati-alternative.html",

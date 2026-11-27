@@ -50,6 +50,11 @@ LABEL org.opencontainers.image.version="1.0.0"
 
 WORKDIR /app
 
+# Patch OS security advisories (e.g. libzstd1/libc6 CVEs) so container scans stay green
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create non-root system user for security
 RUN groupadd -g 10001 algorise && \
     useradd -u 10001 -g algorise -s /bin/bash -m algorise

@@ -101,7 +101,7 @@ class AriaYouTubeInfluencerEngine:
         title: str,
         video_asset_rel: str,
         creator_credit: Optional[str] = None,
-        wa_contact: str = "+91 63552 85433"
+        wa_contact: str = ""
     ) -> YouTubeInfluencerShort:
         """Assembles a production-ready YouTube Short with high-CTR metadata."""
         short_id = f"YT_SHORT_{int(time.time())}"

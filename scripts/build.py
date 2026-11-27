@@ -160,8 +160,14 @@ SURFACES = [
     "algorise-payroll/user-management.html",
     "algorise-payroll/users.html",
     "algorise-payroll/warning.html",
+    "algorise-accounting/index.html",
+    "algorise-accounting/app.js",
+    "algorise-accounting/ca-console.html",
+    "algorise-accounting/ca-console.js",
+    "algorise-accounting/docs/ALGORISE_ACCOUNTING_MASTER_BLUEPRINT.md",
     "compare/manychat-alternative.html",
     "compare/wati-alternative.html",
+    "compare/tally-alternative.html",
     "industry/diamond-cvd-sales-agent.html",
     "industry/textile-saree-wholesale-ai-agent.html",
     "industry/real-estate-whatsapp-ai.html",
@@ -217,12 +223,13 @@ def sync(verbose: bool = True) -> list[str]:
         shutil.copy2(src, dest)
         copied.append(f"{dest_rel} (from {source_rel})")
 
-    # Compile Tailwind at build time.
+    # Compile Tailwind at build time (prefer local node_modules binary when installed).
+    _local_tw = ROOT / 'node_modules' / '.bin' / ('tailwindcss.cmd' if os.name == 'nt' else 'tailwindcss')
+    _tw_cmd = [str(_local_tw)] if _local_tw.exists() else [_NPX, 'tailwindcss']
     try:
         r = subprocess.run(
-            [_NPX, 'tailwindcss', '-i', 'app.css', '-o', str(DIST / 'app.css'),
-             '--minify'],
-            cwd=ROOT, capture_output=True, text=True, timeout=8,
+            [*_tw_cmd, '-i', 'app.css', '-o', str(DIST / 'app.css'), '--minify'],
+            cwd=ROOT, capture_output=True, text=True, timeout=45,
         )
     except Exception as e:
         class _FakeR:

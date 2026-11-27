@@ -1346,7 +1346,7 @@
       document.getElementById('clientIdText').textContent = c.id;
       document.getElementById('clientLocationDisplay').innerHTML = `
         <span><i class="fa-solid fa-globe text-emerald-400 mr-1.5"></i>100% Online Store • Pan-India &amp; Worldwide Delivery (www.shruhicollections.in)</span>
-        <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>${c.phone || '{{data-brand-phone}}'}</span>
+        <span><i class="fa-brands fa-whatsapp text-emerald-400 mr-1"></i>${c.phone || (window.formatBrandTokens ? window.formatBrandTokens('{{data-brand-phone}}') : 'Merchant WhatsApp')}</span>
         <span><i class="fa-solid fa-id-badge text-slate-500 mr-1.5"></i><code id="clientIdText" class="text-slate-300">${c.id}</code></span>
       `;
 
@@ -1420,7 +1420,7 @@
         card.className = `glass rounded-2xl p-5 border transition-all hover:border-slate-600 ${isHot ? 'border-rose-500/40 bg-rose-950/10' : 'border-slate-800'}`;
 
         const cleanPhone = (lead.phone || '').replace(/[^0-9]/g, '');
-        const waLink = cleanPhone ? `{{WA_LINK}}${cleanPhone}?text=${encodeURIComponent('નમસ્તે જી! 🙏 Shruhi Collections (shruhicollections.in) તરફથી આપની ઇન્ક્વાયરી બદલ આભાર. S થી 6XL સાઈઝમાં અમારું 4K કેટલોગ અને પ્રાઈસ લિસ્ટ મોકલી રહ્યા છીએ.')}` : '#';
+        const waLink = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent('નમસ્તે જી! 🙏 Shruhi Collections (shruhicollections.in) તરફથી આપની ઇન્ક્વાયરી બદલ આભાર. S થી 6XL સાઈઝમાં અમારું 4K કેટલોગ અને પ્રાઈસ લિસ્ટ મોકલી રહ્યા છીએ.')}` : '#';
 
         card.innerHTML = `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
@@ -1565,7 +1565,7 @@
           id: cid,
           name: "Shruhi Collections — Official Boutique (shruhicollections.in)",
           city: "100% Online Store • www.shruhicollections.in",
-          phone: "{{data-brand-phone}}",
+          phone: window.formatBrandTokens ? window.formatBrandTokens("{{data-brand-phone}}") : "Configured on sign-in",
           fb_connected: true,
           fb_page_name: savedPageName,
           fb_page_id: savedPageId,
@@ -1845,7 +1845,8 @@
     }
 
     function copyViralReelCaptionPortal(btn) {
-      navigator.clipboard?.writeText(PORTAL_VIRAL_REEL_CAPTION);
+      const cap = window.formatBrandTokens ? window.formatBrandTokens(PORTAL_VIRAL_REEL_CAPTION) : PORTAL_VIRAL_REEL_CAPTION;
+      navigator.clipboard?.writeText(cap);
       const orig = btn.innerHTML;
       btn.innerHTML = '<i class="fa-solid fa-check mr-1"></i>Viral Reel Caption Copied!';
       setTimeout(() => { btn.innerHTML = orig; }, 1600);
@@ -2098,7 +2099,7 @@
       document.getElementById('ruleTelegramAlerts').checked = true;
       document.getElementById('ruleWhatsAppDispatch').checked = true;
       document.getElementById('ruleSector').value = 'textile';
-      document.getElementById('ruleCustomGreeting').value = 'નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે. ઓર્ડર માટે WhatsApp: {{data-brand-phone}}.';
+      document.getElementById('ruleCustomGreeting').value = (window.formatBrandTokens || (s => s))('નમસ્તે જી! 🙏 Shruhi Collections (www.shruhicollections.in) માં આપનું સ્વાગત છે! S થી 6XL સાઈઝમાં 29+ 4K ડિઝાઇનર સૂટ્સ અને કુર્તીઓ (MRP ₹850 – ₹3,550) હાજર છે.');
       renderCatalogRows();
 
       if (!currentClientId) return;
@@ -2370,8 +2371,9 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       document.getElementById('nlpLatencyBadge').textContent = `Latency: ${res.latency_seconds}s (<0.05s SLA)`;
       document.getElementById('nlpLangOut').textContent = res.detected_language;
       document.getElementById('nlpOutfitOut').textContent = res.matched_outfit;
-      document.getElementById('nlpPublicReplyOut').textContent = res.public_comment_reply;
-      document.getElementById('nlpPrivateDmOut').textContent = res.private_messenger_dm;
+      const _fb = window.formatBrandTokens || (s => s);
+      document.getElementById('nlpPublicReplyOut').textContent = _fb(res.public_comment_reply);
+      document.getElementById('nlpPrivateDmOut').textContent = _fb(res.private_messenger_dm);
     }
 
     async function sendLiveTelegramProxy() {
@@ -2393,7 +2395,7 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
             chat_id: chatId,
             message: message,
             buyer_name: 'Shruhi Collections Portal',
-            buyer_phone: '{{data-brand-phone}}'
+            buyer_phone: (window.formatBrandTokens ? window.formatBrandTokens('{{data-brand-phone}}') : '')
           })
         });
         if (resp.ok) {
@@ -2594,7 +2596,8 @@ if (pages[0].page_id) localStorage.setItem('algorise_fb_page_id', pages[0].page_
       if (tab === 'rules') loadClientRules();
     }
   </script>
-  <script src="assets/hero_100_bots.js">
+  <script src="assets/hero_100_bots.js"></script>
+  <script>
     // Client Dashboard ROI Simulator Listener
     function initDashboardRoi() {
       const sSpend = document.getElementById('dashSliderSpend');

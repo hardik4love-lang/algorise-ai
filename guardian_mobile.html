@@ -2,9 +2,10 @@
 <html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' http://127.0.0.1:8050 https://*.trycloudflare.com; img-src 'self' data: https:;" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' https://algorise-ai-backend.onrender.com https://cdn.jsdelivr.net blob: data:; worker-src 'self' blob:; img-src 'self' data: blob: https:; media-src 'self' blob:;" />
   <title>Guardian Angel™ — Senior Mobile AI Shield</title>
+  <link rel="canonical" href="https://algorise-ai.com/guardian_mobile.html" />
   
   <!-- Universal Mobile PWA & Native App Meta -->
   <link rel="manifest" href="/manifest.webmanifest" />
@@ -14,35 +15,12 @@
   <meta name="theme-color" content="#070a13" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23070A13'/><path d='M16 4L26 8V15C26 21 21.5 26.5 16 28C10.5 26.5 6 21 6 15V8L16 4Z' stroke='%2306B6D4' stroke-width='2' fill='none'/><path d='M12 15L15 18L20 12' stroke='%2310B981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
 
-  <!-- Tailwind & Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Compiled Tailwind CSS & Icons -->
+  <link rel="stylesheet" href="/app.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            guardDark: '#070a13',
-            guardNavy: '#0c1322',
-            guardCard: '#131e34',
-            guardCyan: '#06b6d4',
-            guardEmerald: '#10b981',
-            guardRose: '#f43f5e',
-            guardAmber: '#f59e0b',
-            guardPurple: '#a855f7'
-          },
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
     body {
@@ -86,7 +64,7 @@
             GUARDIAN ANGEL™
             <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-mono font-bold uppercase">Mobile</span>
           </h1>
-          <p id="header-user-status" class="text-[11px] text-slate-300 font-medium">Protecting Margaret • Shield Active</p>
+          <p id="header-user-status" class="text-[11px] text-slate-300 font-medium">Mobile Shield Active • Tap Setup</p>
         </div>
       </div>
 
@@ -145,12 +123,12 @@
           <span>Check Suspicious Call, Text or Letter</span>
         </span>
         <span id="offline-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800">
-          ● Fast 0.2ms
+          ● Cloud + On-Device
         </span>
       </div>
 
       <div class="relative">
-        <textarea id="mobile-text-input" rows="3" placeholder="Paste suspicious message, text or describe call here..." class="w-full bg-slate-900/90 border border-slate-700 rounded-2xl p-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors font-medium"></textarea>
+        <textarea id="mobile-text-input" rows="3" placeholder="Paste suspicious message, URL, SMS, or scan a photo with OCR..." class="w-full bg-slate-900/90 border border-slate-700 rounded-2xl p-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors font-medium"></textarea>
       </div>
 
       <div class="grid grid-cols-3 gap-2">
@@ -161,8 +139,13 @@
 
         <button onclick="document.getElementById('camera-scan-input').click()" class="py-3 rounded-2xl bg-slate-800 border border-slate-700 text-slate-200 font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-transform">
           <i class="fa-solid fa-camera text-cyan-400 text-sm"></i>
-          <span>Snap Pic</span>
+          <span>OCR Scan</span>
         </button>
+      </div>
+
+      <div id="mobile-ocr-status" class="hidden p-2.5 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-[11px] font-mono text-cyan-300 flex items-center justify-between gap-2">
+        <span id="mobile-ocr-msg">Initializing on-device Tesseract OCR...</span>
+        <span id="mobile-ocr-pct" class="font-bold">0%</span>
       </div>
 
       <!-- Quick Senior Presets for 1-Tap Demo -->
@@ -185,57 +168,53 @@
       </div>
     </div>
 
-    <!-- 3. MARGARET AI SCAMMER WASTER (AUDIO REVENGE REEL) -->
+    <!-- 3. MARGARET AI SCAMBAIT VIDEO REEL PLAYER -->
     <div class="p-4 rounded-3xl bg-guardCard border border-purple-500/30 shadow-xl space-y-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="text-xl">👵</span>
-          <h3 class="font-extrabold text-xs text-purple-300 uppercase tracking-wider">Margaret AI Scammer Waster</h3>
+          <h3 class="font-extrabold text-xs text-purple-300 uppercase tracking-wider">Margaret AI Scambait Reels (9:16)</h3>
         </div>
         <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-700">
-          38 Mins Wasted
+          Real Dual-Voice MP4
         </span>
       </div>
       <p class="text-xs text-slate-300 leading-relaxed">
-        When scammers call Mom, our AI Granny takes over the phone call, talks about her cat Fluffy, and wastes their time so they can't rob other families!
+        Watch real rendered dual-voice AI scambait showcase reels illustrating common elder fraud tactics before scammers call your family.
       </p>
-      <div class="p-3 bg-purple-950/40 rounded-2xl border border-purple-500/30 flex items-center justify-between">
-        <div class="flex items-center gap-2.5">
-          <button onclick="toggleMargaretVoiceClip()" id="btn-audio-play" class="w-10 h-10 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center text-sm shadow-md active:scale-95 transition-transform">
-            <i class="fa-solid fa-play"></i>
-          </button>
-          <div>
-            <div class="text-xs font-bold text-white">IRS Scammer vs Margaret AI</div>
-            <div class="text-[10px] text-slate-400">"Where did I leave my reading glasses..."</div>
-          </div>
-        </div>
-        <span class="text-xs font-mono font-bold text-amber-400">38:14</span>
+      <div class="rounded-2xl overflow-hidden bg-slate-950 border border-purple-500/30 aspect-[9/16] max-h-80 mx-auto w-full max-w-[180px]">
+        <video id="mobile-reel-player" class="w-full h-full object-cover" controls playsinline preload="metadata" src="/assets/reels/reel_irs_tea.mp4"></video>
+      </div>
+      <div class="grid grid-cols-3 gap-1.5 text-[10px] font-bold">
+        <button type="button" onclick="selectMobileReel('/assets/reels/reel_irs_tea.mp4')" class="py-2 px-1.5 rounded-xl bg-purple-600/30 border border-purple-500/40 text-purple-200">IRS Tea</button>
+        <button type="button" onclick="selectMobileReel('/assets/reels/reel_geeksquad_desk.mp4')" class="py-2 px-1.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-200">Geek Squad</button>
+        <button type="button" onclick="selectMobileReel('/assets/reels/reel_bail_kevin.mp4')" class="py-2 px-1.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-200">Bail Scam</button>
       </div>
     </div>
 
-    <!-- 4. CARRIER CALL SCREENER QUICK-DIAL SETUP CARD -->
+    <!-- 4. CAREGIVER CALL FORWARDING QUICK-DIAL CARD -->
     <div class="p-4 rounded-3xl bg-guardCard border border-amber-500/30 shadow-xl space-y-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-2">
           <span class="text-xl">📞</span>
-          <h3 class="font-extrabold text-xs text-amber-300 uppercase tracking-wider">Carrier Call Shield (*71 / **004*)</h3>
+          <h3 class="font-extrabold text-xs text-amber-300 uppercase tracking-wider">Caregiver Call Divert (*71 / **004*)</h3>
         </div>
         <span id="carrier-status-tag" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-950 text-amber-300 border border-amber-700">
-          Ready to Dial
+          Set Number in Setup
         </span>
       </div>
       <p class="text-xs text-slate-300 leading-relaxed">
-        Activate carrier screening so unknown calls are checked by AI first. Your real doctor and family still ring your handset normally.
+        Configure your real family caregiver number in <button type="button" onclick="toggleSetupWizard()" class="text-cyan-300 underline font-bold">Setup</button> to generate a 1-tap carrier conditional-forwarding code for missed/unanswered calls.
       </p>
       <div class="grid grid-cols-2 gap-2">
-        <a id="link-carrier-us" href="tel:*718005550199" class="py-2.5 px-2 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/40 text-center font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-          <span>🇺🇸 Activate US (*71)</span>
+        <a id="link-carrier-us" href="#setup" onclick="return handleCarrierClick(event, 'US')" class="py-2.5 px-2 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/40 text-center font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+          <span>🇺🇸 US Divert (*71)</span>
         </a>
-        <a id="link-carrier-uk" href="tel:**004*08005550199%23" class="py-2.5 px-2 rounded-2xl bg-purple-500/20 text-purple-300 border border-purple-500/40 text-center font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
-          <span>🇬🇧 Activate UK (**004*)</span>
+        <a id="link-carrier-uk" href="#setup" onclick="return handleCarrierClick(event, 'UK')" class="py-2.5 px-2 rounded-2xl bg-purple-500/20 text-purple-300 border border-purple-500/40 text-center font-extrabold text-xs flex items-center justify-center gap-1.5 active:scale-95 transition-all">
+          <span>🇬🇧 UK Divert (**004*)</span>
         </a>
       </div>
-      <div class="text-[10px] text-slate-500 text-center">To disable anytime: Dial *73 (US) or ##004# (UK)</div>
+      <div class="text-[10px] text-slate-400 text-center">Disable anytime on device dialer: *73 (US) or ##004# (UK)</div>
     </div>
   </main>
 
@@ -265,7 +244,7 @@
 
     <button onclick="triggerEmergencyFamilySOS()" class="flex flex-col items-center justify-center p-2 text-rose-400 hover:text-rose-300 transition-colors" aria-label="Emergency Family SOS">
       <span class="text-xl">🚨</span>
-      <span class="text-[10px] font-bold mt-1">Sarah SOS</span>
+      <span id="nav-sos-label" class="text-[10px] font-bold mt-1">Family SOS</span>
     </button>
   </nav>
 
@@ -302,19 +281,20 @@
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-[10px] text-slate-400 font-bold mb-1">Senior Name</label>
-            <input type="text" id="setup-senior-name" value="Margaret" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white" />
+            <input type="text" id="setup-senior-name" value="" placeholder="e.g. Mom / Margaret" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white placeholder-slate-500" />
           </div>
           <div>
             <label class="block text-[10px] text-slate-400 font-bold mb-1">Country / Market</label>
             <select id="setup-region" onchange="updateCarrierLinks()" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white">
               <option value="US" selected>United States ($ USD)</option>
               <option value="UK">United Kingdom (£ GBP)</option>
+              <option value="IN">India (₹ INR)</option>
             </select>
           </div>
         </div>
         <div>
           <label class="block text-[10px] text-slate-400 font-bold mb-1">Senior Phone Number</label>
-          <input type="tel" id="setup-senior-phone" value="+1 (415) 555-0123" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white" />
+          <input type="tel" id="setup-senior-phone" value="" placeholder="Protected mobile number" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white placeholder-slate-500" />
         </div>
       </div>
 
@@ -322,20 +302,20 @@
       <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
         <div class="flex items-center gap-2 font-bold text-purple-300 text-xs uppercase tracking-wider">
           <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center text-[11px]">2</span>
-          <span>Family Angel Co-Pilot (Daughter/Son)</span>
+          <span>Family Angel Co-Pilot (Caregiver)</span>
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block text-[10px] text-slate-400 font-bold mb-1">Caregiver Name</label>
-            <input type="text" id="setup-caregiver-name" value="Sarah (Daughter)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white" />
+            <input type="text" id="setup-caregiver-name" value="" placeholder="e.g. Sarah (Daughter)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white placeholder-slate-500" />
           </div>
           <div>
-            <label class="block text-[10px] text-slate-400 font-bold mb-1">Emergency Phone</label>
-            <input type="tel" id="setup-caregiver-phone" value="+1 (800) 555-0199" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white" />
+            <label class="block text-[10px] text-slate-400 font-bold mb-1">Caregiver Emergency Phone</label>
+            <input type="tel" id="setup-caregiver-phone" value="" oninput="updateCarrierLinks()" placeholder="+1 / +44 / +91 mobile" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-xs text-white placeholder-slate-500" />
           </div>
         </div>
         <div class="p-2.5 bg-purple-950/40 rounded-xl border border-purple-500/30 text-[11px] text-purple-200">
-          🤖 Connected to Telegram Alert Bot: <strong>@Aassqqee_bot</strong> (Instant push notifications when scams are stopped)
+          🤖 Connected to Telegram Alert Bot: <strong>@Aassqqee_bot</strong> (Instant caregiver notifications when scams are detected)
         </div>
       </div>
 
@@ -367,18 +347,18 @@
         </div>
       </div>
 
-      <!-- Step 4: 1-Tap Carrier Call Shield Activation -->
+      <!-- Step 4: 1-Tap Caregiver Call Divert -->
       <div class="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
         <div class="flex items-center gap-2 font-bold text-amber-300 text-xs uppercase tracking-wider">
           <span class="w-5 h-5 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center text-[11px]">4</span>
-          <span>Activate 1-Tap Carrier Call Shield</span>
+          <span>Activate Caregiver Call Forwarding</span>
         </div>
         <p class="text-[11px] text-slate-300 leading-relaxed">
-          Tapping below opens your phone dialer. Tap the green Call button once to activate conditional forwarding.
+          Enter your caregiver phone number above, then tap below to open your carrier forwarding dial code for unanswered calls.
         </p>
-        <a id="btn-wizard-carrier" href="tel:*718005550199" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
+        <a id="btn-wizard-carrier" href="#setup-caregiver-phone" onclick="return handleWizardCarrierClick(event)" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-black font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg active:scale-95 transition-transform">
           <i class="fa-solid fa-phone-flip"></i>
-          <span id="carrier-dial-label">Tap to Dial *71 (US Carriers)</span>
+          <span id="carrier-dial-label">Enter Caregiver Phone Above First</span>
         </a>
       </div>
 
@@ -399,16 +379,16 @@
         <i class="fa-solid fa-heart-pulse"></i>
       </div>
       <h3 class="text-xl font-black text-white">Family Angel Alert Sent!</h3>
-      <p class="text-xs text-slate-200 leading-relaxed">
-        Sarah has received an alert on Telegram. No money has left your account. Take a deep breath: you are completely safe.
+      <p id="sos-body-copy" class="text-xs text-slate-200 leading-relaxed">
+        An emergency alert has been dispatched to your Family Angel on Telegram (@Aassqqee_bot). Pause, do not pay anything, and breathe safely.
       </p>
       <div class="p-3 bg-purple-950/60 rounded-2xl border border-purple-500/40 text-xs text-purple-300 font-mono">
-        Emergency Line: <strong>+1 (800) 555-0199</strong>
+        Caregiver Contact: <strong id="sos-emergency-line">Telegram @Aassqqee_bot (Configure phone in Setup)</strong>
       </div>
       <div class="flex gap-2.5 pt-2">
-        <a id="btn-call-sarah" href="tel:+18005550199" class="flex-1 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-lg">
+        <a id="btn-call-sarah" href="https://t.me/Aassqqee_bot" target="_blank" rel="noopener" class="flex-1 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-lg">
           <i class="fa-solid fa-phone"></i>
-          <span>Call Sarah Now</span>
+          <span id="sos-call-label">Open @Aassqqee_bot</span>
         </a>
         <button onclick="toggleSOSModal()" class="flex-1 py-3 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs">
           Close Window
@@ -418,33 +398,41 @@
   </div>
 
   <!-- ==============================================================================
-       SCRIPTS: ON-DEVICE LOGIC, SERVICE WORKER, PWA, SPEECH & TRIAGE
+       SCRIPTS: CONFIG, SERVICE WORKER, PWA, REAL OCR & CLOUD TRIAGE
        ============================================================================== -->
+  <script src="/config.js"></script>
   <script>
+    const _cfgBase = (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) || '';
+    const API_BASE = (_cfgBase ? _cfgBase.replace(/\/$/, '') : '');
+    const GUARDIAN_API = API_BASE.endsWith('/api/v1') ? `${API_BASE}/guardian` : `${API_BASE}/api/v1/guardian`;
+
     // --- 1. PWA Service Worker Registration ---
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
-          .then(() => console.log('Guardian Angel Mobile SW active ✅'))
+          .then(() => console.log('Guardian Angel Mobile SW active'))
           .catch(e => console.log('SW register note:', e));
       });
     }
 
     // --- 2. State & Settings ---
     let appSettings = {
-      seniorName: "Margaret",
-      seniorPhone: "+1 (415) 555-0123",
-      caregiverName: "Sarah (Daughter)",
-      caregiverPhone: "+1 (800) 555-0199",
+      seniorName: "Protected Device",
+      seniorPhone: "",
+      caregiverName: "Family Angel",
+      caregiverPhone: "",
       region: "US",
       carrierCode: "*71"
     };
 
-    // Load persisted settings
     try {
       const saved = localStorage.getItem('guardian_angel_mobile_cfg');
       if (saved) {
-        appSettings = Object.assign(appSettings, JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        // Migrate old static placeholder defaults cleanly
+        if (parsed.caregiverPhone === "+1 (800) 555-0199") parsed.caregiverPhone = "";
+        if (parsed.seniorPhone === "+1 (415) 555-0123") parsed.seniorPhone = "";
+        appSettings = Object.assign(appSettings, parsed);
       }
     } catch (e) {}
 
@@ -455,30 +443,110 @@
       speech: "Guardian Angel mobile protection active. You are safe and sound."
     };
 
+    function sanitizeDigits(val) {
+      return (val || '').replace(/[^0-9]/g, '');
+    }
+
     // --- 3. UI Helpers ---
+    function syncWizardInputs() {
+      const sName = document.getElementById('setup-senior-name');
+      const sReg = document.getElementById('setup-region');
+      const sPhone = document.getElementById('setup-senior-phone');
+      const cName = document.getElementById('setup-caregiver-name');
+      const cPhone = document.getElementById('setup-caregiver-phone');
+      if (sName) sName.value = appSettings.seniorName === 'Protected Device' ? '' : (appSettings.seniorName || '');
+      if (sReg) sReg.value = appSettings.region || 'US';
+      if (sPhone) sPhone.value = appSettings.seniorPhone || '';
+      if (cName) cName.value = appSettings.caregiverName === 'Family Angel' ? '' : (appSettings.caregiverName || '');
+      if (cPhone) cPhone.value = appSettings.caregiverPhone || '';
+    }
+
     function updateUIHeader() {
-      document.getElementById('header-user-status').innerText = `Protecting ${appSettings.seniorName} • Shield Active`;
-      document.getElementById('btn-call-sarah').href = `tel:${appSettings.caregiverPhone.replace(/[^0-9+]/g, '')}`;
+      const nameLabel = appSettings.seniorName && appSettings.seniorName !== 'Protected Device'
+        ? `Protecting ${appSettings.seniorName} • Shield Active`
+        : 'Mobile Shield Active • Tap Setup';
+      document.getElementById('header-user-status').innerText = nameLabel;
+
+      const cDigits = (appSettings.caregiverPhone || '').replace(/[^0-9+]/g, '');
+      const callBtn = document.getElementById('btn-call-sarah');
+      const sosLine = document.getElementById('sos-emergency-line');
+      const sosCallLabel = document.getElementById('sos-call-label');
+      const navSosLabel = document.getElementById('nav-sos-label');
+      if (navSosLabel) {
+        navSosLabel.textContent = appSettings.caregiverName ? `${appSettings.caregiverName.split(' ')[0]} SOS` : 'Family SOS';
+      }
+      if (cDigits.length >= 7) {
+        if (callBtn) { callBtn.href = `tel:${cDigits}`; callBtn.removeAttribute('target'); }
+        if (sosCallLabel) sosCallLabel.innerText = `Call ${appSettings.caregiverName || 'Caregiver'}`;
+        if (sosLine) sosLine.innerText = appSettings.caregiverPhone;
+      } else {
+        if (callBtn) { callBtn.href = 'https://t.me/Aassqqee_bot'; callBtn.target = '_blank'; }
+        if (sosCallLabel) sosCallLabel.innerText = 'Open @Aassqqee_bot';
+        if (sosLine) sosLine.innerText = 'Telegram @Aassqqee_bot (Configure phone in Setup)';
+      }
       updateCarrierLinks();
     }
 
     function updateCarrierLinks() {
       const reg = document.getElementById('setup-region') ? document.getElementById('setup-region').value : appSettings.region;
+      const typedPhone = document.getElementById('setup-caregiver-phone') ? document.getElementById('setup-caregiver-phone').value : appSettings.caregiverPhone;
+      const digits = sanitizeDigits(typedPhone || appSettings.caregiverPhone);
+
       const dialLabel = document.getElementById('carrier-dial-label');
       const wizardBtn = document.getElementById('btn-wizard-carrier');
+      const statusTag = document.getElementById('carrier-status-tag');
+      const linkUS = document.getElementById('link-carrier-us');
+      const linkUK = document.getElementById('link-carrier-uk');
 
-      if (reg === 'UK') {
-        if (dialLabel) dialLabel.innerText = "Tap to Dial **004* (UK EE/Vodafone/O2)";
-        if (wizardBtn) wizardBtn.href = "tel:**004*08005550199%23";
+      if (digits.length >= 7) {
+        if (statusTag) statusTag.innerText = `Ready → ${digits.slice(-4)}`;
+        if (linkUS) linkUS.href = `tel:*71${digits}`;
+        if (linkUK) linkUK.href = `tel:**004*${digits}%23`;
+        if (reg === 'UK') {
+          if (dialLabel) dialLabel.innerText = `Tap to Dial **004*${digits}#`;
+          if (wizardBtn) wizardBtn.href = `tel:**004*${digits}%23`;
+        } else {
+          if (dialLabel) dialLabel.innerText = `Tap to Dial *71${digits}`;
+          if (wizardBtn) wizardBtn.href = `tel:*71${digits}`;
+        }
       } else {
-        if (dialLabel) dialLabel.innerText = "Tap to Dial *71 (US Verizon/AT&T)";
-        if (wizardBtn) wizardBtn.href = "tel:*718005550199";
+        if (statusTag) statusTag.innerText = 'Set Number in Setup';
+        if (linkUS) linkUS.href = '#setup';
+        if (linkUK) linkUK.href = '#setup';
+        if (dialLabel) dialLabel.innerText = 'Enter Caregiver Phone Above First';
+        if (wizardBtn) wizardBtn.href = '#setup-caregiver-phone';
       }
+    }
+
+    function handleCarrierClick(ev, region) {
+      const digits = sanitizeDigits(appSettings.caregiverPhone);
+      if (digits.length < 7) {
+        ev.preventDefault();
+        toggleSetupWizard();
+        setTimeout(() => document.getElementById('setup-caregiver-phone')?.focus(), 100);
+        return false;
+      }
+      const el = document.getElementById(region === 'UK' ? 'link-carrier-uk' : 'link-carrier-us');
+      if (el) el.href = region === 'UK' ? `tel:**004*${digits}%23` : `tel:*71${digits}`;
+      return true;
+    }
+
+    function handleWizardCarrierClick(ev) {
+      const typed = document.getElementById('setup-caregiver-phone')?.value || appSettings.caregiverPhone;
+      const digits = sanitizeDigits(typed);
+      if (digits.length < 7) {
+        ev.preventDefault();
+        document.getElementById('setup-caregiver-phone')?.focus();
+        return false;
+      }
+      return true;
     }
 
     function toggleSetupWizard() {
       const m = document.getElementById('modal-wizard');
+      if (m.classList.contains('hidden')) syncWizardInputs();
       m.classList.toggle('hidden');
+      updateCarrierLinks();
     }
 
     function toggleSOSModal() {
@@ -488,17 +556,16 @@
 
     function triggerEmergencyFamilySOS() {
       toggleSOSModal();
-      // Push alert to backend
-      fetch('/v1/guardian/alert-family', {
+      fetch(`${GUARDIAN_API}/alert-family`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          protected_name: appSettings.seniorName,
+          protected_name: appSettings.seniorName || 'Mobile User',
           channel: "CALL",
-          scam_type: "Senior Tapped Emergency Family SOS Button",
+          scam_type: "Emergency Family SOS Triggered",
           threat_score: 95,
-          threat_snippet: "Emergency call requested by senior on mobile app.",
-          region: appSettings.region
+          threat_snippet: "SOS button tapped inside Guardian Angel Mobile Shield.",
+          region: appSettings.region || "US"
         })
       }).catch(() => {});
     }
@@ -516,8 +583,6 @@
             st.className = "text-[9px] text-rose-400";
           }
         });
-      } else {
-        alert("Push notifications not supported on this device.");
       }
     }
 
@@ -532,8 +597,6 @@
           st.innerText = "Denied";
           st.className = "text-[9px] text-rose-400";
         });
-      } else {
-        alert("Microphone access not available.");
       }
     }
 
@@ -553,17 +616,15 @@
           const st = document.getElementById('status-pwa');
           if (st) st.innerText = "Installed ✓";
         });
-      } else {
-        alert("To install on iOS Safari: Tap Share button ⬆️ at the bottom, then 'Add to Home Screen' ➕");
       }
     }
 
     function saveSetupAndLockdown() {
-      appSettings.seniorName = document.getElementById('setup-senior-name').value || "Margaret";
+      appSettings.seniorName = (document.getElementById('setup-senior-name').value || '').trim() || "Protected Device";
       appSettings.region = document.getElementById('setup-region').value || "US";
-      appSettings.seniorPhone = document.getElementById('setup-senior-phone').value || "+1 (415) 555-0123";
-      appSettings.caregiverName = document.getElementById('setup-caregiver-name').value || "Sarah";
-      appSettings.caregiverPhone = document.getElementById('setup-caregiver-phone').value || "+1 (800) 555-0199";
+      appSettings.seniorPhone = (document.getElementById('setup-senior-phone').value || '').trim();
+      appSettings.caregiverName = (document.getElementById('setup-caregiver-name').value || '').trim() || "Family Angel";
+      appSettings.caregiverPhone = (document.getElementById('setup-caregiver-phone').value || '').trim();
 
       try {
         localStorage.setItem('guardian_angel_mobile_cfg', JSON.stringify(appSettings));
@@ -571,7 +632,6 @@
 
       updateUIHeader();
       toggleSetupWizard();
-      alert("✅ Guardian Angel is fully configured and 100% locked down for " + appSettings.seniorName + "!");
     }
 
     // --- 5. Mobile Triage Engine & Senior Traffic Lights ---
@@ -579,30 +639,28 @@
       const text = document.getElementById('mobile-text-input').value.trim();
       if (!text) return;
 
-      const card = document.getElementById('mobile-traffic-card');
-      const badge = document.getElementById('shield-badge');
-      const headline = document.getElementById('shield-headline');
-      const icon = document.getElementById('shield-icon');
-      const reassure = document.getElementById('shield-reassurance');
       const btn = document.getElementById('btn-screen');
-
+      const badge = document.getElementById('offline-badge');
       btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Screening...';
 
       try {
-        const resp = await fetch('/v1/sentinel/triage', {
+        const resp = await fetch(`${GUARDIAN_API}/triage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             channel: channel,
-            sender: "Mobile Screen",
+            sender: "Mobile App Shield",
+            subject: "",
             content: text,
-            region: appSettings.region
+            region: appSettings.region === 'UK' ? 'UK' : 'US'
           })
         });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const data = await resp.json();
+        if (badge) badge.textContent = `● Live Cloud (${data.latency_ms}ms)`;
         renderTrafficVerdict(data);
       } catch (err) {
-        // Fast On-Device Deterministic Regex Fallback (Sub-millisecond Offline)
+        if (badge) badge.textContent = '● On-Device Offline Shield';
         const localData = executeOnDeviceRegex(text);
         renderTrafficVerdict(localData);
       } finally {
@@ -612,36 +670,33 @@
 
     function executeOnDeviceRegex(text) {
       const lower = text.toLowerCase();
-      const isLifeline = lower.includes('appointment') || lower.includes('dr.') || lower.includes('prescription') || lower.includes('rx') || lower.includes('thank you') || lower.includes('love you');
-      const isScam = !isLifeline && (
-        lower.includes('arrest warrant') || lower.includes('gift card') || lower.includes('social security') ||
-        lower.includes('dwp') || lower.includes('tv licensing') || lower.includes('$499') || lower.includes('anydesk') ||
-        lower.includes('safe holding account') || lower.includes('track-usps')
-      );
+      const isLifeline = !/(arrest|warrant|gift card|anydesk|teamviewer|\.top\b|\.xyz\b|\.click\b)/i.test(lower)
+        && /(appointment|dr\.|doctor|nhs clinic|hospital|prescription|rx\b|thank you|love,)/i.test(lower);
+      const isScam = !isLifeline && /(arrest|warrant|gift card|social security|\$499|anydesk|teamviewer|safe holding|track-usps|claim-hmrc|\.(?:top|xyz|click|gq|tk|vip)\b|bitcoin atm|bail.*wire)/i.test(lower);
 
       if (isScam) {
         return {
           threat_score: 90,
           category: "CRITICAL_FRAUD",
           senior_headline: "STOP! DO NOT ANSWER OR PAY",
-          senior_reassurance: "You are completely safe. No money has left your account. Guardian Angel has blocked this scam.",
-          speech_text: "Attention! Guardian Angel has blocked a dangerous scam. Please do not reply, do not pay, and rest easy knowing you are safe."
+          senior_reassurance: "High-risk phishing or extortion indicators matched on device. Hang up and do not click links or buy gift cards.",
+          speech_text: "Attention! Guardian Angel has flagged a dangerous scam. Please do not click, reply, or pay."
         };
       } else if (isLifeline) {
         return {
           threat_score: 0,
           category: "SAFE_HEALTHCARE",
           senior_headline: "SAFE TO OPEN: Legitimate Message",
-          senior_reassurance: "This is a real appointment, prescription, or family message. Everything is completely safe.",
-          speech_text: "Good news! This is a verified, safe message. You do not need to worry."
+          senior_reassurance: "Matches standard appointment, clinic, or family note patterns with zero red-flag links.",
+          speech_text: "Good news! This message looks like a normal appointment or family note."
         };
       } else {
         return {
-          threat_score: 10,
+          threat_score: 12,
           category: "SAFE_PERSONAL",
-          senior_headline: "Verified Safe Communication",
-          senior_reassurance: "No fraudulent patterns or scam tricks detected. Safe to open.",
-          speech_text: "This message looks completely safe."
+          senior_headline: "Verified Low Risk",
+          senior_reassurance: "No common scam scripts or disposable links detected. Still confirm unexpected money requests directly.",
+          speech_text: "No scam patterns detected in this message."
         };
       }
     }
@@ -668,7 +723,6 @@
         headline.innerText = data.senior_headline || "STOP! SCAM DETECTED";
         headline.className = "text-xl sm:text-2xl font-black text-rose-300 leading-tight";
         reassure.innerText = data.senior_reassurance || "Hang up immediately. No money was lost.";
-        // Trigger voice alert automatically for critical scams
         speakCurrentVerdict();
       } else if (data.threat_score >= 35) {
         card.className = "p-5 rounded-3xl bg-guardCard border-2 glow-amber transition-all";
@@ -685,7 +739,7 @@
         badge.className = "font-black text-xs uppercase tracking-wider font-mono text-emerald-400";
         headline.innerText = data.senior_headline || "Safe to Open";
         headline.className = "text-xl sm:text-2xl font-black text-emerald-300 leading-tight";
-        reassure.innerText = data.senior_reassurance || "Verified doctor, prescription, or family note.";
+        reassure.innerText = data.senior_reassurance || "Verified low-risk message.";
       }
     }
 
@@ -694,7 +748,7 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(currentTriageVerdict.speech);
-        utter.rate = 0.9; // Calm, senior-friendly pace
+        utter.rate = 0.92;
         utter.pitch = 1.0;
         utter.lang = appSettings.region === 'UK' ? 'en-GB' : 'en-US';
         window.speechSynthesis.speak(utter);
@@ -707,7 +761,8 @@
       const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
 
       if (!Speech) {
-        alert("Speech dictation not supported on this browser. You can type in the box.");
+        document.getElementById('mobile-text-input').placeholder = "Type or paste suspicious text here (Speech API unavailable in this browser).";
+        document.getElementById('mobile-text-input').focus();
         return;
       }
 
@@ -744,27 +799,53 @@
       } catch (err) {}
     }
 
-    // --- 7. Camera Mail Scanner ---
-    function handleCameraScan(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const name = (file.name || '').toLowerCase();
-      let text = "Screenshot or mail scan: " + file.name;
-      if (name.includes('usps') || name.includes('mail')) {
-        text = "USPS: Delivery failure. Redelivery fee unpaid. Go to track-usps-alert.top";
-      } else if (name.includes('hmrc') || name.includes('tax')) {
-        text = "HMRC: Tax refund pending of £480. Claim at claim-hmrc-rebate.xyz";
-      } else if (name.includes('invoice') || name.includes('geek')) {
-        text = "Geek Squad: Invoice $499 auto-renewed. Call 1-888-555-0142 to cancel.";
-      } else {
-        text = "Physical mail alert regarding urgent verification of social security and safe holding account.";
-      }
-      document.getElementById('mobile-text-input').value = text;
-      runMobileTriage('TEXT');
+    // --- 7. REAL Client-Side Tesseract OCR Camera / Screenshot Scanner ---
+    let mobileTesseractLoaded = false;
+    function ensureTesseract() {
+      if (mobileTesseractLoaded && window.Tesseract) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        s.onload = () => { mobileTesseractLoaded = true; resolve(); };
+        s.onerror = () => reject(new Error('Could not load OCR engine'));
+        document.head.appendChild(s);
+      });
     }
 
-    // --- 8. Presets Loader ---
+    async function handleCameraScan(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      const wrap = document.getElementById('mobile-ocr-status');
+      const msg = document.getElementById('mobile-ocr-msg');
+      const pct = document.getElementById('mobile-ocr-pct');
+      if (wrap) wrap.classList.remove('hidden');
+      if (msg) msg.textContent = 'Loading local Tesseract OCR...';
+      if (pct) pct.textContent = '5%';
+
+      try {
+        await ensureTesseract();
+        const res = await window.Tesseract.recognize(file, 'eng', {
+          logger: m => {
+            if (msg && m.status) msg.textContent = `OCR: ${m.status}`;
+            if (pct && typeof m.progress === 'number') pct.textContent = `${Math.round(m.progress * 100)}%`;
+          }
+        });
+        const cleanText = (res?.data?.text || '').trim();
+        if (cleanText) {
+          document.getElementById('mobile-text-input').value = cleanText;
+          if (msg) msg.textContent = 'Extracted text from image pixels ✓';
+          if (pct) pct.textContent = '100%';
+          runMobileTriage('OCR');
+        } else {
+          if (msg) msg.textContent = 'No readable text found in image.';
+        }
+      } catch (err) {
+        if (msg) msg.textContent = `OCR unavailable (${err.message}). Paste message text manually.`;
+      }
+    }
+
+    // --- 8. Presets & Real 9:16 Video Reel Switcher ---
     function loadScenario(type) {
       const box = document.getElementById('mobile-text-input');
       if (type === 'IRS_CALL') {
@@ -782,30 +863,17 @@
       }
     }
 
-    let isAudioPlaying = false;
-    function toggleMargaretVoiceClip() {
-      const btn = document.getElementById('btn-audio-play');
-      isAudioPlaying = !isAudioPlaying;
-      if (isAudioPlaying) {
-        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-        const msg = new SpeechSynthesisUtterance("Oh dear heavens young man, an arrest warrant from the tax office? Now where did I leave my reading glasses... oh dear, my cat Fluffy just knocked over my cup of Earl Grey tea!");
-        msg.rate = 0.85;
-        msg.pitch = 1.2;
-        msg.onend = () => {
-          btn.innerHTML = '<i class="fa-solid fa-play"></i>';
-          isAudioPlaying = false;
-        };
-        window.speechSynthesis.speak(msg);
-      } else {
-        window.speechSynthesis.cancel();
-        btn.innerHTML = '<i class="fa-solid fa-play"></i>';
-      }
+    function selectMobileReel(src) {
+      const player = document.getElementById('mobile-reel-player');
+      if (!player) return;
+      player.src = src;
+      player.play().catch(() => {});
     }
 
-    // Initialize on load
-    window.onload = function() {
+    window.addEventListener('DOMContentLoaded', () => {
+      syncWizardInputs();
       updateUIHeader();
-    };
+    });
   </script>
 </body>
 </html>

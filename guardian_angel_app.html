@@ -3,1819 +3,1375 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com; connect-src 'self' http://127.0.0.1:8050 https://*.trycloudflare.com; img-src 'self' data: https:;" />
-  <title>Guardian Angel™ — Omnichannel AI Scam, Call &amp; Fraud Defense (UK &amp; US)</title>
-  <meta name="description" content="Omnichannel AI fraud defense for UK & US. Real-time sorting and filtering across Calls (Vishing), Emails (Phishing & Fake Invoices), and Texts (Smishing)." />
+  <title>Guardian Angel™ by Algorise AI — Live Scam Link, SMS &amp; Screenshot Shield</title>
+  <meta name="description" content="Real-time AI phishing link checker, client-side screenshot OCR scam scanner, downloadable Chrome Extension, and family Telegram alert shield by Algorise AI." />
 
-  <!-- Mobile PWA Meta & Web App Manifest -->
-  <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Guardian Angel" />
-  <meta name="theme-color" content="#070a13" />
+  <link rel="canonical" href="https://algorise-ai.com/guardian_angel_app.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://algorise-ai.com/guardian_angel_app.html" />
+  <meta property="og:title" content="Guardian Angel™ by Algorise AI — Real-Time Scam &amp; Phishing Defense" />
+  <meta property="og:description" content="Check suspicious links, extract text from scam screenshots via live OCR, watch AI scambait reels, and protect your family." />
+  <meta property="og:image" content="https://algorise-ai.com/assets/logo.jpg" />
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(() => console.log('Guardian Angel PWA Service Worker Registered ✅'))
-          .catch(err => console.log('SW registration note:', err));
-      });
-    }
-  </script>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#050814" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23050814'/><path d='M16 4L25 8V15C25 21 20.5 26 16 28C11.5 26 7 21 7 15V8L16 4Z' stroke='%2300f2fe' stroke-width='2.2' fill='none'/><path d='M12 15.5L15 18.5L20.5 12.5' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
 
-  <!-- Tailwind CSS CDN & FontAwesome -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/app.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            guardDark: '#070a13',
-            guardNavy: '#0c1322',
-            guardSurface: '#131e34',
-            guardCyan: '#06b6d4',
-            guardEmerald: '#10b981',
-            guardRose: '#f43f5e',
-            guardAmber: '#f59e0b',
-            guardPurple: '#a855f7'
-          },
-          fontFamily: {
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    body {
-      background-color: #070a13;
+    :root {
+      --bg-void: #050814;
+      --bg-panel: rgba(12, 19, 36, 0.78);
+      --border-subtle: rgba(148, 163, 184, 0.16);
+      --accent-cyan: #00f2fe;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-amber: #f59e0b;
+      --in-oklab: ;
+      --drawer-width: min(20rem, 82dvw, calc(100dvw - 24px));
+      --drawer-backdrop: 0;
+    }
+    @supports (background: linear-gradient(in oklab, white, black)) {
+      :root { --in-oklab: in oklab; }
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      background-color: var(--bg-void);
       color: #f1f5f9;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      overflow-x: clip;
     }
-    .neon-glow {
-      box-shadow: 0 0 35px rgba(6, 182, 212, 0.25);
+    h1, h2, h3, .text-balance { text-wrap: balance; }
+    p { text-wrap: pretty; }
+
+    /* Atmospheric WebGL-style GPU Canvas Backdrop */
+    #shieldMeshCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.75;
     }
-    .gradient-hero {
-      background: radial-gradient(circle at 50% -10%, rgba(6, 182, 212, 0.16) 0%, rgba(7, 10, 19, 0) 70%);
+    .aura-orb {
+      position: fixed;
+      border-radius: 9999px;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
     }
-    .channel-tab-active {
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-      color: #000000;
-      font-weight: 800;
+    .glass-panel {
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
     }
-    /* Senior-First WCAG 2.1 AAA High-Contrast & Big-Font Accessibility Mode */
-    body.senior-mode {
-      font-size: 19px !important;
-      line-height: 1.75 !important;
-      background-color: #040711 !important;
-      color: #ffffff !important;
+    .glass-highlight {
+      background: linear-gradient(155deg var(--in-oklab), rgba(0, 242, 254, 0.08), rgba(15, 23, 42, 0.88));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(0, 242, 254, 0.28);
+      box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.75), 0 0 40px -15px rgba(0, 242, 254, 0.22);
     }
-    body.senior-mode h1 { font-size: 2.75rem !important; line-height: 1.25 !important; }
-    body.senior-mode h2 { font-size: 2.25rem !important; }
-    body.senior-mode h3 { font-size: 1.65rem !important; }
-    body.senior-mode input, body.senior-mode textarea {
-      font-size: 1.15rem !important;
-      padding: 0.9rem !important;
-      border-width: 2px !important;
-      border-color: #38bdf8 !important;
-      color: #ffffff !important;
+    .gradient-headline {
+      background: linear-gradient(110deg var(--in-oklab), #ffffff 20%, #00f2fe 65%, #34d399 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
-    body.senior-mode button {
-      min-height: 52px !important;
-      font-size: 1.05rem !important;
-      font-weight: 800 !important;
+
+    /* Native Modal Dialogs (Modern Web Guidance compliant) */
+    dialog.ga-modal {
+      margin: auto;
+      max-width: min(520px, calc(100dvw - 24px));
+      width: 100%;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      background: #0b1120;
+      color: #f8fafc;
+      padding: 0;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85);
     }
-    .traffic-shield-green {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(5, 150, 105, 0.35));
-      border: 3px solid #10b981;
-      box-shadow: 0 0 30px rgba(16, 185, 129, 0.35);
+    dialog.ga-modal:modal {
+      overscroll-behavior: contain;
     }
-    .traffic-shield-amber {
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(217, 119, 6, 0.35));
-      border: 3px solid #f59e0b;
-      box-shadow: 0 0 30px rgba(245, 158, 11, 0.35);
+    dialog.ga-modal::backdrop {
+      background: rgba(2, 5, 14, 0.78);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      overscroll-behavior: contain;
     }
-    .traffic-shield-red {
-      background: linear-gradient(135deg, rgba(244, 63, 94, 0.25), rgba(225, 29, 72, 0.4));
-      border: 3px solid #f43f5e;
-      box-shadow: 0 0 35px rgba(244, 63, 94, 0.5);
+
+    /* Native Mobile Swipe Navigation Drawer (Modern Web Guidance compliant) */
+    dialog.Drawer {
+      inset: 0;
+      width: auto;
+      height: auto;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      overflow: visible;
+    }
+    dialog.Drawer::backdrop {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+      overflow: hidden;
+      overscroll-behavior: contain;
+    }
+    .Drawer-scroller {
+      display: grid;
+      grid-template-columns: var(--drawer-width) 100%;
+      overflow-x: auto;
+      overscroll-behavior: none;
+      scrollbar-width: none;
+      scroll-snap-type: x mandatory;
+    }
+    .Drawer-scroller::after {
+      content: '';
+      scroll-snap-align: end;
+      scroll-initial-target: nearest;
+    }
+    .Drawer-sheet {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      height: 100svh;
+      background: #080d1a;
+      border-right: 1px solid rgba(0, 242, 254, 0.2);
+      color: #f8fafc;
+      overflow-y: auto;
+      scroll-snap-align: start;
+      scrollbar-width: none;
+    }
+
+    /* Senior High-Visibility Mode */
+    body.senior-read {
+      font-size: 1.125rem;
+    }
+    body.senior-read p, body.senior-read li, body.senior-read input, body.senior-read textarea {
+      font-size: 1.08rem;
+      color: #ffffff;
+    }
+    body.senior-read button, body.senior-read a.cta-btn {
+      min-height: 52px;
+    }
+
+    /* Verdicts */
+    .verdict-safe {
+      border: 2px solid rgba(16, 185, 129, 0.7);
+      background: linear-gradient(145deg var(--in-oklab), rgba(16, 185, 129, 0.14), rgba(6, 20, 24, 0.92));
+    }
+    .verdict-warn {
+      border: 2px solid rgba(245, 158, 11, 0.7);
+      background: linear-gradient(145deg var(--in-oklab), rgba(245, 158, 11, 0.14), rgba(24, 18, 8, 0.92));
+    }
+    .verdict-danger {
+      border: 2px solid rgba(244, 63, 94, 0.85);
+      background: linear-gradient(145deg var(--in-oklab), rgba(244, 63, 94, 0.18), rgba(28, 8, 14, 0.94));
+      box-shadow: 0 0 38px rgba(244, 63, 94, 0.25);
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Guardian Angel by Algorise AI",
+    "applicationCategory": "SecurityApplication",
+    "operatingSystem": "Web, ChromeOS, Android, iOS",
+    "url": "https://algorise-ai.com/",
+    "description": "Free live scam link inspector, client-side OCR screenshot scam scanner, Chrome browser extension, and family Telegram protection co-pilot.",
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "USD",
+      "lowPrice": "0",
+      "highPrice": "49.00",
+      "offerCount": "3"
+    }
+  }
+  </script>
 </head>
-<body class="selection:bg-cyan-500 selection:text-black antialiased pb-24 md:pb-0">
+<body class="relative antialiased selection:bg-cyan-400 selection:text-slate-950">
 
-  <!-- Top Region Selector & Senior Mode Switcher -->
-  <div class="bg-guardNavy border-b border-slate-800/80 py-2.5 px-4 text-xs font-mono">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <div class="flex items-center gap-2 text-cyan-300">
-        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-        <span><strong>OMNICHANNEL SENTINEL LIVE:</strong> 99.82% Accuracy across Calls, Emails &amp; Texts</span>
+  <!-- Background Atmosphere -->
+  <canvas id="shieldMeshCanvas" aria-hidden="true"></canvas>
+  <div class="aura-orb w-96 h-96 bg-cyan-500/15 -top-32 -left-24" aria-hidden="true"></div>
+  <div class="aura-orb w-96 h-96 bg-emerald-500/10 top-1/3 -right-24" aria-hidden="true"></div>
+
+  <!-- Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/70 bg-[#050814]/85 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <button id="drawer-open" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileDrawer" class="md:hidden p-2 rounded-xl border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-400/50 transition-colors">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+        <a href="/" class="flex items-center gap-2.5 min-w-0">
+          <span class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-400 to-emerald-400 text-slate-950 flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+            <i class="fa-solid fa-shield-halved text-base"></i>
+          </span>
+          <span class="font-extrabold tracking-tight text-white text-base sm:text-lg truncate">
+            GUARDIAN <span class="text-cyan-400">ANGEL™</span>
+          </span>
+        </a>
+        <span class="hidden lg:inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>BY ALGORISE AI</span>
+        </span>
       </div>
 
-      <!-- Controls: Region & Senior Easy-Read Mode -->
-      <div class="flex items-center gap-2.5">
-        <button id="btn-senior-mode" onclick="toggleSeniorMode()" class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/50 font-bold text-xs flex items-center gap-1.5 hover:bg-amber-500 hover:text-black transition-all">
+      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-300" aria-label="Primary">
+        <a href="#scanner" class="hover:text-cyan-400 transition-colors">Live Scam Scanner</a>
+        <a href="#reels" class="hover:text-cyan-400 transition-colors">9:16 Scambait Reels</a>
+        <a href="#protection-suite" class="hover:text-cyan-400 transition-colors">Extension &amp; Mobile PWA</a>
+        <a href="#pricing" class="hover:text-cyan-400 transition-colors">Plans</a>
+      </nav>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" id="btnSeniorRead" onclick="toggleSeniorRead()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-300 text-xs font-bold hover:bg-amber-500/20 transition-colors">
           <i class="fa-solid fa-glasses"></i>
-          <span id="senior-mode-text">Senior Easy-Read: OFF</span>
+          <span id="seniorReadLabel">Easy-Read</span>
         </button>
-
-        <span class="text-slate-500 text-[11px] hidden sm:inline">|</span>
-
-        <button id="btn-region-us" onclick="setRegion('US')" class="px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold transition-all">
-          🇺🇸 US (USD $)
-        </button>
-        <button id="btn-region-uk" onclick="setRegion('UK')" class="px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 font-bold hover:text-white transition-all">
-          🇬🇧 UK (GBP £)
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Navbar -->
-  <nav class="sticky top-0 z-40 bg-guardDark/90 backdrop-blur-md border-b border-slate-800/80 py-4 px-4 sm:px-8">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center text-black font-extrabold shadow-lg shadow-cyan-500/30">
-          <i class="fa-solid fa-shield-halved text-lg"></i>
-        </div>
-        <div>
-          <span class="font-extrabold text-xl tracking-tight text-white">GUARDIAN<span class="text-cyan-400">ANGEL</span></span>
-          <span class="hidden sm:inline-block ml-2 px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-400 border border-cyan-500/30 font-bold">OMNICHANNEL AI</span>
-        </div>
-      </div>
-
-      <div class="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-300">
-        <a href="#omnichannel-filter" class="hover:text-cyan-400 transition-colors">Tri-Channel Screener</a>
-        <a href="#batch-triage" class="hover:text-cyan-400 transition-colors">Batch Inbox Triage</a>
-        <a href="#family-co-pilot" class="hover:text-cyan-400 transition-colors">Family Angel Co-Pilot</a>
-        <a href="#pricing" class="hover:text-cyan-400 transition-colors">Plans ($9.99/mo)</a>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <a href="/mobile" target="_blank" class="px-3.5 py-2 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-bold hover:bg-cyan-500 hover:text-black transition-all flex items-center gap-1.5 shadow-sm">
-          <i class="fa-solid fa-mobile-screen"></i>
-          <span>Open Phone App</span>
-        </a>
-        <a href="#omnichannel-filter" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs py-2.5 px-5 rounded-full transition-all shadow-lg hover:shadow-cyan-500/30">
-          <span>Test Live Screener</span>
+        <a href="#scanner" class="cta-btn px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-extrabold text-xs tracking-wide shadow-lg shadow-cyan-500/20 transition-all">
+          Scan Free Now
         </a>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 gradient-hero overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-      
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-guardSurface border border-cyan-500/30 text-xs font-mono text-cyan-300 mb-6 shadow-inner">
-        <i class="fa-solid fa-brain text-cyan-400"></i>
-        <span>CALLS • EMAILS • TEXTS — 100% FILTERED &amp; SORTED IN REAL-TIME</span>
-      </div>
-
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-        The Omnichannel AI Sentinel.<br />
-        <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-emerald-400 bg-clip-text text-transparent">
-          Calls, Emails &amp; Texts Perfectly Filtered.
-        </span>
-      </h1>
-
-      <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 font-normal leading-relaxed mb-8">
-        No more guessing if that phone call is an AI deepfake, if that Geek Squad invoice is real, or if that USPS delivery text is a trap. Guardian Angel filters every communication into <strong>Critical Fraud</strong>, <strong>Suspicious Spam</strong>, <strong>Transactional</strong>, or <strong>Safe</strong> with 99.82% precision.
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="#omnichannel-filter" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-extrabold text-sm flex items-center justify-center gap-2 shadow-xl shadow-cyan-500/25 hover:brightness-110 transition-all">
-          <i class="fa-solid fa-bolt text-base"></i>
-          <span>Launch Omnichannel Screener</span>
-        </a>
-        <a href="#batch-triage" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-guardSurface border border-slate-700 hover:border-cyan-400 text-white font-bold text-sm flex items-center justify-center gap-2 transition-all">
-          <i class="fa-solid fa-list-check text-cyan-400"></i>
-          <span>Run 10-Item Inbox Batch Sort</span>
-        </a>
-      </div>
-
-      <!-- Omnichannel Channels Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16 pt-8 border-t border-slate-800 text-left">
-        <div class="p-5 bg-guardNavy/80 rounded-xl border border-slate-800 hover:border-cyan-500/50 transition-all">
-          <div class="text-cyan-400 font-mono text-sm font-bold mb-2 flex items-center gap-2">
-            <i class="fa-solid fa-phone-volume text-base"></i> 1. VOICE CALLS (VISHING)
-          </div>
-          <div class="text-xs text-slate-300 leading-relaxed">
-            Identifies AI voice cloning, fake IRS/HMRC arrest warrants, bank fraud caller impersonation, and robocalls in sub-200ms.
-          </div>
+  <!-- Native Accessible Mobile Navigation Drawer -->
+  <dialog class="Drawer" id="mobileDrawer" aria-label="Mobile navigation">
+    <div class="Drawer-scroller">
+      <nav class="Drawer-sheet p-5 gap-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <span class="font-extrabold text-white text-base">GUARDIAN <span class="text-cyan-400">ANGEL™</span></span>
+          <button id="drawer-close" type="button" aria-label="Close menu" autofocus class="p-2 rounded-lg border border-slate-700 text-slate-300 hover:text-white">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
-
-        <div class="p-5 bg-guardNavy/80 rounded-xl border border-slate-800 hover:border-blue-500/50 transition-all">
-          <div class="text-blue-400 font-mono text-sm font-bold mb-2 flex items-center gap-2">
-            <i class="fa-solid fa-envelope-open-text text-base"></i> 2. EMAILS (PHISHING &amp; BEC)
-          </div>
-          <div class="text-xs text-slate-300 leading-relaxed">
-            Detects fake $499 Geek Squad invoices, display name spoofing (e.g. Gmail masquerading as Chase), and CEO wire fraud.
-          </div>
+        <div class="flex flex-col gap-3 text-sm font-semibold text-slate-200">
+          <a href="#scanner" onclick="closeMobileDrawer()" class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-cyan-400/50">1. Live Link &amp; Screenshot OCR Scanner</a>
+          <a href="#reels" onclick="closeMobileDrawer()" class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-cyan-400/50">2. Watch 9:16 Scambait Reels</a>
+          <a href="#protection-suite" onclick="closeMobileDrawer()" class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-cyan-400/50">3. Chrome Extension &amp; Mobile App</a>
+          <a href="#pricing" onclick="closeMobileDrawer()" class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-cyan-400/50">4. Family Shield Plans</a>
+          <button type="button" onclick="toggleSeniorRead(); closeMobileDrawer();" class="p-3 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-300 text-left font-bold">
+            Toggle Senior Easy-Read Mode
+          </button>
         </div>
-
-        <div class="p-5 bg-guardNavy/80 rounded-xl border border-slate-800 hover:border-emerald-500/50 transition-all">
-          <div class="text-emerald-400 font-mono text-sm font-bold mb-2 flex items-center gap-2">
-            <i class="fa-solid fa-comment-sms text-base"></i> 3. TEXTS (SMISHING &amp; CHATS)
-          </div>
-          <div class="text-xs text-slate-300 leading-relaxed">
-            Intercepts USPS &amp; Royal Mail delivery redelivery traps, Zelle payment cancellation alerts, and WhatsApp crypto schemes.
-          </div>
-        </div>
-      </div>
-
+      </nav>
     </div>
-  </section>
+  </dialog>
 
-  <!-- Interactive Tri-Channel Screener Console -->
-  <section id="omnichannel-filter" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardNavy border-t border-slate-800">
-    <div class="max-w-6xl mx-auto">
-      
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="px-3 py-1 rounded bg-cyan-950 text-cyan-400 text-xs font-mono font-bold border border-cyan-500/30">
-          REAL-TIME AI SENTINEL
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">Interactive Omnichannel Screener</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2">
-          Select a channel (Call, Mail, or Text), pick a benchmark scam scenario, and see Guardian Angel triage it instantly.
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-20 sm:pb-20">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>REAL-TIME PHISHING, SCREENSHOT OCR &amp; SCAM SHIELD</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.08] gradient-headline">
+          Check Any Suspicious Link, Text, or Screenshot Before Anyone Gets Scammed.
+        </h1>
+
+        <p class="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          Guardian Angel™ inspects phishing URLs, extracts real text from suspicious screenshots right inside your browser, flags high-pressure fraud on live speakerphone calls, and alerts family caregivers on Telegram.
         </p>
-      </div>
 
-      <!-- Channel Switcher Tabs -->
-      <div class="flex max-w-lg mx-auto mb-8 p-1.5 bg-guardDark rounded-xl border border-slate-800 text-xs font-mono">
-        <button id="tab-btn-call" onclick="switchChannel('CALL')" class="flex-1 py-2.5 px-3 rounded-lg transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2">
-          <i class="fa-solid fa-phone"></i> <span>CALLS</span>
-        </button>
-        <button id="tab-btn-mail" onclick="switchChannel('MAIL')" class="flex-1 py-2.5 px-3 rounded-lg transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2">
-          <i class="fa-solid fa-envelope"></i> <span>EMAILS</span>
-        </button>
-        <button id="tab-btn-text" onclick="switchChannel('TEXT')" class="flex-1 py-2.5 px-3 rounded-lg transition-all channel-tab-active flex items-center justify-center gap-2">
-          <i class="fa-solid fa-comment-sms"></i> <span>TEXTS</span>
-        </button>
-      </div>
-
-      <!-- Scenario Presets Bar -->
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
-            <i class="fa-solid fa-user-shield"></i>
-            <span>SENIOR-FIRST TEST BENCHMARKS (1-TAP VERIFICATION):</span>
-          </div>
-          <span class="text-[10px] font-mono text-slate-400">Zero False Positives Guaranteed</span>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a href="#scanner" class="cta-btn w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-sm shadow-xl shadow-cyan-500/20 flex items-center justify-center gap-2.5 transition-transform active:scale-98">
+            <i class="fa-solid fa-magnifying-glass-chart"></i>
+            <span>Open Live Threat &amp; OCR Scanner</span>
+          </a>
+          <a href="/assets/guardian_angel_extension_v3.2.0.zip" download onclick="trackEvent('download_extension', 'hero')" class="w-full sm:w-auto px-6 py-4 rounded-2xl glass-panel hover:border-cyan-400/60 text-white font-bold text-sm flex items-center justify-center gap-2.5 transition-all">
+            <i class="fa-brands fa-chrome text-cyan-400"></i>
+            <span>Download Chrome Shield (.ZIP)</span>
+          </a>
+          <a href="/guardian_mobile.html" onclick="trackEvent('open_mobile_pwa', 'hero')" class="w-full sm:w-auto px-6 py-4 rounded-2xl glass-panel hover:border-emerald-400/60 text-emerald-300 font-bold text-sm flex items-center justify-center gap-2 transition-all">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <span>Open Mobile PWA</span>
+          </a>
         </div>
 
-        <!-- Senior Presets Quick Row -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mb-4 pb-3 border-b border-slate-800">
-          <button onclick="loadSeniorScenario('NHS_APPOINTMENT')" class="p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900/90 text-left transition-all group">
-            <div class="text-xs font-bold text-emerald-300 flex items-center justify-between">
-              <span>🏥 NHS Appointment</span>
-              <span class="text-[9px] bg-emerald-900 px-1.5 py-0.5 rounded text-emerald-300">UK Lifeline</span>
-            </div>
-            <div class="text-[10px] text-slate-400 mt-1 truncate">Dr. Smith at St Mary's</div>
-          </button>
-
-          <button onclick="loadSeniorScenario('CVS_PRESCRIPTION')" class="p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900/90 text-left transition-all group">
-            <div class="text-xs font-bold text-emerald-300 flex items-center justify-between">
-              <span>💊 CVS Prescription</span>
-              <span class="text-[9px] bg-emerald-900 px-1.5 py-0.5 rounded text-emerald-300">US Lifeline</span>
-            </div>
-            <div class="text-[10px] text-slate-400 mt-1 truncate">Rx #482910 Ready</div>
-          </button>
-
-          <button onclick="loadSeniorScenario('GRANDCHILD_GIFT')" class="p-2.5 rounded-xl bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900/90 text-left transition-all group">
-            <div class="text-xs font-bold text-emerald-300 flex items-center justify-between">
-              <span>👵 Grandchild Note</span>
-              <span class="text-[9px] bg-emerald-900 px-1.5 py-0.5 rounded text-emerald-300">Family Love</span>
-            </div>
-            <div class="text-[10px] text-slate-400 mt-1 truncate">Thanks for Gift Card</div>
-          </button>
-
-          <button onclick="loadSeniorScenario('CHASE_2FA')" class="p-2.5 rounded-xl bg-yellow-950/70 border border-yellow-500/50 hover:bg-yellow-900/90 text-left transition-all group">
-            <div class="text-xs font-bold text-yellow-300 flex items-center justify-between">
-              <span>🔑 Bank 2FA Passcode</span>
-              <span class="text-[9px] bg-yellow-900 px-1.5 py-0.5 rounded text-yellow-300">Clean OTP</span>
-            </div>
-            <div class="text-[10px] text-slate-400 mt-1 truncate">One-time code 482910</div>
-          </button>
-
-          <button onclick="loadSeniorScenario('IRS_SCAM_CALL')" class="p-2.5 rounded-xl bg-rose-950/70 border border-rose-500/50 hover:bg-rose-900/90 text-left transition-all group">
-            <div class="text-xs font-bold text-rose-300 flex items-center justify-between">
-              <span>🚨 Fake IRS Warrant</span>
-              <span class="text-[9px] bg-rose-900 px-1.5 py-0.5 rounded text-rose-300">Danger Call</span>
-            </div>
-            <div class="text-[10px] text-slate-400 mt-1 truncate">Arrest Warrant + Gift Cards</div>
-          </button>
-        </div>
-
-        <div class="text-[11px] font-mono text-slate-400 mb-2" id="scenario-label">CHANNEL BENCHMARK SCENARIOS:</div>
-        <div id="presets-container" class="flex flex-wrap gap-2 text-xs">
-          <!-- Dynamically populated via JS -->
+        <!-- Real Honest Telemetry Strip (Live DB counts from /api/v1/guardian/stats) -->
+        <div class="pt-6 grid grid-cols-3 gap-3 max-w-2xl mx-auto">
+          <div class="glass-panel rounded-2xl p-3.5 text-center">
+            <div id="liveStatScans" class="text-xl sm:text-2xl font-black font-mono text-white">—</div>
+            <div class="text-[11px] text-slate-400 font-medium">Live Scans Logged</div>
+          </div>
+          <div class="glass-panel rounded-2xl p-3.5 text-center">
+            <div id="liveStatBlocked" class="text-xl sm:text-2xl font-black font-mono text-cyan-400">—</div>
+            <div class="text-[11px] text-slate-400 font-medium">High-Risk Scams Flagged</div>
+          </div>
+          <div class="glass-panel rounded-2xl p-3.5 text-center">
+            <div class="text-xl sm:text-2xl font-black font-mono text-emerald-400">100% Client OCR</div>
+            <div class="text-[11px] text-slate-400 font-medium">Private On-Device Image Read</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- Screener Workspace Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        
-        <!-- Input Panel (Left 6 Cols) -->
-        <div class="lg:col-span-6 bg-guardDark p-6 rounded-2xl border border-slate-800 space-y-4">
-          <div class="grid grid-cols-2 gap-3 text-xs">
-            <div>
-              <label class="block text-slate-400 font-mono mb-1">Channel</label>
-              <input type="text" id="input-channel-display" value="TEXT (SMS/WhatsApp)" disabled class="w-full bg-guardSurface border border-slate-700 rounded-lg p-2 text-cyan-300 font-mono text-xs" />
-            </div>
-            <div>
-              <label class="block text-slate-400 font-mono mb-1">Sender ID / From</label>
-              <input type="text" id="input-sender" placeholder="e.g. +1 (800) 555-0199 or billing@..." class="w-full bg-guardSurface border border-slate-700 rounded-lg p-2 text-white font-mono text-xs focus:outline-none focus:border-cyan-400" />
-            </div>
-          </div>
+    <!-- ===================================================================== -->
+    <!-- CORE PRODUCT WORKBENCH: TEXT/LINK + REAL TESSERACT OCR + LIVE MIC     -->
+    <!-- ===================================================================== -->
+    <section id="scanner" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="glass-highlight rounded-3xl p-5 sm:p-8 space-y-6">
 
-          <div id="subject-field-container" class="hidden">
-            <label class="block text-slate-400 font-mono mb-1 text-xs">Email Subject Line</label>
-            <input type="text" id="input-subject" placeholder="e.g. Invoice #8921 Auto-Renewal Notification" class="w-full bg-guardSurface border border-slate-700 rounded-lg p-2 text-white text-xs focus:outline-none focus:border-cyan-400" />
-          </div>
-
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
           <div>
-            <label class="block text-slate-400 font-mono mb-1 text-xs" id="content-label">Message Content / Audio Transcript</label>
-            <textarea id="input-content" rows="6" placeholder="Paste incoming transcript, email, or message..." class="w-full bg-guardSurface border border-slate-700 rounded-xl p-3 text-xs sm:text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 font-sans"></textarea>
+            <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-400">LIVE WORKBENCH • CONNECTED TO CLOUD SENTINEL API</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-white mt-1">Inspect Any Message, Link, Screenshot, or Call</h2>
           </div>
 
-          <button id="run-triage-btn" onclick="executeTriage()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-lg hover:shadow-cyan-500/25">
-            <i class="fa-solid fa-filter"></i>
-            <span>Run Omnichannel Triage</span>
-          </button>
+          <!-- Input Mode Switcher -->
+          <div class="inline-flex rounded-2xl bg-slate-950/90 p-1.5 border border-slate-800 text-xs font-bold self-start">
+            <button type="button" id="modeTabText" onclick="switchWorkbenchTab('text')" class="px-3.5 py-2 rounded-xl bg-cyan-400 text-slate-950 font-extrabold transition-all">Link / Text</button>
+            <button type="button" id="modeTabOcr" onclick="switchWorkbenchTab('ocr')" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition-all">Screenshot OCR</button>
+            <button type="button" id="modeTabMic" onclick="switchWorkbenchTab('mic')" class="px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition-all">Live Mic Sentry</button>
+          </div>
         </div>
 
-        <!-- Forensic Output Panel (Right 6 Cols) — Senior-First Giant Traffic-Light Card -->
-        <div class="lg:col-span-6 bg-guardDark p-6 rounded-2xl border border-slate-800 min-h-[350px] flex flex-col justify-center" id="triage-output-container">
-          
-          <!-- Idle State -->
-          <div id="idle-triage" class="text-center py-8 space-y-3">
-            <div class="w-14 h-14 mx-auto rounded-full bg-guardSurface border border-slate-700 flex items-center justify-center text-slate-500 text-xl">
-              <i class="fa-solid fa-radar"></i>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+
+          <!-- Left Input Column -->
+          <div class="lg:col-span-5 space-y-4">
+
+            <!-- TAB 1: LINK / TEXT / EMAIL -->
+            <div id="panelText" class="space-y-4">
+              <div>
+                <div class="text-[11px] font-mono text-slate-400 uppercase mb-2">Load real test cases:</div>
+                <div class="grid grid-cols-2 gap-2 text-xs">
+                  <button type="button" onclick="loadSample('phish_usps')" class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/60 text-left text-slate-200 font-semibold transition-colors">
+                    🛑 USPS Phishing Link
+                  </button>
+                  <button type="button" onclick="loadSample('fake_geek')" class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-rose-500/60 text-left text-slate-200 font-semibold transition-colors">
+                    🛑 $499 AnyDesk Invoice
+                  </button>
+                  <button type="button" onclick="loadSample('official_irs')" class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/60 text-left text-slate-200 font-semibold transition-colors">
+                    ✅ Official irs.gov Link
+                  </button>
+                  <button type="button" onclick="loadSample('nhs_safe')" class="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/60 text-left text-slate-200 font-semibold transition-colors">
+                    ✅ Genuine Clinic Reminder
+                  </button>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div>
+                  <label for="scanChannel" class="block text-[11px] font-mono text-slate-400 mb-1">Source Channel</label>
+                  <select id="scanChannel" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-xs text-white focus:border-cyan-400 focus:outline-none">
+                    <option value="TEXT">SMS / WhatsApp / Text</option>
+                    <option value="URL">Website Link / Domain</option>
+                    <option value="MAIL">Email / Invoice</option>
+                    <option value="CALL">Phone Call Transcript</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="scanSender" class="block text-[11px] font-mono text-slate-400 mb-1">Sender (Phone, Email, or Brand)</label>
+                  <input id="scanSender" type="text" value="+1 (929) 555-0182" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-xs text-white font-mono focus:border-cyan-400 focus:outline-none" />
+                </div>
+                <div>
+                  <label for="scanContent" class="block text-[11px] font-mono text-slate-400 mb-1">Message, Link, or Notice Text</label>
+                  <textarea id="scanContent" rows="4" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-xs sm:text-sm text-white focus:border-cyan-400 focus:outline-none">USPS: Your parcel cannot be delivered due to an incomplete street address. Update details within 24h at https://track-usps-alert.top</textarea>
+                </div>
+              </div>
+
+              <button type="button" id="btnRunCloudScan" onclick="runGuardianScan()" class="cta-btn w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-xs sm:text-sm shadow-lg transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span id="btnRunCloudScanLabel">Analyze Threat Now</span>
+              </button>
             </div>
-            <div class="text-sm font-bold text-slate-300">Awaiting Inbound Feed</div>
-            <div class="text-xs text-slate-500 max-w-xs mx-auto">
-              Select a benchmark preset above or paste custom content to view the real-time classification and threat score.
+
+            <!-- TAB 2: REAL TESSERACT OCR SCREENSHOT SCANNER -->
+            <div id="panelOcr" class="hidden space-y-4">
+              <div id="ocrDropZone" onclick="document.getElementById('ocrFileInput').click()" class="border-2 border-dashed border-slate-700 hover:border-cyan-400 rounded-2xl p-6 text-center cursor-pointer bg-slate-950/70 transition-colors space-y-2">
+                <input id="ocrFileInput" type="file" accept="image/*" class="hidden" onchange="handleOcrFileSelect(event)" />
+                <i class="fa-solid fa-file-arrow-up text-3xl text-cyan-400"></i>
+                <div class="text-sm font-bold text-white">Drop SMS, WhatsApp, or Invoice Screenshot</div>
+                <div class="text-[11px] font-mono text-slate-400">Runs real Tesseract OCR directly inside your browser — image pixels never leave your device</div>
+              </div>
+
+              <div id="ocrPreviewWrap" class="hidden relative rounded-2xl overflow-hidden border border-slate-700 bg-black">
+                <img id="ocrPreviewImg" alt="Uploaded screenshot preview" class="max-h-56 w-full object-contain" />
+                <button type="button" onclick="resetOcrUpload()" aria-label="Remove screenshot" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-slate-950/90 text-white text-xs border border-slate-700">✕</button>
+              </div>
+
+              <div id="ocrProgressWrap" class="hidden space-y-1.5">
+                <div class="flex items-center justify-between text-[11px] font-mono text-cyan-300">
+                  <span id="ocrStatusMsg">Loading OCR Engine...</span>
+                  <span id="ocrPctLabel">0%</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden">
+                  <div id="ocrProgressBar" class="h-full bg-cyan-400 w-0 transition-all"></div>
+                </div>
+              </div>
+
+              <div>
+                <label for="ocrExtractedBox" class="block text-[11px] font-mono text-slate-400 mb-1">Actual Extracted Text (Editable):</label>
+                <textarea id="ocrExtractedBox" rows="4" placeholder="Upload a screenshot above to extract its real text automatically..." class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2 text-xs text-white font-mono focus:border-cyan-400 focus:outline-none"></textarea>
+              </div>
+
+              <button type="button" onclick="analyzeExtractedOcrText()" class="cta-btn w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 font-black text-xs sm:text-sm">
+                Scan Extracted Screenshot Text
+              </button>
             </div>
+
+            <!-- TAB 3: LIVE MICROPHONE CALL SENTRY -->
+            <div id="panelMic" class="hidden space-y-4">
+              <div class="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 space-y-2 text-xs text-slate-300">
+                <div class="font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-microphone-lines text-rose-400"></i>
+                  <span>On-Device Speakerphone Call Monitor</span>
+                </div>
+                <p>Uses browser speech recognition locally while a call is on speaker. Audio stays inside your browser; matched fraud transcripts trigger an immediate screen alert and voice warning.</p>
+              </div>
+
+              <button type="button" id="btnToggleMic" onclick="toggleMicListener()" class="cta-btn w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2">
+                <i id="micBtnIcon" class="fa-solid fa-microphone"></i>
+                <span id="micBtnText">Start Live Call Listening</span>
+              </button>
+
+              <div>
+                <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-1">
+                  <span>Live Transcript:</span>
+                  <span id="micStateBadge" class="text-slate-400">STANDBY</span>
+                </div>
+                <div id="micTranscriptBox" class="min-h-[110px] max-h-48 overflow-y-auto rounded-xl bg-slate-950 border border-slate-800 p-3 text-xs text-slate-200 font-mono">
+                  Ready to listen. Requires Chrome, Edge, or Safari microphone permission.
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Active Output State (Senior-First Traffic Light Architecture) -->
-          <div id="active-triage" class="space-y-4 hidden text-left">
-            
-            <!-- Giant Traffic-Light Status Banner -->
-            <div id="traffic-light-card" role="status" aria-live="polite" class="p-4 sm:p-5 rounded-2xl traffic-shield-green transition-all">
-              <div class="flex items-center justify-between gap-3 mb-2">
-                <div class="flex items-center gap-3">
-                  <div id="traffic-icon" class="text-3xl sm:text-4xl">💚</div>
-                  <div>
-                    <div id="traffic-badge" class="text-xs sm:text-sm font-black font-mono tracking-wider uppercase text-emerald-300">
-                      100% VERIFIED SAFE
-                    </div>
-                    <div id="res-senior-headline" class="text-base sm:text-lg font-black text-white leading-snug">
-                      Doctor Appointment Reminder
-                    </div>
+          <!-- Right Results Column -->
+          <div class="lg:col-span-7 space-y-4">
+            <div id="verdictCard" class="p-6 rounded-3xl verdict-danger transition-all space-y-4">
+              <div class="flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-4">
+                <div class="space-y-1 min-w-0 flex-1">
+                  <div class="flex items-center gap-2">
+                    <span id="verdictIcon" class="text-2xl">🛑</span>
+                    <span id="verdictBadge" class="text-xs font-mono font-black uppercase tracking-wider text-rose-300">CONFIRMED SCAM / HIGH THREAT</span>
+                  </div>
+                  <h3 id="verdictHeadline" class="text-lg sm:text-xl font-black text-white">STOP! Likely Delivery / Toll / Gov Rebate Smishing</h3>
+                </div>
+                <div class="text-right shrink-0">
+                  <div class="text-[10px] font-mono uppercase text-slate-400">Risk Score</div>
+                  <div id="verdictScore" class="text-3xl font-black font-mono text-white">95%</div>
+                </div>
+              </div>
+
+              <p id="verdictReassurance" class="text-xs sm:text-sm text-slate-100 leading-relaxed bg-black/35 p-3.5 rounded-2xl border border-white/10">
+                You are safe as long as you do not click links, call back numbers in the notice, or pay.
+              </p>
+
+              <!-- Extracted URLs Breakdown (Real parser output) -->
+              <div id="urlBreakdownWrap" class="p-3.5 rounded-2xl bg-slate-950/75 border border-slate-800 space-y-2">
+                <div class="text-[10px] font-mono font-bold uppercase text-cyan-400">Extracted Link &amp; Domain Verification</div>
+                <div id="urlBreakdownList" class="space-y-1.5 text-xs font-mono">
+                  <div class="text-rose-300">MALICIOUS • track-usps-alert.top — High-abuse disposable domain (.top); Brand/government lookalike pattern</div>
+                </div>
+              </div>
+
+              <!-- Why Flagged & Safe Next Step -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+                  <div class="text-[10px] font-mono font-bold uppercase text-slate-400">Detection Signals</div>
+                  <ul id="verdictReasonsList" class="space-y-1 text-slate-200">
+                    <li>• High-risk lookalike link (track-usps-alert.top)</li>
+                    <li>• Artificial 24-hour urgency pressure</li>
+                  </ul>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-slate-950/70 border border-slate-800 space-y-1.5">
+                  <div class="text-[10px] font-mono font-bold uppercase text-emerald-400">Recommended Action</div>
+                  <div id="verdictNextStep" class="text-white font-semibold leading-relaxed">
+                    Delete this message immediately. Track packages only on official usps.com / royalmail.com.
                   </div>
                 </div>
-                <div class="text-right">
-                  <div class="text-[10px] font-mono text-slate-300 uppercase">RISK SCORE</div>
-                  <div id="res-score" class="text-2xl sm:text-3xl font-mono font-black text-white">0%</div>
-                </div>
               </div>
 
-              <!-- Psychological Reassurance Box -->
-              <div id="reassurance-box" class="mt-3 p-3 rounded-xl bg-black/40 border border-white/20 text-xs sm:text-sm text-slate-100 flex items-start gap-2.5">
-                <i id="reassurance-icon" class="fa-solid fa-heart-circle-check text-emerald-400 text-lg mt-0.5"></i>
-                <div id="res-reassurance-text" class="leading-relaxed font-medium">
-                  You are completely safe. No money has left your account. You did the right thing by checking.
-                </div>
+              <!-- Action Row -->
+              <div class="flex flex-wrap gap-2.5 pt-1">
+                <button type="button" onclick="readResultAloud()" class="flex-1 min-w-[160px] py-2.5 px-4 rounded-xl bg-cyan-500/15 border border-cyan-500/40 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                  <i class="fa-solid fa-volume-high"></i>
+                  <span>Read Verdict Aloud</span>
+                </button>
+                <button type="button" id="btnAlertFamily" onclick="sendRealFamilyAlert()" class="flex-1 min-w-[160px] py-2.5 px-4 rounded-xl bg-purple-500/15 border border-purple-500/40 hover:bg-purple-500 hover:text-white text-purple-200 font-bold text-xs flex items-center justify-center gap-2 transition-colors">
+                  <i class="fa-brands fa-telegram"></i>
+                  <span>Alert Family (@Aassqqee_bot)</span>
+                </button>
               </div>
-            </div>
-
-            <!-- Voice Companion & Family Angel Buttons -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              <button id="voice-speak-btn" onclick="triggerSpeakVerdict()" class="w-full py-3 px-4 rounded-xl bg-cyan-500/20 border border-cyan-500/50 hover:bg-cyan-500 hover:text-black text-cyan-300 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all">
-                <i class="fa-solid fa-volume-high text-base"></i>
-                <span id="voice-btn-label">🔊 Listen (Read Aloud)</span>
-              </button>
-              <button onclick="triggerFamilyAngelLifeline()" class="w-full py-3 px-4 rounded-xl bg-purple-500/20 border border-purple-500/50 hover:bg-purple-500 hover:text-white text-purple-200 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all">
-                <i class="fa-solid fa-phone-volume text-base text-purple-400"></i>
-                <span>📞 Call Family Angel (Sarah)</span>
-              </button>
-            </div>
-
-            <!-- Single Plain Safe Next Step -->
-            <div class="p-3.5 rounded-xl bg-guardSurface border border-slate-700">
-              <div class="text-[11px] font-black text-cyan-400 uppercase tracking-wide mb-1 flex items-center gap-1.5">
-                <i class="fa-solid fa-circle-check"></i>
-                <span>WHAT TO DO NEXT (EASY STEP):</span>
-              </div>
-              <div id="res-next-step" class="text-xs sm:text-sm font-bold text-white leading-relaxed">
-                Reply to confirm if requested, or simply note the time on your calendar.
+              <div id="scanMetaFooter" class="text-[10px] font-mono text-slate-400 flex items-center justify-between pt-1">
+                <span id="scanIdLabel">Scan Engine: Ready</span>
+                <span id="scanLatencyLabel">Backend sync via Render API</span>
               </div>
             </div>
-
-            <!-- Why We Flagged This (Plain English Checklist) -->
-            <div class="p-3.5 rounded-xl bg-guardSurface/80 border border-slate-800">
-              <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wide mb-2 flex items-center gap-1.5">
-                <i class="fa-solid fa-clipboard-check text-cyan-400"></i>
-                <span>WHY WE GAVE THIS VERDICT:</span>
-              </div>
-              <ul id="res-why-list" class="space-y-1.5 text-xs text-slate-300">
-                <!-- Injected via JS -->
-              </ul>
-            </div>
-
-            <!-- Technical Telemetry Accordion (for Co-Pilot) -->
-            <details class="text-xs text-slate-400 border-t border-slate-800 pt-2">
-              <summary class="cursor-pointer hover:text-cyan-400 font-mono text-[11px]">
-                ⚙️ Technical Telemetry (For Family Angel / Co-Pilot)
-              </summary>
-              <div class="mt-2 space-y-1 font-mono text-[11px] p-2 bg-black/30 rounded-lg">
-                <div>Channel: <span id="telemetry-channel" class="text-white"></span></div>
-                <div>Sender: <span id="telemetry-sender" class="text-white"></span></div>
-                <div>Category: <span id="telemetry-category" class="text-white"></span></div>
-                <div>Action Code: <span id="telemetry-action" class="text-white"></span></div>
-              </div>
-            </details>
-
           </div>
 
         </div>
-
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- Autonomous Telecom & Cloud Sentry Architecture Section (Zero Senior Effort) -->
-  <section id="autonomous-sentry" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardDark border-t border-slate-800">
-    <div class="max-w-6xl mx-auto">
-      
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="px-3 py-1 rounded bg-cyan-950 text-cyan-400 text-xs font-mono font-bold border border-cyan-500/30 uppercase tracking-wider">
-          ZERO-SENIOR-EFFORT AUTONOMOUS DEFENSE
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">How We Protect Margaret Automatically</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2">
-          Margaret never has to copy, paste, or type a single thing. Protection runs seamlessly at the Carrier and Cloud Inbox layers.
+    <!-- ===================================================================== -->
+    <!-- REAL 9:16 VERTICAL MP4 SCAMBAIT VIDEO THEATRE                        -->
+    <!-- ===================================================================== -->
+    <section id="reels" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-emerald-400">AI CALL DEFLECTION SHOWCASE • REAL 720×1280 MP4 VIDEO</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Watch Margaret AI Waste Real Scammer Scripts</h2>
+        <p class="text-xs sm:text-sm text-slate-300">
+          Real dual-voice H.264/AAC vertical videos generated with neural voice synthesis, animated waveforms, and burned-in captions — watch inline or download directly for Shorts, Reels, or TikTok.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- Pillar 1: Carrier Call Forwarding & AI Voice Screener -->
-        <div class="p-6 rounded-2xl bg-guardNavy border border-slate-700 shadow-2xl space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-lg">
-                <i class="fa-solid fa-phone-slash"></i>
-              </div>
-              <div>
-                <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase">TELECOM LAYER</span>
-                <h3 class="text-base font-black text-white">Carrier *71 AI Call Screener</h3>
-              </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+        <!-- Left: Real HTML5 MP4 Vertical Phone Player -->
+        <div class="lg:col-span-5 flex flex-col items-center">
+          <div class="w-[300px] sm:w-[320px] rounded-[38px] bg-black p-2 border-4 border-slate-700 shadow-2xl shadow-cyan-500/15">
+            <div class="relative rounded-[30px] overflow-hidden bg-slate-950 aspect-[9/16]">
+              <video id="reelVideoPlayer" class="w-full h-full object-cover" controls playsinline preload="metadata" src="/assets/reels/reel_irs_tea.mp4">
+                Your browser does not support MP4 video playback.
+              </video>
             </div>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-400 border border-emerald-500/30 font-bold">ACTIVE</span>
           </div>
-
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Sarah dials <strong>*71 (US)</strong> or <strong>*004* (UK)</strong> into Mom's phone once. Unknown callers are intercepted by our AI Voice Screener before Mom's phone rings.
-          </p>
-
-          <div class="p-4 rounded-xl bg-guardSurface border border-slate-800 space-y-3">
-            <div class="text-xs font-bold text-white flex items-center justify-between">
-              <span>Interactive Telecom Simulation:</span>
-              <span class="text-[10px] text-slate-400">Zero App Required</span>
-            </div>
-
-            <div class="flex gap-2">
-              <button onclick="simulateCarrierCall('SCAM')" class="flex-1 py-2 px-3 rounded-lg bg-rose-950/70 border border-rose-500/50 hover:bg-rose-900 text-rose-300 font-bold text-xs transition-all">
-                Simulate IRS Scam Call
-              </button>
-              <button onclick="simulateCarrierCall('DOCTOR')" class="flex-1 py-2 px-3 rounded-lg bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900 text-emerald-300 font-bold text-xs transition-all">
-                Simulate Doctor Call
-              </button>
-            </div>
-
-            <div id="telecom-sim-output" class="p-3 bg-black/40 rounded-lg text-xs font-mono text-slate-300 space-y-1 hidden">
-              <!-- Dynamically populated -->
-            </div>
+          <div class="mt-4 flex items-center gap-3">
+            <a id="reelDownloadLink" href="/assets/reels/reel_irs_tea.mp4" download="guardian_angel_irs_tea.mp4" onclick="trackEvent('download_reel_mp4', 'reels')" class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs flex items-center gap-2 shadow-lg transition-colors">
+              <i class="fa-solid fa-download"></i>
+              <span>Download MP4 Video</span>
+            </a>
+            <button type="button" onclick="copyReelCaption()" class="px-4 py-2.5 rounded-xl glass-panel hover:border-cyan-400/50 text-white font-bold text-xs flex items-center gap-2 transition-colors">
+              <i class="fa-solid fa-copy text-cyan-400"></i>
+              <span>Copy Caption</span>
+            </button>
           </div>
         </div>
 
-        <!-- Pillar 2: 1-Tap Gmail / Outlook Cloud OAuth Sentry -->
-        <div class="p-6 rounded-2xl bg-guardNavy border border-slate-700 shadow-2xl space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-lg">
-                <i class="fa-solid fa-inbox"></i>
-              </div>
-              <div>
-                <span class="text-[10px] font-mono text-purple-400 font-bold uppercase">CLOUD INBOX LAYER</span>
-                <h3 class="text-base font-black text-white">Gmail &amp; Outlook Auto-Trash Sentry</h3>
-              </div>
+        <!-- Right: Video Selector Playlist -->
+        <div class="lg:col-span-7 space-y-4">
+          <button type="button" onclick="selectVideoReel('/assets/reels/reel_irs_tea.mp4', 'guardian_angel_irs_tea.mp4', 'reelBtn1', 'IRS Scammer vs Margaret AI over Earl Grey tea — download Guardian Angel free at algorise-ai.com #scambait #elderprotection')" id="reelBtn1" class="w-full text-left p-5 rounded-2xl glass-highlight transition-all flex items-start justify-between gap-4">
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono font-bold text-rose-400">EPISODE 01 • IRS ARREST SCAM SCRIPT</div>
+              <h3 class="text-base sm:text-lg font-extrabold text-white">Fake IRS Officer vs. Margaret AI &amp; Cat Fluffy</h3>
+              <p class="text-xs text-slate-300">Scammer demands Target gift cards while Margaret calmly asks if he prefers Earl Grey or chamomile tea.</p>
             </div>
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-950 text-purple-400 border border-purple-500/30 font-bold">1-TAP OAUTH</span>
-          </div>
-
-          <p class="text-xs text-slate-300 leading-relaxed">
-            Daughter connects Mom's Gmail or Outlook once. Cloud webhooks evaluate incoming mail in &lt;200ms and delete fake $499 invoices before Mom ever opens her iPad.
-          </p>
-
-          <div class="p-4 rounded-xl bg-guardSurface border border-slate-800 space-y-3">
-            <div class="text-xs font-bold text-white flex items-center justify-between">
-              <span>Cloud Sentry Simulation:</span>
-              <span class="text-[10px] text-slate-400">Server-Side Webhook</span>
-            </div>
-
-            <div class="flex gap-2">
-              <button onclick="simulateCloudInbox('FAKE_INVOICE')" class="flex-1 py-2 px-3 rounded-lg bg-rose-950/70 border border-rose-500/50 hover:bg-rose-900 text-rose-300 font-bold text-xs transition-all">
-                Inbound $499 Fake Invoice
-              </button>
-              <button onclick="simulateCloudInbox('PRESCRIPTION')" class="flex-1 py-2 px-3 rounded-lg bg-emerald-950/70 border border-emerald-500/50 hover:bg-emerald-900 text-emerald-300 font-bold text-xs transition-all">
-                Inbound Pharmacy Notice
-              </button>
-            </div>
-
-            <div id="cloud-sim-output" class="p-3 bg-black/40 rounded-lg text-xs font-mono text-slate-300 space-y-1 hidden">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Viral Scammer Waster Studio Section ($0 CAC Engine) -->
-  <section id="scammer-waster-studio" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardNavy border-t border-slate-800">
-    <div class="max-w-6xl mx-auto">
-      
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="px-3 py-1 rounded bg-rose-950/80 text-rose-300 text-xs font-mono font-bold border border-rose-500/30 uppercase tracking-wider">
-          THE $0 AD SPEND VIRAL GROWTH ENGINE
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">Scammer Revenge Studio</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2">
-          When scammers call Mom, our AI Granny ("Margaret AI") wastes 35+ minutes of their time. Listen to the intercepted reels below and share with 1 tap.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="scammer-reels-container">
-        
-        <!-- Reel 1 -->
-        <div class="p-6 rounded-2xl bg-guardDark border border-slate-800 space-y-4 shadow-xl">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-rose-400 font-bold">🚨 IRS ARREST WARRANT</span>
-            <span class="text-emerald-400 font-bold">38m Wasted</span>
-          </div>
-          <h4 class="text-sm font-black text-white leading-snug">
-            IRS Agent Screams in Rage After 38 Mins Talking About Earl Grey Tea
-          </h4>
-          <p class="text-xs text-slate-300 italic">
-            "Oh heavens dear, let me find my reading glasses... my cat Fluffy just knocked over my tea!"
-          </p>
-          <div class="p-3 rounded-xl bg-guardSurface border border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Viral Reach:</span>
-            <strong class="text-cyan-400">1.4M Views (TikTok)</strong>
-          </div>
-          <button onclick="shareViralReel('reel-01')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-purple-600 hover:from-rose-400 hover:to-purple-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>Share Revenge Reel (TikTok / Reels)</span>
+            <span class="shrink-0 w-10 h-10 rounded-full bg-cyan-400 text-slate-950 flex items-center justify-center font-bold"><i class="fa-solid fa-play"></i></span>
           </button>
-        </div>
 
-        <!-- Reel 2 -->
-        <div class="p-6 rounded-2xl bg-guardDark border border-slate-800 space-y-4 shadow-xl">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-amber-400 font-bold">✉️ GEEK SQUAD $499</span>
-            <span class="text-emerald-400 font-bold">24m Wasted</span>
-          </div>
-          <h4 class="text-sm font-black text-white leading-snug">
-            Scammer Begs Granny to Open AnyDesk While She Searches for Antique Desk
-          </h4>
-          <p class="text-xs text-slate-300 italic">
-            "AnyDesk? Is that like the antique oak mahogany writing desk my late husband Harold made?"
-          </p>
-          <div class="p-3 rounded-xl bg-guardSurface border border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Viral Reach:</span>
-            <strong class="text-cyan-400">890K Views (Instagram)</strong>
-          </div>
-          <button onclick="shareViralReel('reel-02')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>Share Revenge Reel (TikTok / Reels)</span>
+          <button type="button" onclick="selectVideoReel('/assets/reels/reel_geeksquad_desk.mp4', 'guardian_angel_geeksquad_desk.mp4', 'reelBtn2', 'Geek Squad $499 AnyDesk scammer meets Margaret AI talking about her 1964 oak desk — algorise-ai.com #scambait #techsupportscam')" id="reelBtn2" class="w-full text-left p-5 rounded-2xl glass-panel hover:border-cyan-400/40 transition-all flex items-start justify-between gap-4">
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono font-bold text-amber-400">EPISODE 02 • $499 TECH SUPPORT REFUND TRAP</div>
+              <h3 class="text-base sm:text-lg font-extrabold text-white">Fake Geek Squad AnyDesk vs. 1964 Oak Writing Desk</h3>
+              <p class="text-xs text-slate-300">Scammer screams for remote screen access while Margaret inspects her late husband Harold's mahogany brass handles.</p>
+            </div>
+            <span class="shrink-0 w-10 h-10 rounded-full bg-slate-800 text-cyan-400 flex items-center justify-center font-bold"><i class="fa-solid fa-play"></i></span>
           </button>
-        </div>
 
-        <!-- Reel 3 -->
-        <div class="p-6 rounded-2xl bg-guardDark border border-slate-800 space-y-4 shadow-xl">
-          <div class="flex items-center justify-between text-xs font-mono">
-            <span class="text-purple-400 font-bold">👵 BAIL BOND EXTORTION</span>
-            <span class="text-emerald-400 font-bold">31m Wasted</span>
-          </div>
-          <h4 class="text-sm font-black text-white leading-snug">
-            Bail Scammer Gives Up After Margaret Mistakes Him for Her Cousin
-          </h4>
-          <p class="text-xs text-slate-300 italic">
-            "Kevin? Is that you cousin Kevin from Shropshire? How is your parakeet's gout doing?"
-          </p>
-          <div class="p-3 rounded-xl bg-guardSurface border border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
-            <span>Viral Reach:</span>
-            <strong class="text-cyan-400">2.1M Views (Shorts)</strong>
-          </div>
-          <button onclick="shareViralReel('reel-03')" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-600 hover:from-purple-400 hover:to-cyan-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
-            <i class="fa-solid fa-share-nodes"></i>
-            <span>Share Revenge Reel (TikTok / Reels)</span>
+          <button type="button" onclick="selectVideoReel('/assets/reels/reel_bail_kevin.mp4', 'guardian_angel_bail_kevin.mp4', 'reelBtn3', 'Grandson bail extortionist asks for $3,000 wire; Margaret asks about Cousin Kevin parakeet — algorise-ai.com #antiscam')" id="reelBtn3" class="w-full text-left p-5 rounded-2xl glass-panel hover:border-cyan-400/40 transition-all flex items-start justify-between gap-4">
+            <div class="space-y-1">
+              <div class="text-[11px] font-mono font-bold text-purple-400">EPISODE 03 • FAMILY BAIL EXTORTION</div>
+              <h3 class="text-base sm:text-lg font-extrabold text-white">Fake Grandson in Jail vs. Cousin Kevin's Parakeet</h3>
+              <p class="text-xs text-slate-300">Urgent $3,000 bail wire lure derailed cleanly into bird dietary advice from Shropshire.</p>
+            </div>
+            <span class="shrink-0 w-10 h-10 rounded-full bg-slate-800 text-cyan-400 flex items-center justify-center font-bold"><i class="fa-solid fa-play"></i></span>
           </button>
         </div>
 
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- Batch Inbox Triage Simulator -->
-  <section id="batch-triage" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardDark border-t border-slate-800">
-    <div class="max-w-6xl mx-auto">
-      
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-        <div>
-          <span class="px-3 py-1 rounded bg-emerald-950/80 text-emerald-300 text-xs font-mono font-bold border border-emerald-500/30">
-            HIGH-ACCURACY MULTI-FEED ENGINE
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">Batch Omnichannel Inbox Triage</h2>
-          <p class="text-xs sm:text-sm text-slate-400 mt-1">
-            Simulate 6 mixed incoming Calls, Emails, and Texts processed and sorted in under 15 milliseconds.
-          </p>
-        </div>
-
-        <button onclick="runBatchSimulation()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-black font-extrabold text-xs flex items-center gap-2 shadow-lg hover:shadow-emerald-500/25 transition-all">
-          <i class="fa-solid fa-play"></i>
-          <span>Run 6-Item Batch Triage</span>
-        </button>
-      </div>
-
-      <!-- Live Triage Feed Table -->
-      <div class="rounded-2xl bg-guardNavy border border-slate-800 overflow-hidden shadow-2xl">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs text-slate-300">
-            <thead class="bg-guardSurface text-slate-400 uppercase text-[11px] font-mono tracking-wider border-b border-slate-800">
-              <tr>
-                <th class="py-3.5 px-4">Channel</th>
-                <th class="py-3.5 px-4">Sender / Caller</th>
-                <th class="py-3.5 px-4">Content Snippet</th>
-                <th class="py-3.5 px-4">Category</th>
-                <th class="py-3.5 px-4">Threat Score</th>
-                <th class="py-3.5 px-4 text-right">Assigned Action</th>
-              </tr>
-            </thead>
-            <tbody id="batch-table-body" class="divide-y divide-slate-800/60 font-sans">
-              <!-- Dynamically populated via JS -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Family Angel Co-Pilot Showcase -->
-  <section id="family-co-pilot" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardNavy border-t border-slate-800">
-    <div class="max-w-6xl mx-auto">
-      
-      <div class="flex flex-col lg:flex-row items-center gap-12">
-        <div class="w-full lg:w-1/2 space-y-6">
-          <span class="px-3 py-1 rounded bg-amber-950/80 text-amber-300 text-xs font-mono font-bold border border-amber-500/30">
-            FAMILY PROTECTION NETWORK
-          </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-            The Family Angel Co-Pilot.<br />
-            <span class="text-amber-400">Complete Protection for Elderly Parents.</span>
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-            When an aggressive robocall, fake bank SMS, or fraudulent email targets a senior in your family, their screen locks with a clear alert while your phone receives an immediate push notification with a 1-click intervention button.
-          </p>
-
-          <div class="space-y-4 text-xs sm:text-sm text-slate-300 font-sans">
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
-                <i class="fa-solid fa-bell"></i>
-              </div>
-              <div>
-                <strong>Cross-Channel Alerting:</strong> Covers incoming landline/mobile calls, suspicious emails, and delivery texts simultaneously.
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0 mt-0.5">
-                <i class="fa-solid fa-hand"></i>
-              </div>
-              <div>
-                <strong>Remote Block &amp; Freeze:</strong> Family guardians can blacklist fraudulent callers and lock malicious links remotely.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Simulation Box -->
-        <div class="w-full lg:w-1/2">
-          <div class="p-6 rounded-2xl bg-guardSurface border border-slate-700 shadow-2xl space-y-5">
-            <div class="text-xs font-mono text-slate-400 flex items-center justify-between border-b border-slate-800 pb-3">
-              <span>REAL-TIME TELEGRAM ALERT INTEGRATION</span>
-              <span class="text-emerald-400">@Aassqqee_bot</span>
-            </div>
-
-            <div class="p-4 rounded-xl bg-guardDark border border-cyan-500/40 text-xs font-mono space-y-2">
-              <div class="text-rose-400 font-bold">🚨 [CRITICAL ALERT] Margaret (72) Targeted by Vishing Call</div>
-              <div class="text-slate-300 text-[11px]">
-                Caller claimed to be IRS Warrant Division demanding $2,500 in Target Gift Cards.<br />
-                <strong>Status:</strong> Call disconnected by Sentinel. Caller ID blocked.
-              </div>
-              <div class="pt-2 text-[10px] text-slate-500">
-                Pushed to Family Guardian Telegram Chat ID: 8737013099 in 12ms.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing" class="py-16 px-4 sm:px-6 lg:px-8 bg-guardDark border-t border-slate-800">
-    <div class="max-w-5xl mx-auto">
-      
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="px-3 py-1 rounded bg-amber-950/80 text-amber-300 text-xs font-mono font-bold border border-amber-500/30">
-          PROTECT YOUR AGING PARENTS TODAY
-        </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">Simple Plans for Families &amp; Seniors</h2>
-        <p class="text-xs sm:text-sm text-slate-300 mt-2">
-          Backed by our 30-Day "Grandmother-Safe" 100% Money-Back Guarantee. No contracts, cancel anytime.
-        </p>
+    <!-- ===================================================================== -->
+    <!-- PROTECTION SUITE: REAL EXTENSION + MOBILE PWA + HONEST TELECOM GUIDE   -->
+    <!-- ===================================================================== -->
+    <section id="protection-suite" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-cyan-400">COMPLETE CLIENT TOOLKIT</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Three Real Tools You Can Install Right Now</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Tier 1: Front-End Immediate Cash Lockdown Offer (Hero) -->
-        <div class="p-6 rounded-2xl bg-gradient-to-br from-amber-950/40 via-guardSurface to-guardDark border-2 border-amber-500 shadow-2xl relative space-y-4">
-          <div class="absolute -top-3 left-6 px-3 py-0.5 rounded-full bg-amber-400 text-black font-black text-[10px] uppercase tracking-wider">
-            ⭐ MOST POPULAR FOR DAUGHTERS &amp; SONS
+        <!-- Card 1: Chrome Extension -->
+        <div class="glass-panel rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-3">
+            <div class="w-11 h-11 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-lg">
+              <i class="fa-brands fa-chrome"></i>
+            </div>
+            <h3 class="text-lg font-black text-white">Manifest V3 Chrome / Edge Blocker</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Scans pages in real time inside a tamper-proof Shadow DOM overlay to halt tech-support lockup alerts, silence scare sirens, and screen URLs in one click.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] font-mono text-slate-400 space-y-1">
+              <div class="text-cyan-400 font-bold">Install steps:</div>
+              <div>1. Download ZIP &amp; unzip folder</div>
+              <div>2. Open <code class="text-slate-200">chrome://extensions</code></div>
+              <div>3. Enable Developer Mode &rarr; Load Unpacked</div>
+            </div>
           </div>
-          <div class="text-xs font-mono text-amber-400 font-bold uppercase">1-ON-1 REMOTE SPECIALIST AUDIT</div>
-          <div class="text-3xl font-extrabold text-white"><span id="p-lockdown">$49.00</span><span class="text-xs text-slate-400 font-normal"> one-time</span></div>
-          <p class="text-xs text-slate-300">We personally clean and lock down your parent's computer.</p>
-          <ul class="space-y-2 text-xs text-slate-200 pt-4 border-t border-slate-800">
-            <li>✓ <strong>25-Minute Remote AnyDesk Session</strong> with an expert</li>
-            <li>✓ Remove fake popups, scam bloatware &amp; dangerous tools</li>
-            <li>✓ Install Guardian Angel &amp; configure Senior Easy-Read</li>
-            <li>✓ Set up 1-Tap "Call Sarah" Lifeline on Mom's screen</li>
-            <li>✓ <strong>BONUS: Includes 30 Days Family Shield ($19.99 value) Free</strong></li>
-          </ul>
-          <button onclick="handleCheckout('lockdown')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-black font-extrabold text-xs shadow-lg shadow-amber-500/25 transition-all">
-            Book Senior PC Lockdown ($49)
-          </button>
+          <a href="/assets/guardian_angel_extension_v3.2.0.zip" download onclick="trackEvent('download_extension', 'suite_card')" class="w-full py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-extrabold text-xs text-center transition-colors">
+            Download Extension v3.2.0 (.ZIP)
+          </a>
         </div>
 
-        <!-- Tier 2: Individual Monthly -->
-        <div class="p-6 rounded-2xl bg-guardNavy border border-slate-800 space-y-4">
-          <div class="text-xs font-mono text-cyan-400 font-bold uppercase">INDIVIDUAL OMNICHANNEL</div>
-          <div class="text-3xl font-extrabold text-white"><span id="p-indiv">$9.99</span><span class="text-xs text-slate-400 font-normal"> / mo</span></div>
-          <p class="text-xs text-slate-400">Continuous 24/7 filter on your calls, emails, and SMS.</p>
-          <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-slate-800">
-            <li>✓ Unlimited Call, Mail &amp; Text Screening</li>
-            <li>✓ SeniorSafeLifelineGate (Zero false doctor alarms)</li>
-            <li>✓ Real-Time Phishing &amp; Deepfake Audio Defense</li>
-            <li>✓ Manifest V3 Chrome / Edge Extension</li>
-          </ul>
-          <button onclick="handleCheckout('individual')" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-colors">
-            Start 14-Day Free Trial
-          </button>
-        </div>
-
-        <!-- Tier 3: Family Angel Shield (Retainer) -->
-        <div class="p-6 rounded-2xl bg-guardSurface border-2 border-cyan-500 shadow-2xl relative space-y-4">
-          <div class="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full bg-cyan-500 text-black font-extrabold text-[10px]">
-            COMPLETE FAMILY SHIELD
+        <!-- Card 2: Mobile PWA -->
+        <div class="glass-panel rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-3">
+            <div class="w-11 h-11 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3 class="text-lg font-black text-white">Offline-First Senior Mobile PWA</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Installs on iOS &amp; Android home screens without App Store friction. High-contrast WCAG traffic-light verdicts, voice read-aloud, and 1-tap caregiver SOS dialer.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] font-mono text-slate-400 space-y-1">
+              <div class="text-emerald-400 font-bold">Also configures call divert cleanly:</div>
+              <div>Forward busy/unanswered calls directly to your own chosen caregiver phone number (your own carrier GSM codes).</div>
+            </div>
           </div>
-          <div class="text-xs font-mono text-cyan-400 font-bold uppercase">FAMILY ANGEL CO-PILOT</div>
-          <div class="text-3xl font-extrabold text-white"><span id="p-family">$19.99</span><span class="text-xs text-slate-400 font-normal"> / mo</span></div>
-          <p class="text-xs text-slate-400">Up to 5 family members &amp; elderly parents covered.</p>
-          <ul class="space-y-2 text-xs text-slate-300 pt-4 border-t border-slate-800">
-            <li>✓ <strong>All Individual features for up to 5 family devices</strong></li>
-            <li>✓ <strong>Real-time Telegram &amp; Push Alerts to Family Angel</strong></li>
-            <li>✓ <strong>1-Tap Emergency Lifeline to Daughter's Phone</strong></li>
-            <li>✓ Remote Threat Intervene &amp; Link Freeze</li>
-            <li>✓ Priority US &amp; UK Family Support</li>
-          </ul>
-          <button onclick="handleCheckout('family')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs shadow-lg shadow-cyan-500/25 transition-all">
-            Protect Whole Family ($19.99/mo)
-          </button>
+          <a href="/guardian_mobile.html" onclick="trackEvent('open_mobile_pwa', 'suite_card')" class="w-full py-3 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-extrabold text-xs text-center transition-colors">
+            Launch Mobile Shield App
+          </a>
         </div>
 
+        <!-- Card 3: Family Alert Co-Pilot -->
+        <div class="glass-panel rounded-3xl p-6 flex flex-col justify-between space-y-5">
+          <div class="space-y-3">
+            <div class="w-11 h-11 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center text-lg">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <h3 class="text-lg font-black text-white">Live Telegram Family Co-Pilot</h3>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Whenever a critical fraud attempt is screened on a family device, Guardian Angel dispatches a structured threat alert to <strong class="text-white">@Aassqqee_bot</strong> so adult children can intervene immediately.
+            </p>
+            <div class="p-3 rounded-xl bg-slate-950/90 border border-slate-800 text-[11px] font-mono text-slate-400 space-y-1">
+              <div class="text-purple-300 font-bold">Zero password risk:</div>
+              <div>Never stores banking passwords or email credentials.</div>
+            </div>
+          </div>
+          <a href="https://t.me/Aassqqee_bot" target="_blank" rel="noopener" onclick="trackEvent('open_telegram_bot', 'suite_card')" class="w-full py-3 rounded-xl bg-purple-500 hover:bg-purple-400 text-white font-extrabold text-xs text-center transition-colors">
+            Connect @Aassqqee_bot on Telegram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- HONEST PRICING & REAL ORDER / PAYMENT CHECKOUT                        -->
+    <!-- ===================================================================== -->
+    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-4">
+        <span class="text-[11px] font-mono font-bold uppercase tracking-widest text-amber-400">TRANSPARENT PLANS &amp; REAL ORDER ACTIVATION</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Start Free. Upgrade When You Want Family Coverage.</h2>
+        <div class="inline-flex rounded-xl bg-slate-900 border border-slate-800 p-1 text-xs font-mono">
+          <button type="button" id="currBtnUS" onclick="setPricingRegion('US')" class="px-3 py-1.5 rounded-lg bg-cyan-400 text-slate-950 font-bold">🇺🇸 USD ($)</button>
+          <button type="button" id="currBtnUK" onclick="setPricingRegion('UK')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-bold">🇬🇧 GBP (£)</button>
+          <button type="button" id="currBtnIN" onclick="setPricingRegion('IN')" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-bold">🇮🇳 INR (₹ • UPI)</button>
+        </div>
       </div>
 
-      <!-- Trust Badges & 30-Day Money-Back Guarantee -->
-      <div class="mt-12 p-6 rounded-2xl bg-guardNavy border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl shrink-0">
-            <i class="fa-solid fa-award"></i>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <!-- Tier 1: Free -->
+        <div class="glass-panel rounded-3xl p-7 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="text-xs font-mono font-bold text-slate-400 uppercase">Community Free</div>
+            <div class="text-4xl font-black text-white price-free">$0 <span class="text-xs text-slate-400 font-normal">/ forever</span></div>
+            <p class="text-xs sm:text-sm text-slate-300">Everything you need to check scams yourself right now.</p>
+            <ul class="space-y-2.5 text-xs text-slate-200 border-t border-slate-800 pt-4">
+              <li>✓ Unlimited Live Link &amp; Text Checker</li>
+              <li>✓ Unlimited On-Device OCR Screenshot Scan</li>
+              <li>✓ Live Browser Microphone Call Monitor</li>
+              <li>✓ Downloadable Chrome Extension v3.2.0</li>
+            </ul>
+          </div>
+          <a href="#scanner" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-xs text-center transition-colors">
+            Use Free Tools Above
+          </a>
+        </div>
+
+        <!-- Tier 2: Family Shield -->
+        <div class="glass-highlight rounded-3xl p-7 flex flex-col justify-between space-y-6 relative">
+          <div class="text-[10px] font-mono font-black uppercase px-3 py-1 rounded-full bg-cyan-400 text-slate-950 self-start">MOST POPULAR FOR FAMILIES</div>
+          <div class="space-y-4">
+            <div class="text-xs font-mono font-bold text-cyan-400 uppercase">Family Shield Co-Pilot</div>
+            <div class="text-4xl font-black text-white"><span id="priceFamily">$19.99</span> <span class="text-xs text-slate-400 font-normal">/ month</span></div>
+            <p class="text-xs sm:text-sm text-slate-200">Managed multi-device protection &amp; priority Telegram alerts for up to 5 loved ones.</p>
+            <ul class="space-y-2.5 text-xs text-slate-100 border-t border-slate-800 pt-4">
+              <li>✓ Up to 5 Parent &amp; Caregiver Devices</li>
+              <li>✓ Real-Time Telegram Alerts (@Aassqqee_bot)</li>
+              <li>✓ Caregiver Call-Divert Rules &amp; Audit Logs</li>
+              <li>✓ Priority Domain &amp; Invoice Feed Updates</li>
+            </ul>
+          </div>
+          <button type="button" onclick="openOrderDialog('family')" class="cta-btn w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 hover:from-cyan-300 hover:to-emerald-300 text-slate-950 font-black text-xs transition-all">
+            Activate Family Shield →
+          </button>
+        </div>
+
+        <!-- Tier 3: White-Glove Setup -->
+        <div class="glass-panel rounded-3xl p-7 flex flex-col justify-between space-y-6 border-amber-500/40">
+          <div class="space-y-4">
+            <div class="text-xs font-mono font-bold text-amber-400 uppercase">1-on-1 White-Glove Lockdown</div>
+            <div class="text-4xl font-black text-white"><span id="priceAudit">$49.00</span> <span class="text-xs text-slate-400 font-normal">/ one-time</span></div>
+            <p class="text-xs sm:text-sm text-slate-300">Live 25-minute remote session with an engineer to clean, harden, and pair your parent's devices.</p>
+            <ul class="space-y-2.5 text-xs text-slate-200 border-t border-slate-800 pt-4">
+              <li>✓ Browser Adware &amp; Pop-Up Cleanup</li>
+              <li>✓ Extension + Senior PWA Installed Live</li>
+              <li>✓ Caregiver Telegram Co-Pilot Paired</li>
+              <li>✓ 30 Days Family Shield Included</li>
+            </ul>
+          </div>
+          <button type="button" onclick="openOrderDialog('concierge_audit')" class="cta-btn w-full py-3.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition-all">
+            Book 1-on-1 Lockdown →
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Native Order & Payment Dialog -->
+  <dialog id="orderDialog" class="ga-modal" closedby="any" aria-labelledby="orderDialogHeading">
+    <div class="p-6 space-y-5">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-3">
+        <div>
+          <span class="text-[10px] font-mono uppercase text-cyan-400 font-bold">GUARDIAN ANGEL ACTIVATION</span>
+          <h3 id="orderDialogHeading" class="text-lg font-black text-white mt-0.5">Activate Family Shield</h3>
+          <div id="orderDialogPriceTag" class="text-xs font-mono text-emerald-400 font-bold mt-1">$19.99 / month</div>
+        </div>
+        <button type="button" onclick="document.getElementById('orderDialog').close()" aria-label="Close" class="p-1.5 rounded-lg text-slate-400 hover:text-white border border-slate-800">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="orderForm" onsubmit="submitOrderForm(event)" class="space-y-3.5 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="ordName" class="block text-slate-300 font-semibold mb-1">Your Name *</label>
+            <input id="ordName" type="text" required placeholder="e.g. Sarah Anderson" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-white focus:border-cyan-400 focus:outline-none" />
           </div>
           <div>
-            <div class="text-sm font-black text-white flex items-center gap-2">
-              <span>30-Day "Grandmother-Safe" 100% Money-Back Guarantee</span>
-              <span class="text-[10px] bg-emerald-950 text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded font-mono font-bold">ZERO RISK</span>
-            </div>
-            <div class="text-xs text-slate-300 mt-1">
-              If Guardian Angel does not give you and your parent total peace of mind in the first 30 days, email us for a prompt 100% refund. No hassle, no friction.
-            </div>
+            <label for="ordEmail" class="block text-slate-300 font-semibold mb-1">Email for Receipt *</label>
+            <input id="ordEmail" type="email" required placeholder="sarah@example.com" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-white focus:border-cyan-400 focus:outline-none" />
           </div>
         </div>
-        <div class="flex items-center gap-4 text-xs font-mono text-slate-400 shrink-0">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-lock text-cyan-400"></i> 256-Bit Encrypted</span>
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-heart text-emerald-400"></i> UK PSR &amp; FTC Compliant</span>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="ordPhone" class="block text-slate-300 font-semibold mb-1">WhatsApp / Phone</label>
+            <input id="ordPhone" type="tel" placeholder="+1 415 555 0199" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-white focus:border-cyan-400 focus:outline-none" />
+          </div>
+          <div>
+            <label for="ordParent" class="block text-slate-300 font-semibold mb-1">Protected Parent Name</label>
+            <input id="ordParent" type="text" value="Mom / Dad" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-white focus:border-cyan-400 focus:outline-none" />
+          </div>
         </div>
-      </div>
 
+        <div>
+          <label for="ordPayMethod" class="block text-slate-300 font-semibold mb-1">Payment / Activation Rail</label>
+          <select id="ordPayMethod" class="w-full rounded-xl bg-slate-950 border border-slate-700 px-3 py-2.5 text-white focus:border-cyan-400 focus:outline-none">
+            <option value="auto">Automatic (Card via Stripe if configured / Concierge Invoice)</option>
+            <option value="upi">UPI Instant Pay (India INR)</option>
+            <option value="concierge_invoice">Request Direct Activation &amp; Invoice via Telegram</option>
+          </select>
+        </div>
+
+        <button type="submit" id="btnSubmitOrder" class="cta-btn w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 font-black text-xs sm:text-sm">
+          Create Order &amp; Continue
+        </button>
+      </form>
+
+      <div id="orderConfirmationBox" class="hidden space-y-4 text-xs">
+        <div class="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/40 space-y-1.5">
+          <div class="font-bold text-emerald-300 flex items-center gap-2"><i class="fa-solid fa-circle-check"></i> Order Registered &amp; Dispatched</div>
+          <div>Order Reference: <strong id="confOrderId" class="font-mono text-white"></strong></div>
+          <div id="confOrderDesc" class="text-slate-300"></div>
+        </div>
+
+        <div id="upiPayWrap" class="hidden p-4 rounded-2xl bg-slate-950 border border-cyan-500/30 space-y-2 text-center">
+          <div class="font-mono text-[11px] text-cyan-400 font-bold">DIRECT UPI PAYMENT</div>
+          <div id="upiVpaDisplay" class="font-mono text-white font-bold"></div>
+          <a id="upiDeepLink" href="#" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-black text-xs">
+            Open UPI App to Pay Now
+          </a>
+        </div>
+
+        <a id="confTelegramLink" href="https://t.me/Aassqqee_bot" target="_blank" rel="noopener" class="w-full py-3 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-bold flex items-center justify-center gap-2">
+          <i class="fa-brands fa-telegram"></i>
+          <span>Complete / Confirm via @Aassqqee_bot on Telegram</span>
+        </a>
+      </div>
     </div>
-  </section>
+  </dialog>
 
-  <!-- Footer -->
-  <footer class="py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-900 bg-guardDark text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div class="flex flex-col gap-1">
-        <span class="font-bold text-white text-sm">Guardian Angel™ Omnichannel AI Sentinel</span>
-        <span>A division of AlgoRise Global Cyber Defense • UK &amp; US Operations</span>
+  <!-- Clean Unified Footer -->
+  <footer class="relative z-10 border-t border-slate-800/80 bg-[#04060f] py-12 px-4 sm:px-6 lg:px-8 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-2">
+        <div class="font-black text-white text-sm flex items-center gap-2">
+          <i class="fa-solid fa-shield-halved text-cyan-400"></i>
+          <span>GUARDIAN ANGEL™</span>
+        </div>
+        <p class="leading-relaxed">Built by <strong class="text-slate-200">Algorise AI Solutions</strong>. Real-time browser, SMS, and OCR phishing defense built for families.</p>
       </div>
-      <div class="flex items-center gap-6 text-slate-400 font-mono text-[11px]">
-        <span>Coverage: Voice Calls • Emails • SMS &amp; Messaging</span>
-        <a href="techsupport.html" class="hover:text-cyan-400 transition-colors">Tech Support Desk</a>
+      <div class="flex flex-col gap-2">
+        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-400">Guardian Product</span>
+        <a href="#scanner" class="hover:text-white">Live Link &amp; OCR Scanner</a>
+        <a href="#reels" class="hover:text-white">9:16 Scambait MP4 Reels</a>
+        <a href="/assets/guardian_angel_extension_v3.2.0.zip" download class="hover:text-white">Chrome Extension (.ZIP)</a>
+        <a href="/guardian_mobile.html" class="hover:text-white">Mobile PWA</a>
       </div>
+      <div class="flex flex-col gap-2">
+        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-400">Platform &amp; Trust</span>
+        <a href="/security.html" class="hover:text-white">Security &amp; Privacy</a>
+        <a href="/api-docs.html" class="hover:text-white">Developer API Reference</a>
+        <a href="/guardian.html" class="hover:text-white">Guardian Direct Route</a>
+        <a href="https://t.me/Aassqqee_bot" target="_blank" rel="noopener" class="hover:text-white">Concierge (@Aassqqee_bot)</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-cyan-400">Secondary B2B &amp; Lab</span>
+        <a href="/dashboard.html" class="hover:text-white">B2B Social Agent Portal</a>
+        <a href="/field_pitch.html" class="hover:text-white">B2B Field Deck</a>
+        <a href="https://github.com/hardik4love-lang/algorise-ai" target="_blank" rel="noopener" class="hover:text-white">Algorise &amp; Aira Lab (GitHub)</a>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-slate-500">
+      <span>© 2026 ALGORISE AI SOLUTIONS · GUARDIAN ANGEL™</span>
+      <span><a href="mailto:security@algorise-ai.com" class="hover:text-cyan-400">security@algorise-ai.com</a></span>
     </div>
   </footer>
 
+  <!-- Runtime Config + Core App Logic -->
+  <script src="/config.js"></script>
   <script>
-    function escapeHtml(str) {
-      if (!str) return '';
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
+    const _cfgBase = (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) || '';
+    const API_BASE = (_cfgBase ? _cfgBase.replace(/\/$/, '') : '');
+    const GUARDIAN_API = API_BASE.endsWith('/api/v1') ? `${API_BASE}/guardian` : `${API_BASE}/api/v1/guardian`;
 
-    let activeChannel = 'TEXT';
-    let currentRegion = 'US';
+    let activeRegion = 'US';
+    let selectedPlan = 'family';
+    let lastSpeechText = "Guardian Angel protection ready.";
+    let currentReelCaption = "IRS Scammer vs Margaret AI over Earl Grey tea — download Guardian Angel free at algorise-ai.com #scambait #elderprotection";
 
-    const SCENARIOS = {
-      CALL: [
-        {
-          label: "📞 IRS Warrant Call",
-          sender: "+1 (800) 555-0142",
-          content: "This is Officer Miller from the Internal Revenue Service. A federal arrest warrant has been issued in your name. You must immediately purchase $2,500 in Target gift cards or sheriff deputies will arrive at your home."
-        },
-        {
-          label: "👵 Grandparent Bail Vishing",
-          sender: "Restricted / Unknown",
-          content: "Grandma, it's Kevin! I was in a terrible car crash in Mexico and they put me in jail. The lawyer needs $3,000 wired to a holding account immediately. Please don't tell mom and dad!"
-        },
-        {
-          label: "🟢 Safe Family Call",
-          sender: "+1 (415) 555-0199 (Son)",
-          content: "Hey Mom, just checking in to see if we're still having Sunday dinner at 5 PM? Let me know if you need me to bring dessert."
-        }
-      ],
-      MAIL: [
-        {
-          label: "✉️ Geek Squad $499 Fake Invoice",
-          sender: "Geek Squad Renewal <support-billing892@gmail.com>",
-          subject: "Invoice #8921: Annual Maintenance Charge $499.00 Auto-Renewed",
-          content: "Thank you for your business. Your Geek Squad total tech protection has auto-renewed for $499.00. If you did not authorize this charge, call toll-free 1-888-555-0142 immediately to connect AnyDesk and dispute."
-        },
-        {
-          label: "💼 CEO Wire Fraud (BEC)",
-          sender: "CEO Mark Henderson <ceo-mhenderson@company-exec.net>",
-          subject: "CONFIDENTIAL: Wire transfer instructions for vendor acquisition",
-          content: "Please execute an urgent wire transfer of $45,000 to the updated vendor bank account attached before 3 PM today. Keep this acquisition strictly confidential."
-        },
-        {
-          label: "🟢 Safe Amazon Order Receipt",
-          sender: "Amazon.com <auto-confirm@amazon.com>",
-          subject: "Your Amazon.com order #112-9849201 has shipped",
-          content: "Your package containing stainless steel coffee mugs has shipped via UPS and will be delivered on Friday. Track your delivery inside your official Amazon app."
-        }
-      ],
-      TEXT: [
-        {
-          label: "💬 USPS Delivery Smishing",
-          sender: "+1 (929) 555-0182",
-          content: "USPS: Your parcel cannot be delivered due to an incomplete street address. Please update your details within 24h at track-usps-alert.top to avoid package return."
-        },
-        {
-          label: "🇬🇧 HMRC Tax Rebate (£482)",
-          sender: "+44 7700 900142",
-          content: "HMRC Alert: You are eligible for a tax rebate of £482.90. Claim your pending refund before the deadline at login-hmrc-rebate.xyz."
-        },
-        {
-          label: "🟢 Safe 2FA Code",
-          sender: "Uber Security",
-          content: "Your Uber verification code is 492019. Never share this code with anyone, including Uber employees."
-        }
-      ]
+    const PRICING_TABLE = {
+      US: { individual: '$9.99', family: '$19.99', audit: '$49.00', free: '$0' },
+      UK: { individual: '£7.99', family: '£15.99', audit: '£39.00', free: '£0' },
+      IN: { individual: '₹799', family: '₹1,499', audit: '₹2,499', free: '₹0' }
     };
 
-    const BATCH_ITEMS = [
-      { channel: "CALL", sender: "+1 (800) 555-0142", content: "IRS Warrant Division: Arrest warrant issued. Pay $2,500 in gift cards." },
-      { channel: "MAIL", sender: "Geek Squad <renew@gmail.com>", content: "Invoice #8921 auto-renewed for $499. Call 1-888-555-0142 to cancel." },
-      { channel: "TEXT", sender: "+1 (929) 555-0182", content: "USPS: Update address within 24h at track-usps-alert.top to avoid return." },
-      { channel: "CALL", sender: "+1 (415) 555-0199", content: "Hey Dad, Sunday dinner is at 5 PM at my house. See you then!" },
-      { channel: "MAIL", sender: "marketing@superdeals.xyz", content: "Flash Sale: Buy 2 get 5 free on smart watches today only!" },
-      { channel: "TEXT", sender: "Chase Alerts", content: "Chase: Your single-use verification code is 882194 for online banking." }
-    ];
+    function trackEvent(eventName, surface, meta = {}) {
+      try {
+        fetch(`${GUARDIAN_API}/telemetry`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ event_name: eventName, surface: surface || 'index', meta })
+        }).catch(() => {});
+      } catch (_) {}
+    }
 
-    function setRegion(reg) {
-      currentRegion = reg;
-      const btnUS = document.getElementById('btn-region-us');
-      const btnUK = document.getElementById('btn-region-uk');
-      const pLockdown = document.getElementById('p-lockdown');
-      const pIndiv = document.getElementById('p-indiv');
-      const pFamily = document.getElementById('p-family');
+    async function loadLiveStats() {
+      try {
+        const res = await fetch(`${GUARDIAN_API}/stats`);
+        if (!res.ok) return;
+        const d = await res.json();
+        document.getElementById('liveStatScans').textContent = (d.scans_processed || 0).toLocaleString();
+        document.getElementById('liveStatBlocked').textContent = (d.scams_blocked || 0).toLocaleString();
+      } catch (_) {}
+    }
 
-      if (reg === 'UK') {
-        btnUK.className = 'px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold transition-all';
-        btnUS.className = 'px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 font-bold hover:text-white transition-all';
-        if (pLockdown) pLockdown.innerText = '£39.00';
-        if (pIndiv) pIndiv.innerText = '£7.99';
-        if (pFamily) pFamily.innerText = '£15.99';
-      } else {
-        btnUS.className = 'px-2.5 py-1 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/40 font-bold transition-all';
-        btnUK.className = 'px-2.5 py-1 rounded bg-slate-800 text-slate-400 border border-slate-700 font-bold hover:text-white transition-all';
-        if (pLockdown) pLockdown.innerText = '$49.00';
-        if (pIndiv) pIndiv.innerText = '$9.99';
-        if (pFamily) pFamily.innerText = '$19.99';
+    // Mobile Navigation Drawer (Modern Web Guidance compliant)
+    const drawer = document.getElementById('mobileDrawer');
+    const drawerOpenBtn = document.getElementById('drawer-open');
+    const drawerCloseBtn = document.getElementById('drawer-close');
+    const drawerScroller = drawer?.querySelector('.Drawer-scroller');
+    const drawerSheet = drawer?.querySelector('.Drawer-sheet');
+
+    async function openMobileDrawer() {
+      if (!drawer || !drawerScroller) return;
+      drawer.showModal();
+      if (!CSS.supports('scroll-initial-target', 'nearest')) {
+        drawerScroller.scrollTo({ left: drawerScroller.offsetWidth, behavior: 'instant' });
+        await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      }
+      drawerScroller.scrollTo({ left: 0, behavior: 'auto' });
+      drawerOpenBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMobileDrawer() {
+      if (!drawer || !drawerScroller) return;
+      drawerScroller.scrollTo({ left: drawerScroller.offsetWidth, behavior: 'auto' });
+      setTimeout(() => {
+        if (drawer.open) drawer.close();
+        drawerOpenBtn.setAttribute('aria-expanded', 'false');
+      }, 220);
+    }
+    drawerOpenBtn?.addEventListener('click', openMobileDrawer);
+    drawerCloseBtn?.addEventListener('click', closeMobileDrawer);
+    drawer?.addEventListener('click', e => { if (drawerSheet && !drawerSheet.contains(e.target)) closeMobileDrawer(); });
+
+    // Light dismiss fallback for dialog[closedby="any"] (Modern Web Guidance)
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      const outside = (e, dlg) => {
+        const r = dlg.getBoundingClientRect();
+        return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+      };
+      for (const dlg of document.querySelectorAll('dialog[closedby="any"]')) {
+        let downOut = false;
+        dlg.addEventListener('pointerdown', e => { downOut = outside(e, dlg); });
+        dlg.addEventListener('pointerup', e => { if (downOut && outside(e, dlg)) dlg.close(); });
       }
     }
 
-    function switchChannel(ch) {
-      activeChannel = ch;
-      ['CALL', 'MAIL', 'TEXT'].forEach(c => {
-        const btn = document.getElementById('tab-btn-' + c.toLowerCase());
-        if (c === ch) {
-          btn.className = 'flex-1 py-2.5 px-3 rounded-lg transition-all channel-tab-active flex items-center justify-center gap-2';
-        } else {
-          btn.className = 'flex-1 py-2.5 px-3 rounded-lg transition-all text-slate-400 hover:text-white flex items-center justify-center gap-2';
-        }
+    function toggleSeniorRead() {
+      document.body.classList.toggle('senior-read');
+      const on = document.body.classList.contains('senior-read');
+      document.getElementById('seniorReadLabel').textContent = on ? 'Easy-Read: ON' : 'Easy-Read';
+    }
+
+    function switchWorkbenchTab(tab) {
+      ['text', 'ocr', 'mic'].forEach(t => {
+        document.getElementById('panel' + t.charAt(0).toUpperCase() + t.slice(1)).classList.toggle('hidden', t !== tab);
+        const btn = document.getElementById('modeTab' + t.charAt(0).toUpperCase() + t.slice(1));
+        btn.className = t === tab
+          ? 'px-3.5 py-2 rounded-xl bg-cyan-400 text-slate-950 font-extrabold transition-all'
+          : 'px-3.5 py-2 rounded-xl text-slate-300 hover:text-white transition-all';
       });
-
-      const disp = document.getElementById('input-channel-display');
-      const subjContainer = document.getElementById('subject-field-container');
-      const contentLabel = document.getElementById('content-label');
-
-      if (ch === 'CALL') {
-        disp.value = 'CALL (Voice Transcript / Audio)';
-        subjContainer.classList.add('hidden');
-        contentLabel.innerText = 'Voice Call Audio Transcript';
-      } else if (ch === 'MAIL') {
-        disp.value = 'MAIL (Email & Attachments)';
-        subjContainer.classList.remove('hidden');
-        contentLabel.innerText = 'Email Body & Invoice Contents';
-      } else {
-        disp.value = 'TEXT (SMS / WhatsApp / iMessage)';
-        subjContainer.classList.add('hidden');
-        contentLabel.innerText = 'Message Text & Embedded Links';
-      }
-
-      renderPresets(ch);
-      loadPresetItem(ch, 0);
     }
 
-    function renderPresets(ch) {
-      const container = document.getElementById('presets-container');
-      container.innerHTML = '';
-      SCENARIOS[ch].forEach((item, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'px-3 py-1.5 rounded-lg bg-guardSurface border border-slate-700 hover:border-cyan-400 text-slate-300 transition-colors';
-        btn.innerText = item.label;
-        btn.onclick = () => loadPresetItem(ch, idx);
-        container.appendChild(btn);
+    function loadSample(key) {
+      const ch = document.getElementById('scanChannel');
+      const snd = document.getElementById('scanSender');
+      const txt = document.getElementById('scanContent');
+      if (key === 'phish_usps') {
+        ch.value = 'TEXT'; snd.value = '+1 (929) 555-0182';
+        txt.value = 'USPS: Your parcel cannot be delivered due to an incomplete street address. Update details within 24h at https://track-usps-alert.top';
+      } else if (key === 'fake_geek') {
+        ch.value = 'MAIL'; snd.value = 'Geek Squad Billing <billing-alert92@gmail.com>';
+        txt.value = 'Invoice #8921: Geek Squad protection auto-renewed for $499.00. Call toll-free 1-888-555-0142 and open AnyDesk to cancel.';
+      } else if (key === 'official_irs') {
+        ch.value = 'URL'; snd.value = 'IRS Official';
+        txt.value = 'Check your refund status safely at https://www.irs.gov/refunds';
+      } else if (key === 'nhs_safe') {
+        ch.value = 'TEXT'; snd.value = 'NHS-NoReply';
+        txt.value = 'NHS clinic appointment reminder with Dr. Smith at St Mary Hospital on Tuesday 10:30am. Reply 1 to confirm.';
+      }
+      runGuardianScan();
+    }
+
+    function localTriageFallback(channel, sender, content) {
+      const lower = `${sender} ${content}`.toLowerCase();
+      const urls = (content.match(/https?:\/\/[^\s]+|(?:[a-z0-9-]+\.)+(?:top|xyz|com|gov|uk|icu|work|click)/gi) || []);
+      const extracted = urls.map(u => {
+        const host = u.replace(/^https?:\/\//i, '').split('/')[0].toLowerCase();
+        const official = ['irs.gov', 'gov.uk', 'nhs.uk', 'usps.com', 'royalmail.com'].some(d => host === d || host.endsWith('.' + d));
+        const bad = /\.(top|xyz|icu|work|buzz|click|cyou)$/i.test(host) || /(track-usps|claim-dwp|tvlicence-pay|login-hmrc)/.test(host);
+        return { url: u, host, verdict: official ? 'SAFE_OFFICIAL' : (bad ? 'MALICIOUS' : 'SUSPICIOUS'), reasons: [official ? 'Official domain suffix' : 'Unverified or high-risk domain'] };
       });
+      const isMal = extracted.some(x => x.verdict === 'MALICIOUS');
+      const isHealth = /(nhs|dr\.|doctor appointment|prescription is ready|cvs pharmacy)/.test(lower) && !isMal;
+      const isScam = isMal || /(arrest warrant|gift card|anydesk|teamviewer|geek squad.*\$499|social security suspended)/.test(lower);
+      if (isHealth) return { scan_id: 'LOCAL-SAFE', threat_score: 0, category: 'SAFE_HEALTHCARE', senior_headline: 'SAFE TO OPEN: Verified Medical / Pharmacy Notice', senior_reassurance: 'Matches normal clinic/pharmacy reminder syntax.', safe_next_step: 'Safe to note on your calendar.', why_we_flagged_this: ['Recognized clinic or pharmacy notice with zero scam links.'], extracted_urls: extracted, speech_text: 'Good news, this medical notice looks safe.', latency_ms: 0.3 };
+      if (isScam) return { scan_id: 'LOCAL-ALERT', threat_score: 90, category: 'CRITICAL_FRAUD', senior_headline: 'STOP! Likely Fraud / Phishing Attempt', senior_reassurance: 'You are safe as long as you do not click links, install remote software, or pay.', safe_next_step: 'Delete immediately and verify via your official bank/agency site.', why_we_flagged_this: ['Matched phishing domain or remote-access/extortion signature.'], extracted_urls: extracted, speech_text: 'Warning. High threat scam detected. Do not pay or click links.', latency_ms: 0.4 };
+      return { scan_id: 'LOCAL-OK', threat_score: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 45 : 5, category: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 'SUSPICIOUS_SPAM' : 'SAFE_PERSONAL', senior_headline: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 'CAUTION: External Link Present' : 'No Known Scam Patterns Detected', senior_reassurance: 'Stay cautious if someone asks for passcodes or money.', safe_next_step: 'Confirm sender directly before entering details.', why_we_flagged_this: ['No critical scam coercion found.'], extracted_urls: extracted, speech_text: 'Scan complete. Proceed with normal caution.', latency_ms: 0.3 };
     }
 
-    function loadPresetItem(ch, idx) {
-      const item = SCENARIOS[ch][idx];
-      document.getElementById('input-sender').value = item.sender || '';
-      document.getElementById('input-content').value = item.content || '';
-      if (ch === 'MAIL') {
-        document.getElementById('input-subject').value = item.subject || '';
-      }
-      executeTriage();
-    }
-
-    async function executeTriage() {
-      const ch = activeChannel;
-      const sender = document.getElementById('input-sender').value.trim() || 'Unknown';
-      const content = document.getElementById('input-content').value.trim();
-      const subject = document.getElementById('input-subject').value.trim();
-
+    async function runGuardianScan(overrideChannel, overrideContent) {
+      const channel = overrideChannel || document.getElementById('scanChannel').value;
+      const sender = document.getElementById('scanSender').value.trim() || 'Unknown';
+      const content = overrideContent || document.getElementById('scanContent').value.trim();
       if (!content) return;
 
-      const idle = document.getElementById('idle-triage');
-      const active = document.getElementById('active-triage');
-      const btn = document.getElementById('run-triage-btn');
+      const btnLbl = document.getElementById('btnRunCloudScanLabel');
+      btnLbl.textContent = 'Analyzing...';
 
-      btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Filtering with Omnichannel AI...';
-      btn.disabled = true;
-
+      let resData = null;
       try {
-        const resp = await fetch('/v1/sentinel/triage', {
+        const res = await fetch(`${GUARDIAN_API}/triage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            channel: ch,
-            sender: sender,
-            subject: subject,
-            content: content,
-            region: currentRegion
-          })
+          body: JSON.stringify({ channel, sender, content, region: activeRegion })
         });
+        if (res.ok) resData = await res.json();
+      } catch (_) {}
 
-        const data = await resp.json();
-        renderTriageResult(data);
-      } catch (err) {
-        // Fallback local evaluation if backend API is offline
-        renderFallbackEvaluation(ch, sender, subject, content);
-      } finally {
-        btn.innerHTML = '<i class="fa-solid fa-filter"></i> <span>Run Omnichannel Triage</span>';
-        btn.disabled = false;
-      }
+      if (!resData) resData = localTriageFallback(channel, sender, content);
+      renderVerdict(resData);
+      btnLbl.textContent = 'Analyze Threat Now';
+      trackEvent('run_scan', 'index_workbench', { channel, score: resData.threat_score });
+      loadLiveStats();
     }
 
-    let currentSpeechText = "";
-    let isSpeaking = false;
-    let isSeniorMode = false;
+    function escapeHtml(s) {
+      const d = document.createElement('div');
+      d.textContent = String(s || '');
+      return d.innerHTML;
+    }
 
-    function toggleSeniorMode() {
-      isSeniorMode = !isSeniorMode;
-      const body = document.body;
-      const btn = document.getElementById('btn-senior-mode');
-      const text = document.getElementById('senior-mode-text');
+    function renderVerdict(data) {
+      const card = document.getElementById('verdictCard');
+      const icon = document.getElementById('verdictIcon');
+      const badge = document.getElementById('verdictBadge');
+      const headline = document.getElementById('verdictHeadline');
+      const scoreEl = document.getElementById('verdictScore');
+      const reassure = document.getElementById('verdictReassurance');
+      const urlList = document.getElementById('urlBreakdownList');
+      const reasonsList = document.getElementById('verdictReasonsList');
+      const nextStep = document.getElementById('verdictNextStep');
 
-      if (isSeniorMode) {
-        body.classList.add('senior-mode');
-        btn.className = 'px-3 py-1 rounded-full bg-amber-400 text-black border border-amber-300 font-black text-xs flex items-center gap-1.5 shadow-lg transition-all';
-        text.innerText = 'Senior Easy-Read: ON';
+      lastSpeechText = data.speech_text || data.senior_headline;
+      scoreEl.textContent = `${data.threat_score}%`;
+      headline.textContent = data.senior_headline;
+      reassure.textContent = data.senior_reassurance;
+      nextStep.textContent = data.safe_next_step;
+
+      if (data.threat_score >= 70) {
+        card.className = 'p-6 rounded-3xl verdict-danger transition-all space-y-4';
+        icon.textContent = '🛑';
+        badge.textContent = 'HIGH THREAT • DO NOT CLICK OR PAY';
+        badge.className = 'text-xs font-mono font-black uppercase tracking-wider text-rose-300';
+      } else if (data.threat_score >= 35) {
+        card.className = 'p-6 rounded-3xl verdict-warn transition-all space-y-4';
+        icon.textContent = '⚠️';
+        badge.textContent = 'CAUTION • VERIFY SENDER FIRST';
+        badge.className = 'text-xs font-mono font-black uppercase tracking-wider text-amber-300';
       } else {
-        body.classList.remove('senior-mode');
-        btn.className = 'px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/50 font-bold text-xs flex items-center gap-1.5 hover:bg-amber-500 hover:text-black transition-all';
-        text.innerText = 'Senior Easy-Read: OFF';
-      }
-    }
-
-    function loadSeniorScenario(key) {
-      if (key === 'NHS_APPOINTMENT') {
-        switchChannel('TEXT');
-        setRegion('UK');
-        document.getElementById('input-sender').value = 'NHS-NoReply';
-        document.getElementById('input-content').value = "NHS appointment reminder with Dr. Smith at St Mary's Hospital on Tuesday at 10:30am. Please reply 1 to confirm or 2 to cancel.";
-      } else if (key === 'CVS_PRESCRIPTION') {
-        switchChannel('TEXT');
-        setRegion('US');
-        document.getElementById('input-sender').value = '+1 (800) 555-0199';
-        document.getElementById('input-content').value = "CVS Pharmacy: Your prescription Rx #482910 is ready for pickup at 124 Main St.";
-      } else if (key === 'GRANDCHILD_GIFT') {
-        switchChannel('TEXT');
-        setRegion('US');
-        document.getElementById('input-sender').value = '+1 (555) 234-5678 (Granddaughter Emma)';
-        document.getElementById('input-content').value = "Hi Grandma, thank you so much for the Target gift card you sent for my birthday! Love you so much - Emma";
-      } else if (key === 'CHASE_2FA') {
-        switchChannel('TEXT');
-        setRegion('US');
-        document.getElementById('input-sender').value = '24273 (Chase Bank)';
-        document.getElementById('input-content').value = "Chase: Your one-time passcode is 482910. Do not share this code with anyone. We will never call to ask for it.";
-      } else if (key === 'IRS_SCAM_CALL') {
-        switchChannel('CALL');
-        setRegion('US');
-        document.getElementById('input-sender').value = '+1 (888) 555-0199 (IRS Warrant)';
-        document.getElementById('input-content').value = "This is the IRS Internal Revenue Service. An arrest warrant has been issued in your name. Call 1-888-555-0199 immediately with Target gift cards to clear bail.";
-      }
-      executeTriage();
-    }
-
-    function renderTriageResult(data) {
-      document.getElementById('idle-triage').classList.add('hidden');
-      document.getElementById('active-triage').classList.remove('hidden');
-
-      const card = document.getElementById('traffic-light-card');
-      const icon = document.getElementById('traffic-icon');
-      const badge = document.getElementById('traffic-badge');
-      const headline = document.getElementById('res-senior-headline');
-      const score = document.getElementById('res-score');
-      const rIcon = document.getElementById('reassurance-icon');
-      const rText = document.getElementById('res-reassurance-text');
-      const nextStep = document.getElementById('res-next-step');
-      const whyList = document.getElementById('res-why-list');
-
-      score.innerText = data.threat_score + '%';
-      headline.innerText = data.senior_headline || data.verdict;
-      rText.innerText = data.senior_reassurance || "You are safe. No money has left your account.";
-      nextStep.innerText = data.safe_next_step || (data.safe_action_steps && data.safe_action_steps[0]) || "Safe to proceed.";
-      currentSpeechText = data.speech_text || (data.senior_headline + ". " + data.senior_reassurance + ". " + data.safe_next_step);
-
-      // Reset card styles
-      card.className = 'p-4 sm:p-5 rounded-2xl transition-all ';
-
-      if (data.category === 'CRITICAL_FRAUD' || data.threat_score >= 70) {
-        card.classList.add('traffic-shield-red');
-        icon.innerText = '🛑';
-        badge.innerText = 'STOP! CONFIRMED SCAM 🚨';
-        badge.className = 'text-xs sm:text-sm font-black font-mono tracking-wider uppercase text-rose-300';
-        rIcon.className = 'fa-solid fa-triangle-exclamation text-rose-400 text-lg mt-0.5';
-      } else if (data.category === 'SUSPICIOUS_SPAM' || data.threat_score >= 35) {
-        card.classList.add('traffic-shield-amber');
-        icon.innerText = '⚠️';
-        badge.innerText = 'CAUTION: VERIFY FIRST 🟡';
-        badge.className = 'text-xs sm:text-sm font-black font-mono tracking-wider uppercase text-amber-300';
-        rIcon.className = 'fa-solid fa-shield-halved text-amber-400 text-lg mt-0.5';
-      } else {
-        card.classList.add('traffic-shield-green');
-        icon.innerText = '💚';
-        badge.innerText = '100% VERIFIED SAFE 🟢';
-        badge.className = 'text-xs sm:text-sm font-black font-mono tracking-wider uppercase text-emerald-300';
-        rIcon.className = 'fa-solid fa-heart-circle-check text-emerald-400 text-lg mt-0.5';
+        card.className = 'p-6 rounded-3xl verdict-safe transition-all space-y-4';
+        icon.textContent = '✅';
+        badge.textContent = 'VERIFIED LOW RISK';
+        badge.className = 'text-xs font-mono font-black uppercase tracking-wider text-emerald-300';
       }
 
-      // Populate Plain English Reasons (Sanitized & XSS-Proof)
-      whyList.innerHTML = '';
-      const reasons = (data.why_we_flagged_this && data.why_we_flagged_this.length > 0)
-        ? data.why_we_flagged_this
-        : (data.threat_indicators ? data.threat_indicators.map(i => i.description) : ['No threat indicators detected. Safe communication.']);
+      const urls = data.extracted_urls || [];
+      urlList.innerHTML = urls.length
+        ? urls.map(u => {
+            const cls = u.verdict === 'MALICIOUS' ? 'text-rose-300' : (u.verdict === 'SAFE_OFFICIAL' ? 'text-emerald-300' : 'text-amber-300');
+            return `<div class="${cls}">${escapeHtml(u.verdict)} • <strong>${escapeHtml(u.host)}</strong> — ${escapeHtml((u.reasons || []).join('; '))}</div>`;
+          }).join('')
+        : '<div class="text-slate-400">No external website links extracted in this text.</div>';
 
-      reasons.forEach(r => {
-        const li = document.createElement('li');
-        li.className = 'flex items-start gap-2';
-
-        const checkSpan = document.createElement('span');
-        checkSpan.className = 'text-emerald-400 font-bold';
-        checkSpan.textContent = '✓';
-
-        const textSpan = document.createElement('span');
-        textSpan.textContent = r;
-
-        li.appendChild(checkSpan);
-        li.appendChild(textSpan);
-        whyList.appendChild(li);
-      });
-
-      // Update telemetry
-      document.getElementById('telemetry-channel').innerText = data.channel || activeChannel;
-      document.getElementById('telemetry-sender').innerText = data.sender || 'Unknown';
-      document.getElementById('telemetry-category').innerText = data.category || 'UNKNOWN';
-      document.getElementById('telemetry-action').innerText = data.action || 'INBOX_SAFE';
+      reasonsList.innerHTML = (data.why_we_flagged_this || []).map(r => `<li>• ${escapeHtml(r)}</li>`).join('');
+      document.getElementById('scanIdLabel').textContent = `Report ID: ${data.scan_id}`;
+      document.getElementById('scanLatencyLabel').textContent = `Evaluated in ${data.latency_ms}ms`;
     }
 
-    function triggerSpeakVerdict() {
-      if (!('speechSynthesis' in window)) {
-        alert('Speech read-aloud is not supported on this browser.');
-        return;
-      }
-
-      if (isSpeaking) {
-        window.speechSynthesis.cancel();
-        isSpeaking = false;
-        document.getElementById('voice-btn-label').innerText = '🔊 Listen (Read Aloud)';
-        return;
-      }
-
-      const textToSpeak = currentSpeechText || "Guardian Angel. Everything is safe.";
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.rate = 0.88; // Gentle, clear speed for aged clients
-      utterance.pitch = 1.0;
-
-      utterance.onstart = () => {
-        isSpeaking = true;
-        document.getElementById('voice-btn-label').innerText = '⏹️ Stop Speaking';
-      };
-
-      utterance.onend = () => {
-        isSpeaking = false;
-        document.getElementById('voice-btn-label').innerText = '🔊 Listen (Read Aloud)';
-      };
-
-      utterance.onerror = () => {
-        isSpeaking = false;
-        document.getElementById('voice-btn-label').innerText = '🔊 Listen (Read Aloud)';
-      };
-
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function triggerFamilyAngelLifeline() {
-      const modal = document.getElementById('family-lifeline-modal');
-      modal.classList.remove('hidden');
-
-      // Send real alert to Family Angel via API
-      const content = document.getElementById('input-content').value || "Assistance requested by protected senior.";
-      const ch = activeChannel;
-      fetch('/v1/guardian/alert-family', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          protected_name: "Margaret (Senior, 72)",
-          channel: ch,
-          scam_type: "Lifeline Assistance Call Triggered",
-          threat_score: 95,
-          threat_snippet: content.substring(0, 140),
-          region: currentRegion
-        })
-      }).catch(() => {});
-    }
-
-    function closeFamilyLifelineModal() {
-      document.getElementById('family-lifeline-modal').classList.add('hidden');
-    }
-
-    function renderFallbackEvaluation(ch, sender, subject, content) {
-      const lower = (sender + ' ' + subject + ' ' + content).toLowerCase();
-      let score = 5;
-      let category = 'SAFE_PERSONAL';
-      let verdict = 'SAFE / PERSONAL 🟢';
-      let action = 'INBOX_SAFE';
-      let headline = 'SAFE TO OPEN: Personal Message';
-      let reassurance = 'You are completely safe. No money has left your account.';
-      let safeStep = 'Safe to read and reply.';
-      let why = ['No scam patterns detected.'];
-      let speech = 'This message is safe. You can read and reply whenever you like.';
-
-      // Healthcare Appointment Lifeline
-      if (lower.includes('appointment') || lower.includes('nhs') || lower.includes('doctor') || lower.includes('dr.')) {
-        score = 0;
-        category = 'SAFE_HEALTHCARE';
-        headline = 'SAFE TO OPEN: Doctor / Clinic Appointment Reminder';
-        reassurance = 'This is a real appointment from your healthcare provider. You can confirm or attend as planned.';
-        safeStep = 'Reply 1 to confirm if requested, or note the time on your calendar.';
-        why = ['Verified healthcare appointment scheduling. Zero threat detected.'];
-        speech = 'Good news! This is a safe reminder for your upcoming doctor appointment. You do not need to worry.';
-      } else if (lower.includes('prescription') || lower.includes('boots') || lower.includes('cvs')) {
-        score = 0;
-        category = 'SAFE_HEALTHCARE';
-        headline = 'SAFE TO OPEN: Your Prescription is Ready';
-        reassurance = 'This is a real message from your pharmacy confirming your medication is ready.';
-        safeStep = 'Pick up your prescription during regular pharmacy hours.';
-        why = ['Verified pharmacy prescription ready notice.'];
-        speech = 'Good news! Your prescription is ready for pickup at your pharmacy.';
-      } else if (lower.includes('thank you so much') || lower.includes('thanks grandma') || lower.includes('thanks nana') || lower.includes('love you so much')) {
-        score = 0;
-        category = 'SAFE_FAMILY';
-        headline = 'SAFE TO OPEN: Note from Family or Loved One';
-        reassurance = 'This is a warm personal message from a grandchild or family member. It is completely safe.';
-        safeStep = 'Safe to read and reply with your love!';
-        why = ['Recognized personal affection from family.'];
-        speech = 'This is a lovely, safe personal message from a family member. Everything is safe and sound.';
-      } else if (lower.includes('warrant') || lower.includes('arrest') || lower.includes('holding account') || lower.includes('$499') || lower.includes('anydesk') || lower.includes('.top') || lower.includes('.xyz')) {
-        score = 95;
-        category = 'CRITICAL_FRAUD';
-        headline = 'STOP! DO NOT ANSWER OR PAY (Scam Attempt)';
-        reassurance = 'You are completely safe. No money has left your account. You did the right thing by checking.';
-        safeStep = 'Hang up or delete this message now. Do not call back.';
-        why = ['Matched dangerous fraudulent coercion or fake government impersonation.'];
-        speech = 'Attention! Guardian Angel has blocked a dangerous scam. Please do not reply, do not pay, and rest easy knowing you are safe.';
-      }
-
-      renderTriageResult({
-        threat_score: score,
-        category: category,
-        verdict: verdict,
-        action: action,
-        senior_headline: headline,
-        senior_reassurance: reassurance,
-        safe_next_step: safeStep,
-        why_we_flagged_this: why,
-        speech_text: speech
+    // REAL Client-Side Tesseract OCR Image Reader
+    let tesseractLoaded = false;
+    function loadTesseractScript() {
+      if (tesseractLoaded && window.Tesseract) return Promise.resolve();
+      return new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
+        s.onload = () => { tesseractLoaded = true; resolve(); };
+        s.onerror = () => reject(new Error('Could not load OCR engine'));
+        document.head.appendChild(s);
       });
     }
 
-    function runBatchSimulation() {
-      const tbody = document.getElementById('batch-table-body');
-      tbody.innerHTML = '';
-
-      BATCH_ITEMS.forEach((item, idx) => {
-        const lower = (item.sender + ' ' + item.content).toLowerCase();
-        let cat = 'SAFE_PERSONAL';
-        let badgeClass = 'text-emerald-400 bg-emerald-950/60 border-emerald-500/40';
-        let score = '0%';
-        let act = 'INBOX_SAFE 🟢';
-
-        if (lower.includes('arrest') || lower.includes('gift card') || lower.includes('$499') || lower.includes('.top')) {
-          cat = 'CRITICAL_FRAUD';
-          badgeClass = 'text-rose-400 bg-rose-950/60 border-rose-500/40';
-          score = '95%';
-          act = 'BLOCK_AND_ALERT 🚨';
-        } else if (lower.includes('flash sale')) {
-          cat = 'SUSPICIOUS_SPAM';
-          badgeClass = 'text-amber-400 bg-amber-950/60 border-amber-500/40';
-          score = '45%';
-          act = 'QUARANTINE ⚠️';
-        } else if (lower.includes('verification code') || lower.includes('single-use')) {
-          cat = 'TRANSACTIONAL';
-          badgeClass = 'text-yellow-400 bg-yellow-950/60 border-yellow-500/40';
-          score = '0%';
-          act = 'INBOX_PRIORITY 🟡';
-        }
-
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-800/30 transition-colors';
-        tr.innerHTML = `
-          <td class="py-3 px-4 font-mono font-bold text-cyan-300">${escapeHtml(item.channel)}</td>
-          <td class="py-3 px-4 font-mono text-[11px] text-slate-300">${escapeHtml(item.sender)}</td>
-          <td class="py-3 px-4 text-slate-300 max-w-xs truncate">${escapeHtml(item.content)}</td>
-          <td class="py-3 px-4"><span class="px-2 py-0.5 rounded border text-[10px] font-mono font-bold ${badgeClass}">${escapeHtml(cat)}</span></td>
-          <td class="py-3 px-4 font-mono font-bold text-slate-200">${score}</td>
-          <td class="py-3 px-4 text-right font-mono font-bold text-[11px] text-slate-300">${act}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    let selectedTier = 'lockdown';
-
-    function handleCheckout(tier) {
-      selectedTier = tier;
-      const isUk = currentRegion === 'UK';
-      let title = "Senior PC Scam Audit & Lockdown";
-      let price = isUk ? "£39.00" : "$49.00";
-      let subtext = "25-minute remote AnyDesk session to clean, secure, and lock down your parent's computer.";
-
-      if (tier === 'family') {
-        title = "Family Angel Shield (Up to 5 Devices)";
-        price = isUk ? "£15.99 / mo" : "$19.99 / mo";
-        subtext = "24/7 background threat interception with instant Telegram alerts to daughter.";
-      } else if (tier === 'individual') {
-        title = "Individual Omnichannel Protection";
-        price = isUk ? "£7.99 / mo" : "$9.99 / mo";
-        subtext = "Continuous call, email, and text screening for 1 person.";
-      }
-
-      document.getElementById('checkout-modal-title').innerText = title;
-      document.getElementById('checkout-modal-price').innerText = price;
-      document.getElementById('checkout-modal-subtext').innerText = subtext;
-      document.getElementById('checkout-booking-modal').classList.remove('hidden');
-    }
-
-    function closeCheckoutModal() {
-      document.getElementById('checkout-booking-modal').classList.add('hidden');
-    }
-
-    async function proceedToOnlinePayment() {
-      const btn = document.getElementById('btn-proceed-pay');
-      btn.innerText = "Connecting to Checkout...";
-      btn.disabled = true;
-
-      try {
-        const resp = await fetch('/v1/guardian/checkout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            plan_tier: selectedTier,
-            billing_cycle: 'monthly',
-            region: currentRegion,
-            success_url: window.location.href,
-            cancel_url: window.location.href
-          })
-        });
-        const data = await resp.json();
-        if (data.checkout_url) {
-          window.open(data.checkout_url, '_blank');
-        }
-      } catch (e) {
-        alert("Connecting to secure checkout...");
-        window.open('https://checkout.stripe.com', '_blank');
-      } finally {
-        btn.innerText = "Pay with Card / Apple Pay";
-        btn.disabled = false;
-        closeCheckoutModal();
-      }
-    }
-
-    function bookViaTelegram() {
-      const email = document.getElementById('checkout-email').value.trim() || 'Parent Caregiver';
-      const text = encodeURIComponent(`Hello Guardian Angel! I want to book the ${selectedTier.toUpperCase()} plan for my parent. My email/contact: ${email}`);
-      window.open(`https://t.me/Aassqqee_bot?start=${text}`, '_blank');
-      closeCheckoutModal();
-    }
-
-    async function simulateCarrierCall(type) {
-      const out = document.getElementById('telecom-sim-output');
-      out.classList.remove('hidden');
-      out.innerHTML = '<span class="text-cyan-400">Connecting incoming call to Carrier *71 AI Screener...</span>';
-
-      const payload = type === 'SCAM' ? {
-        From: "+1 (888) 555-0199",
-        To: "+1 (415) 555-0123",
-        CallerSpeech: "This is Officer Miller from IRS. An arrest warrant has been issued in your name. Purchase $2,500 Target gift cards to clear bail.",
-        ForwardingCode: "*71",
-        ProtectedSenior: "Margaret (76)",
-        Region: currentRegion
-      } : {
-        From: "+1 (415) 555-0999",
-        To: "+1 (415) 555-0123",
-        CallerSpeech: "Hello Margaret, this is Dr. Robert's clinic calling to confirm your appointment on Tuesday at 10 AM.",
-        ForwardingCode: "*71",
-        ProtectedSenior: "Margaret (76)",
-        Region: currentRegion
-      };
-
-      try {
-        const resp = await fetch('/v1/telecom/carrier-forward-webhook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await resp.json();
-
-        if (data.action === 'ACTIVATE_MARGARET_AI') {
-          out.innerHTML = `
-            <div class="text-rose-400 font-bold">🛑 SCAMMER INTERCEPTED & WASTED!</div>
-            <div>Mom's phone: <strong class="text-emerald-400">NEVER RANG (0 Disturbance)</strong></div>
-            <div>Scammer wasted: <strong class="text-amber-400">${escapeHtml(String(data.wasted_duration_mins))} Minutes</strong></div>
-            <div class="text-[11px] text-slate-300 italic pt-1">"${escapeHtml(data.margaret_ai_reply)}"</div>
-            <div class="text-[10px] text-purple-400 pt-1">✓ Instant Alert dispatched to Sarah's Telegram (@Aassqqee_bot)</div>
-          `;
-        } else {
-          out.innerHTML = `
-            <div class="text-emerald-400 font-bold">🟢 LEGITIMATE DOCTOR APPOINTMENT VERIFIED!</div>
-            <div>Action: <strong class="text-white">&lt;Dial&gt; Forwarded cleanly to Mom's handset</strong></div>
-            <div class="text-[10px] text-slate-400">TwiML: ${escapeHtml(data.twiml_response)}</div>
-          `;
-        }
-      } catch (e) {
-        out.innerHTML = '<span class="text-rose-400">Simulation completed.</span>';
-      }
-    }
-
-    async function simulateCloudInbox(type) {
-      const out = document.getElementById('cloud-sim-output');
-      out.classList.remove('hidden');
-      out.innerHTML = '<span class="text-purple-400">Cloud Webhook receiving incoming email...</span>';
-
-      const payload = type === 'FAKE_INVOICE' ? {
-        account_email: "margaret.elder@gmail.com",
-        provider: "gmail",
-        sender: "Geek Squad Renewal <billing-support8912@gmail.com>",
-        subject: "Invoice #8921 auto-renewed for $499.00",
-        body: "Your annual total tech protection has renewed. Call toll-free 1-888-555-0142 to connect AnyDesk and dispute."
-      } : {
-        account_email: "margaret.elder@gmail.com",
-        provider: "gmail",
-        sender: "CVS Pharmacy <rx-notify@cvs.com>",
-        subject: "Your prescription Rx #482910 is ready for pickup",
-        body: "Your prescription is ready for pickup at 124 Main St branch."
-      };
-
-      try {
-        const resp = await fetch('/v1/cloud-inbox/webhook', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await resp.json();
-
-        if (data.status === 'AUTO_QUARANTINED') {
-          out.innerHTML = `
-            <div class="text-rose-400 font-bold">🗑️ FAKE INVOICE AUTO-TRASHED (Gmail API)!</div>
-            <div>Threat: <strong class="text-white">${escapeHtml(data.threat_category)}</strong></div>
-            <div class="text-emerald-400">Margaret opens her iPad: The scam email DOES NOT EXIST.</div>
-            <div class="text-[10px] text-purple-400 pt-1">✓ Sarah notified on Telegram: "Cleaned 1 scam from Mom's inbox"</div>
-          `;
-        } else {
-          out.innerHTML = `
-            <div class="text-emerald-400 font-bold">💚 SAFE HEALTHCARE PRESCRIPTION DELIVERED!</div>
-            <div>Action: Allowed normal inbox delivery.</div>
-            <div class="text-slate-300 text-[11px]">${escapeHtml(data.reassurance_for_senior)}</div>
-          `;
-        }
-      } catch (e) {
-        out.innerHTML = '<span class="text-rose-400">Simulation completed.</span>';
-      }
-    }
-
-    function shareViralReel(reelId) {
-      let caption = "Listen to our AI Granny keep this phone scammer on the line for 38 minutes so he couldn't rob our parents! 😂 Protected by @GuardianAngelDefense #ScamBait #Kitboga #ElderProtection";
-      if (reelId === 'reel-02') {
-        caption = "Scammer thought he found an easy target with my 78yo mom. Margaret AI wasted 24 mins of his day instead. Get your parents protected free! 👵🛡️ #AIGranny #GuardianAngel";
-      } else if (reelId === 'reel-03') {
-        caption = "Zero dollars lost, 31 minutes wasted. The ultimate hands-off scam defense for elderly parents. #AntiScam #ScammerRevenge";
-      }
-
-      navigator.clipboard.writeText(caption).then(() => {
-        alert("✨ Viral Reel Caption copied to clipboard!\n\n\"" + caption + "\"\n\nRedirecting to Instagram / TikTok / Facebook to share...");
-        window.open('https://www.tiktok.com', '_blank');
-      }).catch(() => {
-        alert("Share Reel: " + caption);
-      });
-    }
-
-    // --- Mobile Screenshot & Camera Direct Capture ---
-    function handleMobileScreenshotUpload(event) {
-      const file = event.target.files[0];
+    async function handleOcrFileSelect(event) {
+      const file = event.target.files?.[0];
       if (!file) return;
+      const previewUrl = URL.createObjectURL(file);
+      document.getElementById('ocrPreviewImg').src = previewUrl;
+      document.getElementById('ocrPreviewWrap').classList.remove('hidden');
+      document.getElementById('ocrDropZone').classList.add('hidden');
+      document.getElementById('ocrProgressWrap').classList.remove('hidden');
 
-      const btn = document.getElementById('btn-triage');
-      if (btn) btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Reading screenshot...';
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        const name = (file.name || '').toLowerCase();
-        let sampleContent = "Screenshot image received: " + file.name;
-        if (name.includes('usps') || name.includes('mail') || name.includes('parcel')) {
-          sampleContent = "USPS Alert: Package delivery issue. Verify your street address at track-usps-alert.top to avoid return to sender.";
-        } else if (name.includes('geek') || name.includes('invoice')) {
-          sampleContent = "Geek Squad: Invoice $499 auto-renewed. Call 1-888-555-0142 to connect AnyDesk and dispute charge.";
-        } else if (name.includes('doctor') || name.includes('nhs') || name.includes('clinic')) {
-          sampleContent = "NHS clinic appointment reminder on Tuesday at 10:30am with Dr. Brown. Reply 1 to confirm.";
-        } else {
-          sampleContent = "Screenshot scanned: Alert regarding urgent bank verification and safe holding account.";
-        }
-        document.getElementById('input-content').value = sampleContent;
-        switchChannel('TEXT');
-        executeTriage();
-      };
-      reader.readAsDataURL(file);
-    }
-
-    // --- Mobile Voice Dictation & Triage (Web Speech API) ---
-    let mobileSpeechRec = null;
-    function triggerMobileVoiceTriage() {
-      const micBtn = document.getElementById('btn-mobile-mic');
-      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-      if (!SpeechRec) {
-        alert("Voice dictation is not supported on this browser. You can type or paste text directly.");
-        return;
-      }
-
-      if (!mobileSpeechRec) {
-        mobileSpeechRec = new SpeechRec();
-        mobileSpeechRec.continuous = false;
-        mobileSpeechRec.interimResults = false;
-        mobileSpeechRec.lang = currentRegion === 'UK' ? 'en-GB' : 'en-US';
-
-        mobileSpeechRec.onstart = () => {
-          if (micBtn) {
-            micBtn.classList.add('animate-pulse', 'bg-rose-500');
-            micBtn.innerHTML = '🔴';
-          }
-        };
-
-        mobileSpeechRec.onresult = event => {
-          const transcript = event.results[0][0].transcript;
-          document.getElementById('input-content').value = transcript;
-          switchChannel('CALL');
-          executeTriage();
-        };
-
-        mobileSpeechRec.onerror = () => {
-          if (micBtn) {
-            micBtn.classList.remove('animate-pulse', 'bg-rose-500');
-            micBtn.innerHTML = '🎙️';
-          }
-        };
-
-        mobileSpeechRec.onend = () => {
-          if (micBtn) {
-            micBtn.classList.remove('animate-pulse', 'bg-rose-500');
-            micBtn.innerHTML = '🎙️';
-          }
-        };
-      }
+      const statusMsg = document.getElementById('ocrStatusMsg');
+      const pctEl = document.getElementById('ocrPctLabel');
+      const barEl = document.getElementById('ocrProgressBar');
+      statusMsg.textContent = 'Initializing on-device Tesseract OCR...';
+      pctEl.textContent = '5%';
+      barEl.style.width = '5%';
 
       try {
-        mobileSpeechRec.start();
-      } catch (err) {
-        // already started
-      }
-    }
-
-    // --- Mobile PWA Install Prompt & Permissions Wizard ---
-    let deferredPWAEvent = null;
-    window.addEventListener('beforeinstallprompt', e => {
-      e.preventDefault();
-      deferredPWAEvent = e;
-      const installBtn = document.getElementById('btn-pwa-install');
-      if (installBtn) installBtn.classList.remove('hidden');
-    });
-
-    function triggerPWAInstall() {
-      if (deferredPWAEvent) {
-        deferredPWAEvent.prompt();
-        deferredPWAEvent.userChoice.then(() => {
-          deferredPWAEvent = null;
-        });
-      } else {
-        alert("To install Guardian Angel on iPhone/iPad: Tap the Share button ⬆️ at the bottom of Safari, then choose 'Add to Home Screen' ➕");
-      }
-    }
-
-    function openPermissionsWizard() {
-      const modal = document.getElementById('modal-permissions-wizard');
-      if (modal) modal.classList.remove('hidden');
-    }
-
-    function closePermissionsWizard() {
-      const modal = document.getElementById('modal-permissions-wizard');
-      if (modal) modal.classList.add('hidden');
-    }
-
-    function requestPushPermission() {
-      if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            alert('✅ Emergency Push Notifications active for Guardian Angel!');
-          } else {
-            alert('Notifications were not enabled. You can enable them anytime in phone settings.');
+        await loadTesseractScript();
+        const result = await window.Tesseract.recognize(file, 'eng', {
+          logger: m => {
+            if (m.status) statusMsg.textContent = `OCR: ${m.status}`;
+            if (typeof m.progress === 'number') {
+              const p = Math.round(m.progress * 100);
+              pctEl.textContent = `${p}%`;
+              barEl.style.width = `${p}%`;
+            }
           }
         });
-      } else {
-        alert('Push notifications are not supported on this browser.');
+        const cleanText = (result?.data?.text || '').trim();
+        document.getElementById('ocrExtractedBox').value = cleanText || '[No readable text found inside this image.]';
+        statusMsg.textContent = cleanText ? 'Text extracted directly from image pixels ✓' : 'No readable text found in image';
+        if (cleanText) {
+          trackEvent('ocr_scan', 'index_workbench', { chars: cleanText.length });
+          runGuardianScan('OCR', cleanText);
+        }
+      } catch (err) {
+        statusMsg.textContent = `OCR load failed (${err.message}). Paste image text below to scan.`;
       }
     }
 
-    // Initialize defaults on load
-    window.onload = function() {
-      switchChannel('TEXT');
-      runBatchSimulation();
-    };
+    function resetOcrUpload() {
+      document.getElementById('ocrFileInput').value = '';
+      document.getElementById('ocrPreviewImg').removeAttribute('src');
+      document.getElementById('ocrPreviewWrap').classList.add('hidden');
+      document.getElementById('ocrProgressWrap').classList.add('hidden');
+      document.getElementById('ocrDropZone').classList.remove('hidden');
+    }
+
+    function analyzeExtractedOcrText() {
+      const txt = document.getElementById('ocrExtractedBox').value.trim();
+      if (txt) runGuardianScan('OCR', txt);
+    }
+
+    // Real Browser SpeechRecognition Microphone Call Monitor
+    let micInstance = null;
+    let micActive = false;
+    function toggleMicListener() {
+      const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SR) {
+        document.getElementById('micTranscriptBox').textContent = 'Web Speech API is unavailable in this browser. Open in desktop/Android Chrome or Safari.';
+        return;
+      }
+      if (micActive && micInstance) {
+        micActive = false;
+        micInstance.stop();
+        document.getElementById('micStateBadge').textContent = 'STOPPED';
+        document.getElementById('micBtnText').textContent = 'Start Live Call Listening';
+        return;
+      }
+      micInstance = new SR();
+      micInstance.continuous = true;
+      micInstance.interimResults = true;
+      micInstance.lang = 'en-US';
+      micInstance.onstart = () => {
+        micActive = true;
+        document.getElementById('micStateBadge').textContent = 'LISTENING LIVE';
+        document.getElementById('micBtnText').textContent = 'Stop Listening';
+      };
+      micInstance.onresult = ev => {
+        let spoken = '';
+        for (let i = ev.resultIndex; i < ev.results.length; i++) spoken += ev.results[i][0].transcript + ' ';
+        const clean = spoken.trim();
+        if (clean) {
+          document.getElementById('micTranscriptBox').textContent = clean;
+          if (/(gift card|arrest|warrant|anydesk|teamviewer|wire transfer|social security|bitcoin atm)/i.test(clean)) {
+            runGuardianScan('CALL', clean);
+            playWarningTone();
+          }
+        }
+      };
+      micInstance.onend = () => { if (micActive) try { micInstance.start(); } catch (_) {} };
+      micInstance.start();
+    }
+
+    function playWarningTone() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sawtooth'; o.frequency.value = 840;
+        g.gain.value = 0.12;
+        o.connect(g); g.connect(ctx.destination);
+        o.start(); o.stop(ctx.currentTime + 0.35);
+      } catch (_) {}
+    }
+
+    function readResultAloud() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(lastSpeechText);
+      u.rate = 0.92;
+      window.speechSynthesis.speak(u);
+    }
+
+    async function sendRealFamilyAlert() {
+      const btn = document.getElementById('btnAlertFamily');
+      btn.textContent = 'Sending Alert...';
+      try {
+        await fetch(`${GUARDIAN_API}/alert-family`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            protected_name: 'Protected Family Device',
+            channel: document.getElementById('scanChannel').value,
+            scam_type: document.getElementById('verdictHeadline').textContent,
+            threat_score: parseInt(document.getElementById('verdictScore').textContent, 10) || 85,
+            threat_snippet: document.getElementById('scanContent').value.slice(0, 300),
+            region: activeRegion
+          })
+        });
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Alert Sent via @Aassqqee_bot</span>';
+      } catch (_) {
+        window.open('https://t.me/Aassqqee_bot', '_blank', 'noopener');
+      }
+    }
+
+    // Real MP4 Video Reels Selector
+    function selectVideoReel(src, downloadName, btnId, caption) {
+      const video = document.getElementById('reelVideoPlayer');
+      const dl = document.getElementById('reelDownloadLink');
+      currentReelCaption = caption;
+      video.src = src;
+      video.play().catch(() => {});
+      dl.href = src;
+      dl.download = downloadName;
+      ['reelBtn1', 'reelBtn2', 'reelBtn3'].forEach(id => {
+        document.getElementById(id).className = id === btnId
+          ? 'w-full text-left p-5 rounded-2xl glass-highlight transition-all flex items-start justify-between gap-4'
+          : 'w-full text-left p-5 rounded-2xl glass-panel hover:border-cyan-400/40 transition-all flex items-start justify-between gap-4';
+      });
+      trackEvent('play_reel', 'reels', { src });
+    }
+
+    function copyReelCaption() {
+      navigator.clipboard?.writeText(currentReelCaption);
+    }
+
+    // Pricing & Real Backend Order Dialog
+    function setPricingRegion(reg) {
+      activeRegion = reg;
+      const p = PRICING_TABLE[reg];
+      document.getElementById('priceFamily').textContent = p.family;
+      document.getElementById('priceAudit').textContent = p.audit;
+      document.querySelectorAll('.price-free').forEach(el => { el.innerHTML = `${p.free} <span class="text-xs text-slate-400 font-normal">/ forever</span>`; });
+      ['US', 'UK', 'IN'].forEach(r => {
+        document.getElementById('currBtn' + r).className = r === reg
+          ? 'px-3 py-1.5 rounded-lg bg-cyan-400 text-slate-950 font-bold'
+          : 'px-3 py-1.5 rounded-lg text-slate-300 hover:text-white font-bold';
+      });
+    }
+
+    function openOrderDialog(tier) {
+      selectedPlan = tier;
+      const p = PRICING_TABLE[activeRegion];
+      const heading = tier === 'concierge_audit' ? 'Book 1-on-1 Security Lockdown' : 'Activate Family Shield';
+      const priceText = tier === 'concierge_audit' ? `${p.audit} one-time` : `${p.family} / month`;
+      document.getElementById('orderDialogHeading').textContent = heading;
+      document.getElementById('orderDialogPriceTag').textContent = priceText;
+      if (activeRegion === 'IN') document.getElementById('ordPayMethod').value = 'upi';
+      document.getElementById('orderForm').classList.remove('hidden');
+      document.getElementById('orderConfirmationBox').classList.add('hidden');
+      document.getElementById('orderDialog').showModal();
+    }
+
+    async function submitOrderForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitOrder');
+      btn.disabled = true;
+      btn.textContent = 'Processing Order...';
+
+      const payload = {
+        plan_tier: selectedPlan,
+        billing_cycle: selectedPlan === 'concierge_audit' ? 'one_time' : 'monthly',
+        region: activeRegion,
+        customer_name: document.getElementById('ordName').value.trim(),
+        customer_email: document.getElementById('ordEmail').value.trim(),
+        caregiver_phone: document.getElementById('ordPhone').value.trim(),
+        senior_name: document.getElementById('ordParent').value.trim() || 'Parent',
+        payment_method: document.getElementById('ordPayMethod').value
+      };
+
+      try {
+        const res = await fetch(`${GUARDIAN_API}/orders`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        trackEvent('order_created', 'checkout_dialog', { tier: selectedPlan, mode: data.payment_mode });
+
+        if (data.payment_mode === 'stripe_live' && data.checkout_url) {
+          window.location.href = data.checkout_url;
+          return;
+        }
+
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('orderConfirmationBox').classList.remove('hidden');
+        document.getElementById('confOrderId').textContent = data.order_id || 'RECEIVED';
+        document.getElementById('confTelegramLink').href = data.telegram_activation_url || 'https://t.me/Aassqqee_bot';
+
+        const upiBox = document.getElementById('upiPayWrap');
+        if (data.upi_uri) {
+          upiBox.classList.remove('hidden');
+          document.getElementById('upiVpaDisplay').textContent = `UPI ID: ${data.upi_vpa}  |  ₹${data.amount}`;
+          document.getElementById('upiDeepLink').href = data.upi_uri;
+          document.getElementById('confOrderDesc').textContent = 'Order saved & sent to our engineering desk. Pay directly via UPI below or confirm with Telegram concierge.';
+        } else {
+          upiBox.classList.add('hidden');
+          document.getElementById('confOrderDesc').textContent = `Order saved (${data.currency} ${data.amount}) & immediately dispatched to our desk via @Aassqqee_bot.`;
+        }
+      } catch (err) {
+        document.getElementById('confOrderDesc').textContent = 'Use the Telegram link below to complete activation directly.';
+        document.getElementById('orderForm').classList.add('hidden');
+        document.getElementById('orderConfirmationBox').classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Create Order & Continue';
+      }
+    }
+
+    // Subtle GPU-efficient Interactive Shield Mesh Canvas
+    (function initShieldMesh() {
+      const canvas = document.getElementById('shieldMeshCanvas');
+      if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const ctx = canvas.getContext('2d');
+      let w = 0, h = 0;
+      const nodes = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      for (let i = 0; i < 38; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: 1.4 + Math.random() * 1.4
+        });
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, w, h);
+        for (let i = 0; i < nodes.length; i++) {
+          const a = nodes[i];
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < 0 || a.x > w) a.vx *= -1;
+          if (a.y < 0 || a.y > h) a.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 242, 254, 0.35)';
+          ctx.fill();
+          for (let j = i + 1; j < nodes.length; j++) {
+            const b = nodes[j];
+            const dist = Math.hypot(a.x - b.x, a.y - b.y);
+            if (dist < 155) {
+              ctx.strokeStyle = `rgba(0, 242, 254, ${(1 - dist / 155) * 0.14})`;
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(a.x, a.y);
+              ctx.lineTo(b.x, b.y);
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadLiveStats();
+      trackEvent('page_view', 'index');
+    });
   </script>
-
-  <!-- Checkout & Booking Modal -->
-  <div id="checkout-booking-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="max-w-md w-full bg-guardDark border-2 border-cyan-500 rounded-3xl p-6 text-left shadow-2xl space-y-4">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div>
-          <span class="text-[10px] font-mono text-cyan-400 font-bold uppercase tracking-wider">SELECTED PLAN</span>
-          <h3 id="checkout-modal-title" class="text-base sm:text-lg font-black text-white">Senior PC Scam Audit &amp; Lockdown</h3>
-        </div>
-        <div id="checkout-modal-price" class="text-xl sm:text-2xl font-black text-amber-400 font-mono">$49.00</div>
-      </div>
-
-      <p id="checkout-modal-subtext" class="text-xs text-slate-300 leading-relaxed">
-        25-minute remote AnyDesk session to clean, secure, and lock down your parent's computer.
-      </p>
-
-      <div>
-        <label class="block text-slate-400 text-xs font-mono mb-1">Your Email (for Booking Receipt &amp; Link):</label>
-        <input type="email" id="checkout-email" placeholder="sarah@example.com" class="w-full bg-guardSurface border border-slate-700 rounded-xl p-3 text-xs sm:text-sm text-white focus:outline-none focus:border-cyan-400" />
-      </div>
-
-      <div class="p-3 bg-guardSurface/60 rounded-xl border border-slate-800 text-[11px] text-slate-400 space-y-1">
-        <div>🛡️ <strong>Zero Risk:</strong> 30-Day 100% Money-Back Guarantee.</div>
-        <div>🔒 <strong>Encrypted:</strong> 256-bit bank-grade checkout via Stripe / MoR.</div>
-      </div>
-
-      <div class="space-y-2 pt-2">
-        <button id="btn-proceed-pay" onclick="proceedToOnlinePayment()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg transition-all">
-          <i class="fa-solid fa-credit-card"></i>
-          <span>Pay with Card / Apple Pay</span>
-        </button>
-
-        <button onclick="bookViaTelegram()" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center justify-center gap-2 transition-colors">
-          <i class="fa-brands fa-telegram text-cyan-400 text-sm"></i>
-          <span>Book via Telegram (@Aassqqee_bot)</span>
-        </button>
-
-        <button onclick="closeCheckoutModal()" class="w-full py-2 text-slate-500 hover:text-slate-300 font-mono text-[11px] text-center">
-          Cancel
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Family Angel Lifeline Emergency Modal -->
-  <div id="family-lifeline-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="max-w-md w-full bg-guardDark border-2 border-purple-500 rounded-3xl p-6 text-center shadow-2xl space-y-4">
-      <div class="w-16 h-16 mx-auto rounded-full bg-purple-500/20 border-2 border-purple-400 flex items-center justify-center text-purple-300 text-3xl animate-pulse">
-        <i class="fa-solid fa-heart-pulse"></i>
-      </div>
-      <h3 class="text-xl sm:text-2xl font-black text-white">Family Angel Sarah Notified!</h3>
-      <div class="p-3.5 bg-emerald-950/60 border border-emerald-500/40 rounded-xl text-left">
-        <div class="text-xs font-bold text-emerald-300 flex items-center gap-1.5 mb-1">
-          <i class="fa-solid fa-circle-check"></i>
-          <span>YOU ARE COMPLETELY SAFE</span>
-        </div>
-        <div class="text-xs text-slate-200 leading-relaxed">
-          No money has left your account. Sarah has received the message details on her Telegram and phone.
-        </div>
-      </div>
-      <div class="p-3 bg-purple-950/60 rounded-xl border border-purple-500/40 text-xs text-purple-200 font-mono">
-        Telegram Dispatch: <strong>SENT to @Aassqqee_bot</strong> (Chat: 8737013099)
-      </div>
-      <div class="flex gap-3 pt-2">
-        <a href="tel:+18005550199" class="flex-1 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg">
-          <i class="fa-solid fa-phone"></i>
-          <span>Call Sarah</span>
-        </a>
-        <button onclick="closeFamilyLifelineModal()" class="flex-1 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm">
-          Close Window
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hidden Mobile Camera/Screenshot Input (Direct Camera Capture) -->
-  <input type="file" id="mobile-camera-input" accept="image/*" capture="environment" class="hidden" onchange="handleMobileScreenshotUpload(event)" />
-
-  <!-- Sticky Mobile Bottom Navigation Bar (WCAG AAA Tap Targets >= 56px) -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-guardNavy/95 backdrop-blur-lg border-t border-slate-800 z-50 px-2 py-2 flex items-center justify-around shadow-2xl" role="navigation" aria-label="Mobile Navigation">
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="flex flex-col items-center justify-center p-2 text-cyan-400 hover:text-white transition-colors" aria-label="Home and Scanner">
-      <span class="text-xl">🛡️</span>
-      <span class="text-[10px] font-bold mt-1">Sentinel</span>
-    </button>
-    
-    <button onclick="document.getElementById('mobile-camera-input').click()" class="flex flex-col items-center justify-center p-2 text-slate-300 hover:text-white transition-colors" aria-label="Snap Screenshot">
-      <span class="text-xl">📸</span>
-      <span class="text-[10px] font-bold mt-1">Photo Scan</span>
-    </button>
-
-    <button onclick="triggerMobileVoiceTriage()" id="btn-mobile-mic" class="flex flex-col items-center justify-center -mt-5 bg-gradient-to-r from-cyan-500 to-blue-600 w-14 h-14 rounded-full shadow-lg border-4 border-guardDark text-black text-2xl active:scale-95 transition-transform" aria-label="Voice Dictation">
-      🎙️
-    </button>
-
-    <button onclick="openPermissionsWizard()" class="flex flex-col items-center justify-center p-2 text-slate-300 hover:text-white transition-colors" aria-label="Carrier Setup">
-      <span class="text-xl">📞</span>
-      <span class="text-[10px] font-bold mt-1">Carrier *71</span>
-    </button>
-
-    <button onclick="triggerFamilyAngelLifeline()" class="flex flex-col items-center justify-center p-2 text-rose-400 hover:text-rose-300 transition-colors" aria-label="Call Family Angel SOS">
-      <span class="text-xl">🚨</span>
-      <span class="text-[10px] font-bold mt-1">Family SOS</span>
-    </button>
-  </nav>
-
-  <!-- Mobile Permissions & Carrier Setup Modal -->
-  <div id="modal-permissions-wizard" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="perm-title">
-    <div class="bg-guardNavy border border-cyan-500/40 rounded-3xl p-6 max-w-md w-full shadow-2xl text-left max-h-[90vh] overflow-y-auto">
-      <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
-        <div class="flex items-center gap-2">
-          <span class="text-2xl">🛡️</span>
-          <h3 id="perm-title" class="text-lg font-black text-white">Guardian Mobile Setup</h3>
-        </div>
-        <button onclick="closePermissionsWizard()" class="text-slate-400 hover:text-white p-2 text-xl font-bold" aria-label="Close">&times;</button>
-      </div>
-
-      <!-- Step 1: Install to Home Screen -->
-      <div class="mb-5 p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-        <div class="flex items-center gap-2 font-bold text-cyan-300 text-sm mb-1">
-          <span>1.</span>
-          <span>Install to Home Screen</span>
-        </div>
-        <p class="text-xs text-slate-300 mb-2">Puts Guardian Angel right on your phone alongside your phone and text apps.</p>
-        <button id="btn-pwa-install" onclick="triggerPWAInstall()" class="w-full py-2.5 px-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-extrabold text-xs flex items-center justify-center gap-2 transition-all">
-          📲 Add Guardian Angel to Home Screen
-        </button>
-      </div>
-
-      <!-- Step 2: Push Notifications -->
-      <div class="mb-5 p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-        <div class="flex items-center gap-2 font-bold text-emerald-300 text-sm mb-1">
-          <span>2.</span>
-          <span>Emergency Family Alerts</span>
-        </div>
-        <p class="text-xs text-slate-300 mb-2">Sends a push alert to daughter Sarah whenever a high-pressure scam is stopped.</p>
-        <button onclick="requestPushPermission()" class="w-full py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700">
-          🔔 Enable Alert Notifications
-        </button>
-      </div>
-
-      <!-- Step 3: Carrier Call Forwarding Activation -->
-      <div class="mb-4 p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800">
-        <div class="flex items-center gap-2 font-bold text-amber-300 text-sm mb-1">
-          <span>3.</span>
-          <span>1-Tap Carrier Call Shield</span>
-        </div>
-        <p class="text-xs text-slate-300 mb-3">Unknown callers route to AI Screener. Real doctors & family ring your phone directly.</p>
-        
-        <div class="grid grid-cols-2 gap-2">
-          <a href="tel:*718005550199" class="py-2.5 px-2 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/40 text-center font-bold text-xs hover:bg-amber-500 hover:text-black transition-all">
-            🇺🇸 US (*71) Dial
-          </a>
-          <a href="tel:**004*08005550199%23" class="py-2.5 px-2 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/40 text-center font-bold text-xs hover:bg-purple-500 hover:text-black transition-all">
-            🇬🇧 UK (**004*) Dial
-          </a>
-        </div>
-        <div class="text-[10px] text-slate-500 mt-2 text-center">To cancel forwarding anytime: Dial *73 (US) or ##004# (UK)</div>
-      </div>
-
-      <button onclick="closePermissionsWizard()" class="w-full py-2.5 rounded-xl bg-slate-800 text-slate-300 font-bold text-xs hover:text-white">
-        Done &amp; Return to Sentinel
-      </button>
-    </div>
-  </div>
 </body>
 </html>

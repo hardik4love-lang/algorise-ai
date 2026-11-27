@@ -1,13 +1,17 @@
 /* ==============================================================================
-   GUARDIAN ANGEL™ — OFFLINE-FIRST PWA SERVICE WORKER (v3.1.0)
+   GUARDIAN ANGEL™ — OFFLINE-FIRST PWA SERVICE WORKER (v3.2.0)
    Guarantees sub-1ms local response times, zero network dependency, and full offline triage.
    ============================================================================== */
 
-const CACHE_NAME = 'guardian-angel-v3.1.0';
+const CACHE_NAME = 'guardian-angel-v3.2.0';
 const STATIC_ASSETS = [
   '/',
+  '/index.html',
+  '/guardian.html',
   '/guardian_mobile.html',
   '/guardian_angel_app.html',
+  '/app.css',
+  '/config.js',
   '/manifest.webmanifest'
 ];
 
