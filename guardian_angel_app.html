@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#050814" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23050814'/><path d='M16 4L25 8V15C25 21 20.5 26 16 28C11.5 26 7 21 7 15V8L16 4Z' stroke='%2300f2fe' stroke-width='2.2' fill='none'/><path d='M12 15.5L15 18.5L20.5 12.5' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
 
-  <link rel="stylesheet" href="/app.css" />
+  <link rel="stylesheet" href="/app.css?v=3.2.1" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -314,8 +314,8 @@
             <div class="text-[11px] text-slate-400 font-medium">High-Risk Scams Flagged</div>
           </div>
           <div class="glass-panel rounded-2xl p-3.5 text-center">
-            <div class="text-xl sm:text-2xl font-black font-mono text-emerald-400">100% Client OCR</div>
-            <div class="text-[11px] text-slate-400 font-medium">Private On-Device Image Read</div>
+            <div class="text-lg sm:text-xl font-black font-mono text-emerald-400">Client OCR</div>
+            <div class="text-[11px] text-slate-400 font-medium">100% On-Device Read</div>
           </div>
         </div>
       </div>
@@ -850,8 +850,13 @@
   </footer>
 
   <!-- Runtime Config + Core App Logic -->
-  <script src="/config.js"></script>
+  <script src="/config.js?v=3.2.1"></script>
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations()
+        .then(regs => regs.forEach(r => r.update()))
+        .catch(() => {});
+    }
     const _cfgBase = (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) || '';
     const API_BASE = (_cfgBase ? _cfgBase.replace(/\/$/, '') : '');
     const GUARDIAN_API = API_BASE.endsWith('/api/v1') ? `${API_BASE}/guardian` : `${API_BASE}/api/v1/guardian`;

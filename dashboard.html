@@ -10,7 +10,7 @@
        compiler and generated this stylesheet in the browser; on a slow
        connection the page rendered unstyled for seconds, which reads as
        a broken page. The CDN is also deprecated. -->
-  <link rel="stylesheet" href="/app.css">
+  <link rel="stylesheet" href="/app.css?v=3.2.1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1067,9 +1067,14 @@
   </div>
 
   <!-- JAVASCRIPT LOGIC -->
-  <script src="/config.js"></script>
+  <script src="/config.js?v=3.2.1"></script>
   <script src="/brand.js"></script>
   <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations()
+        .then(regs => regs.forEach(r => r.update()))
+        .catch(() => {});
+    }
     // Single source of truth, injected at build time by scripts/gen_config.py.
     const _rawApi =
       (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) ||
