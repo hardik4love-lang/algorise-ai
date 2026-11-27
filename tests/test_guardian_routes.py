@@ -105,8 +105,24 @@ def test_triage_verifies_official_domains_and_healthcare_lifelines(guardian_clie
     assert dc["senior_safe"] is True
 
 
-def test_orders_concierge_and_upi_modes_no_fake_stripe_redirect(guardian_client, monkeypatch):
-    us_resp = guardian_client.post(
+def test_orders_pricing_and_gated_extension_download(guardian_client, monkeypatch):
+    # 1. All 3 paid self-serve tiers
+    indiv = guardian_client.post(
+        "/api/v1/guardian/orders",
+        json={
+            "plan_tier": "individual",
+            "region": "US",
+            "customer_name": "Solo User",
+            "customer_email": "solo@example.com",
+        },
+    ).json()
+    assert indiv["amount"] == 9.99
+    assert indiv["currency"] == "USD"
+    assert indiv["interval"] == "month"
+    assert indiv["license_status"] == "pending_payment"
+    assert indiv["license_key"].startswith("GA-")
+
+    fam_resp = guardian_client.post(
         "/api/v1/guardian/orders",
         json={
             "plan_tier": "family",
@@ -117,13 +133,25 @@ def test_orders_concierge_and_upi_modes_no_fake_stripe_redirect(guardian_client,
             "payment_method": "auto",
         },
     )
-    assert us_resp.status_code == 200
-    us_data = us_resp.json()
-    assert us_data["payment_mode"] == "concierge_invoice"
-    assert us_data["checkout_url"] is None
-    assert us_data["amount"] == 19.99
-    assert us_data["currency"] == "USD"
-    assert "t.me/Aassqqee_bot" in us_data["telegram_activation_url"]
+    assert fam_resp.status_code == 200
+    fam_data = fam_resp.json()
+    assert fam_data["payment_mode"] == "concierge_invoice"
+    assert fam_data["checkout_url"] is None
+    assert fam_data["amount"] == 19.99
+    assert fam_data["currency"] == "USD"
+    assert "t.me/Aassqqee_bot" in fam_data["telegram_activation_url"]
+
+    annual = guardian_client.post(
+        "/api/v1/guardian/orders",
+        json={
+            "plan_tier": "family_annual",
+            "region": "US",
+            "customer_name": "Annual Family",
+            "customer_email": "annual@example.com",
+        },
+    ).json()
+    assert annual["amount"] == 149.00
+    assert annual["interval"] == "year"
 
     monkeypatch.setenv("FOUNDER_UPI_VPA", "algorise@okicici")
     in_resp = guardian_client.post(
@@ -142,6 +170,31 @@ def test_orders_concierge_and_upi_modes_no_fake_stripe_redirect(guardian_client,
     assert in_data["upi_uri"].startswith("upi://pay?")
     assert "algorise%40okicici" in in_data["upi_uri"]
     assert in_data["currency"] == "INR"
+
+    # 2. Extension download and license verify MUST reject unactivated / pending keys
+    ver_pending = guardian_client.get(f"/api/v1/guardian/license/verify?license_key={indiv['license_key']}").json()
+    assert ver_pending["valid"] is True
+    assert ver_pending["active"] is False
+
+    dl_blocked = guardian_client.get(f"/api/v1/guardian/package/extension?license_key={indiv['license_key']}")
+    assert dl_blocked.status_code == 403
+
+    # 3. Admin activation unlocks both verify and extension download
+    monkeypatch.setenv("ADMIN_SECRET", "test-admin-secret")
+    act = guardian_client.post(
+        "/api/v1/guardian/license/activate",
+        headers={"X-Admin-Secret": "test-admin-secret"},
+        json={"license_key": indiv["license_key"]},
+    )
+    assert act.status_code == 200 and act.json()["activated"] is True
+
+    ver_active = guardian_client.get(f"/api/v1/guardian/license/verify?license_key={indiv['license_key']}").json()
+    assert ver_active["active"] is True
+
+    dl_ok = guardian_client.get(f"/api/v1/guardian/package/extension?license_key={indiv['license_key']}")
+    assert dl_ok.status_code == 200
+    assert dl_ok.headers["content-type"] == "application/zip"
+    assert len(dl_ok.content) > 1000
 
     bad_resp = guardian_client.post(
         "/api/v1/guardian/orders",

@@ -16,7 +16,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23070A13'/><path d='M16 4L26 8V15C26 21 21.5 26.5 16 28C10.5 26.5 6 21 6 15V8L16 4Z' stroke='%2306B6D4' stroke-width='2' fill='none'/><path d='M12 15L15 18L20 12' stroke='%2310B981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
 
   <!-- Compiled Tailwind CSS & Icons -->
-  <link rel="stylesheet" href="/app.css?v=3.2.1" />
+  <link rel="stylesheet" href="/app.css?v=3.2.2" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +49,33 @@
   </style>
 </head>
 <body class="h-full flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+  <!-- Paid Activation Gate (Mobile PWA & Caregiver SOS require Family Shield or Annual Pass) -->
+  <div id="mobileActivationGate" class="fixed inset-0 z-50 bg-guardDark/95 backdrop-blur-xl flex items-center justify-center p-5">
+    <div class="w-full max-w-sm rounded-3xl bg-guardNavy border border-cyan-500/40 p-6 space-y-4 text-center shadow-2xl">
+      <div class="w-12 h-12 mx-auto rounded-2xl bg-cyan-400/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300 text-2xl">🛡️</div>
+      <div class="space-y-1">
+        <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-cyan-400">GUARDIAN ANGEL™ MOBILE SHIELD</span>
+        <h2 class="text-lg font-black text-white">Activate Paid Family License</h2>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Mobile PWA installation, real-time OCR mail scanning, and Telegram Caregiver SOS are unlocked with an active Family Shield ($19.99/mo) or Annual Family Pass ($149/yr).
+        </p>
+      </div>
+      <div class="space-y-2.5 text-left">
+        <input id="gateLicenseInput" type="text" placeholder="Enter License Key (e.g. GA-...)" class="w-full rounded-xl bg-slate-900 border border-slate-700 px-3 py-2.5 text-xs text-white font-mono focus:border-cyan-400 focus:outline-none" />
+        <div id="gateLicenseStatus" class="text-[11px] font-mono text-amber-300 hidden"></div>
+        <button type="button" onclick="verifyMobileLicense()" class="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 font-black text-xs">
+          Verify &amp; Unlock Mobile Shield
+        </button>
+      </div>
+      <div class="pt-2 border-t border-slate-800 space-y-2">
+        <a href="/#pricing" class="block w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs">
+          Get Protection ($9.99/mo – $149/yr) &rarr;
+        </a>
+        <a href="/#scanner" class="block text-[11px] text-cyan-400 underline">Try 3 Free Demo Checks on Desktop Workbench</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ==============================================================================
        APP HEADER / TOP BAR
@@ -400,7 +427,7 @@
   <!-- ==============================================================================
        SCRIPTS: CONFIG, SERVICE WORKER, PWA, REAL OCR & CLOUD TRIAGE
        ============================================================================== -->
-  <script src="/config.js?v=3.2.1"></script>
+  <script src="/config.js?v=3.2.2"></script>
   <script>
     const _cfgBase = (window.ALGORISE_CONFIG && window.ALGORISE_CONFIG.apiBase) || '';
     const API_BASE = (_cfgBase ? _cfgBase.replace(/\/$/, '') : '');
@@ -870,9 +897,49 @@
       player.play().catch(() => {});
     }
 
+    async function checkMobileLicenseKey(key) {
+      const clean = (key || '').trim().toUpperCase();
+      if (!clean) return false;
+      try {
+        const res = await fetch(`${GUARDIAN_API}/license/verify?license_key=${encodeURIComponent(clean)}`);
+        if (!res.ok) return false;
+        const d = await res.json();
+        if (d.active && (d.plan_tier === 'family' || d.plan_tier === 'family_annual')) {
+          document.getElementById('mobileActivationGate')?.classList.add('hidden');
+          try { localStorage.setItem('guardian_member_ref', clean); } catch (_) {}
+          return true;
+        }
+      } catch (_) {}
+      return false;
+    }
+
+    async function verifyMobileLicense() {
+      const inp = document.getElementById('gateLicenseInput');
+      const st = document.getElementById('gateLicenseStatus');
+      const key = (inp?.value || '').trim().toUpperCase();
+      if (!key) return;
+      if (st) {
+        st.textContent = 'Checking license status...';
+        st.classList.remove('hidden');
+      }
+      const ok = await checkMobileLicenseKey(key);
+      if (!ok && st) {
+        st.textContent = 'Invalid or unactivated key (Family or Annual Pass required).';
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       syncWizardInputs();
       updateUIHeader();
+      try {
+        const qp = new URLSearchParams(window.location.search).get('license_key');
+        const savedKey = qp || localStorage.getItem('guardian_member_ref');
+        if (savedKey) {
+          const inp = document.getElementById('gateLicenseInput');
+          if (inp) inp.value = savedKey;
+          checkMobileLicenseKey(savedKey);
+        }
+      } catch (_) {}
     });
   </script>
 </body>

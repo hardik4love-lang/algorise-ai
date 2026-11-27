@@ -9,6 +9,7 @@ or Stripe checkout creation alongside the standalone local sentinel.
 from __future__ import annotations
 
 import hashlib
+import hmac
 import html
 import json
 import os
@@ -21,7 +22,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import httpx
-from fastapi import APIRouter, BackgroundTasks, HTTPException
+from fastapi import APIRouter, BackgroundTasks, HTTPException, Header, Query
+from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from engine.logging import get_logger
@@ -87,6 +89,18 @@ def _init_guardian_db() -> None:
                 )
                 """
             )
+            conn.execute(
+                """
+                CREATE TABLE IF NOT EXISTS guardian_licenses (
+                    license_key TEXT PRIMARY KEY,
+                    order_id TEXT,
+                    plan_tier TEXT,
+                    customer_email TEXT,
+                    status TEXT,
+                    created_at REAL
+                )
+                """
+            )
             conn.commit()
     except Exception as exc:
         logger.warning("guardian_db_init_warning", error=str(exc))
@@ -143,7 +157,7 @@ class GuardianTriageResponse(BaseModel):
 
 
 class GuardianOrderRequest(BaseModel):
-    plan_tier: str = Field("family", max_length=40)  # individual, family, concierge_audit
+    plan_tier: str = Field("family", max_length=40)  # individual, family, family_annual
     billing_cycle: str = Field("monthly", max_length=20)
     region: str = Field("US", max_length=10)  # US, UK, IN
     customer_name: str = Field(..., min_length=1, max_length=120)
@@ -624,18 +638,21 @@ PLAN_CATALOG: Dict[str, Dict[str, Any]] = {
         "US": {"amount": 9.99, "currency": "USD"},
         "UK": {"amount": 7.99, "currency": "GBP"},
         "IN": {"amount": 799.0, "currency": "INR"},
+        "interval": "month",
     },
     "family": {
         "label": "Guardian Family Shield (Up to 5 Devices)",
         "US": {"amount": 19.99, "currency": "USD"},
         "UK": {"amount": 15.99, "currency": "GBP"},
         "IN": {"amount": 1499.0, "currency": "INR"},
+        "interval": "month",
     },
-    "concierge_audit": {
-        "label": "1-on-1 Device Lockdown & Family Setup",
-        "US": {"amount": 49.00, "currency": "USD"},
-        "UK": {"amount": 39.00, "currency": "GBP"},
-        "IN": {"amount": 2499.0, "currency": "INR"},
+    "family_annual": {
+        "label": "Annual Family Pass (Up to 5 Devices, Self-Serve)",
+        "US": {"amount": 149.00, "currency": "USD"},
+        "UK": {"amount": 119.00, "currency": "GBP"},
+        "IN": {"amount": 11999.0, "currency": "INR"},
+        "interval": "year",
     },
 }
 
@@ -644,8 +661,10 @@ PLAN_CATALOG: Dict[str, Dict[str, Any]] = {
 async def create_guardian_order(
     req: GuardianOrderRequest, bg: BackgroundTasks
 ) -> Dict[str, Any]:
-    """Creates a persisted order record, notifies Telegram concierge, and prepares real payment rail."""
+    """Creates a persisted order record, dispatches Telegram notification, and configures Stripe/UPI/invoice checkout."""
     tier_key = req.plan_tier.lower().strip()
+    if tier_key == "annual":
+        tier_key = "family_annual"
     if tier_key not in PLAN_CATALOG:
         raise HTTPException(status_code=400, detail="Invalid plan_tier")
 
@@ -658,8 +677,8 @@ async def create_guardian_order(
     amount = pricing["amount"]
     currency = pricing["currency"]
     order_id = f"GA-ORD-{uuid.uuid4().hex[:8].upper()}"
+    license_key = f"GA-{order_id[-6:]}-{uuid.uuid4().hex[:6].upper()}"
 
-    # 1. Determine real configured payment rail (never return fake checkout.stripe.com homepage)
     stripe_key = os.getenv("STRIPE_SECRET_KEY", "").strip()
     upi_vpa = os.getenv("FOUNDER_UPI_VPA", "").strip()
     payment_mode = "concierge_invoice"
@@ -673,24 +692,16 @@ async def create_guardian_order(
                     "https://api.stripe.com/v1/checkout/sessions",
                     auth=(stripe_key, ""),
                     data={
-                        "mode": "payment" if tier_key == "concierge_audit" else "subscription",
+                        "mode": "subscription",
                         "customer_email": req.customer_email,
-                        "success_url": req.success_url,
+                        "success_url": f"{req.success_url}{'&' if '?' in req.success_url else '?'}order_id={order_id}&license_key={license_key}",
                         "cancel_url": req.cancel_url,
                         "client_reference_id": order_id,
                         "line_items[0][quantity]": 1,
                         "line_items[0][price_data][currency]": currency.lower(),
                         "line_items[0][price_data][unit_amount]": int(round(amount * 100)),
                         "line_items[0][price_data][product_data][name]": plan_meta["label"],
-                        **(
-                            {
-                                "line_items[0][price_data][recurring][interval]": (
-                                    "year" if req.billing_cycle == "yearly" else "month"
-                                )
-                            }
-                            if tier_key != "concierge_audit"
-                            else {}
-                        ),
+                        "line_items[0][price_data][recurring][interval]": plan_meta["interval"],
                     },
                 )
             if stripe_resp.status_code == 200:
@@ -714,7 +725,7 @@ async def create_guardian_order(
         upi_uri = f"upi://pay?{params}"
         payment_mode = "upi_direct"
 
-    # 2. Persist order
+    # Persist order + pending license record (activated after payment confirmation)
     try:
         with sqlite3.connect(TELEMETRY_DB_PATH) as conn:
             conn.execute(
@@ -723,7 +734,7 @@ async def create_guardian_order(
                     order_id,
                     time.time(),
                     tier_key,
-                    req.billing_cycle,
+                    plan_meta["interval"],
                     region_key,
                     amount,
                     currency,
@@ -733,20 +744,31 @@ async def create_guardian_order(
                     req.senior_name,
                     req.payment_method,
                     payment_mode,
-                    "pending_payment" if payment_mode != "concierge_invoice" else "pending_concierge",
+                    "pending_payment" if payment_mode != "concierge_invoice" else "pending_activation",
+                ),
+            )
+            conn.execute(
+                "INSERT OR REPLACE INTO guardian_licenses VALUES (?, ?, ?, ?, ?, ?)",
+                (
+                    license_key,
+                    order_id,
+                    tier_key,
+                    req.customer_email,
+                    "pending_payment",
+                    time.time(),
                 ),
             )
             conn.commit()
     except Exception as exc:
         logger.warning("guardian_order_save_failed", error=str(exc))
 
-    # 3. Notify owner desk on Telegram
     chat_id = os.getenv("TELEGRAM_CHAT_ID", "").strip()
     if TELEGRAM_BOT.configured and chat_id:
         msg = (
             f"🛡️ <b>NEW GUARDIAN ANGEL ORDER</b>\n"
             f"<b>Order ID:</b> <code>{order_id}</code>\n"
-            f"<b>Plan:</b> {html.escape(plan_meta['label'])} ({currency} {amount})\n"
+            f"<b>License Key (Pending):</b> <code>{license_key}</code>\n"
+            f"<b>Plan:</b> {html.escape(plan_meta['label'])} ({currency} {amount}/{plan_meta['interval']})\n"
             f"<b>Customer:</b> {html.escape(req.customer_name)} &lt;{html.escape(req.customer_email)}&gt;\n"
             f"<b>Phone / Caregiver:</b> <code>{html.escape(req.caregiver_phone or 'N/A')}</code>\n"
             f"<b>Protected Parent:</b> {html.escape(req.senior_name)}\n"
@@ -760,16 +782,101 @@ async def create_guardian_order(
 
     return {
         "order_id": order_id,
+        "license_key": license_key,
+        "license_status": "pending_payment",
         "status": "CREATED",
         "plan_name": plan_meta["label"],
         "amount": amount,
         "currency": currency,
+        "interval": plan_meta["interval"],
         "payment_mode": payment_mode,
         "checkout_url": checkout_url,
         "upi_uri": upi_uri,
         "upi_vpa": upi_vpa if payment_mode == "upi_direct" else None,
         "telegram_activation_url": telegram_activation_url,
     }
+
+
+def _lookup_license(license_key: str) -> Optional[Dict[str, Any]]:
+    clean_key = (license_key or "").strip().upper()
+    if not clean_key:
+        return None
+    try:
+        with sqlite3.connect(TELEMETRY_DB_PATH) as conn:
+            row = conn.execute(
+                "SELECT license_key, order_id, plan_tier, status FROM guardian_licenses WHERE license_key = ?",
+                (clean_key,),
+            ).fetchone()
+            if not row:
+                return None
+            return {
+                "license_key": row[0],
+                "order_id": row[1],
+                "plan_tier": row[2],
+                "status": row[3],
+                "active": row[3] == "active",
+            }
+    except Exception as exc:
+        logger.warning("license_lookup_error", error=str(exc))
+        return None
+
+
+@router.get("/license/verify")
+async def verify_guardian_license(license_key: str = Query(..., min_length=4, max_length=64)) -> Dict[str, Any]:
+    rec = _lookup_license(license_key)
+    if not rec:
+        return {"valid": False, "active": False, "status": "not_found"}
+    return {
+        "valid": True,
+        "active": rec["active"],
+        "license_key": rec["license_key"],
+        "order_id": rec["order_id"],
+        "plan_tier": rec["plan_tier"],
+        "status": rec["status"],
+    }
+
+
+class LicenseActivateRequest(BaseModel):
+    license_key: str = Field(..., min_length=4, max_length=64)
+
+
+@router.post("/license/activate")
+async def activate_guardian_license(
+    req: LicenseActivateRequest,
+    x_admin_secret: str = Header("", alias="X-Admin-Secret"),
+) -> Dict[str, Any]:
+    expected = os.getenv("ADMIN_SECRET", "").strip()
+    if not expected or not hmac.compare_digest(x_admin_secret.strip(), expected):
+        raise HTTPException(status_code=403, detail="Admin authentication required")
+    clean_key = req.license_key.strip().upper()
+    with sqlite3.connect(TELEMETRY_DB_PATH) as conn:
+        cur = conn.execute(
+            "UPDATE guardian_licenses SET status = 'active' WHERE license_key = ?",
+            (clean_key,),
+        )
+        conn.commit()
+        if cur.rowcount == 0:
+            raise HTTPException(status_code=404, detail="License key not found")
+    return {"activated": True, "license_key": clean_key, "status": "active"}
+
+
+@router.get("/package/extension")
+async def download_paid_extension(license_key: str = Query(..., min_length=4, max_length=64)):
+    """Serves the paid Chrome Extension archive only for verified active licenses."""
+    rec = _lookup_license(license_key)
+    if not rec or not rec["active"]:
+        raise HTTPException(
+            status_code=403,
+            detail="Active paid Guardian Angel license required to download the Chrome Extension.",
+        )
+    pkg_path = ROOT_DIR / "engine" / "packages" / "guardian_angel_extension_v3.2.0.zip"
+    if not pkg_path.exists():
+        raise HTTPException(status_code=404, detail="Extension package unavailable")
+    return FileResponse(
+        path=str(pkg_path),
+        media_type="application/zip",
+        filename="guardian_angel_extension_v3.2.0.zip",
+    )
 
 
 @router.get("/clips")

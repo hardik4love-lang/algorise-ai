@@ -3,9 +3,9 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 SRC_DIR = ROOT / "guardian_angel_extension"
-ASSETS_DIR = ROOT / "assets"
-ASSETS_DIR.mkdir(parents=True, exist_ok=True)
-ZIP_PATH = ASSETS_DIR / "guardian_angel_extension_v3.2.0.zip"
+PKG_DIR = ROOT / "engine" / "packages"
+PKG_DIR.mkdir(parents=True, exist_ok=True)
+ZIP_PATH = PKG_DIR / "guardian_angel_extension_v3.2.0.zip"
 
 with zipfile.ZipFile(ZIP_PATH, "w", zipfile.ZIP_DEFLATED) as zf:
     for p in sorted(SRC_DIR.rglob("*")):

@@ -86,5 +86,5 @@ scripts/notify_complete.py
 
 
 !algorise-payroll/extension.zip
-!assets/guardian_angel_extension_v3.2.0.zip
+!engine/packages/guardian_angel_extension_v3.2.0.zip
 !algorise-payroll/**/*.png
