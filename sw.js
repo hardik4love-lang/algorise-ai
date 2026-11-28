@@ -3,15 +3,15 @@
    Always serves fresh online HTML/CSS/JS while keeping full offline fallback.
    ============================================================================== */
 
-const CACHE_NAME = 'guardian-angel-v3.2.3';
+const CACHE_NAME = 'guardian-angel-v3.2.4';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/guardian.html',
   '/guardian_mobile.html',
   '/guardian_angel_app.html',
-  '/app.css?v=3.2.3',
-  '/config.js?v=3.2.3',
+  '/app.css?v=3.2.4',
+  '/config.js?v=3.2.4',
   '/manifest.webmanifest'
 ];
 
