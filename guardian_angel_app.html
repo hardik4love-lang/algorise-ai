@@ -17,7 +17,7 @@
   <meta name="theme-color" content="#050814" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23050814'/><path d='M16 4L25 8V15C25 21 20.5 26 16 28C11.5 26 7 21 7 15V8L16 4Z' stroke='%2300f2fe' stroke-width='2.2' fill='none'/><path d='M12 15.5L15 18.5L20.5 12.5' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
 
-  <link rel="stylesheet" href="/app.css?v=3.2.2" />
+  <link rel="stylesheet" href="/app.css?v=3.2.3" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -868,7 +868,7 @@
   </footer>
 
   <!-- Runtime Config + Core App Logic -->
-  <script src="/config.js?v=3.2.2"></script>
+  <script src="/config.js?v=3.2.3"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.getRegistrations()
@@ -1103,13 +1103,17 @@
       return { scan_id: 'LOCAL-OK', threat_score: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 45 : 5, category: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 'SUSPICIOUS_SPAM' : 'SAFE_PERSONAL', senior_headline: extracted.some(x => x.verdict === 'SUSPICIOUS') ? 'CAUTION: External Link Present' : 'No Known Scam Patterns Detected', senior_reassurance: 'Stay cautious if someone asks for passcodes or money.', safe_next_step: 'Confirm sender directly before entering details.', why_we_flagged_this: ['No critical scam coercion found.'], extracted_urls: extracted, speech_text: 'Scan complete. Proceed with normal caution.', latency_ms: 0.3 };
     }
 
+    let scanInFlight = false;
     async function runGuardianScan(overrideChannel, overrideContent) {
+      if (scanInFlight) return;
       if (!hasRemainingQuotaOrLicense('individual')) return;
       const channel = overrideChannel || document.getElementById('scanChannel').value;
       const sender = document.getElementById('scanSender').value.trim() || 'Unknown';
       const content = overrideContent || document.getElementById('scanContent').value.trim();
       if (!content) return;
 
+      incrementDemoScansUsed();
+      scanInFlight = true;
       const btnLbl = document.getElementById('btnRunCloudScanLabel');
       btnLbl.textContent = 'Analyzing...';
 
@@ -1123,12 +1127,15 @@
         if (res.ok) resData = await res.json();
       } catch (_) {}
 
-      if (!resData) resData = localTriageFallback(channel, sender, content);
-      renderVerdict(resData);
-      incrementDemoScansUsed();
-      btnLbl.textContent = 'Analyze Threat Now';
-      trackEvent('run_scan', 'index_workbench', { channel, score: resData.threat_score });
-      loadLiveStats();
+      try {
+        if (!resData) resData = localTriageFallback(channel, sender, content);
+        renderVerdict(resData);
+        trackEvent('run_scan', 'index_workbench', { channel, score: resData.threat_score });
+        loadLiveStats();
+      } finally {
+        scanInFlight = false;
+        btnLbl.textContent = 'Analyze Threat Now';
+      }
     }
 
     function escapeHtml(s) {
